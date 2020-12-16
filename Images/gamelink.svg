@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="236" height="47" viewBox="0 0 236 47">
+  <g id="gamelink" transform="translate(-918 -885)">
+    <rect id="Rectangle_1591" data-name="Rectangle 1591" width="236" height="47" rx="10" transform="translate(918 885)" fill="#013b4f"/>
+    <text id="遊戲連結" transform="translate(983 918)" fill="#fff" font-size="24" font-family="YuGothicUI-Regular, Yu Gothic UI" letter-spacing="0.2em"><tspan x="0" y="0">遊戲連結</tspan></text>
+    <path id="Icon_awesome-gamepad" data-name="Icon awesome-gamepad" d="M27.521,6.75H9.174a9.174,9.174,0,1,0,6.548,15.595h5.246A9.172,9.172,0,1,0,27.521,6.75ZM14.678,17.07a.69.69,0,0,1-.688.688H11.008V20.74a.69.69,0,0,1-.688.688H8.027a.69.69,0,0,1-.688-.688V17.758H4.357a.69.69,0,0,1-.688-.688V14.777a.69.69,0,0,1,.688-.688H7.339V11.107a.69.69,0,0,1,.688-.688H10.32a.69.69,0,0,1,.688.688v2.981H13.99a.69.69,0,0,1,.688.688Zm10.55,3.9a2.752,2.752,0,1,1,2.752-2.752A2.753,2.753,0,0,1,25.227,20.969Zm4.587-4.587a2.752,2.752,0,1,1,2.752-2.752A2.753,2.753,0,0,1,29.814,16.382Z" transform="translate(932.399 892)" fill="#fff"/>
+    <g id="Icon_feather-external-link" data-name="Icon feather-external-link" transform="translate(1104.097 891.25)">
+      <path id="Path_6" data-name="Path 6" d="M24.211,18.2v7.884a2.628,2.628,0,0,1-2.628,2.628H7.128A2.628,2.628,0,0,1,4.5,26.083V11.628A2.628,2.628,0,0,1,7.128,9h7.884" transform="translate(0 -0.558)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+      <path id="Path_7" data-name="Path 7" d="M22.5,4.5h7.884v7.884" transform="translate(-2.231)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+      <path id="Path_8" data-name="Path 8" d="M15,18.955,29.455,4.5" transform="translate(-1.302)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+    </g>
+  </g>
+</svg>

@@ -4,7 +4,7 @@ const { src, series, dest, parallel, watch } = require('gulp')
 
 const clean = require('./tasks/clean')
 const styles = require('./tasks/sassStyle')
-const html = require('./tasks/html_template')
+// const html = require('./tasks/html_template')
 const jsBabel = require('./tasks/jsBabel')
 const concats = require('./tasks/concat')
 const images = require('./tasks/images')

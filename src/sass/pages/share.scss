@@ -1,0 +1,429 @@
+// 導入SASS變數
+@import "../base/base.scss";
+
+body{
+  background-color: $insideBackgroundColor;
+  position: relative;
+}
+.body_box{
+  padding: 0;
+  margin: 0;
+}
+main{
+  width: 1200px;
+  margin: 0 auto;
+
+}
+// 第一區
+
+.section_1{
+  color: $textColor;
+  display: flex;
+  flex-direction: column;
+  justify-content:center ;
+  align-items: center;
+  
+}
+.s1_title{
+  font-size: $fontsize_H2;
+  font-weight: bold;
+  letter-spacing: 2px;
+  line-height: 1.5;
+
+}
+.s1_text{
+  display: flex;
+  justify-content:center ;
+  align-items: center;
+  font-size: $fontsize_H4;
+  margin-top: 27px;
+  letter-spacing: 2px;
+  line-height: 1.5;
+  img{
+    margin-right: 20px;
+  }
+
+}
+
+// 第二區
+
+.section_2{
+  margin-top: 69px;
+}
+// 第二區 - 標題
+.s2_title{
+  display: flex;
+  justify-content:center ;
+  align-items: center;
+  font-size:$fontsize_H3 ;
+  font-weight: bold;
+  color: $textColor;
+  letter-spacing: 2px;
+  line-height: 1.5;
+  img{
+    margin-right: 20px;
+  }
+
+}
+// 第二區 - 文章
+
+.s2_hotitem_box{
+  margin-top: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.s2_hotitem{
+  width: 350px;
+  height: 315px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 0 12.5px;
+  text-decoration: none;
+
+}
+
+.hotimg{
+  font-size: 0px;
+}
+
+.hotinfo{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  padding: 0 13px;
+}
+
+.memimg{
+  border-radius: 50%;
+  width: 80px;
+  margin-right: 18px;
+}
+.hotright{
+  width: 100%;
+  padding: 11px 0px 20px 0px;
+}
+
+.texttime{
+  display: flex;
+  justify-content: flex-end;
+  font-size: 8px;
+  color: rgba($color: #000000, $alpha: 0.5);
+}
+
+.hotdetail{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.memname{
+  font-size:$fontsize_H5 ;
+  color: #000000;
+
+}
+
+.hotcount{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 11px 0 16px 0;
+
+}
+
+.hotcount>div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hotcount>div{
+  margin: 0 0 0 8px;
+}
+
+.hot_icon{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 3px;
+}
+
+.hot_num{
+  font-size: $fontsize_P3;
+  color: #000000;
+ 
+
+}
+
+.hot_text{
+  font-size: $fontsize_P2;
+  color: rgba($color: #000000, $alpha: 0.6);
+  letter-spacing: 2px;
+  line-height: 1.5;
+
+}
+
+// 第三區 搜尋BAR
+.section_3{
+  margin-top: 170px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.show_article_btn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+}
+.show_img{
+  margin-right: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.show_text{
+  font-size:$fontsize_H3 ;
+  font-weight: bold;
+  color: $textColor;
+  letter-spacing: 2px;
+ line-height: 1.5;
+}
+
+.searchbar{
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+     
+}
+#search {
+  outline: none;
+
+}
+
+.search_btn{
+  background-color: $btnColor;
+  height: 40px;
+  width: 63px;
+  font-size: 0px;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+
+}
+.write_article_btn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-color: $textColor;
+  border-radius: 8px;
+  overflow: hidden;
+  width: 116px;
+  height: 36px;
+
+} 
+
+.write_img{
+  width: 23px;
+  margin-right: 17px;
+}
+
+.write_text{
+  letter-spacing: 2px;
+  line-height: 1.5;
+  font-weight: bold;
+  color: #fff;
+  font-size: $fontsize_H4;
+}
+
+//第四區 - 文章列表
+
+.section_4{
+  margin-top: 51px;
+}
+.article_item{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  border-radius: 15px;
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+.article_img{
+  font-size: 0;
+ 
+}
+.article_right{
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  // justify-content: space-around;
+  width: calc(1200px - 396px);
+  padding: 20px 29px 20px 62px;
+  background-color: #fff;
+}
+
+.article_info{
+  display: flex;
+  justify-content: space-between;
+}
+.article_info_left{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.article_memimg{
+  width: 76px;
+  font-size: 0;
+  margin-right: 35px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.article_memname{
+  font-size: $fontsize_H3;
+  color: #000000;
+  font-weight: bold;
+}
+
+.article_time{
+ font-size: $fontsize_P3;
+ color: rgba($color: #000000, $alpha: 0.6);
+ }
+.article_detail{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 25px 0;
+}
+
+.article_title{
+  font-size:$fontsize_H5 ;
+  font-weight: bold;
+  color: $textColor;
+  letter-spacing: 2px;
+  line-height: 1.5;
+}
+
+
+.article_count{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  >div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 0 0 34px;   
+  }
+}
+
+.article_icon{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 5px;
+}
+
+.article_num{
+  font-size: $fontsize_P3;
+  color: #000000;
+ }
+
+
+.article_text{
+  font-size: $fontsize_P1;
+  color: rgba($color: #000000, $alpha: 0.6);
+  letter-spacing: 2px;
+  line-height: 1.5;
+}
+//第五區 分頁
+
+.section_5{
+  margin: 0 auto;
+  ul{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    *{
+      margin: 0 11px;
+      cursor: pointer;
+      font-size: $fontsize_H3;
+      color:  $textColor;
+      opacity: 0.6;
+     }
+     *:hover{
+      opacity: 1;
+     }
+  }
+}
+
+// 第六區 -- 文章詳情
+.section_6{
+  // position: absolute;
+  // display: none;
+  // top: 50%;
+  // left: 50%;
+  // transform: translate(-50%,-50%);
+  width: 902px;
+  margin: 0 auto;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+//  第六區 -- 大圖片
+
+
+.article_img_big{
+  position: relative;
+  margin: 0 auto;
+  font-size: 0;
+}
+
+#close_btn{
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 20px;
+  border-radius: 50%;
+  width: 25px;
+  font-size: 0;
+  overflow: hidden;
+}
+
+.article_down{
+  background-color: #fff;
+  padding: 52px 80px;
+}
+
+//  第六區 -- 發文者資訊
+
+
+.article_info_box{
+  // align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  // justify-content: space-around;
+  // width: calc(1200px - 396px);
+  // padding: 20px 29px 20px 62px;
+ }
+
+//  第六區 -- 留言
+
+//  第六區 -- 發表留言
+
+
+.mseeage_box{
+  margin: 35px 0 ;
+}
+
+// 第七區 -- 撰寫文章

@@ -1,3 +1,4 @@
+@import "mixins/mixins.scss";
 @import "base/base.scss";
 
 body {
@@ -8,9 +9,6 @@ body {
     display: flex;
     justify-content: center;
     margin-top: 50px;
-    font-size: $fontsize_H3;
     font-weight: bold;
     @include H3;
-
-
 }

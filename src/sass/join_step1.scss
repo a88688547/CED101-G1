@@ -8,17 +8,17 @@
 // $b-r = border-radius
 // $bc = background-color
 // $c = color
-// @mixin button1($f,$p,$l-s,$b-r,$bc,$c) {
-//   font-size: $f;
-//   padding: $p;
-//   letter-spacing: $l-s;
-//   border-radius:$b-r ;
-//   background-color: $bc;
-//   border: 0;
-//   color: $c;
-//   cursor: pointer;
-//   text-indent:10px;
-// }
+@mixin button_all($f,$p,$l-s,$b-r,$bc,$c) {
+  font-size: $f;
+  padding: $p;
+  letter-spacing: $l-s;
+  border-radius:$b-r ;
+  background-color: $bc;
+  border: 0;
+  color: $c;
+  cursor: pointer;
+  text-indent:10px;
+}
 
 body{
     background-color: $insideBackgroundColor;
@@ -34,14 +34,14 @@ body{
 //     @include button1(18px,5px,10px,20px,$btnColor2,#fff)
 //   }
 
-@mixin step_box {
-  
+@mixin margin-b  {
+  margin-bottom:50px;
 }
 //width :338px
 .w-338{
   width: 338px;
   margin: 0 auto;
-  border: 1px solid black;
+  // border: 1px solid black;
 }
 //width :338px
 
@@ -49,9 +49,10 @@ body{
 .step_box{
   width: 338px;
   margin: 0 auto;
-  border: 1px solid red;
+  // border: 1px solid red;
   box-sizing: border-box;
-  margin-bottom: 30px;
+  @include margin-b
+  // margin-bottom: 30px;
   .step_ball{
     display: flex;
     justify-content:space-between;
@@ -102,10 +103,18 @@ body{
   }
   //====進度條=====
 
+//letter-spacing置中
+  @mixin ls($ls) {
+    letter-spacing:$ls;
+    text-indent:$ls;
+  }
   //====開團資料====
 .group_data{
-  border: 1px solid red;
+  // border: 1px solid red;
+  position: relative;
+  // margin-bottom: 55px;
   ul{
+    margin-bottom: 55px;
     li{
       display: flex;
       justify-content: space-between;
@@ -114,19 +123,26 @@ body{
       label{
         font-size: $fontsize_H6;
         color:#ffffff;
+        letter-spacing:6px;
        
       }
-      input,select{
+      input,select,
+      textarea{
         border-radius: 5px;
         border: 1px solid black;
         width: 195px;
-        text-align: center;
+        height: 28px;
+        // text-align: center;
+      }
+      select{
+        padding: 0 0 0 20px;
+        @include ls(3px)
+      }
+      textarea{
+        align-items: center;
+        padding : 3px 5px 0 5px;
       }
       
-      h1{
-        page-break-after: auto;
-        padding: 10px;
-      }
 
       &:last-child{
         margin-bottom: 0;
@@ -138,5 +154,77 @@ body{
   }
   
 }
-  //====開團資料====
+ //====開團資料====
+.line{
+  border: 1px solid #383232;
+  background-color: #383232;
+  margin-bottom: 55px;
+}
+  //====團長資料====
+  .Head_data{
+    box-sizing: border-box;
+    // border: 1px solid rgb(16, 32, 248);
+    display: flex;
+    flex-direction: column;
+    // justify-content: space-between;
+    // text-align: center;
+    align-items: center;
+    .Head_img{
+      // border: 1px solid red;
+      width: 105px;
+      height: 105px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin-bottom: 20px;
+      img{
+        width: 100%;
+        height: 100%;
+        object-fit:cover;
+      }
+    }
+    h2{
+      font-size: $fontsize_H2;
+      // letter-spacing: 15px;
+      @include ls(15px);
+      color:$textColor;
+      margin-bottom: 25px;
+    }
+    ul{
+      // border: 1px solid red;
+      width: 100%;
+      font-size: $fontsize_H6;
+      letter-spacing: 3px;
+      margin-bottom: 35px;
+      
+      li{
+        padding: 0 15px;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        // background-color: red;
+        margin-bottom: 15px;
+        label{
+          color: black;
+        }
+        &:last-child{
+          margin-bottom: 0;
+        }
+      }
+    }
+    .group_button{
+      // border: 1px solid blue;
+      width: 100%;
+      padding: 0 35px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .btn_back,.btn_go{
+      @include button_all(18px, 5px, 5px, 10px,#B3925B ,#fff )
+    }
+  }
+ //====團長資料====
+
+
+
+ 
   

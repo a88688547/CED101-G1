@@ -1,0 +1,43 @@
+
+header{
+    width: 100%;
+    background-color: #013B4F;
+    position: fixed;
+    top:0;
+}
+
+header nav{
+    width: 80%;
+    height: 80px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header nav .nav_list{
+    display: inline-flex;
+    align-items: center;
+}
+
+header nav .nav_list ul>li{
+    display: inline-flex;
+    top: 0;
+    font-size: 16px;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    margin-right: 40px;
+    letter-spacing: 2px;
+}
+
+header nav .nav_list img{
+    margin-right: 10px;
+}
+
+header nav .nav_list .user_logo{
+    margin-right: initial;
+}
+
+
+

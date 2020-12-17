@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/join_step1.css" />
+    <script src="./vendors/vue/vue.js"></script>
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <header id="header"><my-header></my-header></header>
+    <!-- ==============header================= -->
+    <div class="w-338">
+      <!-- ==============進度條================= -->
+      <div class="step_box">
+        <ul class="step_ball">
+          <li class="on"></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+        <ul class="step_text">
+          <li class="on">1.建立訂單</li>
+          <li>2.訂單頁面</li>
+          <li>3.訂單資訊</li>
+          <li>4.訂購明細</li>
+        </ul>
+      </div>
+      <!-- ==============進度條================= -->
+      <!-- ==============開團資料================= -->
+
+      <form action="" class="group_data">
+        <ul>
+          <li>
+            <label for="name">團名</label>
+            <input id="name" name="name" type="text" class="fildform" />
+          </li>
+          <li>
+            <label for="time">預計送達時間</label>
+            <!-- 不知道用哪個input -->
+            <input id="time" name="time" type="text" class="fildform" />
+          </li>
+          <li>
+            <label for=""></label>
+            <select>
+              <option>--請選擇目標杯數--</option>
+              <option>20杯/9折優惠</option>
+              <option>30杯/8折優惠</option>
+              <option>40杯/7折優惠</option>
+              <option>20杯以下-無優惠</option>
+            </select>
+          </li>
+        </ul>
+      </form>
+    </div>
+    <!-- ==============開團資料================= -->
+
+    <!-- ==============footer================= -->
+    <footer id="footer"><my-footer></my-footer></footer>
+    <script src="./layout/header.vue"></script>
+    <script src="./layout/footer.vue"></script>
+  </body>
+</html>

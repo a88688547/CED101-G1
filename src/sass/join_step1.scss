@@ -1,0 +1,137 @@
+@import "base/base.scss";
+
+
+// $f = font-size
+// $p = padding
+// $l-s = letter-spacing
+// $b-r = border-radius
+// $bc = background-color
+// $c = color
+// @mixin button1($f,$p,$l-s,$b-r,$bc,$c) {
+//   font-size: $f;
+//   padding: $p;
+//   letter-spacing: $l-s;
+//   border-radius:$b-r ;
+//   background-color: $bc;
+//   border: 0;
+//   color: $c;
+//   cursor: pointer;
+//   text-indent:10px;
+// }
+
+body{
+    background-color: $insideBackgroundColor;
+    position: relative;
+  }
+// .testbtn1{
+//     @include button1(18px,15px,5px,10px,$btnColor,rgb(255, 255, 255))
+//   }
+//   .testbtn2{
+//     @include button1(14px,8px,5px,10px,$textColor,rgb(255, 255, 255) )
+//   }
+//   .testbtn3{
+//     @include button1(18px,5px,10px,20px,$btnColor2,#fff)
+//   }
+
+@mixin step_box {
+  
+}
+//width :338px
+.w-338{
+  width: 338px;
+  margin: 0 auto;
+  border: 1px solid black;
+}
+//width :338px
+
+//====進度條=====
+.step_box{
+  width: 338px;
+  margin: 0 auto;
+  border: 1px solid red;
+  box-sizing: border-box;
+  margin-bottom: 30px;
+  .step_ball{
+    display: flex;
+    justify-content:space-between;
+    position: relative;
+    //進度條的球
+    li{
+      width: 52px;
+      height: 52px;
+      // border: 1px solid red;
+      border-radius: 50%;
+      background-color: #D3C8B5;
+      margin-bottom: 10px;
+      position: relative;
+      //進度條的線
+      &::before{
+        content: "";
+        position: absolute;
+        width:45px;
+        height: 4px;
+        background-color: #D3C8B5;
+        left: 50px;
+        top:50%;
+        z-index: -1;
+      }
+      //最後一條消失
+      &:last-child::before{
+       display: none;
+      }
+    }
+    //進度條當前頁面
+    .on{
+      background-color: $btnColor;
+    }
+  }
+   //進度條文字
+  .step_text{
+    display: flex;
+    justify-content:space-between;
+    color:$textColor;
+    font-size: $fontsize_P2;
+    // letter-spacing:2px;
+    // text-indent: 2px;
+    //進度條當前頁面
+    .on{
+      font-weight:bold;
+    }
+  }
+  }
+  //====進度條=====
+
+  //====開團資料====
+.group_data{
+  border: 1px solid red;
+  ul{
+    li{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+      label{
+        font-size: $fontsize_H6;
+        color:#ffffff;
+       
+      }
+      input,select{
+        border-radius: 5px;
+        border: 1px solid black;
+        width: 195px;
+        text-align: center;
+      }
+      
+
+      &:last-child{
+        margin-bottom: 0;
+      }
+    }
+    &:first-child label{
+      color: $textColor;
+    }
+  }
+  
+}
+  //====開團資料====
+  

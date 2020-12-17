@@ -2,9 +2,8 @@
 header{
     width: 100%;
     background-color: #013B4F;
-    position: sticky;
+    position: fixed;
     top:0;
-    margin-bottom: 10rem;
 }
 
 header nav{

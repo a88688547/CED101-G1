@@ -2,48 +2,53 @@
 @import "base/base.scss";
 
 
-body{
+body {
   background-color: $insideBackgroundColor;
   position: relative;
 }
-.body_box{
+
+.body_box {
   padding: 0;
   margin: 0;
 
 }
 
 
-main{
+main {
   width: 1200px;
   margin: 0 auto;
-  
+
 }
+
 // 第一區
 
-.section_1{
+.section_1 {
   color: $textColor;
   display: flex;
   flex-direction: column;
-  justify-content:center ;
+  justify-content: center;
   align-items: center;
-  
+
 }
-.s1_title{
+
+.s1_title {
   font-size: $fontsize_H2;
   font-weight: bold;
   letter-spacing: 2px;
   line-height: 1.5;
 
 }
-.s1_text{
+
+.s1_text {
   display: flex;
-  justify-content:center ;
+  justify-content: center;
   align-items: center;
   font-size: $fontsize_H4;
   margin-top: 27px;
   letter-spacing: 2px;
   line-height: 1.5;
-  img{
+
+  img {
     margin-right: 20px;
   }
 
@@ -51,35 +56,38 @@ main{
 
 // 第二區
 
-.section_2{
+.section_2 {
   margin-top: 69px;
 }
+
 // 第二區 - 標題
-.s2_title{
+.s2_title {
   display: flex;
-  justify-content:center ;
+  justify-content: center;
   align-items: center;
-  font-size:$fontsize_H3 ;
+  font-size: $fontsize_H3;
   font-weight: bold;
   color: $textColor;
   letter-spacing: 2px;
   line-height: 1.5;
-  img{
+
+  img {
     margin-right: 20px;
   }
 
 }
+
 // 第二區 - 文章
 
-.s2_hotitem_box{
+.s2_hotitem_box {
   margin-top: 25px;
   display: flex;
   justify-content: center;
   align-items: center;
-  
+
 }
 
-.s2_hotitem{
+.s2_hotitem {
   width: 350px;
   height: 315px;
   border-radius: 10px;
@@ -89,11 +97,11 @@ main{
 
 }
 
-.hotimg{
+.hotimg {
   font-size: 0px;
 }
 
-.hotinfo{
+.hotinfo {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -101,36 +109,37 @@ main{
   padding: 0 13px;
 }
 
-.memimg{
+.memimg {
   border-radius: 50%;
   width: 80px;
   margin-right: 18px;
 }
-.hotright{
+
+.hotright {
   width: 100%;
   padding: 11px 0px 20px 0px;
 }
 
-.texttime{
+.texttime {
   display: flex;
   justify-content: flex-end;
   font-size: 8px;
   color: rgba($color: #000000, $alpha: 0.5);
 }
 
-.hotdetail{
+.hotdetail {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.memname{
-  font-size:$fontsize_H5 ;
+.memname {
+  font-size: $fontsize_H5;
   color: #000000;
 
 }
 
-.hotcount{
+.hotcount {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -138,31 +147,31 @@ main{
 
 }
 
-.hotcount>div{
+.hotcount>div {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.hotcount>div{
+.hotcount>div {
   margin: 0 0 0 8px;
 }
 
-.hot_icon{
+.hot_icon {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-right: 3px;
 }
 
-.hot_num{
+.hot_num {
   font-size: $fontsize_P3;
   color: #000000;
- 
+
 
 }
 
-.hot_text{
+.hot_text {
   font-size: $fontsize_P2;
   color: rgba($color: #000000, $alpha: 0.6);
   letter-spacing: 2px;
@@ -171,48 +180,50 @@ main{
 }
 
 // 第三區 搜尋BAR
-.section_3{
+.section_3 {
   margin-top: 170px;
   display: flex;
   justify-content: space-around;
   align-items: center;
 }
 
-.show_article_btn{
+.show_article_btn {
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
 
 }
-.show_img{
+
+.show_img {
   margin-right: 8px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.show_text{
-  font-size:$fontsize_H3 ;
+.show_text {
+  font-size: $fontsize_H3;
   font-weight: bold;
   color: $textColor;
   letter-spacing: 2px;
- line-height: 1.5;
+  line-height: 1.5;
 }
 
-.searchbar{
+.searchbar {
 
   display: flex;
   justify-content: center;
   align-items: center;
-     
+
 }
+
 #search {
   outline: none;
 
 }
 
-.search_btn{
+.search_btn {
   background-color: $btnColor;
   height: 40px;
   width: 63px;
@@ -222,7 +233,8 @@ main{
   cursor: pointer;
 
 }
-.write_article_btn{
+
+.write_article_btn {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -233,14 +245,14 @@ main{
   width: 116px;
   height: 36px;
 
-} 
+}
 
-.write_img{
+.write_img {
   width: 23px;
   margin-right: 17px;
 }
 
-.write_text{
+.write_text {
   letter-spacing: 2px;
   line-height: 1.5;
   font-weight: bold;
@@ -250,10 +262,11 @@ main{
 
 //第四區 - 文章列表
 
-.section_4{
+.section_4 {
   margin-top: 51px;
 }
-.article_item{
+
+.article_item {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -262,11 +275,13 @@ main{
   overflow: hidden;
   margin-bottom: 24px;
 }
-.article_img{
+
+.article_img {
   font-size: 0;
- 
+
 }
-.article_right{
+
+.article_right {
   align-self: stretch;
   display: flex;
   flex-direction: column;
@@ -276,16 +291,18 @@ main{
   background-color: #fff;
 }
 
-.article_info{
+.article_info {
   display: flex;
   justify-content: space-between;
 }
-.article_info_left{
+
+.article_info_left {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.article_memimg{
+
+.article_memimg {
   width: 76px;
   font-size: 0;
   margin-right: 35px;
@@ -293,25 +310,26 @@ main{
   overflow: hidden;
 }
 
-.article_memname{
+.article_memname {
   font-size: $fontsize_H3;
   color: #000000;
   font-weight: bold;
 }
 
-.article_time{
- font-size: $fontsize_P3;
- color: rgba($color: #000000, $alpha: 0.6);
- }
-.article_detail{
+.article_time {
+  font-size: $fontsize_P3;
+  color: rgba($color: #000000, $alpha: 0.6);
+}
+
+.article_detail {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin: 25px 0;
 }
 
-.article_title{
-  font-size:$fontsize_H5 ;
+.article_title {
+  font-size: $fontsize_H5;
   font-weight: bold;
   color: $textColor;
   letter-spacing: 2px;
@@ -319,60 +337,65 @@ main{
 }
 
 
-.article_count{
+.article_count {
   display: flex;
   justify-content: center;
   align-items: center;
+
   >div {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0 0 0 34px;   
+    margin: 0 0 0 34px;
   }
 }
 
-.article_icon{
+.article_icon {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-right: 5px;
 }
 
-.article_num{
+.article_num {
   font-size: $fontsize_P3;
   color: #000000;
- }
+}
 
 
-.article_text{
+.article_text {
   font-size: $fontsize_P1;
   color: rgba($color: #000000, $alpha: 0.6);
   letter-spacing: 2px;
   line-height: 1.5;
 }
+
 //第五區 分頁
 
-.section_5{
+.section_5 {
   margin: 0 auto;
-  ul{
+
+  ul {
     display: flex;
     justify-content: center;
     align-items: center;
-    *{
+
+    * {
       margin: 0 11px;
       cursor: pointer;
       font-size: $fontsize_H3;
-      color:  $textColor;
+      color: $textColor;
       opacity: 0.6;
-     }
-     *:hover{
+    }
+
+    *:hover {
       opacity: 1;
-     }
+    }
   }
 }
 
 // 第六區 -- 文章詳情
-.section_6{
+.section_6 {
   // position: absolute;
   // display: none;
   // top: 50%;
@@ -387,14 +410,14 @@ main{
 //  第六區 -- 大圖片
 
 
-.article_img_big{
+.article_img_big {
   position: relative;
   margin: 0 auto;
   font-size: 0;
   z-index: -1;
 }
 
-#close_btn{
+#close_btn {
   position: absolute;
   top: 0;
   right: 0;
@@ -405,7 +428,7 @@ main{
   overflow: hidden;
 }
 
-.article_down{
+.article_down {
   background-color: #fff;
   padding: 52px 80px;
 }
@@ -413,22 +436,22 @@ main{
 //  第六區 -- 發文者資訊
 
 
-.article_info_box{
+.article_info_box {
   // align-self: stretch;
   display: flex;
   flex-direction: column;
   // justify-content: space-around;
   // width: calc(1200px - 396px);
   // padding: 20px 29px 20px 62px;
- }
+}
 
 //  第六區 -- 留言
 
 //  第六區 -- 發表留言
 
 
-.mseeage_box{
-  margin: 35px 0 ;
+.mseeage_box {
+  margin: 35px 0;
 }
 
 // 第七區 -- 撰寫文章

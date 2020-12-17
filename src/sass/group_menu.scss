@@ -1,6 +1,16 @@
 @import "base/base.scss";
 
+body {
+    background-color: $insideBackgroundColor;
+}
+
 #countDown {
     display: flex;
     justify-content: center;
+    margin-top: 50px;
+    font-size: $fontsize_H3;
+    font-weight: bold;
+    @include H3;
+
+
 }

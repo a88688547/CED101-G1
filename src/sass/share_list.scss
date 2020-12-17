@@ -1,5 +1,5 @@
 // 導入SASS變數
-@import "../base/base.scss";
+@import "base/base.scss";
 
 body{
   background-color: $insideBackgroundColor;
@@ -8,11 +8,13 @@ body{
 .body_box{
   padding: 0;
   margin: 0;
+
 }
+
 main{
   width: 1200px;
   margin: 0 auto;
-
+  
 }
 // 第一區
 

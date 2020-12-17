@@ -1,5 +1,6 @@
 // 導入SASS變數
 @import "base/base.scss";
+@import "style.scss";
 
 body{
   background-color: $insideBackgroundColor;
@@ -10,6 +11,7 @@ body{
   margin: 0;
 
 }
+
 
 main{
   width: 1200px;
@@ -389,6 +391,7 @@ main{
   position: relative;
   margin: 0 auto;
   font-size: 0;
+  z-index: -1;
 }
 
 #close_btn{

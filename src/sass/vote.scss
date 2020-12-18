@@ -1,0 +1,300 @@
+@import "./base/base.scss";
+@import "./mixins/font_size.scss";
+@import "./base/color.scss";
+@import "./mixins/button.scss";
+$mq575: 575px;
+$mq767: 767px;
+$mq1199: 1199px;
+
+* {
+    body {
+        section {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .vote-top {
+                width: 1200px;
+                text-align: center;
+                color: $textColor;
+                margin-top: 100px;
+                margin-bottom: 100px;
+
+                h2 {
+                    font-size: $fontsize_H2;
+                    font-weight: bold;
+                    margin-bottom: 15px;
+                }
+
+                h4 {
+                    font-size: $fontsize_H4;
+                }
+
+                @media screen and (max-width: $mq575) {
+                    margin-top: 50px;
+                    margin-bottom: 50px;
+                    width: 100%;
+
+                    h2 {
+                        padding: 0 15px;
+                        margin-bottom: 15px;
+                    }
+
+                    h4 {
+                        line-height: 1.3;
+                        padding: 0 30px;
+
+                        img {
+                            width: 25px;
+                            height: 25px;
+                            position: relative;
+                            top: 5px;
+                        }
+                    }
+                }
+            }
+
+            .vote-bot {
+
+                color: $textColor;
+
+                width: 1200px;
+                display: flex;
+                justify-content: center;
+
+                @media screen and (max-width:$mq575) {
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                }
+
+                .vote-wrap {
+                    margin-bottom: 100px;
+                    margin-right: 30px;
+
+                    &:last-child {
+                        margin-right: 0;
+                    }
+
+                    .votes {
+                        display: inline-block;
+                    }
+
+                    .vote-title {
+                        font-size: $fontsize_H2;
+                        font-weight: bold;
+                        text-align: center;
+                        margin: 15px;
+                    }
+
+                    .vote-first {
+                        position: relative;
+                        width: 100%;
+                        border-radius: 20px;
+                        overflow: hidden;
+                        box-shadow: 3px 3px 8px 4px rgba($color: #000000, $alpha: 0.2);
+
+                        .first-rank {
+                            position: absolute;
+                            top: 20px;
+                            left: -35px;
+                            color: #fff;
+                            background-color: #ffa208;
+                            width: 150px;
+                            height: 20px;
+                            font-size: 20px;
+                            text-align: center;
+                            line-height: 20px;
+                            transform: rotate(-35deg);
+                        }
+
+                        .first-pic {
+                            width: 100%;
+                            height: 300px;
+                            background-color: #aaa;
+                        }
+
+                        .first-txt {
+                            text-align: center;
+                            margin: 30px;
+
+                            .first-title {
+                                font-size: $fontsize_H2;
+                                font-weight: bold;
+                                margin-bottom: 15px;
+                            }
+
+                            .first-votes {
+                                font-size: $fontsize_H3;
+
+                                img {
+                                    width: 25px;
+                                }
+                            }
+                        }
+                    }
+
+                    .vote-second {
+                        width: 100%;
+                        display: flex;
+
+                        .vote-second-item {
+                            position: relative;
+                            width: 50%;
+                            border-radius: 20px;
+                            overflow: hidden;
+                            box-shadow: 3px 3px 8px 4px rgba($color: #000000, $alpha: 0.2);
+                            margin: 15px;
+
+                            &:first-child {
+                                margin-left: 0px;
+                            }
+
+                            &:last-child {
+                                margin-right: 0px;
+                            }
+
+
+
+                            .second-rank {
+                                position: absolute;
+                                top: 20px;
+                                left: -35px;
+                                color: #fff;
+                                background-color: #ffa208;
+                                width: 150px;
+                                height: 20px;
+                                font-size: 20px;
+                                text-align: center;
+                                line-height: 20px;
+                                transform: rotate(-35deg);
+                            }
+
+                            .second-pic {
+                                background-color: #aaa;
+                                width: 100%;
+                                height: 200px;
+                            }
+
+                            .second-txt {
+                                text-align: center;
+                                margin: 15px;
+
+                                .second-title {
+                                    font-size: $fontsize_H4;
+                                    font-weight: bold;
+                                    margin-bottom: 15px;
+                                }
+
+                                .second-votes {
+                                    font-size: $fontsize_H6;
+
+                                    img {
+                                        width: 20px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    .vote-button {
+                        width: 100%;
+                        margin-top: 50px;
+                        text-align: center;
+                        display: flex;
+                        justify-content: center;
+
+                        button {
+                            @include button_3;
+                            background-color: #ffa208;
+                            color: #fff;
+                            font-size: $fontsize_H4;
+                            cursor: pointer;
+
+                            &:focus {
+                                outline: none;
+                            }
+                        }
+                    }
+
+                    @media screen and (max-width: $mq575) {
+                        width: 100%;
+                        padding: 15px;
+
+                        .vote-first {
+                            margin-bottom: 15px;
+
+                            .first-rank {}
+
+                            .first-pic {
+                                width: 100%;
+                                height: 300px;
+                                background-color: #aaa;
+                            }
+
+                            .first-txt {
+                                .first-title {
+                                    margin-bottom: 15px;
+                                }
+
+                                .first-votes {
+                                    img {
+                                        width: 30px;
+                                        position: relative;
+                                        top: 0;
+                                        right: 5px;
+                                    }
+                                }
+                            }
+                        }
+
+                        .vote-second {
+                            width: 100%;
+                            display: flex;
+
+                            .vote-second-item {
+                                width: 50%;
+                                margin: 15px;
+
+                                &:first-child {
+                                    margin-left: 0px;
+                                }
+
+                                &:last-child {
+                                    margin-right: 0px;
+                                }
+
+                                .second-rank {}
+
+                                .second-pic {
+                                    background-color: #aaa;
+                                    width: 100%;
+                                    height: 200px;
+                                }
+
+                                .second-txt {
+                                    margin: 15px;
+
+                                    .second-title {
+                                        margin-bottom: 15px;
+                                    }
+
+                                    .second-votes {
+                                        img {
+                                            width: 25px;
+                                            position: relative;
+                                            right: 5px;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        .vote-button {}
+                    }
+                }
+            }
+        }
+    }
+}

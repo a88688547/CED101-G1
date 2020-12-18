@@ -4,10 +4,13 @@
 @import "./mixins/button.scss";
 $mq575: 575px;
 $mq767: 767px;
+$mq991: 991px;
 $mq1199: 1199px;
 
 * {
     body {
+        box-sizing: border-box;
+
         section {
             width: 100%;
             display: flex;
@@ -16,6 +19,7 @@ $mq1199: 1199px;
 
             .vote-top {
                 width: 1200px;
+                max-width: 1200px;
                 text-align: center;
                 color: $textColor;
                 margin-top: 100px;
@@ -29,6 +33,23 @@ $mq1199: 1199px;
 
                 h4 {
                     font-size: $fontsize_H4;
+
+                    img {
+                        width: 25px;
+                        height: 25px;
+                        position: relative;
+                        top: 5px;
+                    }
+                }
+
+                @media screen and (max-width:$mq1199) {
+                    width: 100%;
+                    padding: 0 30px;
+                }
+
+                @media screen and (max-width:$mq991) {
+                    width: 100%;
+                    padding: 0 30px;
                 }
 
                 @media screen and (max-width: $mq575) {
@@ -44,15 +65,9 @@ $mq1199: 1199px;
                     h4 {
                         line-height: 1.3;
                         padding: 0 30px;
-
-                        img {
-                            width: 25px;
-                            height: 25px;
-                            position: relative;
-                            top: 5px;
-                        }
                     }
                 }
+
             }
 
             .vote-bot {
@@ -60,8 +75,23 @@ $mq1199: 1199px;
                 color: $textColor;
 
                 width: 1200px;
+                max-width: 1200px;
                 display: flex;
                 justify-content: center;
+                padding: 15px;
+
+                @media screen and (max-width:$mq1199) {
+                    width: 100%;
+
+                }
+
+                @media screen and (max-width:$mq991) {
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+
+                }
 
                 @media screen and (max-width:$mq575) {
                     width: 100%;
@@ -94,6 +124,7 @@ $mq1199: 1199px;
                         border-radius: 20px;
                         overflow: hidden;
                         box-shadow: 3px 3px 8px 4px rgba($color: #000000, $alpha: 0.2);
+                        margin-bottom: 15px;
 
                         .first-rank {
                             position: absolute;
@@ -155,7 +186,13 @@ $mq1199: 1199px;
                                 margin-right: 0px;
                             }
 
+                            &:first-child .second-rank {
+                                background-color: #e48f2e;
+                            }
 
+                            &:last-child .second-rank {
+                                background-color: #B3925B;
+                            }
 
                             .second-rank {
                                 position: absolute;
@@ -205,22 +242,48 @@ $mq1199: 1199px;
                         display: flex;
                         justify-content: center;
 
+
                         button {
                             @include button_3;
                             background-color: #ffa208;
                             color: #fff;
                             font-size: $fontsize_H4;
+                            padding: 5px 10px;
                             cursor: pointer;
 
                             &:focus {
                                 outline: none;
                             }
+
+                            img {
+                                width: 25px;
+                            }
                         }
+                    }
+
+                    @media screen and (max-width: $mq1199) {
+                        width: 100%;
+                    }
+
+                    @media screen and (max-width: $mq991) {
+                        width: 720px;
+                        padding: 0 15px;
+
+
+                        .vote-first {}
+
+                        .vote-second {}
+                    }
+
+                    @media screen and (max-width: $mq767) {
+                        width: 540px;
+                        padding: 0 15px;
                     }
 
                     @media screen and (max-width: $mq575) {
                         width: 100%;
                         padding: 15px;
+                        margin-right: 0px;
 
                         .vote-first {
                             margin-bottom: 15px;

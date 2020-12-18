@@ -4,6 +4,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>分享區</title>
+        <script src="./vendors/Vue/vue.js"></script>
         <link rel="stylesheet" href="./css/share_list.css" />
         <link rel="stylesheet" href="./css/style.css">
  
@@ -284,12 +285,75 @@
                             </div>
                         </div>
                         <div class="mseeage_box">
-                            <div class="mem_msg">
-                                <div></div>
-                                <div></div>
-                            </div>
+                                <div class="msg_mem">
+                                    <div class="msg_text_box">
+                                        <div class="msg_memimg"><img src="./Images/user_medium.svg" ></div>
+                                        <div class="msg_info">
+                                            <div class="msg_memname">會員名稱</div>
+                                            <div class="msg_memmsg">手搖控這次不吸珍珠了！台北最新排隊名店</div>
+                                        </div>
+                                    </div>
+                                    <div class="msg_time_box">
+                                        <div class="msg_time">2020/11/27  13:00</div>
+                                        <div class="msg_action">
+                                            <div class="msg_like">
+                                                <div class="msg_like_img"><img src="./Images/like_big.svg" ></div> 
+                                                <div>19</div>
+                                            </div>
+                                        
+                                            <div class="msg_line"></div>
+                                            <div class="msg_report">檢舉</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="msg_mem">
+                                    <div class="msg_text_box">
+                                        <div class="msg_memimg"><img src="./Images/user_medium.svg" ></div>
+                                        <div class="msg_info">
+                                            <div class="msg_memname">會員名稱</div>
+                                            <div class="msg_memmsg">手搖控這次不吸珍珠了！台北最新排隊名店</div>
+                                        </div>
+                                    </div>
+                                    <div class="msg_time_box">
+                                        <div class="msg_time">2020/11/27  13:00</div>
+                                        <div class="msg_action">
+                                            <div class="msg_like">
+                                                <div class="msg_like_img"><img src="./Images/like_big.svg" ></div> 
+                                                <div>19</div>
+                                            </div>
+                                        
+                                            <div class="msg_line"></div>
+                                            <div class="msg_report">檢舉</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="msg_mem">
+                                    <div class="msg_text_box">
+                                        <div class="msg_memimg"><img src="./Images/user_medium.svg" ></div>
+                                        <div class="msg_info">
+                                            <div class="msg_memname">會員名稱</div>
+                                            <div class="msg_memmsg">手搖控這次不吸珍珠了！台北最新排隊名店</div>
+                                        </div>
+                                    </div>
+                                    <div class="msg_time_box">
+                                        <div class="msg_time">2020/11/27  13:00</div>
+                                        <div class="msg_action">
+                                            <div class="msg_like">
+                                                <div class="msg_like_img"><img src="./Images/like_big.svg" ></div> 
+                                                <div>19</div>
+                                            </div>
+                                        
+                                            <div class="msg_line"></div>
+                                            <div class="msg_report">檢舉</div>
+                                        </div>
+                                    </div>
+                                </div>
                         </div>
-                        <div class="comment_box"></div>
+                        <form class="comment_box">
+                            <div class="comment_title_box"><div class="pen_img"><img src="./Images/pen-blue.svg" ></div><div class="comment_title">發表留言</div></div>
+                            <input id="comment" cols="50" rows="5"  type="textarea" style="max-width:750px;height:200px;width:100%;border-radius: 10px;overflow: hidden;outline: none; ">
+                            <button class="sendbtn"><div class="sendbtn_img"><img src="./Images/send.svg" ></div><div class="sendbtn_text">送出</div></button>
+                        </form>
                     </div>
                  
                 </section>

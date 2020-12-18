@@ -1,5 +1,6 @@
-// 導入SASS變數
+// 導入SASS共用
 @import "base/base.scss";
+@import "mixins/mixins.scss";
 
 
 body {
@@ -15,9 +16,9 @@ body {
 
 
 main {
-  width: 1200px;
+  max-width: 1200px;
   margin: 0 auto;
-
+  width: 100%;
 }
 
 // 第一區
@@ -401,10 +402,12 @@ main {
   // top: 50%;
   // left: 50%;
   // transform: translate(-50%,-50%);
-  width: 902px;
+  width: 75%;
+  max-width: 900px;
   margin: 0 auto;
   border-radius: 15px;
   overflow: hidden;
+  background-color: #fff;
 }
 
 //  第六區 -- 大圖片
@@ -414,7 +417,7 @@ main {
   position: relative;
   margin: 0 auto;
   font-size: 0;
-  z-index: -1;
+  // z-index: -1;
 }
 
 #close_btn {
@@ -429,8 +432,11 @@ main {
 }
 
 .article_down {
-  background-color: #fff;
-  padding: 52px 80px;
+  // background-color: #fff;
+  // padding: 52px 80px;
+  width: 85%;
+  max-width: 750px;
+  margin: 52px auto;
 }
 
 //  第六區 -- 發文者資訊
@@ -447,11 +453,135 @@ main {
 
 //  第六區 -- 留言
 
-//  第六區 -- 發表留言
-
-
 .mseeage_box {
-  margin: 35px 0;
+  margin: 0 auto 50px auto;
+  max-width: 900px !important;
+  width: 85%;
+  max-width: 750px;
 }
 
+
+.msg_mem{
+  display: flex;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 20px 30px;
+  margin-bottom: 15px;
+  justify-content: space-between;
+ 
+}
+.msg_text_box{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 80%;
+}
+.msg_memimg{
+  margin-right: 5%;
+}
+.msg_memname{
+  @include H4;
+  margin-bottom: 3%;
+}
+.msg_memmsg{
+  @include H6;
+}
+
+.msg_time_box{
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.msg_time{
+ text-align: center;
+ @include P2;
+ color: rgba($color: #000000, $alpha: 0.5);
+
+}
+.msg_action{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  @include P1;
+
+}
+.msg_like{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+
+}
+.msg_like_img{
+  margin-right: 10px
+}
+
+.msg_line{
+  font-weight: bold;
+  width: 1px;
+  border: 1px solid black;
+  height: 100%;
+}
+//  第六區 -- 發表留言
+
+.comment_box{
+  position: relative;
+  width: 85%;
+  max-width: 750px;
+  margin: 0 auto;
+}
+
+.comment_title_box{
+  display: flex;
+  // justify-content: center;
+  align-items: center;
+}
+
+.pen_img{
+  margin-right: 5px
+}
+
+.comment_title{
+  @include H3;
+  font-weight: bold;
+  color: $textColor;
+}
+
+#comment{
+  // width: 100%;
+  // height: 200px;
+  margin: 20px 0 100px 0;
+}
+
+.sendbtn{
+  // position: relative;
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  bottom: 25px;
+  right: 0;
+  // left: 0;
+  background-color: $textColor;
+  border-radius: 10px;
+  overflow: hidden;
+  padding:5px 10px;
+}
+
+.sendbtn_img{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px
+}
+
+.sendbtn_text{
+  @include H3;
+  color: #fff;
+  
+}
 // 第七區 -- 撰寫文章

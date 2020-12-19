@@ -1,0 +1,355 @@
+@import "./base/base.scss";
+
+
+
+// $f = font-size
+// $p = padding
+// $l-s = letter-spacing
+// $b-r = border-radius
+// $bc = background-color
+// $c = color
+@mixin button_all($f,$p,$l-s,$b-r,$bc,$c) {
+  font-size: $f;
+  padding: $p;
+  letter-spacing: $l-s;
+  border-radius:$b-r ;
+  background-color: $bc;
+  border: 0;
+  color: $c;
+  cursor: pointer;
+  text-indent:10px;
+}
+
+body{
+    background-color: $insideBackgroundColor;
+    position: relative;
+  }
+
+
+@mixin margin-b  {
+  margin-bottom:50px;
+}
+//width :338px
+.w-338{
+  width: 100%;
+  padding: 0 18.5px;
+  // margin: 0 9px;
+  margin: 0 auto;
+  // border: 1px solid black;
+}
+//width :338px
+
+//====進度條=====
+.step_box{
+  width: 100%;
+  margin: 0 auto;
+  // border: 1px solid red;
+  box-sizing: border-box;
+  @include margin-b
+  // margin-bottom: 30px;
+  .step_ball{
+    display: flex;
+    justify-content:space-between;
+    position: relative;
+    //進度條的球
+    li{
+      width: 52px;
+      height: 52px;
+      // border: 1px solid red;
+      border-radius: 50%;
+      background-color: #D3C8B5;
+      margin-bottom: 15px;
+      position: relative;
+      //進度條的線
+      &::before{
+        content: "";
+        position: absolute;
+        width:45px;
+        height: 4px;
+        background-color: #D3C8B5;
+        left: 50px;
+        top:50%;
+        z-index: -1;
+      }
+      //最後一條消失
+      &:last-child::before{
+       display: none;
+      }
+    }
+    //進度條當前頁面
+    .on{
+      background-color: $btnColor;
+    }
+  }
+   //進度條文字
+  .step_text{
+    display: flex;
+    justify-content:space-between;
+    color:$textColor;
+    font-size: $fontsize_P2;
+    // letter-spacing:2px;
+    // text-indent: 2px;
+    //進度條當前頁面
+    .on{
+      font-weight:bold;
+    }
+  }
+  }
+  //====進度條=====
+
+//letter-spacing置中
+  @mixin ls($ls) {
+    letter-spacing:$ls;
+    text-indent:$ls;
+  }
+  //====開團資料====
+.group_data{
+  // border: 1px solid red;
+  position: relative;
+  // margin-bottom: 55px;
+  ul{
+    margin-bottom: 55px;
+    li{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+      &:last-child{
+        margin-bottom: 0;
+      }
+      label{
+        font-size: $fontsize_H6;
+        color:#707070;
+        letter-spacing:6px;
+        
+      }
+      input,select{
+        font-size: $fontsize_H6;
+        border-radius: 5px;
+        border: 1px solid black;
+        width: 195px;
+        height: 28px;
+        // text-align: center;
+        padding: 0 0 0 20px;
+      }
+      select{
+        padding: 0 0 0 20px;
+        @include ls(3px)
+      }
+     
+    
+      &:last-child label{
+        margin-bottom: 0;
+      }
+      
+      &:first-child label{
+        color:$textColor;
+      }
+    }
+    
+  }
+  .line{
+    border: 1px solid #383232;
+    background-color: #383232;
+    margin-bottom: 55px;
+  }
+    //====團長資料====
+    .Head_data{
+      box-sizing: border-box;
+      // border: 1px solid rgb(16, 32, 248);
+      // flex-direction: row;
+      // justify-content: space-between;
+      // text-align: center;
+     
+      .Head_row{
+          // border: 1px solid red;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          margin-bottom: 35px;
+          .Head_row2{
+            // border: 2px solid red;
+            width: 100%;
+            .Head_name{
+              width: 100%;
+              text-align: center;
+              // border: 1px solid red;
+              font-size: $fontsize_H2;
+              // letter-spacing: 15px;
+              letter-spacing: 15px;
+              color:$textColor;
+              margin-bottom: 25px;
+            }
+            .Head_title{
+              // border: 1px solid blue;
+              // height: 100%;
+              width: 100%;
+              display: flex;
+              justify-content: space-between;
+              font-size: $fontsize_H6;
+              color:$textColor;
+              margin-bottom: 15px;
+              
+            }
+            .Head_right{
+              // border: 1px solid red;
+              width: 100%;
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              font-size: $fontsize_H6;
+              color:$textColor;
+            }  
+          }
+          
+        .Head_img{
+          // border: 11px solid red;
+          width: 105px;
+          height: 105px;
+          border-radius: 50%;
+          overflow: hidden;
+          margin-bottom: 20px;
+          img{
+            width: 100%;
+            height: 100%;
+            object-fit:cover;
+          }
+
+        }
+        
+      }
+      .group_button{
+        // border: 1px solid blue;
+        width: 100%;
+        padding: 0 35px;
+        display: flex;
+        justify-content: space-between;
+      }
+      .btn_back,.btn_go{
+        @include button_all(18px, 5px, 5px, 10px,#B3925B ,#fff )
+      }
+      
+    }
+}
+ //====開團資料====
+
+ //====團長資料====
+
+
+//  RWD
+@media screen and (min-width: 900px){
+  .w-338{
+    width: 1200px;
+    padding: 0 58.5px;
+    // margin: 0 9px;
+    margin: 0 auto;
+    border: 1px solid black;
+  }
+  .step_box{
+    .step_ball{
+      li{
+        
+        width: 120px;
+        height: 120px;
+        &::before{
+          height: 14px;
+          width: 300px;
+        }
+      }
+    }
+    .step_text{
+      font-size:$fontsize_H3;
+      // letter-spacing: 10px;
+    }
+  }
+  .group_data{
+    ul{
+      // border: 11px solid red;
+      padding: 0 150px;
+      li{
+        // border: 1px solid blue;
+        justify-content: flex-start;
+        // align-items:self-start;
+        label{
+          font-size:$fontsize_H3;
+          letter-spacing: 10px;
+          // margin-bottom: 25px;
+          // border: 1px solid red;
+          height: 50px;
+          width: 210px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        }
+        input,select{
+        width: 355px;
+        // margin-bottom: 25px;
+        height: 50px;
+        font-size: $fontsize_H3;
+      }
+      }
+    }
+    .Head_data{
+      .Head_row{
+        
+        // border: 3px solid red;
+        display: flex;
+        flex-direction:row;
+        padding: 0 100px;
+        .Head_img{
+          width: 170px;
+          height: 170px;
+          // border:3px solid blue;
+          margin-right: 70px;
+        }
+        .Head_row2{
+          position: relative;
+          width: calc(100% - 240px);
+          height: 170px;
+          // border: 1px solid rgb(26, 21, 21);
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+         
+          .Head_name{
+            // border: 1px solid rgb(0, 236, 32);
+            text-align: left;
+            font-size: $fontsize_H2;
+            letter-spacing: 15px;
+
+          }
+          .Head_title{
+            border: 1px solid rgb(240, 17, 17);
+            font-size: $fontsize_H3;
+            letter-spacing: 10px;
+
+            label {
+              &:last-of-type{
+                // color:yellow
+                position: absolute;
+              }
+            }
+          }
+          .Head_right{
+            // border: 1px solid rgb(32, 173, 255);
+            font-size: $fontsize_H3;
+            letter-spacing: 10px;
+            button{
+              font-size: $fontsize_H6;
+              letter-spacing: 3px;
+              padding: 0 15px;
+            }
+          }
+
+        }
+      }
+      
+    } 
+  }
+      
+}
+
+
+
+ 
+  

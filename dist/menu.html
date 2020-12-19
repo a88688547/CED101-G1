@@ -1,35 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
+< !DOCTYPE html>
+    <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="./css/group_menu.css">
-    <script src=""></script>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="./css/group_menu.css">
+        <script src=""></script>
+    </head>
 
-<body>
-    <div id="countDown">
-        <span>限時:</span>
-        <span>05</span>小時
-        <span>01</span>分
-        <span>20</span>秒
-    </div>
-    <div>
-        <section>
-            <img src="http://fakeimg.pl/400x350/" alt="">
-        </section>
-        <section>
-            <span id="group_name">飲料開團團名</span>
-            <div><span>建單時間:</span><span>2020/12/15 9:00</span></div>
+    <body>
+        <div id="countDown"><span>限時:</span><span>05</span>小時 <span>01</span>分 <span>20</span>秒 </div>
+        <div id="group_info">
+            <div class="group_img"><img src="http://fakeimg.pl/400x350/" alt=""></div>
+            <div class="group_info_inner">
+                <div id="name_time_wrapper"><span id="group_name">XXXXXX團</span>
+                    <div id="start_time_wrapper"><span>建單時間: </span><span id="start_time">2020/12/15 9:00</span></div>
+                </div>
+                <div id="info_text_wrapper">
+                    <section id="info_text_left">
+                        <div id="name_phone">
+                            <div id="user_img"><img src="./Images/user_small.svg" alt=""></div>
+                            <div id="name_phone_inner">
+                                <div id="group_leader_name_wrapper"><span
+                                        id="group_leader_name">小智</span><span>團長</span></div>
+                                <div id="phone_wrapper"><img src="./Images/tell_big.svg" id="tell_img" alt=""><span
+                                        id="phone">0987-099-556</span></div>
+                            </div>
+                        </div>
+                        <div class="cup_wrapper"><img src="./Images/drop-3_orange.svg" alt=""><span>集杯數:<span
+                                    id="cup_max_num">20</span>以上</span></div>
+                        <div class="cup_wrapper"><img src="./Images/drop-3.svg" alt=""><span>已達杯數:<span
+                                    id="cup_now_num">15</span>杯</span>
+                        </div>
+                    </section>
+                    <section id="info_text_right">
+                        <div class="info_text_right_inner"><span>取貨地點:</span><span id="adress">桃園市中壢區復興路46號9樓</span>
+                        </div>
+                        <div class="info_text_right_inner"><span>預計送達時間:</span><span id="arrive_time">2020/12/15
+                                14:30</span></div>
+                        <div class="info_text_right_inner"><span>結單時間:</span><span id="deadline_time">2020/12/15
+                                15:00</span>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <div id="menu">wfewfwefewfew </div>
+    </body>
 
-        </section>
-
-    </div>
-
-
-
-</body>
-
-</html>
+    </html>

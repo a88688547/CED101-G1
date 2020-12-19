@@ -1,8 +1,8 @@
 @import "./base/base.scss";
-// $mq575: 575px;
-// $mq767: 767px;
-// $mq991: 991px;
-// $mq1199: 1199px;
+$mq575: 575px;
+$mq767: 767px;
+$mq991: 991px;
+$mq1199: 1199px;
 
 
 
@@ -55,7 +55,7 @@ body{
     display: flex;
     justify-content:space-between;
     position: relative;
-    border: 1px solid red;
+    // border: 1px solid red;
     overflow: hidden;
     //進度條的球
     li{
@@ -63,7 +63,7 @@ body{
       width: 25%;
       width: 52px;
       height: 52px;
-      border: 1px solid red;
+      // border: 1px solid red;
       border-radius: 50%;
       background-color: #D3C8B5;
       margin-bottom: 15px;
@@ -115,18 +115,23 @@ body{
 .group_data{
   // border: 1px solid red;
   position: relative;
+  margin: auto;
   // margin-bottom: 55px;
   ul{
+    // border: 2px solid yellow;
+    // padding: 0 50px;
     margin-bottom: 55px;
     li{
       display: flex;
-      justify-content: space-between;
+      justify-content: space-evenly;
       align-items: center;
       margin-bottom: 15px;
       &:last-child{
         margin-bottom: 0;
       }
       label{
+        // border: 1px solid red;
+        width: 140px;
         font-size: $fontsize_H6;
         color:#707070;
         letter-spacing:6px;
@@ -246,20 +251,103 @@ body{
 
 
 //  RWD
-<<<<<<< HEAD
-// @media screen and (min-width: $mq767){}
-// @media screen and (min-width: $mq991){}
+@media screen and (min-width: $mq767){
+  .step_box{
+    .step_ball{
+      li{
+        
+        width: 85px;
+        height:85px;
+        &::before{
+          height: 14px;
+          width: 300px;
+        }
+      }
+    }
+    .step_text{
+      font-size:$fontsize_H5;
+    }
+  }
+  .group_data{
+    ul{
+      padding: 0 150px;
+      li{
+        // border: 1px solid red;
+        justify-content: flex-start;
+        label{
+          font-size:$fontsize_H5;
+          letter-spacing: 10px;
+          // margin-bottom: 25px;
+          // border: 1px solid red;
+          height: 50px;
+          width: 210px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        }
+        input,select{
+          width: 200px;
+          // margin-bottom: 25px;
+          height: 30px;
+          font-size: $fontsize_H5;
+          letter-spacing: 0;
+        }
+      }
+    }
+  }
+}
+@media screen and (min-width: $mq991){
+  .step_box{
+    .step_ball{
+      li{
+        
+        width: 105px;
+        height:105px;
+        &::before{
+          height: 14px;
+          width: 300px;
+        }
+      }
+    }
+    .step_text{
+      font-size:$fontsize_H4;
+    }
+  }
+  .group_data{
+    ul{
+      padding: 0 150px;
+      li{
+        // border: 1px solid red;
+        justify-content: flex-start;
+        label{
+          font-size:$fontsize_H4;
+          letter-spacing: 10px;
+          // margin-bottom: 25px;
+          // border: 1px solid red;
+          height: 50px;
+          width: 210px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        }
+        input,select{
+          width: 300px;
+          // margin-bottom: 25px;
+          height: 40px;
+          font-size: $fontsize_H3;
+        }
+      }
+    }
+  }
+}
 
-@media screen and (min-width: 1200px){
-=======
-@media screen and (min-width: 900px){
->>>>>>> dev
+@media screen and (min-width: $mq1199){
   .w-338{
     width: 1200px;
     padding: 0 58.5px;
     // margin: 0 9px;
     margin: 0 auto;
-    border: 1px solid black;
+    // border: 1px solid black;
   }
   .step_box{
     .step_ball{
@@ -279,9 +367,10 @@ body{
     }
   }
   .group_data{
+    
     ul{
       // border: 11px solid red;
-      padding: 0 150px;
+      padding: 0 100px 0 200px;
       li{
         // border: 1px solid blue;
         justify-content: flex-start;
@@ -305,73 +394,18 @@ body{
       }
       }
     }
-<<<<<<< HEAD
-   
-=======
     .Head_data{
-      .Head_row{
-        
-        // border: 3px solid red;
-        display: flex;
-        flex-direction:row;
-        padding: 0 100px;
-        .Head_img{
-          width: 170px;
-          height: 170px;
-          // border:3px solid blue;
-          margin-right: 70px;
-        }
-        .Head_row2{
-          position: relative;
-          width: calc(100% - 240px);
-          height: 170px;
-          // border: 1px solid rgb(26, 21, 21);
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-         
-          .Head_name{
-            // border: 1px solid rgb(0, 236, 32);
-            text-align: left;
-            font-size: $fontsize_H2;
-            letter-spacing: 15px;
-
-          }
-          .Head_title{
-            border: 1px solid rgb(240, 17, 17);
-            font-size: $fontsize_H3;
-            letter-spacing: 10px;
-
-            label {
-              &:last-of-type{
-                // color:yellow
-                position: absolute;
-              }
-            }
-          }
-          .Head_right{
-            // border: 1px solid rgb(32, 173, 255);
-            font-size: $fontsize_H3;
-            letter-spacing: 10px;
-            button{
-              font-size: $fontsize_H6;
-              letter-spacing: 3px;
-              padding: 0 15px;
-            }
-          }
-
-        }
+      .group_button{
+        // border: 1px solid red;
+        // width: 50%;
+        // margin: 0 auto;
       }
->>>>>>> dev
       
-    } 
-  }
-      
-<<<<<<< HEAD
+          }
 
-=======
+        }
 }
->>>>>>> dev
+      
 
 
 

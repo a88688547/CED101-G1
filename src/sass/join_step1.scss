@@ -1,4 +1,8 @@
 @import "./base/base.scss";
+// $mq575: 575px;
+// $mq767: 767px;
+// $mq991: 991px;
+// $mq1199: 1199px;
 
 
 
@@ -24,22 +28,16 @@ body{
     background-color: $insideBackgroundColor;
     position: relative;
   }
-// .testbtn1{
-//     @include button1(18px,15px,5px,10px,$btnColor,rgb(255, 255, 255))
-//   }
-//   .testbtn2{
-//     @include button1(14px,8px,5px,10px,$textColor,rgb(255, 255, 255) )
-//   }
-//   .testbtn3{
-//     @include button1(18px,5px,10px,20px,$btnColor2,#fff)
-//   }
+
 
 @mixin margin-b  {
   margin-bottom:50px;
 }
 //width :338px
 .w-338{
-  width: 338px;
+  width: 100%;
+  padding: 0 18.5px;
+  // margin: 0 9px;
   margin: 0 auto;
   // border: 1px solid black;
 }
@@ -47,7 +45,7 @@ body{
 
 //====進度條=====
 .step_box{
-  width: 338px;
+  width: 100%;
   margin: 0 auto;
   // border: 1px solid red;
   box-sizing: border-box;
@@ -57,20 +55,25 @@ body{
     display: flex;
     justify-content:space-between;
     position: relative;
+    border: 1px solid red;
+    overflow: hidden;
     //進度條的球
     li{
+      // height: 100px;
+      width: 25%;
       width: 52px;
       height: 52px;
-      // border: 1px solid red;
+      border: 1px solid red;
       border-radius: 50%;
       background-color: #D3C8B5;
-      margin-bottom: 10px;
+      margin-bottom: 15px;
       position: relative;
+      
       //進度條的線
       &::before{
         content: "";
         position: absolute;
-        width:45px;
+        width:999%;
         height: 4px;
         background-color: #D3C8B5;
         left: 50px;
@@ -120,109 +123,190 @@ body{
       justify-content: space-between;
       align-items: center;
       margin-bottom: 15px;
+      &:last-child{
+        margin-bottom: 0;
+      }
       label{
         font-size: $fontsize_H6;
-        color:#ffffff;
+        color:#707070;
         letter-spacing:6px;
-       
+        
       }
-      input,select,
-      textarea{
+      input,select{
+        font-size: $fontsize_H6;
         border-radius: 5px;
         border: 1px solid black;
         width: 195px;
         height: 28px;
         // text-align: center;
+        padding: 0 0 0 20px;
       }
       select{
         padding: 0 0 0 20px;
         @include ls(3px)
       }
-      textarea{
-        align-items: center;
-        padding : 3px 5px 0 5px;
-      }
-      
-
-      &:last-child{
+     
+    
+      &:last-child label{
         margin-bottom: 0;
       }
-    }
-    &:first-child label{
-      color: $textColor;
-    }
-  }
-  
-}
- //====開團資料====
-.line{
-  border: 1px solid #383232;
-  background-color: #383232;
-  margin-bottom: 55px;
-}
-  //====團長資料====
-  .Head_data{
-    box-sizing: border-box;
-    // border: 1px solid rgb(16, 32, 248);
-    display: flex;
-    flex-direction: column;
-    // justify-content: space-between;
-    // text-align: center;
-    align-items: center;
-    .Head_img{
-      // border: 1px solid red;
-      width: 105px;
-      height: 105px;
-      border-radius: 50%;
-      overflow: hidden;
-      margin-bottom: 20px;
-      img{
-        width: 100%;
-        height: 100%;
-        object-fit:cover;
+      
+      &:first-child label{
+        color:$textColor;
       }
     }
-    h2{
-      font-size: $fontsize_H2;
-      // letter-spacing: 15px;
-      @include ls(15px);
-      color:$textColor;
-      margin-bottom: 25px;
-    }
-    ul{
-      // border: 1px solid red;
-      width: 100%;
-      font-size: $fontsize_H6;
-      letter-spacing: 3px;
-      margin-bottom: 35px;
-      
-      li{
-        padding: 0 15px;
+    
+  }
+  .line{
+    border: 1px solid #383232;
+    background-color: #383232;
+    margin-bottom: 55px;
+  }
+    //====團長資料====
+    .Head_data{
+      box-sizing: border-box;
+      // border: 1px solid rgb(16, 32, 248);
+      // flex-direction: row;
+      // justify-content: space-between;
+      // text-align: center;
+     
+      .Head_row{
+          // border: 1px solid red;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          margin-bottom: 35px;
+          .Head_row2{
+            // border: 2px solid red;
+            width: 100%;
+            .Head_name{
+              width: 100%;
+              text-align: center;
+              // border: 1px solid red;
+              font-size: $fontsize_H2;
+              // letter-spacing: 15px;
+              letter-spacing: 15px;
+              color:$textColor;
+              margin-bottom: 25px;
+            }
+            .Head_title{
+              // border: 1px solid blue;
+              // height: 100%;
+              width: 100%;
+              display: flex;
+              justify-content: space-between;
+              font-size: $fontsize_H6;
+              color:$textColor;
+              margin-bottom: 15px;
+              
+            }
+            .Head_right{
+              // border: 1px solid red;
+              width: 100%;
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              font-size: $fontsize_H6;
+              color:$textColor;
+            }  
+          }
+          
+        .Head_img{
+          // border: 11px solid red;
+          width: 105px;
+          height: 105px;
+          border-radius: 50%;
+          overflow: hidden;
+          margin-bottom: 20px;
+          img{
+            width: 100%;
+            height: 100%;
+            object-fit:cover;
+          }
+
+        }
+        
+      }
+      .group_button{
+        // border: 1px solid blue;
         width: 100%;
+        padding: 0 35px;
         display: flex;
         justify-content: space-between;
-        // background-color: red;
-        margin-bottom: 15px;
-        label{
-          color: black;
-        }
-        &:last-child{
-          margin-bottom: 0;
+      }
+      .btn_back,.btn_go{
+        @include button_all(18px, 5px, 5px, 10px,#B3925B ,#fff )
+      }
+      
+    }
+}
+ //====開團資料====
+
+ //====團長資料====
+
+
+//  RWD
+// @media screen and (min-width: $mq767){}
+// @media screen and (min-width: $mq991){}
+
+@media screen and (min-width: 1200px){
+  .w-338{
+    width: 1200px;
+    padding: 0 58.5px;
+    // margin: 0 9px;
+    margin: 0 auto;
+    border: 1px solid black;
+  }
+  .step_box{
+    .step_ball{
+      li{
+        
+        width: 120px;
+        height: 120px;
+        &::before{
+          height: 14px;
+          width: 300px;
         }
       }
     }
-    .group_button{
-      // border: 1px solid blue;
-      width: 100%;
-      padding: 0 35px;
-      display: flex;
-      justify-content: space-between;
-    }
-    .btn_back,.btn_go{
-      @include button_all(18px, 5px, 5px, 10px,#B3925B ,#fff )
+    .step_text{
+      font-size:$fontsize_H3;
+      // letter-spacing: 10px;
     }
   }
- //====團長資料====
+  .group_data{
+    ul{
+      // border: 11px solid red;
+      padding: 0 150px;
+      li{
+        // border: 1px solid blue;
+        justify-content: flex-start;
+        // align-items:self-start;
+        label{
+          font-size:$fontsize_H3;
+          letter-spacing: 10px;
+          // margin-bottom: 25px;
+          // border: 1px solid red;
+          height: 50px;
+          width: 210px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        }
+        input,select{
+        width: 355px;
+        // margin-bottom: 25px;
+        height: 50px;
+        font-size: $fontsize_H3;
+      }
+      }
+    }
+   
+      
+    } 
+  }
+      
+
 
 
 

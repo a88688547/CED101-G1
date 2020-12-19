@@ -7,23 +7,30 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet" />
         <link rel="stylesheet" href="./css/style.css" />
+        <script src="./vendors/jQuery/js/jquery-3.5.1.js"></script>
     </head>
     <body>
         <header>
             <nav>
-                <img class="logo" src="./Images/logo-header.svg" alt="" />
+                <button class="hamburg_btn">
+                    <div class="hamburg_line line_1"></div>
+                    <div class="hamburg_line line_2"></div>
+                    <div class="hamburg_line line_3"></div>
+                </button>
+                <a href="#" class="logo_img"><img class="logo" src="./Images/logo-header.svg" alt="" /></a>
 
-                <div class="nav_list">
+                <div class="nav_list" id="header_nav">
                     <ul>
-                        <li><img src="./Images/drop-header.svg" alt="" />菜單</li>
-                        <li><img src="./Images/drop-header.svg" alt="" />揪團喝</li>
-                        <li><img src="./Images/drop-header.svg" alt="" />飲品排名</li>
-                        <li><img src="./Images/drop-header.svg" alt="" />分享區</li>
-                        <li><img src="./Images/drop-header.svg" alt="" />小遊戲</li>
-                        <li><img src="./Images/drop-header.svg" alt="" />關於揪飲</li>
+                        <a href="#"><img src="./Images/drop-header.svg" alt="" />菜單</a>
+                        <a href="#"><img src="./Images/drop-header.svg" alt="" />揪團喝</a>
+                        <a href="#"><img src="./Images/drop-header.svg" alt="" />飲品排名</a>
+                        <a href="#"><img src="./Images/drop-header.svg" alt="" />分享區</a>
+                        <a href="#"><img src="./Images/drop-header.svg" alt="" />小遊戲</a>
+                        <a href="#"><img src="./Images/drop-header.svg" alt="" />關於揪飲</a>
                     </ul>
-                    <img class="user_logo" src="./Images/login.svg" alt="" />
+                    <a href="#" class="user_logo_img_web"><img class="user_logo" src="./Images/login.svg" alt="" /></a>
                 </div>
+                <a href="#" class="user_logo_img_phone"><img class="user_logo" src="./Images/login.svg" alt="" /></a>
             </nav>
         </header>
 
@@ -31,25 +38,35 @@
 
         <footer>
             <nav>
-                <img class="logo" src="../Images/footer_logo.svg" alt="" />
+                <a href="#"><img class="logo" src="./Images/footer_logo.svg" alt="" /></a>
                 <div class="nav_list_block">
                     <div class="nav_list">
                         <ul>
-                            <li>菜單</li>
-                            <li>揪團喝</li>
-                            <li>飲品排名</li>
-                            <li>分享區</li>
-                            <li>小遊戲</li>
-                            <li>關於揪飲</li>
+                            <li><a href="#">菜單</a></li>
+                            <li><a href="#">揪團喝</a></li>
+                            <li><a href="#">飲品排名</a></li>
+                            <li><a href="#">分享區</a></li>
+                            <li><a href="#">小遊戲</a></li>
+                            <li><a href="#">關於揪飲</a></li>
                         </ul>
                     </div>
-                    <p>Copyright © Join drink inc.</p>
                 </div>
                 <div class="icon">
-                    <img src="../Images/fb.svg" alt="" />
-                    <img src="../Images/email.svg" alt="" />
+                    <a href="#"><img src="./Images/fb.svg" alt="" /></a>
+                    <a href="#"><img src="./Images/email.svg" alt="" /></a>
                 </div>
+                <p class="footer_cmp">Copyright © Join drink inc.</p>
             </nav>
         </footer>
+        <script>
+            // 漢堡圖示 點擊時 切換Class 名稱
+            // 以及 選單向下滑出
+            $(document).ready(function () {
+                $('.hamburg_btn').click(function () {
+                    $(this).toggleClass('btn-on')
+                    $('#header_nav').slideToggle(300)
+                })
+            })
+        </script>
     </body>
 </html>

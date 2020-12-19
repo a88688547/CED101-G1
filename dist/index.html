@@ -1,55 +1,121 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>index</title>
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet" />
-        <link rel="stylesheet" href="./css/style.css" />
-    </head>
-    <body>
-        <header>
-            <nav>
-                <img class="logo" src="./Images/logo-header.svg" alt="" />
 
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>index</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+        integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+        crossorigin="anonymous" />
+
+</head>
+
+<body>
+    <header>
+        <nav>
+            <img class="logo" src="./Images/logo-header.svg" alt="" />
+
+            <div class="nav_list">
+                <ul>
+                    <li><img src="./Images/drop-header.svg" alt="" />菜單</li>
+                    <li><img src="./Images/drop-header.svg" alt="" />揪團喝</li>
+                    <li><img src="./Images/drop-header.svg" alt="" />飲品排名</li>
+                    <li><img src="./Images/drop-header.svg" alt="" />分享區</li>
+                    <li><img src="./Images/drop-header.svg" alt="" />小遊戲</li>
+                    <li><img src="./Images/drop-header.svg" alt="" />關於揪飲</li>
+                </ul>
+                <img class="user_logo" src="./Images/login.svg" alt="" />
+            </div>
+        </nav>
+    </header>
+
+    <main></main>
+    <div class="lightbox-container">
+        <div class="lightbox-wrap">
+            <div class="lightbox-top">
+                <div class="sign-up-tab">
+                    <h3>註冊</h3>
+                </div>
+                <div class="login-tab">
+                    <h3>登入</h3>
+                </div>
+                <div class="close">
+                    <i class="fas fa-times-circle"></i>
+                    <!-- <i class="far fa-times-circle"></i> -->
+                </div>
+            </div>
+            <div class="lightbox-bot">
+                <div class="sign-up">
+                    <div class="name">
+                        <label for="name">姓名</label>
+                        <input type="text" id="name">
+                    </div>
+                    <div class="email">
+                        <label for="email">信箱</label>
+                        <input type="email" id="email">
+                    </div>
+                    <div class="password">
+                        <label for="password">密碼</label>
+                        <input type="password" id="password">
+                    </div>
+                    <div class="password_two">
+                        <label for="password_two">確認密碼</label>
+                        <input type="password" id="password_two">
+                    </div>
+                    <div class="phone">
+                        <label for="phone">手機號碼</label>
+                        <input type="number" id="phone">
+                    </div>
+                    <div class="sure-cancel">
+                        <button>取消</button>
+                        <button>確認</button>
+                    </div>
+                </div>
+                <div class="login">
+                    <div class="login-email">
+                        <label for="login-email">信箱</label>
+                        <input type="email" id="login-email">
+                    </div>
+                    <div class="login-password">
+                        <label for="password">密碼</label>
+                        <input type="password" id="password">
+                    </div>
+                    <div class="sure-cancel">
+                        <button>取消</button>
+                        <button>確認</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <nav>
+            <img class="logo" src="../Images/footer_logo.svg" alt="" />
+            <div class="nav_list_block">
                 <div class="nav_list">
                     <ul>
-                        <li><img src="./Images/drop-header.svg" alt="" />菜單</li>
-                        <li><img src="./Images/drop-header.svg" alt="" />揪團喝</li>
-                        <li><img src="./Images/drop-header.svg" alt="" />飲品排名</li>
-                        <li><img src="./Images/drop-header.svg" alt="" />分享區</li>
-                        <li><img src="./Images/drop-header.svg" alt="" />小遊戲</li>
-                        <li><img src="./Images/drop-header.svg" alt="" />關於揪飲</li>
+                        <li>菜單</li>
+                        <li>揪團喝</li>
+                        <li>飲品排名</li>
+                        <li>分享區</li>
+                        <li>小遊戲</li>
+                        <li>關於揪飲</li>
                     </ul>
-                    <img class="user_logo" src="./Images/login.svg" alt="" />
                 </div>
-            </nav>
-        </header>
+                <p>Copyright © Join drink inc.</p>
+            </div>
+            <div class="icon">
+                <img src="../Images/fb.svg" alt="" />
+                <img src="../Images/email.svg" alt="" />
+            </div>
+        </nav>
+    </footer>
+</body>
 
-        <main></main>
-
-        <footer>
-            <nav>
-                <img class="logo" src="../Images/footer_logo.svg" alt="" />
-                <div class="nav_list_block">
-                    <div class="nav_list">
-                        <ul>
-                            <li>菜單</li>
-                            <li>揪團喝</li>
-                            <li>飲品排名</li>
-                            <li>分享區</li>
-                            <li>小遊戲</li>
-                            <li>關於揪飲</li>
-                        </ul>
-                    </div>
-                    <p>Copyright © Join drink inc.</p>
-                </div>
-                <div class="icon">
-                    <img src="../Images/fb.svg" alt="" />
-                    <img src="../Images/email.svg" alt="" />
-                </div>
-            </nav>
-        </footer>
-    </body>
 </html>

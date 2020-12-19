@@ -1,38 +1,46 @@
 // H系列
-@mixin H1{
+@mixin H1 {
   font-size: 4.5rem;
   letter-spacing: 1.5rem;
 }
-@mixin H2{
+
+@mixin H2 {
   font-size: 3.5rem;
   letter-spacing: 1.5rem;
 }
-@mixin H3{
+
+@mixin H3 {
   font-size: 2.4rem;
   letter-spacing: 1rem;
 }
-@mixin H4{
+
+@mixin H4 {
   font-size: 2.1rem;
   letter-spacing: 0.8rem;
 }
-@mixin H5{
+
+@mixin H5 {
   font-size: 1.8rem;
   letter-spacing: 0.5rem;
 }
-@mixin H6{
+
+@mixin H6 {
   font-size: 1.6rem;
   letter-spacing: 0.3rem;
 }
+
 // P系列
 
-@mixin P1{
+@mixin P1 {
   font-size: 1.4rem;
   letter-spacing: 0.3rem;
 }
-@mixin P2{
+
+@mixin P2 {
   font-size: 1.2rem;
   letter-spacing: 0.2rem;
 }
-@mixin P3{
+
+@mixin P3 {
   font-size: 1rem;
- }
+}

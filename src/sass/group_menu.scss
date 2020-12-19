@@ -1,5 +1,6 @@
 @import "mixins/mixins.scss";
 @import "base/base.scss";
+@import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
 body {
     background-color: $insideBackgroundColor;
@@ -11,4 +12,154 @@ body {
     margin-top: 50px;
     font-weight: bold;
     @include H3;
+    color: $textColor;
+}
+
+#group_info {
+    margin: 0 auto;
+    margin-top: 50px;
+    max-width: 1065px;
+    width: 85%;
+    display: flex;
+    background-color: white;
+    color: $textColor;
+    border-radius: 15px;
+    overflow: hidden;
+
+    box-shadow: 4px 4px 4px 0px#D0D0D0;
+
+    .group_img {
+        // border: 1px solid red;  
+        display: inline-block;
+        width: 33%;
+    }
+
+    .group_info_inner {
+        // border: 1px solid red;
+        width: 67%;
+        padding: 25px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        #name_time_wrapper {
+            display: flex;
+            justify-content: space-between;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #707070;
+
+            #group_name {
+                @include H3;
+            }
+
+            #start_time_wrapper {
+                @include P2;
+                color: $btnColor;
+                align-self: flex-end;
+            }
+        }
+
+        #info_text_wrapper {
+            display: flex;
+
+            #info_text_left {
+                width: 48%;
+
+
+                #name_phone {
+                    display: flex;
+
+                    #user_img {
+                        width: 30%;
+                    }
+
+                    #name_phone_inner {
+                        width: 70%;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+
+                        #group_leader_name_wrapper {
+                            @include H6;
+                            padding-bottom: 5px;
+
+                            #group_leader_name {
+                                @include H3;
+                            }
+                        }
+
+                        #phone_wrapper {
+                            padding-top: 5px;
+
+                            #tell_img {
+                                width: 20px;
+                                margin-right: 5px;
+                            }
+
+                            #phone {
+                                @include H4;
+                                letter-spacing: 3px;
+                            }
+                        }
+                    }
+                }
+
+                .cup_wrapper {
+                    @include H5;
+                    font-weight: bold;
+                    display: flex;
+                    align-items: center;
+                    padding-top: 20px;
+
+                    img {
+                        margin-right: 20px;
+
+                    }
+
+                    span {
+                        vertical-align: middle;
+                        align-self: flex-end;
+                    }
+                }
+            }
+
+            #info_text_right {
+                width: 52%;
+                @include H5;
+                border-left: 1px solid #707070;
+                padding-left: 15px;
+
+                .info_text_right_inner {
+                    padding-top: 20px;
+
+                    span {
+                        display: block;
+                    }
+
+                    #adress,
+                    #arrive_time,
+                    #deadline_time {
+                        font-weight: bold;
+                        padding-top: 10px;
+                    }
+                }
+            }
+
+        }
+
+
+
+    }
+
+
+
+}
+
+#menu {
+    width: 1200px;
+
+    height: 500px;
+    margin: 0 auto;
+    // border: 1px solid blue;
+
 }

@@ -45,6 +45,7 @@
   "dependencies": {
     "boostrap": "^2.0.0",
     "bootstrap": "^4.5.3",
+    "bootstrap-sass": "^3.4.1",
     "jquery": "^3.5.1",
     "vue": "^2.6.12"
   }

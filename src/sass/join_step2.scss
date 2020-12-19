@@ -1,8 +1,4 @@
 @import "./base/base.scss";
-// $mq575: 575px;
-// $mq767: 767px;
-// $mq991: 991px;
-// $mq1199: 1199px;
 
 
 
@@ -55,25 +51,20 @@ body{
     display: flex;
     justify-content:space-between;
     position: relative;
-    border: 1px solid red;
-    overflow: hidden;
     //進度條的球
     li{
-      // height: 100px;
-      width: 25%;
       width: 52px;
       height: 52px;
-      border: 1px solid red;
+      // border: 1px solid red;
       border-radius: 50%;
       background-color: #D3C8B5;
       margin-bottom: 15px;
       position: relative;
-      
       //進度條的線
       &::before{
         content: "";
         position: absolute;
-        width:999%;
+        width:45px;
         height: 4px;
         background-color: #D3C8B5;
         left: 50px;
@@ -246,14 +237,7 @@ body{
 
 
 //  RWD
-<<<<<<< HEAD
-// @media screen and (min-width: $mq767){}
-// @media screen and (min-width: $mq991){}
-
-@media screen and (min-width: 1200px){
-=======
 @media screen and (min-width: 900px){
->>>>>>> dev
   .w-338{
     width: 1200px;
     padding: 0 58.5px;
@@ -305,9 +289,6 @@ body{
       }
       }
     }
-<<<<<<< HEAD
-   
-=======
     .Head_data{
       .Head_row{
         
@@ -362,16 +343,11 @@ body{
 
         }
       }
->>>>>>> dev
       
     } 
   }
       
-<<<<<<< HEAD
-
-=======
 }
->>>>>>> dev
 
 
 

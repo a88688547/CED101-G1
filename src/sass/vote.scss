@@ -42,12 +42,12 @@ $mq1199: 1199px;
                     }
                 }
 
-                @media screen and (max-width:$mq1199) {
+                @media screen and (max-width: $mq1199) {
                     width: 100%;
                     padding: 0 30px;
                 }
 
-                @media screen and (max-width:$mq991) {
+                @media screen and (max-width: $mq991) {
                     width: 100%;
                     padding: 0 30px;
                 }
@@ -67,11 +67,9 @@ $mq1199: 1199px;
                         padding: 0 30px;
                     }
                 }
-
             }
 
             .vote-bot {
-
                 color: $textColor;
 
                 width: 1200px;
@@ -80,20 +78,18 @@ $mq1199: 1199px;
                 justify-content: center;
                 padding: 15px;
 
-                @media screen and (max-width:$mq1199) {
+                @media screen and (max-width: $mq1199) {
                     width: 100%;
-
                 }
 
-                @media screen and (max-width:$mq991) {
+                @media screen and (max-width: $mq991) {
                     width: 100%;
                     display: flex;
                     flex-direction: column;
                     align-items: center;
-
                 }
 
-                @media screen and (max-width:$mq575) {
+                @media screen and (max-width: $mq575) {
                     width: 100%;
                     display: flex;
                     flex-direction: column;
@@ -191,7 +187,7 @@ $mq1199: 1199px;
                             }
 
                             &:last-child .second-rank {
-                                background-color: #B3925B;
+                                background-color: #b3925b;
                             }
 
                             .second-rank {
@@ -242,7 +238,6 @@ $mq1199: 1199px;
                         display: flex;
                         justify-content: center;
 
-
                         button {
                             @include button_3;
                             background-color: #ffa208;
@@ -269,10 +264,11 @@ $mq1199: 1199px;
                         width: 720px;
                         padding: 0 15px;
 
+                        .vote-first {
+                        }
 
-                        .vote-first {}
-
-                        .vote-second {}
+                        .vote-second {
+                        }
                     }
 
                     @media screen and (max-width: $mq767) {
@@ -288,7 +284,8 @@ $mq1199: 1199px;
                         .vote-first {
                             margin-bottom: 15px;
 
-                            .first-rank {}
+                            .first-rank {
+                            }
 
                             .first-pic {
                                 width: 100%;
@@ -328,7 +325,8 @@ $mq1199: 1199px;
                                     margin-right: 0px;
                                 }
 
-                                .second-rank {}
+                                .second-rank {
+                                }
 
                                 .second-pic {
                                     background-color: #aaa;
@@ -354,7 +352,8 @@ $mq1199: 1199px;
                             }
                         }
 
-                        .vote-button {}
+                        .vote-button {
+                        }
                     }
                 }
             }

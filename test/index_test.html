@@ -1,11 +1,22 @@
-new Vue({ 
-   el: '#header',
-  data: {
-
-  },
-  components: {
-     'my-header': {
-       template: `
+<!DOCTYPE html>
+<html lang="zh-TW">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>index</title>
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet" />
+        <link rel="stylesheet" href="./css/style.css" />
+        <script src="./vendors/jQuery/js/jquery-3.5.1.js"></script>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+            integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+            crossorigin="anonymous"
+        />
+    </head>
+    <body>
+        <header>
             <nav>
                 <button class="hamburg_btn">
                     <div class="hamburg_line line_1"></div>
@@ -84,8 +95,55 @@ new Vue({
                         </div>
                     </div>
                 </div>
-            </nav>`,
-       },
-      },
+            </nav>
+        </header>
 
-   })
+        <main></main>
+
+        <footer>
+            <nav>
+                <a href="#"><img class="logo" src="./Images/footer_logo.svg" alt="" /></a>
+                <div class="nav_list_block">
+                    <div class="nav_list">
+                        <ul>
+                            <li><a href="#">菜單</a></li>
+                            <li><a href="#">揪團喝</a></li>
+                            <li><a href="#">飲品排名</a></li>
+                            <li><a href="#">分享區</a></li>
+                            <li><a href="#">小遊戲</a></li>
+                            <li><a href="#">關於揪飲</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="icon">
+                    <a href="#"><img src="./Images/fb.svg" alt="" /></a>
+                    <a href="#"><img src="./Images/email.svg" alt="" /></a>
+                </div>
+                <p class="footer_cmp">Copyright © Join drink inc.</p>
+                <script src="./js/header_footer.js"></script>
+            </nav>
+        </footer>
+        <!-- <script>
+            $(document).ready(function () {
+                // 漢堡圖示 點擊時 切換Class 名稱
+                // 以及 選單向下滑出
+                $('.hamburg_btn').click(function () {
+                    $(this).toggleClass('btn-on')
+                    $('#header_nav').slideToggle(300)
+                })
+
+                //點擊 觸發 登入燈箱
+                $('.user_logo_img_web').click(function () {
+                    $('.lightbox-container').css({
+                        display: 'flex',
+                    })
+                })
+                $('.user_logo_img_phone').click(function () {
+                    $('.lightbox-container').css({
+                        display: 'flex',
+                    })
+                })
+            })
+        </script> -->
+    </body>
+</html>

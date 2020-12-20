@@ -21,7 +21,7 @@
           <li></li>
         </ul>
         <ul class="step_text">
-          <li class="on">1.建立訂單</li>
+          <li class="on">1.建立揪團</li>
           <li>2.完成開團</li>
           <li>3.結帳</li>
           <li>4.訂單明細</li>
@@ -31,39 +31,46 @@
       <!-- ==============開團資料================= -->
 
       <form action="" class="group_data">
-        <ul>                     
-          <li>
-            <label for="name" >團名</label>
-            <input id="name" name="name" type="text" class="fildform" />
-          </li>
-          <li>
-            <label for="time">預計送達時間</label>
-            <!-- 不知道用哪個input -->
-            <input id="time" name="time" type="text" class="fildform" />
-          </li>
-          <li>
-            <label for="">目標杯數</label>
-            <select>
-              <option>--請選擇目標杯數--</option>
-              <option>20杯/9折優惠</option>
-              <option>30杯/8折優惠</option>
-              <option>40杯/7折優惠</option>
-              <option>20杯以下-無優惠</option>
-            </select>
-          </li>
-          <li>
-            <label for="">截單時間</label>
-            <input type="text" />
-          </li>
-          <li>
-            <label for="">取貨地點</label>
-            <input type="text" />
-          </li>
-          <li>
-            <label for="">備註</label>
-            <input type="text" value="留言給團員的話..." />
-          </li>
-        </ul>
+          
+          <div class="group_data_row">
+            <div class="QR_box">
+                <div class="QR_main">QR</div>
+                <h2>分享網址揪團喝飲料!</h2>
+                <div class="QR_link">
+                    <div class="QR_link_text"> https://www.foodomres</div>
+                    <div class="QR_copy">123</div>
+                </div>
+            </div>
+            <ul>                     
+                <li>
+                  <label for="name" >團名</label>
+                  <label for="">XXXXXXX</label>
+                </li>
+                <li>
+                  <label for="time">截單時間</label>
+                  <!-- 不知道用哪個input -->
+                  <label for="" >2020-11-22   15:00</label>
+                </li>
+                <li>
+                  <label for="time">預計送達時間</label>
+                  <!-- 不知道用哪個input -->
+                  <label for="">2020-11-22   15:30</label>
+                </li>
+                <li>
+                  <label for="">目標杯數</label>
+                  <label for="">XXXXXXX</label>
+                </li>
+                <li>
+                  <label for="">取貨地點</label>
+                  <label for="">XXXXXXX</label>
+                </li>
+                <li>
+                  <label for="">備註</label>
+                  <label for="">XXXXXXX</label>
+                </li>
+              </ul>
+          </div>
+        
 
         <!-- ==============開團資料================= -->
         <div class="line"></div>
@@ -94,8 +101,9 @@
             <!-- </div> -->
           </div>
           <div class="group_button">
-            <button class="btn_back">繼續加購</button>
-            <button class="btn_go">建立訂單</button>
+            <button class="btn_back_drink">添加飲品</button>
+            <button class="btn_f5"><img src="./Images/drink.svg" alt=""> 重新整理</button>
+            <button class="btn_cleckout">結帳</button>
           </div>
         </div>
       </form>

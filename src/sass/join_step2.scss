@@ -34,6 +34,10 @@ body{
 @mixin margin-b  {
   margin-bottom:50px;
 }
+@mixin ls($ls) {
+    letter-spacing:$ls;
+    text-indent:$ls;
+  }
 //width :338px
 .w-338{
   width: 100%;
@@ -43,6 +47,91 @@ body{
   // border: 1px solid black;
 }
 //width :338px
+.fist_QR{
+    position: fixed;
+    z-index: 998;
+    left: 0;
+    top: 0;
+    background-color: rgba(85, 85, 85, 0.281);
+    width: 100%;
+    height: 100%;
+    border: 3px solid red;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    .fist_QR_box{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        // color:red;
+        border: 1px solid rgb(5, 5, 5);
+        padding: 15px;
+        width: 270px;
+        height: 300px;
+        text-align: center;
+        margin: auto;
+        background-color: rgb(255, 255, 255);
+        border-radius: 5px;
+        position: relative;
+        z-index: 999;
+        box-shadow: 8px 10px 15px -1px #242424;
+        :nth-child(1){
+            font-size: $fontsize_H6;
+            color: $textColor;
+            @include ls(5px);
+            font-weight:bold;
+        }
+        :nth-child(4){
+            font-size: $fontsize_H6;
+            @include ls(3px);
+        }
+        img{
+            width: 15px;
+            position: absolute;
+            color: $textColor;
+            cursor: pointer;
+            color: red;
+        }
+        .fist_QR_main{
+            margin: 0 auto;
+            margin-bottom: 10px;
+            width: 140px;
+            height: 140px;
+            background-color: burlywood;
+        }
+       
+        }
+        h2{
+            margin-bottom: 10px;
+            
+        }
+        .fist_QR_link{
+            border: 1px solid $textColor;
+            width: 180px;
+            margin: 0 auto;
+            text-align: left;
+            padding: 0px 5px;
+            border-radius: 5px;
+            position: relative;
+            overflow: hidden;
+            box-sizing: border-box;
+            cursor: pointer;
+            &::before{
+                position: absolute;
+                right: -10px;
+                top: -5px;
+                content: "";
+                background-color: $textColor;
+                width: 50px;
+                height: 50px;
+
+            }
+        }
+    }
+    
+
 
 //====進度條=====
 .step_box{
@@ -50,7 +139,7 @@ body{
   margin: 0 auto;
   // border: 1px solid red;
   box-sizing: border-box;
-  @include margin-b
+  @include margin-b;
   // margin-bottom: 30px;
   .step_ball{
     display: flex;
@@ -108,10 +197,7 @@ body{
   //====進度條=====
 
 //letter-spacing置中
-  @mixin ls($ls) {
-    letter-spacing:$ls;
-    text-indent:$ls;
-  }
+  
   //====開團資料====
 .group_data{
     // border: 1px solid red;
@@ -536,6 +622,10 @@ body{
           .QR_box{
               width: 30%;
             //   border: 1px solid rgb(0, 0, 0);
+            .QR_main{
+                width: 200px;
+                height: 200px;
+            }
           }
       
     ul{

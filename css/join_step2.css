@@ -73,6 +73,95 @@ body {
   margin: 0 auto;
 }
 
+.fist_QR {
+  position: fixed;
+  z-index: 998;
+  left: 0;
+  top: 0;
+  background-color: rgba(85, 85, 85, 0.281);
+  width: 100%;
+  height: 100%;
+  border: 3px solid red;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.fist_QR .fist_QR_box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 1px solid #050505;
+  padding: 15px;
+  width: 270px;
+  height: 300px;
+  text-align: center;
+  margin: auto;
+  background-color: white;
+  border-radius: 5px;
+  position: relative;
+  z-index: 999;
+  box-shadow: 8px 10px 15px -1px #242424;
+}
+
+.fist_QR .fist_QR_box :nth-child(1) {
+  font-size: 16px;
+  color: #013B4F;
+  letter-spacing: 5px;
+  text-indent: 5px;
+  font-weight: bold;
+}
+
+.fist_QR .fist_QR_box :nth-child(4) {
+  font-size: 16px;
+  letter-spacing: 3px;
+  text-indent: 3px;
+}
+
+.fist_QR .fist_QR_box img {
+  width: 15px;
+  position: absolute;
+  color: #013B4F;
+  cursor: pointer;
+  color: red;
+}
+
+.fist_QR .fist_QR_box .fist_QR_main {
+  margin: 0 auto;
+  margin-bottom: 10px;
+  width: 140px;
+  height: 140px;
+  background-color: burlywood;
+}
+
+.fist_QR h2 {
+  margin-bottom: 10px;
+}
+
+.fist_QR .fist_QR_link {
+  border: 1px solid #013B4F;
+  width: 180px;
+  margin: 0 auto;
+  text-align: left;
+  padding: 0px 5px;
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.fist_QR .fist_QR_link::before {
+  position: absolute;
+  right: -10px;
+  top: -5px;
+  content: "";
+  background-color: #013B4F;
+  width: 50px;
+  height: 50px;
+}
+
 .step_box {
   width: 100%;
   margin: 0 auto;
@@ -461,6 +550,10 @@ body {
   }
   .group_data .group_data_row .QR_box {
     width: 30%;
+  }
+  .group_data .group_data_row .QR_box .QR_main {
+    width: 200px;
+    height: 200px;
   }
   .group_data .group_data_row ul {
     width: 70%;

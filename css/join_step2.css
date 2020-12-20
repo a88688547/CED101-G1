@@ -78,10 +78,9 @@ body {
   z-index: 998;
   left: 0;
   top: 0;
-  background-color: rgba(85, 85, 85, 0.281);
+  background-color: rgba(85, 85, 85, 0.521);
   width: 100%;
   height: 100%;
-  border: 3px solid red;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -124,7 +123,8 @@ body {
   position: absolute;
   color: #013B4F;
   cursor: pointer;
-  color: red;
+  right: 10px;
+  top: 10px;
 }
 
 .fist_QR .fist_QR_box .fist_QR_main {
@@ -142,6 +142,8 @@ body {
 .fist_QR .fist_QR_link {
   border: 1px solid #013B4F;
   width: 180px;
+  height: 20px;
+  align-items: center;
   margin: 0 auto;
   text-align: left;
   padding: 0px 5px;
@@ -326,20 +328,32 @@ body {
 
 .group_data .Head_data .Head_row {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
+  align-items: flex-end;
   margin-bottom: 35px;
+  width: 100%;
+  height: 180px;
+  position: relative;
 }
 
 .group_data .Head_data .Head_row .Head_row2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  position: relative;
   width: 100%;
+  height: 120px;
 }
 
 .group_data .Head_data .Head_row .Head_row2 .Head_name {
+  position: absolute;
+  top: -20px;
   width: 100%;
-  text-align: center;
+  text-align: right;
   font-size: 35px;
   letter-spacing: 15px;
+  text-indent: 15px;
   color: #013B4F;
   margin-bottom: 25px;
 }
@@ -363,11 +377,15 @@ body {
 }
 
 .group_data .Head_data .Head_row .Head_img {
+  position: absolute;
+  float: left;
   width: 105px;
   height: 105px;
   border-radius: 50%;
   overflow: hidden;
   margin-bottom: 20px;
+  margin-right: 20px;
+  top: 0;
 }
 
 .group_data .Head_data .Head_row .Head_img img {
@@ -442,10 +460,28 @@ body {
     font-size: 24px;
     letter-spacing: 0;
   }
+  .group_data .Head_data .Head_row {
+    align-items: end;
+    padding: 0 50px;
+  }
+  .group_data .Head_data .Head_row .Head_img {
+    width: 140px;
+    height: 140px;
+    position: relative;
+  }
+  .group_data .Head_data .Head_row .Head_row2 {
+    width: calc(100% - 140px);
+    height: 140px;
+  }
   .group_data .Head_data .Head_row .Head_row2 .Head_title, .group_data .Head_data .Head_row .Head_row2 .Head_right {
-    width: 60%;
-    margin: auto;
-    margin-bottom: 20px;
+    position: relative;
+    justify-content: space-between;
+  }
+  .group_data .Head_data .Head_row .Head_row2 .Head_name {
+    position: relative;
+    top: 0;
+    text-align: left;
+    text-indent: 0;
   }
   .group_data .Head_data .Head_row .Head_row2 :last-child {
     margin-bottom: 0;
@@ -488,8 +524,8 @@ body {
     font-size: 24px;
   }
   .group_data .Head_data .Head_row {
+    border: 3px solid red;
     display: flex;
-    flex-direction: row;
     padding: 0 100px;
   }
   .group_data .Head_data .Head_row .Head_img {
@@ -537,13 +573,37 @@ body {
     width: 1200px;
     margin: 0 auto;
   }
+  .fist_QR .fist_QR_box {
+    width: 480px;
+    height: 400px;
+  }
+  .fist_QR .fist_QR_box :nth-child(1) {
+    font-size: 24px;
+    letter-spacing: 10px;
+    text-indent: 10px;
+  }
+  .fist_QR .fist_QR_box .fist_QR_main {
+    width: 200px;
+    height: 200px;
+  }
+  .fist_QR .fist_QR_box :nth-child(4) {
+    font-size: 21px;
+    letter-spacing: 8px;
+    text-indent: 8px;
+  }
+  .fist_QR .fist_QR_box img {
+    width: 30px;
+  }
+  .fist_QR .fist_QR_box .fist_QR_link {
+    width: 280px;
+  }
   .step_box .step_ball li {
     width: 120px;
     height: 120px;
   }
   .step_box .step_ball li::before {
     height: 14px;
-    width: 300px;
+    width: 1300px;
   }
   .step_box .step_text {
     font-size: 24px;

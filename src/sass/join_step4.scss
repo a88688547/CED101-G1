@@ -147,16 +147,34 @@ body {
     // margin-bottom: 55px;
     ul {
 
-      //   border: 1px solid red;
+        // border: 1px solid red;
       li {
         //   border: 1px solid red;
         display: flex;
         justify-content: flex-start;
         align-items: left;
-        margin-bottom: 15px;
+        margin-bottom: 20px;
 
         &:last-child {
           margin-bottom: 0;
+          color: red;
+          display: flex;
+          flex-direction: column;
+        }
+        
+        &:last-child label{
+            &:first-child{
+                margin-bottom: 20px;
+            }
+            &:last-child{
+                color: rgb(255, 255, 255);
+                background: $textColor;
+                width: 140px;
+                text-align: center;
+                padding: 5px 10px;
+                border-radius: 5px;
+                text-indent: 6px;
+            }
         }
 
         :nth-child(odd) {
@@ -204,16 +222,28 @@ body {
     // flex-direction: row;
     // justify-content: space-between;
     // text-align: center;
-
+.data_wrap{
+    // border: 1px solid red;
+}
     .Head_row {
-      // border: 2px solid rgb(9, 236, 9);
+    //   border: 2px solid rgb(9, 236, 9);
       display: flex;
       flex-direction: row;
       align-items: flex-end;
-      margin-bottom: 35px;
+      margin-bottom: 100px;
       width: 100%;
       height: 180px;
       position: relative;
+      &::before{
+          position: absolute;
+          content: "";
+          width: 100%;
+          border: 1px solid rgb(194, 194, 194);
+          bottom: -50px;
+          left: 0;
+          
+      }
+      
 
       .Head_row2 {
         display: flex;
@@ -285,11 +315,27 @@ body {
     }
 
     .group_button {
-      // border: 1px solid blue;
-      width: 100%;
+    //   border: 1px solid blue;
+      width:100%;
+      margin: 0 auto;
       // padding: 0 35px;
       display: flex;
-      justify-content: space-evenly;
+      justify-content: space-between;
+       font-size: $fontsize_H5;
+       color:$textColor;
+       position: relative;
+       
+       :nth-child(2){
+        color: rgb(136, 136, 136);
+        border-bottom: 1px solid rgb(129, 129, 129);
+        width: 40%;
+        border-style:dashed;
+        transform: translate(0px, -50%);
+       }
+       :nth-child(3){
+           display: flex;
+       }
+    
     }
 
     .btn_back_drink,
@@ -584,6 +630,7 @@ body {
   }
 
   .group_data {
+    //   border: 11px solid red;
     .group_data_row {
      
 
@@ -623,13 +670,30 @@ body {
     }
 
     .Head_data {
+        .Head_row{
+            ::before{
+                border: 0;
+            }
+        }
+        .data_wrap{
+            margin-bottom: 100px;
+            // border: 1px solid red;
+            height: 800px;
+            overflow-y: scroll;
+            overflow-x: hidden;
+            ::-webkit-scrollbar{
+                width: 20px;
+            }
+        }
+       
 
 
       .group_button {
         justify-content: space-evenly;
         // border: 1px solid red;
-        // width: 80%;
+        width: 80%;
         margin: 0 auto;
+        font-size: $fontsize_H3;
 
         button {
           margin-right: 10px;

@@ -68,12 +68,21 @@ body {
 }
 
 .w-338 {
+<<<<<<< HEAD
   width: 338px;
+=======
+  width: 100%;
+  padding: 0 18.5px;
+>>>>>>> 15f70a12dab61e7a595199314a98ef68ba8202aa
   margin: 0 auto;
 }
 
 .step_box {
+<<<<<<< HEAD
   width: 338px;
+=======
+  width: 100%;
+>>>>>>> 15f70a12dab61e7a595199314a98ef68ba8202aa
   margin: 0 auto;
   box-sizing: border-box;
   margin-bottom: 50px;
@@ -83,21 +92,37 @@ body {
   display: flex;
   justify-content: space-between;
   position: relative;
+<<<<<<< HEAD
 }
 
 .step_box .step_ball li {
+=======
+  overflow: hidden;
+}
+
+.step_box .step_ball li {
+  width: 25%;
+>>>>>>> 15f70a12dab61e7a595199314a98ef68ba8202aa
   width: 52px;
   height: 52px;
   border-radius: 50%;
   background-color: #D3C8B5;
+<<<<<<< HEAD
   margin-bottom: 10px;
+=======
+  margin-bottom: 15px;
+>>>>>>> 15f70a12dab61e7a595199314a98ef68ba8202aa
   position: relative;
 }
 
 .step_box .step_ball li::before {
   content: "";
   position: absolute;
+<<<<<<< HEAD
   width: 45px;
+=======
+  width: 999%;
+>>>>>>> 15f70a12dab61e7a595199314a98ef68ba8202aa
   height: 4px;
   background-color: #D3C8B5;
   left: 50px;
@@ -126,6 +151,10 @@ body {
 
 .group_data {
   position: relative;
+<<<<<<< HEAD
+=======
+  margin: auto;
+>>>>>>> 15f70a12dab61e7a595199314a98ef68ba8202aa
 }
 
 .group_data ul {
@@ -134,11 +163,16 @@ body {
 
 .group_data ul li {
   display: flex;
+<<<<<<< HEAD
   justify-content: space-between;
+=======
+  justify-content: space-evenly;
+>>>>>>> 15f70a12dab61e7a595199314a98ef68ba8202aa
   align-items: center;
   margin-bottom: 15px;
 }
 
+<<<<<<< HEAD
 .group_data ul li label {
   font-size: 16px;
   color: #ffffff;
@@ -148,10 +182,29 @@ body {
 .group_data ul li input,
 .group_data ul li select,
 .group_data ul li textarea {
+=======
+.group_data ul li:last-child {
+  margin-bottom: 0;
+}
+
+.group_data ul li label {
+  width: 140px;
+  font-size: 16px;
+  color: #707070;
+  letter-spacing: 6px;
+}
+
+.group_data ul li input, .group_data ul li select {
+  font-size: 16px;
+>>>>>>> 15f70a12dab61e7a595199314a98ef68ba8202aa
   border-radius: 5px;
   border: 1px solid black;
   width: 195px;
   height: 28px;
+<<<<<<< HEAD
+=======
+  padding: 0 0 0 20px;
+>>>>>>> 15f70a12dab61e7a595199314a98ef68ba8202aa
 }
 
 .group_data ul li select {
@@ -160,6 +213,7 @@ body {
   text-indent: 3px;
 }
 
+<<<<<<< HEAD
 .group_data ul li textarea {
   align-items: center;
   padding: 3px 5px 0 5px;
@@ -174,11 +228,23 @@ body {
 }
 
 .line {
+=======
+.group_data ul li:last-child label {
+  margin-bottom: 0;
+}
+
+.group_data ul li:first-child label {
+  color: #013B4F;
+}
+
+.group_data .line {
+>>>>>>> 15f70a12dab61e7a595199314a98ef68ba8202aa
   border: 1px solid #383232;
   background-color: #383232;
   margin-bottom: 55px;
 }
 
+<<<<<<< HEAD
 .Head_data {
   box-sizing: border-box;
   display: flex;
@@ -204,10 +270,33 @@ body {
   font-size: 35px;
   letter-spacing: 15px;
   text-indent: 15px;
+=======
+.group_data .Head_data {
+  box-sizing: border-box;
+}
+
+.group_data .Head_data .Head_row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 35px;
+}
+
+.group_data .Head_data .Head_row .Head_row2 {
+  width: 100%;
+}
+
+.group_data .Head_data .Head_row .Head_row2 .Head_name {
+  width: 100%;
+  text-align: center;
+  font-size: 35px;
+  letter-spacing: 15px;
+>>>>>>> 15f70a12dab61e7a595199314a98ef68ba8202aa
   color: #013B4F;
   margin-bottom: 25px;
 }
 
+<<<<<<< HEAD
 .Head_data ul {
   width: 100%;
   font-size: 16px;
@@ -233,13 +322,53 @@ body {
 
 .Head_data .group_button {
   width: 100%;
+=======
+.group_data .Head_data .Head_row .Head_row2 .Head_title {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  color: #013B4F;
+  margin-bottom: 15px;
+}
+
+.group_data .Head_data .Head_row .Head_row2 .Head_right {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+  color: #013B4F;
+}
+
+.group_data .Head_data .Head_row .Head_img {
+  width: 105px;
+  height: 105px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.group_data .Head_data .Head_row .Head_img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.group_data .Head_data .group_button {
+  margin: 0 auto;
+>>>>>>> 15f70a12dab61e7a595199314a98ef68ba8202aa
   padding: 0 35px;
   display: flex;
   justify-content: space-between;
 }
 
+<<<<<<< HEAD
 .Head_data .btn_back,
 .Head_data .btn_go {
+=======
+.group_data .Head_data .btn_back, .group_data .Head_data .btn_go {
+>>>>>>> 15f70a12dab61e7a595199314a98ef68ba8202aa
   font-size: 18px;
   padding: 5px;
   letter-spacing: 5px;
@@ -250,4 +379,127 @@ body {
   cursor: pointer;
   text-indent: 10px;
 }
+<<<<<<< HEAD
+=======
+
+@media screen and (min-width: 767px) {
+  .step_box .step_ball li {
+    width: 85px;
+    height: 85px;
+  }
+  .step_box .step_ball li::before {
+    height: 14px;
+    width: 300px;
+  }
+  .step_box .step_text {
+    font-size: 18px;
+  }
+  .group_data ul {
+    padding: 0 150px;
+  }
+  .group_data ul li {
+    justify-content: flex-start;
+  }
+  .group_data ul li label {
+    font-size: 18px;
+    letter-spacing: 10px;
+    height: 50px;
+    width: 210px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .group_data ul li input, .group_data ul li select {
+    width: 200px;
+    height: 30px;
+    font-size: 18px;
+    letter-spacing: 0;
+  }
+  .group_data .Head_data .group_button {
+    width: 50%;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (min-width: 991px) {
+  .step_box .step_ball li {
+    width: 105px;
+    height: 105px;
+  }
+  .step_box .step_ball li::before {
+    height: 14px;
+    width: 300px;
+  }
+  .step_box .step_text {
+    font-size: 21px;
+  }
+  .group_data ul {
+    padding: 0 150px;
+  }
+  .group_data ul li {
+    justify-content: flex-start;
+  }
+  .group_data ul li label {
+    font-size: 21px;
+    letter-spacing: 10px;
+    height: 50px;
+    width: 210px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .group_data ul li input, .group_data ul li select {
+    width: 300px;
+    height: 40px;
+    font-size: 24px;
+  }
+  .group_data .Head_data .group_button {
+    width: 32%;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (min-width: 1199px) {
+  .w-338 {
+    width: 1200px;
+    padding: 0 58.5px;
+    margin: 0 auto;
+  }
+  .step_box .step_ball li {
+    width: 120px;
+    height: 120px;
+  }
+  .step_box .step_ball li::before {
+    height: 14px;
+    width: 300px;
+  }
+  .step_box .step_text {
+    font-size: 24px;
+  }
+  .group_data ul {
+    padding: 0 100px 0 200px;
+  }
+  .group_data ul li {
+    justify-content: flex-start;
+  }
+  .group_data ul li label {
+    font-size: 24px;
+    letter-spacing: 10px;
+    height: 50px;
+    width: 210px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .group_data ul li input, .group_data ul li select {
+    width: 355px;
+    height: 50px;
+    font-size: 24px;
+  }
+  .group_data .Head_data .group_button {
+    width: 30%;
+    margin: 0 auto;
+  }
+}
+>>>>>>> 15f70a12dab61e7a595199314a98ef68ba8202aa
 /*# sourceMappingURL=join_step1.css.map */

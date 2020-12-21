@@ -1,45 +1,217 @@
+// 導入SASS共用
+@import "../base/base.scss";
+@import "../mixins/mixins.scss";
+
+
+body{ 
+    padding: 0;
+    margin: 0;
+}
+
+
 
 header{
     width: 100%;
     background-color: #013B4F;
     position: sticky;
     top:0;
-    margin-bottom: 10rem;
+    margin-bottom: 5rem;
     z-index: 99;
+
+    
+    nav{
+        height: 80px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1200px;
+
+    }
+
+
+    .hamburg_btn{
+        display: none;
+    }
+
+    .logo_img{
+        display: block;
+        font-size: 0;
+        // padding: 10px;
+    }
+
+    
+        .nav_list{
+        display: flex;
+        // align-self: flex-end;
+        justify-content: space-between;
+        align-items: center;
+        width: 70%;
+
+        }
+    .nav_list > ul{
+        display: flex;
+        justify-content: space-around;
+        align-items: stretch;
+        width: 100%;
+        padding: 0;
+        text-align: center;
+    }
+
+    .nav_list ul > a{
+        display: flex;
+        // display: block;
+        top: 0;
+        font-size: 16px;
+        color: white;
+        font-family: 'Roboto', sans-serif;
+        font-weight: bold;
+        // margin-right: 40px;
+        letter-spacing: 2px;
+        text-decoration: none;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .nav_list img{
+        margin-right: 10px;
+    }
+
+     .nav_list .user_logo{
+        margin-right: initial;
+    }
+    .user_logo_img_phone,.user_logo_img_web{
+        font-size: 0;
+    }
+    .user_logo_img_phone{
+        display: none;
+    }
+
+    // 漢堡選單
+
+        
+    /* 漢堡未點擊前 基本樣式 */
+    .hamburg_btn {
+        display: none;
+        border: 1px solid $btnColor;
+        width: 35px;
+        height: 35px;
+
+        position: relative;
+        cursor: pointer;
+        outline: none;
+        background: none;
+    }
+
+    /* 漢堡中的三條條設定 */
+    .hamburg_line {
+        height: 2px;
+        width: 80%;
+        background-color: $btnColor;
+        display: inline-block;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    /* 上面那條線 */
+    .line_1 {
+        top: 25%;
+    }
+
+    /* 下面那條線 */
+    .line_3 {
+        top: 75%;
+    }
+
+    /* 漢堡 被點擊後 樣式變化 */
+    .btn-on > .line_1 {
+        transform-origin: top left;
+        top: 5px;
+        left: 6px;
+        width: 102%;
+        transform: rotate(45deg);
+    }
+
+    .btn-on > .line_2 {
+        opacity: 0;
+    }
+
+    .btn-on > .line_3 {
+        transform-origin: top left;
+        bottom: 5px;
+        left: 6px;
+        width: 102%;
+        transform: rotate(-45deg);
+        top: auto;
+    }
+
+
+    // 寬度 小於 1200變化
+    @media (max-width:1200px){
+        nav{
+             width: 90%;
+        }
+        .nav_list{
+            width: calc(100% - 69.97px - 35px);
+        }
+    }
+
+    @media (min-width:768px) {
+        
+        .nav_list{
+            display: flex !important;
+        }
+    }
+
+        @media (max-width:767px) {
+
+            .user_logo_img_web{
+                display: none;
+            }
+
+            .user_logo_img_phone{
+                display: block;
+            }
+
+            .hamburg_btn{
+                display: block;
+            }
+
+            //手機板 滑動導覽列設定
+
+            .nav_list{
+                display: none ;
+                position: absolute;
+                left: 0;
+                top: 80px;
+            background-color: $textColor;
+            color: $btnColor;
+            width: 100%;
+
+             ul {
+                 flex-direction: column;
+
+                 &:first-child{
+
+                    border-top: 1px solid $btnColor;
+                 }
+
+                 >a{
+                    @include H5 ;
+                    padding: 15px 0;
+                    border-bottom: 1px solid $btnColor;
+                   }
+
+                }
+
+            
+        }
+             
+    
+        
+            }
+        
+    
 }
-
-header nav{
-    width: 80%;
-    height: 80px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-header nav .nav_list{
-    display: inline-flex;
-    align-items: center;
-}
-
-header nav .nav_list ul>li{
-    display: inline-flex;
-    top: 0;
-    font-size: 16px;
-    color: white;
-    font-family: 'Roboto', sans-serif;
-    font-weight: bold;
-    margin-right: 40px;
-    letter-spacing: 2px;
-}
-
-header nav .nav_list img{
-    margin-right: 10px;
-}
-
-header nav .nav_list .user_logo{
-    margin-right: initial;
-}
-
-
-

@@ -1,0 +1,719 @@
+@import "./base/base.scss";
+$mq575: 575px;
+$mq767: 767px;
+$mq991: 991px;
+$mq1199: 1199px;
+
+
+
+
+// $f = font-size
+// $p = padding
+// $l-s = letter-spacing
+// $b-r = border-radius
+// $bc = background-color
+// $c = color
+@mixin button_all($f, $p, $l-s, $b-r, $bc, $c) {
+  font-size: $f;
+  padding: $p;
+  letter-spacing: $l-s;
+  border-radius: $b-r;
+  background-color: $bc;
+  border: 0;
+  color: $c;
+  cursor: pointer;
+  text-indent: 10px;
+}
+
+body {
+  background-color: $insideBackgroundColor;
+  position: relative;
+}
+
+
+@mixin margin-b {
+  margin-bottom: 50px;
+}
+
+@mixin ls($ls) {
+  letter-spacing: $ls;
+  text-indent: $ls;
+}
+
+//width :338px
+.w-338 {
+  width: 100%;
+  padding: 0 18.5px;
+  // margin: 0 9px;
+  margin: 0 auto;
+  // border: 1px solid black;
+}
+
+//width :338px
+
+
+
+
+
+//====進度條=====
+.step_box {
+  width: 100%;
+  margin: 0 auto;
+  // border: 1px solid red;
+  box-sizing: border-box;
+  @include margin-b;
+
+  // margin-bottom: 30px;
+  .step_ball {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    // border: 1px solid red;
+    overflow: hidden;
+
+    //進度條的球
+    li {
+      // height: 100px;
+      width: 25%;
+      width: 52px;
+      height: 52px;
+      // border: 1px solid red;
+      border-radius: 50%;
+      background-color: #D3C8B5;
+      margin-bottom: 15px;
+      position: relative;
+
+      //進度條的線
+      &::before {
+        content: "";
+        position: absolute;
+        width: 999%;
+        height: 4px;
+        background-color: #D3C8B5;
+        left: 50px;
+        top: 50%;
+        z-index: -1;
+      }
+
+      //最後一條消失
+      &:last-child::before {
+        display: none;
+      }
+    }
+
+    //進度條當前頁面
+    .on {
+      background-color: $btnColor;
+    }
+  }
+
+  //進度條文字
+  .step_text {
+    display: flex;
+    justify-content: space-between;
+    color: $textColor;
+    font-size: $fontsize_P2;
+
+    // letter-spacing:2px;
+    // text-indent: 2px;
+    //進度條當前頁面
+    .on {
+      font-weight: bold;
+    }
+  }
+}
+
+//====進度條=====
+
+//letter-spacing置中
+
+//====開團資料====
+.group_data {
+  // border: 1px solid red;
+  min-height: 100px;
+
+  .group_data_row {
+    display: flex;
+    flex-direction: column;
+    // border: 3px solid blue;
+    margin: auto;
+    margin-bottom: 55px;
+
+    
+
+    // border: 1px solid red;
+    position: relative;
+
+    // margin-bottom: 55px;
+    ul {
+
+        // border: 1px solid red;
+      li {
+        //   border: 1px solid red;
+        display: flex;
+        justify-content: flex-start;
+        align-items: left;
+        margin-bottom: 20px;
+
+        &:last-child {
+          margin-bottom: 0;
+          color: red;
+          display: flex;
+          flex-direction: column;
+        }
+        
+        &:last-child label{
+            &:first-child{
+                margin-bottom: 20px;
+            }
+            &:last-child{
+                color: rgb(255, 255, 255);
+                background: $textColor;
+                width: 140px;
+                text-align: center;
+                padding: 5px 10px;
+                border-radius: 5px;
+                text-indent: 6px;
+            }
+        }
+
+        :nth-child(odd) {
+          color: $textColor;
+          font-weight: bold
+        }
+
+        :nth-child(2n) {
+          width: 300px;
+        }
+
+        label {
+          // border: 1px solid black;
+          width: 200px;
+          font-size: $fontsize_H3;
+          color: #707070;
+          letter-spacing: 6px;
+          // align-items: center;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+
+        }
+
+        &:last-child label {
+          margin-bottom: 0;
+        }
+
+
+      }
+
+    }
+  }
+
+  .line {
+    border: 1px solid $textColor;
+    background-color: $textColor;
+    margin-bottom: 55px;
+  }
+
+  //====團長資料====
+  .Head_data {
+    box-sizing: border-box;
+    // border: 1px solid rgb(16, 32, 248);
+    // flex-direction: row;
+    // justify-content: space-between;
+    // text-align: center;
+.data_wrap{
+    // border: 1px solid red;
+}
+    .Head_row {
+    //   border: 2px solid rgb(9, 236, 9);
+      display: flex;
+      flex-direction: row;
+      align-items: flex-end;
+      margin-bottom: 100px;
+      width: 100%;
+      height: 180px;
+      position: relative;
+      &::before{
+          position: absolute;
+          content: "";
+          width: 100%;
+          border: 1px solid rgb(194, 194, 194);
+          bottom: -50px;
+          left: 0;
+          
+      }
+      
+
+      .Head_row2 {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: flex-end;
+        position: relative;
+        // border: 2px solid red;
+        width: 100%;
+        height: 120px;
+
+        // width: calc(100% - 135px);
+        .Head_name {
+          position: absolute;
+          top: -20px;
+          width: 100%;
+          text-align: right;
+          // border: 1px solid red;
+          font-size: $fontsize_H2;
+          @include ls(15px);
+          color: $textColor;
+          margin-bottom: 25px;
+        }
+
+        .Head_title {
+          // border: 1px solid blue;
+          // height: 100%;
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          font-size: $fontsize_H6;
+          color: $textColor;
+          margin-bottom: 15px;
+
+        }
+
+        .Head_right {
+          // border: 1px solid red;
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          font-size: $fontsize_H6;
+          color: $textColor;
+        }
+      }
+
+      .Head_img {
+        // position: relative;
+        position: absolute;
+        float: left;
+        // border: 11px solid red;
+        width: 105px;
+        height: 105px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin-bottom: 20px;
+        margin-right: 20px;
+        top: 0;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+      }
+
+    }
+
+    .group_button {
+    //   border: 1px solid blue;
+      width:100%;
+      margin: 0 auto;
+      // padding: 0 35px;
+      display: flex;
+      justify-content: space-between;
+       font-size: $fontsize_H5;
+       letter-spacing: 5px;
+       color:$textColor;
+       position: relative;
+       
+       :nth-child(2){
+        color: rgb(136, 136, 136);
+        border-bottom: 1px solid rgb(129, 129, 129);
+        width: 40%;
+        border-style:dashed;
+        transform: translate(0px, -50%);
+       }
+       :nth-child(3){
+           display: flex;
+       }
+    
+    }
+
+    .btn_back_drink,
+    .btn_f5,
+    .btn_cleckout {
+      @include button_all(16px, 5px, 5px, 10px, #B3925B, #fff)
+    }
+
+  }
+}
+
+//====開團資料====
+
+//====團長資料====
+
+
+//  RWD
+@media screen and (min-width: 555px) {
+  .group_data .group_data_row>ul {
+    margin: auto;
+    // border: 1px solid red;
+  }
+}
+
+@media screen and (min-width: $mq767) {
+  .step_box {
+    .step_ball {
+      li {
+
+        width: 85px;
+        height: 85px;
+
+        &::before {
+          height: 14px;
+          width: 300px;
+        }
+      }
+    }
+
+    .step_text {
+      font-size: $fontsize_H5;
+    }
+  }
+
+  .group_data {
+    .group_data_row {
+      .QR_box {
+        width: 30%;
+      }
+
+      display: flex;
+      flex-direction: row-reverse;
+      padding: 0 80px;
+
+      //    border: 1px solid blue;
+      ul {
+        width: 70%;
+        padding: 0;
+
+        li {
+          // border: 1px solid red;
+          justify-content: flex-start;
+
+          label {
+            font-size: $fontsize_H3;
+            letter-spacing: 10px;
+            height: 50px;
+            width: 210px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+          }
+
+          input,
+          select {
+            width: 200px;
+            // margin-bottom: 25px;
+            height: 30px;
+            font-size: $fontsize_H3;
+            letter-spacing: 0;
+          }
+
+          :nth-child(odd) {
+            //   padding-left: 40px;
+          }
+        }
+      }
+    }
+
+    .Head_data {
+      .Head_row {
+        align-items: end;
+        padding: 0 50px;
+
+        .Head_img {
+          width: 140px;
+          height: 140px;
+          position: relative;
+          margin-right: 60px;
+        }
+
+        .Head_row2 {
+          width: calc(100% - 200px);
+          // border: 2px solid rgb(57, 2, 255);
+          height: 140px;
+          .Head_title,
+          .Head_right {
+            position: relative;
+            // border: 1px solid rgb(17, 14, 14);
+            justify-content: space-between;
+
+          }
+
+          .Head_name {
+            position: relative;
+            top: 0;
+            text-align: left;
+            text-indent: 0;
+            // margin-bottom: 0;
+          }
+
+          :last-child {
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: $mq991) {
+  .step_box {
+    .step_ball {
+      li {
+
+        width: 105px;
+        height: 105px;
+
+        &::before {
+          height: 14px;
+          width: 999px;
+        }
+      }
+    }
+
+    .step_text {
+      font-size: $fontsize_H4;
+    }
+  }
+
+  .group_data {
+    .group_data_row {
+
+
+      ul {
+
+        // padding: 0 150px;
+        li {
+          // border: 1px solid red;
+          justify-content: flex-start;
+
+          :nth-child(2n) {
+            width: 100%;
+            //   border: 2px solid yellowgreen;
+          }
+
+          :first-child {
+            //   border: 3px solid red;
+            width: 300px;
+          }
+
+          label {
+            font-size: $fontsize_H4;
+            letter-spacing: 10px;
+            // margin-bottom: 25px;
+            // border: 1px solid red;
+            height: 50px;
+            width: 210px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+          }
+
+          input,
+          select {
+            width: 300px;
+            // margin-bottom: 25px;
+            height: 40px;
+            font-size: $fontsize_H3;
+          }
+        }
+      }
+    }
+
+    .Head_data {
+      .Head_row {
+
+        // border: 3px solid red;
+        display: flex;
+        padding: 0 100px;
+
+        .Head_img {
+          width: 170px;
+          height: 170px;
+          // border:3px solid blue;
+          margin-right: 70px;
+        }
+
+        .Head_row2 {
+          position: relative;
+          width: calc(100% - 240px);
+          height: 170px;
+          // border: 1px solid rgb(26, 21, 21);
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+
+          .Head_name {
+            // border: 1px solid rgb(0, 236, 32);
+            text-align: left;
+            font-size: $fontsize_H2;
+            letter-spacing: 15px;
+
+          }
+
+          .Head_title {
+            width: 100%;
+            // border: 1px solid rgb(240, 17, 17);
+            font-size: $fontsize_H3;
+            letter-spacing: 10px;
+
+            label {
+              &:last-of-type {
+                // color:yellow
+                position: absolute;
+                right: 0;
+                top: 0px
+              }
+            }
+          }
+
+          .Head_right {
+            width: 100%;
+            // border: 1px solid rgb(32, 173, 255);
+            font-size: $fontsize_H3;
+            letter-spacing: 10px;
+
+            button {
+              font-size: $fontsize_H6;
+              letter-spacing: 3px;
+              padding: 0 15px;
+            }
+          }
+
+        }
+
+      }
+    }
+  }
+}
+
+@media screen and (min-width: $mq1199) {
+  .w-338 {
+    width: 1200px;
+    // padding: 0 58.5px;
+    // margin: 0 9px;
+    margin: 0 auto;
+    // border: 1px solid black;
+  }
+
+ 
+
+  .step_box {
+    .step_ball {
+      li {
+
+        width: 120px;
+        height: 120px;
+
+        &::before {
+          height: 14px;
+          width: 1300px;
+        }
+      }
+    }
+
+    .step_text {
+      font-size: $fontsize_H3;
+      // letter-spacing: 10px;
+    }
+  }
+
+  .group_data {
+    //   border: 11px solid red;
+    .group_data_row {
+     
+
+      ul {
+        width: 70%;
+
+        //   border: 11px solid red;
+        //   padding: 0 150px;
+        li {
+          // border: 1px solid blue;
+          justify-content: flex-start;
+          // align-items:self-start;
+
+          label {
+            font-size: $fontsize_H3;
+            letter-spacing: 10px;
+            // margin-bottom: 25px;
+            //   border: 1px solid red;
+            height: 50px;
+            width: 210px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+          }
+
+          input,
+          select {
+            width: 355px;
+            // margin-bottom: 25px;
+            height: 50px;
+            font-size: $fontsize_H3;
+
+          }
+
+        }
+      }
+    }
+
+    .Head_data {
+        .Head_row{
+            ::before{
+                border: 0;
+            }
+        }
+        .data_wrap{
+            margin-bottom: 100px;
+            // border: 1px solid red;
+            height: 800px;
+            overflow-y: scroll;
+            overflow-x: hidden;
+            position: relative;
+            
+        }
+       
+
+
+      .group_button {
+        justify-content: center;
+        // border: 1px solid red;
+        width: 100%;
+        margin: 0 auto;
+        font-size: $fontsize_H3;
+        position: relative;
+        div{
+          margin-right: 30px;
+        }
+        &::before{
+          position: absolute;
+          content: "";
+          width: 100%;
+          background-color: $textColor;
+          border: 1px solid $textColor;
+          top: -50px;
+          left: 0;
+          
+        }
+        
+        
+      }
+
+
+    }
+  }
+
+}

@@ -1,4 +1,8 @@
 @import "./base/base.scss";
+$mq575: 575px;
+$mq767: 767px;
+$mq991: 991px;
+$mq1199: 1199px;
 
 
 
@@ -25,6 +29,7 @@ body {
   position: relative;
 }
 
+<<<<<<< HEAD
 // .testbtn1{
 //     @include button1(18px,15px,5px,10px,$btnColor,rgb(255, 255, 255))
 //   }
@@ -34,14 +39,28 @@ body {
 //   .testbtn3{
 //     @include button1(18px,5px,10px,20px,$btnColor2,#fff)
 //   }
+=======
+body{
+    background-color: $insideBackgroundColor;
+    position: relative;
+  }
+
+>>>>>>> 15f70a12dab61e7a595199314a98ef68ba8202aa
 
 @mixin margin-b {
   margin-bottom: 50px;
 }
 
 //width :338px
+<<<<<<< HEAD
 .w-338 {
   width: 338px;
+=======
+.w-338{
+  width: 100%;
+  padding: 0 18.5px;
+  // margin: 0 9px;
+>>>>>>> 15f70a12dab61e7a595199314a98ef68ba8202aa
   margin: 0 auto;
   // border: 1px solid black;
 }
@@ -49,8 +68,13 @@ body {
 //width :338px
 
 //====進度條=====
+<<<<<<< HEAD
 .step_box {
   width: 338px;
+=======
+.step_box{
+  width: 100%;
+>>>>>>> 15f70a12dab61e7a595199314a98ef68ba8202aa
   margin: 0 auto;
   // border: 1px solid red;
   box-sizing: border-box;
@@ -60,22 +84,39 @@ body {
     display: flex;
     justify-content: space-between;
     position: relative;
+<<<<<<< HEAD
 
     //進度條的球
     li {
+=======
+    // border: 1px solid red;
+    overflow: hidden;
+    //進度條的球
+    li{
+      // height: 100px;
+      width: 25%;
+>>>>>>> 15f70a12dab61e7a595199314a98ef68ba8202aa
       width: 52px;
       height: 52px;
       // border: 1px solid red;
       border-radius: 50%;
       background-color: #D3C8B5;
-      margin-bottom: 10px;
+      margin-bottom: 15px;
       position: relative;
+<<<<<<< HEAD
 
+=======
+      
+>>>>>>> 15f70a12dab61e7a595199314a98ef68ba8202aa
       //進度條的線
       &::before {
         content: "";
         position: absolute;
+<<<<<<< HEAD
         width: 45px;
+=======
+        width:999%;
+>>>>>>> 15f70a12dab61e7a595199314a98ef68ba8202aa
         height: 4px;
         background-color: #D3C8B5;
         left: 50px;
@@ -123,16 +164,25 @@ body {
 .group_data {
   // border: 1px solid red;
   position: relative;
+<<<<<<< HEAD
 
   // margin-bottom: 55px;
   ul {
+=======
+  margin: auto;
+  // margin-bottom: 55px;
+  ul{
+    // border: 2px solid yellow;
+    // padding: 0 50px;
+>>>>>>> 15f70a12dab61e7a595199314a98ef68ba8202aa
     margin-bottom: 55px;
 
     li {
       display: flex;
-      justify-content: space-between;
+      justify-content: space-evenly;
       align-items: center;
       margin-bottom: 15px;
+<<<<<<< HEAD
 
       label {
         font-size: $fontsize_H6;
@@ -144,17 +194,34 @@ body {
       input,
       select,
       textarea {
+=======
+      &:last-child{
+        margin-bottom: 0;
+      }
+      label{
+        // border: 1px solid red;
+        width: 140px;
+        font-size: $fontsize_H6;
+        color:#707070;
+        letter-spacing:6px;
+        
+      }
+      input,select{
+        font-size: $fontsize_H6;
+>>>>>>> 15f70a12dab61e7a595199314a98ef68ba8202aa
         border-radius: 5px;
         border: 1px solid black;
         width: 195px;
         height: 28px;
         // text-align: center;
+        padding: 0 0 0 20px;
       }
 
       select {
         padding: 0 0 0 20px;
         @include ls(3px)
       }
+<<<<<<< HEAD
 
       textarea {
         align-items: center;
@@ -238,6 +305,277 @@ body {
       }
     }
   }
+=======
+     
+    
+      &:last-child label{
+        margin-bottom: 0;
+      }
+      
+      &:first-child label{
+        color:$textColor;
+      }
+    }
+    
+  }
+  .line{
+    border: 1px solid #383232;
+    background-color: #383232;
+    margin-bottom: 55px;
+  }
+    //====團長資料====
+    .Head_data{
+      box-sizing: border-box;
+     
+      .Head_row{
+          // border: 1px solid red;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          margin-bottom: 35px;
+          .Head_row2{
+            // border: 2px solid red;
+            width: 100%;
+            .Head_name{
+              width: 100%;
+              text-align: center;
+              // border: 1px solid red;
+              font-size: $fontsize_H2;
+              // letter-spacing: 15px;
+              letter-spacing: 15px;
+              color:$textColor;
+              margin-bottom: 25px;
+            }
+            .Head_title{
+              // border: 1px solid blue;
+              // height: 100%;
+              width: 100%;
+              display: flex;
+              justify-content: space-between;
+              font-size: $fontsize_H6;
+              color:$textColor;
+              margin-bottom: 15px;
+              
+            }
+            .Head_right{
+              // border: 1px solid red;
+              width: 100%;
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              font-size: $fontsize_H6;
+              color:$textColor;
+            }  
+          }
+          
+        .Head_img{
+          // border: 11px solid red;
+          width: 105px;
+          height: 105px;
+          border-radius: 50%;
+          overflow: hidden;
+          margin-bottom: 20px;
+          img{
+            width: 100%;
+            height: 100%;
+            object-fit:cover;
+          }
+
+        }
+        
+      }
+      .group_button{
+        // border: 1px solid blue;
+        // width: 50%;
+        margin: 0 auto;
+        padding: 0 35px;
+        display: flex;
+        justify-content: space-between;
+      }
+      .btn_back,.btn_go{
+        @include button_all(18px, 5px, 5px, 10px,#B3925B ,#fff )
+      }
+      
+    }
+}
+ //====開團資料====
+
+ //====團長資料====
+
+
+//  RWD
+@media screen and (min-width: $mq767){
+  .step_box{
+    .step_ball{
+      li{
+        
+        width: 85px;
+        height:85px;
+        &::before{
+          height: 14px;
+          width: 300px;
+        }
+      }
+    }
+    .step_text{
+      font-size:$fontsize_H5;
+    }
+  }
+  .group_data{
+    ul{
+      padding: 0 150px;
+      li{
+        // border: 1px solid red;
+        justify-content: flex-start;
+        label{
+          font-size:$fontsize_H5;
+          letter-spacing: 10px;
+          // margin-bottom: 25px;
+          // border: 1px solid red;
+          height: 50px;
+          width: 210px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        }
+        input,select{
+          width: 200px;
+          // margin-bottom: 25px;
+          height: 30px;
+          font-size: $fontsize_H5;
+          letter-spacing: 0;
+        }
+      }
+    }
+    .Head_data{
+      .group_button{
+        // border: 1px solid red;
+        width: 50%;
+        margin: 0 auto;
+      }
+      
+    }
+  }
+}
+@media screen and (min-width: $mq991){
+  .step_box{
+    .step_ball{
+      li{
+        
+        width: 105px;
+        height:105px;
+        &::before{
+          height: 14px;
+          width: 300px;
+        }
+      }
+    }
+    .step_text{
+      font-size:$fontsize_H4;
+    }
+  }
+  .group_data{
+    ul{
+      padding: 0 150px;
+      li{
+        // border: 1px solid red;
+        justify-content: flex-start;
+        label{
+          font-size:$fontsize_H4;
+          letter-spacing: 10px;
+          // margin-bottom: 25px;
+          // border: 1px solid red;
+          height: 50px;
+          width: 210px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        }
+        input,select{
+          width: 300px;
+          // margin-bottom: 25px;
+          height: 40px;
+          font-size: $fontsize_H3;
+        }
+      }
+    }
+    .Head_data{
+      .group_button{
+        // border: 1px solid red;
+        width: 32%;
+        margin: 0 auto;
+      }
+      
+    }
+  }
+}
+
+@media screen and (min-width: $mq1199){
+  .w-338{
+    width: 1200px;
+    padding: 0 58.5px;
+    // margin: 0 9px;
+    margin: 0 auto;
+    // border: 1px solid black;
+  }
+  .step_box{
+    .step_ball{
+      li{
+        
+        width: 120px;
+        height: 120px;
+        &::before{
+          height: 14px;
+          width: 300px;
+        }
+      }
+    }
+    .step_text{
+      font-size:$fontsize_H3;
+      // letter-spacing: 10px;
+    }
+  }
+  .group_data{
+    
+    ul{
+      // border: 11px solid red;
+      padding: 0 100px 0 200px;
+      li{
+        // border: 1px solid blue;
+        justify-content: flex-start;
+        // align-items:self-start;
+        label{
+          font-size:$fontsize_H3;
+          letter-spacing: 10px;
+          // margin-bottom: 25px;
+          // border: 1px solid red;
+          height: 50px;
+          width: 210px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        }
+        input,select{
+        width: 355px;
+        // margin-bottom: 25px;
+        height: 50px;
+        font-size: $fontsize_H3;
+      }
+      }
+    }
+    .Head_data{
+      .group_button{
+        // border: 1px solid red;
+        width: 30%;
+        margin: 0 auto;
+      }
+      
+    }
+
+  }
+}
+      
+>>>>>>> 15f70a12dab61e7a595199314a98ef68ba8202aa
 
   .group_button {
     // border: 1px solid blue;

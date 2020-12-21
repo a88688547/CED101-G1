@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>接珍珠遊戲</title>
+        <link rel="stylesheet" href="./css/game.css" />
+    </head>
+    <body>
+        <main>
+            <div class="title">
+                <h3><a href="./custom.html">回到客製化</a></h3>
+                <h2>接珍珠小遊戲</h2>
+            </div>
+            <div class="ga"></div>
+        </main>
+        <div class="lightbox">
+            <div class="lightbox-wrap">
+                <div class="close"><img src="./Images/cancel.svg" alt="cancel" /></div>
+                <h2>遊戲結束</h2>
+                <p>總得分:69/100</p>
+                <p>獲得:珍珠兌換券一張</p>
+                <div class="buttons">
+                    <button type="" id="again">在玩一次</button>
+                    <button type="">
+                        <a href="#">查看優惠券</a>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <script>
+            let closeBtn = document.querySelector(".close");
+            closeBtn.addEventListener("click", function () {
+                document.querySelector(".lightbox").style.display = "none";
+            });
+        </script>
+    </body>
+</html>

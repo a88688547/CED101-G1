@@ -1,4 +1,5 @@
 footer {
+<<<<<<< HEAD
   width: 100%;
   height: 200px;
   background-color: #013B4F;
@@ -7,10 +8,19 @@ footer {
   justify-content: space-between;
   flex-direction: row;
   margin-top: 10rem;
+=======
+  padding: 20px 0 0 0;
+  width: 100%;
+  height: 200px;
+  background-color: #013B4F;
+  margin-top: 10rem;
+  position: relative;
+>>>>>>> 15f70a12dab61e7a595199314a98ef68ba8202aa
 }
 
 footer nav {
   margin: 0 auto;
+<<<<<<< HEAD
   width: 80%;
   display: flex;
   justify-content: space-between;
@@ -24,10 +34,39 @@ footer .nav_list {
 
 footer nav .nav_list ul > li {
   display: inline-flex;
+=======
+  max-width: 1200px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+footer nav:first-child {
+  font-size: 0;
+}
+
+footer .nav_list {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+footer .nav_list ul {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+footer nav .nav_list ul > li > a {
+  display: block;
+>>>>>>> 15f70a12dab61e7a595199314a98ef68ba8202aa
   font-size: 16px;
   color: #B3925B;
   font-weight: bold;
   font-family: 'Roboto', sans-serif;
+<<<<<<< HEAD
   margin-right: 40px;
   letter-spacing: 2px;
 }
@@ -41,11 +80,38 @@ footer nav .nav_list ul > li:nth-child(6) {
 }
 
 footer p {
+=======
+  letter-spacing: 2px;
+  text-decoration: none;
+}
+
+footer nav .nav_list ul > li > a:nth-child(6) {
+  margin-right: initial;
+}
+
+footer .icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+footer .icon a:first-child {
+  margin-right: 45px;
+}
+
+footer .icon a {
+  font-size: 0;
+  display: block;
+}
+
+footer .footer_cmp {
+>>>>>>> 15f70a12dab61e7a595199314a98ef68ba8202aa
   color: #B3925B;
   font-family: 'Roboto', sans-serif;
   letter-spacing: 2px;
   font-size: 12px;
   display: inline-flex;
+<<<<<<< HEAD
   margin-top: 90px;
 }
 
@@ -53,5 +119,36 @@ footer p {
   display: flex;
   flex-direction: column;
   align-items: center;
+=======
+  position: absolute;
+  left: 50%;
+  bottom: 20%;
+  transform: translate(-50%, 0);
+}
+
+footer .nav_list_block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 570px;
+}
+
+@media (max-width: 1200px) {
+  footer nav {
+    width: 90%;
+  }
+}
+
+@media (max-width: 992px) {
+  footer nav {
+    flex-direction: column;
+  }
+  footer nav .logo {
+    margin-bottom: 20px;
+  }
+  footer .nav_list_block {
+    display: none;
+  }
+>>>>>>> 15f70a12dab61e7a595199314a98ef68ba8202aa
 }
 /*# sourceMappingURL=footer.css.map */

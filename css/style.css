@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 footer {
   width: 100%;
   height: 200px;
@@ -7,10 +8,265 @@ footer {
   justify-content: space-between;
   flex-direction: row;
   margin-top: 10rem;
+=======
+@charset "UTF-8";
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+}
+
+:root {
+  font-size: 62.5%;
+  /* 設定 1rem: 16px * 62.5% = 10px */
+}
+
+body {
+  padding: 0;
+  margin: 0;
+}
+
+header {
+  width: 100%;
+  background-color: #013B4F;
+  position: sticky;
+  top: 0;
+  margin-bottom: 10rem;
+  z-index: 99;
+  /* 漢堡未點擊前 基本樣式 */
+  /* 漢堡中的三條條設定 */
+  /* 上面那條線 */
+  /* 下面那條線 */
+  /* 漢堡 被點擊後 樣式變化 */
+}
+
+header nav {
+  height: 80px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+}
+
+header .hamburg_btn {
+  display: none;
+}
+
+header .logo_img {
+  display: block;
+  font-size: 0;
+}
+
+header .nav_list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 70%;
+}
+
+header .nav_list > ul {
+  display: flex;
+  justify-content: space-around;
+  align-items: stretch;
+  width: 100%;
+  padding: 0;
+  text-align: center;
+}
+
+header .nav_list ul > a {
+  display: flex;
+  top: 0;
+  font-size: 16px;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-decoration: none;
+  justify-content: center;
+  align-items: center;
+}
+
+header .nav_list img {
+  margin-right: 10px;
+}
+
+header .nav_list .user_logo {
+  margin-right: initial;
+}
+
+header .user_logo_img_phone, header .user_logo_img_web {
+  font-size: 0;
+}
+
+header .user_logo_img_phone {
+  display: none;
+}
+
+header .hamburg_btn {
+  display: none;
+  border: 1px solid #B3925B;
+  width: 35px;
+  height: 35px;
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  background: none;
+}
+
+header .hamburg_line {
+  height: 2px;
+  width: 80%;
+  background-color: #B3925B;
+  display: inline-block;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+header .line_1 {
+  top: 25%;
+}
+
+header .line_3 {
+  top: 75%;
+}
+
+header .btn-on > .line_1 {
+  transform-origin: top left;
+  top: 5px;
+  left: 6px;
+  width: 102%;
+  transform: rotate(45deg);
+}
+
+header .btn-on > .line_2 {
+  opacity: 0;
+}
+
+header .btn-on > .line_3 {
+  transform-origin: top left;
+  bottom: 5px;
+  left: 6px;
+  width: 102%;
+  transform: rotate(-45deg);
+  top: auto;
+}
+
+@media (max-width: 1200px) {
+  header nav {
+    width: 90%;
+  }
+  header .nav_list {
+    width: calc(100% - 69.97px - 35px);
+  }
+}
+
+@media (min-width: 768px) {
+  header .nav_list {
+    display: flex !important;
+  }
+}
+
+@media (max-width: 767px) {
+  header .user_logo_img_web {
+    display: none;
+  }
+  header .user_logo_img_phone {
+    display: block;
+  }
+  header .hamburg_btn {
+    display: block;
+  }
+  header .nav_list {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 80px;
+    background-color: #013B4F;
+    color: #B3925B;
+    width: 100%;
+  }
+  header .nav_list ul {
+    flex-direction: column;
+  }
+  header .nav_list ul:first-child {
+    border-top: 1px solid #B3925B;
+  }
+  header .nav_list ul > a {
+    font-size: 1.8rem;
+    letter-spacing: 0.5rem;
+    padding: 15px 0;
+    border-bottom: 1px solid #B3925B;
+  }
+}
+
+footer {
+  padding: 20px 0 0 0;
+  width: 100%;
+  height: 200px;
+  background-color: #013B4F;
+  margin-top: 10rem;
+  position: relative;
+>>>>>>> 15f70a12dab61e7a595199314a98ef68ba8202aa
 }
 
 footer nav {
   margin: 0 auto;
+<<<<<<< HEAD
   width: 80%;
   display: flex;
   justify-content: space-between;
@@ -24,10 +280,39 @@ footer .nav_list {
 
 footer nav .nav_list ul > li {
   display: inline-flex;
+=======
+  max-width: 1200px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+footer nav:first-child {
+  font-size: 0;
+}
+
+footer .nav_list {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+footer .nav_list ul {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+footer nav .nav_list ul > li > a {
+  display: block;
+>>>>>>> 15f70a12dab61e7a595199314a98ef68ba8202aa
   font-size: 16px;
   color: #B3925B;
   font-weight: bold;
   font-family: 'Roboto', sans-serif;
+<<<<<<< HEAD
   margin-right: 40px;
   letter-spacing: 2px;
 }
@@ -41,11 +326,38 @@ footer nav .nav_list ul > li:nth-child(6) {
 }
 
 footer p {
+=======
+  letter-spacing: 2px;
+  text-decoration: none;
+}
+
+footer nav .nav_list ul > li > a:nth-child(6) {
+  margin-right: initial;
+}
+
+footer .icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+footer .icon a:first-child {
+  margin-right: 45px;
+}
+
+footer .icon a {
+  font-size: 0;
+  display: block;
+}
+
+footer .footer_cmp {
+>>>>>>> 15f70a12dab61e7a595199314a98ef68ba8202aa
   color: #B3925B;
   font-family: 'Roboto', sans-serif;
   letter-spacing: 2px;
   font-size: 12px;
   display: inline-flex;
+<<<<<<< HEAD
   margin-top: 90px;
 }
 
@@ -95,5 +407,199 @@ header nav .nav_list img {
 
 header nav .nav_list .user_logo {
   margin-right: initial;
+=======
+  position: absolute;
+  left: 50%;
+  bottom: 20%;
+  transform: translate(-50%, 0);
+}
+
+footer .nav_list_block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 570px;
+}
+
+@media (max-width: 1200px) {
+  footer nav {
+    width: 90%;
+  }
+}
+
+@media (max-width: 992px) {
+  footer nav {
+    flex-direction: column;
+  }
+  footer nav .logo {
+    margin-bottom: 20px;
+  }
+  footer .nav_list_block {
+    display: none;
+  }
+}
+
+.lightbox-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(170, 170, 170, 0.466);
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+  display: none;
+}
+
+.lightbox-container .lightbox-wrap {
+  border-radius: 20px;
+  background-color: #E5E3DD;
+  width: 500px;
+  height: 350px;
+  box-shadow: 3px 3px 5px 2px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+.lightbox-container .lightbox-wrap .lightbox-top {
+  display: flex;
+  position: relative;
+}
+
+.lightbox-container .lightbox-wrap .lightbox-top .close {
+  position: absolute;
+  top: 20px;
+  right: 15px;
+  cursor: pointer;
+}
+
+.lightbox-container .lightbox-wrap .lightbox-top .close i {
+  display: inline-block;
+  font-size: 24px;
+  color: #E5E3DD;
+  border-radius: 50%;
+}
+
+.lightbox-container .lightbox-wrap .lightbox-top .sign-up-tab {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.lightbox-container .lightbox-wrap .lightbox-top .sign-up-tab h3 {
+  font-size: 21px;
+  color: #013B4F;
+}
+
+.lightbox-container .lightbox-wrap .lightbox-top .login-tab {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  background-color: #013B4F;
+}
+
+.lightbox-container .lightbox-wrap .lightbox-top .login-tab h3 {
+  font-size: 21px;
+  color: #fff;
+}
+
+.lightbox-container .lightbox-wrap .lightbox-bot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.lightbox-container .lightbox-wrap .lightbox-bot .sign-up {
+  display: none;
+}
+
+.lightbox-container .lightbox-wrap .lightbox-bot .sign-up label,
+.lightbox-container .lightbox-wrap .lightbox-bot .sign-up input {
+  display: inline-block;
+  font-size: 18px;
+  color: #013B4F;
+}
+
+.lightbox-container .lightbox-wrap .lightbox-bot .sign-up label {
+  width: 80px;
+  margin-bottom: 15px;
+}
+
+.lightbox-container .lightbox-wrap .lightbox-bot .sign-up input {
+  width: 150px;
+  border-radius: 10px;
+}
+
+.lightbox-container .lightbox-wrap .lightbox-bot .sign-up input:focus {
+  outline: none;
+}
+
+.lightbox-container .lightbox-wrap .lightbox-bot .sign-up .name label {
+  margin-top: 20px;
+}
+
+.lightbox-container .lightbox-wrap .lightbox-bot .login {
+  justify-self: center;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-100%);
+  margin-top: 15px;
+}
+
+.lightbox-container .lightbox-wrap .lightbox-bot .login label,
+.lightbox-container .lightbox-wrap .lightbox-bot .login input {
+  display: inline-block;
+  font-size: 18px;
+  color: #013B4F;
+}
+
+.lightbox-container .lightbox-wrap .lightbox-bot .login label {
+  width: 80px;
+  margin-bottom: 15px;
+}
+
+.lightbox-container .lightbox-wrap .lightbox-bot .login input {
+  width: 150px;
+  border-radius: 10px;
+}
+
+.lightbox-container .lightbox-wrap .lightbox-bot .login input:focus {
+  outline: none;
+}
+
+.lightbox-container .lightbox-wrap .lightbox-bot .sure-cancel {
+  width: 100%;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.lightbox-container .lightbox-wrap .lightbox-bot .sure-cancel button {
+  margin: 0 15px;
+  padding: 5px 15px;
+  width: 80px;
+  border-radius: 10px;
+  font-size: 18px;
+  border: none;
+  cursor: pointer;
+}
+
+.lightbox-container .lightbox-wrap .lightbox-bot .sure-cancel button:focus {
+  outline: none;
+}
+
+.lightbox-container .lightbox-wrap .lightbox-bot .sure-cancel button:first-child {
+  background-color: #ccc;
+  color: #fff;
+}
+
+.lightbox-container .lightbox-wrap .lightbox-bot .sure-cancel button:last-child {
+  background-color: #B3925B;
+  color: #fff;
+>>>>>>> 15f70a12dab61e7a595199314a98ef68ba8202aa
 }
 /*# sourceMappingURL=style.css.map */

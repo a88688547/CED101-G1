@@ -1,0 +1,588 @@
+// 導入SASS共用
+@import "base/base.scss";
+@import "mixins/mixins.scss";
+
+//
+body{
+  background-color: $insideBackgroundColor;
+}
+main{
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+
+
+
+// 側邊 tag切換列表
+aside{
+  margin-bottom: 40px !important;
+}
+
+.tag_big{
+  display: none;
+  // flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  
+
+  li{
+    background-color:$btnColor;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 10px 5px;
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: #fff;
+    font-weight: bold;
+    padding: 5px 10px;
+    opacity: 0.6;
+    cursor: pointer;
+    &:hover{
+      opacity: 1;
+    }
+  }
+  li:first-child{
+    opacity: 1;
+  }
+}
+
+
+
+.tag_select{
+  width: 100%;
+  height: 45px;
+  outline: none;
+  border: 3px solid $btnColor;
+  font-weight: bold;
+  font-size: $fontsize_H6;
+
+}
+
+// 第一區 個人資料
+
+.content{
+  // margin: 40px 0 0 0;
+}
+
+#mem_change_info>div{
+  margin: 10px 0;
+}
+
+.tag_title{
+  text-align: center;
+  @include H3;
+  letter-spacing: 2px;
+  color: $textColor;
+  font-weight: bold;
+  margin-bottom: 40px !important;
+}
+
+.mem_img_box{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.mem_img{
+  width: 170px;
+  font-size: 0;
+}
+.change_img{
+  display: flex;
+  // flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  div{
+    margin-right: 20px;
+  }
+}
+
+.mem_detail_box{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.change_img{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  font-size: $fontsize_H6;
+  letter-spacing: 2px;
+  color:$textColor ;
+
+  label{
+    width: 100%;
+    height: 40px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-weight: bold;
+    color: $textColor;
+  }
+  input{
+    width: calc(100% - 20px);
+    max-width: 400px;
+    margin-left: 20px;
+    height: 40px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    // border: 1px solid $textColor;
+    // border-radius: 10px;
+    // overflow: hidden;
+    outline: none;
+  }
+}
+
+.row{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  font-size: $fontsize_H6;
+  letter-spacing: 2px;
+  color:$textColor ;
+
+  label{
+    width: 100%;
+    height: 40px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-weight: bold;
+    color: $textColor;
+  }
+
+  input{
+    width: calc(100% - 20px);
+    max-width: 400px;
+    margin-left: 20px;
+    height: 40px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border: 1px solid $textColor;
+    border-radius: 10px;
+    overflow: hidden;
+    outline: none;
+  }
+  
+}
+.change_btn{
+  position: relative;
+  left: 50%;
+  transform: translate(-50%,0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: $btnColor;
+  margin-top: 20px;
+  font-weight: bold;
+  color: #fff;
+  padding: 5px 10px;
+}
+.send_img{
+  margin: 0 10px 0 0;
+  font-size: 0;
+}
+@media(min-width:576px){
+
+  .tag_select{
+    display: none;
+  }
+
+  .tag_big{
+    display: flex;
+  }
+
+  .change_img,.row{
+    flex-direction: row;
+
+    label,input{
+      margin: 10px 0;
+    }
+    label{
+      width: 30%;
+    }
+    input{
+      width: 70%;
+    }
+  }
+}
+
+@media(min-width:992px){
+  main{
+    display: flex;
+    position: relative;
+    // justify-content: center;
+    // align-items: flex-start;
+  }
+  aside{
+    width: calc(30% - 70px) !important;
+    display: flex;
+    align-self: stretch;
+    // left: 0;
+    border-right: 2px solid rgb(184, 180, 180) !important;
+    margin: 0 70px 0 0 !important;
+
+  }
+
+  .tag_big{
+    margin: 0 auto;
+    position: sticky ;
+    top: 130px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 90%;
+  }
+  .content{
+    width: 70%;
+  }
+  .mem_info{
+    margin: 0 0 ;
+  }
+}
+
+// 第二區  揪團訂單
+
+.group_order{
+  display: none;
+}
+
+// 訂單列表
+
+.order_box{
+  background-color:$btnColor ;
+  border-radius: 15px;
+  overflow: hidden;
+  // padding: 0 0 20px 0;
+  max-width: 750px;
+  margin: 0 auto;
+ 
+}
+
+// 類型切換
+
+.type_box{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @include H4;
+  font-weight: bold;
+  letter-spacing: 2px;
+
+
+  div{
+    padding: 10px 10px;
+    // margin: 0px 0px 30px 0;
+    width: 50%;
+    overflow: hidden;
+    text-align: center;
+    cursor: pointer;
+    
+  }
+  div:first-child{
+    color: #fff;
+    background-color: $btnColor;
+    border-radius: 15px 0 0 0;
+  }
+  div:nth-child(2){
+    background-color: #fff;
+    color: $btnColor;
+    border-radius: 0 15px 0 0;
+  }
+}
+
+.type_box>div:hover{
+  color: #fff;
+  background-color: $btnColor;
+}
+
+//揪團中 列表
+
+.notyet_order,.done_order{
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  width: 95%;
+  padding: 10px 0;
+}
+
+.order_detail_box{
+  width: 95%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.order_row{
+
+  div{
+    margin: 10px 0;
+  }
+  .order_row_title{
+    color: $textColor;
+    font-weight: bold;
+  }
+  div:nth-child(2){
+    color: $textColor;
+    opacity: 0.6;
+  }
+}
+
+.groupname{
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+
+// .order_nowcup,.order_goalcup{
+//   text-align: center;
+// }
+
+
+.notyet_order_detail_btn,.done_order_detail_btn{
+  padding: 10px 6px;
+  background-color: $btnColor;
+  color: #fff;
+  border-radius: 5px;
+  overflow: hidden;
+  line-height: 12px;
+}
+
+@media(min-width:576px){
+  .order_row{
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+    font-size: $fontsize_P1;
+  }
+  .order_row_title{
+    margin: 10px 10px 10px 0 !important;
+  }
+  .done_order_detail_btn,.notyet_order_detail_btn{
+    padding: 10px 15px;
+    font-size: $fontsize_P1;
+  }
+}
+@media(min-width:768px){
+  .order_row{
+    font-size: $fontsize_H5;
+    div{
+      margin: 20px 0;
+    }
+  }
+  .done_order_detail_btn,.notyet_order_detail_btn{
+    padding: 10px 25px;
+    font-size: $fontsize_H5;
+  }
+}
+
+// 已成團 詳情 頁面
+.group_order_done_page{
+  display: none;
+}
+.group_order_done_groupname{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  @include H4;
+  letter-spacing: 2px;
+  color:$textColor ;
+  border-bottom: 1px solid rgb(107, 107, 107);
+  padding-bottom: 10px;
+
+  div:first-child{
+    font-weight: bold;
+    margin-right: 20px;
+  }
+  div:nth-child(2){
+
+  }
+}
+
+.group_order_done_info{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: $fontsize_H6 ;
+  border-bottom: 2px solid rgb(184, 184, 184);
+  padding: 20px 0;
+}
+
+.group_order_done_row{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+
+  div{
+    // width: 100%;
+    margin: 5px 0 5px 0;
+  }
+
+  div:first-child{
+    color: $textColor;
+    font-weight: bold;
+    margin-right: 5%;
+  }
+  div:nth-child(2){
+    color: rgb(105, 105, 105);
+  }
+}
+
+.group_order_done_drinklist{
+  margin: 10px 0;
+}
+
+.group_order_done_person{
+  border-bottom: 2px solid rgb(192, 191, 191);
+}
+
+.group_order_done_person>div{
+  margin: 10px 0;
+}
+
+.group_order_done_person_upbox{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.group_order_done_person_infobox{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.group_order_done_person_img{
+  width: 60px;
+  font-size: 0;
+  margin-right: 20px;
+}
+
+.group_order_done_person_name{
+  font-size: $fontsize_H6 ;
+  color: $textColor;
+  font-weight: bold;
+}
+
+.group_order_done_person_total{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: $fontsize_H6 ;
+  color: $textColor;
+  font-weight: bold;
+
+  div:first-child{
+    margin-right: 20px;
+  }
+}
+
+.group_order_done_person_drink{
+  background-color: rgb(206, 206, 206);
+  padding: 5px 2.5%;
+  margin: 10px 0;
+  font-size: $fontsize_P1;
+  letter-spacing: 2px;
+
+  div{
+    margin: 10px 0;
+  }
+  div:first-child{
+    font-weight: bold;
+  }
+}
+
+.group_order_done_total_box{
+  font-size: $fontsize_P1;
+  letter-spacing: 2px;
+
+  div{
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+.group_order_done_dis{
+  border-bottom: 1px solid rgb(173, 173, 173);
+}
+
+.group_order_done_finaltotal{
+  font-size: $fontsize_H3;
+  color: $textColor;
+  font-weight: bold;
+  border-top: 2px solid $textColor;
+}
+
+.getitem_btn_box{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+#getitem_btn{
+  font-size: $fontsize_H4;
+  background-color: $textColor;
+  padding: 10px 15px;
+  border-radius: 10px;
+  overflow: hidden;
+  color: #fff;
+  line-height: 14px;
+  font-weight: bold;
+}
+@media(min-width:576px){
+  .group_order_done_row{
+    width: 50%;
+  }
+  .group_order_done_groupname{
+    font-size: $fontsize_H3;
+  }
+  .group_order_done_info{
+    font-size: $fontsize_H5;
+  }
+  .group_order_done_person_name,.group_order_done_person_total{
+    font-size: $fontsize_H4;
+
+  }
+
+
+}
+
+@media(min-width:768px){
+  .group_order_done_row{
+    width: 33.3%;
+  }
+  .group_order_done_person_drink,.group_order_done_total,.group_order_done_dis{
+    font-size: $fontsize_H6;
+  }
+}
+
+
+

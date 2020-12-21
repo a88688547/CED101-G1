@@ -7,24 +7,24 @@ new Vue({
      'my-footer': {
        template: `
             <nav>
-                <img class="logo" src="./Images/footer_logo.svg" alt="" />
+                <a href="#"><img class="logo" src="./Images/footer_logo.svg" alt="" /></a>
                 <div class="nav_list_block">
                     <div class="nav_list">
                         <ul>
-                            <li>菜單</li>
-                            <li>揪團喝</li>
-                            <li>飲品排名</li>
-                            <li>分享區</li>
-                            <li>小遊戲</li>
-                            <li>關於揪飲</li>
+                            <li><a href="#">菜單</a></li>
+                            <li><a href="#">揪團喝</a></li>
+                            <li><a href="#">飲品排名</a></li>
+                            <li><a href="#">分享區</a></li>
+                            <li><a href="#">小遊戲</a></li>
+                            <li><a href="#">關於揪飲</a></li>
                         </ul>
                     </div>
-                    <p>Copyright © Join drink inc.</p>
                 </div>
                 <div class="icon">
-                    <img src="./Images/fb.svg" alt="" />
-                    <img src="./Images/email.svg" alt="" />
+                    <a href="#"><img src="./Images/fb.svg" alt="" /></a>
+                    <a href="#"><img src="./Images/email.svg" alt="" /></a>
                 </div>
+                <p class="footer_cmp">Copyright © Join drink inc.</p>
             </nav>
         `,
        },

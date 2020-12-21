@@ -210,8 +210,8 @@ body {
   }
 
   .line {
-    border: 1px solid #383232;
-    background-color: #383232;
+    border: 1px solid $textColor;
+    background-color: $textColor;
     margin-bottom: 55px;
   }
 
@@ -322,6 +322,7 @@ body {
       display: flex;
       justify-content: space-between;
        font-size: $fontsize_H5;
+       letter-spacing: 5px;
        color:$textColor;
        position: relative;
        
@@ -681,23 +682,34 @@ body {
             height: 800px;
             overflow-y: scroll;
             overflow-x: hidden;
-            ::-webkit-scrollbar{
-                width: 20px;
-            }
+            position: relative;
+            
         }
        
 
 
       .group_button {
-        justify-content: space-evenly;
+        justify-content: center;
         // border: 1px solid red;
-        width: 80%;
+        width: 100%;
         margin: 0 auto;
         font-size: $fontsize_H3;
-
-        button {
-          margin-right: 10px;
+        position: relative;
+        div{
+          margin-right: 30px;
         }
+        &::before{
+          position: absolute;
+          content: "";
+          width: 100%;
+          background-color: $textColor;
+          border: 1px solid $textColor;
+          top: -50px;
+          left: 0;
+          
+        }
+        
+        
       }
 
 

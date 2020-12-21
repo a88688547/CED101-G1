@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>客製化角色</title>
+        <link rel="stylesheet" href="./css/custom.css" />
+    </head>
+    <body>
+        <section>
+            <form action="">
+                <div class="select-container">
+                    <div class="left">
+                        <h2>客製化你的角色</h2>
+                        <div class="select-char"></div>
+                        <div class="ability-wrap">
+                            <p class="speed">速度</p>
+                            <p class="accuracy">準確度</p>
+                            <p class="hp">體力</p>
+                        </div>
+                    </div>
+                    <div class="right">
+                        <div class="select-item-wrap">
+                            <div class="item-title">
+                                <h2>步驟一:選擇你喜歡的角色</h2>
+                            </div>
+                            <div class="item-wrap">
+                                <div class="item"></div>
+                                <div class="item"></div>
+                                <div class="item"></div>
+                            </div>
+                        </div>
+                        <div class="select-item-wrap">
+                            <div class="item-title">
+                                <h2>步驟二:選擇你喜歡的容器</h2>
+                            </div>
+                            <div class="item-wrap">
+                                <div class="item"></div>
+                                <div class="item"></div>
+                                <div class="item"></div>
+                            </div>
+                        </div>
+                        <div class="select-item-wrap">
+                            <div class="item-title">
+                                <h2>步驟一:選擇你要的天氣</h2>
+                            </div>
+                            <div class="item-wrap">
+                                <div class="item"></div>
+                                <div class="item"></div>
+                                <div class="item"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="button-submit">
+                    <button type="submit">
+                        <a href="./game.html">開始遊戲</a>
+                    </button>
+                </div>
+            </form>
+        </section>
+        <div class="rule">
+            <div class="rule-wrap">
+                <div class="close"><img src="./Images/cancel.svg" alt="cancel" /></div>
+                <h2>遊戲規則</h2>
+                <p>選取你喜歡的角色</p>
+                <p>選擇你喜歡的容器</p>
+                <p>選擇你要的天氣</p>
+                <p>
+                    接取珍珠可獲得分數，若未接取到珍珠則扣除血量，血量歸0後遊戲結束，人物移動使用鍵盤左右鍵，遊戲結束後會依獲得分數得到優惠券
+                </p>
+                <p>※能力值依照選擇不同產生變化</p>
+                <p>點選開始遊戲後進入遊戲</p>
+            </div>
+        </div>
+
+        <script>
+            let closeBtn = document.querySelector(".close");
+            closeBtn.addEventListener("click", function () {
+                document.querySelector(".rule").style.display = "none";
+            });
+        </script>
+    </body>
+</html>

@@ -29,59 +29,55 @@ new Vue({
                 <div class="lightbox-container">
                     <div class="lightbox-wrap">
                         <div class="lightbox-top">
-                            <div class="sign-up-tab">
-                                <h3>註冊</h3>
+                            <div class="tab tabbackgroud">
+                                <h3 class="h3 textcolor">登入</h3>
                             </div>
-                            <div class="login-tab">
-                                <h3>登入</h3>
+                            <div class="tab">
+                                <h3 class="h3">註冊</h3>
                             </div>
                             <div class="close">
-                                <i class="fas fa-times-circle"></i>
-                                <!-- <i class="far fa-times-circle"></i> -->
+                                <i class="fas fa-times-circle closeBlock"></i>
+                                <i class="far fa-times-circle"></i>
                             </div>
                         </div>
-                        <div class="lightbox-bot">
-                            <div class="sign-up">
-                                <div class="name">
-                                    <label for="name">姓名</label>
-                                    <input type="text" id="name" />
-                                </div>
-                                <div class="email">
-                                    <label for="email">信箱</label>
-                                    <input type="email" id="email" />
-                                </div>
-                                <div class="password">
-                                    <label for="password">密碼</label>
-                                    <input type="password" id="password" />
-                                </div>
-                                <div class="password_two">
-                                    <label for="password_two">確認密碼</label>
-                                    <input type="password" id="password_two" />
-                                </div>
-                                <div class="phone">
-                                    <label for="phone">手機號碼</label>
-                                    <input type="number" id="phone" />
-                                </div>
-                                <div class="sure-cancel">
-                                    <button>取消</button>
-                                    <button>確認</button>
-                                </div>
-                            </div>
-                            <div class="login">
+                        <form class="lightbox-bot" action="">
+                            <div class="login tabBody tabBodyNone">
                                 <div class="login-email">
                                     <label for="login-email">信箱</label>
                                     <input type="email" id="login-email" />
                                 </div>
                                 <div class="login-password">
-                                    <label for="login_password">密碼</label>
-                                    <input type="login_password" id="login_password" />
-                                </div>
-                                <div class="sure-cancel">
-                                    <button>取消</button>
-                                    <button>確認</button>
+                                    <label for="password">密碼</label>
+                                    <input type="password" id="login-password" />
                                 </div>
                             </div>
-                        </div>
+                            <div class="sign-up tabBody">
+                                <div class="name">
+                                    <label for="name">姓名</label>
+                                    <input type="text" id="name" required />
+                                </div>
+                                <div class="email">
+                                    <label for="email">信箱</label>
+                                    <input type="email" id="email" required />
+                                </div>
+                                <div class="password">
+                                    <label for="sign-password">密碼</label>
+                                    <input type="password" id="sign-password" required />
+                                </div>
+                                <div class="password_two">
+                                    <label for="password_two">確認密碼</label>
+                                    <input type="password" id="password_two" required />
+                                </div>
+                                <div class="phone">
+                                    <label for="phone">手機號碼</label>
+                                    <input type="tel" id="phone" required />
+                                </div>
+                            </div>
+                            <div class="sure-cancel">
+                                <button type="reset">清除</button>
+                                <button type="submit" id="sub">確認</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </nav>`,

@@ -1,0 +1,253 @@
+@charset "UTF-8";
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+}
+
+:root {
+  font-size: 62.5%;
+  /* 設定 1rem: 16px * 62.5% = 10px */
+}
+
+body {
+  background-color: #E5E3DD;
+  position: relative;
+}
+
+.w-338 {
+  width: 338px;
+  margin: 0 auto;
+}
+
+.step_box {
+  width: 338px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  margin-bottom: 50px;
+}
+
+.step_box .step_ball {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.step_box .step_ball li {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background-color: #D3C8B5;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.step_box .step_ball li::before {
+  content: "";
+  position: absolute;
+  width: 45px;
+  height: 4px;
+  background-color: #D3C8B5;
+  left: 50px;
+  top: 50%;
+  z-index: -1;
+}
+
+.step_box .step_ball li:last-child::before {
+  display: none;
+}
+
+.step_box .step_ball .on {
+  background-color: #B3925B;
+}
+
+.step_box .step_text {
+  display: flex;
+  justify-content: space-between;
+  color: #013B4F;
+  font-size: 12px;
+}
+
+.step_box .step_text .on {
+  font-weight: bold;
+}
+
+.group_data {
+  position: relative;
+}
+
+.group_data ul {
+  margin-bottom: 55px;
+}
+
+.group_data ul li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.group_data ul li label {
+  font-size: 16px;
+  color: #ffffff;
+  letter-spacing: 6px;
+}
+
+.group_data ul li input,
+.group_data ul li select,
+.group_data ul li textarea {
+  border-radius: 5px;
+  border: 1px solid black;
+  width: 195px;
+  height: 28px;
+}
+
+.group_data ul li select {
+  padding: 0 0 0 20px;
+  letter-spacing: 3px;
+  text-indent: 3px;
+}
+
+.group_data ul li textarea {
+  align-items: center;
+  padding: 3px 5px 0 5px;
+}
+
+.group_data ul li:last-child {
+  margin-bottom: 0;
+}
+
+.group_data ul:first-child label {
+  color: #013B4F;
+}
+
+.line {
+  border: 1px solid #383232;
+  background-color: #383232;
+  margin-bottom: 55px;
+}
+
+.Head_data {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Head_data .Head_img {
+  width: 105px;
+  height: 105px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.Head_data .Head_img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.Head_data h2 {
+  font-size: 35px;
+  letter-spacing: 15px;
+  text-indent: 15px;
+  color: #013B4F;
+  margin-bottom: 25px;
+}
+
+.Head_data ul {
+  width: 100%;
+  font-size: 16px;
+  letter-spacing: 3px;
+  margin-bottom: 35px;
+}
+
+.Head_data ul li {
+  padding: 0 15px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.Head_data ul li label {
+  color: black;
+}
+
+.Head_data ul li:last-child {
+  margin-bottom: 0;
+}
+
+.Head_data .group_button {
+  width: 100%;
+  padding: 0 35px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.Head_data .btn_back,
+.Head_data .btn_go {
+  font-size: 18px;
+  padding: 5px;
+  letter-spacing: 5px;
+  border-radius: 10px;
+  background-color: #B3925B;
+  border: 0;
+  color: #fff;
+  cursor: pointer;
+  text-indent: 10px;
+}
+/*# sourceMappingURL=join_step1.css.map */

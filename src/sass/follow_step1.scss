@@ -1,0 +1,98 @@
+@import "mixins/mixins.scss";
+@import "base/base.scss";
+
+body {
+    background-color: $insideBackgroundColor;
+}
+
+// 進度條
+.step_box {
+    max-width: 430px;
+    // border: 1px solid red;
+    margin: 0 auto;
+    margin-top: 90px;
+
+    .step_ball {
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+
+        //進度條的球
+        li {
+            width: 120px;
+            height: 120px;
+            // border: 1px solid red;
+            border-radius: 50%;
+            background-color: #D3C8B5;
+            margin-bottom: 10px;
+            position: relative;
+
+            //進度條的線
+            &::before {
+                content: "";
+                position: absolute;
+                width: 300px;
+                height: 14px;
+                background-color: #D3C8B5;
+                left: 50px;
+                top: 50%;
+                transform: translateY(-50%);
+                z-index: -1;
+            }
+
+            //最後一條消失
+            &:last-child::before {
+                display: none;
+            }
+        }
+
+        .on {
+            background-color: $btnColor;
+        }
+    }
+
+    //進度條文字
+    .step_text {
+        display: flex;
+        justify-content: space-between;
+        color: $orderTextColor;
+        @include H3;
+        letter-spacing: 0;
+
+        //進度條當前頁面
+        .on {
+            font-weight: bold;
+            color: $textColor;
+        }
+    }
+}
+
+// 開團資訊
+#group_info {
+    max-width: 550px;
+    margin: 0 auto;
+    margin-top: 90px;
+    @include H3;
+
+    li {
+        padding-top: 35px;
+        display: flex;
+
+
+        span:first-child {
+            color: $textColor;
+            font-weight: bold;
+            width: 40%;
+            display: inline-block;
+            line-height: 24px;
+        }
+
+        span:nth-child(2) {
+            color: $orderTextColor;
+            letter-spacing: normal;
+            display: inline-block;
+            width: 60%;
+            line-height: 24px;
+        }
+    }
+}

@@ -29,38 +29,21 @@ body {
   position: relative;
 }
 
-<<<<<<< HEAD
-// .testbtn1{
-//     @include button1(18px,15px,5px,10px,$btnColor,rgb(255, 255, 255))
-//   }
-//   .testbtn2{
-//     @include button1(14px,8px,5px,10px,$textColor,rgb(255, 255, 255) )
-//   }
-//   .testbtn3{
-//     @include button1(18px,5px,10px,20px,$btnColor2,#fff)
-//   }
-=======
 body{
     background-color: $insideBackgroundColor;
     position: relative;
   }
 
->>>>>>> 15f70a12dab61e7a595199314a98ef68ba8202aa
 
 @mixin margin-b {
   margin-bottom: 50px;
 }
 
 //width :338px
-<<<<<<< HEAD
-.w-338 {
-  width: 338px;
-=======
 .w-338{
   width: 100%;
   padding: 0 18.5px;
   // margin: 0 9px;
->>>>>>> 15f70a12dab61e7a595199314a98ef68ba8202aa
   margin: 0 auto;
   // border: 1px solid black;
 }
@@ -68,13 +51,8 @@ body{
 //width :338px
 
 //====進度條=====
-<<<<<<< HEAD
-.step_box {
-  width: 338px;
-=======
 .step_box{
   width: 100%;
->>>>>>> 15f70a12dab61e7a595199314a98ef68ba8202aa
   margin: 0 auto;
   // border: 1px solid red;
   box-sizing: border-box;
@@ -84,18 +62,12 @@ body{
     display: flex;
     justify-content: space-between;
     position: relative;
-<<<<<<< HEAD
-
-    //進度條的球
-    li {
-=======
     // border: 1px solid red;
     overflow: hidden;
     //進度條的球
     li{
       // height: 100px;
       width: 25%;
->>>>>>> 15f70a12dab61e7a595199314a98ef68ba8202aa
       width: 52px;
       height: 52px;
       // border: 1px solid red;
@@ -103,20 +75,12 @@ body{
       background-color: #D3C8B5;
       margin-bottom: 15px;
       position: relative;
-<<<<<<< HEAD
-
-=======
       
->>>>>>> 15f70a12dab61e7a595199314a98ef68ba8202aa
       //進度條的線
       &::before {
         content: "";
         position: absolute;
-<<<<<<< HEAD
-        width: 45px;
-=======
         width:999%;
->>>>>>> 15f70a12dab61e7a595199314a98ef68ba8202aa
         height: 4px;
         background-color: #D3C8B5;
         left: 50px;
@@ -164,17 +128,11 @@ body{
 .group_data {
   // border: 1px solid red;
   position: relative;
-<<<<<<< HEAD
-
-  // margin-bottom: 55px;
-  ul {
-=======
   margin: auto;
   // margin-bottom: 55px;
   ul{
     // border: 2px solid yellow;
     // padding: 0 50px;
->>>>>>> 15f70a12dab61e7a595199314a98ef68ba8202aa
     margin-bottom: 55px;
 
     li {
@@ -182,19 +140,6 @@ body{
       justify-content: space-evenly;
       align-items: center;
       margin-bottom: 15px;
-<<<<<<< HEAD
-
-      label {
-        font-size: $fontsize_H6;
-        color: #ffffff;
-        letter-spacing: 6px;
-
-      }
-
-      input,
-      select,
-      textarea {
-=======
       &:last-child{
         margin-bottom: 0;
       }
@@ -208,7 +153,6 @@ body{
       }
       input,select{
         font-size: $fontsize_H6;
->>>>>>> 15f70a12dab61e7a595199314a98ef68ba8202aa
         border-radius: 5px;
         border: 1px solid black;
         width: 195px;
@@ -221,91 +165,6 @@ body{
         padding: 0 0 0 20px;
         @include ls(3px)
       }
-<<<<<<< HEAD
-
-      textarea {
-        align-items: center;
-        padding: 3px 5px 0 5px;
-      }
-
-
-      &:last-child {
-        margin-bottom: 0;
-      }
-    }
-
-    &:first-child label {
-      color: $textColor;
-    }
-  }
-
-}
-
-//====開團資料====
-.line {
-  border: 1px solid #383232;
-  background-color: #383232;
-  margin-bottom: 55px;
-}
-
-//====團長資料====
-.Head_data {
-  box-sizing: border-box;
-  // border: 1px solid rgb(16, 32, 248);
-  display: flex;
-  flex-direction: column;
-  // justify-content: space-between;
-  // text-align: center;
-  align-items: center;
-
-  .Head_img {
-    // border: 1px solid red;
-    width: 105px;
-    height: 105px;
-    border-radius: 50%;
-    overflow: hidden;
-    margin-bottom: 20px;
-
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-  }
-
-  h2 {
-    font-size: $fontsize_H2;
-    // letter-spacing: 15px;
-    @include ls(15px);
-    color: $textColor;
-    margin-bottom: 25px;
-  }
-
-  ul {
-    // border: 1px solid red;
-    width: 100%;
-    font-size: $fontsize_H6;
-    letter-spacing: 3px;
-    margin-bottom: 35px;
-
-    li {
-      padding: 0 15px;
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      // background-color: red;
-      margin-bottom: 15px;
-
-      label {
-        color: black;
-      }
-
-      &:last-child {
-        margin-bottom: 0;
-      }
-    }
-  }
-=======
      
     
       &:last-child label{
@@ -575,7 +434,6 @@ body{
   }
 }
       
->>>>>>> 15f70a12dab61e7a595199314a98ef68ba8202aa
 
   .group_button {
     // border: 1px solid blue;
@@ -589,6 +447,6 @@ body{
   .btn_go {
     @include button_all(18px, 5px, 5px, 10px, #B3925B, #fff)
   }
-}
+
 
 //====團長資料====

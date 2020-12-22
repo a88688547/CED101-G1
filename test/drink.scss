@@ -1,0 +1,111 @@
+// LOGO
+$logoColor:#007e85; // LOGO標準色
+// 背景
+$mainBackgroundColor:#63CCC8; // 主背景色
+$secBackgroundColor:#04B2AC; // 副被景色
+$insideBackgroundColor:#E5E3DD; // 內頁背景色
+// 按鈕 / 文字
+$textColor:#013B4F; // 文字/按鈕顏色
+$btnColor:#B3925B; // 文字/按鈕顏色
+$orderTextColor: #707070; //訂單灰色文字
+
+// H系列
+$fontsize_H1 : 45px; //H1 45px
+$fontsize_H2 : 35px; //H2 35px
+$fontsize_H3 : 24px; //H3 24px
+$fontsize_H4 : 21px; //H4 21px
+$fontsize_H5 : 18px; //H5 18px
+$fontsize_H6 : 16px; //H5 16px
+// P系列
+$fontsize_P1 : 14px; //P1 14px
+$fontsize_P2 : 12px; //P1 12px
+$fontsize_P3 : 10px; //P1 10px
+
+// 每個人 買飲料
+.group_order_done_drinklist{
+  margin: 10px 0;
+}
+
+.group_order_done_person{
+  border-bottom: 2px solid rgb(192, 191, 191);
+}
+
+.group_order_done_person>div{
+  margin: 10px 0;
+}
+
+.group_order_done_person_upbox{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.group_order_done_person_infobox{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.group_order_done_person_img{
+  width: 60px;
+  font-size: 0;
+  margin-right: 20px;
+}
+
+.group_order_done_person_name{
+  font-size: $fontsize_H6 ;
+  color: $textColor;
+  font-weight: bold;
+}
+
+.group_order_done_person_total{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: $fontsize_H6 ;
+  color: $textColor;
+  font-weight: bold;
+
+  div:first-child{
+    margin-right: 20px;
+  }
+}
+
+.group_order_done_person_drink{
+  background-color: rgb(206, 206, 206);
+  padding: 5px 2.5%;
+  margin: 10px 0;
+  font-size: $fontsize_P1;
+  letter-spacing: 2px;
+
+  div{
+    margin: 10px 0;
+  }
+  div:first-child{
+    font-weight: bold;
+  }
+}
+
+// 結帳金額
+
+.group_order_done_total_box{
+  font-size: $fontsize_P1;
+  letter-spacing: 2px;
+
+  div{
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+.group_order_done_dis{
+  border-bottom: 1px solid rgb(173, 173, 173);
+}
+
+.group_order_done_finaltotal{
+  font-size: $fontsize_H3;
+  color: $textColor;
+  font-weight: bold;
+  border-top: 2px solid $textColor;
+}

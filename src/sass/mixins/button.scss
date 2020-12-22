@@ -40,9 +40,10 @@
   background-color: #013B4F;
   color: #B3925B;
   opacity: 0.8;
-  position: fixed;
-  right: 7%;
+  position: sticky;
+  left: 50%;
   bottom: 50px;
+  border: none;
 }
 
 @mixin button_4_mob {

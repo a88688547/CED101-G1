@@ -313,7 +313,7 @@ aside{
 
 //揪團中 列表
 
-.notyet_order,.done_order{
+.order_all{
   margin: 20px auto;
   display: flex;
   flex-direction: column;
@@ -363,7 +363,7 @@ aside{
 // }
 
 
-.notyet_order_detail_btn,.done_order_detail_btn{
+.detail_btn{
   padding: 10px 6px;
   background-color: $btnColor;
   color: #fff;
@@ -382,7 +382,7 @@ aside{
   .order_row_title{
     margin: 10px 10px 10px 0 !important;
   }
-  .done_order_detail_btn,.notyet_order_detail_btn{
+  .detail_btn{
     padding: 10px 15px;
     font-size: $fontsize_P1;
   }
@@ -394,7 +394,7 @@ aside{
       margin: 20px 0;
     }
   }
-  .done_order_detail_btn,.notyet_order_detail_btn{
+  .detail_btn{
     padding: 10px 25px;
     font-size: $fontsize_H5;
   }
@@ -579,10 +579,30 @@ aside{
   .group_order_done_row{
     width: 33.3%;
   }
-  .group_order_done_person_drink,.group_order_done_total,.group_order_done_dis{
+  .group_order_done_person_drink,
+  .group_order_done_total,
+  .group_order_done_dis{
     font-size: $fontsize_H6;
   }
 }
 
+// 跟團紀錄
+.follow_order_box{
+  display: none;
+}
 
+// 跟團中 詳情頁面
 
+.follow_order_notyet_page{
+  display: none;
+}
+
+// 跟團成功 詳情頁面
+.follow_order_done_page{
+  display: none;
+}
+// 自己訂 | 訂單紀錄
+.self_order_box{
+  display: none;
+
+}

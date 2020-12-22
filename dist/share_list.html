@@ -1,168 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<<<<<<< HEAD
-
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>分享區</title>
-    <script src="./vendors/Vue/vue.js"></script>
-    <link rel="stylesheet" href="./css/share_list.css" />
-    <link rel="stylesheet" href="./css/style.css">
-</head>
-
-<body>
-    <div class="body_box">
-        <header id="header">
-            <my-header></my-header>
-        </header>
-
-        <main>
-            <!-- 分享區 -->
-            <section class="section_1">
-                <div class="s1_title">分享區</div>
-                <div class="s1_text">
-                    <img src="./Images/Drop-3.svg" alt="" />
-                    <div>分享的飲品日常，讓更多人一起沉浸在揪飲的時光吧!</div>
-                </div>
-            </section>
-            <!-- 熱門文章 -->
-            <section class="section_2">
-                <div class="s2_title">
-                    <img src="./Images/hot.svg" alt="" />
-                    <div>熱門文章</div>
-                </div>
-                <div class="s2_hotitem_box">
-                    <a class="s2_hotitem" href="#">
-                        <div class="hotimg"><img src="http://fakeimg.pl/350x213" /></div>
-                        <div class="hotinfo">
-                            <div class="memimg"><img src="./Images/user_big.svg" /></div>
-                            <div class="hotright">
-                                <div class="texttime">2020/12/16 17:00</div>
-                                <div class="hotdetail">
-                                    <div class="memname">Yu Lee</div>
-                                    <div class="hotcount">
-                                        <div>
-                                            <div class="hot_icon"><img src="./Images/eyes_small.svg" /></div>
-                                            <span class="hot_num">150</span>
-                                        </div>
-                                        <div>
-                                            <div class="hot_icon"><img src="./Images/message_small.svg" /></div>
-                                            <span class="hot_num">8</span>
-                                        </div>
-                                        <div>
-                                            <div class="hot_icon"><img src="./Images/like_small.svg" /></div>
-                                            <span class="hot_num">100</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="hot_text">水果茶用料實在，酸酸甜酸酸.....甜....</div>
-                            </div>
-                        </div>
-                    </a>
-                    <a class="s2_hotitem" href="#">
-                        <div class="hotimg"><img src="http://fakeimg.pl/350x213" /></div>
-                        <div class="hotinfo">
-                            <div class="memimg"><img src="./Images/user_big.svg" /></div>
-                            <div class="hotright">
-                                <div class="texttime">2020/12/16 17:00</div>
-                                <div class="hotdetail">
-                                    <div class="memname">Yu Lee</div>
-                                    <div class="hotcount">
-                                        <div>
-                                            <div class="hot_icon"><img src="./Images/eyes_small.svg" /></div>
-                                            <span class="hot_num">150</span>
-                                        </div>
-                                        <div>
-                                            <div class="hot_icon"><img src="./Images/message_small.svg" /></div>
-                                            <span class="hot_num">8</span>
-                                        </div>
-                                        <div>
-                                            <div class="hot_icon"><img src="./Images/like_small.svg" /></div>
-                                            <span class="hot_num">100</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="hot_text">水果茶用料實在，酸酸甜酸酸.....甜....</div>
-                            </div>
-                        </div>
-                    </a>
-                    <a class="s2_hotitem" href="#">
-                        <div class="hotimg"><img src="http://fakeimg.pl/350x213" /></div>
-                        <div class="hotinfo">
-                            <div class="memimg"><img src="./Images/user_big.svg" /></div>
-                            <div class="hotright">
-                                <div class="texttime">2020/12/16 17:00</div>
-                                <div class="hotdetail">
-                                    <div class="memname">Yu Lee</div>
-                                    <div class="hotcount">
-                                        <div>
-                                            <div class="hot_icon"><img src="./Images/eyes_small.svg" /></div>
-                                            <span class="hot_num">150</span>
-                                        </div>
-                                        <div>
-                                            <div class="hot_icon"><img src="./Images/message_small.svg" /></div>
-                                            <span class="hot_num">8</span>
-                                        </div>
-                                        <div>
-                                            <div class="hot_icon"><img src="./Images/like_small.svg" /></div>
-                                            <span class="hot_num">100</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="hot_text">水果茶用料實在，酸酸甜酸酸.....甜....</div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </section>
-            <!-- 搜尋BAR -->
-            <section class="section_3">
-                <div class="show_article_btn">
-                    <div class="show_img"><img src="./Images/article.svg" /></div>
-                    <div class="show_text">所有文章列表</div>
-                </div>
-                <form action="" class="searchbar"
-                    style="padding: 0px; margin: 0px; border-radius: 10px; overflow: hidden">
-                    <input type="text" id="search" placeholder="    搜尋文章主題"
-                        style="width: 435px; height: 40px; border: 0px; padding: 0px; margin: 0px" /><button
-                        class="search_btn" style="border: 0px; padding: 0px; margin: 0px">
-                        <img src="./Images/search.svg" />
-                    </button>
-                </form>
-                <div class="write_article_btn">
-                    <div class="write_img"><img src="./Images/pen-white.svg" /></div>
-                    <div class="write_text">投稿</div>
-                </div>
-            </section>
-            <!-- 文章列表 -->
-            <section class="section_4">
-                <a class="article_item" href="#">
-                    <div class="article_img"><img src="http://fakeimg.pl/396x264" alt="" /></div>
-                    <div class="article_right">
-                        <div class="article_info">
-                            <div class="article_info_left">
-                                <div class="article_memimg"><img src="./Images/user_big.svg" /></div>
-                                <div class="article_memname">Yu Lee</div>
-                            </div>
-                            <div class="article_time">2020/12/16 17:00</div>
-                        </div>
-                        <div class="article_detail">
-                            <div class="article_title">QQㄋㄟㄋㄟ好喝到咩噗茶</div>
-                            <div class="article_count">
-                                <div>
-                                    <div class="article_icon"><img src="./Images/eyes_big.svg" /></div>
-                                    <span class="article_num">150</span>
-                                </div>
-                                <div>
-                                    <div class="article_icon"><img src="./Images/message_big.svg" /></div>
-                                    <span class="article_num">8</span>
-                                </div>
-                                <div>
-                                    <div class="article_icon"><img src="./Images/like_big.svg" /></div>
-                                    <span class="article_num">100</span>
-                                </div>
-=======
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -202,7 +39,6 @@
                 
                 <!-- 文章列表 -->
                 <section class="section_4">
-
                     <div class="s2_title">
                         <img src="./Images/hot.svg" alt="" />
                         <div>熱門文章</div>
@@ -235,34 +71,15 @@
                             </div>
                             <div class="article_detail">
                                 <div class="article_title">QQㄋㄟㄋㄟ好喝到咩噗茶</div>
-                                
->>>>>>> 15f70a12dab61e7a595199314a98ef68ba8202aa
-                            </div>
-                        </div>
-                        <div class="article_text">
-                            手搖控這次不吸珍珠了！台北最新排隊名店「五桐號WooTEA」強打凍飲系飲品，將茶飲、鮮榨水果，通通加入咀嚼感十足的自製綠茶、杏仁、豆漿凍等，喝起來Q彈滑溜，連藍心湄、紀卜心等藝人網紅都搶喝打卡。
-                        </div>
-                    </div>
-                </a>
-                <a class="article_item" href="#">
-                    <div class="article_img"><img src="http://fakeimg.pl/396x264" alt="" /></div>
-                    <div class="article_right">
-                        <div class="article_info">
-                            <div class="article_info_left">
-                                <div class="article_memimg"><img src="./Images/user_big.svg" /></div>
-                                <div class="article_memname">Yu Lee</div>
-                            </div>
-                            <div class="article_time">2020/12/16 17:00</div>
-                        </div>
 <<<<<<< HEAD
-                        <div class="article_detail">
-                            <div class="article_title">QQㄋㄟㄋㄟ好喝到咩噗茶</div>
-                            <div class="article_count">
-                                <div>
-                                    <div class="article_icon"><img src="./Images/eyes_big.svg" /></div>
-                                    <span class="article_num">150</span>
-                                </div>
 =======
+                                
+>>>>>>> ac13a5b147744cb75c15f8633b3af0389bdfc2bc
+                            </div>
+                            <div class="article_text">
+                                手搖控這次不吸珍珠了！台北最新排隊名店「五桐號WooTEA」強打凍飲系飲品，將茶飲、鮮榨水果，通通加入咀嚼感十足的自製綠茶、杏仁、豆漿凍等，喝起來Q彈滑溜，連藍心湄、紀卜心等藝人網紅都搶喝打卡。
+                            </div>
+                        </div>
                     </a>
                     <a class="article_item" href="#">
                         <div class="article_img"><img src="http://fakeimg.pl/396x264" alt="" /></div>
@@ -280,7 +97,6 @@
                                     <div class="article_icon"><img src="./Images/eyes_big.svg" /></div>
                                     <span class="article_num">150</span>
                                 </div>
->>>>>>> 15f70a12dab61e7a595199314a98ef68ba8202aa
                                 <div>
                                     <div class="article_icon"><img src="./Images/message_big.svg" /></div>
                                     <span class="article_num">8</span>
@@ -289,39 +105,18 @@
                                     <div class="article_icon"><img src="./Images/like_big.svg" /></div>
                                     <span class="article_num">100</span>
                                 </div>
-<<<<<<< HEAD
-=======
                             </div>
                             <div class="article_detail">
                                 <div class="article_title">QQㄋㄟㄋㄟ好喝到咩噗茶</div>
-                                
->>>>>>> 15f70a12dab61e7a595199314a98ef68ba8202aa
-                            </div>
-                        </div>
-                        <div class="article_text">
-                            手搖控這次不吸珍珠了！台北最新排隊名店「五桐號WooTEA」強打凍飲系飲品，將茶飲、鮮榨水果，通通加入咀嚼感十足的自製綠茶、杏仁、豆漿凍等，喝起來Q彈滑溜，連藍心湄、紀卜心等藝人網紅都搶喝打卡。
-                        </div>
-                    </div>
-                </a>
-                <a class="article_item" href="#">
-                    <div class="article_img"><img src="http://fakeimg.pl/396x264" /></div>
-                    <div class="article_right">
-                        <div class="article_info">
-                            <div class="article_info_left">
-                                <div class="article_memimg"><img src="./Images/user_big.svg" /></div>
-                                <div class="article_memname">Yu Lee</div>
-                            </div>
-                            <div class="article_time">2020/12/16 17:00</div>
-                        </div>
 <<<<<<< HEAD
-                        <div class="article_detail">
-                            <div class="article_title">QQㄋㄟㄋㄟ好喝到咩噗茶</div>
-                            <div class="article_count">
-                                <div>
-                                    <div class="article_icon"><img src="./Images/eyes_big.svg" /></div>
-                                    <span class="article_num">150</span>
-                                </div>
 =======
+                                
+>>>>>>> ac13a5b147744cb75c15f8633b3af0389bdfc2bc
+                            </div>
+                            <div class="article_text">
+                                手搖控這次不吸珍珠了！台北最新排隊名店「五桐號WooTEA」強打凍飲系飲品，將茶飲、鮮榨水果，通通加入咀嚼感十足的自製綠茶、杏仁、豆漿凍等，喝起來Q彈滑溜，連藍心湄、紀卜心等藝人網紅都搶喝打卡。
+                            </div>
+                        </div>
                     </a>
                     <a class="article_item" href="#">
                         <div class="article_img"><img src="http://fakeimg.pl/396x264" alt="" /></div>
@@ -339,7 +134,6 @@
                                     <div class="article_icon"><img src="./Images/eyes_big.svg" /></div>
                                     <span class="article_num">150</span>
                                 </div>
->>>>>>> 15f70a12dab61e7a595199314a98ef68ba8202aa
                                 <div>
                                     <div class="article_icon"><img src="./Images/message_big.svg" /></div>
                                     <span class="article_num">8</span>
@@ -348,13 +142,15 @@
                                     <div class="article_icon"><img src="./Images/like_big.svg" /></div>
                                     <span class="article_num">100</span>
                                 </div>
-<<<<<<< HEAD
-=======
                             </div>
                             <div class="article_detail">
                                 <div class="article_title">QQㄋㄟㄋㄟ好喝到咩噗茶</div>
+<<<<<<< HEAD
+                            </div>
+                            <div class="article_text">
+                                手搖控這次不吸珍珠了！台北最新排隊名店「五桐號WooTEA」強打凍飲系飲品，將茶飲、鮮榨水果，通通加入咀嚼感十足的自製綠茶、杏仁、豆漿凍等，喝起來Q彈滑溜，連藍心湄、紀卜心等藝人網紅都搶喝打卡。
+=======
                                 
->>>>>>> 15f70a12dab61e7a595199314a98ef68ba8202aa
                             </div>
                         </div>
                         <div class="article_text">
@@ -404,111 +200,11 @@
                             <div>
                                 <div class="article_icon"><img src="./Images/like_big.svg" /></div>
                                 <span class="article_num">100</span>
+>>>>>>> ac13a5b147744cb75c15f8633b3af0389bdfc2bc
                             </div>
                         </div>
-<<<<<<< HEAD
-                    </div>
-                    <div class="article_text">
-                        手搖控這次不吸珍珠了！台北最新排隊名店「五桐號WooTEA」強打凍飲系飲品，將茶飲、鮮榨水果，通通加入咀嚼感十足的自製綠茶、杏仁、豆漿凍等，喝起來Q彈滑溜，連藍心湄、紀卜心等藝人網紅都搶喝打卡。
-                    </div>
-                </div>
-                <div class="mseeage_box">
-                    <div class="msg_mem">
-                        <div class="msg_text_box">
-                            <div class="msg_memimg"><img src="./Images/user_medium.svg"></div>
-                            <div class="msg_info">
-                                <div class="msg_memname">會員名稱</div>
-                                <div class="msg_memmsg">手搖控這次不吸珍珠了！台北最新排隊名店</div>
-                            </div>
-                        </div>
-                        <div class="msg_time_box">
-                            <div class="msg_time">2020/11/27 13:00</div>
-                            <div class="msg_action">
-                                <div class="msg_like">
-                                    <div class="msg_like_img"><img src="./Images/like_big.svg"></div>
-                                    <div>19</div>
-                                </div>
-
-                                <div class="msg_line"></div>
-                                <div class="msg_report">檢舉</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="msg_mem">
-                        <div class="msg_text_box">
-                            <div class="msg_memimg"><img src="./Images/user_medium.svg"></div>
-                            <div class="msg_info">
-                                <div class="msg_memname">會員名稱</div>
-                                <div class="msg_memmsg">手搖控這次不吸珍珠了！台北最新排隊名店</div>
-                            </div>
-                        </div>
-                        <div class="msg_time_box">
-                            <div class="msg_time">2020/11/27 13:00</div>
-                            <div class="msg_action">
-                                <div class="msg_like">
-                                    <div class="msg_like_img"><img src="./Images/like_big.svg"></div>
-                                    <div>19</div>
-                                </div>
-
-                                <div class="msg_line"></div>
-                                <div class="msg_report">檢舉</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="msg_mem">
-                        <div class="msg_text_box">
-                            <div class="msg_memimg"><img src="./Images/user_medium.svg"></div>
-                            <div class="msg_info">
-                                <div class="msg_memname">會員名稱</div>
-                                <div class="msg_memmsg">手搖控這次不吸珍珠了！台北最新排隊名店</div>
-                            </div>
-                        </div>
-                        <div class="msg_time_box">
-                            <div class="msg_time">2020/11/27 13:00</div>
-                            <div class="msg_action">
-                                <div class="msg_like">
-                                    <div class="msg_like_img"><img src="./Images/like_big.svg"></div>
-                                    <div>19</div>
-                                </div>
-
-                                <div class="msg_line"></div>
-                                <div class="msg_report">檢舉</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <form class="comment_box">
-                    <div class="comment_title_box">
-                        <div class="pen_img"><img src="./Images/pen-blue.svg"></div>
-                        <div class="comment_title">發表留言</div>
-                    </div>
-                    <input id="comment" cols="50" rows="5" type="textarea"
-                        style="max-width:750px;height:200px;width:100%;border-radius: 10px;overflow: hidden;outline: none; ">
-                    <button class="sendbtn">
-                        <div class="sendbtn_img"><img src="./Images/send.svg"></div>
-                        <div class="sendbtn_text">送出</div>
-                    </button>
-                </form>
-    </div>
-
-    </section>
-    <!-- 撰寫文章 -->
-    <section class="section_7"></section>
-    </main>
-    <footer id="footer">
-        <my-footer></my-footer>
-    </footer>
-    </div>
-    <script src="./layout/footer.vue"></script>
-    <script src="./layout/header.vue"></script>
-</body>
-
-</html>
-=======
                     </a>
                 </section>
-
-                
                 <!-- 搜尋BAR -->
                 <section class="section_3">
                     <div class="show_article_btn">
@@ -536,9 +232,6 @@
                             </select>
                         </div>
                     </div>
-                    
-
-
                     <div class="write_article_btn">
                         <div class="write_img"><img src="./Images/pen-white.svg" /></div>
                         <div class="write_text">投稿</div>
@@ -848,4 +541,3 @@
         <script src="./layout/header.vue"></script>
     </body>
 </html>
->>>>>>> 15f70a12dab61e7a595199314a98ef68ba8202aa

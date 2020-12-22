@@ -29,22 +29,18 @@ body {
   position: relative;
 }
 
-// .testbtn1{
-//     @include button1(18px,15px,5px,10px,$btnColor,rgb(255, 255, 255))
-//   }
-//   .testbtn2{
-//     @include button1(14px,8px,5px,10px,$textColor,rgb(255, 255, 255) )
-//   }
-//   .testbtn3{
-//     @include button1(18px,5px,10px,20px,$btnColor2,#fff)
-//   }
+body{
+    background-color: $insideBackgroundColor;
+    position: relative;
+  }
+
 
 @mixin margin-b {
   margin-bottom: 50px;
 }
 
 //width :338px
-.w-338 {
+.w-338{
   width: 100%;
   padding: 0 18.5px;
   // margin: 0 9px;
@@ -55,7 +51,7 @@ body {
 //width :338px
 
 //====進度條=====
-.step_box {
+.step_box{
   width: 100%;
   margin: 0 auto;
   // border: 1px solid red;
@@ -80,12 +76,12 @@ body {
       background-color: #D3C8B5;
       margin-bottom: 15px;
       position: relative;
-
+      
       //進度條的線
       &::before {
         content: "";
         position: absolute;
-        width: 999%;
+        width:999%;
         height: 4px;
         background-color: #D3C8B5;
         left: 50px;
@@ -134,9 +130,8 @@ body {
   // border: 1px solid red;
   position: relative;
   margin: auto;
-
   // margin-bottom: 55px;
-  ul {
+  ul{
     // border: 2px solid yellow;
     // padding: 0 50px;
     margin-bottom: 55px;
@@ -146,22 +141,18 @@ body {
       justify-content: space-evenly;
       align-items: center;
       margin-bottom: 15px;
-
-      &:last-child {
+      &:last-child{
         margin-bottom: 0;
       }
-
-      label {
+      label{
         // border: 1px solid red;
         width: 140px;
         font-size: $fontsize_H6;
-        color: #707070;
-        letter-spacing: 6px;
-
+        color:#707070;
+        letter-spacing:6px;
+        
       }
-
-      input,
-      select {
+      input,select{
         font-size: $fontsize_H6;
         border-radius: 5px;
         border: 1px solid black;
@@ -175,64 +166,28 @@ body {
         padding: 0 0 0 20px;
         @include ls(3px)
       }
-
-
-      &:last-child label {
+     
+    
+      &:last-child label{
         margin-bottom: 0;
       }
-
-      &:first-child label {
-        color: $textColor;
+      
+      &:first-child label{
+        color:$textColor;
       }
     }
-
+    
   }
-
-  .line {
+  .line{
     border: 1px solid #383232;
     background-color: #383232;
     margin-bottom: 55px;
   }
-
-  //====團長資料====
-  .Head_data {
-    box-sizing: border-box;
-
-    .Head_row {
-      // border: 1px solid red;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-bottom: 35px;
-
-      .Head_row2 {
-        // border: 2px solid red;
-        width: 100%;
-
-        .Head_name {
-          width: 100%;
-          text-align: center;
-          // border: 1px solid red;
-          font-size: $fontsize_H2;
-          // letter-spacing: 15px;
-          letter-spacing: 15px;
-          color: $textColor;
-          margin-bottom: 25px;
-        }
-
-        .Head_title {
-          // border: 1px solid blue;
-          // height: 100%;
-          width: 100%;
-          display: flex;
-          justify-content: space-between;
-          font-size: $fontsize_H6;
-          color: $textColor;
-          margin-bottom: 15px;
-
-        }
-
-        .Head_right {
+    //====團長資料====
+    .Head_data{
+      box-sizing: border-box;
+     
+      .Head_row{
           // border: 1px solid red;
           width: 100%;
           display: flex;
@@ -275,8 +230,7 @@ body {
       @include button_all(18px, 5px, 5px, 10px, #B3925B, #fff)
     }
 
-  }
-}
+
 
 //====開團資料====
 
@@ -480,20 +434,14 @@ body {
 
   }
 }
+      
 
 
-.group_button {
-  // border: 1px solid blue;
-  width: 100%;
-  padding: 0 35px;
-  display: flex;
-  justify-content: space-between;
-}
+  .btn_back,
+  .btn_go {
+    @include button_all(18px, 5px, 5px, 10px, #B3925B, #fff)
+  }
 
-.btn_back,
-.btn_go {
-  @include button_all(18px, 5px, 5px, 10px, #B3925B, #fff)
-}
 
 
 //====團長資料====

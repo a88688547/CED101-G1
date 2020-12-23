@@ -108,10 +108,11 @@ body {
           overflow: hidden;
           // border: 4px solid rgb(43, 255, 0);
           .join_list_img{
-            // border: 3px solid red;
+            border: 3px solid red;
             width: 100%;
             img{
               width: 100%;
+              height: 100%;
               object-fit:cover;
             }
           }
@@ -227,16 +228,25 @@ body {
 @media screen and (min-width: $mq575){
   .w-338{
     width: 90%;
+    
   }
 }
 
 @media screen and (min-width: $mq991){
+  .w-338{
+    width: 90%;
+    .join_list{
+      .join_list_row{
+        flex-direction: row;
+      }
+    }
+  }
+  
   
 }
 @media screen and (min-width: $mq1199){
     .w-338 {
       max-width: 1200px;
-      width: 100%;
        
         .join_wrap_title{
       

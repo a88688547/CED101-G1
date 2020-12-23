@@ -128,3 +128,69 @@ $ball_rwd: 0.66;
         }
     }
 }
+
+h2 {
+    color: $textColor;
+    font-size: $fontsize_H2;
+    font-weight: bold;
+}
+
+
+//金額
+
+#ListTotal_wrapper {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+.ListTotal {
+    width: 80%;
+    margin: 100px auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h2 {
+        font-size: $fontsize_H2
+    }
+
+}
+
+#line {
+    width: 70%;
+
+    hr {
+        border-style: none;
+        border-bottom: 1px dashed $textColor;
+    }
+}
+
+.orderbtn {
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+    margin: 50px auto;
+
+    div {
+        background-color: $btnColor;
+        width: 130px;
+        height: 46px;
+        border-radius: 10px;
+        border-style: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+
+    }
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    a {
+        text-decoration: none;
+        color: #FFFFFF;
+        font-size: $fontsize_H3;
+    }
+}

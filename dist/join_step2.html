@@ -9,34 +9,33 @@
     <script src="vendors/jQuery/js/jquery-3.5.1.js"></script>
     <link rel="stylesheet" href="./css/style.css" />
   </head>
-  
+
   <body>
     <header id="header"><my-header></my-header></header>
     <!-- ==============header================= -->
     <div class="w-338">
-        <!-- =====一進來的QR== -->
-        <div class="fist_QR">
-            <div class="fist_QR_box">
-                
-                <h2>分享QR，立馬揪飲</h2>
-                <div class="fist_QR_main">QR</div>
-                <img src="./Images/cancel.svg" alt="" class="close_btn" >
-                <h2>分享網址揪團喝飲料!</h2>
-                <div class="fist_QR_link"> https://www.foodomres</div>
-            </div>
+      <!-- =====一進來的QR== -->
+      <div class="fist_QR">
+        <div class="fist_QR_box">
+          <h2>分享QR，立馬揪飲</h2>
+          <div class="fist_QR_main">QR</div>
+          <img src="./Images/cancel.svg" alt="" class="close_btn" />
+          <h2>分享網址揪團喝飲料!</h2>
+          <div class="fist_QR_link">https://www.foodomres</div>
         </div>
-        
-         <!-- =====一進來的QR== -->
+      </div>
+
+      <!-- =====一進來的QR== -->
       <!-- ==============進度條================= -->
       <div class="step_box">
         <ul class="step_ball">
-          <li ></li>
+          <li></li>
           <li class="on"></li>
           <li></li>
           <li></li>
         </ul>
         <ul class="step_text">
-          <li >1.建立揪團</li>
+          <li>1.建立揪團</li>
           <li class="on">2.完成開團</li>
           <li>3.結帳資訊</li>
           <li>4.訂單明細</li>
@@ -45,113 +44,73 @@
       <!-- ==============進度條================= -->
       <!-- ==============開團資料================= -->
 
-      <form action="" class="group_data">
-          
-          <div class="group_data_row">
-              <!-- ===QR==== -->
-            <div class="QR_box">
-                <div class="QR_main">QR</div>
-                <h2>分享網址揪團喝飲料!</h2>
-                <div class="QR_link">
-                    <div class="QR_link_text"> https://www.foodomres</div>
-                    <div class="QR_copy">123</div>
-                </div>
+      <div class="group_data">
+        <div class="group_data_row">
+          <!-- ===QR==== -->
+          <div class="QR_box">
+            <div class="QR_main">QR</div>
+            <h2>分享網址揪團喝飲料!</h2>
+            <div class="QR_link">
+              <div class="QR_link_text">https://www.foodomres</div>
+              <div class="QR_copy">123</div>
             </div>
-            <!-- ===QR==== -->
-            <!-- ===團的資料==== -->
-            <ul>                     
-                <li>
-                  <label for="name" >團名</label>
-                  <label for="">XXXXXXX</label>
-                </li>
-                <li>
-                  <label for="time">截單時間</label>
-                  <!-- 不知道用哪個input -->
-                  <label for="" >2020-11-22   15:00</label>
-                </li>
-                <li>
-                  <label for="time">預計送達時間</label>
-                  <!-- 不知道用哪個input -->
-                  <label for="">2020-11-22   15:30</label>
-                </li>
-                <li>
-                  <label for="">目標杯數</label>
-                  <label for="">XXXXXXX</label>
-                </li>
-                <li>
-                  <label for="">取貨地點</label>
-                  <label for="">桃園市中壢區復興路46號9樓</label>
-                </li>
-               
-              </ul>
           </div>
+          <!-- ===QR==== -->
           <!-- ===團的資料==== -->
-        
+          <ul>
+            <li>
+              <div for="name">團名</div>
+              <div for="">XXXXXXX</div>
+            </li>
+            <li>
+              <div for="time">截單時間</div>
+              <!-- 不知道用哪個input -->
+              <div for="">2020-11-22 15:00</div>
+            </li>
+            <li>
+              <div for="time">預計送達時間</div>
+              <!-- 不知道用哪個input -->
+              <div for="">2020-11-22 15:30</div>
+            </li>
+            <li>
+              <div for="">目標杯數</div>
+              <div for="">XXXXXXX</div>
+            </li>
+            <li>
+              <div for="">取貨地點</div>
+              <div for="">桃園市中壢區復興路46號9樓</div>
+            </li>
+          </ul>
+        </div>
+        <!-- ===團的資料==== -->
 
         <!-- ==============開團資料================= -->
         <div class="line"></div>
         <!-- ==============團長&團員飲料================= -->
         <div class="Head_data">
-          <div class="Head_row">
-            <div class="Head_img">
-              <img src="https://fakeimg.pl/1500x1200/ff0000,128/000,255" />
-            </div>
-            <div class="Head_row2">
-              <div class="Head_name">
-                <h2>團長姓名</h1>
-               </div>
-              <div class="Head_title">
-                <label for="">飲料品名</label>
-                <label for="">$.XX</label>
-              </div>
-              <div class="Head_right">
-                <label for="">L / 少糖 / 少冰 / $45 / 1份</label>
-                <button>刪除</button>
-              </div>
-              
-            </div>
-          </div>
-          <div class="Head_row">
-            <div class="Head_img">
-              <img src="https://fakeimg.pl/1500x1200/ff0000,128/000,255" />
-            </div>
-            <div class="Head_row2">
-              <div class="Head_name">
-                <h2>團員姓名</h1>
-               </div>
-              <div class="Head_title">
-                <label for="">飲料品名</label>
-                <label for="">$.XX</label>
-              </div>
-              <div class="Head_right">
-                <label for="">L / 少糖 / 少冰 / $45 / 1份</label>
-                <button>刪除</button>
-              </div>
-          </div>
-            
-        </div>
-          
+          <div class=""></div>
           <div class="group_button">
             <button class="btn_back_drink">添加飲品</button>
-            <button class="btn_f5"><img src="./Images/drink.svg" alt=""> 重新整理</button>
+            <button class="btn_f5">
+              <img src="./Images/drink.svg" alt="" /> 重新整理
+            </button>
             <button class="btn_cleckout">結帳</button>
           </div>
         </div>
-      </form>
+      </div>
       <!-- ==============團長飲料================= -->
     </div>
 
     <!-- ==============footer================= -->
     <script>
-        $(document).ready(function(){
-          $('.close_btn').click(function(){
-              $('.fist_QR').hide();
-          });
-          });
-       </script>
+      $(document).ready(function () {
+        $(".close_btn").click(function () {
+          $(".fist_QR").hide();
+        });
+      });
+    </script>
     <footer id="footer"><my-footer></my-footer></footer>
     <script src="./layout/header.vue"></script>
     <script src="./layout/footer.vue"></script>
   </body>
-  
 </html>

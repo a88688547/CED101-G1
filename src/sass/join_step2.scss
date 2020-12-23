@@ -319,7 +319,7 @@ body {
           width: 60%;
         }
 
-        label {
+        div {
           // border: 1px solid black;
           // width: 200px;
           font-size: $fontsize_H3;
@@ -332,7 +332,7 @@ body {
 
         }
 
-        &:last-child label {
+        &:last-child div {
           margin-bottom: 0;
         }
 
@@ -351,89 +351,12 @@ body {
   //====團長資料====
   .Head_data {
     box-sizing: border-box;
-    // border: 1px solid rgb(16, 32, 248);
+    border: 1px solid rgb(16, 32, 248);
     // flex-direction: row;
     // justify-content: space-between;
     // text-align: center;
 
-    .Head_row {
-      // border: 2px solid rgb(9, 236, 9);
-      display: flex;
-      flex-direction: row;
-      align-items: flex-end;
-      margin-bottom: 100px;
-      width: 100%;
-      height: 180px;
-      position: relative;
-
-      .Head_row2 {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        align-items: flex-end;
-        position: relative;
-        // border: 2px solid red;
-        width: 100%;
-        height: 120px;
-
-        // width: calc(100% - 135px);
-        .Head_name {
-          position: absolute;
-          top: -20px;
-          width: 100%;
-          text-align: right;
-          // border: 1px solid red;
-          font-size: $fontsize_H2;
-          @include ls(15px);
-          color: $textColor;
-          margin-bottom: 25px;
-        }
-
-        .Head_title {
-          // border: 1px solid blue;
-          // height: 100%;
-          width: 100%;
-          display: flex;
-          justify-content: space-between;
-          font-size: $fontsize_H6;
-          color: $textColor;
-          margin-bottom: 15px;
-
-        }
-
-        .Head_right {
-          // border: 1px solid red;
-          width: 100%;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          font-size: $fontsize_H6;
-          color: $textColor;
-        }
-      }
-
-      .Head_img {
-        // position: relative;
-        position: absolute;
-        float: left;
-        // border: 11px solid red;
-        width: 105px;
-        height: 105px;
-        border-radius: 50%;
-        overflow: hidden;
-        margin-bottom: 20px;
-        margin-right: 20px;
-        top: 0;
-
-        img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-        }
-
-      }
-
-    }
+    
 
     .group_button {
       // border: 1px solid blue;
@@ -441,13 +364,15 @@ body {
       // padding: 0 35px;
       display: flex;
       justify-content: space-evenly;
-    }
-
-    .btn_back_drink,
+      .btn_back_drink,
     .btn_f5,
     .btn_cleckout {
+      
       @include button_all(16px, 5px, 5px, 10px, #B3925B, #fff)
     }
+    }
+
+    
 
   }
 }
@@ -515,7 +440,7 @@ body {
           justify-content: flex-start;
          
 
-          label {
+          div {
             
             font-size: $fontsize_H3;
             letter-spacing: 10px;
@@ -544,42 +469,7 @@ body {
     }
 
     .Head_data {
-      .Head_row {
-        align-items: end;
-        padding: 0 50px;
-
-        .Head_img {
-          width: 140px;
-          height: 140px;
-          position: relative;
-          margin-right: 60px;
-        }
-
-        .Head_row2 {
-          width: calc(100% - 200px);
-          // border: 2px solid rgb(57, 2, 255);
-          height: 140px;
-          .Head_title,
-          .Head_right {
-            position: relative;
-            // border: 1px solid rgb(17, 14, 14);
-            justify-content: space-between;
-
-          }
-
-          .Head_name {
-            position: relative;
-            top: 0;
-            text-align: left;
-            text-indent: 0;
-            // margin-bottom: 0;
-          }
-
-          :last-child {
-            margin-bottom: 0;
-          }
-        }
-      }
+      
     }
   }
 }
@@ -625,7 +515,7 @@ body {
             width: 300px;
           }
 
-          label {
+          div {
             // font-size: $fontsize_H4;
             letter-spacing: 10px;
             // margin-bottom: 25px;
@@ -649,68 +539,7 @@ body {
     }
 
     .Head_data {
-      .Head_row {
-
-        // border: 3px solid red;
-        display: flex;
-        padding: 0 100px;
-
-        .Head_img {
-          width: 170px;
-          height: 170px;
-          // border:3px solid blue;
-          margin-right: 70px;
-        }
-
-        .Head_row2 {
-          position: relative;
-          width: calc(100% - 240px);
-          height: 170px;
-          // border: 1px solid rgb(26, 21, 21);
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-
-          .Head_name {
-            // border: 1px solid rgb(0, 236, 32);
-            text-align: left;
-            font-size: $fontsize_H2;
-            letter-spacing: 15px;
-
-          }
-
-          .Head_title {
-            width: 100%;
-            // border: 1px solid rgb(240, 17, 17);
-            font-size: $fontsize_H3;
-            letter-spacing: 10px;
-
-            label {
-              &:last-of-type {
-                // color:yellow
-                position: absolute;
-                right: 0;
-                top: 0px
-              }
-            }
-          }
-
-          .Head_right {
-            width: 100%;
-            // border: 1px solid rgb(32, 173, 255);
-            font-size: $fontsize_H3;
-            letter-spacing: 10px;
-
-            button {
-              font-size: $fontsize_H6;
-              letter-spacing: 3px;
-              padding: 0 15px;
-            }
-          }
-
-        }
-
-      }
+      
     }
   }
 }
@@ -798,7 +627,7 @@ body {
           justify-content: flex-start;
           // align-items:self-start;
 
-          label {
+          div {
             font-size: $fontsize_H3;
             letter-spacing: 10px;
             display: flex;
@@ -821,9 +650,13 @@ body {
         width: 60%;
         margin: 0 auto;
 
-        button {
-          margin-right: 10px;
-        }
+
+        .btn_back_drink,
+        .btn_f5,
+        .btn_cleckout {
+      
+      @include button_all(24px, 5px, 5px, 10px, #B3925B, #fff)
+    }
       }
 
 

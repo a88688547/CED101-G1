@@ -54,7 +54,7 @@ body{
   margin: 0 auto;
   // border: 1px solid red;
   box-sizing: border-box;
-  @include margin-b // margin-bottom: 30px;
+  @include margin-b ;// margin-bottom: 30px;
 
   .step_ball {
     display: flex;
@@ -74,7 +74,7 @@ body{
       background-color: #D3C8B5;
       margin-bottom: 15px;
       position: relative;
-      
+
       //進度條的線
       &::before {
         content: "";
@@ -115,6 +115,10 @@ body{
     }
   }
 }
+
+//====進度條=====
+  
+
 
 //====進度條=====
 
@@ -220,15 +224,16 @@ body{
       // border: 1px solid blue;
       width: 100%;
       margin: 0 auto;
-      padding: 0 35px;
+      // padding: 0 35px;
       display: flex;
       justify-content: space-evenly;
+      .btn_back,
+      .btn_go {
+      @include button_all(16px, 5px, 5px, 10px, #B3925B, #fff)
+    }
     }
 
-    .btn_back,
-    .btn_go {
-      @include button_all(18px, 5px, 5px, 10px, #B3925B, #fff)
-    }
+    
 
 
 
@@ -238,25 +243,23 @@ body{
 
 
 //  RWD
+
+@media screen and (min-width: $mq575){
+    
+}
 @media screen and (min-width: $mq767) {
-  .step_box {
-    .step_ball {
-      li {
-
-        width: 85px;
-        height: 85px;
-
-        &::before {
-          height: 14px;
-          width: 300px;
-        }
+  .step_box{
+      
+    .step_ball{
+      li{
+        // border: 1px solid red;
+      width: 85px;
+      height: 85px;
       }
+      
     }
-
-    .step_text {
-      font-size: $fontsize_H5;
-    }
-  }
+  
+}
 
   .group_data {
     ul {
@@ -310,7 +313,7 @@ body{
 
         &::before {
           height: 14px;
-          width: 300px;
+          width: 999px;
         }
       }
     }
@@ -364,31 +367,21 @@ body{
 @media screen and (min-width: $mq1199) {
   .w-338 {
     width: 1200px;
-    // padding: 0 58.5px;
-    // margin: 0 9px;
+   
     margin: 0 auto;
-    // border: 1px solid black;
-  }
-
-  .step_box {
-    .step_ball {
-      li {
-
-        width: 120px;
-        height: 120px;
-
-        &::before {
-          height: 14px;
-          width:999px;
-        }
+  
+    .step_ball{
+      li{
+        // border: 1px solid red;
+      width: 120px;
+      height: 120px;
       }
+      
     }
 
-    .step_text {
-      font-size: $fontsize_H3;
-      // letter-spacing: 10px;
-    }
-  }
+  
+
+  
 
   .group_data {
 
@@ -428,19 +421,21 @@ body{
         // border: 1px solid red;
         width: 30%;
         margin: 0 auto;
+        .btn_back,
+        .btn_go {
+          @include button_all(24px, 5px, 5px, 10px, #B3925B, #fff)
+        }
       }
 
     }
 
   }
 }
+}
       
 
 
-  .btn_back,
-  .btn_go {
-    @include button_all(18px, 5px, 5px, 10px, #B3925B, #fff)
-  }
+ 
 
 
 

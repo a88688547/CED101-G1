@@ -58,3 +58,14 @@
   height: 4rem;
   bottom: 50px;
 }
+
+@mixin button5 {
+  //訂單狀態_準備中
+  width: 130px;
+  height: 50px;
+  border-radius: 10px;
+  padding:10px;
+  background-color: $textColor;
+  color: $insideBackgroundColor;
+  margin:0 40px;
+}

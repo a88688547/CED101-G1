@@ -27,9 +27,13 @@
         </ul>
     </div>
 
+
     <!-- 開團資訊 -->
     <div id="group_info">
         <ul>
+            <li id="order_state"><span>訂單狀態</span>
+                <div>準備中</div>
+            </li>
             <li><span>團名</span><span id="group_name">XXXXXX團</span></li>
             <li><span>結單時間</span><span id="dea">2020-11-15 15:00</span></li>
             <li><span>預計送達時間</span><span id="arrive_time">2020-11-15 16:00</span></li>
@@ -67,29 +71,18 @@
                 </div>
             </div>
         </div>
-        <div class="group_order_done_person">
-            <div class="group_order_done_person_upbox">
-                <div class="group_order_done_person_infobox">
-                    <div class="group_order_done_person_img"><img src="./Images/user_big.svg" /></div>
-                    <div class="group_order_done_person_name">徐朝亭</div>
-                </div>
-                <div class="group_order_done_person_total">
-                    <div class="group_order_done_person_total_cup">2杯</div>
-                    <div class="group_order_done_person_total_price">$115</div>
-                </div>
+    </div>
+
+    <div id="ListTotal_wrapper">
+        <div class="ListTotal">
+            <div class="payTotal">
+                <h2>總金額</h2>
             </div>
-            <div class="group_order_done_person_downbox">
-                <!-- 購買的 飲料 -->
-                <div class="group_order_done_person_drink">
-                    <div class="group_order_done_person_drink_title">珍珠奶茶-大杯</div>
-                    <div class="group_order_done_person_drink_note">少冰/微糖/加珍珠/$65/1杯</div>
-                    <button class="order_delete_btn">刪除</button>
-                </div>
-                <div class="group_order_done_person_drink">
-                    <div class="group_order_done_person_drink_title">紅茶-大杯</div>
-                    <div class="group_order_done_person_drink_note">去冰/無糖/加QQ/$50/1杯</div>
-                    <button class="order_delete_btn">刪除</button>
-                </div>
+            <div id="line">
+                <hr>
+            </div>
+            <div>
+                <h2><span>$.</span><span id="ordPrice">400</span></h2>
             </div>
         </div>
     </div>

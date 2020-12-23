@@ -92,6 +92,8 @@ $ball_rwd: 0.66;
     }
 }
 
+
+
 // 開團資訊
 #group_info {
     width: 90%;
@@ -101,6 +103,12 @@ $ball_rwd: 0.66;
 
     @media screen and (max-width:576px) {
         @include H6;
+    }
+
+    #order_state {
+        div {
+            background-color: $textColor;
+        }
     }
 
     li {
@@ -125,6 +133,90 @@ $ball_rwd: 0.66;
             display: inline-block;
             width: 60%;
             line-height: 24px;
+        }
+    }
+}
+
+//金額
+
+#ListTotal_wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    color: $textColor;
+    font-weight: bold;
+}
+
+.ListTotal {
+    width: 80%;
+    margin: 100px auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h2 {
+        font-size: $fontsize_H2;
+    }
+}
+
+#line {
+    width: 70%;
+
+    hr {
+        border-style: none;
+        border-bottom: 1px dashed $textColor;
+    }
+}
+
+
+// RWD
+
+@media screen and (max-width: 325px) {
+    .ListTotal {
+        margin: 50px auto;
+
+        h2 {
+            font-size: $fontsize_H6;
+        }
+    }
+
+    #line {
+        width: 40%;
+    }
+}
+
+@media screen and (min-width: 326px) and (max-width: 575px) {
+
+    .ListTotal {
+        margin: 50px auto;
+
+        h2 {
+            font-size: $fontsize_H5;
+        }
+    }
+
+    #line {
+        width: 55%;
+    }
+}
+
+@media screen and (min-width: 576px) and (max-width: 767px) {
+
+    .ListTotal {
+        margin: 50px auto;
+
+        h2 {
+            font-size: $fontsize_H4;
+        }
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+
+    .ListTotal {
+        margin: 50px auto;
+
+        h2 {
+            font-size: $fontsize_H3;
         }
     }
 }

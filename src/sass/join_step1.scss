@@ -51,7 +51,7 @@ body{
 //====進度條=====
 .step_box{
   width: 100%;
-  margin: 0 auto;
+  margin: 40px  auto;
   // border: 1px solid red;
   box-sizing: border-box;
   @include margin-b ;// margin-bottom: 30px;
@@ -249,6 +249,8 @@ body{
 }
 @media screen and (min-width: $mq767) {
   .step_box{
+    width: 90%;
+    margin: 40px auto;
       
     .step_ball{
       li{
@@ -305,6 +307,7 @@ body{
 
 @media screen and (min-width: $mq991) {
   .step_box {
+    // width: 80%;
     .step_ball {
       li {
 

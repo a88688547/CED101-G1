@@ -27,26 +27,30 @@ aside{
   align-items: center;
   flex-wrap: wrap;
   
+  li:first-child{
+    opacity: 1;
+    color: $textColor;
+  }
 
   li{
-    background-color:$btnColor;
-    border-radius: 10px;
-    overflow: hidden;
+    // background-color:$btnColor;
+    // border-radius: 10px;
+    // overflow: hidden;
     margin: 10px 5px;
+    color: rgb(161, 161, 161);
     font-size: 16px;
     letter-spacing: 1px;
-    color: #fff;
+    // color: #fff;
     font-weight: bold;
     padding: 5px 10px;
     opacity: 0.6;
     cursor: pointer;
     &:hover{
       opacity: 1;
+      color: $textColor;
     }
   }
-  li:first-child{
-    opacity: 1;
-  }
+  
 }
 
 

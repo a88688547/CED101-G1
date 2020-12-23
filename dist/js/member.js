@@ -16,10 +16,12 @@ $(document).ready(function () {
         $('.tag_big>li').each(function () {
             $(this).css({
                 opacity: 0.6,
+                color: 'rgb(161, 161, 161)',
             })
         })
         $(this).css({
             opacity: 1,
+            color: '#013B4F',
         })
     })
     // 揪團紀錄  --- 點擊 揪團類別 按鈕
@@ -162,7 +164,6 @@ $(document).ready(function () {
 
     // 發文紀錄 -- 點擊 叉叉 刪除按鈕
     $('.cancel_btn').click(function () {
-        $(this).parent().remove
-        console.log('00')
+        $(this).parent().remove()
     })
 })

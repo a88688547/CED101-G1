@@ -109,3 +109,34 @@ $fontsize_P3 : 10px; //P1 10px
   font-weight: bold;
   border-top: 2px solid $textColor;
 }
+
+//RWD 字體改變大小
+
+@media(min-width:576px){
+  .group_order_done_row{
+    width: 50%;
+  }
+  .group_order_done_groupname{
+    font-size: $fontsize_H3;
+  }
+  .group_order_done_info{
+    font-size: $fontsize_H5;
+  }
+  .group_order_done_person_name,.group_order_done_person_total{
+    font-size: $fontsize_H4;
+
+  }
+
+
+}
+
+@media(min-width:768px){
+  .group_order_done_row{
+    width: 33.3%;
+  }
+  .group_order_done_person_drink,
+  .group_order_done_total,
+  .group_order_done_dis{
+    font-size: $fontsize_H6;
+  }
+}

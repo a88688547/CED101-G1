@@ -1,7 +1,0 @@
-diff a/css/footer.css b/css/footer.css	(rejected hunks)
-@@ -1,4 +1,5 @@
- footer {
-+<<<<<<< HEAD
-   width: 100%;
-   height: 200px;
-   background-color: #013B4F;

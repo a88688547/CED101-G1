@@ -118,4 +118,51 @@ $(document).ready(function () {
         })
         console.log('00')
     })
+
+    // 自己訂 | 訂單紀錄  ---  點擊 "類別" 按鈕
+    $('.self_type_box>div').click(function () {
+        //切換 按鈕圖示
+        $('.self_type_box>div').each(function () {
+            $(this).css({
+                backgroundColor: '#fff',
+                color: '#B3925B',
+            })
+        })
+        $(this).css({
+            color: '#fff',
+            backgroundColor: '#B3925B',
+        })
+        //切換 顯示揪團類型
+        $('.self_order_list_box>div').each(function () {
+            $(this).css({
+                display: 'none',
+            })
+        })
+        let id = $(this).attr('id')
+        $(`.${id}`).css({
+            display: 'block',
+        })
+    })
+
+    // 自己訂 | 訂單紀錄  --- 點擊 未完成&已完成 "詳情" 按鈕
+    $('.self_detail_btn').click(function () {
+        // 點擊 詳情 切換 內容
+        $('section').each(function () {
+            $(this).css({
+                display: 'none',
+            })
+        })
+
+        let id = $(this).attr('id')
+        $(`.${id}`).css({
+            display: 'block',
+        })
+        console.log('00')
+    })
+
+    // 發文紀錄 -- 點擊 叉叉 刪除按鈕
+    $('.cancel_btn').click(function () {
+        $(this).parent().remove
+        console.log('00')
+    })
 })

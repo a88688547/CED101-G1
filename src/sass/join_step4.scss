@@ -223,12 +223,12 @@ body {
   //====團長資料====
   .Head_data {
     box-sizing: border-box;
-    // border: 1px solid rgb(16, 32, 248);
+    border: 1px solid rgb(16, 32, 248);
     // flex-direction: row;
     // justify-content: space-between;
     // text-align: center;
 .data_wrap{
-    // border: 1px solid red;
+    border: 1px solid red;
 }
     .Head_row {
     //   border: 2px solid rgb(9, 236, 9);
@@ -320,12 +320,12 @@ body {
     }
 
     .group_button {
-    //   border: 1px solid blue;
+      border: 3px solid blue;
       width:100%;
       margin: 0 auto;
       // padding: 0 35px;
       display: flex;
-      justify-content: space-between;
+      justify-content: space-evenly;
        font-size: $fontsize_H5;
        letter-spacing: 5px;
        color:$textColor;
@@ -671,6 +671,15 @@ body {
         }
       }
     }
+    .data_wrap{
+      margin-bottom: 100px;
+      border: 1px solid red;
+      height: 800px;
+      overflow-y: scroll;
+      overflow-x: hidden;
+      position: relative;
+      
+  }
 
     .Head_data {
         .Head_row{
@@ -678,15 +687,7 @@ body {
                 border: 0;
             }
         }
-        .data_wrap{
-            margin-bottom: 100px;
-            // border: 1px solid red;
-            height: 800px;
-            overflow-y: scroll;
-            overflow-x: hidden;
-            position: relative;
-            
-        }
+        
        
 
 

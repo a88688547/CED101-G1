@@ -1,0 +1,109 @@
+@import "mixins/mixins.scss";
+@import "base/base.scss";
+
+// 每個人 買飲料
+#order_list {
+    border-top: 2px solid rgb(192, 191, 191);
+    // max-width: 575px;
+    margin: 40px auto;
+    width: 50%;
+
+    @media screen and (max-width:992px) {
+        width: 65%;
+    }
+
+    @media screen and (max-width:768px) {
+        width: 80%;
+    }
+
+    @media screen and (max-width:576px) {
+        width: 90%;
+    }
+
+    .group_order_done_person {
+        border-bottom: 2px solid rgb(192, 191, 191);
+
+        &>div {
+            margin: 10px 0;
+        }
+
+        .group_order_done_person_upbox {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .group_order_done_person_infobox {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                .group_order_done_person_img {
+                    width: 60px;
+                    font-size: 0;
+                    margin-right: 20px;
+                }
+
+                .group_order_done_person_name {
+                    font-size: $fontsize_H6;
+                    color: $textColor;
+                    font-weight: bold;
+
+                    @media screen and (min-width:577px) {
+                        font-size: $fontsize_H4;
+                    }
+                }
+            }
+
+
+            .group_order_done_person_total {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: $fontsize_H6;
+                color: $textColor;
+                font-weight: bold;
+
+                @media screen and (min-width:577px) {
+                    font-size: $fontsize_H4;
+                }
+
+                div:first-child {
+                    margin-right: 20px;
+                }
+            }
+        }
+
+        .group_order_done_person_drink {
+            background-color: rgb(206, 206, 206);
+            padding: 5px 2.5%;
+            margin: 10px 0;
+            font-size: $fontsize_P1;
+            letter-spacing: 2px;
+            position: relative;
+
+            @media(min-width:768px) {
+                font-size: $fontsize_H6;
+            }
+
+            div {
+                margin: 10px 0;
+            }
+
+            div:first-child {
+                font-weight: bold;
+            }
+
+            .order_delete_btn {
+                position: absolute;
+                right: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                margin-right: 2.5%;
+                border-radius: 5px;
+                border: 1px solid black;
+                cursor: pointer;
+                outline: none;
+            }
+        }
+    }
+}

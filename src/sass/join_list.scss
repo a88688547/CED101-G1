@@ -106,15 +106,20 @@ body {
           flex-direction: column;
           border-radius: 15px;
           overflow: hidden;
-        //   border: 4px solid rgb(43, 255, 0);
+          // border: 4px solid rgb(43, 255, 0);
           .join_list_img{
-
+            // border: 3px solid red;
+            width: 100%;
+            img{
+              width: 100%;
+              object-fit:cover;
+            }
           }
           .join_list_text{
+            // border: 1px solid red;
               padding: 0 15px;
               width: 100%;
               background-color: #fff;
-            // width: calc(100% - 400px);
               .join_list_title{
                   
                 
@@ -146,20 +151,12 @@ body {
                 }
           }
           .join_list_content{
-            // border: 1px solid red;
               .join_list_content_left{
-                //   border: 10px solid red;
-                //   display: flex;
                 .join_list_cup{
                     display: flex;
                     flex-direction: column;
-                  //   border: 2px solid blue;
                   margin-bottom: 10px;
-                  .test{
-                      // display: flex;
-                      // background-color: red;
-                    //   border: 3px solid red;
-                  }
+                  
                     div{
                         color:$textColor;
                         font-size: $fontsize_H5;
@@ -228,18 +225,21 @@ body {
 
 
 @media screen and (min-width: $mq575){
-    
+  .w-338{
+    width: 90%;
+  }
 }
 
 @media screen and (min-width: $mq991){
-    
+  
 }
-@media screen and (min-width: $mq767){
+@media screen and (min-width: $mq1199){
     .w-338 {
-        padding: 0 58.5px;
+      max-width: 1200px;
+      width: 100%;
+       
         .join_wrap_title{
-        // border: 1px solid rgb(0, 255, 34);
-        // background-color: red;
+      
         flex-direction: row;
         justify-content: space-between;
         .join_wrap_A{
@@ -270,11 +270,15 @@ body {
             .join_list_img{
                 margin: 0 auto;
                 align-items: center;
-                // width: 100%;
+                width: 33%;
+                img{
+                  // border: 3px solid red;
+                  object-fit:cover;
+                }
   
             }
             .join_list_text{
-              width: calc(100% - 400px);
+              width: calc(100% - 33%);
                 .join_list_title{
                     margin-top: 20px;
                     // border: 1px solid red;
@@ -282,6 +286,7 @@ body {
             }
             .join_list_content{
                 // border: 1px solid rgb(48, 9, 9);
+                margin-bottom: 20px;
                 display: flex;
                 .join_list_content_left{
                     // border: 1px solid red;
@@ -314,7 +319,5 @@ body {
     
 }
 @media screen and (min-width: $mq1199){
-    .w-338{
-        // padding: 0 144px;
-    }
+    
 }

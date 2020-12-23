@@ -166,6 +166,34 @@ h2 {
     }
 }
 
+.orderbtn {
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+    margin: 50px auto;
+
+    div {
+        background-color: $btnColor;
+        width: 130px;
+        height: 46px;
+        border-radius: 10px;
+        border-style: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &:hover {
+            cursor: pointer;
+        }
+
+        a {
+            text-decoration: none;
+            color: #FFFFFF;
+            font-size: $fontsize_H3;
+        }
+    }
+}
+
 
 // RWD
 
@@ -180,6 +208,19 @@ h2 {
 
     #line {
         width: 40%;
+    }
+
+    .orderbtn {
+        div {
+            font-size: $fontsize_H6;
+            width: 70px;
+            height: 35px;
+            border-radius: 5px;
+
+            a {
+                font-size: $fontsize_H6;
+            }
+        }
     }
 }
 
@@ -196,6 +237,21 @@ h2 {
     #line {
         width: 55%;
     }
+
+    .orderbtn {
+        width: 60%;
+
+        div {
+            font-size: $fontsize_H6;
+            width: 90px;
+            height: 35px;
+            border-radius: 5px;
+
+            a {
+                font-size: $fontsize_H6;
+            }
+        }
+    }
 }
 
 @media screen and (min-width: 576px) and (max-width: 767px) {
@@ -207,6 +263,19 @@ h2 {
             font-size: $fontsize_H4;
         }
     }
+
+    .orderbtn {
+        div {
+            font-size: $fontsize_H5;
+            width: 90px;
+            height: 35px;
+            border-radius: 5px;
+
+            a {
+                font-size: $fontsize_H5;
+            }
+        }
+    }
 }
 
 @media screen and (min-width: 768px) and (max-width: 991px) {
@@ -216,6 +285,19 @@ h2 {
 
         h2 {
             font-size: $fontsize_H3;
+        }
+    }
+
+    .orderbtn {
+        div {
+            font-size: $fontsize_H4;
+            width: 130px;
+            height: 46px;
+            border-radius: 10px;
+
+            a {
+                font-size: $fontsize_H4;
+            }
         }
     }
 }

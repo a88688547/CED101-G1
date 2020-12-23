@@ -9,16 +9,16 @@
 
     .group_order_done_person {
         // border-bottom: 2px solid rgb(192, 191, 191);
-        width: 60%;
+        width: 75%;
         margin: 0 auto;
         border-top: 2px solid rgb(192, 191, 191);
 
         @media screen and (max-width:992px) {
-            width: 65%;
+            width: 80%;
         }
 
         @media screen and (max-width:768px) {
-            width: 80%;
+            width: 85%;
         }
 
         @media screen and (max-width:576px) {
@@ -55,7 +55,7 @@
                     font-weight: bold;
 
                     @media screen and (min-width:577px) {
-                        font-size: $fontsize_H4;
+                        @include H3;
                     }
                 }
             }
@@ -70,7 +70,7 @@
                 font-weight: bold;
 
                 @media screen and (min-width:577px) {
-                    font-size: $fontsize_H4;
+                    @include H3;
                 }
 
                 div:first-child {
@@ -88,7 +88,7 @@
             position: relative;
 
             @media(min-width:768px) {
-                font-size: $fontsize_H6;
+                @include H4;
             }
 
             div {

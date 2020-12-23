@@ -106,8 +106,24 @@ $ball_rwd: 0.66;
     }
 
     #order_state {
-        div {
-            background-color: $textColor;
+        display: flex;
+        align-items: center;
+
+        button {
+            @include button5;
+            margin: 0;
+            font-size: 24px;
+            line-height: 30px;
+            outline: none;
+            border: none;
+
+            @media screen and (max-width:576px) {
+                font-size: 16px;
+                padding: 0;
+                line-height: 29px;
+                width: 65px;
+                height: 27px;
+            }
         }
     }
 

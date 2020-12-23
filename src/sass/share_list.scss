@@ -2,6 +2,7 @@
 @import "base/base.scss";
 @import "mixins/mixins.scss";
 
+
 body {
   background-color: $insideBackgroundColor;
   position: relative;
@@ -302,7 +303,17 @@ main {
   font-size: 0;
   width: 30%;
   flex-shrink: 0;
-  min-width: 370px;
+  min-width: 396px;
+
+
+  img{
+    // height:100% ;
+    // object-fit: cover;
+    @media (max-width:992px){
+      // height: auto;
+      width: 100%;
+    }
+  }
 }
 
 .article_right {
@@ -315,13 +326,19 @@ main {
   padding: 5px 10px 5px 30px;
   background-color: #fff;
   flex-shrink: 1;
-
+  @media (max-width:1200px){
+    // height: auto;
+    padding: 5px 10px 5px 10px;
+  }
 }
 
 .article_info {
   display: flex;
   justify-content: space-between;
   margin: 5px 0;
+  @media (max-width:1200px){
+    margin: 4px 0;
+  }
 }
 
 .article_info_left {
@@ -351,6 +368,9 @@ main {
   font-size: $fontsize_P3;
   color: rgba($color: #000000, $alpha: 0.6);
   margin:  5px 0;
+  @media (max-width:1200px){
+    margin: 2px 0;
+  }
 }
 
 .article_detail {
@@ -358,7 +378,9 @@ main {
   justify-content: space-between;
   align-items: center;
   margin: 5px 0;
-
+  @media (max-width:1200px){
+    margin: 4px 0;
+  }
 }
 
 .article_title {
@@ -375,6 +397,9 @@ main {
   justify-content: flex-end;
   align-items: center;
   margin: 5px 0;
+  @media (max-width:1200px){
+    margin: 4px 0;
+  }
 
   >div {
     display: flex;
@@ -404,6 +429,9 @@ main {
   letter-spacing: 2px;
   line-height: 1.5;
   margin: 5px 0;
+  @media (max-width:1200px){
+    margin: 4px 0;
+  }
 }
 
 .like_btn{

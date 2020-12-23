@@ -27,26 +27,30 @@ aside{
   align-items: center;
   flex-wrap: wrap;
   
+  li:first-child{
+    opacity: 1;
+    color: $textColor;
+  }
 
   li{
-    background-color:$btnColor;
-    border-radius: 10px;
-    overflow: hidden;
+    // background-color:$btnColor;
+    // border-radius: 10px;
+    // overflow: hidden;
     margin: 10px 5px;
+    color: rgb(161, 161, 161);
     font-size: 16px;
     letter-spacing: 1px;
-    color: #fff;
+    // color: #fff;
     font-weight: bold;
     padding: 5px 10px;
     opacity: 0.6;
     cursor: pointer;
     &:hover{
       opacity: 1;
+      color: $textColor;
     }
   }
-  li:first-child{
-    opacity: 1;
-  }
+  
 }
 
 
@@ -72,12 +76,18 @@ aside{
 }
 
 .tag_title{
-  text-align: center;
+  // text-align: center;
   @include H3;
   letter-spacing: 2px;
   color: $textColor;
   font-weight: bold;
   margin-bottom: 40px !important;
+}
+
+@media (min-width:992px){
+  .tag_title{
+    // text-align: left;
+  }
 }
 
 .mem_img_box{
@@ -448,6 +458,7 @@ aside{
     color: $textColor;
     font-weight: bold;
     margin-right: 5%;
+    flex-shrink: 0;
   }
   div:nth-child(2){
     color: rgb(105, 105, 105);
@@ -604,5 +615,233 @@ aside{
 // 自己訂 | 訂單紀錄
 .self_order_box{
   display: none;
+}
+// 自己訂 | 訂單詳情 頁面
+.self_order_page{
+  display: none;
+}
 
+
+// 優惠券 查看 
+.coupon_box{
+  display: none;
+}
+
+.coupon_list{
+  margin: 40px 0;
+  width: 100%;
+}
+
+.coupon_link{
+  max-width: 200px;
+  font-size: 0;
+}
+
+@media (min-width:576px){
+  .title_box{
+    display: flex;
+    justify-content: space-between;
+    // align-items: center;
+  }
+}
+
+
+.coupon_item{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  // align-items: center;
+  // border-top: 1px solid black;
+  margin: 20px 0;
+}
+
+.coupon_list{
+  div:first-child{
+    // border: 0;
+  }
+}
+
+.coupon_item>div{
+  margin: 10px 20px 10px 0;
+}
+
+.coupon_img{
+  width: 80%;
+  max-width: 300px;
+  font-size: 0;
+}
+
+
+.coupon_info_row{
+  display: flex;
+  justify-content: flex-start;
+  // align-items: center;
+  width: 100%;
+  font-size: $fontsize_H5;
+  letter-spacing: 2px;
+
+  div{
+    margin: 5px 0;
+    align-self: stretch;
+  }
+
+  div:first-child{
+    width: 120px;
+    // width: 40%;
+    margin-right: 10px;
+    color: $textColor;
+    font-weight: bold;
+  }
+  div:nth-child(2){
+    color: rgb(172, 172, 172);
+  }
+
+}
+
+@media (min-width:576px){
+  .coupon_item{
+    flex-direction: row;
+    align-items: center;
+  }
+  .coupon_img{
+    margin-right: 20px;
+  }
+ 
+}
+
+@media (min-width:768px){
+
+  .coupon_img{
+    margin: 10px 60px 10px 0 !important;
+  }
+  .coupon_info_row{
+
+
+    div:first-child{
+      width: 120px;
+      // width: 40%;
+      margin-right: 30px;
+    }
+  }
+}
+
+// 發文紀錄
+.article_box{
+  display: none;
+}
+
+.cancel_img{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+}
+
+.article_list{
+  width: 100%;
+  // margin-top: 25px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.s2_hotitem {
+  position: relative;
+  display: block;
+  width: 350px;
+  // height: 315px;
+  border-radius: 10px ;
+  overflow: hidden ;
+  margin: 0 12.5px 12.5px 12.5px;
+  text-decoration: none;
+
+}
+
+.hotimg {
+  font-size: 0px;
+}
+
+.hotinfo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  padding: 0 13px;
+}
+
+.memimg {
+  border-radius: 50%;
+  width: 80px;
+  margin-right: 18px;
+  font-size: 0;
+}
+
+.hotright {
+  width: 100%;
+  padding: 11px 0px 20px 0px;
+}
+
+.texttime {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 8px;
+  color: rgba($color: #000000, $alpha: 0.5);
+}
+
+.hotdetail {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.memname {
+  font-size: $fontsize_H5;
+  color: #000000;
+
+}
+
+.hotcount {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 11px 0 16px 0;
+
+}
+
+.hotcount>div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hotcount>div {
+  margin: 0 0 0 8px;
+}
+
+.hot_icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 3px;
+}
+
+.hot_num {
+  font-size: $fontsize_P3;
+  color: #000000;
+
+
+}
+
+.hot_text {
+  font-size: $fontsize_P2;
+  color: rgba($color: #000000, $alpha: 0.6);
+  letter-spacing: 2px;
+  line-height: 1.5;
+
+}
+@media(max-width:1200px){
+  .article_list{
+    justify-content: center;
+  }
 }

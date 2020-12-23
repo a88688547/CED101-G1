@@ -300,9 +300,9 @@ main {
 
 .article_img {
   font-size: 0;
-  // max-width: 100%;
-  // width: 45%;
+  width: 30%;
   flex-shrink: 0;
+  min-width: 370px;
 }
 
 .article_right {
@@ -312,8 +312,10 @@ main {
   // justify-content: space-around;
   // width: calc(1200px - 396px);
   width: 100%;
-  padding: 10px 20px 10px 40px;
+  padding: 5px 10px 5px 30px;
   background-color: #fff;
+  flex-shrink: 1;
+
 }
 
 .article_info {
@@ -424,6 +426,10 @@ main {
 
 @media (max-width:992px){
 
+  main {
+    width: 70%;
+  }
+
   .article_item{
     flex-direction: column;
   }
@@ -441,6 +447,16 @@ main {
   }
 }
 
+@media (max-width:768px){
+  main {
+    width: 80%;
+  }
+}
+@media (max-width:576px){
+  main {
+    width: 95%;
+  }
+}
 
 //第五區 分頁
 

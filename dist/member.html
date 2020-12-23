@@ -32,16 +32,16 @@
                         <li id="group_order">揪團紀錄</li>
                         <li id="follow_order_box">跟團紀錄</li>
                         <li id="self_order_box">自己訂 | 訂單紀錄</li>
-                        <li>優惠券管理</li>
-                        <li>發文紀錄</li>
+                        <li id="coupon_box">優惠券查詢</li>
+                        <li id="article_box">發文紀錄</li>
                     </ul>
                     <select name="tag_select" id="tag_select" class="tag_select">
                         <option value="mem_info">會員資料</option>
                         <option value="group_order">揪團紀錄</option>
                         <option value="follow_order_box">跟團紀錄</option>
                         <option value="self_order_box">自己訂 | 訂單紀錄</option>
-                        <option value="">優惠券管理</option>
-                        <option value="">發文紀錄</option>
+                        <option value="coupon_box">優惠券查詢</option>
+                        <option value="article_box">發文紀錄</option>
                     </select>
                 </aside>
 
@@ -389,16 +389,36 @@
                             <div>2020/12/21</div>
                         </div>
                         <div class="group_order_done_row">
+                            <div>連絡電話</div>
+                            <div>09XXXXXXXX</div>
+                        </div>
+                        <div class="group_order_done_row">
+                            <div>給店家話</div>
+                            <div>QQ咩咩QQ咩咩QQ咩咩QQ咩咩</div>
+                        </div>
+                        <div class="group_order_done_row">
                             <div>目標杯數</div>
                             <div>20杯/9折優惠</div>
                         </div>
                         <div class="group_order_done_row">
-                            <div>已達杯數</div>
-                            <div>36杯/8折優惠</div>
+                            <div>總共杯數</div>
+                            <div>36杯</div>
                         </div>
                         <div class="group_order_done_row">
-                            <div>使用優惠卷</div>
+                            <div>杯數優惠</div>
                             <div>8折優惠</div>
+                        </div>
+                        <div class="group_order_done_row">
+                            <div>優惠卷</div>
+                            <div>8折優惠</div>
+                        </div>
+                        <div class="group_order_done_row">
+                            <div>預計送達時間</div>
+                            <div>2020/12/23/16:00</div>
+                        </div>
+                        <div class="group_order_done_row">
+                            <div>取貨地點</div>
+                            <div>桃園市中壢區春德路191巷36號</div>
                         </div>
                         <div class="group_order_done_row">
                             <div>訂單金額</div>
@@ -595,7 +615,7 @@
                 </section>
                 <!-- 跟團 紀錄 -->
                 <section class="follow_order_box content">
-                    <div class="tag_title">揪團紀錄</div>
+                    <div class="tag_title">跟團紀錄</div>
                     <div class="order_box">
                         <!-- 切換揪團類型 -->
                         <div class="type_box follow_type_box">
@@ -646,8 +666,8 @@
                                             <div class="order_date">2020/12/29</div>
                                         </div>
                                         <div class="order_row">
-                                            <div class="order_row_title">訂單金額</div>
-                                            <div class="order_totalprice">$9478</div>
+                                            <div class="order_row_title">應付金額</div>
+                                            <div class="order_totalprice">$92</div>
                                         </div>
                                         <div class="order_row">
                                             <div class="order_row_title">訂單狀態</div>
@@ -683,16 +703,16 @@
                             <div>20杯/9折優惠</div>
                         </div>
                         <div class="group_order_done_row">
-                            <div>已達杯數</div>
-                            <div>36杯/8折優惠</div>
+                            <div>總共杯數</div>
+                            <div>36杯</div>
                         </div>
                         <div class="group_order_done_row">
-                            <div>使用優惠卷</div>
+                            <div>杯數優惠</div>
                             <div>8折優惠</div>
                         </div>
                         <div class="group_order_done_row">
-                            <div>訂單金額</div>
-                            <div>$993</div>
+                            <div>應付金額</div>
+                            <div>$92</div>
                         </div>
                         <div class="group_order_done_row">
                             <div>訂單狀態</div>
@@ -722,143 +742,11 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="group_order_done_person">
-                            <div class="group_order_done_person_upbox">
-                                <div class="group_order_done_person_infobox">
-                                    <div class="group_order_done_person_img"><img src="./Images/user_big.svg" /></div>
-                                    <div class="group_order_done_person_name">徐朝亭</div>
-                                </div>
-                                <div class="group_order_done_person_total">
-                                    <div class="group_order_done_person_total_cup">2杯</div>
-                                    <div class="group_order_done_person_total_price">$115</div>
-                                </div>
-                            </div>
-                            <div class="group_order_done_person_downbox">
-                                <div class="group_order_done_person_drink">
-                                    <div class="group_order_done_person_drink_title">珍珠奶茶-大杯</div>
-                                    <div class="group_order_done_person_drink_note">少冰/微糖/加珍珠/$65/1杯</div>
-                                </div>
-                                <div class="group_order_done_person_drink">
-                                    <div class="group_order_done_person_drink_title">紅茶-大杯</div>
-                                    <div class="group_order_done_person_drink_note">去冰/無糖/加QQ/$50/1杯</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="group_order_done_person">
-                            <div class="group_order_done_person_upbox">
-                                <div class="group_order_done_person_infobox">
-                                    <div class="group_order_done_person_img"><img src="./Images/user_big.svg" /></div>
-                                    <div class="group_order_done_person_name">徐朝亭</div>
-                                </div>
-                                <div class="group_order_done_person_total">
-                                    <div class="group_order_done_person_total_cup">2杯</div>
-                                    <div class="group_order_done_person_total_price">$115</div>
-                                </div>
-                            </div>
-                            <div class="group_order_done_person_downbox">
-                                <div class="group_order_done_person_drink">
-                                    <div class="group_order_done_person_drink_title">珍珠奶茶-大杯</div>
-                                    <div class="group_order_done_person_drink_note">少冰/微糖/加珍珠/$65/1杯</div>
-                                </div>
-                                <div class="group_order_done_person_drink">
-                                    <div class="group_order_done_person_drink_title">紅茶-大杯</div>
-                                    <div class="group_order_done_person_drink_note">去冰/無糖/加QQ/$50/1杯</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="group_order_done_person">
-                            <div class="group_order_done_person_upbox">
-                                <div class="group_order_done_person_infobox">
-                                    <div class="group_order_done_person_img"><img src="./Images/user_big.svg" /></div>
-                                    <div class="group_order_done_person_name">徐朝亭</div>
-                                </div>
-                                <div class="group_order_done_person_total">
-                                    <div class="group_order_done_person_total_cup">2杯</div>
-                                    <div class="group_order_done_person_total_price">$115</div>
-                                </div>
-                            </div>
-                            <div class="group_order_done_person_downbox">
-                                <div class="group_order_done_person_drink">
-                                    <div class="group_order_done_person_drink_title">珍珠奶茶-大杯</div>
-                                    <div class="group_order_done_person_drink_note">少冰/微糖/加珍珠/$65/1杯</div>
-                                </div>
-                                <div class="group_order_done_person_drink">
-                                    <div class="group_order_done_person_drink_title">紅茶-大杯</div>
-                                    <div class="group_order_done_person_drink_note">去冰/無糖/加QQ/$50/1杯</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="group_order_done_person">
-                            <div class="group_order_done_person_upbox">
-                                <div class="group_order_done_person_infobox">
-                                    <div class="group_order_done_person_img"><img src="./Images/user_big.svg" /></div>
-                                    <div class="group_order_done_person_name">徐朝亭</div>
-                                </div>
-                                <div class="group_order_done_person_total">
-                                    <div class="group_order_done_person_total_cup">2杯</div>
-                                    <div class="group_order_done_person_total_price">$115</div>
-                                </div>
-                            </div>
-                            <div class="group_order_done_person_downbox">
-                                <div class="group_order_done_person_drink">
-                                    <div class="group_order_done_person_drink_title">珍珠奶茶-大杯</div>
-                                    <div class="group_order_done_person_drink_note">少冰/微糖/加珍珠/$65/1杯</div>
-                                </div>
-                                <div class="group_order_done_person_drink">
-                                    <div class="group_order_done_person_drink_title">紅茶-大杯</div>
-                                    <div class="group_order_done_person_drink_note">去冰/無糖/加QQ/$50/1杯</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="group_order_done_person">
-                            <div class="group_order_done_person_upbox">
-                                <div class="group_order_done_person_infobox">
-                                    <div class="group_order_done_person_img"><img src="./Images/user_big.svg" /></div>
-                                    <div class="group_order_done_person_name">徐朝亭</div>
-                                </div>
-                                <div class="group_order_done_person_total">
-                                    <div class="group_order_done_person_total_cup">2杯</div>
-                                    <div class="group_order_done_person_total_price">$115</div>
-                                </div>
-                            </div>
-                            <div class="group_order_done_person_downbox">
-                                <div class="group_order_done_person_drink">
-                                    <div class="group_order_done_person_drink_title">珍珠奶茶-大杯</div>
-                                    <div class="group_order_done_person_drink_note">少冰/微糖/加珍珠/$65/1杯</div>
-                                </div>
-                                <div class="group_order_done_person_drink">
-                                    <div class="group_order_done_person_drink_title">紅茶-大杯</div>
-                                    <div class="group_order_done_person_drink_note">去冰/無糖/加QQ/$50/1杯</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="group_order_done_person">
-                            <div class="group_order_done_person_upbox">
-                                <div class="group_order_done_person_infobox">
-                                    <div class="group_order_done_person_img"><img src="./Images/user_big.svg" /></div>
-                                    <div class="group_order_done_person_name">徐朝亭</div>
-                                </div>
-                                <div class="group_order_done_person_total">
-                                    <div class="group_order_done_person_total_cup">2杯</div>
-                                    <div class="group_order_done_person_total_price">$115</div>
-                                </div>
-                            </div>
-                            <div class="group_order_done_person_downbox">
-                                <div class="group_order_done_person_drink">
-                                    <div class="group_order_done_person_drink_title">珍珠奶茶-大杯</div>
-                                    <div class="group_order_done_person_drink_note">少冰/微糖/加珍珠/$65/1杯</div>
-                                </div>
-                                <div class="group_order_done_person_drink">
-                                    <div class="group_order_done_person_drink_title">紅茶-大杯</div>
-                                    <div class="group_order_done_person_drink_note">去冰/無糖/加QQ/$50/1杯</div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                     <div class="group_order_done_total_box">
                         <div class="group_order_done_total">
                             <div>原價</div>
-                            <div>$1000</div>
+                            <div>$115</div>
                         </div>
                         <div class="group_order_done_dis">
                             <div>杯數折扣</div>
@@ -866,19 +754,11 @@
                         </div>
                         <div class="group_order_done_total">
                             <div>杯數折扣後</div>
-                            <div>$800</div>
-                        </div>
-                        <div class="group_order_done_dis">
-                            <div>優惠卷折扣</div>
-                            <div>x 0.8</div>
-                        </div>
-                        <div class="group_order_done_total">
-                            <div>優惠卷折扣後</div>
-                            <div>$640</div>
+                            <div>$92</div>
                         </div>
                         <div class="group_order_done_finaltotal">
                             <div>總金額</div>
-                            <div>$640</div>
+                            <div>$92</div>
                         </div>
                     </div>
                 </section>
@@ -904,16 +784,16 @@
                             <div>20杯/9折優惠</div>
                         </div>
                         <div class="group_order_done_row">
-                            <div>已達杯數</div>
-                            <div>36杯/8折優惠</div>
+                            <div>總共杯數</div>
+                            <div>36杯</div>
                         </div>
                         <div class="group_order_done_row">
-                            <div>使用優惠卷</div>
+                            <div>杯數優惠</div>
                             <div>8折優惠</div>
                         </div>
                         <div class="group_order_done_row">
-                            <div>訂單金額</div>
-                            <div>$993</div>
+                            <div>應付金額</div>
+                            <div>$92</div>
                         </div>
                         <div class="group_order_done_row">
                             <div>訂單狀態</div>
@@ -943,116 +823,122 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="group_order_done_person">
-                            <div class="group_order_done_person_upbox">
-                                <div class="group_order_done_person_infobox">
-                                    <div class="group_order_done_person_img"><img src="./Images/user_big.svg" /></div>
-                                    <div class="group_order_done_person_name">徐朝亭</div>
-                                </div>
-                                <div class="group_order_done_person_total">
-                                    <div class="group_order_done_person_total_cup">2杯</div>
-                                    <div class="group_order_done_person_total_price">$115</div>
+                    </div>
+                    <div class="group_order_done_total_box">
+                        <div class="group_order_done_total">
+                            <div>原價</div>
+                            <div>$115</div>
+                        </div>
+                        <div class="group_order_done_dis">
+                            <div>杯數折扣</div>
+                            <div>x 0.8</div>
+                        </div>
+                        <div class="group_order_done_total">
+                            <div>杯數折扣後</div>
+                            <div>$92</div>
+                        </div>
+                        <div class="group_order_done_finaltotal">
+                            <div>總金額</div>
+                            <div>$92</div>
+                        </div>
+                    </div>
+                </section>
+                <!-- 自己訂 | 訂單紀錄 -->
+                <section class="self_order_box content">
+                    <div class="tag_title">自己訂 | 訂單紀錄</div>
+                    <div class="order_box">
+                        <!-- 切換 訂單狀態 -->
+                        <div class="type_box self_type_box">
+                            <div id="self_notyet_order_box">未完成</div>
+                            <div id="self_done_order_box">已完成</div>
+                        </div>
+                        <!-- 訂單列表  -->
+                        <div class="self_order_list_box">
+                            <!-- 未完成 -->
+                            <div class="self_notyet_order_box">
+                                <div class="order_all">
+                                    <div class="order_detail_box">
+                                        <div class="order_row">
+                                            <div class="order_row_title">訂單編號</div>
+                                            <div class="order_no">321312</div>
+                                        </div>
+                                        <div class="order_row">
+                                            <div class="order_row_title">訂單日期</div>
+                                            <div class="order_date">2020/12/29</div>
+                                        </div>
+                                        <div class="order_row">
+                                            <div class="order_row_title">訂單金額</div>
+                                            <div class="order_totalprice">$9478</div>
+                                        </div>
+                                        <div class="order_row">
+                                            <div class="order_row_title">訂單狀態</div>
+                                            <div class="order_statuse">運送中</div>
+                                        </div>
+                                        <div class="self_detail_btn detail_btn" id="self_order_page">詳情</div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="group_order_done_person_downbox">
-                                <div class="group_order_done_person_drink">
-                                    <div class="group_order_done_person_drink_title">珍珠奶茶-大杯</div>
-                                    <div class="group_order_done_person_drink_note">少冰/微糖/加珍珠/$65/1杯</div>
-                                </div>
-                                <div class="group_order_done_person_drink">
-                                    <div class="group_order_done_person_drink_title">紅茶-大杯</div>
-                                    <div class="group_order_done_person_drink_note">去冰/無糖/加QQ/$50/1杯</div>
+                            <!-- 已完成 -->
+                            <div class="self_done_order_box">
+                                <div class="order_all">
+                                    <div class="order_detail_box">
+                                        <div class="order_row">
+                                            <div class="order_row_title">訂單編號</div>
+                                            <div class="order_no">321312</div>
+                                        </div>
+                                        <div class="order_row">
+                                            <div class="order_row_title">訂單日期</div>
+                                            <div class="order_date">2020/12/29</div>
+                                        </div>
+                                        <div class="order_row">
+                                            <div class="order_row_title">訂單金額</div>
+                                            <div class="order_totalprice">$9478</div>
+                                        </div>
+                                        <div class="order_row">
+                                            <div class="order_row_title">訂單狀態</div>
+                                            <div class="order_statuse">運送中</div>
+                                        </div>
+                                        <div class="self_detail_btn detail_btn" id="self_order_page">詳情</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="group_order_done_person">
-                            <div class="group_order_done_person_upbox">
-                                <div class="group_order_done_person_infobox">
-                                    <div class="group_order_done_person_img"><img src="./Images/user_big.svg" /></div>
-                                    <div class="group_order_done_person_name">徐朝亭</div>
-                                </div>
-                                <div class="group_order_done_person_total">
-                                    <div class="group_order_done_person_total_cup">2杯</div>
-                                    <div class="group_order_done_person_total_price">$115</div>
-                                </div>
-                            </div>
-                            <div class="group_order_done_person_downbox">
-                                <div class="group_order_done_person_drink">
-                                    <div class="group_order_done_person_drink_title">珍珠奶茶-大杯</div>
-                                    <div class="group_order_done_person_drink_note">少冰/微糖/加珍珠/$65/1杯</div>
-                                </div>
-                                <div class="group_order_done_person_drink">
-                                    <div class="group_order_done_person_drink_title">紅茶-大杯</div>
-                                    <div class="group_order_done_person_drink_note">去冰/無糖/加QQ/$50/1杯</div>
-                                </div>
-                            </div>
+                    </div>
+                </section>
+                <!-- 自己訂 - 訂單詳情 頁面 -->
+                <section class="self_order_page content">
+                    <div class="tag_title">訂單詳情</div>
+                    <div class="group_order_done_info">
+                        <div class="group_order_done_row">
+                            <div>訂單編號</div>
+                            <div>3345</div>
                         </div>
-                        <div class="group_order_done_person">
-                            <div class="group_order_done_person_upbox">
-                                <div class="group_order_done_person_infobox">
-                                    <div class="group_order_done_person_img"><img src="./Images/user_big.svg" /></div>
-                                    <div class="group_order_done_person_name">徐朝亭</div>
-                                </div>
-                                <div class="group_order_done_person_total">
-                                    <div class="group_order_done_person_total_cup">2杯</div>
-                                    <div class="group_order_done_person_total_price">$115</div>
-                                </div>
-                            </div>
-                            <div class="group_order_done_person_downbox">
-                                <div class="group_order_done_person_drink">
-                                    <div class="group_order_done_person_drink_title">珍珠奶茶-大杯</div>
-                                    <div class="group_order_done_person_drink_note">少冰/微糖/加珍珠/$65/1杯</div>
-                                </div>
-                                <div class="group_order_done_person_drink">
-                                    <div class="group_order_done_person_drink_title">紅茶-大杯</div>
-                                    <div class="group_order_done_person_drink_note">去冰/無糖/加QQ/$50/1杯</div>
-                                </div>
-                            </div>
+                        <div class="group_order_done_row">
+                            <div>訂單日期</div>
+                            <div>2020/12/21</div>
                         </div>
-                        <div class="group_order_done_person">
-                            <div class="group_order_done_person_upbox">
-                                <div class="group_order_done_person_infobox">
-                                    <div class="group_order_done_person_img"><img src="./Images/user_big.svg" /></div>
-                                    <div class="group_order_done_person_name">徐朝亭</div>
-                                </div>
-                                <div class="group_order_done_person_total">
-                                    <div class="group_order_done_person_total_cup">2杯</div>
-                                    <div class="group_order_done_person_total_price">$115</div>
-                                </div>
-                            </div>
-                            <div class="group_order_done_person_downbox">
-                                <div class="group_order_done_person_drink">
-                                    <div class="group_order_done_person_drink_title">珍珠奶茶-大杯</div>
-                                    <div class="group_order_done_person_drink_note">少冰/微糖/加珍珠/$65/1杯</div>
-                                </div>
-                                <div class="group_order_done_person_drink">
-                                    <div class="group_order_done_person_drink_title">紅茶-大杯</div>
-                                    <div class="group_order_done_person_drink_note">去冰/無糖/加QQ/$50/1杯</div>
-                                </div>
-                            </div>
+                        <div class="group_order_done_row">
+                            <div>總共杯數</div>
+                            <div>18杯</div>
                         </div>
-                        <div class="group_order_done_person">
-                            <div class="group_order_done_person_upbox">
-                                <div class="group_order_done_person_infobox">
-                                    <div class="group_order_done_person_img"><img src="./Images/user_big.svg" /></div>
-                                    <div class="group_order_done_person_name">徐朝亭</div>
-                                </div>
-                                <div class="group_order_done_person_total">
-                                    <div class="group_order_done_person_total_cup">2杯</div>
-                                    <div class="group_order_done_person_total_price">$115</div>
-                                </div>
-                            </div>
-                            <div class="group_order_done_person_downbox">
-                                <div class="group_order_done_person_drink">
-                                    <div class="group_order_done_person_drink_title">珍珠奶茶-大杯</div>
-                                    <div class="group_order_done_person_drink_note">少冰/微糖/加珍珠/$65/1杯</div>
-                                </div>
-                                <div class="group_order_done_person_drink">
-                                    <div class="group_order_done_person_drink_title">紅茶-大杯</div>
-                                    <div class="group_order_done_person_drink_note">去冰/無糖/加QQ/$50/1杯</div>
-                                </div>
-                            </div>
+                        <div class="group_order_done_row">
+                            <div>杯數優惠</div>
+                            <div>無優惠</div>
                         </div>
+                        <div class="group_order_done_row">
+                            <div>優惠卷</div>
+                            <div>8折優惠</div>
+                        </div>
+                        <div class="group_order_done_row">
+                            <div>訂單金額</div>
+                            <div>$993</div>
+                        </div>
+                        <div class="group_order_done_row">
+                            <div>訂單狀態</div>
+                            <div>運送中</div>
+                        </div>
+                    </div>
+                    <div class="group_order_done_drinklist">
                         <div class="group_order_done_person">
                             <div class="group_order_done_person_upbox">
                                 <div class="group_order_done_person_infobox">
@@ -1103,73 +989,212 @@
                         </div>
                     </div>
                 </section>
-                <!-- 自己定 | 訂單紀錄 -->
-                <section class="self_order_box content">
-                    <div class="tag_title">自己定 | 訂單紀錄</div>
-                    <div class="order_box">
-                        <!-- 切換揪團類型 -->
-                        <div class="type_box follow_type_box">
-                            <div id="follow_notyet_order_box">跟團中</div>
-                            <div id="follow_done_order_box">跟團成功</div>
-                        </div>
-                        <!-- 揪團中  -->
-                        <div class="follow_order_list_box">
-                            <div class="follow_notyet_order_box">
-                                <div class="order_all">
-                                    <div class="order_row groupname">
-                                        <div class="order_row_title">團名 :</div>
-                                        <div class="order_groupname">QQ咩咩</div>
-                                    </div>
-                                    <div class="order_detail_box">
-                                        <div class="order_row">
-                                            <div class="order_row_title">截單時間</div>
-                                            <div class="order_deadline">2020/12/29 08:00</div>
-                                        </div>
-                                        <div class="order_row">
-                                            <div class="order_row_title">目標杯數</div>
-                                            <div class="order_goalcup">50</div>
-                                        </div>
-                                        <div class="order_row">
-                                            <div class="order_row_title">目前杯數</div>
-                                            <div class="order_nowcup">20</div>
-                                        </div>
-                                        <div class="follow_notyet_detail_btn detail_btn" id="follow_order_notyet_page">
-                                            詳情
-                                        </div>
-                                    </div>
+                <section class="coupon_box content">
+                    <div class="title_box">
+                        <div class="tag_title">優惠券查看</div>
+                        <div class="coupon_link"><img src="./Images/coupon_list.png" /></div>
+                    </div>
+                    <div class="coupon_list">
+                        <div class="coupon_item">
+                            <div class="coupon_img"><img src="./Images/coupon.png" /></div>
+                            <div class="coupon_info">
+                                <div class="coupon_info_row">
+                                    <div>優惠券代碼:</div>
+                                    <div>JIS!&@*2781</div>
                                 </div>
-                            </div>
-                            <!-- 已成團 -->
-                            <div class="follow_done_order_box">
-                                <div class="order_all">
-                                    <div class="order_row groupname">
-                                        <div class="order_row_title">團名 :</div>
-                                        <div class="order_groupname">QQ咩咩</div>
-                                    </div>
-                                    <div class="order_detail_box">
-                                        <div class="order_row">
-                                            <div class="order_row_title">訂單編號</div>
-                                            <div class="order_no">321312</div>
-                                        </div>
-                                        <div class="order_row">
-                                            <div class="order_row_title">訂單日期</div>
-                                            <div class="order_date">2020/12/29</div>
-                                        </div>
-                                        <div class="order_row">
-                                            <div class="order_row_title">訂單金額</div>
-                                            <div class="order_totalprice">$9478</div>
-                                        </div>
-                                        <div class="order_row">
-                                            <div class="order_row_title">訂單狀態</div>
-                                            <div class="order_statuse">運送中</div>
-                                        </div>
-                                        <div class="follow_done_detail_btn detail_btn" id="follow_order_done_page">
-                                            詳情
-                                        </div>
-                                    </div>
+                                <div class="coupon_info_row">
+                                    <div>折扣數:</div>
+                                    <div>8折</div>
                                 </div>
                             </div>
                         </div>
+                        <div class="coupon_item">
+                            <div class="coupon_img"><img src="./Images/coupon.png" /></div>
+                            <div class="coupon_info">
+                                <div class="coupon_info_row">
+                                    <div>優惠券代碼:</div>
+                                    <div>JIS!&@*2781</div>
+                                </div>
+                                <div class="coupon_info_row">
+                                    <div>折扣數:</div>
+                                    <div>8折</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="coupon_item">
+                            <div class="coupon_img"><img src="./Images/coupon.png" /></div>
+                            <div class="coupon_info">
+                                <div class="coupon_info_row">
+                                    <div>優惠券代碼:</div>
+                                    <div>JIS!&@*2781</div>
+                                </div>
+                                <div class="coupon_info_row">
+                                    <div>折扣數:</div>
+                                    <div>8折</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="coupon_item">
+                            <div class="coupon_img"><img src="./Images/coupon.png" /></div>
+                            <div class="coupon_info">
+                                <div class="coupon_info_row">
+                                    <div>優惠券代碼:</div>
+                                    <div>JIS!&@*2781</div>
+                                </div>
+                                <div class="coupon_info_row">
+                                    <div>折扣數:</div>
+                                    <div>8折</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="coupon_item">
+                            <div class="coupon_img"><img src="./Images/coupon.png" /></div>
+                            <div class="coupon_info">
+                                <div class="coupon_info_row">
+                                    <div>優惠券代碼:</div>
+                                    <div>JIS!&@*2781</div>
+                                </div>
+                                <div class="coupon_info_row">
+                                    <div>折扣數:</div>
+                                    <div>8折</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="article_box content">
+                    <div class="tag_title">發文紀錄</div>
+                    <div class="article_list">
+                        <a class="s2_hotitem" href="#">
+                            <div class="cancel_img cancel_btn"><img src="./Images/cancel.svg" /></div>
+                            <div class="hotimg"><img src="http://fakeimg.pl/350x213" /></div>
+                            <div class="hotinfo">
+                                <div class="memimg"><img src="./Images/user_big.svg" /></div>
+                                <div class="hotright">
+                                    <div class="texttime">2020/12/16 17:00</div>
+                                    <div class="memname">Yu Lee</div>
+                                    <div class="hotcount">
+                                        <div>
+                                            <div class="hot_icon"><img src="./Images/eyes_small.svg" /></div>
+                                            <span class="hot_num">150</span>
+                                        </div>
+                                        <div>
+                                            <div class="hot_icon"><img src="./Images/message_small.svg" /></div>
+                                            <span class="hot_num">8</span>
+                                        </div>
+                                        <div>
+                                            <div class="hot_icon"><img src="./Images/like_small.svg" /></div>
+                                            <span class="hot_num">100</span>
+                                        </div>
+                                    </div>
+                                    <div class="hot_text">水果茶用料實在，酸酸甜酸酸.....甜....</div>
+                                </div>
+                            </div>
+                        </a>
+                        <a class="s2_hotitem" href="#">
+                            <div class="cancel_img cancel_btn"><img src="./Images/cancel.svg" /></div>
+                            <div class="hotimg"><img src="http://fakeimg.pl/350x213" /></div>
+                            <div class="hotinfo">
+                                <div class="memimg"><img src="./Images/user_big.svg" /></div>
+                                <div class="hotright">
+                                    <div class="texttime">2020/12/16 17:00</div>
+                                    <div class="memname">Yu Lee</div>
+                                    <div class="hotcount">
+                                        <div>
+                                            <div class="hot_icon"><img src="./Images/eyes_small.svg" /></div>
+                                            <span class="hot_num">150</span>
+                                        </div>
+                                        <div>
+                                            <div class="hot_icon"><img src="./Images/message_small.svg" /></div>
+                                            <span class="hot_num">8</span>
+                                        </div>
+                                        <div>
+                                            <div class="hot_icon"><img src="./Images/like_small.svg" /></div>
+                                            <span class="hot_num">100</span>
+                                        </div>
+                                    </div>
+                                    <div class="hot_text">水果茶用料實在，酸酸甜酸酸.....甜....</div>
+                                </div>
+                            </div>
+                        </a>
+                        <a class="s2_hotitem" href="#">
+                            <div class="cancel_img cancel_btn"><img src="./Images/cancel.svg" /></div>
+                            <div class="hotimg"><img src="http://fakeimg.pl/350x213" /></div>
+                            <div class="hotinfo">
+                                <div class="memimg"><img src="./Images/user_big.svg" /></div>
+                                <div class="hotright">
+                                    <div class="texttime">2020/12/16 17:00</div>
+                                    <div class="memname">Yu Lee</div>
+                                    <div class="hotcount">
+                                        <div>
+                                            <div class="hot_icon"><img src="./Images/eyes_small.svg" /></div>
+                                            <span class="hot_num">150</span>
+                                        </div>
+                                        <div>
+                                            <div class="hot_icon"><img src="./Images/message_small.svg" /></div>
+                                            <span class="hot_num">8</span>
+                                        </div>
+                                        <div>
+                                            <div class="hot_icon"><img src="./Images/like_small.svg" /></div>
+                                            <span class="hot_num">100</span>
+                                        </div>
+                                    </div>
+                                    <div class="hot_text">水果茶用料實在，酸酸甜酸酸.....甜....</div>
+                                </div>
+                            </div>
+                        </a>
+                        <a class="s2_hotitem" href="#">
+                            <div class="cancel_img cancel_btn"><img src="./Images/cancel.svg" /></div>
+                            <div class="hotimg"><img src="http://fakeimg.pl/350x213" /></div>
+                            <div class="hotinfo">
+                                <div class="memimg"><img src="./Images/user_big.svg" /></div>
+                                <div class="hotright">
+                                    <div class="texttime">2020/12/16 17:00</div>
+                                    <div class="memname">Yu Lee</div>
+                                    <div class="hotcount">
+                                        <div>
+                                            <div class="hot_icon"><img src="./Images/eyes_small.svg" /></div>
+                                            <span class="hot_num">150</span>
+                                        </div>
+                                        <div>
+                                            <div class="hot_icon"><img src="./Images/message_small.svg" /></div>
+                                            <span class="hot_num">8</span>
+                                        </div>
+                                        <div>
+                                            <div class="hot_icon"><img src="./Images/like_small.svg" /></div>
+                                            <span class="hot_num">100</span>
+                                        </div>
+                                    </div>
+                                    <div class="hot_text">水果茶用料實在，酸酸甜酸酸.....甜....</div>
+                                </div>
+                            </div>
+                        </a>
+                        <a class="s2_hotitem" href="#">
+                            <div class="cancel_img cancel_btn"><img src="./Images/cancel.svg" /></div>
+                            <div class="hotimg"><img src="http://fakeimg.pl/350x213" /></div>
+                            <div class="hotinfo">
+                                <div class="memimg"><img src="./Images/user_big.svg" /></div>
+                                <div class="hotright">
+                                    <div class="texttime">2020/12/16 17:00</div>
+                                    <div class="memname">Yu Lee</div>
+                                    <div class="hotcount">
+                                        <div>
+                                            <div class="hot_icon"><img src="./Images/eyes_small.svg" /></div>
+                                            <span class="hot_num">150</span>
+                                        </div>
+                                        <div>
+                                            <div class="hot_icon"><img src="./Images/message_small.svg" /></div>
+                                            <span class="hot_num">8</span>
+                                        </div>
+                                        <div>
+                                            <div class="hot_icon"><img src="./Images/like_small.svg" /></div>
+                                            <span class="hot_num">100</span>
+                                        </div>
+                                    </div>
+                                    <div class="hot_text">水果茶用料實在，酸酸甜酸酸.....甜....</div>
+                                </div>
+                            </div>
+                        </a>
                     </div>
                 </section>
             </main>

@@ -41,9 +41,11 @@
   color: #B3925B;
   opacity: 0.8;
   position: fixed;
-  left: 50%;
-  bottom: 50px;
+  right: 5%;
+  bottom: 202px;
   border: none;
+  z-index: 2;
+  outline: none;
 }
 
 @mixin button_4_mob {
@@ -53,5 +55,5 @@
   width: 100%;
   right: 0;
   height: 4rem;
-
+  bottom: 50px;
 }

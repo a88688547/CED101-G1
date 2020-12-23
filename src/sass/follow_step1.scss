@@ -5,12 +5,19 @@ body {
     background-color: $insideBackgroundColor;
 }
 
+
+$ball_rwd: 0.5;
+
 // 進度條
 .step_box {
     max-width: 430px;
     // border: 1px solid red;
     margin: 0 auto;
     margin-top: 90px;
+
+    @media screen and (max-width:576px) {
+        max-width: 430px * $ball_rwd;
+    }
 
     .step_ball {
         display: flex;
@@ -27,6 +34,11 @@ body {
             margin-bottom: 10px;
             position: relative;
 
+            @media screen and (max-width:576px) {
+                width: 120px * $ball_rwd;
+                height: 120px * $ball_rwd;
+            }
+
             //進度條的線
             &::before {
                 content: "";
@@ -38,6 +50,12 @@ body {
                 top: 50%;
                 transform: translateY(-50%);
                 z-index: -1;
+
+                @media screen and (max-width:576px) {
+                    width: 300px * $ball_rwd;
+                    height: 14px * $ball_rwd;
+                }
+
             }
 
             //最後一條消失

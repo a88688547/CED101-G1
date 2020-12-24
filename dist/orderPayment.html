@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自己訂-訂單頁面</title>
+    <link rel="stylesheet" href="./css/orderPayment.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="vendors/Vue/vue.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+    <header id="header">
+        <my-header></my-header>
+    </header>
+    <div class="main">
+        <div class="ProgressBar_P">
+            <div>
+                <div class="StepCircle Circle1"></div>
+                <h3 id="step1">1.建立訂單</h3>
+            </div>
+            <div>
+                <div class="StepCircle Circle2"></div>
+                <h3 id="step2">2.訂單頁面</h3>
+            </div>
+            <div>
+                <div class="StepCircle Circle3"></div>
+                <h3 id="step3">3.訂單完成</h3>
+            </div>
+        </div>
+        <div class="personInfoDetail">
+            <div class="memImage"><img src="Images/user_big.svg"></div>
+            <div class="orderInfoP">
+                <h3 id="memName">董董</h3>
+            </div>
+        </div>
+        <div class="personInfo">
+            <div class="orderInfoDetail">
+                <div class="orderImage"><img src="Images/user_big.svg"></div>
+                <div class="orderInfo">
+                    <div class="orderName">
+                        <h3 id="memName">董董</h3>
+                    </div>
+                    <div>
+                        <h3><img src="Images/tell_big.svg"><label>行動電話</label><input type="text" id="memPhone"></h3>
+                    </div>
+                    <div>
+                        <h3><img src="Images/address.svg"><label>取貨地點</label><input type="text" id="adress"></h3>
+                    </div>
+                    <div>
+                        <h3><img src="Images/list.svg"><label>留言給店家</label><input type="text" id="msg"
+                                placeholder="留言給店家"></h3>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="discount">
+                <div class="discountTop">
+                    <div class="discountNo">
+                        <label>
+                            <h3>折扣代碼</h3>
+                        </label>
+                        <select>
+                            <option>查看優惠內容</option>
+                            <option>join999</option>
+                            <option>letsjoin</option>
+                            <option>99discount</option>
+                        </select>
+                    </div>
+                    <div class="gamelink"><a href="#"><img src="Images/gamelink.svg"></a></div>
+                </div>
+                <div class="discountBottom">
+                    <div>
+                        <h3>商品X<span>7</span></h3>
+                    </div>
+                    <div class="disTotal">
+                        <h3>小計$.<span>400</span></h3>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="payInfo">
+                    <img src="Images/pay.svg">
+                </div>
+                <div class="cardInfo">
+                    <div id="cardName"><label>
+                            <h3>持卡人姓名</h3>
+                        </label><input type="text"></div>
+                    <div id="cardNo"><label>
+                            <h3>卡號</h3>
+                        </label>
+                        <input type="text" maxlength="4" oninput="value=value.replace(/[^\d]/g,'')">
+                        <input type="text" maxlength="4" oninput="value=value.replace(/[^\d]/g,'')">
+                        <input type="text" maxlength="4" oninput="value=value.replace(/[^\d]/g,'')">
+                        <input type="text" maxlength="4" oninput="value=value.replace(/[^\d]/g,'')">
+                    </div>
+                    <div id="cardExp">
+                        <label>
+                            <h3>有效期限</h3>
+                        </label>
+                        <input type="text" maxlength="2" oninput="value=value.replace(/[^\d]/g,'')">
+                        <span>月</span>
+                        <input type="text" maxlength="4" oninput="value=value.replace(/[^\d]/g,'')">
+                        <span>年</span>
+                    </div>
+                    <div id="cardSafeNo">
+                        <label>
+                            <h3>安全碼</h3>
+                        </label>
+                        <input type="text" maxlength="3" oninput="value=value.replace(/[^\d]/g,'')">
+                        <img src="Images/creditcard.svg">
+                    </div>
+                </div>
+                <hr>
+            </div>
+
+        </div>
+
+        <div class="ListTotal">
+            <div class="payTotal">
+                <h2>應付金額</h2>
+            </div>
+            <div id="line">
+                <hr>
+            </div>
+            <div>
+                <h2><span>$.</span><span id="ordPrice">400</span></h2>
+            </div>
+        </div>
+        <div class="orderbtn">
+            <div><a href="personalOrder.html">上一步</a></div>
+            <div class="nextStep"><a href="orderPayment2.html">結帳</a></div>
+        </div>
+
+    </div>
+
+    <footer id="footer">
+        <my-footer></my-footer>
+    </footer>
+
+
+    <script src="layout/footer.vue"></script>
+    <script src="layout/header.vue"></script>
+    <script>
+        $(function () {
+
+
+            $(".payInfo").on("click", function () {
+                $(".cardInfo").toggleClass("-on");
+            });
+        });
+    </script>
+</body>
+
+</html>

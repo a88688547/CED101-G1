@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自己訂-訂單完成</title>
+    <link rel="stylesheet" href="./css/orderDoneP.css">
+    <link rel="stylesheet" href="./css/style.css">
+
+    <script src="vendors/Vue/vue.min.js"></script>
+</head>
+
+<body>
+    <header id="header">
+        <my-header></my-header>
+    </header>
+    <div class="main">
+        <!-- 圓形進度條 -->
+        <div class="ProgressBar_P">
+            <div>
+                <div class="StepCircle Circle1"></div>
+                <h3 id="step1">1.建立訂單</h3>
+            </div>
+            <div>
+                <div class="StepCircle Circle2"></div>
+                <h3 id="step2">2.訂單頁面</h3>
+            </div>
+            <div>
+                <div class="StepCircle Circle3"></div>
+                <h3 id="step3">3.訂單完成</h3>
+            </div>
+        </div>
+        <!-- 訂單狀態 -->
+        <div class="orderInfo">
+            <div class="orderNoP">
+                <h3>訂單編號<span class="orderNo">123456789</span></h3>
+            </div>
+            <div class="orderStatus">
+                <h3>訂單狀態<span class="prepare">準備中</span></h3>
+            </div>
+        </div>
+        <!-- 訂購資訊 -->
+
+        <div class="personInfoDetail">
+            <div class="memImage"><img src="Images/user_big.svg"></div>
+            <div class="orderInfoP">
+                <div>
+                    <h3 id="memName">董董</h3>
+                </div>
+                <div class="phone">
+                    <div>
+                        <h3>行動電話<h3>
+                    </div>
+                    <div id="memPhone">0912345678</div>
+                </div>
+                <div class="orderadress">
+                    <div>
+                        <h3>取貨地點</h3>
+                    </div>
+                    <div id="adress">桃園市春德路191巷26號</div>
+                </div>
+                <div class="message">
+                    <div>
+                        <h3>留言給店家</h3>
+                    </div>
+                    <div id="msg">麻煩提供吸管和袋子，謝謝</div>
+                </div>
+            </div>
+        </div>
+        <!-- 訂單明細 -->
+        <!-- 每個人  -->
+        <div class="group_order_done_person">
+            <div class="group_order_done_person_upbox">
+                <div class="group_order_done_person_total">
+                    <div class="group_order_done_person_total_cup">2杯</div>
+                    <div class="group_order_done_person_total_price">$115</div>
+                </div>
+            </div>
+            <div class="group_order_done_person_downbox">
+                <!-- 購買的 飲料 -->
+                <div class="group_order_done_person_drink">
+                    <div class="group_order_done_person_drink_title">珍珠奶茶-大杯</div>
+                    <div class="group_order_done_person_drink_note">少冰/微糖/加珍珠/$65/1杯</div>
+                </div>
+                <div class="group_order_done_person_drink">
+                    <div class="group_order_done_person_drink_title">紅茶-大杯</div>
+                    <div class="group_order_done_person_drink_note">去冰/無糖/加QQ/$50/1杯</div>
+                </div>
+            </div>
+        </div>
+        <div class="ListTotal">
+            <div class="payTotal">
+                <h2>總金額</h2>
+            </div>
+            <div id="line">
+                <hr>
+            </div>
+            <div>
+                <h2>$.<span id="ordPrice">115</span></h2>
+            </div>
+        </div>
+        <div>
+            <input type="button" value="收到商品" id="orderbtn">
+        </div>
+    </div>
+    <footer id="footer">
+        <my-footer></my-footer>
+    </footer>
+
+
+    <script src="layout/footer.vue"></script>
+    <script src="layout/header.vue"></script>
+</body>
+
+</html>

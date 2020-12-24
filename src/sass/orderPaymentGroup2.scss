@@ -287,23 +287,25 @@ h5{
 .orderModal{
     position: fixed;
     top:0;
-    right:0;
+    left:0;
     opacity: 0;
     z-index: -1;
     transition: opacity 1s;
     background-color:hsla(0, 2%, 25%, .5);
     width: 100%;
-    height: 100vh;
+    height: 100%;
      hr{           
          width:90%;
          margin: 0 auto ;
      }
 }
 .modalContent{
-     position: absolute;
-     top:10vh;
-     left:10vw;    
-     width: 100%;
+    //  position: absolute;
+    //  top:10vh;
+    //  left:10vw;    
+     height:90%;
+     width: 90%;
+     margin:auto auto;
      max-width:600px;
      border-radius: 10px; 
      background-color: #fff;
@@ -311,7 +313,7 @@ h5{
 }
 .orderModal.-on{
   opacity: 1;
-   z-index: 1;
+   z-index: 999;
 }
 
 .orderModal.-opacity-zero{
@@ -339,7 +341,8 @@ h5{
 .orderList{
     width:100%;
     height: 80vh;
-    margin:40px auto ;
+    // margin:40px auto ;
+    margin:auto;
     overflow-y: auto;
     &::-webkit-scrollbar{
         width:10px;

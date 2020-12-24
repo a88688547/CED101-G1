@@ -332,12 +332,9 @@ body {
         }
 
         div {
-          // border: 1px solid black;
-          // width: 200px;
-          font-size: $fontsize_H3;
+          font-size: $fontsize_H6;
           color: #707070;
           letter-spacing: 6px;
-          // align-items: center;
           display: flex;
           flex-direction: column;
           justify-content: center;
@@ -372,8 +369,12 @@ body {
       .btn_back_drink,
       .btn_f5,
       .btn_cleckout {
-      @include button_all(16px, 5px, 5px, 10px, #B3925B, #fff)
+        display: flex;
+        align-items: center;
+      @include button_all(16px, 5px, 5px, 10px, #B3925B, #fff);
+      @include ls(3px);
     }
+   
     }
 
     
@@ -399,6 +400,9 @@ body {
       ul{
         li{
           margin-bottom: 35px;
+          div{
+            font-size: $fontsize_H5;
+          }
         }
       }
     }

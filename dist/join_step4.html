@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>訂單明細</title>
+    <title>4.訂單明細</title>
     <script src="./vendors/vue/vue.js"></script>
     <script src="vendors/jQuery/js/jquery-3.5.1.js"></script>
     <link rel="stylesheet" href="./css/list_data.css" />
@@ -61,17 +61,18 @@
           <div class="group_data_total">
             
             <div class="group_data_total_img">
-              <img src="./Images/user_big.svg" />
+              <div class="group_data_total_imgA">
+                <img src="./Images/user_big.svg" />
+              </div>
+              <div class="group_data_total_imgB">
+                團長姓名
+              </div>
             </div>
             
             <!-- ===團的資料==== -->
             <div class="group_data_total_text">
               <ul class="group_data_total_textA">
-                <li class="on">
-                  <div >團長姓名</div>
-                </li>
                 <li>
-                  
                   <div><img src="./Images/tell_big.svg" alt="">行動電話</div>
                   <div>09-XXXXXXXX</div>
                 </li>
@@ -107,7 +108,7 @@
           </div>
           <!-- ========新增團名等資訊========== -->
           <div class="line"></div>
-          <div class="data_wrap">
+          
             <div id="order_list">
               <!-- 每個人  -->
               <div class="group_order_done_person">
@@ -132,7 +133,7 @@
                     <div class="group_order_done_person_drink_note">
                       少冰/微糖/加珍珠/$65/1杯
                     </div>
-                    <button class="order_delete_btn">刪除</button>
+                    
                   </div>
                   <div class="group_order_done_person_drink">
                     <div class="group_order_done_person_drink_title">
@@ -141,7 +142,7 @@
                     <div class="group_order_done_person_drink_note">
                       去冰/無糖/加QQ/$50/1杯
                     </div>
-                    <button class="order_delete_btn">刪除</button>
+                    
                   </div>
                 </div>
               </div>
@@ -167,7 +168,7 @@
                     <div class="group_order_done_person_drink_note">
                       少冰/微糖/加珍珠/$65/1杯
                     </div>
-                    <button class="order_delete_btn">刪除</button>
+                    
                   </div>
                   <div class="group_order_done_person_drink">
                     <div class="group_order_done_person_drink_title">
@@ -176,7 +177,7 @@
                     <div class="group_order_done_person_drink_note">
                       去冰/無糖/加QQ/$50/1杯
                     </div>
-                    <button class="order_delete_btn">刪除</button>
+                    
                   </div>
                 </div>
               </div>
@@ -202,7 +203,7 @@
                     <div class="group_order_done_person_drink_note">
                       少冰/微糖/加珍珠/$65/1杯
                     </div>
-                    <button class="order_delete_btn">刪除</button>
+                    
                   </div>
                   <div class="group_order_done_person_drink">
                     <div class="group_order_done_person_drink_title">
@@ -211,7 +212,7 @@
                     <div class="group_order_done_person_drink_note">
                       去冰/無糖/加QQ/$50/1杯
                     </div>
-                    <button class="order_delete_btn">刪除</button>
+                    
                   </div>
                 </div>
               </div>
@@ -237,7 +238,7 @@
                     <div class="group_order_done_person_drink_note">
                       少冰/微糖/加珍珠/$65/1杯
                     </div>
-                    <button class="order_delete_btn">刪除</button>
+                    
                   </div>
                   <div class="group_order_done_person_drink">
                     <div class="group_order_done_person_drink_title">
@@ -246,7 +247,7 @@
                     <div class="group_order_done_person_drink_note">
                       去冰/無糖/加QQ/$50/1杯
                     </div>
-                    <button class="order_delete_btn">刪除</button>
+                    
                   </div>
                 </div>
               </div>
@@ -272,7 +273,7 @@
                     <div class="group_order_done_person_drink_note">
                       少冰/微糖/加珍珠/$65/1杯
                     </div>
-                    <button class="order_delete_btn">刪除</button>
+                    
                   </div>
                   <div class="group_order_done_person_drink">
                     <div class="group_order_done_person_drink_title">
@@ -281,12 +282,12 @@
                     <div class="group_order_done_person_drink_note">
                       去冰/無糖/加QQ/$50/1杯
                     </div>
-                    <button class="order_delete_btn">刪除</button>
+                    
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          
         
 
         <!-- ==============開團資料================= -->
@@ -296,14 +297,34 @@
         <div class="Head_data">
           
         <!-- ------------ -->
-        
-          <div class="group_button">
-            <div>總金額</div>
-            <div>  </div>
-            <div>總計$.
-                <div>XXX</div>
-            </div>
+        <div class="line"></div>
+        <div class="group_order_done_total_box">
+          <div class="group_order_done_total">
+              <div>原價</div>
+              <div>$1000</div>
           </div>
+          <div class="group_order_done_dis">
+              <div>杯數折扣</div>
+              <div>x 0.8</div>
+          </div>
+          <div class="group_order_done_total">
+              <div>杯數折扣後</div>
+              <div>$800</div>
+          </div>
+          <div class="group_order_done_dis">
+              <div>優惠卷折扣</div>
+              <div>x 0.8</div>
+          </div>
+          <div class="group_order_done_total">
+              <div>優惠卷折扣後</div>
+              <div>$640</div>
+          </div>
+          <div class="group_order_done_finaltotal">
+              <div>總金額</div>
+              <div>$640</div>
+          </div>
+      </div>
+          
         </div>
       </div>
       <!-- ==============總金額================= -->

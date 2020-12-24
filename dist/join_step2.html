@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>完成開團</title>
+    <title>2.完成開團</title>
     <script src="./vendors/vue/vue.js"></script>
     <script src="vendors/jQuery/js/jquery-3.5.1.js"></script>
     <link rel="stylesheet" href="./css/list_data.css" />
@@ -63,26 +63,26 @@
           <!-- ===團的資料==== -->
           <ul>
             <li>
-              <div for="name">團名</div>
-              <div for="">XXXXXXX</div>
+              <div>團名</div>
+              <div>XXXXXXX</div>
             </li>
             <li>
-              <div for="time">截單時間</div>
+              <div>截單時間</div>
               <!-- 不知道用哪個input -->
-              <div for="">2020-11-22 15:00</div>
+              <div>2020-11-22 15:00</div>
             </li>
             <li>
-              <div for="time">預計送達時間</div>
+              <div>預計送達時間</div>
               <!-- 不知道用哪個input -->
-              <div for="">2020-11-22 15:30</div>
+              <div>2020-11-22 15:30</div>
             </li>
             <li>
-              <div for="">目標杯數</div>
-              <div for="">XXXXXXX</div>
+              <div>目標杯數</div>
+              <div>XXXXXXX</div>
             </li>
             <li>
-              <div for="">取貨地點</div>
-              <div for="">桃園市中壢區復興路46號9樓</div>
+              <div>取貨地點</div>
+              <div>桃園市中壢區復興路46號9樓</div>
             </li>
           </ul>
         </div>
@@ -166,11 +166,21 @@
             </div>
           </div>
           <div class="group_button">
-            <button class="btn_back_drink">添加飲品</button>
-            <button class="btn_f5">
+            <input
+              type="button"
+              value="添加飲品"
+              class="btn_back_drink"
+              onclick="location.href='./join_list.html'"
+            />
+            <div class="btn_f5">
               <img src="./Images/drink.svg" alt="" /> 重新整理
-            </button>
-            <button class="btn_cleckout">結帳</button>
+            </div>
+            <input
+              type="button"
+              value="結帳"
+              class="btn_cleckout"
+              onclick="location.href='./join_step3A.html'"
+            />
           </div>
         </div>
       </div>

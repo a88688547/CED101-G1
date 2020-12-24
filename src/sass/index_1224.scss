@@ -1,0 +1,48 @@
+// 導入共用基本
+@import "./base/base.scss";
+@import "./mixins/mixins.scss";
+
+//跟團喝
+@import "./index_joindrink.scss";
+
+//飲品排名
+@import "./index_vote.scss";
+
+//分享區
+@import "./index_atricle.scss";
+
+//關於揪飲
+@import "./index_brandstory.scss";
+
+//小遊戲
+@import "./index_game.scss";
+
+
+*{
+  color: $textColor;
+}
+
+header{
+  background-color: $mainBackgroundColor;
+}
+
+section.banner{
+  width: 100%;
+  height: 100vh;
+  background-color: $mainBackgroundColor;
+  position: relative;
+  
+  img{
+    position: absolute;
+    bottom: 0;
+  }
+}
+
+main{
+    max-width: 80%;
+    margin: 0 auto;
+    // border: 1px solid red;
+  }
+
+ 
+

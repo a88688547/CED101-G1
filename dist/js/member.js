@@ -1,6 +1,11 @@
 $(document).ready(function () {
     // 會員專區 左邊 點擊 分頁TAG
     $('.tag_big>li').click(function () {
+        let id = $(this).attr('id')
+
+        // 點擊 分頁TAG 連動改變 下拉選單的值
+        $('#tag_select').val(`${id}`)
+
         // 點擊 分頁TAG 切換 內容
         $('section').each(function () {
             $(this).css({
@@ -8,7 +13,7 @@ $(document).ready(function () {
             })
         })
 
-        let id = $(this).attr('id')
+        // let id = $(this).attr('id')
         $(`.${id}`).css({
             display: 'block',
         })
@@ -24,6 +29,30 @@ $(document).ready(function () {
             color: '#013B4F',
         })
     })
+    // 會員專區 -- 下拉選單 選擇 分頁tag 切換
+    $('#tag_select').change(function () {
+        $('section').each(function () {
+            $(this).css({
+                display: 'none',
+            })
+        })
+        let id = $(this).val()
+        $(`.${id}`).css({
+            display: 'block',
+        })
+        // 選擇 分頁tag 切換 透明度
+        $('.tag_big>li').each(function () {
+            $(this).css({
+                opacity: 0.6,
+                color: 'rgb(161, 161, 161)',
+            })
+        })
+        $(`#${id}`).css({
+            opacity: 1,
+            color: '#013B4F',
+        })
+    })
+
     // 揪團紀錄  --- 點擊 揪團類別 按鈕
     $('.group_type_box>div').click(function () {
         //切換 按鈕圖示

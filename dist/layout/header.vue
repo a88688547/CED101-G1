@@ -16,7 +16,7 @@ new Vue({
 
                 <div class="nav_list" id="header_nav">
                     <ul>
-                        <a href="./menu.html"><img src="./Images/drop-header.svg" alt="" />菜單</a>
+                        <a href="./menu_self.html"><img src="./Images/drop-header.svg" alt="" />菜單</a>
                         <a href="./join_list.html"><img src="./Images/drop-header.svg" alt="" />揪團喝</a>
                         <a href="./vote.html"><img src="./Images/drop-header.svg" alt="" />飲品排名</a>
                         <a href="./share_list.html"><img src="./Images/drop-header.svg" alt="" />分享區</a>

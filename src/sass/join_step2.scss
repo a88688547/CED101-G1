@@ -106,12 +106,12 @@ body {
       @include ls(3px);
     }
 
-    img {
+    .close_btn {
       width: 15px;
       position: absolute;
       color: $textColor;
       cursor: pointer;
-      // color: red;
+      
       right: 10px;
       top: 10px;
     }
@@ -582,7 +582,7 @@ body {
         margin-bottom: 30px;
       }
 
-      img {
+      .close_btn{
         width: 30px;
       }
 

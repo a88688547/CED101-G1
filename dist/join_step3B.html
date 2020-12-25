@@ -18,121 +18,103 @@
     </header>
     <div class="main">
         <!-- ==============進度條================= -->
-      <div class="step_box">
-        <ul class="step_ball">
-          <li></li>
-          <li></li>
-          <li class="on"></li>
-          <li></li>
-        </ul>
-        <ul class="step_text">
-          <li>1.建立揪團</li>
-          <li>2.完成開團</li>
-          <li class="on">3.結帳資訊</li>
-          <li>4.訂單明細</li>
-        </ul>
-      </div>
-      <!-- ==============進度條================= -->
-        <div class="rwdInfoDetail">
-            <div class="rwdmemImage"><img src="Images/user_big.svg"></div>
-            <div class="rwdorderInfo">
-                <h3 id="memName">小智</h3>
-            </div>
+        <div class="step_box">
+            <ul class="step_ball">
+                <li></li>
+                <li></li>
+                <li class="on"></li>
+                <li></li>
+            </ul>
+            <ul class="step_text">
+                <li>1.建立揪團</li>
+                <li>2.完成開團</li>
+                <li class="on">3.結帳資訊</li>
+                <li>4.訂單明細</li>
+            </ul>
         </div>
-        <div class="Info">
-            <div class="InfoDetail">
-                <div class="memImage"><img src="Images/user_big.svg"></div>
-                <div class="orderInfo">
-                    <div class="name">
-                        <h3 id="memName">小智</h3>
+        <!-- ==============進度條================= -->
+        <div class="info">
+            <div class="info_img"><img src="Images/user_big.svg"></div>
+            <div class="info_detail">
+                <div class="info_name">小智</div>
+                <div class="info_phone">
+                    <div class="info_phone_top">
+                        <div><img src="Images/tell_big.svg"></div>
+                        <div>行動電話</div>
                     </div>
-                    <div>
-                        <h3><img src="Images/tell_big.svg"><label>行動電話</label>
-                            <span id="memPhone">0912345678</span>
+                    <div class="info_phone_bottom">0912345678</div>
+                </div>
+                <div class="info_msg">
+                    <div class="info_msg_top">
+                        <div><img src="Images/list.svg"></div>
+                        <div>留言給店家</div>
                     </div>
-                    <div class="infomsg">
-                        <h3>
-                            <img src="Images/list.svg">
-                            <label>留言給店家</label>
-                        </h3>
-                        <div id="msg">
-                            <h3>麻煩提供吸管和袋子，謝謝</h3>
-                        </div>
-                    </div>
+                    <div class="info_msg_bottom">麻煩提供吸管和袋子，謝謝</div>
                 </div>
             </div>
+        </div>
+        <!-- 折扣區 -->
+        <div class="discount">
+            <div class="discountTop">
+                <div class="discountNo">
+                    <label>
+                        <h3>折扣代碼</h3>
+                    </label>
+                    <h3><span id="voucher_no">join999</span><span>已使用</span></h3>
+                </div>
+                <div class="gamelink"><a href="#"><img src="Images/gamelink.svg"></a></div>
+            </div>
+            <div class="discountBottom">
+                <div>
+                    <h3>商品<span>X</span><span>7</span></h3>
+                </div>
+                <div class="disTotal">
+                    <h3><span>小計</span><span>$.</span><span>400</span></h3>
+                </div>
+            </div>
+        </div>
+        <!-- 信用卡 -->
+        <div class="card">
+            <div class="cardimg">
+                <img src="Images/pay.svg">
+            </div>
+            <div class="cardinfo">
+                <div>
+                    <div>持卡人姓名</div>
+                    <div>小智</div>
+                </div>
+                <div>
+                    <div>卡號</div>
+                    <div>123456789***</div>
+                </div>
+                <div>
+                    <div>有效期限</div>
+                    <div>12月2021年</div>
+                </div>
+                <div>
+                    <div>安全碼</div>
+                    <div>123</div>
+                    <div class="cardimg_safeno"><img src="Images/creditcard.svg"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ListTotal">
+        <div class="payTotal">
+            <h2>應付金額</h2>
+        </div>
+        <div id="line">
             <hr>
-            <div class="discount">
-                <div class="discountTop">
-                    <div class="discountNo">
-                        <label>
-                            <h3>折扣代碼</h3>
-                        </label>
-                        <h3><span id="voucher_no">join999</span><span>已使用</span></h3>
-                    </div>
-                    <div class="gamelink"><a href="#"><img src="Images/gamelink.svg"></a></div>
-                </div>
-                <div class="discountBottom">
-                    <div>
-                        <h3>商品<span>X</span><span>7</span></h3>
-                    </div>
-                    <div class="disTotal">
-                        <h3><span>小計</span><span>$.</span><span>400</span></h3>
-                    </div>
-                </div>
-            </div>
-            <div>
-                <div class="payInfo">
-                    <img src="Images/pay.svg">
-                </div>
-                <div class="cardInfo -on">
-                    <div id="cardName"><label>
-                            <h3>持卡人姓名</h3>
-                        </label>
-                        <h3><span id="cardName">董董</span></h3>
-                    </div>
-                    <div id="cardNo"><label>
-                            <h3>卡號</h3>
-                        </label>
-                        <h3><span id="cardNo">1234</span><span>5678</span><span>9***</span></h3>
-                    </div>
-                    <div id="cardExp">
-                        <label>
-                            <h3>有效期限</h3>
-                        </label>
-                        <h3><span id="month">12</span></h3>
-                        <span>月</span>
-                        <h3><span id="year">2022</span></h3>
-                        <span>年</span>
-                    </div>
-                    <div id="cardSafeNo">
-                        <label>
-                            <h3>安全碼</h3>
-                        </label>
-                        <h3><span id="cardSafeNo">123</span></h3> <img src="Images/creditcard.svg">
-                    </div>
-
-                </div>
-                <hr>
-            </div>
-
         </div>
-
-        <div class="ListTotal">
-            <div class="payTotal">
-                <h2>應付金額</h2>
-            </div>
-            <div id="line">
-                <hr>
-            </div>
-            <div>
-                <h2><span>$.</span><span id="ordPrice">400</span></h2>
-            </div>
+        <div>
+            <h2><span>$.</span><span id="ordPrice">400</span></h2>
         </div>
-        <div class="orderbtn">
-            <div><a href="orderPaymentGroup.html">上一步</a></div>
-            <div class="nextStep"><a href="#">下一步</a></div>
-        </div>
+    </div>
+    <div class="orderbtn">
+        <div><a href="orderPaymentGroup.html">上一步</a></div>
+        <div class="nextStep"><a href="#">下一步</a></div>
+    </div>
 
     </div>
     <!-- 燈箱 -->
@@ -329,9 +311,7 @@
                 }, 1000);
             });
 
-            $(".payInfo").on("click", function () {
-                $(".cardInfo").toggleClass("-on");
-            });
+
         });
     </script>
 </body>

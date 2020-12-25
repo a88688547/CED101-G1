@@ -30,9 +30,15 @@ header{
 }
 
 main{
-    max-width: 80%;
+    max-width: 1200px;
+    width: 80%;
     margin: 0 auto;
     // border: 1px solid red;
   }
+@media (max-width:768px){
+  main{
+    width: 90%;
+  }
+}
 
  

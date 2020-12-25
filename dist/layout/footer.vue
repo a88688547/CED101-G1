@@ -15,7 +15,7 @@ new Vue({
                             <li><a href="./join_list.html">揪團喝</a></li>
                             <li><a href="./vote.html">飲品排名</a></li>
                             <li><a href="./share_list.html">分享區</a></li>
-                            <li><a href="./game.html">小遊戲</a></li>
+                            <li><a href="./custom.html">小遊戲</a></li>
                             <li><a href="#">關於揪飲</a></li>
                         </ul>
                     </div>

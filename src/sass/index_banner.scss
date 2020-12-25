@@ -1,3 +1,7 @@
+// 導入共用基本
+@import "./base/base.scss";
+@import "./mixins/mixins.scss";
+
 body{
     width:100%;
     margin:0;

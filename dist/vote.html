@@ -1,247 +1,238 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>飲料排行</title>
-    <script src="./vendors/Vue/vue.js"></script>
-    <link rel="stylesheet" href="./css/style.css" />
-    <link rel="stylesheet" href="./css/group_menu.css" />
-    <link rel="stylesheet" href="./css/vote.css" />
-  </head>
 
-  <body>
-    <header id="header"><my-header></my-header></header>
-    <section>
-      <div class="vote-top">
-        <h2>本周飲品排行</h2>
-        <h4>
-          <img src="./Images/Drop-3.svg" alt="icon" />
-          每週投下你神聖的一票，有機會讓您喜歡的飲品成為下週折扣品項!
-        </h4>
-      </div>
-      <div class="vote-bot">
-        <div class="vote-wrap">
-          <div class="vote-title">
-            <h2>奶 類 Mike Tea</h2>
-          </div>
-          <div class="vote-first">
-            <div class="first-rank">上周第一</div>
-            <div class="first-pic"></div>
-            <div class="first-txt">
-              <div class="first-title">台 1 8 號 紅 茶</div>
-              <div class="first-votes">
-                <img src="./Images/vote_big.svg" alt="votes" />
-                總票數 |
-                <div class="votes">520</div>
-              </div>
-            </div>
-          </div>
-          <div class="vote-second">
-            <div class="vote-second-item">
-              <div class="second-rank">上周第二</div>
-              <div class="second-pic"></div>
-              <div class="second-txt">
-                <div class="second-title">台 1 8 號 紅 茶</div>
-                <div class="second-votes">
-                  <img src="./Images/vote_big.svg" alt="votes" />
-                  總票數 |
-                  <div class="votes">520</div>
-                </div>
-              </div>
-            </div>
-            <div class="vote-second-item">
-              <div class="second-rank">上周第三</div>
-              <div class="second-pic"></div>
-              <div class="second-txt">
-                <div class="second-title">台 1 8 號 紅 茶</div>
-                <div class="second-votes">
-                  <img src="./Images/vote_big.svg" alt="votes" />
-                  總票數 |
-                  <div class="votes">520</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="vote-button">
-            <button class="voteLightboxBtn">
-              <img src="./Images/vote_big.svg" alt="votes" /> 投票去
-            </button>
-          </div>
-        </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>飲料排行</title>
+  <script src="./vendors/Vue/vue.js"></script>
+  <link rel="stylesheet" href="./css/style.css" />
+  <link rel="stylesheet" href="./css/group_menu.css" />
+  <link rel="stylesheet" href="./css/vote.css" />
+  <script src="./vendors/jQuery/js/jquery-3.5.1.js"></script>
+  <script src="./js/header_footer.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+    crossorigin="anonymous" />
+  <script src="./js/vote.js"></script>
+</head>
 
-        <div class="vote-wrap">
-          <div class="vote-title">
-            <h2>果茶類 Fruit</h2>
+<body>
+  <header id="header">
+    <my-header></my-header>
+  </header>
+  <section>
+    <div class="vote-top">
+      <h2>本周飲品排行</h2>
+      <h4>
+        <img src="./Images/Drop-3.svg" alt="icon" />
+        每週投下你神聖的一票，有機會讓您喜歡的飲品成為下週折扣品項!
+      </h4>
+    </div>
+    <div class="vote-bot">
+      <div class="vote-wrap">
+        <div class="vote-title">
+          <h2>奶 類 Mike Tea</h2>
+        </div>
+        <div class="vote-first">
+          <div class="first-rank">上周第一</div>
+          <div class="first-pic"></div>
+          <div class="first-txt">
+            <div class="first-title">台 1 8 號 紅 茶</div>
+            <div class="first-votes">
+              <img src="./Images/vote_big.svg" alt="votes" />
+              總票數 |
+              <div class="votes">520</div>
+            </div>
           </div>
-          <div class="vote-first">
-            <div class="first-rank">上周第一</div>
-            <div class="first-pic"></div>
-            <div class="first-txt">
-              <div class="first-title">台 1 8 號 紅 茶</div>
-              <div class="first-votes">
+        </div>
+        <div class="vote-second">
+          <div class="vote-second-item">
+            <div class="second-rank">上周第二</div>
+            <div class="second-pic"></div>
+            <div class="second-txt">
+              <div class="second-title">台 1 8 號 紅 茶</div>
+              <div class="second-votes">
                 <img src="./Images/vote_big.svg" alt="votes" />
                 總票數 |
                 <div class="votes">520</div>
               </div>
             </div>
           </div>
-          <div class="vote-second">
-            <div class="vote-second-item">
-              <div class="second-rank">上周第二</div>
-              <div class="second-pic"></div>
-              <div class="second-txt">
-                <div class="second-title">台 1 8 號 紅 茶</div>
-                <div class="second-votes">
-                  <img src="./Images/vote_big.svg" alt="votes" />
-                  總票數 |
-                  <div class="votes">520</div>
-                </div>
-              </div>
-            </div>
-            <div class="vote-second-item">
-              <div class="second-rank">上周第三</div>
-              <div class="second-pic"></div>
-              <div class="second-txt">
-                <div class="second-title">台 1 8 號 紅 茶</div>
-                <div class="second-votes">
-                  <img src="./Images/vote_big.svg" alt="votes" />
-                  總票數 |
-                  <div class="votes">520</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="vote-button">
-            <button class="voteLightboxBtn">
-              <img src="./Images/vote_big.svg" alt="votes" /> 投票去
-            </button>
-          </div>
-        </div>
-        <div class="vote-wrap">
-          <div class="vote-title">
-            <h2>茶類 Tea</h2>
-          </div>
-          <div class="vote-first">
-            <div class="first-rank">上周第一</div>
-            <div class="first-pic"></div>
-            <div class="first-txt">
-              <div class="first-title">台 1 8 號 紅 茶</div>
-              <div class="first-votes">
+          <div class="vote-second-item">
+            <div class="second-rank">上周第三</div>
+            <div class="second-pic"></div>
+            <div class="second-txt">
+              <div class="second-title">台 1 8 號 紅 茶</div>
+              <div class="second-votes">
                 <img src="./Images/vote_big.svg" alt="votes" />
                 總票數 |
                 <div class="votes">520</div>
               </div>
             </div>
           </div>
-          <div class="vote-second">
-            <div class="vote-second-item">
-              <div class="second-rank">上周第二</div>
-              <div class="second-pic"></div>
-              <div class="second-txt">
-                <div class="second-title">台 1 8 號 紅 茶</div>
-                <div class="second-votes">
-                  <img src="./Images/vote_big.svg" alt="votes" />
-                  總票數 |
-                  <div class="votes">520</div>
-                </div>
-              </div>
-            </div>
-            <div class="vote-second-item">
-              <div class="second-rank">上周第三</div>
-              <div class="second-pic"></div>
-              <div class="second-txt">
-                <div class="second-title">台 1 8 號 紅 茶</div>
-                <div class="second-votes">
-                  <img src="./Images/vote_big.svg" alt="votes" />
-                  總票數 |
-                  <div class="votes">520</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="vote-button">
-            <button class="voteLightboxBtn">
-              <img src="./Images/vote_big.svg" alt="votes" /> 投票去
-            </button>
-          </div>
         </div>
-        <form action="" class="voteLightbox-wrap">
-          <div class="voting">
-            <div class="pic"></div>
-            <div class="voting-txt">
-              <div class="voting-title">
-                <h2>本周茶類飲品票選</h2>
-                <small>點選您最喜歡的茶類飲品並送出投票</small>
-              </div>
-              <div class="voting-btn">
-                <input
-                  type="radio"
-                  name="milkTea"
-                  class="milkTea"
-                  id="milkTea"
-                />
-                <label for="milkTea" class="vote-radio"
-                  ><div class="radiobtn"></div>
-                  <div class="btn-txt">珍珠奶茶</div>
-                  <small>0</small>
-                </label>
-                <input
-                  type="radio"
-                  name="milkTea"
-                  id="milkTea1"
-                  class="milkTea"
-                />
-                <label for="milkTea1" class="vote-radio"
-                  ><div class="radiobtn"></div>
-                  <div class="btn-txt">奶茶珍珠</div>
-                  <small>0</small>
-                </label>
-                <input
-                  type="radio"
-                  name="milkTea"
-                  id="milkTea2"
-                  class="milkTea"
-                />
-                <label for="milkTea2" class="vote-radio"
-                  ><div class="radiobtn"></div>
-                  <div class="btn-txt">珍奶</div>
-                  <small>0</small>
-                </label>
-                <input
-                  type="radio"
-                  name="milkTea"
-                  id="milkTea3"
-                  class="milkTea"
-                />
-                <label for="milkTea3" class="vote-radio"
-                  ><div class="radiobtn"></div>
-                  <div class="btn-txt">奶茶</div>
-                  <small>0</small>
-                </label>
-              </div>
-              <div class="vote-sub">
-                <button type="submit" class="submit">送出投票</button>
-              </div>
-            </div>
-            <div class="voting-ok">
-              <h2>投票成功</h2>
-              <p>你最愛的"碧螺春"本週目前票數為:</p>
-              <div class="vote-count">
-                <img src="./Images/vote_big.svg" alt="votes" />
-                39票
-              </div>
-            </div>
-            <div class="vote-close">
-              <img src="./Images/cancel.svg" alt="cancel" />
-            </div>
-          </div>
-        </form>
+        <div class="vote-button">
+          <button class="voteLightboxBtn">
+            <img src="./Images/vote_big.svg" alt="votes" /> 投票去
+          </button>
+        </div>
       </div>
-    </section>
-    <script src="./js/vote.js"></script>
-    <footer id="footer"><my-footer></my-footer></footer>
-    <script src="./layout/header.vue"></script>
-    <script src="./layout/footer.vue"></script>
-  </body>
+
+      <div class="vote-wrap">
+        <div class="vote-title">
+          <h2>果茶類 Fruit</h2>
+        </div>
+        <div class="vote-first">
+          <div class="first-rank">上周第一</div>
+          <div class="first-pic"></div>
+          <div class="first-txt">
+            <div class="first-title">台 1 8 號 紅 茶</div>
+            <div class="first-votes">
+              <img src="./Images/vote_big.svg" alt="votes" />
+              總票數 |
+              <div class="votes">520</div>
+            </div>
+          </div>
+        </div>
+        <div class="vote-second">
+          <div class="vote-second-item">
+            <div class="second-rank">上周第二</div>
+            <div class="second-pic"></div>
+            <div class="second-txt">
+              <div class="second-title">台 1 8 號 紅 茶</div>
+              <div class="second-votes">
+                <img src="./Images/vote_big.svg" alt="votes" />
+                總票數 |
+                <div class="votes">520</div>
+              </div>
+            </div>
+          </div>
+          <div class="vote-second-item">
+            <div class="second-rank">上周第三</div>
+            <div class="second-pic"></div>
+            <div class="second-txt">
+              <div class="second-title">台 1 8 號 紅 茶</div>
+              <div class="second-votes">
+                <img src="./Images/vote_big.svg" alt="votes" />
+                總票數 |
+                <div class="votes">520</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="vote-button">
+          <button class="voteLightboxBtn">
+            <img src="./Images/vote_big.svg" alt="votes" /> 投票去
+          </button>
+        </div>
+      </div>
+      <div class="vote-wrap">
+        <div class="vote-title">
+          <h2>茶類 Tea</h2>
+        </div>
+        <div class="vote-first">
+          <div class="first-rank">上周第一</div>
+          <div class="first-pic"></div>
+          <div class="first-txt">
+            <div class="first-title">台 1 8 號 紅 茶</div>
+            <div class="first-votes">
+              <img src="./Images/vote_big.svg" alt="votes" />
+              總票數 |
+              <div class="votes">520</div>
+            </div>
+          </div>
+        </div>
+        <div class="vote-second">
+          <div class="vote-second-item">
+            <div class="second-rank">上周第二</div>
+            <div class="second-pic"></div>
+            <div class="second-txt">
+              <div class="second-title">台 1 8 號 紅 茶</div>
+              <div class="second-votes">
+                <img src="./Images/vote_big.svg" alt="votes" />
+                總票數 |
+                <div class="votes">520</div>
+              </div>
+            </div>
+          </div>
+          <div class="vote-second-item">
+            <div class="second-rank">上周第三</div>
+            <div class="second-pic"></div>
+            <div class="second-txt">
+              <div class="second-title">台 1 8 號 紅 茶</div>
+              <div class="second-votes">
+                <img src="./Images/vote_big.svg" alt="votes" />
+                總票數 |
+                <div class="votes">520</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="vote-button">
+          <button class="voteLightboxBtn">
+            <img src="./Images/vote_big.svg" alt="votes" /> 投票去
+          </button>
+        </div>
+      </div>
+      <form action="" class="voteLightbox-wrap">
+        <div class="voting">
+          <div class="pic"></div>
+          <div class="voting-txt">
+            <div class="voting-title">
+              <h2>本周茶類飲品票選</h2>
+              <small>點選您最喜歡的茶類飲品並送出投票</small>
+            </div>
+            <div class="voting-btn">
+              <input type="radio" name="milkTea" class="milkTea" id="milkTea" />
+              <label for="milkTea" class="vote-radio">
+                <div class="radiobtn"></div>
+                <div class="btn-txt">珍珠奶茶</div>
+                <small>0</small>
+              </label>
+              <input type="radio" name="milkTea" id="milkTea1" class="milkTea" />
+              <label for="milkTea1" class="vote-radio">
+                <div class="radiobtn"></div>
+                <div class="btn-txt">奶茶珍珠</div>
+                <small>0</small>
+              </label>
+              <input type="radio" name="milkTea" id="milkTea2" class="milkTea" />
+              <label for="milkTea2" class="vote-radio">
+                <div class="radiobtn"></div>
+                <div class="btn-txt">珍奶</div>
+                <small>0</small>
+              </label>
+              <input type="radio" name="milkTea" id="milkTea3" class="milkTea" />
+              <label for="milkTea3" class="vote-radio">
+                <div class="radiobtn"></div>
+                <div class="btn-txt">奶茶</div>
+                <small>0</small>
+              </label>
+            </div>
+            <div class="vote-sub">
+              <button type="submit" class="submit">送出投票</button>
+            </div>
+          </div>
+          <div class="voting-ok">
+            <h2>投票成功</h2>
+            <p>你最愛的"碧螺春"本週目前票數為:</p>
+            <div class="vote-count">
+              <img src="./Images/vote_big.svg" alt="votes" />
+              39票
+            </div>
+          </div>
+          <div class="vote-close">
+            <img src="./Images/cancel.svg" alt="cancel" />
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+  <footer id="footer">
+    <my-footer></my-footer>
+  </footer>
+  <script src="./layout/header.vue"></script>
+  <script src="./layout/footer.vue"></script>
+</body>
+
 </html>

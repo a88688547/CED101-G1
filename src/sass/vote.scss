@@ -11,6 +11,7 @@ body {
     box-sizing: border-box;
     overflow-x: hidden;
 }
+
 section {
     width: 100%;
     display: flex;
@@ -77,6 +78,7 @@ section {
         display: flex;
         justify-content: center;
         padding: 15px;
+
         @media screen and (max-width: $mq1199) {
             width: 100%;
         }
@@ -98,9 +100,11 @@ section {
             margin-bottom: 100px;
             margin-right: 30px;
             position: relative;
+
             &:nth-child(3) {
                 margin-right: 0px;
             }
+
             .votes {
                 display: inline-block;
             }
@@ -145,7 +149,7 @@ section {
                     margin: 30px;
 
                     .first-title {
-                        font-size: $fontsize_H2;
+                        font-size: 32px;
                         font-weight: bold;
                         margin-bottom: 15px;
                     }
@@ -243,9 +247,14 @@ section {
                     font-size: $fontsize_H4;
                     padding: 5px 10px;
                     cursor: pointer;
+                    transition: .5s ease-in-out;
 
                     &:focus {
                         outline: none;
+                    }
+
+                    &:hover {
+                        background-color: #aaa;
                     }
 
                     img {
@@ -261,6 +270,7 @@ section {
             @media screen and (max-width: $mq991) {
                 width: 720px;
                 padding: 0 15px;
+
                 &:nth-child(1),
                 &:nth-child(2) {
                     margin-right: 0px;
@@ -276,6 +286,7 @@ section {
                 width: 100%;
                 padding: 15px;
                 margin-right: 0px;
+
                 .vote-first {
                     margin-bottom: 15px;
 
@@ -288,7 +299,7 @@ section {
                     .first-txt {
                         .first-title {
                             margin-bottom: 15px;
-                            font-size: $fontsize_H3;
+                            font-size: 32px;
                         }
 
                         .first-votes {
@@ -317,6 +328,7 @@ section {
                         &:last-child {
                             margin-right: 0px;
                         }
+
                         .second-pic {
                             background-color: #aaa;
                             width: 100%;
@@ -327,6 +339,7 @@ section {
                             margin: 15px;
 
                             .second-title {
+                                font-size: 1.6rem;
                                 margin-bottom: 15px;
                             }
 
@@ -357,61 +370,73 @@ section {
     justify-content: center;
     align-items: center;
     background-color: rgba(204, 204, 204, 0.5);
+    z-index: 100;
+
     .voting {
         position: relative;
-        width: 500px;
+        width: 350px;
         background-color: #fff;
         border-radius: 20px;
         overflow: hidden;
         box-shadow: 3px 3px 4px 2px rgba($color: #000000, $alpha: 0.2);
+
         @media screen and(max-width:$mq575) {
-            width: 320px;
+            width: 300px;
         }
+
         .vote-close {
             position: absolute;
             top: 15px;
             right: 15px;
             cursor: pointer;
+
             img {
                 width: 25px;
             }
         }
+
         .pic {
             width: 100%;
             height: 200px;
             background-color: #ccc;
         }
+
         .voting-txt {
-            padding: 30px;
-            margin-top: 15px;
+            padding: 15px;
+
             .voting-title {
                 h2 {
-                    font-size: $fontsize_H2;
+                    font-size: 32px;
                     font-weight: bold;
                     margin-bottom: 15px;
                 }
+
                 small {
                     font-size: $fontsize_H5;
                     color: #000;
                 }
+
                 @media screen and(max-width:$mq575) {
                     h2 {
-                        font-size: $fontsize_H3;
+                        font-size: 2rem;
                     }
+
                     small {
-                        font-size: $fontsize_H6;
+                        font-size: 1.6rem;
                     }
                 }
             }
+
             .voting-btn {
-                margin-top: 60px;
-                margin-bottom: 30px;
+                margin-top: 15px;
                 display: flex;
                 flex-wrap: wrap;
                 justify-content: space-between;
+
                 .milkTea {
                     display: none;
                 }
+
                 label {
                     position: relative;
                     cursor: pointer;
@@ -425,9 +450,12 @@ section {
                     align-items: center;
                     color: #fff;
                     transition: 0.5s ease-in-out;
+
                     @media screen and(max-width:$mq575) {
                         width: 120px;
+                        font-size: 1rem;
                     }
+
                     .radiobtn {
                         width: 25px;
                         height: 25px;
@@ -436,6 +464,7 @@ section {
                         margin-right: 5px;
                         transition: 0.5s ease-in-out;
                     }
+
                     small {
                         position: absolute;
                         top: 50%;
@@ -444,8 +473,10 @@ section {
                     }
                 }
             }
+
             .vote-sub {
                 text-align: center;
+
                 button {
                     font-size: $fontsize_H6;
                     border-radius: 5px;
@@ -453,22 +484,36 @@ section {
                     color: #fff;
                     border: none;
                     padding: 10px 20px;
+                    transition: .3s ease-in-out;
+
+                    &:hover {
+                        background-color: #aaa;
+                    }
+
+                    &:focus {
+                        border: none;
+                        outline: none;
+                    }
                 }
             }
 
-            input[type="radio"]:checked + label {
+            input[type="radio"]:checked+label {
                 background-color: $textColor;
                 padding: 5px 10px;
                 transition: 0.5s ease-in-out;
+
                 .radiobtn {
                     transform: translateX(360%);
                 }
+
                 small {
                     right: 32px;
                 }
+
                 .btn-txt {
                     position: absolute;
                 }
+
                 @media screen and(max-width:$mq575) {
                     .radiobtn {
                         transform: translateX(320%);
@@ -477,25 +522,51 @@ section {
             }
         }
     }
+
     .voting-ok {
         display: none;
         text-align: center;
-        padding: 30px;
+        padding: 15px;
+
         h2 {
-            font-size: $fontsize_H2;
+            font-size: 32px;
             font-weight: bold;
-            margin-top: 15px;
-            margin-bottom: 30px;
-        }
-        p {
-            font-size: $fontsize_H5;
-            margin-bottom: 30px;
-        }
-        .vote-count {
-            font-size: $fontsize_H2;
+            margin-top: 0px;
             margin-bottom: 15px;
+        }
+
+        p {
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+        }
+
+        .vote-count {
+            font-size: $fontsize_H3;
+            margin-bottom: 15px;
+
             img {
-                width: 45px;
+                width: 30px;
+            }
+        }
+
+        @media screen and(max-width:$mq575) {
+            h2 {
+                font-size: 2rem;
+                font-weight: bold;
+                // margin-top: 0px;
+            }
+
+            p {
+                font-size: 1.6rem;
+            }
+
+            .vote-count {
+                font-size: $fontsize_H3;
+                margin-bottom: 0px;
+
+                img {
+                    width: 30px;
+                }
             }
         }
     }

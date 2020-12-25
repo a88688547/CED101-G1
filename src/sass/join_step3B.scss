@@ -516,9 +516,10 @@ h5{
  }
 }
 .sendbtn{
+    // border: 1px solid red;
  text-align: center;
  margin-bottom: 40px;
- button{
+ input[type="button"]{
      background-color: $textColor;
      color:#fff;
      width: 120px;

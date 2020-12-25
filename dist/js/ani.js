@@ -1,0 +1,25 @@
+$(document).ready(function () {
+    TweenMax.to(".cheersleft", 0.8, { x: "320px", y: "-30px", rotation: 20, ease: "circ.out" });
+    TweenMax.to(".cheersleft", 0.1, { opacity: 0, delay: 0.8 });
+    TweenMax.to(".cheersright", 0.8, { x: "-320px", y: "-50px", rotation: -20, ease: "circ.out" });
+    TweenMax.to(".cheersright", 0.1, { opacity: 0, delay: 0.8 });
+    TweenMax.to(".box_top", 1, { height: 0, borderRadius: "0, 0, 50%, 50%", ease: "circ.out", delay: 0.8 });
+    TweenMax.to(".blacktea", 1.5, { x: "-100px", y: "50px", width: "600px", ease: "circ.out", delay: 0.8 });
+    TweenMax.to(".bubble", 1.5, { x: "250px", y: "200px", width: "850px", ease: "circ.out", delay: 0.8 });
+    TweenMax.to(".juice", 1.5, { opacity: 1, y: 0, delay: 1.3 });
+    TweenMax.to(".orange", 1, { scale: 1, x: "-680px", y: "10px", ease: "circ.out", delay: 1 }, { translateY: "80px", repeat: -1, yoyo: true, delay: 4.5 });
+    // TweenMax.to(".orange", 2, { Y: "80px", ease: "back.out(1.7)", delay: 2.5, repeat: -1, yoyo: true });
+    TweenMax.to(".sliced_orange", 1, { scale: 1, x: "250px", y: "220px", ease: "circ.out", delay: 1 });
+    // TweenMax.to(".sliced_orange", 2, { Y: "80px", ease: "back.out(1.7)", delay: 2.5, repeat: -1, yoyo: true });
+    TweenMax.to(".strawberry", 1, { scale: 1, x: "-250px", y: "-80px", ease: "circ.out", delay: 1 });
+    // TweenMax.to(".strawberry", 2, { Y: "80px", ease: "back.out(1.7)", delay: 2.5, repeat: -1, yoyo: true });
+    TweenMax.to(".sliced_strawberry", 1, { scale: 1, x: "100px", y: "-20px", ease: "circ.out", delay: 1 });
+    TweenMax.to(".sliced_lemon", 1, { scale: 1, x: "-100px", y: "350px", ease: "circ.out", delay: 1 });
+    TweenMax.to(".leaf1", 1, { scale: 1, x: "350px", y: "350px", ease: "circ.out", delay: 1 });
+    TweenMax.to(".leaf2", 1, { scale: 1, x: "-450px", y: "300px", ease: "circ.out", delay: 1 });
+    TweenMax.to(".leaf3", 1, { scale: 1, x: "-620px", y: "-180px", ease: "circ.out", delay: 1 });
+    TweenMax.to(".leaf4", 1, { scale: 1, x: "850px", y: "-30px", ease: "circ.out", delay: 1 });
+    // TweenMax.to(".orange", 2, { y: "80px", ease: "back.out(1.7)", delay: 0.5, repeat: -1, yoyo: true, delay: 2.2 });
+    // TweenMax.to(".sliced_orange", 2, { y: "20px", ease: "back.out(1.7)", delay: 0.5, repeat: -1, yoyo: true, delay: 2.2 });
+    TweenMax.to(".content", 1.5, { x: "350px", y: "80px", ease: "power2.in", delay: 0.8 });
+});

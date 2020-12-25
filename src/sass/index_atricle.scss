@@ -126,7 +126,6 @@
 
                 img{
                     max-width: 100%;
-                    
                 }
 
                 .text_block{
@@ -135,18 +134,16 @@
 
                     img.user{
                         width: 20%;
-                        min-width: 46px;
-
                     }
     
                     .user_info_block{
                         // border: 1px solid blue;
                         display: flex;
                         flex-direction: column;
-                        width: 100%;
+                        width: 80%;
     
                         p.article_time{
-                            // display: none;
+                            display: none;
                             @include P2;
                             text-align: right;
                         }
@@ -227,7 +224,7 @@
     }
 }
 // rwd區域-------------------------------------------------
-@media  (max-width: 1199px){
+@media (min-width: 992px) and (max-width: 1199px){
 
     .article{
 
@@ -252,7 +249,7 @@
 
 }
 
-@media  (max-width: 991px){
+@media (min-width: 576px) and (max-width: 991px){
 
     .article{
         
@@ -270,7 +267,6 @@
                     img{
                         width: 26%;
                         margin-right: 10px;
-
                     }
 
                     .user_info_block{

@@ -10,9 +10,6 @@ $mq1199: 1199px;
 
 body {
     background: $insideBackgroundColor;
-    display: flex;
-    justify-content: center;
-    box-sizing: border-box;
 }
 
 .lightbox {
@@ -24,6 +21,7 @@ body {
     justify-content: center;
     align-items: center;
     display: none;
+    // z-index: 10;
 
     .lightbox-wrap {
         position: relative;
@@ -33,7 +31,7 @@ body {
         padding: 15px;
         border-radius: 15px;
 
-        .close {
+        .game-close {
             position: absolute;
             top: 15px;
             right: 15px;
@@ -93,12 +91,13 @@ body {
 }
 
 main {
-    width: 1200px;
+    width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    position: relative;
 
     .title {
         position: relative;
@@ -107,7 +106,7 @@ main {
         h3 {
             position: absolute;
             top: 50%;
-            left: 0;
+            left: 30px;
             transform: translateY(-50%);
 
             a {
@@ -184,7 +183,7 @@ main {
 
 .playBtn {
     position: absolute;
-    color: burlywood;
+    color: rgb(146, 15, 15);
     font-size: 4rem;
     z-index: 2;
     top: 50%;
@@ -196,7 +195,7 @@ main {
 
 .gameover {
     position: absolute;
-    color: burlywood;
+    color: rgb(146, 15, 15);
     font-size: 4rem;
     z-index: 2;
     top: 50%;

@@ -1,191 +1,139 @@
 <!DOCTYPE html>
 <html lang="zh-tw">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>揪團訂-訂單頁面</title>
-    <link rel="stylesheet" href="./css/join_step3A.css" />
-    <link rel="stylesheet" href="./css/style.css" />
-    <script src="vendors/Vue/vue.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  </head>
 
-  <body>
-    <header id="header">
-      <my-header></my-header>
-    </header>
-    <div class="main">
-      <!-- ==============進度條================= -->
-      <div class="step_box">
-        <ul class="step_ball">
-          <li></li>
-          <li></li>
-          <li class="on"></li>
-          <li></li>
-        </ul>
-        <ul class="step_text">
-          <li>1.建立揪團</li>
-          <li>2.完成開團</li>
-          <li class="on">3.結帳資訊</li>
-          <li>4.訂單明細</li>
-        </ul>
-      </div>
-      <!-- ==============進度條================= -->
-      <!-- rwd使用 -->
-      <div class="rwdInfoDetail">
-        <div class="rwdmemImage"><img src="Images/user_big.svg" /></div>
-        <div class="rwdorderInfo">
-          <h3 id="memName">小智</h3>
-        </div>
-      </div>
-      <!-- 網頁ver使用 -->
-      <div class="Info">
-        <div class="InfoDetail">
-          <div class="memImage"><img src="Images/user_big.svg" /></div>
-          <div class="orderInfo">
-            <div class="name">
-              <h3 id="memName">小智</h3>
-            </div>
-            <div>
-              <h3>
-                <img src="Images/tell_big.svg" />
-                <label>行動電話</label>
-                <input type="text" id="memPhone" />
-              </h3>
-            </div>
-            <div>
-              <h3>
-                <img src="Images/list.svg" /><label>留言給店家</label>
-                <input type="text" id="msg" placeholder="留言給店家" />
-              </h3>
-            </div>
-          </div>
-        </div>
-        <hr />
-        <div class="discount">
-          <div class="discountTop">
-            <div class="discountNo">
-              <label>
-                <h3>折扣代碼</h3>
-              </label>
-              <select>
-                <option>查看優惠內容</option>
-                <option>join999</option>
-                <option>letsjoin</option>
-                <option>99discount</option>
-              </select>
-            </div>
-            <div class="gamelink">
-              <a href="#"><img src="Images/gamelink.svg" /></a>
-            </div>
-          </div>
-          <div class="discountBottom">
-            <div>
-              <h3>商品X<span>7</span></h3>
-            </div>
-            <div class="disTotal">
-              <h3>小計$.<span>400</span></h3>
-            </div>
-          </div>
-        </div>
-        <div>
-          <div class="payInfo">
-            <img src="Images/pay.svg" />
-          </div>
-          <div class="cardInfo">
-            <div id="cardName">
-              <label>
-                <h3>持卡人姓名</h3>
-              </label>
-              <input type="text" />
-            </div>
-            <div id="cardNo">
-              <label>
-                <h3>卡號</h3>
-              </label>
-              <input
-                type="text"
-                maxlength="4"
-                oninput="value=value.replace(/[^\d]/g,'')"
-              />
-              <input
-                type="text"
-                maxlength="4"
-                oninput="value=value.replace(/[^\d]/g,'')"
-              />
-              <input
-                type="text"
-                maxlength="4"
-                oninput="value=value.replace(/[^\d]/g,'')"
-              />
-              <input
-                type="text"
-                maxlength="4"
-                oninput="value=value.replace(/[^\d]/g,'')"
-              />
-            </div>
-            <div id="cardExp">
-              <label>
-                <h3>有效期限</h3>
-              </label>
-              <input
-                type="text"
-                maxlength="2"
-                oninput="value=value.replace(/[^\d]/g,'')"
-              />
-              <span>月</span>
-              <input
-                type="text"
-                maxlength="4"
-                oninput="value=value.replace(/[^\d]/g,'')"
-              />
-              <span>年</span>
-            </div>
-            <div id="cardSafeNo">
-              <label>
-                <h3>安全碼</h3>
-              </label>
-              <input
-                type="text"
-                maxlength="3"
-                oninput="value=value.replace(/[^\d]/g,'')"
-              />
-              <img src="Images/creditcard.svg" />
-            </div>
-          </div>
-          <hr />
-        </div>
-      </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>揪團訂-訂單頁面</title>
+  <link rel="stylesheet" href="./css/join_step3A.css" />
+  <link rel="stylesheet" href="./css/style.css" />
+  <script src="vendors/Vue/vue.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
 
-      <div class="ListTotal">
-        <div class="payTotal">
-          <h2>應付金額</h2>
+<body>
+  <header id="header">
+    <my-header></my-header>
+  </header>
+  <div class="main">
+    <!-- ==============進度條================= -->
+    <div class="step_box">
+      <ul class="step_ball">
+        <li></li>
+        <li></li>
+        <li class="on"></li>
+        <li></li>
+      </ul>
+      <ul class="step_text">
+        <li>1.建立揪團</li>
+        <li>2.完成開團</li>
+        <li class="on">3.結帳資訊</li>
+        <li>4.訂單明細</li>
+      </ul>
+    </div>
+    <!-- ==============進度條================= -->
+    <!-- 個人資訊 -->
+    <div class="info">
+      <div class="info_img"><img src="Images/user_big.svg"></div>
+      <div class="info_detail">
+        <div class="info_name">小智</div>
+        <div class="info_phone">
+          <div class="info_phone_top">
+            <div><img src="Images/tell_big.svg"></div>
+            <div>行動電話</div>
+          </div>
+          <div class="info_phone_bottom"><input type="text"></div>
         </div>
-        <div id="line">
-          <hr />
+        <div class="info_msg">
+          <div class="info_msg_top">
+            <div><img src="Images/list.svg"></div>
+            <div>留言給店家</div>
+          </div>
+          <div class="info_msg_bottom"><input type="text"></div>
         </div>
-        <div>
-          <h2>$.<span id="ordPrice">400</span></h2>
-        </div>
-      </div>
-      <div class="orderbtn">
-        <div><a href="">上一步</a></div>
-        <div class="nextStep"><a href="join_step3B.html">下一步</a></div>
       </div>
     </div>
+    <hr />
+    <!-- 折扣 -->
+    <div class="discount">
+      <div class="discountTop">
+        <div class="discountNo">
+          <label>
+            <h3>折扣代碼</h3>
+          </label>
+          <select>
+            <option>查看優惠內容</option>
+            <option>join999</option>
+            <option>letsjoin</option>
+            <option>99discount</option>
+          </select>
+        </div>
+        <div class="gamelink">
+          <a href="#"><img src="Images/gamelink.svg" /></a>
+        </div>
+      </div>
+      <div class="discountBottom">
+        <div>
+          <h3>商品X<span>7</span></h3>
+        </div>
+        <div class="disTotal">
+          <h3>小計$.<span>400</span></h3>
+        </div>
+      </div>
+    </div>
+    <!-- 信用卡 -->
+    <div class="card">
+      <div class="cardimg">
+        <img src="Images/pay.svg">
+      </div>
+      <div class="cardinfo">
+        <div class="cardname">
+          <div>持卡人姓名</div>
+          <div><input type="text"></div>
+        </div>
+        <div class="cardno">
+          <div>卡號</div>
+          <div><input type="text"><input type="text"><input type="text"><input type="text"></div>
+        </div>
+        <div class="exp">
+          <div>有效期限</div>
+          <div class="exp_bottom"><input type="text">月<input type="text">年</div>
+        </div>
+        <div class="safeno">
+          <div>安全碼</div>
+          <div>
+            <div><input type="text"></div>
+            <div><img src="Images/creditcard.svg"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 金額 -->
 
-    <footer id="footer">
-      <my-footer></my-footer>
-    </footer>
+    <div class="ListTotal">
+      <div class="payTotal">
+        <h2>應付金額</h2>
+      </div>
+      <div id="line">
+        <hr />
+      </div>
+      <div>
+        <h2>$.<span id="ordPrice">400</span></h2>
+      </div>
+    </div>
+    <div class="orderbtn">
+      <div><a href="">上一步</a></div>
+      <div class="nextStep"><a href="join_step3B.html">下一步</a></div>
+    </div>
+  </div>
 
-    <script src="layout/footer.vue"></script>
-    <script src="layout/header.vue"></script>
-    <script>
-      $(function () {
-        $(".payInfo").on("click", function () {
-          $(".cardInfo").toggleClass("-on");
-        });
-      });
-    </script>
-  </body>
+  <footer id="footer">
+    <my-footer></my-footer>
+  </footer>
+
+  <script src="layout/footer.vue"></script>
+  <script src="layout/header.vue"></script>
+
+</body>
+
 </html>

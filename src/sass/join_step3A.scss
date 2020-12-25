@@ -101,62 +101,123 @@ input{
   }
 
 //訂單資訊
-.Info{
-    // border:1px solid blue;
-    width:90%;
-    margin:100px auto;
-        h3{
-        color:#707070;
-    }
-}
-.InfoDetail{
-    display:flex;
-    justify-content: space-evenly;
+.info{
     width:100%;
-    margin: 80px auto;
-}
-
-.memImage{
-    width:25%;
-    height: 170px;
-    overflow: hidden;
-}
-
-#memName{
-    color:$textColor;
+    display:flex;
     font-size:$fontsize_H3;
-    font-weight: bold;    
-}
-
-.orderInfo{
-    width:70%;
+    margin:55px auto;
+    align-items: center;
+    align-self: center;
     div{
-        margin-bottom: 40px; 
-        h3{
-            @include H3;
-        }
+        align-self: center;
     }
     input{
-        height: 50px;
+        width:100%;
+        height:50px;
         border-radius: 10px;
         border:1px solid #707070;
-        @include H3;
     }
-    label{
-        margin-left: 10px;
-        color:#707070;
+}
+.info_name{
+    color:$textColor;
+}
+.info_phone,.info_phone_top,.info_msg,.info_msg_top{
+    display:flex;
+}
+.info_img{
+    width:30%;
+    max-width:170px;
+    overflow: hidden;
+    margin-right:50px;
+}
+.info_detail{
+    width:70%;
+    color:#707070;
+    div{
+        margin-top:15px;
+    }
+}
+.info_phone_top,.info_msg_top{
+    width:40%;
+    div{
+        &:first-child{
+            margin-right:20px;
+        }
+    }
+}
+.info_phone_bottom,.info_msg_bottom{
+    width:60%;
+}
+
+@media screen and (max-width: 756px){
+   // 訂單資訊
+   .info{
+    display: block;
+    margin-top:0;
+    font-size: $fontsize_H5;
+   }
+   .info_img{
+       width:30%;
+       max-width: 120px;
+       margin:0 auto;
+   }
+
+   .info_name{
+       text-align: center;
+       font-size: $fontsize_H4;
+   }
+   .info_detail{
+       width:80%;
+       margin:0 auto;
+   }
+    .info_phone_bottom,.info_msg_bottom{
+        input{
+            width:100%;
+        }
     }
 }
 
-#memPhone,#msg{
-    width:60%;
+@media screen and (max-width: 576px){
+    .info{
+        display: block;
+        margin-top:0;
+        font-size: $fontsize_H6;
+       }
+       .info_detail{
+        width:90%;
+        margin:0 auto;
+    }
+       .info_phone_bottom,.info_msg_bottom{
+        input{
+            width:100%;
+            height: 30px;
+            border-radius: 5px;
+        }
+    }
 }
-#memPhone{
-    margin-left:55px;
+
+@media screen and (max-width: 325px){
+    .info{
+        display: block;
+        margin-top:0;
+        font-size: $fontsize_P2;
+       }
+       .info_detail{
+        width:90%;
+        margin:0 auto;
+    }
+       .info_phone_bottom,.info_msg_bottom{
+        input{
+            width:100%;
+            height: 30px;
+            border-radius: 5px;
+        }
+    }
+
 }
-#msg{
-    margin-left:36px;
-}
+
+
+// 折扣
 .discount{
     margin:80px auto;
     width:90%;
@@ -210,80 +271,87 @@ input{
     }
 }
 // 信用卡
-.payInfo{
-    margin:60px auto;
-    text-align: center;
-    width:50%;
-        &:hover{
-            cursor: pointer;
-        }
+.card{
+    width:100%;
+    font-size:$fontsize_H3;
+    color:#707070;
 }
 
-.cardInfo{
-    display:none;
+
+.cardimg{
+    text-align: center;
+}
+.cardinfo{
     width:90%;
     margin:0 auto;
+    div{
+        display:flex;
+        align-self: center;        
+    }
     input{
         height: 50px;
-        border:1px solid #707070;
+        border: 1px solid #707070;
         border-radius: 10px;
-        font-size: 24px;
     }
-    div{
-        margin-bottom: 20px;
-        display:flex;
-        align-items: center;
-    }
-    h3{
-        color:#707070;
-        font-size:$fontsize_H3 ;
-    }
+}
+.cardname,.cardno,.exp,.safeno{
+    width:80%;
+    margin:10px auto;
 }
 
-.cardInfo.-on{
-    display: block;
-}
-#cardName{
-    label{
-         margin-right:92px; 
-    }
-    input{
-        width:30%;
-    }
-}
-#cardNo{
-    label{
-        margin-right:164px;
-    }
-    input{
-        width:12%;;
-        margin-right: 22px;
-            &:last-child{
-                margin-right:0;
-    }
+.cardname,.cardno,.exp,.safeno{
+    align-self: center; 
+    div{
+        &:first-child{
+            width:30%;
+        }
+        &:last-child{
+            width:60%;
+            input{
+                width:100%;
+                margin-left: 5px;
+                margin-right:5px;
+            }
+        }
     }
 }
-#cardExp{
-    label{
-    margin-right:116px;
+.exp_bottom{
+    display: flex;
+    align-items: center;
+}
+
+@media screen and (max-width: 576px){
+    .card{
+        font-size:$fontsize_H5;
     }
-    input{
-        width:10%;
+    .cardinfo{
+        width:100%;
     }
-    span{
-        font-size: 24px;
-        color:#707070;
-        margin: 0px 8px;
+    .cardname,.cardno,.exp,.safeno{
+        div{
+             &:last-child{
+                width:70%;
+            }
+        }
     }
 }
-#cardSafeNo{
-    margin-bottom:50px;
-    label{
-    margin-right:140px;
+@media screen and (max-width: 376px){
+    .card{
+        font-size:$fontsize_P1;
     }
-    input{
-        width:10%;
-        margin-right:20px;
+    .cardinfo{
+        width:100%;
+        input{
+            height: 30px;
+            border-radius: 5px;
+        }
+    }
+    .cardname,.cardno,.exp,.safeno{
+        div{
+             &:last-child{
+                width:70%;
+            }
+        }
     }
 }
 //金額
@@ -352,51 +420,6 @@ input{
     .step_text {
         font-size: $fontsize_P2!important;
     }
-    .memImage,.name{
-        display:none;
-        }
-        .rwdInfoDetail{
-            width:50%;
-            margin:50px auto;
-            text-align: center;
-        }
-        .rwdmemImage{
-            width:37%;
-            overflow: hidden;
-            margin:20px auto;
-        }
-        .rwdorderInfo{
-            width:100%;
-        }
-        #memName{
-            @include H3;
-            font-weight: bold;
-        }
-        .orderInfo{
-            width:100%;
-            div{
-               h3{
-                @include H6;
-                    img{
-                        width:4%;
-                    }
-                } 
-            }
-            input{
-                @include H6;
-                height: 30px;
-                border-radius: 5px;
-            }
-        }
-        #memPhone,#msg{
-            width:50%;
-            margin:0px 10px;
-            letter-spacing: 0;
-        }
-    
-        #memPhone{
-            margin-left:21px;
-        }  
         .discountTop{
             display: block;
         }

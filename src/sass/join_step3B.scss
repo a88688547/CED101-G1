@@ -95,65 +95,53 @@ h5{
     }
   }
 
-
-
 //訂單資訊
-.Info{
-    // border:1px solid blue;
-    width:90%;
-    margin:0 auto;
-        h3{
-        color:#707070;
-        font-size:$fontsize_H3;
-
+.info{
+    width:100%;
+    display:flex;
+    font-size:$fontsize_H3;
+    margin:55px auto;
+    align-items: center;
+    align-self: center;
+    div{
+        align-self: center;
     }
 }
-.InfoDetail{
-    display:flex;
-    justify-content: space-evenly;
-    width:100%;
-    margin: 80px auto;
-}
-
-.memImage{
-    width:25%;
-    height: 170px;
-    overflow: hidden;
-}
-
-#memName{
+.info_name{
     color:$textColor;
-    font-size:$fontsize_H3;
-    font-weight: bold;    
 }
 
-.orderInfo{
+.info_phone,.info_phone_top,.info_msg,.info_msg_top{
+    display:flex;
+}
+.info_img{
+    width:30%;
+    max-width:170px;
+    overflow: hidden;
+    margin-right:50px;
+}
+.info_detail{
     width:70%;
+    color:#707070;
     div{
-        margin-bottom: 40px; 
-        h3{
-           font-size: $fontsize_H3;
+        margin-top:15px;
+    }
+}
+
+.info_phone_top,.info_msg_top{
+    width:40%;
+    div{
+        :first-child{
+            margin-right:20px;
         }
     }
-    label{
-        margin-left: 10px;
-        color:#707070;
-    }
 }
-.infomsg{
-    display: flex;
-}
-#memPhone,#msg{
-    width:65%;
+.info_phone_bottom,.info_msg_bottom{
+    width:60%;
 }
 
-#memPhone{
-    margin-left:70px;
-}
-#msg{
-    margin-left:46px;
-    align-self: flex-end;
-}
+
+// 折扣
 .discount{
     margin:80px auto;
     width:90%;
@@ -207,62 +195,35 @@ h5{
     }
 }
 // 信用卡
-.payInfo{
-    margin:60px auto;
-    text-align: center;
-        &:hover{
-            cursor: pointer;
-        }
+.card{
+    width:100%;
+    font-size:$fontsize_H3;
+    color:#707070;
 }
-
-.cardInfo{
-    display:none;
+.cardimg{
+    text-align: center;
+}
+.cardinfo{
     width:90%;
     margin:0 auto;
     div{
-        margin-bottom: 20px;
         display:flex;
-        align-items: center;
+        margin-top:10px;
+        :first-child{
+            width:30%;
+        }
+        :last-child{
+            width:70%;
+        }
     }
-    h3{
-        color:#707070;
-        font-size:$fontsize_H3;
-
-    }
+}
+.cardimg_safeno{
+    width:100%;
+    max-width:100px;
+    margin-left:20px;
 }
 
-.cardInfo.-on{
-    display: block;
-}
-#cardName{
-    label{
-         margin-right:92px; 
-    }
-}
-#cardNo{
-    label{
-        margin-right:164px;
-    }
-}
-#cardExp{
-    label{
-    margin-right:108px;
-    }
-    span{
-        font-size: 24px;
-        color:#707070;
-        margin: 0px 8px;
-    }
-}
-#cardSafeNo{
-    margin-bottom:50px;
-    label{
-    margin-right:140px;
-    }
-    img{
-        margin-left:30px;
-    }
-}
+
 //金額
 .ListTotal{
     width:80%;
@@ -616,128 +577,89 @@ h5{
                 width: 52px;
                 height: 52px; 
                 //進度條的線
-                &::before {
-                content: "";
-                width: 999%;
-                height: 4px;
-                left: 50px;
-                top: 50%;
-                z-index: -1;
-                }
+                    &::before {
+                    content: "";
+                    width: 999%;
+                    height: 4px;
+                    left: 50px;
+                    top: 50%;
+                    z-index: -1;
+                    }
+            }
+        } 
+    }      
+    .step_text {
+        font-size: $fontsize_P1!important;
     }
-}
-.step_text {
-    font-size: $fontsize_P1!important;
-}
-}
-    .InfoDetail{
-        width:80%;
-        margin:50px auto;
-        display:flex;
-        justify-content: space-around;    
-        align-items: center;
-    }   
-    .memImage,.name{
-    display:none;
+// 訂單資訊
+    .info{
+        display: block;
+        margin-top:0;
     }
-    .rwdInfoDetail{
+    .info_img{
         width:50%;
-        margin:50px auto;
-        text-align: center;
+        max-width:60px;
+        margin:0 auto;
     }
-    .rwdmemImage{
-        width:37%;
-        overflow: hidden;
-        margin:20px auto;
-    }
-    .rwdorderInfo{
-        width:100%;
-    }
-    
-    #memName{
-        @include H2;
-        font-weight: bold;
-    }
-    .orderInfo{
-        width:100%;
+    .info_detail{
+        width:80%;
+        margin:0 auto;
+        font-size: $fontsize_P2;
         div{
-           h3{
-            font-size: $fontsize_H6;
-                img{
-                    width:4%;
-                }
-            } 
+            margin:5px 0px;
         }
     }
-.infomsg{
-    display: block;
-}
+    .info_name{
+        text-align: center;
+        font-size: $fontsize_P1;
+    }
+    .info_phone,.info_msg{
+        div{
+            :first-child{
+                max-width:20px;
+                margin-right:10px;
+            }
+        }
+    }
+    .info_phone_top,.info_msg_top{
+        div{
+            :last-child{
+                width:40%;
+            }
+        }
+    }
+    .info_phone_bottom,.info_msg_bottom{
+        width:60%;
+    }
 
-#msg{
-    width: 100%;
-    margin:10px 0px 0px 27px;
-}
-#memPhone{
-    margin-left:22px;
-}
+    .discount{
+        margin-top:40px;
+    }
+
     .discountTop{
         display: block;
-    }
-    .discountNo{
-        width:100%;
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 30px;
-        select{
-            width:60%;
-            height: 30px;
-            border-radius: 5px;
-            @include H6;
-            padding-left:10px;
-            margin-left: 0px;
-        }
+        margin-bottom: 10px;
     }
     .gamelink{
         width:50%;
+        margin-top:10px;
     }
-    .payInfo{
-        width:50%;
+    .cardimg{
+        width:40%;
+        margin:0 auto;
     }
-    .discountNo,.discountBottom,.cardInfo{
+    .cardinfo{
+        font-size: $fontsize_P1;
+    }
+    .cardimg_safeno{
+    max-width:50px;
+    }
+ 
+    .discountNo,.discountBottom{
         h3{
             font-size: $fontsize_P1;
         }  
     }
-    .cardInfo{
-        div{
-            margin-bottom: 10px;
-        }
-    }
-    #cardName{
-        label{
-             margin-right:45px; 
-        }
-    }
-    #cardNo{
-        label{
-            margin-right:87px;
-        }
-    }
-    #cardExp{
-        label{
-        margin-right:59px;
-        }
-        span{
-            @include H6;
-            margin: 0px 3px;
-        }
-    }
-    #cardSafeNo{
-        label{
-        margin-right:73px;
-        }
-     }
-
     .ListTotal{
         width:80%;
         margin:50px auto; 
@@ -762,9 +684,6 @@ h5{
     }
 
 // 燈箱
-.modalContent{
-    left:0vw; 
-}  
 .orderList{
     // display: block;
     width:80%;
@@ -801,70 +720,64 @@ h5{
                 width: 52px;
                 height: 52px; 
                 //進度條的線
-                &::before {
-                content: "";
-                width: 999%;
-                height: 4px;
-                left: 50px;
-                top: 50%;
-                z-index: -1;
-                }
-    }
-}
-.step_text {
-    font-size: $fontsize_P1!important;
-}
-}
-    .InfoDetail{
-        width:80%;
-        margin:50px auto;
-        display:flex;
-        justify-content: space-around;    
-        align-items: center;
-    }   
-    .memImage,.name{
-    display:none;
-    }
-    .rwdInfoDetail{
-        width:50%;
-        margin:50px auto;
-        text-align: center;
-    }
-    .rwdmemImage{
-        width:37%;
-        overflow: hidden;
-        margin:20px auto;
-    }
-    .rwdorderInfo{
-        width:100%;
-    }
-    
-    #memName{
-        @include H2;
-        font-weight: bold;
-    }
-    .orderInfo{
-        width:100%;
-        div{
-           h3{
-            font-size:$fontsize_H6;
-                img{
-                    width:4%;
-                }
-            } 
+                    &::before {
+                    content: "";
+                    width: 999%;
+                    height: 4px;
+                    left: 50px;
+                    top: 50%;
+                    z-index: -1;
+                    }
+            }
         }
     }
-    .infomsg{
-        display: block;
+    .step_text {
+        font-size: $fontsize_P1!important;
     }
-    #msg{
-        width: 100%;
-        margin:10px 0px 0px 27px;
+  // 訂單資訊
+  .info{
+    display: block;
+    margin-top:0;
+}
+.info_img{
+    width:50%;
+    max-width:120px;
+    margin:0 auto;
+}
+.info_detail{
+    width:80%;
+    margin:0 auto;
+    font-size: $fontsize_P1;
+    div{
+        margin:10px 0px;
     }
-    #memPhone{
-         width:55%;
-        margin-left:30px;
+}
+.info_name{
+    text-align: center;
+    font-size: $fontsize_P1;
+}
+.info_phone,.info_msg{
+    div{
+        :first-child{
+            max-width:50px;
+            margin-right:10px;
+        }
     }
+}
+.info_phone_top,.info_msg_top{
+    div{
+        :last-child{
+            width:40%;
+        }
+    }
+}
+.info_phone_bottom,.info_msg_bottom{
+    width:60%;
+}
+
+.cardinfo{
+    font-size: $fontsize_P1;
+}
     .discountTop{
         display: block;
     }
@@ -882,42 +795,11 @@ h5{
             margin-left: 0px;
         }
     }
-    .discountNo,.discountBottom,.cardInfo{
+    .discountNo,.discountBottom{
         h3{
             @include H6;
         }  
     }
-    .cardInfo{
-        div{
-            margin-bottom: 10px;
-        }
-    }
-    #cardName{
-        label{
-             margin-right:40px; 
-        }
-    }
-    #cardNo{
-        label{
-            margin-right:97px;
-        }
-    }
-    #cardExp{
-        label{
-        margin-right:56px;
-        }
-        span{
-            @include H6;
-            margin: 0px 3px;
-        }
-    }
-    #cardSafeNo{
-        margin-bottom:50px;
-        label{
-        margin-right:77px;
-        }
-    }
-
     .ListTotal{
         width:80%;
         margin:50px auto; 
@@ -936,11 +818,7 @@ h5{
                 }
         }
     }
-
     //燈箱
-    .modalContent{
-        left:0vw; 
-   }  
     .orderList{
         display: block;
         width:80%;
@@ -958,7 +836,6 @@ h5{
         width:60%;
     }
 } 
-
 @media screen and (min-width: 576px) and (max-width: 767px){
     .ProgressBar {
         margin: 40px auto;
@@ -977,54 +854,6 @@ h5{
                 top: 45px;
                 }
     }
-    .InfoDetail{
-        width:80%;
-        margin:50px auto;
-        display:flex;
-        justify-content: space-around;    
-        align-items: center;
-    }
-   
-    .memImage,.name{
-    display:none;
-    }
-    .rwdInfoDetail{
-        width:50%;
-        margin:50px auto;
-        text-align: center;
-    }
-    .rwdmemImage{
-        width:37%;
-        overflow: hidden;
-        margin:20px auto;
-    }
-    .rwdorderInfo{
-        width:100%;
-    }
-    #memName{
-        @include H2;
-        font-weight: bold;
-    }
-    .orderInfo{
-        width:100%;
-        div{
-           h3{
-           font-size: $fontsize_H5;
-                img{
-                    width:4%;
-                }
-            } 
-        }
-    }
-    #memPhone,#msg{
-        width:60%;
-        margin:0px 10px;
-    }
-
-    #memPhone{
-        margin-left:30px;
-    }
-
     .discountTop{
         display: block;
     }
@@ -1042,41 +871,54 @@ h5{
             margin-left: 0px;
         }
     }
-    .discountNo,.discountBottom,.cardInfo{
+    .discountNo,.discountBottom{
         h3{
             @include H5;
         }  
     }
-    .cardInfo{
-        div{
-            margin-bottom: 10px;
+   // 訂單資訊
+   .info{
+    display: block;
+    margin-top:0;
+}
+.info_img{
+    width:50%;
+    max-width:120px;
+    margin:0 auto;
+}
+.info_detail{
+    width:80%;
+    margin:0 auto;
+    font-size: $fontsize_H5;
+    div{
+        margin:10px 0px;
+    }
+}
+.info_name{
+    text-align: center;
+    font-size: $fontsize_H5;
+}
+.info_phone,.info_msg{
+    div{
+        :first-child{
+            max-width:50px;
+            margin-right:10px;
         }
     }
-    #cardName{
-        label{
-             margin-right:40px; 
+}
+.info_phone_top,.info_msg_top{
+    div{
+        :last-child{
+            width:40%;
         }
     }
-    #cardNo{
-        label{
-            margin-right:107px;
-        }
-    }
-    #cardExp{
-        label{
-        margin-right:59px;
-        }
-        span{
-            @include H5;
-            margin: 0px 3px;
-        }
-    }
-    #cardSafeNo{
-        margin-bottom:50px;
-        label{
-        margin-right:85px;
-        }
-    }
+}
+.info_phone_bottom,.info_msg_bottom{
+    width:60%;
+}
+.cardinfo{
+    font-size: $fontsize_H5;
+}
     .ListTotal{
         width:80%;
         margin:50px auto; 
@@ -1096,12 +938,6 @@ h5{
         }
     }
     //    燈箱
-    .modalContent{
-        left:11vw;    
-    }
-    .modalimg,.modalname{
-        display: none;
-    }
     .orderList{
         display: block;
         width:80%;
@@ -1129,52 +965,6 @@ h5{
                 top: 45px;
                 }
     }
-    .InfoDetail{
-        width:80%;
-        margin:50px auto;
-        display:flex;
-        justify-content: space-around;    
-        align-items: center;
-    }
- 
-    .memImage,.name{
-    display:none;
-    }
-    .rwdInfoDetail{
-        width:50%;
-        margin:50px auto;
-        text-align: center;
-    }
-    .rwdmemImage{
-        width:37%;
-        overflow: hidden;
-        margin:20px auto;
-    }
-    .rwdorderInfo{
-        width:100%;
-    }
-    #memName{
-        @include H2;
-        font-weight: bold;
-    }
-    .orderInfo{
-        width:100%;
-        div{
-           h3{
-            font-size: $fontsize_H4;
-                img{
-                    width:4%;
-                }
-            } 
-        }
-    }
-    #memPhone,#msg{
-        width:60%;
-        margin:0px 10px;
-    }
-    #memPhone{
-        margin-left:40px;
-    }
     .discountTop{
         display: block;
     }
@@ -1192,40 +982,10 @@ h5{
             margin-left: 0px;
         }
     }
-    .discountNo,.discountBottom,.cardInfo{
+    .discountNo,.discountBottom{
         h3{
             @include H4;
         }  
-    }
-    .cardInfo{
-        div{
-            margin-bottom: 10px;
-        }
-    }
-    #cardName{
-        label{
-             margin-right:40px; 
-        }
-    }
-    #cardNo{
-        label{
-            margin-right:127px;
-        }
-    }
-    #cardExp{
-        label{
-        margin-right:68px;
-        }
-        span{
-            @include H4;
-            margin: 0px 3px;
-        }
-    }
-    #cardSafeNo{
-        margin-bottom:50px;
-        label{
-        margin-right:99px;
-        }
     }
     .ListTotal{
         width:80%;
@@ -1245,68 +1005,24 @@ h5{
                 }
         }
     }
-           //    燈箱
-           .modalContent{
-            left:20vw;    
-        }
-        .orderList{
-            display: block;
-            width:80%;
-        }
-        .listInfo{
-            width:100%;
-        }
+    //    燈箱
+    .orderList{
+        display: block;
+        width:80%;
+    }
+    .listInfo{
+        width:100%;
+    }
 } 
 @media screen and (min-width: 992px) and (max-width: 1199px){
-    .InfoDetail{
-        width:80%;
-        margin:50px auto;
-        display:flex;
-        justify-content: space-around;    
-        align-items: center;
-    }
- 
-    .memImage,.name{
-    display:none;
-    }
-    .rwdInfoDetail{
-        width:80%;
-        margin:50px auto;
-        text-align: center;
-    }
-    .rwdmemImage{
-        width:37%;
-        overflow: hidden;
-        margin:20px auto;
-    }
-    .rwdorderInfo{
-        width:100%;
-    }
-    #memName{
-        @include H2;
-        font-weight: bold;
-    }
-    .orderInfo{
-        width:100%;
-    }
-    #memPhone,#msg{
-        width:70%;
-        margin:0px 10px;
-    }
-    #memPhone{
-        margin-left:45px;    
-    }
-     //    燈箱
-     .modalContent{
-        left:25vw;    
-   }
-   .orderList{
+    //    燈箱
+    .orderList{
        display: block;
        width:80%;
-   }
-   .listInfo{
+    }
+    .listInfo{
        width:100%;
-   }
+    }
 } 
 @media screen and (min-width: 1200px){
     .step_box {
@@ -1316,26 +1032,18 @@ h5{
                 width: 120px;
                 height: 120px; 
                 //進度條的線
-                &::before {
-                content: "";
-                width: 999%;
-                height: 14px;
-                left: 50px;
-                top: 50%;
-                z-index: -1;
-                }
+                    &::before {
+                    content: "";
+                    width: 999%;
+                    height: 14px;
+                    left: 50px;
+                    top: 50%;
+                    z-index: -1;
+                    }
+            }
+        }
     }
-}
-.step_text {
-    font-size: $fontsize_H3;
-}
-}
-    .rwdInfoDetail{
-        display: none;
+    .step_text {
+        font-size: $fontsize_H3;
     }
-     // 燈箱
-    .modalContent{
-        
-        left:30vw;  
-   }
 }

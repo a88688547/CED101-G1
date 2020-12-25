@@ -205,10 +205,11 @@ body {
                   align-items: center;
                   justify-content: center;
                   div  {
-                    // border: 2px solid red;
-                    // width: 100%;
                     @include button_all($fontsize_H4,5px , 10px, 20px, #FFA208, #fff);
-                    //   border: 2px solid yellow;
+                    a{
+                      text-decoration:none;
+                      color: #fff;
+                    }
                   }
                 
             }

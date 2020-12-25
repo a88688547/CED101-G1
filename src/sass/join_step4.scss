@@ -214,27 +214,15 @@ body {
     // border: 1px solid red;
     display: flex;
     justify-content: center;
-    flex-direction: column;
     // align-items: center;
     width: 100%;
     margin: 0 auto;
     .group_data_total_img{
-      width: 100%;
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      .group_data_total_imgA{
-        width: 60px;
-        margin-right: 10px;
-      }
-      .group_data_total_imgB{
-        font-weight: bold;
-        font-size: $fontsize_H6;
-        color:$textColor;
-      }
+      width: 60px;
+      margin-right: 20px;
     }
     .group_data_total_text{
-      width: 100%;
+      width: calc(100% - 80px);
       // border: 1px solid red;
       .group_data_total_textA{
         .on{
@@ -246,18 +234,17 @@ body {
           margin-bottom: 15px;
           display: flex;
           :first-child{
-            width: 50%;
+            width: 40%;
             color: $textColor;
             // font-weight: bold;
-            font-size: $fontsize_H6;
+            font-size: 14px;
             img{
             width: 20px;
-            margin-right: 3px;
+            margin-right: 10px;
           }
           }
           :last-child{
-            width: 50%;
-            font-size: $fontsize_H6;
+            width: 60%;
             // border: 1px solid red;
           }
           div{
@@ -278,14 +265,13 @@ body {
           margin-bottom: 15px;
           display: flex;
           :first-child{
-            width: 50%;
+            width: 40%;
             color: $textColor;
             font-weight: bold;
-            font-size: $fontsize_H6;
+            font-size: 14px;
           }
           :last-child{
-            font-size: $fontsize_H6;
-            width: 50%;
+            width: 60%;
           }
           
         }
@@ -395,31 +381,30 @@ body {
 
     }
 
-    
-    .group_order_done_total_box{
-      font-size: $fontsize_P1;
-      letter-spacing: 2px;
-      // border: 1px solid red;
-      max-width: 90%;
+    .group_button {
+      // border: 3px solid blue;
+      width:100%;
       margin: 0 auto;
+      // padding: 0 35px;
+      display: flex;
+      justify-content: space-evenly;
+       font-size: $fontsize_H5;
+       letter-spacing: 5px;
+       color:$textColor;
+       position: relative;
+       
+       :nth-child(2){
+        color: rgb(136, 136, 136);
+        border-bottom: 1px solid rgb(129, 129, 129);
+        width: 40%;
+        border-style:dashed;
+        transform: translate(0px, -50%);
+       }
+       :nth-child(3){
+           display: flex;
+       }
     
-      div{
-        margin: 10px 0;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
     }
-    .group_order_done_dis{
-      border-bottom: 1px solid rgb(173, 173, 173);
-    }
-    .group_order_done_finaltotal{
-      font-size: $fontsize_H3;
-      color: $textColor;
-      font-weight: bold;
-      border-top: 2px solid $textColor;
-    }
-   
 
 
   }
@@ -438,31 +423,16 @@ body {
   }
   .group_data{
   .group_data_total{
-    .group_data_total_img{
-      // border: 1px solid red;
-      width: 100%;
-      margin-right: 20px;
-      .group_data_total_imgA{
-        width: 120px;
-      }
-      .group_data_total_imgB{
-        font-size: $fontsize_H3;
-      }
-    }
-    // width: 100%;
+    width: 85%;
+    
     .group_data_total_text{
-      align-items: center;
-      // border: 1px solid red;
-      // width: 100%;
+    
       .group_data_total_textA{
         li{
-          // border: 1px solid red;
-          font-size: $fontsize_H3;
+          font-size: $fontsize_H5;
           :first-child{
-            font-size: $fontsize_H3;
-          }
-          :last-child{
-            font-size: $fontsize_H3;
+            font-size: $fontsize_H5;
+
           }
         }
       }
@@ -470,13 +440,10 @@ body {
       .group_data_total_textB{
         li{
           margin-bottom: 35px;
-          font-size: $fontsize_H3;
+          font-size: $fontsize_H5;
           :first-child{
-            font-size: $fontsize_H3;
-          }     
-          :last-child{
-            font-size: $fontsize_H3;
-          } 
+            font-size: $fontsize_H5;
+          }      
         }
       }
     }
@@ -503,7 +470,7 @@ body {
     }
 
     .step_text {
-      font-size: $fontsize_H3;
+      font-size: $fontsize_H5;
     }
   }
 
@@ -559,22 +526,10 @@ body {
         }
       }
     }
-
-
     .group_data_total{
       width: 80%;
-      .group_data_total_img{
-        width: 100%;
-        margin-right: 40px;
-        .group_data_total_imgA{
-          width: 170px;
-          margin-right: 50px;
-          margin-bottom: 30px;
-        }
-      }
       
       .group_data_total_text{
-        width: 100%;
       
         .group_data_total_textA{
           li{
@@ -636,14 +591,6 @@ body {
         }
       }
     }
-
-    .group_order_done_total_box{
-      width: 80%;
-    }
-    .group_order_done_total,
-  .group_order_done_dis{
-    font-size: $fontsize_H6;
-  }
   }
 }
 
@@ -758,11 +705,7 @@ body {
 
       }
     }
-    .group_order_done_total_box{
-      width: 75%;
-    }
   }
-  
 }
 
 @media screen and (min-width: $mq1199) {
@@ -849,7 +792,29 @@ body {
                 border: 0;
             }
         }
-      
+      .group_button {
+        justify-content: center;
+        // border: 1px solid red;
+        width: 100%;
+        margin: 0 auto;
+        font-size: $fontsize_H3;
+        position: relative;
+        div{
+          margin-right: 30px;
+        }
+        &::before{
+          position: absolute;
+          content: "";
+          width: 100%;
+          background-color: $textColor;
+          border: 1px solid $textColor;
+          top: -50px;
+          left: 0;
+          
+        }
+        
+        
+      }
 
 
     }

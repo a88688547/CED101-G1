@@ -1,0 +1,208 @@
+body{
+    width:100%;
+    margin:0;
+    background-color: #E5E3DD;
+  }
+  *{
+    box-sizing: border-box;
+    font-size: 0;
+  }
+.box_top{
+    width:100%;
+    height:100%;
+    background-color: #B3925B;
+    position: absolute;
+    z-index:12;
+}
+img.cheersleft{
+    width:15%;
+    position: absolute;
+    z-index:16;
+    left:10%;
+    top:38%;
+    transform: rotate(-20deg);
+}
+img.cheersright{
+    width:17%;
+    position: absolute;
+    z-index:16;
+    left:70%;
+    top:43%;
+    transform: rotate(20deg);
+}
+
+.banner{
+    height:110vh;
+    background:linear-gradient(20deg,#63CCC8 50%,#05B2AC 50%);
+    position:relative;
+    overflow: hidden;
+}
+img.under{
+    width:100%;
+    position: absolute;
+    bottom:0;
+    z-index: 15;
+}
+
+.content{
+    position: absolute;
+    /* right:5%; */
+    right:30%;
+    /* top:15%; */
+    top:5%;
+    z-index:15;
+}
+
+.content>.logo{
+    width:13%;
+    margin-bottom:20px;
+
+}
+
+.content>h1{
+    font-size: 35px;
+    font-family:Adobe Caslon Pro;
+    color:#013B4F;
+    letter-spacing: 5px;
+    font-weight:bold;
+    margin:10px 0;
+    padding:0;
+}
+.content>h2{
+    font-size: 21px;
+    font-family: Roboto;
+    letter-spacing: 3px;
+    color:#013B4F;
+    margin:10px 0;
+    padding:0;
+}
+
+.content>#menu{
+    font-size:14px;
+    font-family: Roboto;
+    color:#B3925B;
+    background-color:#013B4F;
+    padding:8px;
+    margin-top:20px;
+    letter-spacing: 3px;
+    border-radius: 20px;
+    cursor: pointer;
+ 
+
+
+}
+
+img.blacktea{
+    width:850px;
+    position: absolute;
+    left:-5%;
+    top:20%;
+}
+img.bubble{
+width:1100px;
+position: absolute;
+left: 40%;
+top: 20%;
+}
+img.juice{
+    width:480px;
+    position: absolute;
+    top:15%;
+    left:30%;
+    opacity:0;
+    transform: translateY(200px);
+    /* transform: scaleY(0);
+    transform-origin:bottom; */
+}
+
+/* @keyframes movement {
+    0% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(50px);
+    }
+    100% {
+        transform: translateY(0px);
+      }
+  } */
+
+img.orange{
+    width:23%;
+    position: absolute;
+    z-index: 5;
+    left:33%;
+    top:23%;
+    transform: translateY(0);
+    transform: scale(0);
+    /* animation-name: movement;
+    animation-duration: 0;
+    animation-iteration-count: infinite;  */
+}
+
+img.sliced_orange{
+    width:9%;
+    position: absolute;
+    z-index:5;
+    left:40%;
+    top:35%;
+    transform: scale(0);
+    transform: translateY(0);
+}
+.strawberry{
+    width:8%;
+    position: absolute;
+    z-index:5;
+    left:40%;
+    top:35%;
+    transform: scale(0);
+    transform: translateY(0);
+}
+img.sliced_strawberry{
+    width:8%;
+    position: absolute;
+    z-index: 5;
+    left:40%;
+    top:35%;
+    transform: scale(0);
+}
+img.sliced_lemon{
+    width:25%;
+    position: absolute;
+    z-index:5;
+    left:30%;
+    top:25%;
+    transform: scale(0);
+}
+img.leaf1{
+    width:15%;
+    position: absolute;
+    z-index:5;
+    left:35%;
+    top:30%;
+    transform: scale(0);
+}
+img.leaf2{
+    width:20%;
+    position: absolute;
+    z-index:5;
+    left:30%;
+    top:30%;
+    transform: scale(0);
+}
+img.leaf3{
+    width:18%;
+    position: absolute;
+    z-index:5;
+    left:33%;
+    top:30%;
+    transform: scale(0);
+}
+img.leaf4{
+    width:22%;
+    position: absolute;
+    z-index:5;
+    left:30%;
+    top:23%;
+    transform: scale(0);
+}

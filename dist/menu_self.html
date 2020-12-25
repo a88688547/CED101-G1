@@ -5,13 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="./vendors/Vue/vue.js"></script>
     <link rel="stylesheet" href="./css/menu_self.css">
     <link rel="stylesheet" href="./css/menu.css">
     <link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body>
-
+    <header id="header">
+        <my-header></my-header>
+    </header>
     <div id="top_info">
         <section id="left_info">
             <div id="info_title">
@@ -37,7 +40,7 @@
         </section>
         <section id="right_info">
             <div id="mascot_wrapper">
-                <button id="group_btn">
+                <button id="group_btn" onclick="location.href='join_step1.html'">
                     <div>一起</div>
                     <div>揪團訂!</div>
                 </button>
@@ -46,189 +49,20 @@
         </section>
     </div>
 
-    <!-- 飲品價目表 -->
-    <div id="menu">
-        <div id="menu_title"><span>menu</span></div>
-        <div id="menu_table" class="container">
-            <div class="row">
-                <!-- 奶類 -->
-                <section class="drink_type col-md-4">
-                    <!-- 奶類標題 -->
-                    <div class="drink_type_text"><span>奶類</span><span>Milk Tea</span></div>
-                    <!-- 手機板奶類標題 -->
-                    <div class="drink_type_text_mob"><span class="type_mob">奶類</span>
-                        <div class="size_mob"><span>M</span><span>L</span></div>
-                    </div>
-                    <!-- 中杯大杯 -->
-                    <div class="size"><span>M</span><span>L</span></div>
-                    <ul class="drink">
-                        <!-- 飲品名稱 -->
-                        <li class="drink_item"><button>+</button><span class="drink_name">飲料名稱飲料名稱名稱</span>
-                            <!-- 中杯價錢 -->
-                            <div class="medium_price_wrapper"><span>$</span><span class="medium_price">10</span>
-                            </div>
-                            <!-- 大杯價錢 -->
-                            <div class="large_price_wrapper"><span>$</span><span class="large_price">50</span></div>
-                        </li>
-                        <li class="drink_item"><button>+</button><span class="drink_name">飲料名稱</span>
-                            <div class="medium_price_wrapper"><span>$</span><span class="medium_price">50</span>
-                            </div>
-                            <div class="large_price_wrapper"><span>$</span><span class="large_price">50</span></div>
-                        </li>
-                        <li class="drink_item"><button>+</button><span class="drink_name">飲料名稱</span>
-                            <div class="medium_price_wrapper"><span>$</span><span class="medium_price">50</span>
-                            </div>
-                            <div class="large_price_wrapper"><span>$</span><span class="large_price">50</span></div>
-                        </li>
-                        <li class="drink_item"><button>+</button><span class="drink_name">飲料名稱</span>
-                            <div class="medium_price_wrapper"><span>$</span><span class="medium_price">50</span>
-                            </div>
-                            <div class="large_price_wrapper"><span>$</span><span class="large_price">50</span></div>
-                        </li>
-                        <li class="drink_item"><button>+</button><span class="drink_name">飲料名稱</span>
-                            <div class="medium_price_wrapper"><span>$</span><span class="medium_price">50</span>
-                            </div>
-                            <div class="large_price_wrapper"><span>$</span><span class="large_price">50</span></div>
-                        </li>
-                    </ul>
-                </section>
-                <section class="drink_type col-md-4">
-                    <div class="drink_type_text"><span>果茶類</span><span>Fruit</span></div>
-                    <div class="drink_type_text_mob"><span class="type_mob">果茶類</span>
-                        <div class="size_mob"><span>M</span><span>L</span></div>
-                    </div>
-                    <div class="size"><span>M</span><span>L</span></div>
-                    <ul class="drink">
-                        <li class="drink_item"><button>+</button><span class="drink_name">飲料名稱</span>
-                            <div class="medium_price_wrapper"><span>$</span><span class="medium_price">50</span>
-                            </div>
-                            <div class="large_price_wrapper"><span>$</span><span class="large_price">50</span></div>
-                        </li>
-                        <li class="drink_item"><button>+</button><span class="drink_name">飲料名稱</span>
-                            <div class="medium_price_wrapper"><span>$</span><span class="medium_price">50</span>
-                            </div>
-                            <div class="large_price_wrapper"><span>$</span><span class="large_price">50</span></div>
-                        </li>
-                        <li class="drink_item"><button>+</button><span class="drink_name">飲料名稱</span>
-                            <div class="medium_price_wrapper"><span>$</span><span class="medium_price">50</span>
-                            </div>
-                            <div class="large_price_wrapper"><span>$</span><span class="large_price">50</span></div>
-                        </li>
-                        <li class="drink_item"><button>+</button><span class="drink_name">飲料名稱</span>
-                            <div class="medium_price_wrapper"><span>$</span><span class="medium_price">50</span>
-                            </div>
-                            <div class="large_price_wrapper"><span>$</span><span class="large_price">50</span></div>
-                        </li>
-                        <li class="drink_item"><button>+</button><span class="drink_name">飲料名稱</span>
-                            <div class="medium_price_wrapper"><span>$</span><span class="medium_price">50</span>
-                            </div>
-                            <div class="large_price_wrapper"><span>$</span><span class="large_price">50</span></div>
-                        </li>
-                    </ul>
-                </section>
-                <section class="drink_type col-md-4">
-                    <div class="drink_type_text"><span>茶類</span><span>Tea</span></div>
-                    <div class="drink_type_text_mob"><span class="type_mob">茶類</span>
-                        <div class="size_mob"><span>M</span><span>L</span></div>
-                    </div>
-                    <div class="size"><span>M</span><span>L</span></div>
-                    <ul class="drink">
-                        <li class="drink_item"><button>+</button><span class="drink_name">飲料名稱</span>
-                            <div class="medium_price_wrapper"><span>$</span><span class="medium_price">50</span>
-                            </div>
-                            <div class="large_price_wrapper"><span>$</span><span class="large_price">50</span></div>
-                        </li>
-                        <li class="drink_item"><button>+</button><span class="drink_name">飲料名稱</span>
-                            <div class="medium_price_wrapper"><span>$</span><span class="medium_price">50</span>
-                            </div>
-                            <div class="large_price_wrapper"><span>$</span><span class="large_price">50</span></div>
-                        </li>
-                        <li class="drink_item"><button>+</button><span class="drink_name">飲料名稱</span>
-                            <div class="medium_price_wrapper"><span>$</span><span class="medium_price">50</span>
-                            </div>
-                            <div class="large_price_wrapper"><span>$</span><span class="large_price">50</span></div>
-                        </li>
-                        <li class="drink_item"><button>+</button><span class="drink_name">飲料名稱</span>
-                            <div class="medium_price_wrapper"><span>$</span><span class="medium_price">50</span>
-                            </div>
-                            <div class="large_price_wrapper"><span>$</span><span class="large_price">50</span></div>
-                        </li>
-                        <li class="drink_item"><button>+</button><span class="drink_name">飲料名稱</span>
-                            <div class="medium_price_wrapper"><span>$</span><span class="medium_price">50</span>
-                            </div>
-                            <div class="large_price_wrapper"><span>$</span><span class="large_price">50</span></div>
-                        </li>
-                    </ul>
-                </section>
-            </div>
-        </div><input type="submit" id="shopping_btn" value="購物車">
+    <div id="app">
+        <!-- 飲品價目表 -->
+        <menu_carshop></menu_carshop>
+
+        <!-- 飲品燈箱 -->
+        <light_box></light_box>
+
     </div>
 
-    <!-- 飲品燈箱 -->
-    <div id="light_box_wrapper">
-        <!-- 刪除按鈕 -->
-        <div id="drink_light_box"><button id="cancel_shop_btn">X</button>
-            <!-- 飲料圖 -->
-            <div id="drink_img"><img src="http://fakeimg.pl/355x180/" alt=""></div>
-            <div id="drink_data">
-                <!-- 飲品名稱 -->
-                <div id="shop_drink_name_title">
-                    <h2 id="shop_drink_name">鳴光蜜金桔</h2>
-                    <h3 id="shop_drink_name_en">Kumquat Lemon Tea</h3>
-                </div>
-                <!-- 飲品配置 -->
-                <!-- 大小 -->
-                <div class="drink_set">
-                    <div class="set_title"><img src="./Images/drop-3.svg" alt=""><span>大小</span></div>
-                    <div id="cup" class="set_item"><input type="radio" value="" id="medium_cup" name="cup"><label
-                            for="medium_cup">中杯</label><input type="radio" value="" id="large_cup" name="cup"><label
-                            for="large_cup">大杯</label></div>
-                </div>
-                <!-- 冰度 -->
-                <div class="drink_set">
-                    <div class="set_title"><img src="./Images/drop-3.svg" alt=""><span>飲品溫度</span></div>
-                    <div id="ice" class="set_item"><input type="radio" value="" id="normal" name="ice"><label
-                            for="medium_cup">正常</label><input type="radio" value="" id="less_ice" name="ice"><label
-                            for="less_ice">少冰</label><input type="radio" value="" id="low_ice" name="ice"><label
-                            for="low_ice">微冰</label><input type="radio" value="" id="no_ice" name="ice"><label
-                            for="no_ice">去冰</label><input type="radio" value="" id="hot" name="ice"><label
-                            for="hot">熱飲</label></div>
-                </div>
-                <!-- 甜度 -->
-                <div class="drink_set">
-                    <div class="set_title"><img src="./Images/drop-3.svg" alt=""><span>甜度</span></div>
-                    <div id="sugar" class="set_item"><input type="radio" value="" id="standard" name="sugar"><label
-                            for="standard">正常</label><input type="radio" value="" id="less_sugar" name="sugar"><label
-                            for="less_sugar">少糖</label><input type="radio" value="" id="low_sugar" name="sugar"><label
-                            for="low_sugar">微糖</label><input type="radio" value="" id="no_sugar" name="sugar"><label
-                            for="no_sugar">無糖</label></div>
-                </div>
-                <!-- 配料 -->
-                <div class="drink_set">
-                    <div class="set_title"><img src="./Images/drop-3.svg" alt=""><span>加料</span></div>
-                    <div id="ingredient" class="set_item"><input type="radio" value="" id="tapioca_pearl"
-                            name="ingredient"><label for="tapioca_pearl">珍珠</label><input type="radio" value=""
-                            id="red_beams" name="ingredient"><label for="red_beams">紅豆</label><input type="radio"
-                            value="" id="aiyu" name="ingredient"><label for="aiyu">愛玉</label><input type="radio"
-                            value="" id="cococut" name="ingredient"><label for="cococut">椰果</label></div>
-                </div>
-                <div id="num_btn_wrapper">
-                    <!-- 新增數量按鈕 -->
-                    <div id="num_btn">
-                        <button>
-                            <div></div>
-                        </button>
-                        <div id="num_feedback">2</div>
-
-                        <button>+</button>
-                    </div>
-                    <!-- 新增至購物車 -->
-                    <div id="num_btn_text"><button>新增<span>1</span>杯飲品至購物車<span>$10</span></button></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    <footer id="footer">
+        <my-footer></my-footer>
+    </footer>
+    <script src="./layout/footer.vue"></script>
+    <script src="./layout/header.vue"></script>
     <script src="./js/menu.js"></script>
 </body>
 

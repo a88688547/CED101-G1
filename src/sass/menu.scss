@@ -233,11 +233,23 @@
 #shopping_btn {
     @include button_4;
 
+    span {
+        color: white;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%) translateY(-150%);
+    }
 }
 
 @media screen and (max-width:576px) {
     #shopping_btn {
         @include button_4_mob;
+
+        span {
+            left: 75%;
+            transform: translateX(0) translateY(-5%);
+            // border: 1px solid black;
+        }
 
     }
 }
@@ -245,7 +257,7 @@
 #light_box_wrapper {
     left: 50%;
     position: fixed;
-    display: none;
+    // display: none;
     top: 50%;
     width: 100vw;
     height: 100vh;

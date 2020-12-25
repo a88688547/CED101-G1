@@ -9,7 +9,8 @@ $mq1199: 1199px;
 
 body {
     box-sizing: border-box;
-    overflow-x: hidden;
+    // overflow-x: hidden;
+    background: $insideBackgroundColor;
 }
 
 section {
@@ -17,14 +18,14 @@ section {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 
     .vote-top {
-        width: 1200px;
         max-width: 1200px;
         text-align: center;
         color: $textColor;
         margin-top: 100px;
-        margin-bottom: 100px;
+        margin-bottom: 50px;
 
         h2 {
             font-size: $fontsize_H2;
@@ -72,9 +73,6 @@ section {
 
     .vote-bot {
         color: $textColor;
-
-        width: 1200px;
-        max-width: 1200px;
         display: flex;
         justify-content: center;
         padding: 15px;
@@ -97,7 +95,6 @@ section {
         }
 
         .vote-wrap {
-            margin-bottom: 100px;
             margin-right: 30px;
             position: relative;
 

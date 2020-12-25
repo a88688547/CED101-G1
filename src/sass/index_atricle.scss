@@ -28,10 +28,12 @@
         
         .card_big{
             display: none;
+            min-width: 500px;
             width: 40%;
             border-radius: 20px;
             box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
             overflow: hidden;
+            flex-shrink: 0;
 
 
             img{
@@ -39,7 +41,7 @@
             }
 
             .text_block{
-
+                width: 100%;
                 display: flex;
                 justify-content: space-around;
                 padding: 15px 10px 15px 10px;
@@ -48,7 +50,7 @@
                     // border: 1px solid blue;
                     display: flex;
                     flex-direction: column;
-                    width: 75%;
+                    width: 100%;
 
                     p.article_time{
                         @include P2;
@@ -56,12 +58,16 @@
                     }
 
                     .user_info{
-                        display: inline-flex;
+                        display: flex;
                         justify-content: flex-end;
                         margin-top: 15px;
+                        width: 100%;
 
                         .user_status{
-                            display: inline-flex;
+                            display: flex !important;
+                            width: 100%;
+                            justify-content: flex-end !important;
+                            align-items: center;
 
                             .status_icon{
                                 display: inline-flex;
@@ -110,10 +116,12 @@
 
         .card_small_block{
             width: 40%;
+            min-width: 445px;
             margin-left: 20px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            flex-shrink: 0;
 
             .card_small{
                 width: 100%;
@@ -124,6 +132,12 @@
                 flex-direction: row;
                 margin-bottom: 10px;
 
+                .card_small_img{
+                    width: 45%;
+                    flex-shrink: 0;
+                    min-width: 216px;
+                }
+
                 img{
                     max-width: 100%;
                 }
@@ -132,8 +146,10 @@
 
                     padding: 10px;
 
-                    img.user{
+                    .user{
+                        display: flex;
                         width: 20%;
+                        // font-size: 0 !important;
                     }
     
                     .user_info_block{
@@ -223,25 +239,34 @@
 
     }
 }
+
 // rwd區域-------------------------------------------------
-@media (min-width: 992px) and (max-width: 1199px){
+@media  (max-width: 1199px){
 
     .article{
 
         .article_block{
 
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             .card_big{
-
-                display: block;
-                margin-right: 20px;
+                width: 80%;
+                max-width: 500px;
+                // display: block;
+                // margin-right: 20px;
+                margin-bottom: 20px;
             }
 
-            .card_big:nth-child(3){
-                margin-right: 0px;
-            }
+            // .card_big:nth-child(3){
+            //     margin-right: 0px;
+            // }
  
             .card_small_block{
-                display: none;
+                // display: none;
+                width: 80%;
+                max-width: 500px;
+                margin-left: 0px;
             }
         }
 
@@ -249,7 +274,7 @@
 
 }
 
-@media (min-width: 576px) and (max-width: 991px){
+@media  (max-width: 991px){
 
     .article{
         
@@ -259,7 +284,7 @@
             align-items: center;
 
             .card_big{
-                width: 60%;
+                width: 80%;
                 display: block;
                 margin-bottom: 30px;
 
@@ -309,12 +334,37 @@
             }
  
             .card_small_block{
-                display: none;
+                // display: none;
             }
         }
 
     }
 
+}
+
+@media(max-width:768px){
+    .card_big{
+        min-width: auto;
+    }
+
+    .card_small_img{
+        img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    .card_small{
+        flex-direction: column !important;
+    }
+
+
+    .text_block{
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+    }
 }
 
 @media (max-width: 575px){
@@ -391,7 +441,7 @@
             }
  
             .card_small_block{
-                display: none;
+                // display: none;
             }
         }
 

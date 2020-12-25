@@ -1,0 +1,1036 @@
+@import "base/base.scss";
+@import "mixins/mixins.scss";
+
+body {
+    background-color:$insideBackgroundColor;
+}
+
+h3{
+    color:$textColor;
+    font-size:$fontsize_H3;
+}
+h2{
+    color:$textColor;
+    font-size:$fontsize_H2;
+    font-weight: bold;
+}
+h4{
+    color:#707070;
+    font-size:$fontsize_H4;
+}
+
+h5{
+    font-size:$fontsize_H5 ;
+    color:$textColor;
+    font-weight: bold;
+}
+
+input{
+    padding:0;
+}
+.main{
+    width:100%;
+    max-width:1200px;
+    margin:0 auto;
+}
+
+//====進度條=====
+@mixin margin-b {
+    margin-bottom: 50px;
+  }
+  
+.step_box {
+    width: 90%;
+    margin: 0 auto;
+    // border: 1px solid red;
+    box-sizing: border-box;
+    @include margin-b;
+  
+    // margin-bottom: 30px;
+    .step_ball {
+      display: flex;
+      justify-content: space-between;
+      position: relative;
+      // border: 1px solid red;
+      overflow: hidden;
+  
+      //進度條的球
+      li {
+        width: 120px;
+        height: 120px;
+        // border: 1px solid red;
+        border-radius: 50%;
+        background-color: #D3C8B5;
+        margin-bottom: 15px;
+        position: relative;
+  
+        //進度條的線
+        &::before {
+          content: "";
+          position: absolute;
+          width: 320px;
+          height: 14px;
+          background-color: #D3C8B5;
+          left: 50px;
+          top: 50%;
+          z-index: -1;
+        }
+  
+        //最後一條消失
+        &:last-child::before {
+          display: none;
+        }
+      } 
+      //進度條當前頁面
+      .on {
+        background-color: $btnColor;
+      }
+    }
+    //進度條文字
+    .step_text {
+      display: flex;
+      justify-content: space-between;
+      color: $textColor;
+      font-size: $fontsize_H3;
+
+      //進度條當前頁面
+      .on {
+        font-weight: bold;
+      }
+    }
+  }
+
+//訂單資訊
+.Info{
+    // border:1px solid blue;
+    width:90%;
+    margin:100px auto;
+        h3{
+        color:#707070;
+    }
+}
+.InfoDetail{
+    display:flex;
+    justify-content: space-evenly;
+    width:100%;
+    margin: 80px auto;
+}
+
+.memImage{
+    width:25%;
+    height: 170px;
+    overflow: hidden;
+}
+
+#memName{
+    color:$textColor;
+    font-size:$fontsize_H3;
+    font-weight: bold;    
+}
+
+.orderInfo{
+    width:70%;
+    div{
+        margin-bottom: 40px; 
+        h3{
+            @include H3;
+        }
+    }
+    input{
+        height: 50px;
+        border-radius: 10px;
+        border:1px solid #707070;
+        @include H3;
+    }
+    label{
+        margin-left: 10px;
+        color:#707070;
+    }
+}
+
+#memPhone,#msg{
+    width:60%;
+}
+#memPhone{
+    margin-left:55px;
+}
+#msg{
+    margin-left:36px;
+}
+.discount{
+    margin:80px auto;
+    width:90%;
+    h3{
+        @include H3;
+    }
+}
+.discountTop{
+    width:100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 50px;
+}
+
+.discountNo{
+    width:70%;
+    display: flex;
+    align-items: center;
+    h3{
+        color:#707070;
+    }
+    select{
+        width:60%;
+        height: 50px;
+        border:1px solid #707070;
+        border-radius: 10px;
+        @include H3;
+        color:#707070;
+        padding-left:20px;
+        margin-left: 100px;
+    }
+}
+.gamelink{
+    width:30%;
+    height: 50px;
+    overflow: hidden;
+    text-align: right;
+}
+.discountBottom{
+    width:100%;
+    display:flex;
+    justify-content: space-between;
+    h3{
+        color:#707070;
+    }
+}
+.disTotal{
+    h3{
+        font-weight: bold;
+        font-size:$fontsize_H3 ;
+    }
+}
+// 信用卡
+.payInfo{
+    margin:60px auto;
+    text-align: center;
+    width:50%;
+        &:hover{
+            cursor: pointer;
+        }
+}
+
+.cardInfo{
+    display:none;
+    width:90%;
+    margin:0 auto;
+    input{
+        height: 50px;
+        border:1px solid #707070;
+        border-radius: 10px;
+        font-size: 24px;
+    }
+    div{
+        margin-bottom: 20px;
+        display:flex;
+        align-items: center;
+    }
+    h3{
+        color:#707070;
+        font-size:$fontsize_H3 ;
+    }
+}
+
+.cardInfo.-on{
+    display: block;
+}
+#cardName{
+    label{
+         margin-right:92px; 
+    }
+    input{
+        width:30%;
+    }
+}
+#cardNo{
+    label{
+        margin-right:164px;
+    }
+    input{
+        width:12%;;
+        margin-right: 22px;
+            &:last-child{
+                margin-right:0;
+    }
+    }
+}
+#cardExp{
+    label{
+    margin-right:116px;
+    }
+    input{
+        width:10%;
+    }
+    span{
+        font-size: 24px;
+        color:#707070;
+        margin: 0px 8px;
+    }
+}
+#cardSafeNo{
+    margin-bottom:50px;
+    label{
+    margin-right:140px;
+    }
+    input{
+        width:10%;
+        margin-right:20px;
+    }
+}
+//金額
+.ListTotal{
+    width:80%;
+    margin:100px auto;
+    display:flex;
+    justify-content: space-between;   
+    align-items: center;
+    h2{
+        font-size:$fontsize_H2 ;
+    }
+}
+
+#line{
+    width:70%;
+    hr{
+        border-style: none;
+        border-bottom: 1px dashed $textColor;        
+    }
+}
+.orderbtn{
+    display:flex;
+    justify-content: space-between;
+    width:50%;
+    margin:50px auto;
+       div{
+           background-color:$btnColor ;
+           width:130px;
+           height: 46px;
+           border-radius: 10px;
+           border-style: none;
+           display:flex;
+           align-items:center;
+           justify-content:center;   
+               &:hover{
+                   cursor: pointer;
+               }
+               a{
+                   text-decoration: none;
+                   color:#FFFFFF;
+                   font-size:$fontsize_H3 ;
+               }
+       }
+   }
+@media screen and (max-width: 325px){
+    .step_box {
+        .step_ball { 
+            li {
+                width: 25%;
+                width: 52px;
+                height: 52px; 
+                //進度條的線
+                &::before {
+                content: "";
+                width: 999%;
+                height: 4px;
+                left: 50px;
+                top: 50%;
+                z-index: -1;
+                }
+            }
+        }
+    }
+    //進度條文字
+    .step_text {
+        font-size: $fontsize_P2!important;
+    }
+    .memImage,.name{
+        display:none;
+        }
+        .rwdInfoDetail{
+            width:50%;
+            margin:50px auto;
+            text-align: center;
+        }
+        .rwdmemImage{
+            width:37%;
+            overflow: hidden;
+            margin:20px auto;
+        }
+        .rwdorderInfo{
+            width:100%;
+        }
+        #memName{
+            @include H3;
+            font-weight: bold;
+        }
+        .orderInfo{
+            width:100%;
+            div{
+               h3{
+                @include H6;
+                    img{
+                        width:4%;
+                    }
+                } 
+            }
+            input{
+                @include H6;
+                height: 30px;
+                border-radius: 5px;
+            }
+        }
+        #memPhone,#msg{
+            width:50%;
+            margin:0px 10px;
+            letter-spacing: 0;
+        }
+    
+        #memPhone{
+            margin-left:21px;
+        }  
+        .discountTop{
+            display: block;
+        }
+        .discountNo{
+            width:100%;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            select{
+                width:60%;
+                height: 30px;
+                border-radius: 5px;
+                @include P1;
+                padding-left:10px;
+                margin-left: 0px;
+            }
+        }
+        .discountNo,.discountBottom,.cardInfo{
+            h3{
+                font-size: $fontsize_P1;
+            }  
+        }
+        .gamelink{
+            width:40%;
+        }
+        .cardInfo{
+            input{
+                height: 30px;
+                border-radius: 5px;
+                @include P1;
+            }
+            div{
+                margin-bottom: 10px;
+            }
+            
+        }
+        #cardName{
+            label{
+                 margin-right:30px; 
+            }
+            input{
+                width:60%;
+            }
+        }
+        #cardNo{
+            label{
+                margin-right:73px;
+            }
+            input{
+                width:15%;;
+                margin-right: 5px;
+            }
+        }
+        #cardExp{
+            label{
+            margin-right:43px;
+            }
+            input{
+                width:15%;
+            }
+            span{
+                @include P1;
+                margin: 0px 3px;
+            }
+        }
+        #cardSafeNo{
+            margin-bottom:50px;
+            label{
+            margin-right:57px;
+            }
+            input{
+                width:15%;
+                margin-right:20px;
+            }
+        }
+    
+        .ListTotal{
+            width:80%;
+            margin:50px auto; 
+            h2{
+                font-size: $fontsize_H6;
+            }
+        }
+        #line{
+            width:40%;
+        }
+        .orderbtn{
+            div{
+                font-size:$fontsize_H6 ;
+                width:70px;
+                height: 35px;
+                border-radius: 5px;                  
+                    a{
+                        font-size:$fontsize_H6 ;
+                    }
+            }
+        }
+    } 
+
+
+@media screen and (min-width: 326px) and (max-width: 575px){
+    .step_box {
+        .step_ball { 
+            li {
+                width: 25%;
+                width: 52px;
+                height: 52px; 
+                //進度條的線
+                &::before {
+                content: "";
+                width: 999%;
+                height: 4px;
+                left: 50px;
+                top: 50%;
+                z-index: -1;
+                }
+    }
+}
+.step_text {
+    font-size: $fontsize_P1!important;
+}
+}
+//進度條文字
+
+    .InfoDetail{
+        width:80%;
+        margin:50px auto;
+        display:flex;
+        justify-content: space-around;    
+        align-items: center;
+    }
+    
+    .memImage,.name{
+    display:none;
+    }
+    .rwdInfoDetail{
+        width:50%;
+        margin:50px auto;
+        text-align: center;
+    }
+    .rwdmemImage{
+        width:37%;
+        overflow: hidden;
+        margin:20px auto;
+    }
+    .rwdorderInfo{
+        width:100%;
+    }
+    #memName{
+        @include H2;
+        font-weight: bold;
+    }
+    .orderInfo{
+        width:100%;
+        div{
+           h3{
+            @include H6;
+                img{
+                    width:4%;
+                }
+            } 
+        }
+        input{
+            @include H6;
+            height: 30px;
+            border-radius: 5px;
+        }
+    }
+    #memPhone,#msg{
+        width:55%;
+        margin:0px 10px;
+        letter-spacing: 0;
+    }
+
+    #memPhone{
+        margin-left:23px;
+    }
+
+    .discountTop{
+        display: block;
+    }
+    .discountNo{
+        width:100%;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 30px;
+        select{
+            width:80%;
+            height: 30px;
+            border-radius: 5px;
+            @include H6;
+            padding-left:10px;
+            margin-left: 0px;
+        }
+    }
+    .discountNo,.discountBottom,.cardInfo{
+        h3{
+            @include H6;
+        }  
+    }
+    .cardInfo{
+        input{
+            height: 30px;
+            border-radius: 5px;
+            @include H6;
+        }
+        div{
+            margin-bottom: 10px;
+        }
+    }
+    #cardName{
+        label{
+             margin-right:40px; 
+        }
+        input{
+            width:70%;
+        }
+    }
+    #cardNo{
+        label{
+            margin-right:97px;
+        }
+        input{
+            width:16%;;
+            margin-right: 11px;
+        }
+    }
+    #cardExp{
+        label{
+        margin-right:59px;
+        }
+        input{
+            width:15%;
+        }
+        span{
+            @include H6;
+            margin: 0px 3px;
+        }
+    }
+    #cardSafeNo{
+        margin-bottom:50px;
+        label{
+        margin-right:77px;
+        }
+        input{
+            width:15%;
+            margin-right:20px;
+        }
+    }
+
+    .ListTotal{
+        width:80%;
+        margin:50px auto; 
+        h2{
+            font-size: $fontsize_H5;
+        }
+    }
+    .orderbtn{
+        div{
+            font-size:$fontsize_H6 ;
+            width:90px;
+            height: 35px;
+            border-radius: 5px;                  
+                a{
+                    font-size:$fontsize_H6 ;
+                }
+        }
+    }
+} 
+
+@media screen and (min-width: 576px) and (max-width: 767px){
+    .step_box {
+        // border: 1px solid red;
+        width: 90%;
+        margin: 40px auto;
+        .step_ball {
+          li {    
+            width: 52px;
+            height: 52px;    
+            &::before {
+              height: 6px;
+              width: 300px;
+            }
+          }
+        }    
+        .step_text {
+          font-size: $fontsize_H5;
+        }
+      }
+    .InfoDetail{
+        width:80%;
+        margin:50px auto;
+        display:flex;
+        justify-content: space-around;    
+        align-items: center;
+    }
+   
+    .memImage,.name{
+    display:none;
+    }
+    .rwdInfoDetail{
+        width:50%;
+        margin:50px auto;
+        text-align: center;
+    }
+    .rwdmemImage{
+        width:37%;
+        overflow: hidden;
+        margin:20px auto;
+    }
+    .rwdorderInfo{
+        width:100%;
+    }
+    #memName{
+        @include H2;
+        font-weight: bold;
+    }
+    .orderInfo{
+        width:100%;
+        div{
+           h3{
+            @include H5;
+                img{
+                    width:4%;
+                }
+            } 
+        }
+        input{
+            @include H5;
+            height: 30px;
+            border-radius: 5px;
+        }
+    }
+    #memPhone,#msg{
+        margin:0px 10px;
+        letter-spacing: 0;
+    }
+
+    #memPhone{
+        margin-left:30px;
+    }
+
+    .discountTop{
+        display: block;
+    }
+    .discountNo{
+        width:100%;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 30px;
+        select{
+            width:80%;
+            height: 30px;
+            border-radius: 5px;
+            @include H5;
+            padding-left:10px;
+            margin-left: 0px;
+        }
+    }
+    .discountNo,.discountBottom,.cardInfo{
+        h3{
+            @include H5;
+        }  
+    }
+    .cardInfo{
+        input{
+            height: 30px;
+            border-radius: 5px;
+            @include H5;
+        }
+        div{
+            margin-bottom: 10px;
+        }
+    }
+    #cardName{
+        label{
+             margin-right:40px; 
+        }
+        input{
+            width:70%;
+        }
+    }
+    #cardNo{
+        label{
+            margin-right:107px;
+        }
+        input{
+            width:15%;;
+            margin-right: 10px;
+        }
+    }
+    #cardExp{
+        label{
+        margin-right:59px;
+        }
+        input{
+            width:15%;
+        }
+        span{
+            @include H5;
+            margin: 0px 3px;
+        }
+    }
+    #cardSafeNo{
+        margin-bottom:50px;
+        label{
+        margin-right:82px;
+        }
+        input{
+            width:15%;
+            margin-right:20px;
+        }
+    }
+    .ListTotal{
+        width:80%;
+        margin:50px auto; 
+        h2{
+            font-size: $fontsize_H4;
+        }
+    }
+    
+    .orderbtn{
+        div{
+            font-size:$fontsize_H5 ;
+            width:90px;
+            height: 35px;
+            border-radius: 5px;                  
+                a{
+                    font-size:$fontsize_H5 ;
+                }
+        }
+    }
+}
+   
+@media screen and (min-width: 768px) and (max-width: 991px){
+    .step_box {
+        width: 90%;
+        margin: 40px auto;
+        .step_ball {
+          li {   
+            width: 85px;
+            height: 85px;   
+            &::before {
+              height: 14px;
+              width: 300px;
+            }
+          }
+        }    
+        .step_text {
+          font-size: $fontsize_H4;
+        }
+      }
+    .InfoDetail{
+        width:80%;
+        margin:50px auto;
+        display:flex;
+        justify-content: space-around;    
+        align-items: center;
+    } 
+    .memImage,.name{
+    display:none;
+    }
+    .rwdInfoDetail{
+        width:50%;
+        margin:50px auto;
+        text-align: center;
+    }
+    .rwdmemImage{
+        width:37%;
+        overflow: hidden;
+        margin:20px auto;
+    }
+    .rwdorderInfo{
+        width:100%;
+    }
+    #memName{
+        @include H2;
+        font-weight: bold;
+    }
+    .orderInfo{
+        width:100%;
+        div{
+           h3{
+            @include H4;
+                img{
+                    width:4%;
+                }
+            } 
+        }
+        input{
+            @include H4;
+            height: 30px;
+            border-radius: 5px;
+        }
+    }
+    #memPhone,#msg{
+        margin:0px 10px;
+        letter-spacing: 0;
+    }
+    #memPhone{
+        margin-left:25px;
+    }
+    .discountTop{
+        display: block;
+    }
+    .discountNo{
+        width:100%;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 30px;
+        select{
+            width:80%;
+            height: 40px;
+            border-radius: 5px;
+            @include H4;
+            padding-left:10px;
+            margin-left: 0px;
+        }
+    }
+    .discountNo,.discountBottom,.cardInfo{
+        h3{
+            @include H4;
+        }  
+    }
+    .cardInfo{
+        input{
+            height: 40px;
+            border-radius: 5px;
+            @include H4;
+        }
+        div{
+            margin-bottom: 10px;
+        }
+    }
+    #cardName{
+        label{
+             margin-right:40px; 
+        }
+        input{
+            width:70%;
+        }
+    }
+    #cardNo{
+        label{
+            margin-right:127px;
+        }
+        input{
+            width:16%;;
+            margin-right: 17px;
+        }
+    }
+    #cardExp{
+        label{
+        margin-right:68px;
+        }
+        input{
+            width:15%;
+        }
+        span{
+            @include H4;
+            margin: 0px 3px;
+        }
+    }
+    #cardSafeNo{
+        margin-bottom:50px;
+        label{
+        margin-right:96px;
+        }
+        input{
+            width:15%;
+            margin-right:20px;
+        }
+    }
+    .ListTotal{
+        width:80%;
+        margin:50px auto; 
+        h2{
+            font-size: $fontsize_H3;
+        }
+    }
+    .orderbtn{
+        div{
+            font-size:$fontsize_H4 ;
+            width:130px;
+            height:46px;
+            border-radius: 10px;                  
+                a{
+                    font-size:$fontsize_H4 ;
+                }
+        }
+    }
+} 
+@media screen and (min-width: 992px) and (max-width: 1199px){
+    .InfoDetail{
+        width:80%;
+        margin:50px auto;
+        display:flex;
+        justify-content: space-around;    
+        align-items: center;
+    }
+ 
+    .memImage,.name{
+    display:none;
+    }
+    .rwdInfoDetail{
+        width:80%;
+        margin:50px auto;
+        text-align: center;
+    }
+    .rwdmemImage{
+        width:37%;
+        overflow: hidden;
+        margin:20px auto;
+    }
+    .rwdorderInfo{
+        width:100%;
+    }
+    #memName{
+        @include H2;
+        font-weight: bold;
+    }
+    .orderInfo{
+        width:100%;
+    }
+    #memPhone,#msg{
+        margin:0px 10px;
+        letter-spacing: 0;
+    }
+    #memPhone{
+        margin-left:45px;    
+    }
+} 
+@media screen and (min-width: 1200px){
+    .rwdInfoDetail{
+        display: none;
+    }
+}

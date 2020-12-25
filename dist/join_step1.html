@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>1.建立揪團</title>
     <link rel="stylesheet" href="./css/join_step1.css" />
     <script src="./vendors/vue/vue.js"></script>
     <link rel="stylesheet" href="./css/style.css" />
@@ -15,14 +15,14 @@
       <!-- ==============進度條================= -->
       <div class="step_box">
         <ul class="step_ball">
-          <li></li>
           <li class="on"></li>
+          <li></li>
           <li></li>
           <li></li>
         </ul>
         <ul class="step_text">
-          <li>1.建立揪團</li>
-          <li class="on">2.完成開團</li>
+          <li class="on">1.建立揪團</li>
+          <li>2.完成開團</li>
           <li>3.結帳資訊</li>
           <li>4.訂單明細</li>
         </ul>
@@ -34,7 +34,13 @@
         <ul>
           <li>
             <label for="name">團名</label>
-            <input id="name" name="name" type="text" class="fildform" />
+            <input
+              id="name"
+              name="name"
+              type="text"
+              class="fildform"
+              required
+            />
           </li>
           <li>
             <label for="time">預計送達時間</label>
@@ -42,8 +48,8 @@
             <input id="time" name="time" type="text" class="fildform" />
           </li>
           <li>
-            <label for="">目標杯數</label>
-            <select>
+            <label for="goal">目標杯數</label>
+            <select id="goal">
               <option>--請選擇目標杯數--</option>
               <option>20杯/9折優惠</option>
               <option>30杯/8折優惠</option>
@@ -66,8 +72,18 @@
         <!-- ==============團長飲料================= -->
         <div class="Head_data">
           <div class="group_button">
-            <button class="btn_back">上一步</button>
-            <button class="btn_go">建立訂單</button>
+            <input
+              type="button"
+              value="上一步"
+              class="btn_back"
+              onclick="location.href='./join_list.html'"
+            />
+            <input
+              type="submit"
+              value="建立訂單"
+              class="btn_go"
+              onclick="location.href='./join_step2.html'"
+            />
           </div>
         </div>
       </form>

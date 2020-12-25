@@ -1,0 +1,404 @@
+// 導入共用基本
+@import "./base/base.scss";
+@import "./mixins/mixins.scss";
+
+// 飲品排名
+
+.article{
+    margin-top: 150px;
+
+    .title_block{
+
+        text-align: center;
+        h2{
+            @include H2;
+        }
+
+        h5{
+            @include H5;
+            margin: 20px 0 20px;
+        }
+    }
+
+    .article_block{
+        // border: 2px solid red;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        
+        .card_big{
+            display: none;
+            width: 40%;
+            border-radius: 20px;
+            box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+
+
+            img{
+                max-width: 100%;
+            }
+
+            .text_block{
+
+                display: flex;
+                justify-content: space-around;
+                padding: 15px 10px 15px 10px;
+
+                .user_info_block{
+                    // border: 1px solid blue;
+                    display: flex;
+                    flex-direction: column;
+                    width: 75%;
+
+                    p.article_time{
+                        @include P2;
+                        text-align: right;
+                    }
+
+                    .user_info{
+                        display: inline-flex;
+                        justify-content: flex-end;
+                        margin-top: 15px;
+
+                        .user_status{
+                            display: inline-flex;
+
+                            .status_icon{
+                                display: inline-flex;
+                                align-items: center;
+ 
+
+                                img{
+                                    margin-left: 15px;
+                                }
+                                p.number{
+                                    @include P1;
+                                    margin-left: 5px;
+                                }
+                            }
+
+                        }
+                    }
+        
+                }
+
+                .article_descirption{
+                    width: 100%;
+
+                    h6{
+                        @include H6;
+                        margin-top: 15px;
+                        font-weight: bold;
+                    }
+
+                    p{
+                        @include P1;
+                        margin-top: 8px;
+                        text-overflow: ellipsis;
+                        white-space : nowrap;
+                        overflow: hidden;
+                    }
+                }
+                
+            }
+            
+        }
+
+        .card_big:first-child{
+            display: block;
+        }
+
+        .card_small_block{
+            width: 40%;
+            margin-left: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            .card_small{
+                width: 100%;
+                border-radius: 20px;
+                box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+                overflow: hidden;
+                display: flex;
+                flex-direction: row;
+                margin-bottom: 10px;
+
+                img{
+                    max-width: 100%;
+                }
+
+                .text_block{
+
+                    padding: 10px;
+
+                    img.user{
+                        width: 20%;
+                    }
+    
+                    .user_info_block{
+                        // border: 1px solid blue;
+                        display: flex;
+                        flex-direction: column;
+                        width: 80%;
+    
+                        p.article_time{
+                            display: none;
+                            @include P2;
+                            text-align: right;
+                        }
+    
+                        .user_info{
+                            display: inline-flex;
+                            margin-top: 15px;
+    
+                            .user_status{
+                                display: inline-flex;
+    
+                                .status_icon{
+                                    display: inline-flex;
+                                    align-items: center;
+     
+    
+                                    img{
+                                        margin-left: 15px;
+                                    }
+
+                                    p.number{
+                                        @include P2;
+                                        margin-left: 5px;
+                                    }
+                                }
+    
+                            }
+                        }
+            
+                    }
+    
+                    .article_descirption{
+                        width: 100%;
+                        text-align: left;
+    
+                        h6{
+                            @include P1;
+                            margin-top: 15px;
+                            font-weight: bold;
+                        }
+    
+                        p{
+                            @include P2;
+                            margin-top: 8px;
+                            text-overflow: ellipsis;
+                            white-space : nowrap;
+                            overflow: hidden;
+                        }
+                    }
+                    
+                }
+
+            }
+
+            .card_small:nth-child(3){
+                margin-bottom: initial;
+            }
+        }
+    }
+
+
+    .bottom_block{
+
+        margin-top:20px;
+        text-align: center;
+          
+        button.seemore{
+            margin-top: 15px;
+            border-radius: 20px;
+            color: $btnColor;
+            font-size: $fontsize_H6;
+            font-weight: bold;
+            padding: 8px 16px 8px 16px;
+            background-color: $textColor;
+            letter-spacing: 5px;      
+        }
+
+    }
+}
+// rwd區域-------------------------------------------------
+@media (min-width: 992px) and (max-width: 1199px){
+
+    .article{
+
+        .article_block{
+
+            .card_big{
+
+                display: block;
+                margin-right: 20px;
+            }
+
+            .card_big:nth-child(3){
+                margin-right: 0px;
+            }
+ 
+            .card_small_block{
+                display: none;
+            }
+        }
+
+    }
+
+}
+
+@media (min-width: 576px) and (max-width: 991px){
+
+    .article{
+        
+        .article_block{
+
+            flex-direction: column;
+            align-items: center;
+
+            .card_big{
+                width: 60%;
+                display: block;
+                margin-bottom: 30px;
+
+                .text_block{
+                    img{
+                        width: 26%;
+                        margin-right: 10px;
+                    }
+
+                    .user_info_block{
+                        
+                        p.article_time{
+                            @include P3;
+                        }
+    
+                        .user_info{
+                            
+                            .user_status{
+                                
+                                .status_icon{
+                                  
+                                    p.number{
+                                        @include P2;
+
+                                    }
+                                }
+    
+                            }
+                        }
+            
+                    }
+    
+                    .article_descirption{
+                        width: 100%;
+    
+                        h6{
+                            @include P1;
+                           
+                        }
+    
+                        p{
+                            @include P2;
+                        }
+                    }
+                    
+                }
+            }
+ 
+            .card_small_block{
+                display: none;
+            }
+        }
+
+    }
+
+}
+
+@media (max-width: 575px){
+
+    .article{
+
+        .title_block{
+            h2{
+              @include H3;
+            }
+      
+            h5{
+              @include P1;
+              line-height: 24px;
+            }
+        }
+        
+        .article_block{
+
+            flex-direction: column;
+            align-items: center;
+
+            .card_big{
+                width: 80%;
+                display: block;
+                margin-bottom: 30px;
+
+                .text_block{
+                    flex-direction: column;
+                    align-items: center;
+                    img{
+                        width: 26%;
+                        margin-right: 10px;
+                    }
+
+                    .user_info_block{
+                        
+                        p.article_time{
+                            display: none;
+                        }
+    
+                        .user_info{
+                            
+                            .user_status{
+                                
+                                .status_icon{
+                                  
+                                    p.number{
+                                        @include P2;
+
+                                    }
+                                }
+    
+                            }
+                        }
+            
+                    }
+    
+                    .article_descirption{
+                        width: 100%;
+                        text-align: center;
+    
+                        h6{
+                            @include P1;
+                           
+                        }
+    
+                        p{
+                            @include P2;
+                        }
+                    }
+                    
+                }
+            }
+ 
+            .card_small_block{
+                display: none;
+            }
+        }
+
+    }
+
+}
+
+
+
+

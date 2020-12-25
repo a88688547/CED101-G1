@@ -1,0 +1,274 @@
+// 導入共用基本
+@import "./base/base.scss";
+@import "./mixins/mixins.scss";
+
+// 關於揪飲
+
+.brandStory{
+    width: 100%;
+    border: 2px solid #013B4F;
+    display: inline-flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 150px;
+
+    .story_block{
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        margin:100px 0 100px;
+        img{
+            max-width: 100%;
+        }
+    
+        .title_block{
+            text-align: left;
+            width: 40%;
+            margin-left: 120px;
+    
+            h2{
+                @include H2;
+            }
+    
+            h6{
+                @include H6;
+                margin: 50px 0 20px;
+                line-height: 36px;
+            }
+        }
+
+    }
+
+    .address_block{
+        width: 100%;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 100px;
+
+        .address{
+    
+            h2{
+                @include H2;
+            }
+    
+            .title_block{
+                display: flex;
+                flex-direction: column;
+                margin:25px 20px 0; 
+                .info_block{
+                    display: inline-flex;
+                    align-items: center;
+                   
+        
+                    h5{
+                        @include H5;
+                        margin: 10px 0 10px 10px;
+                        font-weight: bold;
+                    }
+                }
+            }
+        }
+
+    }
+
+}
+
+
+@media (min-width: 992px) and (max-width: 1199px) {
+
+    .brandStory{
+        .story_block{
+            margin: 60px 0 60px;
+
+            .title_block{
+                margin-left: 60px;
+        
+                h2{
+                    @include H3;
+                }
+        
+                h6{
+                    @include P1;
+                    margin: 50px 0 20px;
+                    line-height: 24px;
+                }
+            }
+    
+        }
+    
+        .address_block{
+            margin-bottom: 60px;
+    
+            .address{
+
+                h2{
+                    @include H3;
+                }
+        
+                .title_block{
+                    margin: 20px 0 0 0;
+             
+                    .info_block{
+                        margin-right: 30px;
+                        
+                        h5{
+                            @include P1;
+                            margin-left: 10px;
+                            
+                        }
+                    }
+                }
+            }
+    
+        }
+    }
+}
+
+@media (min-width: 576px) and (max-width: 991px) {
+
+    .brandStory{
+
+
+        .story_block{
+            display: flex;
+            flex-direction: column;
+            margin: 40px 0 40px;
+
+            .title_block{
+                margin-top: 50px;
+                margin-left: 0px;
+                width: 80%;
+                text-align: center;
+        
+                h2{
+                    @include H3;
+                }
+        
+                h6{
+                    @include P1;
+                    margin: 20px 0 20px;
+                    line-height: 24px;
+                }
+            }
+    
+        }
+    
+        .address_block{
+            margin-bottom: 40px;
+            flex-direction: column-reverse;
+    
+            .address{
+                margin-top: 20px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                h2{
+                    @include H3;
+                }
+        
+                .title_block{
+                    margin-top: 20px;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+             
+                    .info_block{
+
+                        margin-right: 0px;
+                        
+                        h5{
+                            @include P1;
+                            margin-left: 10px;
+                            
+                        }
+                    }
+                }
+            }
+
+            .google_map{
+                iframe{
+                    width: 100%;
+                }
+            }
+    
+        }
+    }
+}
+
+
+@media (max-width: 575px) {
+
+    .brandStory{
+        border: initial;
+
+        .story_block{
+            display: flex;
+            flex-direction: column;
+            margin: 40px 0 40px;
+
+            .title_block{
+                margin-top: 50px;
+                margin-left: 0px;
+                width: 80%;
+                text-align: center;
+        
+                h2{
+                    @include H3;
+                }
+        
+                h6{
+                    @include P1;
+                    margin: 20px 0 20px;
+                    line-height: 24px;
+                }
+            }
+    
+        }
+    
+        .address_block{
+            margin-bottom: 40px;
+            flex-direction: column-reverse;
+    
+            .address{
+                margin-top: 20px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                h2{
+                    @include H3;
+   
+                }
+        
+                .title_block{
+                    margin-top: 20px;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+             
+                    .info_block{
+
+                        margin-right: 0px;
+                        
+                        h5{
+                            @include P1;
+                            margin-left: 10px;
+                            
+                        }
+                    }
+                }
+            }
+
+            .google_map{
+                iframe{
+                    width: 100%;
+                }
+            }
+    
+        }
+    }
+}
+

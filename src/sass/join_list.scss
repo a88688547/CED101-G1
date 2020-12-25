@@ -91,6 +91,10 @@ body {
                     text-decoration:none;
                     color: #fff;
                 }
+                &:hover {
+                  box-shadow: 0 8px 10px #ADADAD;
+                  transform: translateY(-6px);
+              }
           }
           :last-child img{
               display: none;
@@ -106,9 +110,8 @@ body {
           flex-direction: column;
           border-radius: 15px;
           overflow: hidden;
-          // border: 4px solid rgb(43, 255, 0);
+          box-shadow: 3px 2px 15px 1px #242424;
           .join_list_img{
-            border: 3px solid red;
             width: 100%;
             img{
               width: 100%;
@@ -202,10 +205,11 @@ body {
                   align-items: center;
                   justify-content: center;
                   div  {
-                    // border: 2px solid red;
-                    // width: 100%;
                     @include button_all($fontsize_H4,5px , 10px, 20px, #FFA208, #fff);
-                    //   border: 2px solid yellow;
+                    a{
+                      text-decoration:none;
+                      color: #fff;
+                    }
                   }
                 
             }

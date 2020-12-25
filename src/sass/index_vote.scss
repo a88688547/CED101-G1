@@ -1,0 +1,219 @@
+// 導入共用基本
+@import "./base/base.scss";
+@import "./mixins/mixins.scss";
+
+// 飲品排名
+
+.vote{
+    margin-top: 150px;
+
+    .title_block{
+
+        text-align: center;
+        h2{
+            @include H2;
+        }
+
+        h5{
+            @include H5;
+            margin-top: 20px;
+        }
+        
+    }
+
+    .drink_slick{
+        display: none;
+        width: 100%;
+    }
+
+    .drinkitem_block{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        height: 400px;
+        margin-top: 20px;
+
+        .drink_category{
+            background-color: #CFD5B8;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+            
+
+            .text_block{
+                text-align: center;
+                margin-top: 50px;
+                h5{
+                    @include H5;
+                    font-weight: bold;
+                }
+                P{
+                    @include P1;
+                    margin-top: 20px;
+                    padding: 5px;
+                    line-height: 24px;
+                }
+            }
+            .top_block{
+                display: none;
+                position: relative;
+
+                
+                .img_block{
+                    width: 70%;
+                    display: inline-flex;
+                    align-items: center;
+                    padding: 70px 0 0 50px;
+                    // border: 1px solid red;
+               
+                    .drink_item{
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        h6{
+                            @include H6;
+                            text-align: center;
+                            line-height: 21px;
+                            span{
+                                font-weight: bold;
+                            }
+                        }
+                    }
+                }
+
+                h4{
+                    @include H4;
+                    font-weight: bold;
+                    position: absolute;
+                    padding: 30px;
+                    top:0;
+                    left: 0;
+                }
+
+                button{
+                    @include button_3;
+                    padding: 5px 10px;
+                    font-weight: bold;
+                    background-color: $textColor;
+                    color: $btnColor;
+                    margin-left: 30px;
+                }
+
+                
+            }
+
+            img{
+                max-width: 100%;
+            }
+
+        }
+
+        .drink_category:nth-child(2){
+            background-color: #F8DCDC;
+        }
+
+        .drink_category:nth-child(3){
+            background-color: #F1D7C1;
+        }
+
+        .drink_category:hover{
+            transition: all 1s ease;
+            .text_block{
+                display: none;
+            }
+            .top_block{
+                display: block;
+            }
+
+        }
+        
+
+        .flex-1 {
+            flex: 1;
+          }
+
+        .flex-1:hover{
+            flex: 3;
+            transition: all 1s ease;
+        }
+
+    }
+
+    .bottom_block{
+
+        margin-top:20px;
+        text-align: center;
+        
+        h5{
+            @include H5;
+            margin: 50px 0 30px;
+        }
+    
+        button.seemore{
+            border-radius: 20px;
+            color: $btnColor;
+            font-size: $fontsize_H6;
+            font-weight: bold;
+            padding: 8px 16px 8px 16px;
+            background-color: $textColor;
+            letter-spacing: 5px;      
+        }
+
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1199px){
+
+    .vote .drinkitem_block {
+        height: 320px;
+
+        .img_block{
+            width: 75%;
+        }
+
+        .flex-1:hover{
+            flex: 4;
+            transition: all 1s ease;
+        }
+    }
+
+
+}
+
+@media (max-width: 991px){
+
+    .vote{
+
+        .title_block{
+            h2{
+              @include H3;
+            }
+      
+            h5{
+              @include P1;
+              line-height: 24px;
+            }
+          }
+
+        .drink_slick{
+            display: block;
+        }
+        
+        .drinkitem_block{
+            display: none;
+        }
+
+        .bottom_block{
+            h5{
+                @include P1;
+              }
+
+        }
+
+    }
+
+}
+
+
+

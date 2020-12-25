@@ -1,0 +1,275 @@
+// 導入共用基本
+@import "./base/base.scss";
+@import "./mixins/mixins.scss";
+
+//跟團喝  
+
+section.join_drink{
+  margin-top: 30px;
+//   border: 1px solid red;
+  justify-content: center;
+
+  .title_block{
+    // border: 1px solid red;
+
+    text-align: center;
+
+    h2{
+      @include H2;
+    }
+
+    h5{
+      @include H5;
+      margin-top: 20px;
+    }
+  }
+
+  //跟團區
+  .drinkbar_block{
+    // border: 1px solid red;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    //跟團版
+    .drink_bar{
+    //   border: 3px solid purple;
+      width: 48%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin-top: 30px;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+      // align-items: center;
+      
+
+      img{
+        max-width: 100%;
+      }
+
+      .drinkbar_textblock{
+        // border: 1px solid blue;
+        width: 57%;
+        padding: 15px;
+
+        .bar_title{
+          // border: 2px solid green;
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-end;
+          h6{
+            @include H6;
+          }
+
+        }
+
+        hr{
+          margin-top: 10px;
+        }
+
+        > h6{
+          @include H6;
+          font-weight: bold;
+          margin-top: 10px;
+          line-height: 20px;
+          
+          span{
+            font-weight: initial;
+          }
+        }
+
+        .drink_status{
+          // border: 1px solid blue;
+          display: flex;
+
+          .status_title{
+            // border: 1px solid red;
+            display: flex;
+            align-items: center;
+            margin-top: 15px;
+            
+            img{
+              // border: 1px solid red;
+              margin-right: 5px;
+            }
+
+            img.complited_cups{
+              margin-left: 20px;
+            }
+
+            h6{
+              // border: 1px solid blue; 
+              @include H6;
+              font-weight: bold;
+              span{
+                color: $btnColor;
+              }
+            }
+          }
+
+        }
+
+        .join_drink_btm{
+          display: flex;
+          align-items: center;
+          margin-top: 15px;
+          justify-content: space-between;
+
+          h6{
+            @include H6;
+          }
+
+          button.join_drink{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            border-radius: 18px;
+            padding: 5px;
+            background-color: #FFA208;
+
+            img{
+              margin:0 5px 0 5px;
+            }
+  
+            h6{
+              @include H6;
+              font-weight: bold;
+              color: white;
+            }
+          }
+
+        }
+      }
+    }
+  }
+
+  .bottom_block{
+    display: flex;
+    justify-content: center;
+    margin: 50px 0 50px;
+
+    button.seemore{
+      border-radius: 20px;
+      color: $btnColor;
+      font-size: $fontsize_H6;
+      font-weight: bold;
+      padding: 8px 16px 8px 16px;
+      background-color: $textColor;
+      letter-spacing: 5px;      
+    }
+
+  }
+
+}
+
+
+// RWD區塊
+
+
+@media (min-width: 768px) and (max-width: 1310px){
+
+  section.join_drink .drinkbar_block .drink_bar {
+    flex-direction: column;
+    width: 48%;
+
+    .drinkbar_textblock {
+      width: 100%;
+     }  
+  }
+ 
+}
+
+@media (min-width: 576px) and (max-width: 767px){
+
+  section.join_drink{
+
+    .title_block{
+      h2{
+        @include H3;
+      }
+
+      h5{
+        @include H6;
+      }
+    }
+
+    .drinkbar_block{
+      flex-direction: column;
+      align-items: center;
+
+      .drink_bar {
+        flex-direction: column;
+        width: 75%;
+    
+        .drinkbar_textblock {
+          width: 100%;
+        }
+      }  
+    }
+  }    
+}
+
+@media (max-width: 575px){
+
+  section.join_drink{
+
+    .title_block{
+      h2{
+        @include H3;
+      }
+
+      h5{
+        @include P1;
+        line-height: 24px;
+      }
+    }
+
+    .drinkbar_block{
+      flex-direction: column;
+      align-items: center;
+
+      .drink_bar {
+        flex-direction: column;
+        width: 90%;
+    
+        .drinkbar_textblock {
+          width: 100%;
+          .bar_title{
+            h6{
+              @include P1;
+            }
+          }
+
+          .drink_status{
+            flex-direction: column;
+            .status_title{
+              img.complited_cups{
+                margin-left: initial;
+              }
+            }
+          }
+
+
+          .join_drink_btm{
+            flex-direction: column;
+            h6{
+              @include P1;
+            }
+
+            button{
+              margin-top: 10px;
+              h6{
+                @include P1;
+              }
+             
+            }
+          }
+        }
+      }  
+    }
+  }    
+}

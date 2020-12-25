@@ -7,12 +7,11 @@ $mq575: 575px;
 $mq767: 767px;
 $mq991: 991px;
 $mq1199: 1199px;
+
 body {
     background: $insideBackgroundColor;
-    display: flex;
-    justify-content: center;
-    box-sizing: border-box;
 }
+
 .lightbox {
     width: 100%;
     height: 100%;
@@ -22,6 +21,8 @@ body {
     justify-content: center;
     align-items: center;
     display: none;
+    // z-index: 10;
+
     .lightbox-wrap {
         position: relative;
         width: 600px;
@@ -29,15 +30,18 @@ body {
         box-shadow: 3px 3px 5px 2px rgba($color: #000000, $alpha: 0.2);
         padding: 15px;
         border-radius: 15px;
-        .close {
+
+        .game-close {
             position: absolute;
             top: 15px;
             right: 15px;
             cursor: pointer;
+
             img {
                 width: 25px;
             }
         }
+
         h2 {
             color: $textColor;
             font-size: $fontsize_H2;
@@ -45,14 +49,17 @@ body {
             margin: 45px 0;
             font-weight: bold;
         }
+
         p {
             font-size: $fontsize_H3;
             padding: 0 100px;
             line-height: 1.6;
         }
+
         .buttons {
             text-align: center;
             margin: 45px 0;
+
             button {
                 color: $textColor;
                 cursor: pointer;
@@ -65,13 +72,16 @@ body {
                 border-radius: 10px;
                 cursor: pointer;
                 transition: 0.2s ease-in-out;
+
                 a {
                     text-decoration: none;
                     color: #fff;
                 }
+
                 &:hover {
                     background-color: #aaa;
                 }
+
                 &:focus {
                     outline: none;
                 }
@@ -79,27 +89,33 @@ body {
         }
     }
 }
+
 main {
-    width: 1200px;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    position: relative;
+
     .title {
         position: relative;
         width: 100%;
+
         h3 {
             position: absolute;
             top: 50%;
-            left: 0;
+            left: 30px;
             transform: translateY(-50%);
+
             a {
                 text-decoration: none;
                 font-size: $fontsize_H3;
                 color: #b3925b;
             }
         }
+
         h2 {
             text-align: center;
             margin: 50px 0;
@@ -108,10 +124,84 @@ main {
             font-weight: bold;
         }
     }
+
     .ga {
         padding: 15px;
         width: 1200px;
         height: 600px;
         background-color: rgb(89, 131, 40);
     }
+}
+
+.container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#animation_container {
+    position: relative;
+}
+
+#score {
+    position: absolute;
+    top: 10px;
+    left: 15px;
+    font-size: 2rem;
+    color: #fff;
+    z-index: 1;
+}
+
+.hp {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    z-index: 1;
+    width: 150px;
+}
+
+.hp>h2 {
+    color: #fff;
+    float: left;
+}
+
+.hpbox {
+    float: right;
+    width: 100px;
+    height: 20px;
+    border: 2px solid antiquewhite;
+    margin-top: 5px;
+}
+
+.hpbar {
+    width: 100%;
+    height: 100%;
+    background-color: red;
+}
+
+.playBtn {
+    position: absolute;
+    color: rgb(146, 15, 15);
+    font-size: 4rem;
+    z-index: 2;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.gameover {
+    position: absolute;
+    color: rgb(146, 15, 15);
+    font-size: 4rem;
+    z-index: 2;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    font-weight: bold;
+    display: none;
 }

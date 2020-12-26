@@ -12,6 +12,7 @@
         text-align: center;
         h2{
             @include H2;
+            font-weight: bold;
         }
 
         h5{

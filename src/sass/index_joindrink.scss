@@ -16,6 +16,7 @@ section.join_drink{
 
     h2{
       @include H2;
+      font-weight: bold;
     }
 
     h5{
@@ -41,8 +42,9 @@ section.join_drink{
       flex-direction: row;
       justify-content: space-between;
       margin-top: 30px;
-      border-radius: 15px;
+      border-radius: 25px;
       overflow: hidden;
+      background-color: white;
       box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
       // align-items: center;
       
@@ -123,26 +125,36 @@ section.join_drink{
             @include H6;
           }
 
-          button.join_drink{
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            border-radius: 18px;
-            padding: 5px;
-            background-color: #FFA208;
+          .join_drink {
+            @include lineargradient_button;
 
-            img{
-              margin:0 5px 0 5px;
-            }
-  
-            h6{
-              @include H6;
-              font-weight: bold;
-              color: white;
-            }
+              h6{
+                  @include H6;
+                  font-weight: bold;
+                  color: white;
+                }
+              
+                img{
+                  margin-right: 5px;
+                }
+
+          }
+        
+          .join_drink:hover {
+              @include lineargradient_button-hover;
+          } 
+        
+          .join_drink:focus {
+              outline: none;
+          }
+
+          .join_drink.color-1 {
+            background-image: linear-gradient(to right, #f5ce62, #e43603, #fa7199, #e85a19);
+            box-shadow: 0 2px 5px 0 rgba(229, 66, 10, 0.75);
           }
 
         }
+
       }
     }
   }
@@ -153,13 +165,31 @@ section.join_drink{
     margin: 50px 0 50px;
 
     button.seemore{
-      border-radius: 20px;
-      color: $btnColor;
-      font-size: $fontsize_H6;
-      font-weight: bold;
-      padding: 8px 16px 8px 16px;
-      background-color: $textColor;
-      letter-spacing: 5px;      
+      @include lineargradient_button;
+      width: 180px;
+      height: 40px;
+      h6{
+        @include H6;
+        font-weight: bold;
+        color: white;
+      }
+    
+      img{
+        margin-right: 5px;
+      }    
+    }
+
+    button.seemore:hover{
+      @include lineargradient_button-hover;
+    }
+
+    button.seemore:focus {
+      outline: none;
+    }
+
+    button.seemore.color-2 {
+      background-image: linear-gradient(to right, #29323c, #485563, #2b5876, #4e4376);
+      box-shadow: 0 4px 15px 0 rgba(45, 54, 65, 0.75);
     }
 
   }

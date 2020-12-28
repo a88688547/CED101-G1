@@ -55,3 +55,15 @@
   font-size: 1rem;
   font-family: 'Roboto', sans-serif;
 }
+
+
+// 訂單字型
+
+@mixin list_lable {
+  font-size: 2.1rem;
+  letter-spacing: 0.8rem;
+  font-family: 'Roboto', sans-serif;
+  letter-spacing: 2px;
+  color: $textColor;
+}
+  

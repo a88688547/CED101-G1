@@ -12,6 +12,7 @@ body {
     background: $insideBackgroundColor;
 }
 
+
 .rule {
     position: fixed;
     top: 0;
@@ -27,8 +28,11 @@ body {
         width: 600px;
         box-shadow: 3px 3px 5px 2px rgba($color: #000000, $alpha: 0.2);
         padding: 30px;
-        background-color: rgb(245, 238, 238);
+        background-color: #013B4F;
         border-radius: 15px;
+        display: flex;
+        flex-direction:column;
+       
 
         img {
             position: absolute;
@@ -41,14 +45,27 @@ body {
         h2 {
             font-weight: bold;
             font-size: $fontsize_H2;
-            color: $textColor;
+            color: $btnColor;
             text-align: center;
             margin: 15px 0;
+            padding-bottom:20px;
+            border-bottom: 1px solid #B3925B;
         }
 
         p {
             font-size: $fontsize_H4;
             line-height: 1.6;
+            color:white;
+        }
+        button{
+            font-size: $fontsize_H4;
+            border-radius: 20px;
+            background-color:$btnColor;
+            margin:3% auto 0 auto;
+          
+            p{
+                padding:5px; 
+            }
         }
     }
 }
@@ -63,6 +80,7 @@ section {
     form {
         width: 1200px;
         padding: 15px;
+        margin:0 auto;
     }
 }
 
@@ -70,24 +88,26 @@ section {
     display: flex;
     margin-bottom: 50px;
 
+
     .left {
         width: 50%;
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: center;
+        align-items: flex-start;
+        margin-left:50px;
 
         h2 {
             font-size: $fontsize_H2;
             color: $textColor;
             font-weight: bold;
             margin-bottom: 100px;
+            letter-spacing: 3px;
         }
 
         .select-char {
             width: 300px;
             height: 300px;
-            // background-color: #ccc;
             margin-bottom: 100px;
 
             img {
@@ -122,7 +142,7 @@ section {
                 top: 50%;
                 left: 50%;
                 transform: translate(-50%, -50%);
-                border-bottom: 100px solid #ccc;
+                border-bottom: 100px solid $mainBackgroundColor;
                 border-left: 60px solid transparent;
                 border-right: 60px solid transparent;
             }
@@ -132,6 +152,7 @@ section {
             .hp {
                 position: absolute;
                 font-size: $fontsize_H3;
+                font-weight: bold;
             }
 
             .speed {
@@ -165,30 +186,35 @@ section {
                 h2 {
                     font-size: $fontsize_H3;
                     color: $textColor;
+                    letter-spacing: 3px;
                 }
             }
 
             .item-wrap {
-                padding: 15px;
+                padding: 5px;
                 display: flex;
                 width: 100%;
-                background-color: #04b2ac;
-                border-radius: 20px;
+                background-color: $textColor;
+                border-radius: 10px;
 
                 .item {
                     width: 33%;
                     height: 150px;
-                    background-color: #ccc;
-                    margin: 15px;
+                    background-color: $insideBackgroundColor;
+                    margin: 5px ;
+                    padding:10px;
+                    border-radius: 5px;
                     cursor: pointer;
+                    text-align: center;
 
                     input {
                         display: none;
                     }
 
                     img {
-                        width: 100%;
                         height: 100%;
+                      
+                   
                     }
                 }
             }

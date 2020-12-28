@@ -34,9 +34,6 @@
   // 購物車
   width: 15rem;
   height: 15rem;
-  font-size: 2.4rem;
-  letter-spacing: 1rem;
-  text-indent: 1rem;
   border-radius: 50%;
   background-color: #013B4F;
   color: #B3925B;
@@ -47,6 +44,30 @@
   border: none;
   z-index: 2;
   outline: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  span {
+    color: white;
+    position: absolute;
+    left: 100%;
+    top: 0;
+    transform: translateX(-75%) translateY(0);
+    background-color: red;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 25px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  div {
+    display: none;
+  }
 }
 
 @mixin button_4_mob {
@@ -57,6 +78,26 @@
   right: 0;
   height: 4rem;
   bottom: 50px;
+  font-size: 2.4rem;
+  letter-spacing: 1rem;
+  text-indent: 1rem;
+
+  span {
+    left: 75%;
+    transform: translateX(0) translateY(0%);
+    width: 40px;
+    height: 40px;
+    letter-spacing: 0.2rem;
+    text-indent: 0.2rem;
+  }
+
+  img {
+    display: none;
+  }
+
+  div {
+    display: inline-block;
+  }
 }
 
 @mixin button5 {
@@ -70,29 +111,29 @@
   margin: 0 40px;
 }
 
-@mixin lineargradient_button{
+@mixin lineargradient_button {
   display: flex;
-              flex-direction: row;
-              align-items: center;
-              justify-content: center;
-              cursor: pointer;
-              margin: 5px;
-              height: 35px;
-              width: 100px;
-              text-align:center;
-              border: none;
-              border-radius: 30px;
-              background-size: 300% 100%;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin: 5px;
+  height: 35px;
+  width: 100px;
+  text-align: center;
+  border: none;
+  border-radius: 30px;
+  background-size: 300% 100%;
 
-              // transition效果
-              -o-transition: all .4s ease-in-out;
-              -webkit-transition: all .4s ease-in-out;
-              transition: all .4s ease-in-out
+  // transition效果
+  -o-transition: all .4s ease-in-out;
+  -webkit-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out
 }
 
-@mixin lineargradient_button-hover{
-              background-position: 100% 0;
-              -o-transition: all .4s ease-in-out;
-              -webkit-transition: all .4s ease-in-out;
-              transition: all .4s ease-in-out;
+@mixin lineargradient_button-hover {
+  background-position: 100% 0;
+  -o-transition: all .4s ease-in-out;
+  -webkit-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
 }

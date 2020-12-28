@@ -1,6 +1,9 @@
 
 const bus = new Vue();
-
+let storage = sessionStorage;
+if (storage['addItemList'] == null) {
+    storage['addItemList'] = ''
+}
 //菜單組件
 Vue.component('menu_carshop', {
     data() {
@@ -18,6 +21,7 @@ Vue.component('menu_carshop', {
                             medium_price: "40",
                             large_price: "50",
                             id: "1",
+                            imgSrc: "./Images/drinkphoto/milktea/brownsugarmilktea.jpg",
                         },
                         {
                             drink_name: "港式厚奶",
@@ -25,6 +29,7 @@ Vue.component('menu_carshop', {
                             medium_price: "20",
                             large_price: "30",
                             id: "2",
+                            imgSrc: "./Images/drinkphoto/milktea/caffeelattebanner.jpg",
                         },
                         {
                             drink_name: "紅茶拿鐵",
@@ -32,6 +37,7 @@ Vue.component('menu_carshop', {
                             medium_price: "50",
                             large_price: "60",
                             id: "3",
+                            imgSrc: "./Images/drinkphoto/milktea/greentealattebanner.jpg",
                         },
                         {
                             drink_name: "鮮奶茶",
@@ -39,6 +45,7 @@ Vue.component('menu_carshop', {
                             medium_price: "20",
                             large_price: "30",
                             id: "4",
+                            imgSrc: "./Images/drinkphoto/milktea/jellymilkteabanner.jpg",
                         },
                         {
                             drink_name: "烏龍拿鐵",
@@ -46,6 +53,7 @@ Vue.component('menu_carshop', {
                             medium_price: "20",
                             large_price: "35",
                             id: "5",
+                            imgSrc: "./Images/drinkphoto/milktea/machalattebanner.jpg",
                         },
                     ],
                 },
@@ -55,11 +63,13 @@ Vue.component('menu_carshop', {
                     type: "2",
                     itemList_milk: [
                         {
-                            drink_name: "冰翠柳丁",
+                            drink_name: "水果茶",
                             drink_name_en: "Milk Tea6",
                             medium_price: "40",
                             large_price: "50",
                             id: "1",
+                            imgSrc: "./Images/drinkphoto/fruit/fruitteaa.jpg",
+                            // imgSrc: "./Images/20off.jpg",
                         },
                         {
                             drink_name: "清寧香茶",
@@ -67,6 +77,7 @@ Vue.component('menu_carshop', {
                             medium_price: "20",
                             large_price: "30",
                             id: "2",
+                            imgSrc: "./Images/drinkphoto/fruit/dragonfruit.jpg",
                         },
                         {
                             drink_name: "香柚綠茶",
@@ -74,6 +85,7 @@ Vue.component('menu_carshop', {
                             medium_price: "50",
                             large_price: "60",
                             id: "3",
+                            imgSrc: "./Images/drinkphoto/fruit/lemontea.jpg",
                         },
                         {
                             drink_name: "冬瓜檸檬",
@@ -81,6 +93,7 @@ Vue.component('menu_carshop', {
                             medium_price: "20",
                             large_price: "30",
                             id: "4",
+                            imgSrc: "./Images/drinkphoto/fruit/passionfruit.jpg",
                         },
                         {
                             drink_name: "柳丁綠茶",
@@ -88,6 +101,7 @@ Vue.component('menu_carshop', {
                             medium_price: "20",
                             large_price: "35",
                             id: "5",
+                            imgSrc: "./Images/drinkphoto/fruit/strawberrysmoothie.jpg",
                         },
                     ],
                 },
@@ -102,6 +116,7 @@ Vue.component('menu_carshop', {
                             medium_price: "40",
                             large_price: "50",
                             id: "1",
+                            imgSrc: "./Images/drinkphoto/fruit/strawberrysmoothie.jpg",
                         },
                         {
                             drink_name: "茉莉綠茶",
@@ -109,6 +124,7 @@ Vue.component('menu_carshop', {
                             medium_price: "20",
                             large_price: "30",
                             id: "2",
+                            imgSrc: "./Images/drinkphoto/fruit/strawberrysmoothie.jpg",
                         },
                         {
                             drink_name: "高峰烏龍",
@@ -116,6 +132,7 @@ Vue.component('menu_carshop', {
                             medium_price: "50",
                             large_price: "60",
                             id: "3",
+                            imgSrc: "./Images/drinkphoto/fruit/strawberrysmoothie.jpg",
                         },
                         {
                             drink_name: "四季春茶",
@@ -123,6 +140,7 @@ Vue.component('menu_carshop', {
                             medium_price: "20",
                             large_price: "30",
                             id: "4",
+                            imgSrc: "./Images/drinkphoto/fruit/strawberrysmoothie.jpg",
                         },
                         {
                             drink_name: "金萱茶",
@@ -130,6 +148,7 @@ Vue.component('menu_carshop', {
                             medium_price: "20",
                             large_price: "35",
                             id: "5",
+                            imgSrc: "./Images/drinkphoto/fruit/strawberrysmoothie.jpg",
                         },
                     ],
                 },
@@ -189,7 +208,7 @@ Vue.component('menu_carshop', {
         </div>
     </div>
     <button id="shopping_btn"><span v-if="shopping_num_total >= 1"
-            id="shopping_num_total">{{shopping_num_total}}</span>購物車</button>
+            id="shopping_num_total">{{shopping_num_total}}</span><img src="./Images/cart.svg" alt=""><div>前往購物車</div></button>
 
     </div>
 
@@ -202,6 +221,7 @@ Vue.component('light_box', {
             // 燈箱飲料名
             shop_drink_name: "",
             shop_drink_name_en: "",
+            imgSrc: "",
             // 燈箱開啟後的飲料金額
             shop_price: "",
             // 燈箱開啟後的飲品數量
@@ -221,7 +241,7 @@ Vue.component('light_box', {
             this.shop_drink_name = item.drink_name
             this.shop_drink_name_en = item.drink_name_en
             this.shop_price = item.medium_price
-
+            this.imgSrc = item.imgSrc
             this.closeLightBox = true
             //將大小杯價格存入task變數，讓toDoInput父層組件使用
             this.task = [item.medium_price, item.large_price]
@@ -240,10 +260,83 @@ Vue.component('light_box', {
         },
         //新增飲品數量至購物車，並關閉燈箱
         addToCar() {
-            bus.$emit('addToCar_parent', this.num_feedback)
-            document.querySelectorAll('input').checked = false
-            this.closeLightBox = false
-            this.num_feedback = 1
+            //是否有勾選飲品溫度
+            let selectIce = false
+            let ice = document.getElementById('ice')
+            let iceInput = ice.querySelectorAll('input')
+            //選到飲品溫度的值
+            let selectIceValue
+            for (let i = 0; i < iceInput.length; i++) {
+                if (iceInput[i].checked) {
+                    selectIce = true
+                    selectIceValue = iceInput[i].value
+                }
+            }
+
+            //是否有勾選甜度
+            let selectSugar = false
+            let sugar = document.getElementById('sugar')
+            let sugarInput = sugar.querySelectorAll('input')
+            //選到甜度的值
+            let selectSugarValue
+            for (let i = 0; i < sugarInput.length; i++) {
+                if (sugarInput[i].checked) {
+                    selectSugar = true
+                    selectSugarValue = sugarInput[i].value
+                }
+            }
+
+            //都有勾選的話就可以正常新增飲品至購物車
+            if (selectIce && selectSugar) {
+                //把飲品杯數傳回菜單組件
+                bus.$emit('addToCar_parent', this.num_feedback)
+                //關閉燈箱
+                this.closeLightBox = false
+                //關閉燈箱後，所有input取消勾選
+                document.querySelectorAll('input').checked = false
+                //呼叫存入storage函式
+                this.addToStorage(selectIceValue, selectSugarValue)
+                //關閉燈箱後，飲品數目預設回1杯
+                this.num_feedback = 1
+            } else if (selectIce == false) {
+                alert("請選擇飲品溫度")
+            } else {
+                alert("請選擇甜度")
+            }
+
+        },
+        addToStorage(_selectIceValue, _selectSugarValue) {
+            let cup = document.getElementById('cup')
+            let cupInput = cup.querySelectorAll('input')
+            // 選到大杯還是小杯
+            let selectCupValue
+            for (let i = 0; i < cupInput.length; i++) {
+                if (cupInput[i].checked) {
+                    selectCupValue = cupInput[i].parentNode.innerText
+                }
+            }
+
+            // 選到的加料
+            let selectIngredientValue
+            let ingredient = document.getElementById('ingredient')
+            let ingredientInput = ingredient.querySelectorAll('input')
+            for (let i = 0; i < ingredientInput.length; i++) {
+                if (ingredientInput[i].checked) {
+                    selectIngredientValue = ingredientInput[i].value
+                    break;
+                } else {
+                    selectIngredientValue = ""
+                }
+            }
+
+            //選擇的飲料項目加成字串存到storage
+            let drinkInDetail_first = `${this.shop_drink_name},${selectCupValue},${_selectSugarValue},${_selectIceValue},${selectIngredientValue},${this.shop_price}|`
+            let drinkInDetail = ""
+            for (let i = 1; i <= this.num_feedback; i++) {
+                drinkInDetail += drinkInDetail_first
+            }
+            storage['addItemList'] += `${drinkInDetail}`
+
         },
         //燈箱內飲料杯數*單價的總價錢
         addTask(item_num) {
@@ -264,7 +357,7 @@ Vue.component('light_box', {
     <div id="drink_light_box">
         <button id="cancel_shop_btn" @click="cancel_shop">X</button>
         <!-- 飲料圖 -->
-        <div id="drink_img"><img src="http://fakeimg.pl/355x180/" alt="" /></div>
+        <div id="drink_img"><img :src="imgSrc" alt="" /></div>
         <div id="drink_data">
             <!-- 飲品名稱 -->
             <div id="shop_drink_name_title">
@@ -284,11 +377,11 @@ Vue.component('light_box', {
             <div class="drink_set">
                 <div class="set_title"><img src="./Images/drop-3.svg" alt="" /><span>飲品溫度</span></div>
                 <div id="ice" class="set_item">
-                    <input type="radio" value="" id="normal" name="ice" /><label
-                        for="medium_cup">正常</label><input type="radio" value="" id="less_ice"
-                        name="ice" /><label for="less_ice">少冰</label><input type="radio" value="" id="low_ice"
-                        name="ice" /><label for="low_ice">微冰</label><input type="radio" value="" id="no_ice"
-                        name="ice" /><label for="no_ice">去冰</label><input type="radio" value="" id="hot"
+                    <input type="radio" value="正常" id="normal" name="ice" /><label
+                        for="normal">正常</label><input type="radio" value="少冰" id="less_ice"
+                        name="ice" /><label for="less_ice">少冰</label><input type="radio" value="微冰" id="low_ice"
+                        name="ice" /><label for="low_ice">微冰</label><input type="radio" value="去冰" id="no_ice"
+                        name="ice" /><label for="no_ice">去冰</label><input type="radio" value="熱飲" id="hot"
                         name="ice" /><label for="hot">熱飲</label>
                 </div>
             </div>
@@ -296,21 +389,21 @@ Vue.component('light_box', {
             <div class="drink_set">
                 <div class="set_title"><img src="./Images/drop-3.svg" alt="" /><span>甜度</span></div>
                 <div id="sugar" class="set_item">
-                    <input type="radio" value="" id="standard" name="sugar" /><label
-                        for="standard">正常</label><input type="radio" value="" id="less_sugar"
-                        name="sugar" /><label for="less_sugar">少糖</label><input type="radio" value=""
+                    <input type="radio" value="正常" id="standard" name="sugar" /><label
+                        for="standard">正常</label><input type="radio" value="少糖" id="less_sugar"
+                        name="sugar" /><label for="less_sugar">少糖</label><input type="radio" value="微糖"
                         id="low_sugar" name="sugar" /><label for="low_sugar">微糖</label><input type="radio"
-                        value="" id="no_sugar" name="sugar" /><label for="no_sugar">無糖</label>
+                        value="無糖" id="no_sugar" name="sugar" /><label for="no_sugar">無糖</label>
                 </div>
             </div>
             <!-- 配料 -->
             <div class="drink_set">
                 <div class="set_title"><img src="./Images/drop-3.svg" alt="" /><span>加料</span></div>
                 <div id="ingredient" class="set_item">
-                    <input type="radio" value="" id="tapioca_pearl" name="ingredient" /><label
-                        for="tapioca_pearl">珍珠</label><input type="radio" value="" id="red_beams"
-                        name="ingredient" /><label for="red_beams">紅豆</label><input type="radio" value=""
-                        id="aiyu" name="ingredient" /><label for="aiyu">愛玉</label><input type="radio" value=""
+                    <input type="radio" value="珍珠" id="tapioca_pearl" name="ingredient" /><label
+                        for="tapioca_pearl">珍珠</label><input type="radio" value="紅豆" id="red_beams"
+                        name="ingredient" /><label for="red_beams">紅豆</label><input type="radio" value="愛玉"
+                        id="aiyu" name="ingredient" /><label for="aiyu">愛玉</label><input type="radio" value="椰果"
                         id="cococut" name="ingredient" /><label for="cococut">椰果</label>
                 </div>
             </div>
@@ -341,10 +434,8 @@ Vue.component('toDoInput', {
     template: `
     <div>
     <!-- input的value接收toDoInputPrice大小杯的價錢 -->
-    <input type="radio"  @change="chooseSize($event)" :value="toDoInputPrice[0]" id="medium_cup" name="cup" checked/>
-    <label for="medium_cup">中杯</label>
-    <input type="radio"  @change="chooseSize($event)" :value="toDoInputPrice[1]" id="large_cup" name="cup" />
-    <label for="large_cup">大杯</label>
+    <label for="medium_cup"><input type="radio"  @change="chooseSize($event)" :value="toDoInputPrice[0]" id="medium_cup" name="cup" checked/>中杯</label>
+    <label for="large_cup"><input type="radio"  @change="chooseSize($event)" :value="toDoInputPrice[1]" id="large_cup" name="cup" />大杯</label>
     </div>
     `,
     methods: {

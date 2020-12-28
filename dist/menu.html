@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="./css/group_menu.css" />
     <link rel="stylesheet" href="./css/menu.css" />
     <link rel="stylesheet" href="./css/style.css" />
+    <!-- 不加會有錯 -->
+    <link rel="shortcut icon" href="#" />
 </head>
 
 <body>
@@ -20,7 +22,7 @@
     <!-- 揪團資訊 -->
     <div id="group_info">
         <!-- 揪團圖片 -->
-        <div id="group_img"><img src="http://fakeimg.pl/400x350/" alt="" id="img_group" /></div>
+        <div id="group_img"><img src="./Images/20off.jpg" alt="" id="img_group" /></div>
         <div class="group_info_inner">
             <!-- 團名 -->
             <div id="name_time_wrapper">
@@ -92,7 +94,12 @@
     <script src="./js/menu.js"></script>
     <script>
         document.getElementById('shopping_btn').addEventListener('click', function () {
-            location.href = 'follow_step1.html'
+            if (this.querySelectorAll('span').length >= 1) {
+                location.href = 'follow_step1.html'
+            } else {
+                alert('請選擇飲品')
+            }
+
         })
     </script>
 </body>

@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/list_data.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- 不加會有錯 -->
+    <link rel="shortcut icon" href="#" />
 </head>
 
 <body>
@@ -40,78 +42,12 @@
     </div>
 
 
-
-    <div id="order_list">
-        <!-- 每個人  -->
-        <div class="group_order_done_person">
-            <div class="group_order_done_person_upbox">
-                <div class="group_order_done_person_infobox">
-                    <div class="group_order_done_person_img"><img src="./Images/user_big.svg" /></div>
-                    <div class="group_order_done_person_name">徐朝亭</div>
-                </div>
-                <div class="group_order_done_person_total">
-                    <div class="group_order_done_person_total_cup">2杯</div>
-                    <div class="group_order_done_person_total_price">$115</div>
-                </div>
-            </div>
-            <div class="group_order_done_person_downbox">
-                <!-- 購買的 飲料 -->
-                <div class="group_order_done_person_drink">
-                    <div class="group_order_done_person_drink_title">珍珠奶茶-大杯</div>
-                    <div class="group_order_done_person_drink_note">少冰/微糖/加珍珠/$65/1杯</div>
-                    <button class="order_delete_btn">刪除</button>
-                </div>
-                <div class="group_order_done_person_drink">
-                    <div class="group_order_done_person_drink_title">紅茶-大杯</div>
-                    <div class="group_order_done_person_drink_note">去冰/無糖/加QQ/$50/1杯</div>
-                    <button class="order_delete_btn">刪除</button>
-                </div>
-            </div>
-        </div>
-        <div class="group_order_done_person">
-            <div class="group_order_done_person_upbox">
-                <div class="group_order_done_person_infobox">
-                    <div class="group_order_done_person_img"><img src="./Images/user_big.svg" /></div>
-                    <div class="group_order_done_person_name">徐朝亭</div>
-                </div>
-                <div class="group_order_done_person_total">
-                    <div class="group_order_done_person_total_cup">2杯</div>
-                    <div class="group_order_done_person_total_price">$115</div>
-                </div>
-            </div>
-            <div class="group_order_done_person_downbox">
-                <!-- 購買的 飲料 -->
-                <div class="group_order_done_person_drink">
-                    <div class="group_order_done_person_drink_title">珍珠奶茶-大杯</div>
-                    <div class="group_order_done_person_drink_note">少冰/微糖/加珍珠/$65/1杯</div>
-                    <button class="order_delete_btn">刪除</button>
-                </div>
-                <div class="group_order_done_person_drink">
-                    <div class="group_order_done_person_drink_title">紅茶-大杯</div>
-                    <div class="group_order_done_person_drink_note">去冰/無糖/加QQ/$50/1杯</div>
-                    <button class="order_delete_btn">刪除</button>
-                </div>
-            </div>
-        </div>
+    <div id="app">
+        <orderList></orderList>
     </div>
 
-    <div id="ListTotal_wrapper">
-        <div class="ListTotal">
-            <div class="payTotal">
-                <h2>應付金額</h2>
-            </div>
-            <div id="line">
-                <hr>
-            </div>
-            <div>
-                <h2><span>$.</span><span id="ordPrice">400</span></h2>
-            </div>
-        </div>
-        <div class="orderbtn">
-            <div><a href="orderPaymentGroup.html">繼續加購</a></div>
-            <div class="nextStep"><a href="#">建立訂單</a></div>
-        </div>
-    </div>
+
+
 
     <!-- 燈箱 -->
     <div class="orderModal">
@@ -306,7 +242,9 @@
 
 
         });
+
     </script>
+    <script src="./js/follow_step1.js"></script>
 </body>
 
 </html>

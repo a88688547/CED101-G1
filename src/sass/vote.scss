@@ -24,17 +24,20 @@ section {
         max-width: 1200px;
         text-align: center;
         color: $textColor;
-        margin-top: 100px;
-        margin-bottom: 50px;
+        margin: 0 auto;
+        margin-top: 60px;
+        margin-bottom: 20px;
 
         h2 {
-            font-size: $fontsize_H2;
+            @include H2;
             font-weight: bold;
             margin-bottom: 15px;
+
         }
 
         h4 {
-            font-size: $fontsize_H4;
+            @include H4;
+            letter-spacing: 3px;
 
             img {
                 width: 25px;
@@ -74,8 +77,10 @@ section {
     .vote-bot {
         color: $textColor;
         display: flex;
-        justify-content: center;
-        padding: 15px;
+        justify-content: space-between;
+        width: 80%;
+        margin: 0 auto;
+        // padding: 15px;
 
         @media screen and (max-width: $mq1199) {
             width: 100%;
@@ -95,6 +100,7 @@ section {
         }
 
         .vote-wrap {
+            width: 28%;
             margin-right: 30px;
             position: relative;
 
@@ -107,10 +113,15 @@ section {
             }
 
             .vote-title {
-                font-size: $fontsize_H2;
+                @include H3;
                 font-weight: bold;
                 text-align: center;
                 margin: 15px;
+                span{
+                    @include H4;
+                    letter-spacing: 1px;
+                    font-weight: initial;
+                }
             }
 
             .vote-first {
@@ -120,6 +131,7 @@ section {
                 overflow: hidden;
                 box-shadow: 3px 3px 8px 4px rgba($color: #000000, $alpha: 0.2);
                 margin-bottom: 15px;
+                background-color: white;
 
                 .first-rank {
                     position: absolute;
@@ -137,22 +149,24 @@ section {
 
                 .first-pic {
                     width: 100%;
-                    height: 300px;
+                    height: 250px;
                     background-color: #aaa;
                 }
 
                 .first-txt {
                     text-align: center;
-                    margin: 30px;
+                    margin: 20px;
 
                     .first-title {
-                        font-size: 32px;
+                        @include H3;
+                        letter-spacing: 5px;
                         font-weight: bold;
                         margin-bottom: 15px;
                     }
 
                     .first-votes {
-                        font-size: $fontsize_H3;
+                        @include H4;
+                        letter-spacing: 3px;
 
                         img {
                             width: 25px;
@@ -171,7 +185,8 @@ section {
                     border-radius: 20px;
                     overflow: hidden;
                     box-shadow: 3px 3px 8px 4px rgba($color: #000000, $alpha: 0.2);
-                    margin: 15px;
+                    margin: 5px;
+                    background-color: white;
 
                     &:first-child {
                         margin-left: 0px;
@@ -206,7 +221,7 @@ section {
                     .second-pic {
                         background-color: #aaa;
                         width: 100%;
-                        height: 200px;
+                        height: 150px;
                     }
 
                     .second-txt {
@@ -214,13 +229,15 @@ section {
                         margin: 15px;
 
                         .second-title {
-                            font-size: $fontsize_H4;
+                            @include H6;
+                            letter-spacing: 0px;
                             font-weight: bold;
                             margin-bottom: 15px;
                         }
 
                         .second-votes {
-                            font-size: $fontsize_H6;
+                            @include P1;
+                            letter-spacing: 2px;
 
                             img {
                                 width: 20px;
@@ -232,32 +249,49 @@ section {
 
             .vote-button {
                 width: 100%;
-                margin-top: 50px;
+                margin-top: 30px;
                 text-align: center;
                 display: flex;
                 justify-content: center;
 
                 button {
-                    @include button_3;
-                    background-color: #ffa208;
-                    color: #fff;
-                    font-size: $fontsize_H4;
-                    padding: 5px 10px;
-                    cursor: pointer;
-                    transition: .5s ease-in-out;
+                    // @include button_3;
+                    // background-color: #ffa208;
+                    // color: #fff;
+                    // font-size: $fontsize_H4;
+                    // padding: 5px 10px;
+                    // cursor: pointer;
+                    // transition: .5s ease-in-out;
+                    @include lineargradient_button;
+                    width: 150px;
+                    height: 50px;
 
-                    &:focus {
-                        outline: none;
+                    // background-color: $textColor;
+
+                    h6{
+                        @include H5;
+                        font-weight: bold;
+                        color: white;
                     }
-
-                    &:hover {
-                        background-color: #aaa;
-                    }
-
-                    img {
-                        width: 25px;
+                    
+                    img{
+                        margin-right: 5px;
                     }
                 }
+
+                button:focus{
+                    outline: none;
+                }
+
+                button:hover{
+                    @include lineargradient_button-hover
+                }
+
+                button.color-1{
+                    background-image: linear-gradient(to right, #f5ce62, #e43603, #fa7199, #e85a19);
+                    box-shadow: 0 2px 5px 0 rgba(229, 66, 10, 0.75);
+                }
+
             }
 
             @media screen and (max-width: $mq1199) {
@@ -286,6 +320,7 @@ section {
 
                 .vote-first {
                     margin-bottom: 15px;
+
 
                     .first-pic {
                         width: 100%;
@@ -403,14 +438,13 @@ section {
 
             .voting-title {
                 h2 {
-                    font-size: 32px;
+                    @include H4;
                     font-weight: bold;
                     margin-bottom: 15px;
                 }
 
                 small {
-                    font-size: $fontsize_H5;
-                    color: #000;
+                    @include P1;
                 }
 
                 @media screen and(max-width:$mq575) {
@@ -442,10 +476,11 @@ section {
                     margin-bottom: 15px;
                     background-color: #ccc;
                     border-radius: 20px;
-                    font-size: $fontsize_H6;
+                    @include H6;
+                    font-weight: bold;
                     display: flex;
                     align-items: center;
-                    color: #fff;
+
                     transition: 0.5s ease-in-out;
 
                     @media screen and(max-width:$mq575) {
@@ -456,7 +491,7 @@ section {
                     .radiobtn {
                         width: 25px;
                         height: 25px;
-                        background-color: #fff;
+                        background-color: #fff; 
                         border-radius: 50%;
                         margin-right: 5px;
                         transition: 0.5s ease-in-out;
@@ -475,28 +510,31 @@ section {
                 text-align: center;
 
                 button {
-                    font-size: $fontsize_H6;
-                    border-radius: 5px;
-                    background-color: $textColor;
-                    color: #fff;
-                    border: none;
-                    padding: 10px 20px;
-                    transition: .3s ease-in-out;
-                    cursor: pointer;
+                    @include lineargradient_button;
+                    @include P1;
+                    font-weight: bold;
+                    color: white;
 
-                    &:hover {
-                        background-color: #aaa;
-                    }
-
-                    &:focus {
-                        border: none;
+                    &:focus{
                         outline: none;
                     }
+
+                    &:hover{
+                        @include lineargradient_button-hover;
+                    }
+
                 }
+
+                button.color-1{
+                    background-image: linear-gradient(to right, #25aae1, #40e495, #30dd8a, #2bb673);
+                    box-shadow: 0 4px 15px 0 rgba(49, 196, 190, 0.75);
+                }
+
+
             }
 
             input[type="radio"]:checked+label {
-                background-color: $textColor;
+                background-image: linear-gradient(to right, #25aae1, #83a2d4, #21a1a56c, #165163);
                 padding: 5px 10px;
                 transition: 0.5s ease-in-out;
 
@@ -568,4 +606,5 @@ section {
             }
         }
     }
-}
+}   
+

@@ -1,11 +1,9 @@
 @import "./base/base.scss";
+@import "./mixins/mixins.scss";
 $mq575: 575px;
 $mq767: 767px;
 $mq991: 991px;
 $mq1199: 1199px;
-
-
-
 
 // $f = font-size
 // $p = padding
@@ -13,6 +11,7 @@ $mq1199: 1199px;
 // $b-r = border-radius
 // $bc = background-color
 // $c = color
+
 @mixin button_all($f, $p, $l-s, $b-r, $bc, $c) {
   font-size: $f;
   padding: $p;
@@ -55,27 +54,25 @@ body {
       align-items: center;
     //   justify-content: center;
       flex-direction: column;
-      margin-bottom: 50px;
+      margin-bottom: 30px;
+
       .join_wrap_A{
         //  border: 1px solid red;
          display: flex;
          align-items: center;
          flex-direction: column;
         h2{
-            font-size: $fontsize_H2;
-            @include ls(15px)
+            @include H2;
             color:$textColor;
             font-weight:bold;
             margin-bottom: 20px;
           }
-          h3{
-              font-size: $fontsize_H4;
-              color:$textColor;
-              @include ls(8px)
+          h5{
               align-items: center;
               display: flex;
-              margin-bottom: 20px;
+              @include H5;
               img{
+                  width: 5%;
                   margin-right: 5px;
               }
           }
@@ -83,6 +80,7 @@ body {
       .join_wrap_B{
           .join_wrap_B_btn{
               display: flex;
+              margin-top: 15px;
                 @include button_all(16px, 5px, 5px, 10px, #B3925B, #fff);
                 img{
                     margin-left: 5px;
@@ -103,12 +101,12 @@ body {
   }
 //   === 標題 + LOGO ===
   .join_list{
-      margin-bottom: 30px;
+      margin-bottom: 60px;
     //   border: 1px solid red;
       .join_list_row{
           display: flex;
           flex-direction: column;
-          border-radius: 15px;
+          border-radius: 25px;
           overflow: hidden;
           box-shadow: 3px 2px 15px 1px #242424;
           .join_list_img{
@@ -124,16 +122,16 @@ body {
               padding: 0 15px;
               width: 100%;
               background-color: #fff;
+              
               .join_list_title{
-                  
-                
+
                 // border: 1px solid red;
                 margin-bottom: 40px;
                 margin-top: 20px;
                 display: flex;
                 justify-content: space-between;
-                align-items: center;
                 position: relative;
+                flex-direction: column;
                 &::before{
                     position: absolute;
                     bottom: -20px;
@@ -143,15 +141,14 @@ body {
                     border: 1px solid #E5E3DD;
                     background-color: #E5E3DD;
                 }
-                h2{
-                    font-size: $fontsize_H3;
-                    letter-spacing: 4px;
-                    color: $textColor;
+                h4{
+                    @include H4;
+                    letter-spacing: 3px;
                 }
-                h3{
-                    font-size: $fontsize_H6;
+                h5{
+                    @include H5;
                     font-weight: bold;
-                    color: $textColor;
+                    margin-top: 10px;
                 }
           }
           .join_list_content{
@@ -159,7 +156,8 @@ body {
                 .join_list_cup{
                     display: flex;
                     flex-direction: column;
-                  margin-bottom: 10px;
+                    margin-bottom: 10px;
+                    justify-content: space-between;
                   
                     div{
                         color:$textColor;
@@ -181,14 +179,19 @@ body {
                 }
                 .join_list_address{
                     // border: 1px solid red;
-                    margin-bottom: 30px;
                     div{
                         margin-bottom: 30px;
                         div{
                             color:$textColor;
                             font-size: $fontsize_H5;
+                            font-family: 'Roboto', sans-serif;
                             letter-spacing: 5px;
                             margin-bottom: 10px;
+                            display: flex;
+                            flex-direction: row;
+                            img{
+                              margin-right: 10px;
+                            }
                         }
                         display: flex;
                         flex-direction: column;
@@ -198,20 +201,65 @@ body {
                         
                     }
                 }
-              }
-              .join_list_right{
-                  margin-bottom: 20px;
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                  div  {
-                    @include button_all($fontsize_H4,5px , 10px, 20px, #FFA208, #fff);
-                    a{
-                      text-decoration:none;
-                      color: #fff;
-                    }
-                  }
+
                 
+              }
+              
+              // .join_list_right{
+              //     margin-bottom: 20px;
+              //     display: flex;
+              //     align-items: center;
+              //     justify-content: center;
+              //     div  {
+              //       @include button_all($fontsize_H4,5px , 10px, 20px, #FFA208, #fff);
+              //       a{
+              //         text-decoration:none;
+              //         color: #fff;
+              //       } 
+              // }
+
+              .join_list_right{
+                    margin-bottom: 20px;
+                    display: flex;
+  
+                }
+
+                h6{
+                  @include H6;
+                }
+      
+                .join_drink {
+                  @include lineargradient_button;
+                  height: 90px;
+                  width: 90px;
+                  border-radius: 45px;
+                  flex-direction: column;
+
+                    h6{
+                        @include H6;
+                        font-weight: bold;
+                        color: white;
+                      }
+                    
+                      img{
+                        margin-right: 5px;
+                      }
+      
+                }
+              
+                .join_drink:hover {
+                    @include lineargradient_button-hover;
+                } 
+              
+                .join_drink:focus {
+                    outline: none;
+                }
+      
+                .join_drink.color-1 {
+                  background-image: linear-gradient(to right, #f5ce62, #e43603, #fa7199, #e85a19);
+                  box-shadow: 0 2px 5px 0 rgba(229, 66, 10, 0.75);
+                }
+ 
             }
               
              
@@ -219,9 +267,9 @@ body {
           }
       }
 
-  }
-
 }
+
+
 
 //width :338px
 
@@ -242,6 +290,13 @@ body {
     .join_list{
       .join_list_row{
         flex-direction: row;
+        // .join_list_text{
+
+        //   // padding: 15px 25px;
+        //     .join_list_title{
+        //         flex-direction: column;
+               
+        // }
       }
     }
   }
@@ -293,10 +348,12 @@ body {
             }
             .join_list_text{
               width: calc(100% - 33%);
+              padding: 15px 25px;
                 .join_list_title{
                     margin-top: 20px;
                     // border: 1px solid red;
                     display: flex ;
+                   
             }
             .join_list_content{
                 // border: 1px solid rgb(48, 9, 9);
@@ -305,7 +362,7 @@ body {
                 .join_list_content_left{
                     // border: 1px solid red;
                     display: flex;
-                    width: 70%;
+                    width: 68%;
                     flex-direction: column-reverse;
                     .join_list_cup{
                         flex-direction: row;
@@ -318,7 +375,7 @@ body {
                 .join_list_right{
                     margin-bottom: 0;
                     width: 30%;
-                    align-items: flex-end;
+                    align-items: center;
                     justify-content: center;
 
                 }
@@ -333,5 +390,23 @@ body {
     
 }
 @media screen and (min-width: $mq1199){
+  .w-338 .join_list .join_list_row .join_list_text .join_list_title {
+    
+    flex-direction: row;
+    h5{
+      
+      margin-top: 0px;
+    }
+  }
+
+  .w-338 .join_wrap_title .join_wrap_A {
+ 
+    align-items: flex-start;
+
+  }
+
+  .w-338 .join_wrap_title .join_wrap_B .join_wrap_B_btn {
+    margin-top: 0px;
+  }
     
 }

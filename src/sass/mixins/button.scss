@@ -32,8 +32,8 @@
 
 @mixin button_4 {
   // 購物車
-  width: 15rem;
-  height: 15rem;
+  width: 130px;
+  height: 130px;
   font-size: 2.4rem;
   letter-spacing: 1rem;
   text-indent: 1rem;
@@ -43,10 +43,16 @@
   opacity: 0.8;
   position: fixed;
   right: 5%;
-  bottom: 202px;
+  bottom: 150px;
   border: none;
   z-index: 2;
   outline: none;
+
+  // transition效果
+  background-size: 300% 100%;
+  -o-transition: all .4s ease-in-out;
+  -webkit-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
 }
 
 @mixin button_4_mob {

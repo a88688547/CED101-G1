@@ -61,6 +61,7 @@ body {
 
             #group_name {
                 @include H3;
+                letter-spacing: 3px;
             }
 
             #start_time_wrapper {
@@ -81,6 +82,7 @@ body {
                 #name_phone {
                     display: flex;
                     padding-top: 10px;
+                    padding-bottom: 30px;
 
                     #user_img {
                         width: 30%;
@@ -110,7 +112,7 @@ body {
                             }
 
                             #phone {
-                                @include H4;
+                                @include H5;
                                 letter-spacing: 3px;
 
                             }
@@ -119,7 +121,7 @@ body {
                 }
 
                 .cup_wrapper {
-                    @include H5;
+                    @include H6;
                     font-weight: bold;
                     display: flex;
                     align-items: center;
@@ -127,12 +129,10 @@ body {
 
                     img {
                         margin-right: 20px;
-
                     }
 
                     span {
                         vertical-align: middle;
-                        align-self: flex-end;
                     }
                 }
             }
@@ -147,16 +147,19 @@ body {
                     padding-top: 15px;
 
                     span {
+                        @include H6;
                         display: block;
                     }
 
                     #adress,
                     #arrive_time,
                     #deadline_time {
+                        @include H5;
                         font-weight: bold;
                         padding-top: 10px;
-
                     }
+
+                
 
                     #adress {
                         letter-spacing: 0.3rem;

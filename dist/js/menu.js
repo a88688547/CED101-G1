@@ -241,11 +241,19 @@ Vue.component('light_box', {
         //新增飲品數量至購物車，並關閉燈箱
         addToCar() {
             bus.$emit('addToCar_parent', this.num_feedback)
+            document.querySelectorAll('input').checked = false
             this.closeLightBox = false
+            this.num_feedback = 1
         },
         //燈箱內飲料杯數*單價的總價錢
         addTask(item_num) {
             this.shop_price = item_num
+        },
+        //關閉燈箱，把input全部取消勾選，飲品數量變成1
+        cancel_shop() {
+            document.querySelectorAll('input').checked = false
+            this.closeLightBox = false
+            this.num_feedback = 1
         },
     },
     // v-if="closeLightBox"
@@ -254,7 +262,7 @@ Vue.component('light_box', {
     <div id="light_box_wrapper" v-if="closeLightBox">
     <!-- 刪除按鈕 -->
     <div id="drink_light_box">
-        <button id="cancel_shop_btn" @click="closeLightBox = false">X</button>
+        <button id="cancel_shop_btn" @click="cancel_shop">X</button>
         <!-- 飲料圖 -->
         <div id="drink_img"><img src="http://fakeimg.pl/355x180/" alt="" /></div>
         <div id="drink_data">
@@ -312,7 +320,6 @@ Vue.component('light_box', {
                     <button @click="handleSub">
                         <div></div>
                     </button>
-
                     <div id="num_feedback">{{num_feedback}}</div>
                     <button @click="handlePlus">+</button>
                 </div>

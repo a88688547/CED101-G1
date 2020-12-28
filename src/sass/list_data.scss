@@ -30,7 +30,7 @@
         }
 
         &>div {
-            margin: 10px 0;
+            margin: 15px 0 30px;
         }
 
         .group_order_done_person_upbox {
@@ -50,12 +50,11 @@
                 }
 
                 .group_order_done_person_name {
-                    font-size: $fontsize_H6;
-                    color: $textColor;
+                    @include H6;
                     font-weight: bold;
 
                     @media screen and (min-width:577px) {
-                        @include H3;
+                        @include H4;
                     }
                 }
             }
@@ -65,12 +64,14 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                font-size: $fontsize_H6;
-                color: $textColor;
+                
+                @include H4;
+                letter-spacing: 0px;
                 font-weight: bold;
 
                 @media screen and (min-width:577px) {
-                    @include H3;
+                    @include H5;
+                    letter-spacing: 0px;
                 }
 
                 div:first-child {
@@ -80,15 +81,17 @@
         }
 
         .group_order_done_person_drink {
-            background-color: rgb(206, 206, 206);
+            background-color: rgba(255, 255, 255, 0.5);
+            // background-color: white;
             padding: 5px 2.5%;
             margin: 10px 0;
-            font-size: $fontsize_P1;
+            @include P2;
             letter-spacing: 2px;
             position: relative;
+            border-radius: 5px;
 
             @media(min-width:768px) {
-                @include H4;
+                @include H5;
             }
 
             div {
@@ -106,9 +109,17 @@
                 transform: translateY(-50%);
                 margin-right: 2.5%;
                 border-radius: 5px;
-                border: 1px solid black;
+                border: none;
+                background-color: $textColor;
+                color: white;
+                padding: 5px 10px;
                 cursor: pointer;
                 outline: none;
+
+                &:hover{
+                    opacity: 0.8;
+                    transition: 0.2s ease-in-out;
+                }
             }
         }
     }

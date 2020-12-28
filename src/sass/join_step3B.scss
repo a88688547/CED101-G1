@@ -128,7 +128,7 @@ h5 {
 
 .info_img {
     width: 30%;
-    max-width: 170px;
+    max-width: 120px;
     overflow: hidden;
     margin-right: 50px;
 }
@@ -281,8 +281,9 @@ h5 {
 .orderbtn {
     display: flex;
     justify-content: space-between;
-    width: 50%;
-    margin: 50px auto;
+    // width: 50%;
+    // margin: 50px auto;
+    @include list_button;
 
     div {
         background-color: $btnColor;
@@ -784,10 +785,11 @@ h5 {
         width: 70%;
 
         div {
-            font-size: $fontsize_H6;
-            width: 90px;
-            height: 35px;
-            border-radius: 5px;
+            // font-size: $fontsize_H6;
+            // width: 90px;
+            // height: 35px;
+            // border-radius: 5px;
+            @include list_button;
 
             a {
                 font-size: $fontsize_H6;
@@ -964,10 +966,11 @@ h5 {
 
     .orderbtn {
         div {
-            font-size: $fontsize_H6;
-            width: 90px;
-            height: 35px;
+            // font-size: $fontsize_H6;
+            // width: 90px;
+            // height: 35px;
             border-radius: 5px;
+            @include list_button;
 
             a {
                 font-size: $fontsize_H6;
@@ -1133,10 +1136,11 @@ h5 {
 
     .orderbtn {
         div {
-            font-size: $fontsize_H5;
-            width: 90px;
-            height: 35px;
+            // font-size: $fontsize_H5;
+            // width: 90px;
+            // height: 35px;
             border-radius: 5px;
+            @include list_button;
 
             a {
                 font-size: $fontsize_H5;
@@ -1217,10 +1221,11 @@ h5 {
 
     .orderbtn {
         div {
-            font-size: $fontsize_H4;
-            width: 130px;
-            height: 46px;
-            border-radius: 10px;
+            // font-size: $fontsize_H4;
+            // width: 130px;
+            // height: 46px;
+            // border-radius: 10px;
+            @include list_button;
 
             a {
                 font-size: $fontsize_H4;
@@ -1260,9 +1265,7 @@ h5 {
     .step_box {
         .step_ball {
             li {
-                width: 25%;
-                width: 120px;
-                height: 120px;
+                @include tep_ball_size;
 
                 //進度條的線
                 &::before {

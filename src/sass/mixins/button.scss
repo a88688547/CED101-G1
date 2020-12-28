@@ -69,3 +69,30 @@
   color: $insideBackgroundColor;
   margin: 0 40px;
 }
+
+@mixin lineargradient_button{
+  display: flex;
+              flex-direction: row;
+              align-items: center;
+              justify-content: center;
+              cursor: pointer;
+              margin: 5px;
+              height: 35px;
+              width: 100px;
+              text-align:center;
+              border: none;
+              border-radius: 30px;
+              background-size: 300% 100%;
+
+              // transition效果
+              -o-transition: all .4s ease-in-out;
+              -webkit-transition: all .4s ease-in-out;
+              transition: all .4s ease-in-out
+}
+
+@mixin lineargradient_button-hover{
+              background-position: 100% 0;
+              -o-transition: all .4s ease-in-out;
+              -webkit-transition: all .4s ease-in-out;
+              transition: all .4s ease-in-out;
+}

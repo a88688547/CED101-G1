@@ -166,7 +166,19 @@ Vue.component('menu_carshop', {
     },
     // 購物車按鈕接收燈箱的飲品數量
     mounted() {
-        bus.$on('addToCar_parent', (num_feedback) => this.shopping_num_total += num_feedback);
+        bus.$on('addToCar_parent', (numx) => this.shopping_num_total = numx);
+    },
+    created() {
+        let itemString = storage.getItem('addItemList');
+        let items = itemString.substr(0, itemString.length - 1).split('|');
+        if (itemString == '') {
+            console.log('aa')
+            this.shopping_num_total = 0
+        } else {
+            this.shopping_num_total = items.length
+            console.log('bb')
+        }
+        console.log(items.length)
     },
     template: `
     <div id="menu">
@@ -226,6 +238,7 @@ Vue.component('light_box', {
             shop_price: "",
             // 燈箱開啟後的飲品數量
             num_feedback: 1,
+            shopBtn_num_feedback: 1,
             //燈箱關閉
             closeLightBox: false,
             //toDoInput父層組件接收大小杯價格的變數
@@ -288,14 +301,17 @@ Vue.component('light_box', {
 
             //都有勾選的話就可以正常新增飲品至購物車
             if (selectIce && selectSugar) {
-                //把飲品杯數傳回菜單組件
-                bus.$emit('addToCar_parent', this.num_feedback)
                 //關閉燈箱
                 this.closeLightBox = false
                 //關閉燈箱後，所有input取消勾選
                 document.querySelectorAll('input').checked = false
                 //呼叫存入storage函式
                 this.addToStorage(selectIceValue, selectSugarValue)
+
+                let itemString = storage.getItem('addItemList');
+                let items = itemString.substr(0, itemString.length - 1).split('|');
+                //把飲品杯數傳回菜單組件
+                bus.$emit('addToCar_parent', items.length)
                 //關閉燈箱後，飲品數目預設回1杯
                 this.num_feedback = 1
             } else if (selectIce == false) {

@@ -1,155 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>客製化角色</title>
+        <script src="./vendors/Vue/vue.js"></script>
+        <link rel="stylesheet" href="./css/custom.css" />
+        <link rel="stylesheet" href="./css/style.css" />
+        <script src="./vendors/jQuery/js/jquery-3.5.1.js"></script>
+        <script src="./js/header_footer.js"></script>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+            integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+            crossorigin="anonymous"
+        />
+    </head>
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>客製化角色</title>
-    <script src="./vendors/Vue/vue.js"></script>
-    <link rel="stylesheet" href="./css/custom.css" />
-    <link rel="stylesheet" href="./css/style.css" />
-    <script src="./vendors/jQuery/js/jquery-3.5.1.js"></script>
-    <script src="./js/header_footer.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
-        integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
-        crossorigin="anonymous" />
-</head>
-
-<body>
-    <header id="header">
-        <my-header></my-header>
-    </header>
-    <section>
-        <form action="">
-            <div class="select-container">
-                <div class="left">
-                    <h2>客製化你的角色</h2>
-                    <div class="select-char">
-                        <img src="./Images/peaCup.png" id="char" />
+    <body>
+        <header id="header">
+            <my-header></my-header>
+        </header>
+        <section>
+            <form action="">
+                <div class="select-container">
+                    <div class="left">
+                        <h2>客製化你的角色</h2>
+                        <div class="select-char">
+                            <img src="./Images/peaCup.png" id="char" />
+                        </div>
+                        <div class="ability-wrap">
+                            <p class="speed">速度</p>
+                            <p class="accuracy">準確度</p>
+                            <p class="hp">體力</p>
+                        </div>
                     </div>
-                    <div class="ability-wrap">
-                        <p class="speed">速度</p>
-                        <p class="accuracy">準確度</p>
-                        <p class="hp">體力</p>
+                    <div class="right">
+                        <div class="select-item-wrap">
+                            <div class="item-title">
+                                <h2>步驟一:選擇你喜歡的角色</h2>
+                            </div>
+                            <div class="item-wrap">
+                                <label class="item character" id="pea">
+                                    <img src="./Images/pea.png" alt="珍珠" />
+                                    <input type="radio" name="character" id="pea" value="pea" checked />
+                                </label>
+                                <label class="item character" id="red">
+                                    <img src="./Images/red.png" alt="紅豆" />
+                                    <input type="radio" name="character" id="red" value="red" />
+                                </label>
+                                <label class="item character" id="tan">
+                                    <img src="./Images/tan.png" alt="湯圓" />
+                                    <input type="radio" name="character" id="tan" value="tan" />
+                                </label>
+                            </div>
+                        </div>
+                        <div class="select-item-wrap">
+                            <div class="item-title">
+                                <h2>步驟二:選擇你喜歡的容器</h2>
+                            </div>
+                            <div class="item-wrap">
+                                <label class="item wrap-item" id="Cup">
+                                    <img src="./Images/Cup.png" alt="杯子" />
+                                    <input type="radio" name="wrap" id="Cup" value="Cup" checked />
+                                </label>
+                                <label class="item wrap-item" id="Cap">
+                                    <img src="./Images/Cap.png" alt="帽子" />
+                                    <input type="radio" name="wrap" id="Cap" value="Cap" />
+                                </label>
+                                <label class="item wrap-item" id="Mug">
+                                    <img src="./Images/Mug.png" alt="馬克杯" />
+                                    <input type="radio" name="wrap" id="Mug" value="Mug" />
+                                </label>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="right">
-                    <div class="select-item-wrap">
-                        <div class="item-title">
-                            <h2>步驟一:選擇你喜歡的角色</h2>
-                        </div>
-                        <div class="item-wrap">
-                            <label class="item character" id="pea">
-                                <img src="./Images/pea.png" alt="珍珠" />
-                                <input type="radio" name="character" id="pea" value="pea" checked />
-                            </label>
-                            <label class="item character" id="red">
-                                <img src="./Images/red.png" alt="紅豆" />
-                                <input type="radio" name="character" id="red" value="red" />
-                            </label>
-                            <label class="item character" id="tan">
-                                <img src="./Images/tan.png" alt="湯圓" />
-                                <input type="radio" name="character" id="tan" value="tan" />
-                            </label>
-                        </div>
-                    </div>
-                    <div class="select-item-wrap">
-                        <div class="item-title">
-                            <h2>步驟二:選擇你喜歡的容器</h2>
-                        </div>
-                        <div class="item-wrap">
-                            <label class="item wrap-item" id="Cup">
-                                <img src="./Images/Cup.png" alt="杯子" />
-                                <input type="radio" name="wrap" id="Cup" value="Cup" checked />
-                            </label>
-                            <label class="item wrap-item" id="Cap">
-                                <img src="./Images/Cap.png" alt="帽子" />
-                                <input type="radio" name="wrap" id="Cap" value="Cap" />
-                            </label>
-                            <label class="item wrap-item" id="Mug">
-                                <img src="./Images/Mug.png" alt="馬克杯" />
-                                <input type="radio" name="wrap" id="Mug" value="Mug" />
-                            </label>
-                        </div>
-                    </div>
+                <div class="button-submit">
+                    <button type="submit" id="start">
+                        <a href="./game.html">開始遊戲</a>
+                    </button>
                 </div>
-            </div>
-            <div class="button-submit">
-                <button type="submit" id="start">
-                    <a href="./game.html">開始遊戲</a>
+            </form>
+        </section>
+        <div class="rule">
+            <div class="rule-wrap">
+                <div class="rule-close"><img src="./Images/cancel.svg" alt="cancel" /></div>
+                <h2>遊戲規則</h2>
+                <p>1.選取你喜歡的角色。</p>
+                <p>2.選擇你喜歡的容器。</p>
+                <p>
+                    3.接取珍珠可獲得分數，若未接取到珍珠則扣除血量，血量歸零後遊戲結束，人物移動使用鍵盤左右鍵，遊戲結束後會依獲得分數得到優惠券。
+                </p>
+                <p>※能力值依照選擇不同產生變化</p>
+
+                <button>
+                    <p>開始客製</p>
                 </button>
             </div>
-        </form>
-    </section>
-    <div class="rule">
-        <div class="rule-wrap">
-            <div class="rule-close"><img src="./Images/cancel.svg" alt="cancel" /></div>
-            <h2>遊戲規則</h2>
-            <p>1.選取你喜歡的角色。</p>
-            <p>2.選擇你喜歡的容器。</p>
-            <p>
-                3.接取珍珠可獲得分數，若未接取到珍珠則扣除血量，血量歸零後遊戲結束，人物移動使用鍵盤左右鍵，遊戲結束後會依獲得分數得到優惠券。
-            </p>
-            <p>※能力值依照選擇不同產生變化</p>
-
-            <button>
-                <p>開始客製</p>
-            </button>
         </div>
-    </div>
-    <footer id="footer">
-        <my-footer></my-footer>
-    </footer>
-    <script src="./layout/header.vue"></script>
-    <script src="./layout/footer.vue"></script>
-    <script>
-        window.onload = function () {
-            let closeBtn = document.querySelector(".rule-close");
-            closeBtn.addEventListener("click", function () {
-                document.querySelector(".rule").style.display = "none";
-            });
+        <footer id="footer">
+            <my-footer></my-footer>
+        </footer>
+        <script src="./layout/header.vue"></script>
+        <script src="./layout/footer.vue"></script>
+        <script>
+            window.onload = function () {
+                let closeBtn = document.querySelector('.rule-close')
+                closeBtn.addEventListener('click', function () {
+                    document.querySelector('.rule').style.display = 'none'
+                })
 
-            let characters = document.querySelectorAll(".character");
-            let wraps = document.querySelectorAll(".wrap-item");
-            let char = document.querySelector("#char");
-            let start = document.getElementById("start");
-            let storage = sessionStorage;
+                let characters = document.querySelectorAll('.character')
+                let wraps = document.querySelectorAll('.wrap-item')
+                let char = document.querySelector('#char')
+                let start = document.getElementById('start')
+                let storage = sessionStorage
 
-            function clickCharacter() {
-                // console.log(this);
+                function clickCharacter() {
+                    // console.log(this);
 
-                const myCharacter = document.querySelector(
-                    'input[name="character"]:checked'
-                ).value;
+                    const myCharacter = document.querySelector('input[name="character"]:checked').value
 
-                const myWrap = document.querySelector('input[name="wrap"]:checked').value;
-                console.log(myCharacter);
-                const imgSrc = `${myCharacter}${myWrap}`;
-                console.log(imgSrc);
-                char.src = `./images/${imgSrc}.png`;
+                    const myWrap = document.querySelector('input[name="wrap"]:checked').value
+                    console.log(myCharacter)
+                    const imgSrc = `${myCharacter}${myWrap}`
+                    console.log(imgSrc)
+                    char.src = `./images/${imgSrc}.png`
+                }
+                start.addEventListener('click', function (e) {
+                    e.preventDefault()
+
+                    const myCharacter = document.querySelector('input[name="character"]:checked').value
+                    const myWrap = document.querySelector('input[name="wrap"]:checked').value
+
+                    let charc = `${myCharacter}${myWrap}`
+
+                    storage['char'] = charc
+
+                    window.location = './game.html'
+                })
+                characters.forEach((character) => character.addEventListener('click', clickCharacter))
+                wraps.forEach((wrap) => wrap.addEventListener('click', clickCharacter))
+                // })();
             }
-            start.addEventListener("click", function (e) {
-                e.preventDefault();
-
-                const myCharacter = document.querySelector(
-                    'input[name="character"]:checked'
-                ).value;
-                const myWrap = document.querySelector('input[name="wrap"]:checked').value;
-
-                let charc = `${myCharacter}${myWrap}`;
-
-                storage["char"] = charc;
-
-                window.location = "./game.html";
-            });
-            characters.forEach((character) =>
-                character.addEventListener("click", clickCharacter)
-            );
-            wraps.forEach((wrap) => wrap.addEventListener("click", clickCharacter));
-            // })();
-        }
-
-    </script>
-</body>
-
+        </script>
+    </body>
 </html>

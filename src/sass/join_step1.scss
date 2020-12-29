@@ -66,11 +66,7 @@ body{
 
     //進度條的球
     li {
-      // height: 100px;
-      width: 25%;
-      width: 52px;
-      height: 52px;
-      // border: 1px solid red;
+      @include step_ball_size_small;
       border-radius: 50%;
       background-color: #D3C8B5;
       margin-bottom: 15px;
@@ -103,7 +99,8 @@ body{
 
   //進度條文字
   .step_text {
-    @include H3;
+    @include P2;
+    letter-spacing: 0;
     display: flex;
     justify-content: space-between;
   
@@ -151,7 +148,7 @@ body{
       label{
         // border: 1px solid red;
         width: 140px;
-        @include H6;
+        @include P1;
       }
       input,select{
        @include H6;
@@ -227,7 +224,7 @@ body{
       justify-content: space-evenly;
       .btn_back,
       .btn_go {
-      @include button_all(16px, 5px, 5px, 10px, #B3925B, #fff)
+      @include list_button_small;
     }
     
     }
@@ -254,8 +251,7 @@ body{
     .step_ball{
       li{
         // border: 1px solid red;
-      width: 85px;
-      height: 85px;
+      @include step_ball_size_medium;
       }
       
     }
@@ -271,7 +267,7 @@ body{
         justify-content: center;
 
         label {
-          @include H3;
+          @include H5;
           // margin-bottom: 25px;
           // border: 1px solid red;
           height: 50px;
@@ -297,6 +293,10 @@ body{
         // border: 1px solid red;
         width: 50%;
         margin: 0 auto;
+        input{
+          @include list_button_small;
+        }
+
       }
 
     }
@@ -308,9 +308,7 @@ body{
     // width: 80%;
     .step_ball {
       li {
-
-        width: 105px;
-        height: 105px;
+          @include step_ball_size;
 
         &::before {
           height: 14px;
@@ -320,7 +318,7 @@ body{
     }
 
     .step_text {
-      @include H6;
+      @include P1;
       letter-spacing: 2px;
     }
   }
@@ -334,10 +332,8 @@ body{
         justify-content: center;
 
         label {
-          font-size: $fontsize_H3;
-          letter-spacing: 10px;
-          // margin-bottom: 25px;
-          // border: 1px solid red;
+          @include H4;
+          letter-spacing: 0px;
           height: 50px;
           width: 210px;
           display: flex;
@@ -347,10 +343,21 @@ body{
 
         input,
         select {
-          width: 300px;
-          // margin-bottom: 25px;
-          height: 40px;
-          font-size: $fontsize_H3;
+          @include input_style;
+        }
+      }
+
+      li{
+        select#goal{
+          background-color: rgba(221, 170, 99, 0.76);
+          
+          option{
+            @include H6;
+            letter-spacing: 5px;
+            padding: 10px;
+            font-weight: bold;
+            color: white;
+          }
         }
       }
     }

@@ -178,10 +178,7 @@ body {
 
     //進度條的球
     li {
-      // height: 100px;
-      width: 25%;
-      width: 52px;
-      height: 52px;
+      @include step_ball_size_small;
       // border: 1px solid red;
       border-radius: 50%;
       background-color: #D3C8B5;
@@ -215,10 +212,10 @@ body {
 
   //進度條文字
   .step_text {
+    @include P2;
+    letter-spacing: 0;
     display: flex;
     justify-content: space-between;
-    color: $textColor;
-    font-size: $fontsize_P2;
 
     // letter-spacing:2px;
     // text-indent: 2px;
@@ -297,6 +294,7 @@ body {
           background-color: $textColor;
           height: 17px;
           width: 40px;
+
         }
 
       }
@@ -331,9 +329,9 @@ body {
         }
 
         div {
-          @include H6;
+          @include P1;
           color: #707070;
-          letter-spacing: 6px;
+          letter-spacing: 1px;
           display: flex;
           flex-direction: column;
           justify-content: center;
@@ -396,10 +394,12 @@ body {
   .group_data{
     .group_data_row{
       ul{
+        width: 80%;
         li{
           margin-bottom: 35px;
           div{
-            @include H5;
+            @include H6;
+            letter-spacing: 0px;
           }
         }
       }
@@ -413,8 +413,7 @@ body {
     margin: 40px auto;
     .step_ball {
       li {
-        width: 85px;
-        height: 85px;
+        @include step_ball_size_medium;
 
         &::before {
           height: 14px;
@@ -424,7 +423,7 @@ body {
     }
 
     .step_text {
-      @include H5;
+      @include H6;
     }
   }
 
@@ -436,7 +435,7 @@ body {
 
       display: flex;
       flex-direction: row-reverse;
-      padding: 0 80px;
+      padding: 0 40px;
 
       //    border: 1px solid blue;
       ul {
@@ -449,9 +448,8 @@ body {
          
 
           div {
-            
-            font-size: $fontsize_H3;
-            letter-spacing: 10px;
+            @include H5;
+            letter-spacing: 0px;
             // height: 50px;
             width: 210px;
             display: flex;
@@ -524,7 +522,7 @@ body {
 
           div {
             // font-size: $fontsize_H4;
-            letter-spacing: 10px;
+            letter-spacing: 3px;
             // margin-bottom: 25px;
             // border: 1px solid red;
             // height: 50px;
@@ -683,3 +681,28 @@ body {
   }
 
 }
+
+// 修正------------------------------------------------
+
+// 1.進度條文字
+@media screen and (min-width: 991px){
+  .step_box .step_text {
+    font-size: 1.4rem;
+    letter-spacing: 2px;
+  }
+}
+
+@media (min-width: 767px) and (max-width: 991px){
+  .step_box .step_text {
+    font-size: 1.2rem;
+    letter-spacing: 0;
+  }
+}
+
+// 2.燈箱QR
+
+.fist_QR .fist_QR_box :nth-child(4) {
+  margin-bottom: 10px;
+}
+
+

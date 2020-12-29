@@ -1,31 +1,31 @@
-@import "base/base.scss";
-@import "mixins/mixins.scss";
+@import "./base/base.scss";
+@import "./mixins/mixins.scss";
 
 body {
     background-color: $insideBackgroundColor;
 }
 
-h3 {
-    color: $textColor;
-    font-size: $fontsize_H3;
-}
+// h3 {
+//     color: $textColor;
+//     font-size: $fontsize_H3;
+// }
 
-h2 {
-    color: $textColor;
-    font-size: $fontsize_H2;
-    font-weight: bold;
-}
+// h2 {
+//     color: $textColor;
+//     font-size: $fontsize_H2;
+//     font-weight: bold;
+// }
 
-h4 {
-    color: #707070;
-    font-size: $fontsize_H4;
-}
+// h4 {
+//     color: #707070;
+//     font-size: $fontsize_H4;
+// }
 
-h5 {
-    font-size: $fontsize_H5;
-    color: $textColor;
-    font-weight: bold;
-}
+// h5 {
+//     font-size: $fontsize_H5;
+//     color: $textColor;
+//     font-weight: bold;
+// }
 
 .main {
     width: 100%;
@@ -55,8 +55,7 @@ h5 {
 
         //進度條的球
         li {
-            width: 120px;
-            height: 120px;
+            @include step_ball_size;
             // border: 1px solid red;
             border-radius: 50%;
             background-color: #D3C8B5;
@@ -91,8 +90,7 @@ h5 {
     .step_text {
         display: flex;
         justify-content: space-between;
-        color: $textColor;
-        font-size: $fontsize_H3;
+        @include H6;
 
         //進度條當前頁面
         .on {
@@ -105,10 +103,11 @@ h5 {
 .info {
     width: 100%;
     display: flex;
-    font-size: $fontsize_H3;
+    @include H3;
     margin: 55px auto;
     align-items: center;
     align-self: center;
+    justify-content: center;
 
     div {
         align-self: center;
@@ -127,15 +126,17 @@ h5 {
 }
 
 .info_img {
-    width: 30%;
+    // width: 30%;
     max-width: 120px;
     overflow: hidden;
     margin-right: 50px;
 }
 
 .info_detail {
-    width: 70%;
+    width: 60%;
     color: #707070;
+    @include H5;
+    font-weight: bold;
 
     div {
         margin-top: 15px;
@@ -163,59 +164,60 @@ h5 {
 .discount {
     margin: 80px auto;
     width: 90%;
+    @include list_lable;
 }
 
 .discountTop {
-    width: 100%;
+    width: 70%;
+    margin: 0 auto;
     display: flex;
     justify-content: space-between;
     margin-bottom: 50px;
 }
 
 .discountNo {
-    width: 70%;
+    width: 50%;
     display: flex;
     align-items: center;
 
     h3 {
         color: #707070;
-        font-size: $fontsize_H3;
-
     }
 
     select {
-        width: 60%;
+        width: 50%;
         height: 50px;
         border: 1px solid #707070;
         border-radius: 10px;
-        @include H3;
+        @include H4;
         color: #707070;
         padding-left: 20px;
-        margin-left: 100px;
+        margin-left: 80px;
     }
 }
 
 .gamelink {
-    width: 30%;
+    width: 28%;
     height: 50px;
     overflow: hidden;
     text-align: right;
 }
 
 .discountBottom {
-    width: 100%;
+    margin: 0 auto;
+    width: 70%;
     display: flex;
     justify-content: space-between;
 
     h3 {
+        @include H3;
         color: #707070;
-        font-size: $fontsize_H3;
-
     }
 }
 
 .disTotal {
     h3 {
+        @include H3;
         font-weight: bold;
     }
 }
@@ -223,49 +225,61 @@ h5 {
 // 信用卡
 .card {
     width: 100%;
-    font-size: $fontsize_H3;
+    @include H3;
     color: #707070;
 }
 
 .cardimg {
     text-align: center;
+    margin: 70px 0 30px;
 }
 
 .cardinfo {
-    width: 90%;
+    @include list_lable;
+    display: flex;
+    flex-direction: column;
     margin: 0 auto;
+    margin-bottom: 70px;
 
     div {
         display: flex;
+        // margin: 0 auto;
         margin-top: 10px;
+        // align-self: center;       
+
 
         :first-child {
             width: 30%;
         }
 
         :last-child {
-            width: 70%;
+            width: 50%;           
         }
     }
 }
 
 .cardimg_safeno {
-    width: 100%;
-    max-width: 100px;
-    margin-left: 20px;
+    width: 80%;
+    // max-width: 100px;
+    margin:20px auto;
+    img{
+        max-width: 10%;
+    }
 }
 
 
 //金額
 .ListTotal {
-    width: 80%;
+    width: 70%;
     margin: 100px auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
 
     h2 {
-        font-size: $fontsize_H2
+        @include H3;
+        font-weight: bold;
+        letter-spacing: 2px;
     }
 }
 
@@ -281,19 +295,19 @@ h5 {
 .orderbtn {
     display: flex;
     justify-content: space-between;
-    // width: 50%;
-    // margin: 50px auto;
-    @include list_button;
+    width: 50%;
+    margin: 50px auto;
 
     div {
-        background-color: $btnColor;
-        width: 130px;
-        height: 46px;
-        border-radius: 10px;
-        border-style: none;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        // background-color: $btnColor;
+        // width: 130px;
+        // height: 46px;
+        // border-radius: 10px;
+        // border-style: none;
+        // display: flex;
+        // align-items: center;
+        // justify-content: center;
+        @include list_button;
 
         &:hover {
             cursor: pointer;
@@ -302,7 +316,7 @@ h5 {
         a {
             text-decoration: none;
             color: #FFFFFF;
-            font-size: $fontsize_H3;
+            // font-size: $fontsize_H3;
         }
     }
 }
@@ -798,9 +812,9 @@ h5 {
     }
 
     // 燈箱
-    .modalContent {
-        // left:0vw; 
-    }
+    // .modalContent {
+    //     // left:0vw; 
+    // }
 
     .orderList {
         // display: block;
@@ -870,7 +884,7 @@ h5 {
     }
 
     .step_text {
-        font-size: $fontsize_P1 !important;
+        @include H6;
     }
 
     // 訂單資訊
@@ -1027,7 +1041,7 @@ h5 {
         width: 80%;
 
         h3 {
-            font-size: $fontsize_H6;
+            @include H6;
         }
     }
 
@@ -1130,7 +1144,7 @@ h5 {
         margin: 50px auto;
 
         h2 {
-            font-size: $fontsize_H4;
+            @include H4;
         }
     }
 
@@ -1167,7 +1181,7 @@ h5 {
         width: 80%;
 
         h3 {
-            font-size: $fontsize_H5;
+            @include H3;
         }
     }
 
@@ -1265,7 +1279,7 @@ h5 {
     .step_box {
         .step_ball {
             li {
-                @include tep_ball_size;
+                @include step_ball_size;
 
                 //進度條的線
                 &::before {
@@ -1281,6 +1295,6 @@ h5 {
     }
 
     .step_text {
-        font-size: $fontsize_H3;
+        @include H6;
     }
 }

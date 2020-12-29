@@ -1,4 +1,5 @@
 @import "./base/base.scss";
+@import "./mixins/mixins.scss";
 $mq575: 575px;
 $mq767: 767px;
 $mq991: 991px;
@@ -84,9 +85,8 @@ body {
     //進度條的球
     li {
       // height: 100px;
-      width: 25%;
-      width: 52px;
-      height: 52px;
+      // width: 25%;
+      @include step_ball_size_small;
       // border: 1px solid red;
       border-radius: 50%;
       background-color: #D3C8B5;
@@ -121,8 +121,7 @@ body {
   .step_text {
     display: flex;
     justify-content: space-between;
-    color: $textColor;
-    font-size: $fontsize_P2;
+    @include P2;
 
     // letter-spacing:2px;
     // text-indent: 2px;
@@ -196,9 +195,9 @@ body {
         div {
           // border: 1px solid black;
           // width: 200px;
-          font-size: $fontsize_H6;
+          @include H6;
           color: #707070;
-          letter-spacing: 6px;
+          letter-spacing: 3px;
           // align-items: center;
           display: flex;
           flex-direction: column;
@@ -281,10 +280,10 @@ body {
             width: 50%;
             color: $textColor;
             font-weight: bold;
-            font-size: $fontsize_H6;
+            @include H6;
           }
           :last-child{
-            font-size: $fontsize_H6;
+            @include H6;
             width: 50%;
           }
           
@@ -446,7 +445,7 @@ body {
         width: 120px;
       }
       .group_data_total_imgB{
-        font-size: $fontsize_H3;
+        @include H5;
       }
     }
     // width: 100%;
@@ -457,12 +456,12 @@ body {
       .group_data_total_textA{
         li{
           // border: 1px solid red;
-          font-size: $fontsize_H3;
+          @include H5;
           :first-child{
-            font-size: $fontsize_H3;
+            @include H5;
           }
           :last-child{
-            font-size: $fontsize_H3;
+            @include H5;
           }
         }
       }
@@ -470,12 +469,12 @@ body {
       .group_data_total_textB{
         li{
           margin-bottom: 35px;
-          font-size: $fontsize_H3;
+          @include H5;
           :first-child{
-            font-size: $fontsize_H3;
+          @include H5;
           }     
           :last-child{
-            font-size: $fontsize_H3;
+          @include H5;
           } 
         }
       }
@@ -492,8 +491,7 @@ body {
     .step_ball {
       li {
 
-        width: 85px;
-        height: 85px;
+        @include step_ball_size_medium;
 
         &::before {
           height: 14px;
@@ -503,7 +501,7 @@ body {
     }
 
     .step_text {
-      font-size: $fontsize_H3;
+      @include H6;
     }
   }
 
@@ -524,8 +522,8 @@ body {
           justify-content: flex-start;
 
           div {
-            font-size: $fontsize_H3;
-            letter-spacing: 10px;
+            @include H5;
+            letter-spacing: 0px;
             // height: 50px;
             // width: 210px;
             display: flex;
@@ -543,9 +541,9 @@ body {
             letter-spacing: 0;
           }
 
-          :nth-child(odd) {
-            //   padding-left: 40px;
-          }
+          // :nth-child(odd) {
+          //   //   padding-left: 40px;
+          // }
           &:last-child div{       
             &:last-child{
               div{
@@ -578,9 +576,9 @@ body {
       
         .group_data_total_textA{
           li{
-            font-size: $fontsize_H3;
+            @include H5;
             :first-child{
-              font-size: $fontsize_H3;
+              @include H5;
   
             }
           }
@@ -588,9 +586,9 @@ body {
         
         .group_data_total_textB{
           li{
-            font-size: $fontsize_H3;
+            @include H5;
             :first-child{
-              font-size: $fontsize_H3;
+              @include H5;
             }      
           }
         }
@@ -642,7 +640,7 @@ body {
     }
     .group_order_done_total,
   .group_order_done_dis{
-    font-size: $fontsize_H6;
+    @include H6;
   }
   }
 }
@@ -653,8 +651,7 @@ body {
     .step_ball {
       li {
 
-        width: 105px;
-        height: 105px;
+        @include step_ball_size;
 
         &::before {
           height: 14px;
@@ -664,7 +661,7 @@ body {
     }
 
     .step_text {
-      font-size: $fontsize_H4;
+      @include H4;
     }
   }
 
@@ -676,7 +673,7 @@ body {
           justify-content: space-evenly;
           div {
             font-size: $fontsize_H4;
-            letter-spacing: 10px;
+            letter-spacing: 3px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -779,9 +776,7 @@ body {
   .step_box {
     .step_ball {
       li {
-
-        width: 120px;
-        height: 120px;
+        @include step_ball_size;
 
         &::before {
           height: 14px;
@@ -791,8 +786,8 @@ body {
     }
 
     .step_text {
-      font-size: $fontsize_H3;
-      // letter-spacing: 10px;
+      @include H6;
+      letter-spacing: 2px;
     }
   }
 
@@ -855,4 +850,57 @@ body {
     }
   }
 
+}
+
+// 修正------------------------------------------------
+
+// 1.進度條文字
+@media screen and (min-width: 991px){
+  .step_box .step_text {
+    font-size: 1.4rem;
+    letter-spacing: 2px;
+  }
+}
+
+@media (min-width: 767px) and (max-width: 991px){
+  .step_box .step_text {
+    font-size: 1.2rem;
+    letter-spacing: 0;
+  }
+}
+
+// 2.訂單編號文字
+
+@media screen and (min-width: 1199px){
+  .group_data .group_data_row ul li div {
+      @include H5;
+      height: 50px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+  }
+}
+
+//3.訂單下線條
+
+.group_data .line {
+  // border: 1px solid $textColor;
+  // opacity: 0.6;
+  border: initial;
+
+}
+
+//4.訂單文字
+
+@media screen and (min-width: 767px){
+  .group_data .group_data_total .group_data_total_text .group_data_total_textA li{
+      @include H5;
+      letter-spacing: 1px;
+
+      &:first{
+        @include H5;
+        letter-spacing: 1px;
+
+      }
+  }
 }

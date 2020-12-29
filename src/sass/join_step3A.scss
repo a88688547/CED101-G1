@@ -103,7 +103,7 @@ input{
 .info{
     width:100%;
     display:flex;
-    font-size:$fontsize_H3;
+    @include H3;
     margin:55px auto;
     align-items: center;
     align-self: center;
@@ -154,7 +154,7 @@ input{
    .info{
     display: block;
     margin-top:0;
-    font-size: $fontsize_H5;
+    @include P1;
    }
    .info_img{
        width:30%;
@@ -164,7 +164,7 @@ input{
 
    .info_name{
        text-align: center;
-       font-size: $fontsize_H4;
+       @include H6;
    }
    .info_detail{
        width:80%;
@@ -181,11 +181,12 @@ input{
     .info{
         display: block;
         margin-top:0;
-        font-size: $fontsize_H6;
+        // @include P1;
        }
        .info_detail{
         width:90%;
         margin:0 auto;
+        // @include P1;
     }
        .info_phone_bottom,.info_msg_bottom{
         input{
@@ -200,7 +201,7 @@ input{
     .info{
         display: block;
         margin-top:0;
-        font-size: $fontsize_P2;
+        @include P2;
        }
        .info_detail{
         width:90%;
@@ -261,20 +262,20 @@ input{
     display:flex;
     justify-content: space-between;
     h3{
+        @include H3;
         color:#707070;
     }
 }
 .disTotal{
     h3{
-        font-weight: bold;
         @include H3;
-        letter-spacing: 0px;
+        font-weight: bold;
     }
 }
 // 信用卡
 .card{
     width:100%;
-    font-size:$fontsize_H3;
+    @include H3;
     color:#707070;
 }
 
@@ -290,7 +291,7 @@ input{
     margin-bottom: 70px;
     div{
         display:flex;
-        align-self: center;        
+        // align-self: center;        
     }
     input{
         @include input_style;
@@ -324,7 +325,7 @@ input{
 
 @media screen and (max-width: 576px){
     .card{
-        font-size:$fontsize_H5;
+        @include H6;
     }
     .cardinfo{
         width:100%;
@@ -421,7 +422,7 @@ input{
     }
     //進度條文字
     .step_text {
-        @include H5;
+        @include P1;
     }
         .discountTop{
             display: block;
@@ -527,9 +528,8 @@ input{
     .step_box {
         .step_ball { 
             li {
-                width: 25%;
-                width: 52px;
-                height: 52px; 
+                // width: 25%;
+                @include step_ball_size_small;
                 //進度條的線
                 &::before {
                 content: "";
@@ -542,7 +542,7 @@ input{
     }
 }
 .step_text {
-    @include H6;
+    @include P1;
 }
 }
 //進度條文字
@@ -572,7 +572,7 @@ input{
         width:100%;
     }
     #memName{
-        @include H2;
+        @include H4;
         font-weight: bold;
     }
     .orderInfo{
@@ -701,8 +701,7 @@ input{
         margin: 40px auto;
         .step_ball {
           li {    
-            width: 52px;
-            height: 52px;    
+            @include step_ball_size_small;   
             &::before {
               height: 6px;
               width: 300px;
@@ -710,7 +709,7 @@ input{
           }
         }    
         .step_text {
-          font-size: $fontsize_H5;
+          @include H6;
         }
       }
     .InfoDetail{
@@ -719,6 +718,7 @@ input{
         display:flex;
         justify-content: space-around;    
         align-items: center;
+
     }
    
     .memImage,.name{
@@ -738,7 +738,7 @@ input{
         width:100%;
     }
     #memName{
-        @include H2;
+        @include H3;
         font-weight: bold;
     }
     .orderInfo{
@@ -842,15 +842,16 @@ input{
         width:80%;
         margin:50px auto; 
         h2{
-            font-size: $fontsize_H4;
+            @include H4;
         }
     }
     
     .orderbtn{
         div{
-            font-size:$fontsize_H5 ;
-            width:90px;
-            height: 35px;
+            // font-size:$fontsize_H5 ;
+            // width:90px;
+            // height: 35px;
+            @include list_button;
             border-radius: 5px;                  
                 a{
                     font-size:$fontsize_H5 ;
@@ -874,7 +875,7 @@ input{
           }
         }    
         .step_text {
-          font-size: $fontsize_H4;
+            @include H5;
         }
       }
     .InfoDetail{
@@ -901,7 +902,7 @@ input{
         width:100%;
     }
     #memName{
-        @include H2;
+        @include H3;
         font-weight: bold;
     }
     .orderInfo{
@@ -984,7 +985,7 @@ input{
             width:15%;
         }
         span{
-            @include H4;
+            @include H5;
             margin: 0px 3px;
         }
     }
@@ -1002,7 +1003,7 @@ input{
         width:80%;
         margin:50px auto; 
         h2{
-            font-size: $fontsize_H3;
+            @include H3;
         }
     }
     .orderbtn{
@@ -1035,7 +1036,7 @@ input{
         width:100%;
     }
     #memName{
-        @include H2;
+        @include H3;
         font-weight: bold;
     }
     .orderInfo{
@@ -1052,5 +1053,101 @@ input{
 @media screen and (min-width: 1200px){
     .rwdInfoDetail{
         display: none;
+    }
+}
+
+// 修正------------------------------------------------
+
+// 1.進度條文字
+@media screen and (min-width: 991px){
+    .step_box .step_text {
+      font-size: 1.4rem;
+      letter-spacing: 2px;
+    }
+}
+  
+@media (max-width: 991px){
+    .step_box .step_text {
+      font-size: 1.2rem;
+      letter-spacing: 0;
+    }
+}
+
+
+//   2.聯絡資訊
+
+@media screen and (max-width: 756px){
+    .info_detail {
+        @include P1;
+    }
+}
+
+
+//   3.折扣代碼
+@media screen and (max-width: 575px) and (min-width: 326px){
+    .discountNo h3, .discountBottom h3, .cardInfo h3 {
+        @include P1;
+    }
+}
+
+//   4.下拉選單、輸入框
+@media screen and (max-width: 575px) and (min-width: 326px){
+    .discountNo {
+        justify-content: space-around;
+    }
+
+    .discountNo select {
+        width: 60%;   
+    }
+
+    .info_phone_bottom, .info_msg_bottom {
+        width: 45%;
+    }
+
+    .cardinfo input {
+        height: 25px;
+        // padding: 0;
+        // font-size: 1.8rem;
+        // letter-spacing: 0.5rem;
+       
+    }
+}
+
+// 5.信用卡資訊
+@media (min-width: 326px){
+    .cardinfo div {
+        display: flex;
+        align-items: center;
+    }
+
+    .cardinfo {
+        @include P1;
+    }
+}
+
+// 6.遊戲連結
+@media screen and (max-width: 575px) and (min-width: 326px){
+    .gamelink {
+        width: 40%;
+        margin: 0 auto;
+
+    }
+}
+
+// 7.使用者圖片尺寸調整
+
+@media screen and (max-width: 756px){
+    .info_img {
+        width: 20%;
+        max-width: 120px;
+        margin: 0 auto;
+    }
+}
+
+// 8.應付金額
+
+@media screen and (max-width: 575px) and (min-width: 326px){
+    .ListTotal h2 {
+        @include P1;
     }
 }

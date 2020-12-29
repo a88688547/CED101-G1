@@ -1,689 +1,685 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Jo飲</title>
-        <!-- 共用 -->
-        <script src="./vendors/jQuery/js/jquery-3.5.1.js"></script>
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
-            integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
-            crossorigin="anonymous"
-        />
-        <!-- 本頁 -->
-        <!-- 字型 -->
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
-        <!-- css -->
-        <link rel="stylesheet" href="./css/style.css" />
-        <link rel="stylesheet" href="./css/index_1224.css" />
-        <link rel="stylesheet" href="./css/index_banner.css" />
-        <link rel="stylesheet" href="./css/first_banner.css" />
-        <!-- 套件 -->
-        <script src="./vendors/vue/vue.js"></script>
-        <script src="./js/header_footer.js"></script>
-        <link rel="stylesheet" href="../src/sass/slick/slick-theme.css" />
-        <link rel="stylesheet" href="../src/sass/slick/slick.css" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js"></script>
-        <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-        <script src="js/ani.js"></script>
-    </head>
 
-    <body>
-        <header id="header">
-            <my-header></my-header>
-        </header>
-        <div>
-            <div class="box_top"></div>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jo飲</title>
+    <!-- 共用 -->
+    <script src="./vendors/jQuery/js/jquery-3.5.1.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+        integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+        crossorigin="anonymous" />
+    <!-- 本頁 -->
+    <!-- 字型 -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <!-- css -->
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/index_1224.css" />
+    <link rel="stylesheet" href="./css/index_banner.css" />
+    <link rel="stylesheet" href="./css/first_banner.css" />
+    <!-- 套件 -->
+    <script src="./vendors/vue/vue.js"></script>
+    <script src="./js/header_footer.js"></script>
+    <link rel="stylesheet" href="../src/sass/slick/slick-theme.css" />
+    <link rel="stylesheet" href="../src/sass/slick/slick.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="js/ani.js" async></script>
+</head>
+
+<body>
+    <header id="header">
+        <my-header></my-header>
+    </header>
+    <div>
+        <div class="box_top"></div>
+    </div>
+    <section class="banner">
+        <div class="content">
+            <img class="logo" src="./Images/logo.svg" />
+            <h1 class="title">Join Us and Get A Drink !</h1>
+            <h2 class="sentence">揪團喝飲料最方便，提供多樣選擇及客製化的搭配。</h2>
+            <button id="menu">查看菜單，揪團去</button>
         </div>
-        <section class="banner">
-            <div class="content">
-                <img class="logo" src="./Images/logo.svg" />
-                <h1 class="title">Join Us and Get A Drink !</h1>
-                <h2 class="sentence">揪團喝飲料最方便，提供多樣選擇及客製化的搭配。</h2>
-                <button id="menu">查看菜單，揪團去</button>
-            </div>
-            <img class="blacktea" src="./Images/blacktea.png" />
-            <img class="bubble" src="./Images/bubbletea.png" />
-            <img class="juice" src="./Images/juice.png" />
-            <img class="orange fruits" src="./Images/orange.png" />
-            <img class="sliced_orange" src="./Images/sliced_orange.png" />
-            <div data-depth="1.1" class="strawberry">
-                <img src="./Images/strawberry.png" />
-            </div>
-            <img class="sliced_strawberry fruits" src="./Images/sliced_strawberry.png" />
-            <img class="sliced_lemon fruits" src="./Images/sliced_lemon.png" />
-            <img class="leaf1 fruits" src="./Images/leaf1.png" />
-            <img class="leaf2 fruits" src="./Images/leaf2.png" />
-            <img class="leaf3 fruits" src="./Images/leaf3.png" />
-            <img class="leaf4 fruits" src="./Images/leaf4.png" />
-            <img class="cheersleft" src="./Images/cheersleft.svg" />
-            <img class="cheersright" src="./Images/cheersright.svg" />
+        <img class="blacktea" src="./Images/blacktea.png" />
+        <img class="bubble" src="./Images/bubbletea.png" />
+        <img class="juice" src="./Images/juice.png" />
+        <img class="orange fruits" src="./Images/orange.png" />
+        <img class="sliced_orange fruits" src="./Images/sliced_orange.png" />
+        <div class="strawberry fruits">
+            <img src="./Images/strawberry.png" />
+        </div>
+        <img class="sliced_strawberry fruits" src="./Images/sliced_strawberry.png" />
+        <img class="sliced_lemon fruits" src="./Images/sliced_lemon.png" />
+        <img class="leaf1 fruits" src="./Images/leaf1.png" />
+        <img class="leaf2 fruits" src="./Images/leaf2.png" />
+        <img class="leaf3 fruits" src="./Images/leaf3.png" />
+        <img class="leaf4 fruits" src="./Images/leaf4.png" />
+        <img class="cheersleft" src="./Images/cheersleft.svg" />
+        <img class="cheersright" src="./Images/cheersright.svg" />
 
-            <div class="under">
-                <img class="under" src="./Images/under.png" />
+        <div class="under">
+            <img class="under" src="./Images/under.png" />
+        </div>
+    </section>
+
+    <main>
+        <!-- 跟團喝---------------------------------------------------------------------- -->
+        <section class="join_drink">
+            <div class="title_block">
+                <h2>跟團喝</h2>
+                <h5>想喝飲料卻找不到夥伴嗎?跟團喝飲料，杯杯有折扣!</h5>
+            </div>
+            <!-- 跟團版---------------------------------------------------------------------- -->
+            <div class="drinkbar_block">
+                <div class="drink_bar">
+                    <img src="./Images/coupon/index/10off_frontpage.jpg" alt="" />
+
+                    <div class="drinkbar_textblock">
+                        <div class="bar_title">
+                            <!-- 團名最多十五個字 -->
+                            <h6>Tibame前端班喝起來~</h6>
+                        </div>
+
+                        <hr />
+
+                        <h6>
+                            取貨地點:<br />
+                            <span class="address">桃園市中壢區復興路46號9樓</span>
+                        </h6>
+
+                        <h6>
+                            預計送達時間:<br />
+                            <span class="time">2012/12/20 15:00</span>
+                        </h6>
+
+                        <div class="drink_status">
+                            <div class="status_title">
+                                <img src="./Images/drop-1.svg" alt="" />
+                                <h6>差<span>?</span>杯成團</h6>
+                            </div>
+
+                            <div class="status_title">
+                                <img class="complited_cups" src="./Images/Drop-1.svg" alt="" />
+                                <h6>已有<span>?</span>杯跟團</h6>
+                            </div>
+                        </div>
+
+                        <div class="join_drink_btm">
+                            <h6 class="time">
+                                限時
+                                <span class="Countdown time">05:00:20</span>
+                            </h6>
+
+                            <button class="join_drink color-1">
+                                <a href="./join_list.html" style="text-decoration: none; display: inline-flex;">
+                                    <img src="./Images/drink.svg" alt="" />
+                                    <h6>跟團喝</h6>
+                                </a>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="drink_bar">
+                    <img src="./Images/coupon/index/20off_frontpage.jpg" alt="" />
+
+                    <div class="drinkbar_textblock">
+                        <div class="bar_title">
+                            <h6>中壢站前夥伴揪飲去</h6>
+                        </div>
+
+                        <hr />
+
+                        <h6>
+                            取貨地點:<br />
+                            <span class="address">桃園市中壢區復興路46號9樓</span>
+                        </h6>
+
+                        <h6>
+                            預計送達時間:<br />
+                            <span class="time">2012/12/20 15:00</span>
+                        </h6>
+
+                        <div class="drink_status">
+                            <div class="status_title">
+                                <img src="./Images/drop-1.svg" alt="" />
+                                <h6>差<span>?</span>杯成團</h6>
+                            </div>
+
+                            <div class="status_title">
+                                <img class="complited_cups" src="./Images/Drop-1.svg" alt="" />
+                                <h6>已有<span>?</span>杯跟團</h6>
+                            </div>
+                        </div>
+
+                        <div class="join_drink_btm">
+                            <h6 class="time">
+                                限時
+                                <span class="Countdown time">05:00:20</span>
+                            </h6>
+
+                            <button class="join_drink color-1">
+                                <a href="./join_list.html" style="text-decoration: none; display: inline-flex;">
+                                    <img src="./Images/drink.svg" alt="" />
+                                    <h6>跟團喝</h6>
+                                </a>
+                            </button>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="drink_bar">
+                    <img src="./Images/coupon/index/30off_frontpage.jpg" alt="" />
+
+                    <div class="drinkbar_textblock">
+                        <div class="bar_title">
+                            <h6>揪飲找七折，一起跟團去</h6>
+                        </div>
+
+                        <hr />
+
+                        <h6>
+                            取貨地點:<br />
+                            <span class="address">桃園市中壢區復興路46號9樓</span>
+                        </h6>
+
+                        <h6>
+                            預計送達時間:<br />
+                            <span class="time">2012/12/20 15:00</span>
+                        </h6>
+
+                        <div class="drink_status">
+                            <div class="status_title">
+                                <img src="./Images/drop-1.svg" alt="" />
+                                <h6>差<span>?</span>杯成團</h6>
+                            </div>
+
+                            <div class="status_title">
+                                <img class="complited_cups" src="./Images/Drop-1.svg" alt="" />
+                                <h6>已有<span>?</span>杯跟團</h6>
+                            </div>
+                        </div>
+
+                        <div class="join_drink_btm">
+                            <h6 class="time">
+                                限時
+                                <span class="Countdown time">05:00:20</span>
+                            </h6>
+
+                            <button class="join_drink color-1">
+                                <a href="./join_list.html" style="text-decoration: none; display: inline-flex;">
+                                    <img src="./Images/drink.svg" alt="" />
+                                    <h6>跟團喝</h6>
+                                </a>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="drink_bar">
+                    <img src="./Images/coupon/index/40off_frontpage.jpg" alt="" />
+
+                    <div class="drinkbar_textblock">
+                        <div class="bar_title">
+                            <h6>下午茶好夥伴，一起衝八折優惠!</h6>
+                        </div>
+
+                        <hr />
+
+                        <h6>
+                            取貨地點:<br />
+                            <span class="address">桃園市中壢區復興路46號9樓</span>
+                        </h6>
+
+                        <h6>
+                            預計送達時間:<br />
+                            <span class="time">2012/12/20 15:00</span>
+                        </h6>
+
+                        <div class="drink_status">
+                            <div class="status_title">
+                                <img src="./Images/drop-1.svg" alt="" />
+                                <h6>差<span>?</span>杯成團</h6>
+                            </div>
+
+                            <div class="status_title">
+                                <img class="complited_cups" src="./Images/Drop-1.svg" alt="" />
+                                <h6>已有<span>?</span>杯跟團</h6>
+                            </div>
+                        </div>
+
+                        <div class="join_drink_btm">
+                            <h6 class="time">
+                                限時
+                                <span class="Countdown time">05:00:20</span>
+                            </h6>
+
+                            <button class="join_drink color-1">
+                                <a href="./join_list.html" style="text-decoration: none; display: inline-flex;">
+                                    <img src="./Images/drink.svg" alt="" />
+                                    <h6>跟團喝</h6>
+                                </a>>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bottom_block">
+                <button class="seemore color-2">
+                    <h6>查看更多內容</h6>
+                </button>
             </div>
         </section>
 
-        <main>
-            <!-- 跟團喝---------------------------------------------------------------------- -->
-            <section class="join_drink">
-                <div class="title_block">
-                    <h2>跟團喝</h2>
-                    <h5>想喝飲料卻找不到夥伴嗎?跟團喝飲料，杯杯有折扣!</h5>
-                </div>
-                <!-- 跟團版---------------------------------------------------------------------- -->
-                <div class="drinkbar_block">
-                    <div class="drink_bar">
-                        <img src="./Images/coupon/index/10off_frontpage.jpg" alt="" />
+        <section class="vote">
+            <div class="title_block">
+                <h2>飲品排名</h2>
+                <h5>凡獲選票選第一之飲品，該飲品即得8折優惠。</h5>
+            </div>
 
-                        <div class="drinkbar_textblock">
-                            <div class="bar_title">
-                                <!-- 團名最多十五個字 -->
-                                <h6>Tibame前端班喝起來~</h6>
+            <ul class="drink_slick">
+                <li>
+                    <a href="#"><img src="./Images/drink_tea@2x.png" alt="" /></a>
+                </li>
+                <li>
+                    <a href="#"><img src="./Images/drink_milktea@2x.png" alt="" /></a>
+                </li>
+                <li>
+                    <a href="#"><img src="./Images/drink_fruit@2x.png" alt="" /></a>
+                </li>
+            </ul>
+
+            <div class="drinkitem_block">
+                <div class="drink_category flex-1">
+                    <div class="text_block">
+                        <h5>清新茶飲</h5>
+                        <p>只有好飲慢磨的真淳。</p>
+                    </div>
+                    <div class="top_block">
+                        <div class="img_block">
+                            <div class="drink_item">
+                                <img src="./Images/TP-TEAimg.png" alt="" />
+                                <h6>TOP1<br /><span>錫蘭紅茶</span></h6>
                             </div>
-
-                            <hr />
-
-                            <h6>
-                                取貨地點:<br />
-                                <span class="address">桃園市中壢區復興路46號9樓</span>
-                            </h6>
-
-                            <h6>
-                                預計送達時間:<br />
-                                <span class="time">2012/12/20 15:00</span>
-                            </h6>
-
-                            <div class="drink_status">
-                                <div class="status_title">
-                                    <img src="./Images/drop-1.svg" alt="" />
-                                    <h6>差<span>?</span>杯成團</h6>
-                                </div>
-
-                                <div class="status_title">
-                                    <img class="complited_cups" src="./Images/Drop-1.svg" alt="" />
-                                    <h6>已有<span>?</span>杯跟團</h6>
-                                </div>
+                            <div class="drink_item">
+                                <img src="./Images/TP-TEAimg.png" alt="" />
+                                <h6>TOP2<br /><span>茉莉香片</span></h6>
                             </div>
-
-                            <div class="join_drink_btm">
-                                <h6 class="time">
-                                    限時
-                                    <span class="Countdown time">05:00:20</span>
-                                </h6>
-
-                                <button class="join_drink color-1">
-                                    <a href="./join_list.html" style="text-decoration: none; display: inline-flex;">
-                                        <img src="./Images/drink.svg" alt="" />
-                                        <h6>跟團喝</h6>
-                                    </a>
-                                </button>
+                            <div class="drink_item">
+                                <img src="./Images/TP-TEAimg.png" alt="" />
+                                <h6>TOP3<br /><span>清香烏龍</span></h6>
                             </div>
                         </div>
+
+                        <h4>本週茶類飲品排行</h4>
+                        <button>投票去</button>
                     </div>
-
-                    <div class="drink_bar">
-                        <img src="./Images/coupon/index/20off_frontpage.jpg" alt="" />
-
-                        <div class="drinkbar_textblock">
-                            <div class="bar_title">
-                                <h6>中壢站前夥伴揪飲去</h6>
-                            </div>
-
-                            <hr />
-
-                            <h6>
-                                取貨地點:<br />
-                                <span class="address">桃園市中壢區復興路46號9樓</span>
-                            </h6>
-
-                            <h6>
-                                預計送達時間:<br />
-                                <span class="time">2012/12/20 15:00</span>
-                            </h6>
-
-                            <div class="drink_status">
-                                <div class="status_title">
-                                    <img src="./Images/drop-1.svg" alt="" />
-                                    <h6>差<span>?</span>杯成團</h6>
-                                </div>
-
-                                <div class="status_title">
-                                    <img class="complited_cups" src="./Images/Drop-1.svg" alt="" />
-                                    <h6>已有<span>?</span>杯跟團</h6>
-                                </div>
-                            </div>
-
-                            <div class="join_drink_btm">
-                                <h6 class="time">
-                                    限時
-                                    <span class="Countdown time">05:00:20</span>
-                                </h6>
-
-                                <button class="join_drink color-1">
-                                    <a href="./join_list.html" style="text-decoration: none; display: inline-flex;">
-                                        <img src="./Images/drink.svg" alt="" />
-                                        <h6>跟團喝</h6>
-                                    </a>
-                                </button>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="drink_bar">
-                        <img src="./Images/coupon/index/30off_frontpage.jpg" alt="" />
-
-                        <div class="drinkbar_textblock">
-                            <div class="bar_title">
-                                <h6>揪飲找七折，一起跟團去</h6>
-                            </div>
-
-                            <hr />
-
-                            <h6>
-                                取貨地點:<br />
-                                <span class="address">桃園市中壢區復興路46號9樓</span>
-                            </h6>
-
-                            <h6>
-                                預計送達時間:<br />
-                                <span class="time">2012/12/20 15:00</span>
-                            </h6>
-
-                            <div class="drink_status">
-                                <div class="status_title">
-                                    <img src="./Images/drop-1.svg" alt="" />
-                                    <h6>差<span>?</span>杯成團</h6>
-                                </div>
-
-                                <div class="status_title">
-                                    <img class="complited_cups" src="./Images/Drop-1.svg" alt="" />
-                                    <h6>已有<span>?</span>杯跟團</h6>
-                                </div>
-                            </div>
-
-                            <div class="join_drink_btm">
-                                <h6 class="time">
-                                    限時
-                                    <span class="Countdown time">05:00:20</span>
-                                </h6>
-
-                                <button class="join_drink color-1">
-                                    <a href="./join_list.html" style="text-decoration: none; display: inline-flex;">
-                                        <img src="./Images/drink.svg" alt="" />
-                                        <h6>跟團喝</h6>
-                                    </a>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="drink_bar">
-                        <img src="./Images/coupon/index/40off_frontpage.jpg" alt="" />
-
-                        <div class="drinkbar_textblock">
-                            <div class="bar_title">
-                                <h6>下午茶好夥伴，一起衝八折優惠!</h6>
-                            </div>
-
-                            <hr />
-
-                            <h6>
-                                取貨地點:<br />
-                                <span class="address">桃園市中壢區復興路46號9樓</span>
-                            </h6>
-
-                            <h6>
-                                預計送達時間:<br />
-                                <span class="time">2012/12/20 15:00</span>
-                            </h6>
-
-                            <div class="drink_status">
-                                <div class="status_title">
-                                    <img src="./Images/drop-1.svg" alt="" />
-                                    <h6>差<span>?</span>杯成團</h6>
-                                </div>
-
-                                <div class="status_title">
-                                    <img class="complited_cups" src="./Images/Drop-1.svg" alt="" />
-                                    <h6>已有<span>?</span>杯跟團</h6>
-                                </div>
-                            </div>
-
-                            <div class="join_drink_btm">
-                                <h6 class="time">
-                                    限時
-                                    <span class="Countdown time">05:00:20</span>
-                                </h6>
-
-                                <button class="join_drink color-1">
-                                    <a href="./join_list.html" style="text-decoration: none; display: inline-flex;">
-                                        <img src="./Images/drink.svg" alt="" />
-                                        <h6>跟團喝</h6>
-                                    </a>>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+                    <img src="./Images/tea (2).jpg_1140x855.png" alt="" />
                 </div>
 
-                <div class="bottom_block">
-                    <button class="seemore color-2"><h6>查看更多內容</h6></button>
+                <div class="drink_category flex-1">
+                    <div class="text_block">
+                        <h5>香醇奶類</h5>
+                        <p>使用頂及香醇的職人鮮乳。</p>
+                    </div>
+                    <div class="top_block">
+                        <div class="img_block">
+                            <div class="drink_item">
+                                <img src="./Images/TP-TEAimg.png" alt="" />
+                                <h6>TOP1<br /><span>珍珠鮮奶</span></h6>
+                            </div>
+                            <div class="drink_item">
+                                <img src="./Images/TP-TEAimg.png" alt="" />
+                                <h6>TOP2<br /><span>小芋園奶茶</span></h6>
+                            </div>
+                            <div class="drink_item">
+                                <img src="./Images/TP-TEAimg.png" alt="" />
+                                <h6>TOP3<br /><span>茉香奶茶</span></h6>
+                            </div>
+                        </div>
+
+                        <h4>本週奶類飲品排行</h4>
+                        <button>投票去</button>
+                    </div>
+                    <img src="./Images/milktea_combine.png" alt="" />
                 </div>
-            </section>
 
-            <section class="vote">
-                <div class="title_block">
-                    <h2>飲品排名</h2>
-                    <h5>凡獲選票選第一之飲品，該飲品即得8折優惠。</h5>
+                <div class="drink_category flex-1">
+                    <div class="text_block">
+                        <h5>新鮮果茶</h5>
+                        <p>水果皆為新鮮現採。</p>
+                    </div>
+                    <div class="top_block">
+                        <div class="img_block">
+                            <div class="drink_item">
+                                <img src="./Images/TP-TEAimg.png" alt="" />
+                                <h6>TOP1<br /><span>甘蔗檸檬</span></h6>
+                            </div>
+                            <div class="drink_item">
+                                <img src="./Images/TP-TEAimg.png" alt="" />
+                                <h6>TOP2<br /><span>百香綠茶</span></h6>
+                            </div>
+                            <div class="drink_item">
+                                <img src="./Images/TP-TEAimg.png" alt="" />
+                                <h6>TOP3<br /><span>蜜桃紅茶</span></h6>
+                            </div>
+                        </div>
+
+                        <h4>本週果茶類飲品排行</h4>
+                        <button>投票去</button>
+                    </div>
+
+                    <img src="./Images/fruit.png" alt="" />
                 </div>
+            </div>
 
-                <ul class="drink_slick">
-                    <li>
-                        <a href="#"><img src="./Images/drink_tea@2x.png" alt="" /></a>
-                    </li>
-                    <li>
-                        <a href="#"><img src="./Images/drink_milktea@2x.png" alt="" /></a>
-                    </li>
-                    <li>
-                        <a href="#"><img src="./Images/drink_fruit@2x.png" alt="" /></a>
-                    </li>
-                </ul>
+            <div class="bottom_block">
+                <h5>想讓你愛喝的飲品變成Top1嗎?</h5>
+                <button class="seemore color-2">立即投票去</button>
+            </div>
+        </section>
 
-                <div class="drinkitem_block">
-                    <div class="drink_category flex-1">
+        <section class="article">
+            <div class="title_block">
+                <h2>分享區</h2>
+                <h5>大家都喝了什麼?立即記錄你的JOIN時光吧!</h5>
+            </div>
+
+            <div class="article_block">
+                <div class="card_big">
+                    <a href="#" style="text-decoration: none">
+                        <img src="./Images/article/70edd49589e2a84c8c5288bdeac46f37.png" alt="" />
+
                         <div class="text_block">
-                            <h5>清新茶飲</h5>
-                            <p>只有好飲慢磨的真淳。</p>
-                        </div>
-                        <div class="top_block">
-                            <div class="img_block">
-                                <div class="drink_item">
-                                    <img src="./Images/TP-TEAimg.png" alt="" />
-                                    <h6>TOP1<br /><span>錫蘭紅茶</span></h6>
+                            <img class="user" src="./Images/user_small.svg" alt="" />
+                            <div class="user_info_block">
+                                <p class="article_time">2020-11-22 13:00</p>
+                                <div class="article_descirption">
+                                    <h6>新鮮水果茶好回味</h6>
+                                    <p>水果茶用料實在，酸酸甜甜令人難忘~~</p>
                                 </div>
-                                <div class="drink_item">
-                                    <img src="./Images/TP-TEAimg.png" alt="" />
-                                    <h6>TOP2<br /><span>茉莉香片</span></h6>
-                                </div>
-                                <div class="drink_item">
-                                    <img src="./Images/TP-TEAimg.png" alt="" />
-                                    <h6>TOP3<br /><span>清香烏龍</span></h6>
+
+                                <div class="user_info">
+                                    <div class="user_status">
+                                        <div class="status_icon">
+                                            <img src="./Images/eyes_big.svg" alt="" />
+                                            <p class="number">?</p>
+                                        </div>
+                                        <div class="status_icon">
+                                            <img src="./Images/message_big.svg" alt="" />
+                                            <p class="number">?</p>
+                                        </div>
+                                        <div class="status_icon">
+                                            <img src="./Images/like_big.svg" alt="" />
+                                            <p class="number">?</p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-
-                            <h4>本週茶類飲品排行</h4>
-                            <button>投票去</button>
                         </div>
-                        <img src="./Images/tea (2).jpg_1140x855.png" alt="" />
-                    </div>
-
-                    <div class="drink_category flex-1">
-                        <div class="text_block">
-                            <h5>香醇奶類</h5>
-                            <p>使用頂及香醇的職人鮮乳。</p>
-                        </div>
-                        <div class="top_block">
-                            <div class="img_block">
-                                <div class="drink_item">
-                                    <img src="./Images/TP-TEAimg.png" alt="" />
-                                    <h6>TOP1<br /><span>珍珠鮮奶</span></h6>
-                                </div>
-                                <div class="drink_item">
-                                    <img src="./Images/TP-TEAimg.png" alt="" />
-                                    <h6>TOP2<br /><span>小芋園奶茶</span></h6>
-                                </div>
-                                <div class="drink_item">
-                                    <img src="./Images/TP-TEAimg.png" alt="" />
-                                    <h6>TOP3<br /><span>茉香奶茶</span></h6>
-                                </div>
-                            </div>
-
-                            <h4>本週奶類飲品排行</h4>
-                            <button>投票去</button>
-                        </div>
-                        <img src="./Images/milktea_combine.png" alt="" />
-                    </div>
-
-                    <div class="drink_category flex-1">
-                        <div class="text_block">
-                            <h5>新鮮果茶</h5>
-                            <p>水果皆為新鮮現採。</p>
-                        </div>
-                        <div class="top_block">
-                            <div class="img_block">
-                                <div class="drink_item">
-                                    <img src="./Images/TP-TEAimg.png" alt="" />
-                                    <h6>TOP1<br /><span>甘蔗檸檬</span></h6>
-                                </div>
-                                <div class="drink_item">
-                                    <img src="./Images/TP-TEAimg.png" alt="" />
-                                    <h6>TOP2<br /><span>百香綠茶</span></h6>
-                                </div>
-                                <div class="drink_item">
-                                    <img src="./Images/TP-TEAimg.png" alt="" />
-                                    <h6>TOP3<br /><span>蜜桃紅茶</span></h6>
-                                </div>
-                            </div>
-
-                            <h4>本週果茶類飲品排行</h4>
-                            <button>投票去</button>
-                        </div>
-
-                        <img src="./Images/fruit.png" alt="" />
-                    </div>
+                    </a>
                 </div>
 
-                <div class="bottom_block">
-                    <h5>想讓你愛喝的飲品變成Top1嗎?</h5>
-                    <button class="seemore color-2">立即投票去</button>
-                </div>
-            </section>
+                <div class="card_big">
+                    <a href="#" style="text-decoration: none">
+                        <img src="./Images/article/article_big_2.png" alt="" />
 
-            <section class="article">
+                        <div class="text_block">
+                            <img class="user" src="./Images/user_small.svg" alt="" />
+                            <div class="user_info_block">
+                                <p class="article_time">2020-11-22 13:00</p>
+                                <div class="article_descirption">
+                                    <h6>新鮮水果茶好回味</h6>
+                                    <p>水果茶用料實在，酸酸甜甜令人難忘~~</p>
+                                </div>
+
+                                <div class="user_info">
+                                    <div class="user_status">
+                                        <div class="status_icon">
+                                            <img src="./Images/eyes_big.svg" alt="" />
+                                            <p class="number">?</p>
+                                        </div>
+                                        <div class="status_icon">
+                                            <img src="./Images/message_big.svg" alt="" />
+                                            <p class="number">?</p>
+                                        </div>
+                                        <div class="status_icon">
+                                            <img src="./Images/like_big.svg" alt="" />
+                                            <p class="number">?</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="card_big">
+                    <a href="#" style="text-decoration: none">
+                        <img src="./Images/article/article_big_3.png" alt="" />
+
+                        <div class="text_block">
+                            <img class="user" src="./Images/user_small.svg" alt="" />
+                            <div class="user_info_block">
+                                <p class="article_time">2020-11-22 13:00</p>
+                                <div class="article_descirption">
+                                    <h6>新鮮水果茶好回味</h6>
+                                    <p>水果茶用料實在，酸酸甜甜令人難忘~~</p>
+                                </div>
+
+                                <div class="user_info">
+                                    <div class="user_status">
+                                        <div class="status_icon">
+                                            <img src="./Images/eyes_big.svg" alt="" />
+                                            <p class="number">?</p>
+                                        </div>
+                                        <div class="status_icon">
+                                            <img src="./Images/message_big.svg" alt="" />
+                                            <p class="number">?</p>
+                                        </div>
+                                        <div class="status_icon">
+                                            <img src="./Images/like_big.svg" alt="" />
+                                            <p class="number">?</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="card_small_block">
+                    <div class="card_small">
+                        <img src="./Images/article/article_smal_2.png" alt="" />
+
+                        <div class="text_block">
+                            <img class="user" src="./Images/user_small.svg" alt="" />
+                            <div class="user_info_block">
+                                <p class="article_time">2020-11-22 13:00</p>
+                                <div class="article_descirption">
+                                    <h6>新鮮水果茶好回味</h6>
+                                    <p>水果茶用料實在，酸酸甜甜令人難忘~~</p>
+                                </div>
+
+                                <div class="user_info">
+                                    <div class="user_status">
+                                        <div class="status_icon">
+                                            <img src="./Images/eyes_big.svg" alt="" />
+                                            <p class="number">?</p>
+                                        </div>
+                                        <div class="status_icon">
+                                            <img src="./Images/message_big.svg" alt="" />
+                                            <p class="number">?</p>
+                                        </div>
+                                        <div class="status_icon">
+                                            <img src="./Images/like_big.svg" alt="" />
+                                            <p class="number">?</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card_small">
+                        <img src="./Images/article/article_smal_3.png" alt="" />
+
+                        <div class="text_block">
+                            <img class="user" src="./Images/user_small.svg" alt="" />
+                            <div class="user_info_block">
+                                <p class="article_time">2020-11-22 13:00</p>
+                                <div class="article_descirption">
+                                    <h6>新鮮水果茶好回味</h6>
+                                    <p>水果茶用料實在，酸酸甜甜令人難忘~~</p>
+                                </div>
+
+                                <div class="user_info">
+                                    <div class="user_status">
+                                        <div class="status_icon">
+                                            <img src="./Images/eyes_big.svg" alt="" />
+                                            <p class="number">?</p>
+                                        </div>
+                                        <div class="status_icon">
+                                            <img src="./Images/message_big.svg" alt="" />
+                                            <p class="number">?</p>
+                                        </div>
+                                        <div class="status_icon">
+                                            <img src="./Images/like_big.svg" alt="" />
+                                            <p class="number">?</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card_small">
+                        <img src="./Images/article/article_smal_4.png" alt="" />
+
+                        <div class="text_block">
+                            <img class="user" src="./Images/user_small.svg" alt="" />
+                            <div class="user_info_block">
+                                <p class="article_time">2020-11-22 13:00</p>
+                                <div class="article_descirption">
+                                    <h6>新鮮水果茶好回味</h6>
+                                    <p>水果茶用料實在，酸酸甜甜令人難忘~~</p>
+                                </div>
+
+                                <div class="user_info">
+                                    <div class="user_status">
+                                        <div class="status_icon">
+                                            <img src="./Images/eyes_big.svg" alt="" />
+                                            <p class="number">?</p>
+                                        </div>
+                                        <div class="status_icon">
+                                            <img src="./Images/message_big.svg" alt="" />
+                                            <p class="number">?</p>
+                                        </div>
+                                        <div class="status_icon">
+                                            <img src="./Images/like_big.svg" alt="" />
+                                            <p class="number">?</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bottom_block">
+                <button class="seemore">查看更多內容</button>
+            </div>
+        </section>
+
+        <section class="brandStory">
+            <div class="story_block">
+                <img src="./Images/brandstory_img.jpg" alt="" />
                 <div class="title_block">
-                    <h2>分享區</h2>
-                    <h5>大家都喝了什麼?立即記錄你的JOIN時光吧!</h5>
+                    <h2>關於Jo飲</h2>
+                    <h6>
+                        揪團飲料品牌，提供多樣性的選擇滿足您和您的朋友及家人。
+                        有高客製化的功能選單，讓您在購飲品可自行調整冰、溫、
+                        熱等選項，也提供新鮮豐富的配料做搭配滿足您最挑剔味蕾。
+                    </h6>
                 </div>
-
-                <div class="article_block">
-                    <div class="card_big">
-                        <a href="#" style="text-decoration: none">
-                            <img src="./Images/article/70edd49589e2a84c8c5288bdeac46f37.png" alt="" />
-
-                            <div class="text_block">
-                                <img class="user" src="./Images/user_small.svg" alt="" />
-                                <div class="user_info_block">
-                                    <p class="article_time">2020-11-22 13:00</p>
-                                    <div class="article_descirption">
-                                        <h6>新鮮水果茶好回味</h6>
-                                        <p>水果茶用料實在，酸酸甜甜令人難忘~~</p>
-                                    </div>
-
-                                    <div class="user_info">
-                                        <div class="user_status">
-                                            <div class="status_icon">
-                                                <img src="./Images/eyes_big.svg" alt="" />
-                                                <p class="number">?</p>
-                                            </div>
-                                            <div class="status_icon">
-                                                <img src="./Images/message_big.svg" alt="" />
-                                                <p class="number">?</p>
-                                            </div>
-                                            <div class="status_icon">
-                                                <img src="./Images/like_big.svg" alt="" />
-                                                <p class="number">?</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="card_big">
-                        <a href="#" style="text-decoration: none">
-                            <img src="./Images/article/article_big_2.png" alt="" />
-
-                            <div class="text_block">
-                                <img class="user" src="./Images/user_small.svg" alt="" />
-                                <div class="user_info_block">
-                                    <p class="article_time">2020-11-22 13:00</p>
-                                    <div class="article_descirption">
-                                        <h6>新鮮水果茶好回味</h6>
-                                        <p>水果茶用料實在，酸酸甜甜令人難忘~~</p>
-                                    </div>
-
-                                    <div class="user_info">
-                                        <div class="user_status">
-                                            <div class="status_icon">
-                                                <img src="./Images/eyes_big.svg" alt="" />
-                                                <p class="number">?</p>
-                                            </div>
-                                            <div class="status_icon">
-                                                <img src="./Images/message_big.svg" alt="" />
-                                                <p class="number">?</p>
-                                            </div>
-                                            <div class="status_icon">
-                                                <img src="./Images/like_big.svg" alt="" />
-                                                <p class="number">?</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="card_big">
-                        <a href="#" style="text-decoration: none">
-                            <img src="./Images/article/article_big_3.png" alt="" />
-
-                            <div class="text_block">
-                                <img class="user" src="./Images/user_small.svg" alt="" />
-                                <div class="user_info_block">
-                                    <p class="article_time">2020-11-22 13:00</p>
-                                    <div class="article_descirption">
-                                        <h6>新鮮水果茶好回味</h6>
-                                        <p>水果茶用料實在，酸酸甜甜令人難忘~~</p>
-                                    </div>
-
-                                    <div class="user_info">
-                                        <div class="user_status">
-                                            <div class="status_icon">
-                                                <img src="./Images/eyes_big.svg" alt="" />
-                                                <p class="number">?</p>
-                                            </div>
-                                            <div class="status_icon">
-                                                <img src="./Images/message_big.svg" alt="" />
-                                                <p class="number">?</p>
-                                            </div>
-                                            <div class="status_icon">
-                                                <img src="./Images/like_big.svg" alt="" />
-                                                <p class="number">?</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="card_small_block">
-                        <div class="card_small">
-                            <img src="./Images/article/article_smal_2.png" alt="" />
-
-                            <div class="text_block">
-                                <img class="user" src="./Images/user_small.svg" alt="" />
-                                <div class="user_info_block">
-                                    <p class="article_time">2020-11-22 13:00</p>
-                                    <div class="article_descirption">
-                                        <h6>新鮮水果茶好回味</h6>
-                                        <p>水果茶用料實在，酸酸甜甜令人難忘~~</p>
-                                    </div>
-
-                                    <div class="user_info">
-                                        <div class="user_status">
-                                            <div class="status_icon">
-                                                <img src="./Images/eyes_big.svg" alt="" />
-                                                <p class="number">?</p>
-                                            </div>
-                                            <div class="status_icon">
-                                                <img src="./Images/message_big.svg" alt="" />
-                                                <p class="number">?</p>
-                                            </div>
-                                            <div class="status_icon">
-                                                <img src="./Images/like_big.svg" alt="" />
-                                                <p class="number">?</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card_small">
-                            <img src="./Images/article/article_smal_3.png" alt="" />
-
-                            <div class="text_block">
-                                <img class="user" src="./Images/user_small.svg" alt="" />
-                                <div class="user_info_block">
-                                    <p class="article_time">2020-11-22 13:00</p>
-                                    <div class="article_descirption">
-                                        <h6>新鮮水果茶好回味</h6>
-                                        <p>水果茶用料實在，酸酸甜甜令人難忘~~</p>
-                                    </div>
-
-                                    <div class="user_info">
-                                        <div class="user_status">
-                                            <div class="status_icon">
-                                                <img src="./Images/eyes_big.svg" alt="" />
-                                                <p class="number">?</p>
-                                            </div>
-                                            <div class="status_icon">
-                                                <img src="./Images/message_big.svg" alt="" />
-                                                <p class="number">?</p>
-                                            </div>
-                                            <div class="status_icon">
-                                                <img src="./Images/like_big.svg" alt="" />
-                                                <p class="number">?</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card_small">
-                            <img src="./Images/article/article_smal_4.png" alt="" />
-
-                            <div class="text_block">
-                                <img class="user" src="./Images/user_small.svg" alt="" />
-                                <div class="user_info_block">
-                                    <p class="article_time">2020-11-22 13:00</p>
-                                    <div class="article_descirption">
-                                        <h6>新鮮水果茶好回味</h6>
-                                        <p>水果茶用料實在，酸酸甜甜令人難忘~~</p>
-                                    </div>
-
-                                    <div class="user_info">
-                                        <div class="user_status">
-                                            <div class="status_icon">
-                                                <img src="./Images/eyes_big.svg" alt="" />
-                                                <p class="number">?</p>
-                                            </div>
-                                            <div class="status_icon">
-                                                <img src="./Images/message_big.svg" alt="" />
-                                                <p class="number">?</p>
-                                            </div>
-                                            <div class="status_icon">
-                                                <img src="./Images/like_big.svg" alt="" />
-                                                <p class="number">?</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bottom_block">
-                    <button class="seemore">查看更多內容</button>
-                </div>
-            </section>
-
-            <section class="brandStory">
-                <div class="story_block">
-                    <img src="./Images/brandstory_img.jpg" alt="" />
+            </div>
+            <div class="address_block">
+                <div class="address">
+                    <h2>店面資訊</h2>
                     <div class="title_block">
-                        <h2>關於Jo飲</h2>
-                        <h6>
-                            揪團飲料品牌，提供多樣性的選擇滿足您和您的朋友及家人。
-                            有高客製化的功能選單，讓您在購飲品可自行調整冰、溫、
-                            熱等選項，也提供新鮮豐富的配料做搭配滿足您最挑剔味蕾。
-                        </h6>
-                    </div>
-                </div>
-                <div class="address_block">
-                    <div class="address">
-                        <h2>店面資訊</h2>
-                        <div class="title_block">
-                            <div class="info_block">
-                                <img src="./Images/timer.svg" alt="" />
-                                <h5>營業時間:<span>11:00-21:00</span></h5>
-                            </div>
-                            <div class="info_block">
-                                <img src="./Images/Icon awesome-phone.svg" alt="" />
-                                <h5>電話:<span>04-5545854</span></h5>
-                            </div>
-                            <div class="info_block">
-                                <img src="./Images/place.svg" alt="" />
-                                <h5>地址:<span>桃園市中壢區和平街16號</span></h5>
-                            </div>
+                        <div class="info_block">
+                            <img src="./Images/timer.svg" alt="" />
+                            <h5>營業時間:<span>11:00-21:00</span></h5>
+                        </div>
+                        <div class="info_block">
+                            <img src="./Images/Icon awesome-phone.svg" alt="" />
+                            <h5>電話:<span>04-5545854</span></h5>
+                        </div>
+                        <div class="info_block">
+                            <img src="./Images/place.svg" alt="" />
+                            <h5>地址:<span>桃園市中壢區和平街16號</span></h5>
                         </div>
                     </div>
-
-                    <div class="google_map">
-                        <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3617.2477183519404!2d121.22282561495693!3d24.95768518400822!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346823ea50c732a5%3A0x1b5e6ee66e9fec49!2z57ev6IKyVGliYU1l6ZmE6Kit5Lit5aOi6IG36KiT5Lit5b-D!5e0!3m2!1szh-TW!2stw!4v1608602204354!5m2!1szh-TW!2stw"
-                            width="400"
-                            height="300"
-                            frameborder="0"
-                            style="border: 0"
-                            allowfullscreen=""
-                            aria-hidden="false"
-                            tabindex="0"
-                        ></iframe>
-                    </div>
                 </div>
-            </section>
 
-            <section class="game">
-                <div class="title_block">
-                    <h2>小遊戲</h2>
-                    <h5>一起玩小遊戲，挑戰高分並換取折扣吧!</h5>
+                <div class="google_map">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3617.2477183519404!2d121.22282561495693!3d24.95768518400822!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346823ea50c732a5%3A0x1b5e6ee66e9fec49!2z57ev6IKyVGliYU1l6ZmE6Kit5Lit5aOi6IG36KiT5Lit5b-D!5e0!3m2!1szh-TW!2stw!4v1608602204354!5m2!1szh-TW!2stw"
+                        width="400" height="300" frameborder="0" style="border: 0" allowfullscreen=""
+                        aria-hidden="false" tabindex="0"></iframe>
                 </div>
-                <a href="./game.html" style="text-decoration: none">
-                    <div class="game_imgblock">
-                        <img class="game_img" src="./Images/gamebanner.jpg" alt="" />
-                        <div class="text_block">
-                            <div class="text_descript">
-                                <h3>珍珠接接樂</h3>
-                                <hr />
-                                <p>
-                                    益智類型遊戲，玩家要將畫面中亂掉的拼圖拼回原本的圖案，利用滑鼠拖曳拼圖即可移動，總共有９個關卡等你來挑戰，來看看你的眼力有多好哦
-                                </p>
-                                <img src="./Images/gamelink.svg" alt="" />
-                            </div>
+            </div>
+        </section>
+
+        <section class="game">
+            <div class="title_block">
+                <h2>小遊戲</h2>
+                <h5>一起玩小遊戲，挑戰高分並換取折扣吧!</h5>
+            </div>
+            <a href="./game.html" style="text-decoration: none">
+                <div class="game_imgblock">
+                    <img class="game_img" src="./Images/gamebanner.jpg" alt="" />
+                    <div class="text_block">
+                        <div class="text_descript">
+                            <h3>珍珠接接樂</h3>
+                            <hr />
+                            <p>
+                                益智類型遊戲，玩家要將畫面中亂掉的拼圖拼回原本的圖案，利用滑鼠拖曳拼圖即可移動，總共有９個關卡等你來挑戰，來看看你的眼力有多好哦
+                            </p>
+                            <img src="./Images/gamelink.svg" alt="" />
                         </div>
                     </div>
-                </a>
-            </section>
-        </main>
+                </div>
+            </a>
+        </section>
+    </main>
 
-        <footer id="footer">
-            <my-footer></my-footer>
-        </footer>
-        <script src="./layout/header.vue"></script>
-        <script src="./layout/footer.vue"></script>
-        <script src="./vendors/slick/slick.js"></script>
-        <script src="../tasks/slick.js"></script>
+    <footer id="footer">
+        <my-footer></my-footer>
+    </footer>
+    <script src="./layout/header.vue"></script>
+    <script src="./layout/footer.vue"></script>
+    <script src="./vendors/slick/slick.js"></script>
+    <script src="../tasks/slick.js"></script>
 
-        <script>
-            $('.drink_slick').slick({
-                dots: true,
-                slidesToShow: 1,
-                slideToScroll: 1,
-                autoplay: true,
-                autoplaySpeed: 1500,
-            })
-        </script>
-    </body>
+    <script>
+        $('.drink_slick').slick({
+            dots: true,
+            slidesToShow: 1,
+            slideToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 1500,
+        })
+    </script>
+</body>
+
 </html>

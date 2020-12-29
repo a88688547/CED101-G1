@@ -355,7 +355,7 @@ Vue.component('light_box', {
     <div id="light_box_wrapper" v-if="closeLightBox">
     <!-- 刪除按鈕 -->
     <div id="drink_light_box">
-        <button id="cancel_shop_btn" @click="cancel_shop">X</button>
+        <div id="cancel_shop_btn" @click="cancel_shop"><img src="Images/close.svg" /></div>
         <!-- 飲料圖 -->
         <div id="drink_img"><img :src="imgSrc" alt="" /></div>
         <div id="drink_data">

@@ -62,7 +62,8 @@ $padding_distance_rwd:35px;
     div {
         margin: 0 10px;
         flex-shrink: 0;
-        img{
+
+        img {
             width: 60%;
         }
     }
@@ -71,7 +72,7 @@ $padding_distance_rwd:35px;
 
 #text_info_1 {
     font-weight: bold;
-    
+
 }
 
 #text_info_2 {
@@ -85,13 +86,18 @@ $padding_distance_rwd:35px;
 
         li {
             margin-bottom: 10px;
-            span{
+
+            span {
                 font-weight: bold;
             }
         }
     }
 }
 
+.group_btn {
+    position: absolute !important;
+
+}
 
 #right_info {
     display: flex;
@@ -102,7 +108,7 @@ $padding_distance_rwd:35px;
     .group_btn {
 
         // 定位
-        position: absolute;
+        position: absolute !important;
         left: 45%;
         top: -26%;
 
@@ -119,7 +125,7 @@ $padding_distance_rwd:35px;
         -o-transition: all .4s ease-in-out;
         -webkit-transition: all .4s ease-in-out;
         transition: all .4s ease-in-out;
-  
+
         // 文字樣式
         div {
             font-size: $fontsize_H6;
@@ -151,14 +157,14 @@ $padding_distance_rwd:35px;
             transition: all .3s ease-in-out;
         }
 
-        &:focus{
+        &:focus {
             outline: none;
         }
 
-        &.color-1{
+        &.color-1 {
             background-image: linear-gradient(to right, #0d5770, #013B4F, #2b5876, #1486a8);
             box-shadow: 0 4px 15px 0 rgba(45, 54, 65, 0.75);
-        
+
         }
 
     }

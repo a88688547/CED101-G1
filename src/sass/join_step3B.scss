@@ -1265,7 +1265,7 @@ h5 {
     .step_box {
         .step_ball {
             li {
-                @include tep_ball_size;
+                @include step_ball_size;
 
                 //進度條的線
                 &::before {

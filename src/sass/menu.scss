@@ -2,6 +2,10 @@
 @import "base/base.scss";
 @import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
+body {
+    background-color: $insideBackgroundColor;
+}
+
 #menu {
     background-color: $mainBackgroundColor;
     max-width: 1200px;
@@ -251,6 +255,7 @@
     transform: translate(-50%, -50%);
     background-color: rgba(0, 0, 0, 0.4);
     z-index: 100;
+    overflow-y: auto;
 }
 
 #drink_light_box {
@@ -268,11 +273,13 @@
 }
 
 #cancel_shop_btn {
-    width: 20px;
-    height: 20px;
+    width: 19px;
+    height: 19px;
     position: absolute;
     right: 15px;
     top: 15px;
+    background-color: white;
+    border-radius: 50%;
 }
 
 #drink_data {
@@ -400,8 +407,16 @@ button {
     }
 }
 
-#num_btn_text button {
-    @include button_2
+#num_btn_text {
+    button {
+        @include button_2;
+
+    }
+
+    span {
+        color: white;
+    }
+
 }
 
 @media screen and (max-width:576px) {

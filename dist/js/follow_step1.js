@@ -39,7 +39,7 @@ Vue.component('orderlist', {
                 }
             })
             //最後結果 => 例: arr = [a,a,b,c,c] obj={a:2,b:1,c:2}
-            console.log(obj)
+            // console.log(obj)
             return obj
         },
         total_num() {

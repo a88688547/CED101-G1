@@ -1,4 +1,5 @@
 @import "./base/base.scss";
+@import "./mixins/mixins.scss";
 $mq575: 575px;
 $mq767: 767px;
 $mq991: 991px;
@@ -102,10 +103,10 @@ body{
 
   //進度條文字
   .step_text {
+    @include H3;
     display: flex;
     justify-content: space-between;
-    color: $textColor;
-    font-size: $fontsize_P2;
+  
 
     // letter-spacing:2px;
     // text-indent: 2px;
@@ -150,14 +151,10 @@ body{
       label{
         // border: 1px solid red;
         width: 140px;
-        font-size: $fontsize_H6;
-        color:#707070;
-        letter-spacing:6px;
-        
+        @include H6;
       }
       input,select{
-        font-size: $fontsize_H6;
-        border-radius: 5px;
+       @include H6;
         // border: 1px solid black;
         width: 195px;
         height: 28px;
@@ -274,8 +271,7 @@ body{
         justify-content: center;
 
         label {
-          font-size: $fontsize_H3;
-          letter-spacing: 10px;
+          @include H3;
           // margin-bottom: 25px;
           // border: 1px solid red;
           height: 50px;
@@ -324,7 +320,8 @@ body{
     }
 
     .step_text {
-      font-size: $fontsize_H4;
+      @include H6;
+      letter-spacing: 2px;
     }
   }
 
@@ -378,21 +375,16 @@ body{
     .step_ball{
       li{
         // border: 1px solid red;
-      width: 120px;
-      height: 120px;
+        @include step_ball_size;
       }
       
     }
 
-  
-
-  
 
   .group_data {
 
     ul {
       // border: 11px solid red;
-      padding: 0 100px 0 200px;
 
       li {
         // border: 1px solid blue;
@@ -400,8 +392,8 @@ body{
 
         // align-items:self-start;
         label {
-          font-size: $fontsize_H3;
-          letter-spacing: 10px;
+          @include H4;
+          letter-spacing: 2px;
           // margin-bottom: 25px;
           // border: 1px solid red;
           // height: 50px;
@@ -413,22 +405,45 @@ body{
 
         input,
         select {
-          width: 355px;
+          width: 300px;
           // margin-bottom: 25px;
-          height: 50px;
-          font-size: $fontsize_H3;
+          height: 40px;
+          padding: 0;
+          @include H5;
+          border-radius: 5px;
+          color: white;
+          font-weight: bold;
+          border: none;
+          box-shadow:2px 2px 2px 2px rgba(20%,20%,40%,0.2);
+        }
+      }
+
+      li{
+        select#goal{
+          background-color: rgba(221, 170, 99, 0.76);
+          
+          option{
+            @include H6;
+            letter-spacing: 5px;
+            padding: 10px;
+            font-weight: bold;
+            color: white;
+          }
         }
       }
     }
 
+
+
     .Head_data {
       .group_button {
         // border: 1px solid red;
-        width: 30%;
+        // width: 30%;
         margin: 0 auto;
+        margin-top: 30px;
         .btn_back,
         .btn_go {
-          @include button_all(24px, 5px, 5px, 10px, #B3925B, #fff)
+          @include list_button;
         }
       }
 

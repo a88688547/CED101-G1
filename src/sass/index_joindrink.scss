@@ -129,14 +129,14 @@ section.join_drink{
             @include lineargradient_button;
 
               h6{
-                  @include H6;
-                  font-weight: bold;
-                  color: white;
-                }
+                @include H6;
+                font-weight: bold;
+                color: white;
+              }
               
-                img{
-                  margin-right: 5px;
-                }
+              img{
+                margin-right: 5px;
+              }
 
           }
         
@@ -292,10 +292,11 @@ section.join_drink{
 
             button{
               margin-top: 10px;
+
               h6{
                 @include P1;
               }
-             
+
             }
           }
         }

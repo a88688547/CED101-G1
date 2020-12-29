@@ -56,8 +56,7 @@ input{
   
       //進度條的球
       li {
-        width: 120px;
-        height: 120px;
+        @include step_ball_size;
         // border: 1px solid red;
         border-radius: 50%;
         background-color: #D3C8B5;
@@ -90,8 +89,8 @@ input{
     .step_text {
       display: flex;
       justify-content: space-between;
-      color: $textColor;
-      font-size: $fontsize_H3;
+      @include H6;
+      letter-spacing: 2px;
 
       //進度條當前頁面
       .on {
@@ -108,33 +107,34 @@ input{
     margin:55px auto;
     align-items: center;
     align-self: center;
+    justify-content: center;
     div{
         align-self: center;
     }
     input{
-        width:100%;
-        height:50px;
-        border-radius: 10px;
-        border:1px solid #707070;
+        @include input_style;
     }
 }
 .info_name{
-    color:$textColor;
+    margin-bottom: 20px;
 }
 .info_phone,.info_phone_top,.info_msg,.info_msg_top{
     display:flex;
 }
 .info_img{
-    width:30%;
-    max-width:170px;
+    // width:20%;
+    max-width:120px;
     overflow: hidden;
     margin-right:50px;
+    
 }
 .info_detail{
-    width:70%;
+    width:60%;
     color:#707070;
+    @include H5;
+    font-weight: bold;
     div{
-        margin-top:15px;
+        margin-top:5px;
     }
 }
 .info_phone_top,.info_msg_top{
@@ -221,43 +221,43 @@ input{
 .discount{
     margin:80px auto;
     width:90%;
-    h3{
-        @include H3;
-    }
+    @include list_lable;
 }
 .discountTop{
     width:100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     margin-bottom: 50px;
 }
 
 .discountNo{
-    width:70%;
+    width:50%;
     display: flex;
     align-items: center;
+    
     h3{
         color:#707070;
     }
     select{
-        width:60%;
+        width:50%;
         height: 50px;
         border:1px solid #707070;
         border-radius: 10px;
-        @include H3;
+        @include H4;
         color:#707070;
         padding-left:20px;
-        margin-left: 100px;
+        margin-left: 80px;
     }
 }
 .gamelink{
-    width:30%;
+    width:20%;
     height: 50px;
     overflow: hidden;
     text-align: right;
 }
 .discountBottom{
-    width:100%;
+    margin: 0 auto;
+    width:70%;
     display:flex;
     justify-content: space-between;
     h3{
@@ -267,7 +267,8 @@ input{
 .disTotal{
     h3{
         font-weight: bold;
-        font-size:$fontsize_H3 ;
+        @include H3;
+        letter-spacing: 0px;
     }
 }
 // 信用卡
@@ -280,23 +281,24 @@ input{
 
 .cardimg{
     text-align: center;
+    margin: 70px 0 30px;
 }
 .cardinfo{
-    width:90%;
+    @include list_lable;
+    width:80%;
     margin:0 auto;
+    margin-bottom: 70px;
     div{
         display:flex;
         align-self: center;        
     }
     input{
-        height: 50px;
-        border: 1px solid #707070;
-        border-radius: 10px;
+        @include input_style;
     }
 }
 .cardname,.cardno,.exp,.safeno{
     width:80%;
-    margin:10px auto;
+    margin:20px auto;
 }
 
 .cardname,.cardno,.exp,.safeno{
@@ -356,18 +358,20 @@ input{
 }
 //金額
 .ListTotal{
-    width:80%;
-    margin:100px auto;
+    width:70%;
+    margin:70px auto;
     display:flex;
     justify-content: space-between;   
     align-items: center;
     h2{
-        font-size:$fontsize_H2 ;
+        @include H3;
+        font-weight: bold;
+        letter-spacing: 2px;
     }
 }
 
 #line{
-    width:70%;
+    width:60%;
     hr{
         border-style: none;
         border-bottom: 1px dashed $textColor;        
@@ -376,25 +380,24 @@ input{
 .orderbtn{
     display:flex;
     justify-content: space-between;
-    width:50%;
+    width:30%;
     margin:50px auto;
        div{
-           background-color:$btnColor ;
-           width:130px;
-           height: 46px;
+        //    background-color:$btnColor ;
+        //    width:130px;
+        //    height: 46px;
            border-radius: 10px;
            border-style: none;
            display:flex;
            align-items:center;
-           justify-content:center;   
-               &:hover{
-                   cursor: pointer;
-               }
-               a{
-                   text-decoration: none;
-                   color:#FFFFFF;
-                   font-size:$fontsize_H3 ;
-               }
+           justify-content:center;
+           @include list_button;
+
+            a{
+                text-decoration: none;
+                color:#FFFFFF;
+
+            }
        }
    }
 @media screen and (max-width: 325px){
@@ -418,7 +421,7 @@ input{
     }
     //進度條文字
     .step_text {
-        font-size: $fontsize_P2!important;
+        @include H5;
     }
         .discountTop{
             display: block;
@@ -539,7 +542,7 @@ input{
     }
 }
 .step_text {
-    font-size: $fontsize_P1!important;
+    @include H6;
 }
 }
 //進度條文字
@@ -583,6 +586,7 @@ input{
             } 
         }
         input{
+            @include input_style;
             @include H6;
             height: 30px;
             border-radius: 5px;
@@ -807,8 +811,9 @@ input{
             margin-right:107px;
         }
         input{
-            width:15%;;
-            margin-right: 10px;
+            // width:15%;;
+            // margin-right: 10px;
+            @include input_style;
         }
     }
     #cardExp{
@@ -941,7 +946,7 @@ input{
     }
     .discountNo,.discountBottom,.cardInfo{
         h3{
-            @include H4;
+            @include list_lable;
         }  
     }
     .cardInfo{
@@ -1001,15 +1006,7 @@ input{
         }
     }
     .orderbtn{
-        div{
-            font-size:$fontsize_H4 ;
-            width:130px;
-            height:46px;
-            border-radius: 10px;                  
-                a{
-                    font-size:$fontsize_H4 ;
-                }
-        }
+        @include list_button;
     }
 } 
 @media screen and (min-width: 992px) and (max-width: 1199px){

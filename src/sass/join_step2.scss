@@ -1,4 +1,5 @@
 @import "./base/base.scss";
+@import "./mixins/mixins.scss";
 $mq575: 575px;
 $mq767: 767px;
 $mq991: 991px;
@@ -83,21 +84,19 @@ body {
     justify-content: center;
     // color:red;
     border: 1px solid rgb(5, 5, 5);
-    padding: 15px;
+    padding: 25px;
     width: 270px;
-    height: 300px;
+    height: 350px;
     text-align: center;
     margin: auto;
     background-color: rgb(255, 255, 255);
-    border-radius: 5px;
+    border-radius: 20px;
     position: relative;
     z-index: 999;
     box-shadow: 8px 10px 15px -1px #242424;
 
     h2 {
-      font-size: $fontsize_H6;
-      color: $textColor;
-      @include ls(5px);
+      @include H6;
       font-weight: bold;
     }
 
@@ -122,13 +121,12 @@ body {
       width: 140px;
       height: 140px;
       background-color: burlywood;
+
+      h2{
+        @include H5;
+      }
     }
 
-  
-
-  h2 {
-    margin-bottom: 10px;
-  }
 
   .QR_link {
     cursor: pointer;
@@ -267,9 +265,9 @@ body {
       }
 
       h2 {
-        color: $textColor;
-        font-size: $fontsize_H6;
-        margin-bottom: 10px;
+        @include H6;
+        font-weight: bold;
+        margin: 10px 0;
       }
 
       .QR_link {
@@ -286,6 +284,7 @@ body {
         margin-bottom: 30px;
 
         .QR_link_text {
+          @include P3;
           border: 1px solid $textColor;
           position: relative;
           height: 100%;
@@ -294,7 +293,7 @@ body {
         }
 
         .QR_copy {
-          border-radius: 0% 16% 16% 0%/50%;
+          border-radius: 0% 8% 8% 0%/50%;
           background-color: $textColor;
           height: 17px;
           width: 40px;
@@ -332,7 +331,7 @@ body {
         }
 
         div {
-          font-size: $fontsize_H6;
+          @include H6;
           color: #707070;
           letter-spacing: 6px;
           display: flex;
@@ -352,9 +351,8 @@ body {
   }
 
   .line {
-    border: 1px solid #383232;
-    background-color: #383232;
-    margin-bottom: 55px;
+    border: 1px solid $textColor;
+    opacity: 0.7;
   }
 
   //====團長資料====
@@ -401,7 +399,7 @@ body {
         li{
           margin-bottom: 35px;
           div{
-            font-size: $fontsize_H5;
+            @include H5;
           }
         }
       }
@@ -426,7 +424,7 @@ body {
     }
 
     .step_text {
-      font-size: $fontsize_H5;
+      @include H5;
     }
   }
 
@@ -471,16 +469,16 @@ body {
             letter-spacing: 0;
           }
 
-          :nth-child(odd) {
-            //   padding-left: 40px;
-          }
+          // :nth-child(odd) {
+          //   //   padding-left: 40px;
+          // }
         }
       }
     }
 
-    .Head_data {
+    // .Head_data {
       
-    }
+    // }
   }
 }
 
@@ -489,9 +487,7 @@ body {
     // width: 80%;
     .step_ball {
       li {
-
-        width: 105px;
-        height: 105px;
+        @include step_ball_size;
 
         &::before {
           height: 14px;
@@ -501,7 +497,7 @@ body {
     }
 
     .step_text {
-      font-size: $fontsize_H4;
+      @include H4;
     }
   }
 
@@ -549,9 +545,9 @@ body {
       }
     }
 
-    .Head_data {
+    // .Head_data {
       
-    }
+    // }
   }
 }
 
@@ -572,11 +568,10 @@ body {
       .fist_QR_main {
         width: 200px;
         height: 200px;
-        margin-bottom: 30px;
       }
 
       :nth-child(4) {
-        font-size: $fontsize_H4;
+        @include H4;
         @include ls(8px);
         // border: 1px solid red;
         margin-bottom: 30px;
@@ -590,9 +585,13 @@ body {
         width: 280px;
       }
       .QR_link{
-        font-size: $fontsize_H4;
+        @include P1;
+        letter-spacing: 0;
+        align-items: center;
         .QR_link_text{
           height: 30px;
+          display: flex;
+          align-items: center;
         }
         .QR_copy{
           height: 30px;
@@ -606,9 +605,7 @@ body {
   .step_box {
     .step_ball {
       li {
-
-        width: 120px;
-        height: 120px;
+        @include step_ball_size;
 
         &::before {
           height: 14px;
@@ -618,8 +615,8 @@ body {
     }
 
     .step_text {
-      font-size: $fontsize_H3;
-      // letter-spacing: 10px;
+      @include H6;
+      letter-spacing: 2px;
     }
   }
 
@@ -646,8 +643,9 @@ body {
           // align-items:self-start;
 
           div {
-            font-size: $fontsize_H3;
-            letter-spacing: 10px;
+            // font-size: $fontsize_H3;
+            // letter-spacing: 10px;
+            @include list_lable;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -672,9 +670,12 @@ body {
         .btn_back_drink,
         .btn_f5,
         .btn_cleckout {
-      
-      @include button_all(24px, 5px, 5px, 10px, #B3925B, #fff)
-    }
+ 
+          @include list_button;
+          img{
+            margin-right: 10px;
+          }
+        }
       }
 
 

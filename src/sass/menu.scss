@@ -16,13 +16,13 @@ body {
     padding-bottom: 40px;
 }
 
-@media screen and (max-width:1200px) and (min-width:993px) {
+@media screen and (max-width:1200px) and (min-width:992px) {
     #menu {
         width: 95%;
     }
 }
 
-@media screen and (max-width:992px) and (min-width:769px) {
+@media screen and (max-width:991px) and (min-width:769px) {
     #menu {
         width: 70%;
     }
@@ -32,6 +32,8 @@ body {
     #menu {
         width: 100%;
         background-color: $insideBackgroundColor;
+        padding-bottom: 0;
+
     }
 }
 
@@ -57,21 +59,14 @@ body {
     }
 }
 
-.drink_type:first-child {
-    padding-left: 30px;
+
+.drink_type {
+    padding: 0 40px;
 }
 
-.drink_type:last-child {
-    padding-right: 30px;
-}
-
-@media screen and (max-width:992px) {
-    .drink_type:first-child {
-        padding-left: 15px;
-    }
-
-    .drink_type:last-child {
-        padding-right: 15px;
+@media screen and (max-width:991px) {
+    .drink_type {
+        padding-left: 0 30px;
     }
 }
 
@@ -176,17 +171,23 @@ body {
         padding: 0;
         letter-spacing: 5px;
         flex-grow: 1;
+        font-weight: bolder;
     }
 
     button {
-        margin-right: 15px;
+        margin-right: 10px;
         padding: 0;
         outline: none;
         border: none;
-        width: 30px;
-        height: 30px;
+        width: 15px;
+        height: 15px;
         border-radius: 50%;
         flex-shrink: 0;
+        font-size: 15px;
+        // font-weight: bold;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .medium_price_wrapper {
@@ -263,6 +264,7 @@ body {
     flex-direction: column;
     max-width: 400px;
     width: 95%;
+    height: 90vh;
     margin: 0 auto;
     position: relative;
     top: 50%;
@@ -270,6 +272,7 @@ body {
     background-color: white;
     border-radius: 10px;
     overflow: hidden;
+    overflow-y: auto;
 }
 
 #cancel_shop_btn {
@@ -370,8 +373,8 @@ button {
 
     button {
         border-radius: 50%;
-        width: 15px;
-        height: 15px;
+        width: 20px;
+        height: 20px;
         padding: 0;
         align-items: center;
         border: none;

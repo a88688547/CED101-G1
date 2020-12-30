@@ -5,17 +5,23 @@ window.onload = function () {
     let submit = document.querySelector(".submit");
     let voting = document.querySelector(".voting-txt");
     let votingOK = document.querySelector(".voting-ok");
+    let unvoteAlert = document.querySelector("#alertvote");
+    let selectVotes = document.querySelectorAll(".vote-radio");
 
+    selectVotes.forEach((selectVote) => {
+        selectVote.addEventListener("click", function () {
+            unvoteAlert.innerText = "";
+        });
+    });
     submit.addEventListener("click", function (e) {
         const checkBtn = document.querySelector('input[type="radio"]:checked');
         e.preventDefault();
-        if (!checkBtn) {
-            return;
-        }
+        if (!checkBtn) return (unvoteAlert.innerText = "請投票!!");
         voting.style.display = "none";
         votingOK.style.display = "block";
     });
     closeBtn.addEventListener("click", function () {
+        unvoteAlert.innerText = "";
         voteLightbox.style.display = "none";
     });
     voteLightboxBtns.forEach((voteLightboxBtn) => {
@@ -23,4 +29,4 @@ window.onload = function () {
             voteLightbox.style.display = "flex";
         });
     });
-}
+};

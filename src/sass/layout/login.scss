@@ -8,7 +8,7 @@
     width: 100%;
     height: 100%;
     display: flex;
-    background-color: rgba(204, 204, 204, 0.507);
+    background-color: rgba(204, 204, 204, 0.5);
     justify-content: center;
     align-items: center;
     z-index: 2;
@@ -16,19 +16,12 @@
     .lightbox-wrap {
         border-radius: 20px;
         background-color: #e5e3dd;
-        width: 90%;
-        max-width: 700px;
-        // height: 350px;
+        width: 400px;
         box-shadow: 3px 3px 5px 2px rgba($color: #000000, $alpha: 0.2);
         overflow: hidden;
-        // @media screen and (max-width: 991px) {
-        //     width: 400px;
-        //     height: 350px;
-        // }
-        // @media screen and (max-width: 575px) {
-        //     width: 300px;
-        //     height: 350px;
-        // }
+        @media screen and (max-width: 575px) {
+            width: 300px;
+        }
         .lightbox-top {
             display: flex;
             position: relative;
@@ -66,24 +59,7 @@
                 cursor: pointer;
                 background-color: $textColor;
                 .h3 {
-                    font-size: $fontsize_H4;
-                    color: #fff;
-                    padding: 15px;
-                }
-                .textcolor {
-                    color: $textColor;
-                }
-            }
-
-            .tab {
-                width: 50%;
-                display: flex;
-                justify-content: center;
-                cursor: pointer;
-                background-color: $textColor;
-
-                .h3 {
-                    font-size: $fontsize_H4;
+                    @include H3;
                     color: #fff;
                     padding: 15px;
                 }
@@ -95,7 +71,7 @@
                 .tab,
                 .tab {
                     .h3 {
-                        font-size: $fontsize_H5;
+                        @include H4;
                     }
                 }
             }
@@ -146,7 +122,7 @@
             .login {
                 justify-self: center;
                 top: 50%;
-                margin-top: 60px;
+                margin-top: 45px;
                 display: none;
                 label,
                 input {
@@ -158,19 +134,17 @@
                 label {
                     width: 80px;
                     margin-bottom: 30px;
+                    @include H4;
                 }
 
                 input {
                     width: 150px;
                     padding: 0px 10px;
                     border-radius: 10px;
-
+                    font-size: 20px;
                     &:focus {
                         outline: none;
                     }
-                }
-                .login-password {
-                    margin-bottom: 30px;
                 }
             }
             .tabBodyNone {
@@ -180,7 +154,7 @@
                 width: 100%;
                 text-align: center;
                 margin-top: 10px;
-
+                margin-bottom: 15px;
                 button {
                     margin: 0 15px;
                     padding: 5px 15px;
@@ -189,19 +163,25 @@
                     font-size: $fontsize_H5;
                     border: none;
                     cursor: pointer;
-
+                    transition: 0.2s ease-in-out;
                     &:focus {
                         outline: none;
                     }
 
                     &:first-child {
-                        background-color: #ccc;
+                        background-color: rgb(165, 165, 165);
                         color: #fff;
+                        &:hover {
+                            background-color: rgb(131, 131, 131);
+                        }
                     }
 
                     &:last-child {
                         background-color: $btnColor;
                         color: #fff;
+                        &:hover {
+                            background-color: rgb(182, 116, 31);
+                        }
                     }
                 }
             }

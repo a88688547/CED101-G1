@@ -2,14 +2,9 @@ let storage = sessionStorage;
 Vue.component('orderlist', {
     data() {
         return {
-            // total_num: "1",
-            // total_price: "123",
         }
     },
     methods: {
-        createCartList() {
-
-        }
     },
     computed: {
         drinkItem() {

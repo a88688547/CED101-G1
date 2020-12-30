@@ -168,17 +168,15 @@ Vue.component('menu_carshop', {
     mounted() {
         bus.$on('addToCar_parent', (numx) => this.shopping_num_total = numx);
     },
+    //網頁重整的時候，購物車按鈕的飲品數會更新
     created() {
         let itemString = storage.getItem('addItemList');
         let items = itemString.substr(0, itemString.length - 1).split('|');
         if (itemString == '') {
-            console.log('aa')
             this.shopping_num_total = 0
         } else {
             this.shopping_num_total = items.length
-            console.log('bb')
         }
-        console.log(items.length)
     },
     template: `
     <div id="menu">

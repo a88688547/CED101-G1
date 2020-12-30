@@ -473,8 +473,7 @@ body {
         margin: 0;
         width: 150px;
         @include H5;
-        padding: 10px 0;
-        margin-left: 15px;
+        margin: 0 auto;
         top: 12px;
 
         img {

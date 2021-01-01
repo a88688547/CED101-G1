@@ -1,0 +1,10 @@
+[
+{"type":"header","version":"5.0.4","comment":"Export to JSON plugin for PHPMyAdmin"},
+{"type":"database","name":"drink_test_2"},
+{"type":"table","name":"member","database":"drink_test_2","data":
+[
+{"mem_no":"1","mem_email":"a88688547@gmail.com","mem_psw":"a88688547","mem_name":"Owen","mem_status":"1","mem_phone":"0963328003","tea_vote":null,"milk_vote":null,"fruit_vote":null},
+{"mem_no":"2","mem_email":"root@gmail.com","mem_psw":"root","mem_name":"root","mem_status":"1","mem_phone":"0912345678","tea_vote":null,"milk_vote":null,"fruit_vote":null}
+]
+}
+]

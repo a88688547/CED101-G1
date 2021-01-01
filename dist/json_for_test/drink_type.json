@@ -1,0 +1,11 @@
+[
+{"type":"header","version":"5.0.4","comment":"Export to JSON plugin for PHPMyAdmin"},
+{"type":"database","name":"drink_test_2"},
+{"type":"table","name":"drink_type","database":"drink_test_2","data":
+[
+{"drink_tpye_no":"1","drink_tpye_titile":"奶類"},
+{"drink_tpye_no":"2","drink_tpye_titile":"茶類"},
+{"drink_tpye_no":"3","drink_tpye_titile":"果茶類"}
+]
+}
+]

@@ -1,0 +1,23 @@
+[
+{"type":"header","version":"5.0.4","comment":"Export to JSON plugin for PHPMyAdmin"},
+{"type":"database","name":"drink_test_2"},
+{"type":"table","name":"drink","database":"drink_test_2","data":
+[
+{"drink_no":"1","drink_title_ch":"麥茶拿鐵","drink_type_no":"1","status":"1","vote_count_now":"0","vote_count_last":"0","drink_title_en":"Barley Tea Latte","drink_img":"","drink_bgi":"","drink_note":"麥茶拿鐵麥茶拿鐵麥茶拿鐵麥茶拿鐵","drink_test":"","drink_big_price":"50","drink_small_price":"40"},
+{"drink_no":"2","drink_title_ch":"港式厚奶","drink_type_no":"1","status":"1","vote_count_now":"0","vote_count_last":"0","drink_title_en":"Hong Kong Style Thick Milk","drink_img":"","drink_bgi":"","drink_note":"港式厚奶港式厚奶港式厚奶港式厚奶港式厚奶","drink_test":"","drink_big_price":"30","drink_small_price":"20"},
+{"drink_no":"3","drink_title_ch":"紅茶拿鐵","drink_type_no":"1","status":"1","vote_count_now":"0","vote_count_last":"0","drink_title_en":"Black tea latte","drink_img":"","drink_bgi":"","drink_note":"紅茶拿鐵紅茶拿鐵紅茶拿鐵","drink_test":"","drink_big_price":"50","drink_small_price":"60"},
+{"drink_no":"4","drink_title_ch":"鮮奶茶","drink_type_no":"1","status":"1","vote_count_now":"0","vote_count_last":"0","drink_title_en":"Fresh milk tea","drink_img":"","drink_bgi":"","drink_note":"鮮奶茶鮮奶茶鮮奶茶鮮奶茶","drink_test":"","drink_big_price":"30","drink_small_price":"20"},
+{"drink_no":"5","drink_title_ch":"烏龍拿鐵","drink_type_no":"1","status":"1","vote_count_now":"0","vote_count_last":"0","drink_title_en":"Oolong Latte","drink_img":"","drink_bgi":"","drink_note":"烏龍拿鐵烏龍拿鐵烏龍拿鐵","drink_test":"","drink_big_price":"35","drink_small_price":"20"},
+{"drink_no":"6","drink_title_ch":"冰翠柳丁","drink_type_no":"3","status":"1","vote_count_now":"0","vote_count_last":"0","drink_title_en":"Iced Orange","drink_img":"","drink_bgi":"","drink_note":"冰翠柳丁冰翠柳丁冰翠柳丁","drink_test":"","drink_big_price":"50","drink_small_price":"40"},
+{"drink_no":"7","drink_title_ch":"清寧果茶","drink_type_no":"3","status":"1","vote_count_now":"0","vote_count_last":"0","drink_title_en":"Qingning Fruit Tea","drink_img":"","drink_bgi":"","drink_note":"清寧果茶清寧果茶清寧果茶","drink_test":"","drink_big_price":"30","drink_small_price":"20"},
+{"drink_no":"8","drink_title_ch":"香柚綠茶","drink_type_no":"3","status":"1","vote_count_now":"0","vote_count_last":"0","drink_title_en":"Fragrant Pomelo Green Tea","drink_img":"","drink_bgi":"","drink_note":"香柚綠茶香柚綠茶香柚綠茶","drink_test":"","drink_big_price":"60","drink_small_price":"50"},
+{"drink_no":"9","drink_title_ch":"冬瓜檸檬","drink_type_no":"3","status":"1","vote_count_now":"0","vote_count_last":"0","drink_title_en":"Winter Melon Lemon","drink_img":"","drink_bgi":"","drink_note":"冬瓜檸檬冬瓜檸檬冬瓜檸檬","drink_test":"","drink_big_price":"30","drink_small_price":"20"},
+{"drink_no":"10","drink_title_ch":"柳丁綠茶","drink_type_no":"3","status":"1","vote_count_now":"0","vote_count_last":"0","drink_title_en":"Orange Green Tea","drink_img":"","drink_bgi":"","drink_note":"柳丁綠茶柳丁綠茶柳丁綠茶","drink_test":"","drink_big_price":"35","drink_small_price":"20"},
+{"drink_no":"11","drink_title_ch":"大正紅茶","drink_type_no":"2","status":"1","vote_count_now":"0","vote_count_last":"0","drink_title_en":"Taisho Black Tea","drink_img":"","drink_bgi":"","drink_note":"大正紅茶大正紅茶大正紅茶","drink_test":"","drink_big_price":"50","drink_small_price":"40"},
+{"drink_no":"12","drink_title_ch":"茉莉綠茶","drink_type_no":"2","status":"1","vote_count_now":"0","vote_count_last":"0","drink_title_en":"Jasmine Green Tea","drink_img":"","drink_bgi":"","drink_note":"茉莉綠茶茉莉綠茶茉莉綠茶","drink_test":"","drink_big_price":"30","drink_small_price":"20"},
+{"drink_no":"13","drink_title_ch":"高峰烏龍","drink_type_no":"2","status":"1","vote_count_now":"0","vote_count_last":"0","drink_title_en":"Peak Oolong","drink_img":"","drink_bgi":"","drink_note":"高峰烏龍高峰烏龍高峰烏龍","drink_test":"","drink_big_price":"60","drink_small_price":"50"},
+{"drink_no":"14","drink_title_ch":"四季春茶","drink_type_no":"2","status":"1","vote_count_now":"0","vote_count_last":"0","drink_title_en":"Four Seasons Spring Tea","drink_img":"","drink_bgi":"","drink_note":"四季春茶四季春茶四季春茶","drink_test":"","drink_big_price":"30","drink_small_price":"20"},
+{"drink_no":"15","drink_title_ch":"金萱茶","drink_type_no":"2","status":"1","vote_count_now":"0","vote_count_last":"0","drink_title_en":"Jin Xuan Tea","drink_img":"","drink_bgi":"","drink_note":"金萱茶金萱茶金萱茶","drink_test":"","drink_big_price":"35","drink_small_price":"20"}
+]
+}
+]

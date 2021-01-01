@@ -1,0 +1,12 @@
+[
+{"type":"header","version":"5.0.4","comment":"Export to JSON plugin for PHPMyAdmin"},
+{"type":"database","name":"drink_test_2"},
+{"type":"table","name":"type","database":"drink_test_2","data":
+[
+{"type_no":"1","type_title":"甜度"},
+{"type_no":"2","type_title":"冰度"},
+{"type_no":"3","type_title":"加料"},
+{"type_no":"4","type_title":"惡搞"}
+]
+}
+]

@@ -1,0 +1,10 @@
+[
+{"type":"header","version":"5.0.4","comment":"Export to JSON plugin for PHPMyAdmin"},
+{"type":"database","name":"drink_test_2"},
+{"type":"table","name":"manager","database":"drink_test_2","data":
+[
+{"mar_no":"1","mar_id":"root","mar_psw":"root","mar_name":"測試人員一號"},
+{"mar_no":"2","mar_id":"root2","mar_psw":"root2","mar_name":"測試人員二號"}
+]
+}
+]

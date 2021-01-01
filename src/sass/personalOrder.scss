@@ -1,434 +1,246 @@
 @import "base/base.scss";
 @import "mixins/mixins.scss";
+@import "mixins/button.scss";
 
-body {
-    background-color:$insideBackgroundColor;
-}
-
-h3{
-    color:$textColor;
-    font-size:$fontsize_H3;  
-}
-h2{
-    color:$textColor;
-    font-size:$fontsize_H2;
-    font-weight: bold;
-}
-h4{
-    color:#707070;
-    font-size:$fontsize_H4;
+body{
+    background-color: $insideBackgroundColor;
 }
 .main{
-    width:100%;
-    max-width:1200px;
+    width:80%;
     margin:0 auto;
 }
-// 進度條
-.ProgressBar_P {
-    /*border: 1px solid black;*/
-    margin: 80px auto 100px auto;
-    width: 90%;
-    display: flex;
-    justify-content: space-between;
-    text-align: center;
-    overflow: hidden;
-    h3{
-        color:#707070;
-        font-size:$fontsize_H3; 
-    }
-}
-.StepCircle {
-    /*border: 1px solid brown;*/
-    background-color: #D3C8B5;
-    border-radius: 50%;
-    width: 120px;
-    height: 120px;
-    margin-bottom: 10px;
-}
-.Circle1 {
-    position: relative;
-        &::after {
-            content: " ";
-            display: block;
-            width: 2000px;
-            height: 14px;
-            background-color: #D3C8B5;
-            position: absolute;
-            top: 54px;
-            left:0px;
-            z-index: -9999;
-            }
-}
-.Circle1 {
-    background-color: $btnColor;
-}
-#step1{
-    font-weight:bold;
-    color:$textColor;
-}
-// 訂購列表
 
-// .orderlist{
-//     height:350px;
-//     width:100%;
-//     margin:0 auto;
-//     overflow-y: scroll;    
-//         &::-webkit-scrollbar{
-//         width:15px;
-//         background-color:$insideBackgroundColor;
-//     }
-//     &::-webkit-scrollbar-thumb{
-//         background-color:$textColor;
-//         border-radius: 20px;
-//         height: 94px;
-//     }
-//     &::-webkit-scrollbar-track{
-//         margin-left:58px; 
-//         border-radius: 20px;
-//     }   
-// }
-.delBtn{
-    width:85px;
-    background-color:white;
-    border:1px solid #707070;
-    border-radius: 5px;
-    font-size: 18px;
-        &:hover{
-            cursor: pointer;
-        }
-}
-.hrline{
-    width:90%;
-    margin:0 auto;
-}
-.ListTotal{
-    width:90%;
-    margin:100px auto;
-    display:flex;
-    justify-content: space-between;   
-    align-items: center;
-    h2{
-        font-size: $fontsize_H2;
-    }
-}
-#line{
-    width:50%;
-    hr{
-        border-style: none;
-        border-bottom: 1px dashed $textColor;
-    }
-}
-.orderbtn{
-    display:flex;
-    justify-content: space-between;
-    width:50%;
-    margin:50px auto;
-       div,button{
-           background-color:$btnColor ;
-           width:130px;
-           height: 46px;
-           border-radius: 10px;
-           border-style: none;
-           display:flex;
-           align-items:center;
-           justify-content:center;  
-           color:#ffffff;     
-           font-size:$fontsize_H3 ;   
-               &:hover{
-                   cursor: pointer;
-               }
-               a{
-                   text-decoration: none;
-                   color:#FFFFFF;
-                   font-size:$fontsize_H3 ;
-               }
-       }
-   }
-   .orderlist{
-       width:100%;
-       margin: 30px auto;
-   }
-// 訂飲料
-   .group_order_done_person {
-    // border-bottom: 2px solid rgb(192, 191, 191);
-    width: 80%;
+// ====進度bar=====
+
+// 尺寸、對齊方式
+.step_box {
+    width: 60%;
+    height: 135px;
     margin: 0 auto;
-    // border-top: 2px solid rgb(192, 191, 191);
-
-    @media screen and (max-width:992px) {
-        width: 65%;
-    }
-
-    @media screen and (max-width:768px) {
-        width: 80%;
-    }
-
-    @media screen and (max-width:576px) {
-        width: 90%;
-    }
-
-    &:last-child {
-        // border-bottom: 2px solid rgb(192, 191, 191);
-    }
-    &>div {
-        margin: 10px 0;
-    }
-
-    .group_order_done_person_upbox {
+    overflow: hidden;
+    margin-bottom: 30px;
+    .step_ball{
         display: flex;
         justify-content: space-between;
-        align-items: center;
-        .group_order_done_person_infobox {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            .group_order_done_person_img {
-                width: 60px;
-                font-size: 0;
-                margin-right: 20px;
-            }
-            .group_order_done_person_name {
-                font-size: $fontsize_H6;
-                color: $textColor;
-                font-weight: bold;
-
-                @media screen and (min-width:577px) {
-                    font-size: $fontsize_H4;
-                }
-            }
-        }
-        .group_order_done_person_total {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: $fontsize_H6;
-            color: $textColor;
-            font-weight: bold;
-
-            @media screen and (min-width:577px) {
-                font-size: $fontsize_H4;
-            }
-            div:first-child {
-                margin-right: 20px;
-            }
-        }
-    }
-    .group_order_done_person_drink {
-        background-color: rgb(206, 206, 206);
-        padding: 5px 2.5%;
-        margin: 10px 0;
-        font-size: $fontsize_P1;
-        letter-spacing: 2px;
         position: relative;
-
-    @media(min-width:768px) {
-        font-size: $fontsize_H6;
-        }
-        div {
-            margin: 10px 0;
-        }
-        div:first-child {
-            font-weight: bold;
-        }
-        .order_delete_btn {
-            position: absolute;
-            right: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            margin-right: 2.5%;
-            border-radius: 5px;
-            border: 1px solid black;
-            cursor: pointer;
-            outline: none;
-        }
     }
 }
 
-// rwd
-@media screen and (max-width: 325px){
-    .ProgressBar_P {
-        margin: 40px auto;
-        width: 90%;
-        h3{
-            font-size: $fontsize_P2;
-        }
+// 球尺寸、顏色、icon、字型
+.step_box .step_ball >li{   
+    @include step_ball_size;
+    border-radius: 50%;
+    background-color: #EFE7DA;
+    position: relative;
+
+            // 定位進度球內img置中
+            & img{
+                position: absolute;
+                transform: translate(50%,-50%);
+                top: 50%;
+                right: 50%;
+            }
+
+        // 定位下方步驟文字
+            & h5{
+                @include H5;
+                color: $btnColor;
+                letter-spacing: 0px;
+                position: absolute;
+                width: 100%;
+                text-align: center;
+                top: 120%;
+            }
+}
+
+// 偽元素:進度條及變色方式
+
+.step_box .step_ball >li{
+    &:first-child{
+        background-color: $btnColor;
     }
-    .StepCircle{
-        width:60px;
-        height: 60px;
+    &::before{
+        content: "";
+        position: absolute;
+        width: 400%;
+        height: 5px;
+        background-color: #EFE7DA;
+        left: 50px;
+        top: 50%;
+        z-index: -1;
     }
-    .Circle1 {
-        &::after {
-            height: 8px;
-            top: 25px;
-        }
-    }
-    .ListTotal{
-        width:85%;
-        margin:50px auto; 
-        h2{
-            font-size: $fontsize_H5;
-        }
-    }
-    #line{
-        width:30%;
-    }
-    .delBtn{
-        width:50px;
-        border-radius: 5px;
-        font-size: 16px;
-    }
-    .orderbtn{
-        width:70%;
-        div,button{
-            font-size:$fontsize_H6 ;
-            width:90px;
-            height: 35px;
-            border-radius: 5px;                  
-                a{
-                    font-size:$fontsize_H6 ;
-                }
-        }
+    &:last-child::before{
+        display: none;
     }
 }
-@media screen and (min-width: 326px) and (max-width: 577px){
-    .ProgressBar_P {
-        margin: 40px auto;
-        width: 80%;
-        h3{
-            font-size: $fontsize_P2;
-        }
+
+// ====進度bar結束=====
+
+//1.當前進度-步驟一
+
+.step_box .step_ball li:first-child{
+    font-weight: bold;
+}
+
+// 2.當前進度-步驟二
+
+// .step_ball>li:nth-child(2){
+//     background-color: $btnColor;
+// }
+
+// .step_ball>li:nth-child(1)::before{
+//     background-color: $btnColor;
+// }
+
+// .step_box .step_ball li:nth-child(2){
+//     font-weight: bold;
+// }
+
+// 3.當前進度-步驟三
+
+// .step_ball>li:nth-child(2) , .step_ball>li:nth-child(3){
+//     background-color: $btnColor;
+// }
+
+// .step_ball>li:nth-child(1)::before , .step_ball>li:nth-child(2)::before{
+//     background-color: $btnColor;
+// }
+
+// .step_box .step_ball li:nth-child(3){
+//     font-weight: bold;
+// }
+
+//  RWD
+
+@media (min-width: 576px) and (max-width: 991px){
+    .step_box{
+        height: 115px;
     }
-    .StepCircle{
-        width:80px;
-        height: 80px;
+    .step_box .step_ball >li{
+        @include step_ball_size_medium;
     }
-    .Circle1 {
-        &::after {
-            height: 8px;
-            top: 40px;
-        }
+    .step_box .step_ball >li>h5{
+        @include H6;
+        letter-spacing: 0px;
     }
-    .ListTotal{
-        width:85%;
-        margin:50px auto; 
-        h2{
-            font-size: $fontsize_H5;
-        }
+}
+
+@media (max-width: 575px){
+    .step_box{
+        width: 70%;
+        height: 90px;
     }
-    #line{
-        width:40%;
+    .step_box .step_ball >li{
+        @include step_ball_size_small;
     }
-    .delBtn{
-        width:50px;
-        border-radius: 5px;
-        font-size: 16px;
+    .step_box .step_ball >li>h5{
+        @include P2;
+        letter-spacing: 0px;
     }
-    .orderbtn{
-        div,button{
-            font-size:$fontsize_H6 ;
-            width:90px;
-            height: 35px;
-            border-radius: 5px;                  
-                a{
-                    font-size:$fontsize_H6 ;
-                }
-        }
+    .step_box .step_ball >li>img{
+        width: 40%;
     }
-} 
-   
-@media screen and (min-width: 576px) and (max-width: 767px){
-    .ProgressBar_P {
-        margin: 40px auto;
-        width: 80%;
-        h3{
-            font-size: $fontsize_H6;
-        }
+}
+// 下方應付金額
+.money{
+    width:80%;
+    margin:100px auto;
+    display: flex;
+    justify-content: space-between;
+    div{
+        font-size: $fontsize_H3;
+        font-weight: bold;
+        color:$textColor;
     }
-    .StepCircle{
-        width:100px;
-        height: 100px;
-    }
-    .Circle1 {
-            &::after {
-                height: 10px;
-                top: 45px;
-                }
-    }
-    .ListTotal{
-        width:80%;
-        margin:50px auto; 
-        h2{
+}
+
+@media screen and(max-width:768px) {
+    div{
+        font-size: $fontsize_H4;
+    } 
+}
+@media screen and(max-width:576px) {
+    .money{
+        margin:50px auto;
+        div{
             font-size: $fontsize_H4;
         }
     }
-    .delBtn{
-        width:50px;
-        border-radius: 5px;
-        font-size: 16px;
-    }
-    .orderbtn{
-        div,button{
-            font-size:$fontsize_H5 ;
-            width:90px;
-            height: 35px;
-            border-radius: 5px;                  
-                a{
-                    font-size:$fontsize_H5 ;
-                }
+}
+
+@media screen and(max-width:376px) {
+    .money{
+        margin:50px auto;
+        div{
+            font-size: $fontsize_P1;
         }
     }
 }
-   
-@media screen and (min-width: 768px) and (max-width: 991px){
-    .ProgressBar_P {
-        margin: 40px auto;
-        width: 80%;
-        h3{
-            font-size: $fontsize_H5;
-        }
-    }
-    .StepCircle{
-        width:100px;
-        height: 100px;
-    }
-    .Circle1 {
-            &::after {
-                height: 10px;
-                top: 45px;
-                }
-    }
-    .ListTotal{
-        width:80%;
-        margin:50px auto; 
-        h2{
-            font-size: $fontsize_H3;
-        }
-    }
-    .delBtn{
-        width:50px;
-        border-radius: 5px;
-        font-size: 16px;
-    }
-    .orderbtn{
-        div,button{
-            font-size:$fontsize_H4 ;
-            width:130px;
-            height:46px;
-            border-radius: 10px;                  
-                a{
-                    font-size:$fontsize_H4 ;
-                }
+@media screen and(max-width:326px) {
+    .money{
+        margin:50px auto;
+         div{
+            font-size: $fontsize_H6;
         }
     }
 }
 
-@media screen and (min-width: 992px) and (max-width: 1199px){  
-    .listInfo{
-        width:80%;
-        margin:0 auto;
+.line{
+    width:60%;
+    hr{
+        border: none;
+        border-bottom: 1px dashed #383232;
     }
-} 
-@media screen and (min-width: 1200px){
-   
 }
+@media screen and(max-width:576px) {
+    .line{
+        width:40%;
+    }
+}
+
+@media screen and(max-width:376px) {
+    .line{
+        width:40%;
+    }
+}
+
+@media screen and(max-width:326px){
+    .line{
+        width:40%;
+    }
+}
+
+// 按鈕
+.bottombutton{
+    width:50%;
+    margin:50px auto;
+    display: flex;
+    justify-content: space-between;
+    .back,.go{
+        @include list_button;
+        border: none;
+        color:#fff;
+        cursor: pointer;
+    }
+}
+    
+@media screen and(max-width:576px) {
+    .bottombutton{
+        width:80%;
+    }    
+}
+
+@media screen and(max-width:376px) {
+    .bottombutton{
+        .back,.go{
+        @include list_button_small;
+        }
+    }    
+}
+
+@media screen and(max-width:326px){
+    .bottombutton{
+        width:100%;
+    }    
+}
+    

@@ -2,507 +2,335 @@
 @import "mixins/mixins.scss";
 @import "mixins/button.scss";
 
-
-body {
-    background-color:$insideBackgroundColor;
-}
-h3{
-    color:$textColor;
-    font-size:$fontsize_H3;
-}
-h2{
-    color:$textColor;
-    font-size:$fontsize_H2;
-    font-weight: bold;
-}
-h4{
-    color:#707070;
-    font-size:$fontsize_H4;
-}
-h5{
-    font-size:$fontsize_H5 ;
-    color:$textColor;
-    font-weight: bold;
+body{
+    background-color: $insideBackgroundColor;
 }
 .main{
-    width:100%;
-    max-width:1200px;
+    width:80%;
     margin:0 auto;
 }
-.ProgressBar_P {
-    /*border: 1px solid black;*/
-    margin: 80px auto 100px auto;
-    width: 90%;
-    display: flex;
-    justify-content: space-between;
-    text-align: center;
+
+// ====進度bar=====
+
+// 尺寸、對齊方式
+.step_box {
+    width: 60%;
+    height: 135px;
+    margin: 0 auto;
     overflow: hidden;
-    h3{
-        color:#707070;
-        font-size:$fontsize_H3; 
+    margin-bottom: 30px;
+    .step_ball{
+        display: flex;
+        justify-content: space-between;
+        position: relative;
     }
 }
 
-.StepCircle {
-    /*border: 1px solid brown;*/
-    background-color: #D3C8B5;
+// 球尺寸、顏色、icon、字型
+.step_box .step_ball >li{   
+    @include step_ball_size;
     border-radius: 50%;
-    width: 120px;
-    height: 120px;
-    margin-bottom: 10px;
-}
-.Circle1 {
+    background-color: #EFE7DA;
     position: relative;
-        &::after {
-            content: " ";
-            display: block;
-            width: 2000px;
-            height: 14px;
-            background-color: #D3C8B5;
-            position: absolute;
-            top: 54px;
-            left:0px;
-            z-index: -100;
+
+            // 定位進度球內img置中
+            & img{
+                position: absolute;
+                transform: translate(50%,-50%);
+                top: 50%;
+                right: 50%;
+            }
+
+        // 定位下方步驟文字
+            & h5{
+                @include H5;
+                color: $btnColor;
+                letter-spacing: 0px;
+                position: absolute;
+                width: 100%;
+                text-align: center;
+                top: 120%;
             }
 }
 
-.Circle3 {
+// 偽元素:進度條及變色方式
+
+.step_box .step_ball >li{
+    &:first-child{
+        background-color: $btnColor;
+    }
+    &::before{
+        content: "";
+        position: absolute;
+        width: 400%;
+        height: 5px;
+        background-color: #EFE7DA;
+        left: 50px;
+        top: 50%;
+        z-index: -1;
+    }
+    &:last-child::before{
+        display: none;
+    }
+}
+
+// ====進度bar結束=====
+
+//1.當前進度-步驟一
+
+// .step_box .step_ball li:first-child{
+//     font-weight: bold;
+// }
+
+// 2.當前進度-步驟二
+
+// .step_ball>li:nth-child(2){
+//     background-color: $btnColor;
+// }
+
+// .step_ball>li:nth-child(1)::before{
+//     background-color: $btnColor;
+// }
+
+// .step_box .step_ball li:nth-child(2){
+//     font-weight: bold;
+// }
+
+// 3.當前進度-步驟三
+
+.step_ball>li:nth-child(2) , .step_ball>li:nth-child(3){
     background-color: $btnColor;
 }
 
-#step3{
-    font-weight:bold;
-    color:$textColor;
+.step_ball>li:nth-child(1)::before , .step_ball>li:nth-child(2)::before{
+    background-color: $btnColor;
+}
+
+.step_box .step_ball li:nth-child(3){
+    font-weight: bold;
+}
+
+//  RWD
+
+@media (min-width: 576px) and (max-width: 991px){
+    .step_box{
+        height: 115px;
+    }
+    .step_box .step_ball >li{
+        @include step_ball_size_medium;
+    }
+    .step_box .step_ball >li>h5{
+        @include H6;
+        letter-spacing: 0px;
+    }
+}
+
+@media (max-width: 575px){
+    .step_box{
+        width: 70%;
+        height: 90px;
+    }
+    .step_box .step_ball >li{
+        @include step_ball_size_small;
+    }
+    .step_box .step_ball >li>h5{
+        @include P2;
+        letter-spacing: 0px;
+    }
+    .step_box .step_ball >li>img{
+        width: 40%;
+    }
 }
 
 // 訂單狀態
-.orderInfo{
-    width:90%;
-    margin: 50px auto;
-    text-align: center;
-    border-bottom: 1px solid #707070;
-}
-.orderNoP,.orderStatus{
+.status{
     width:100%;
-    margin:0 auto 50px auto;
-    h3{
-        font-size:$fontsize_H3; 
-    }
-}
-.orderNoP{
-     span{
-        margin:0 30px;
-    }
-}
-
-.prepare{
-@include button5;
-}
-
-// 訂購資訊
-.personInfoDetail{
-    width:90%;
-    margin:50px auto;
-    display:flex;
-    justify-content: space-evenly;
-}
-.memImage{
-    width:25%;
-    overflow: hidden;
-}
-.orderInfoP{
-    width:70%;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    @include H4;
+    color:$textColor;
+    font-weight: bold;
+    border-bottom: 1px solid #707070;
     div{
         display:flex;
-        margin-bottom: 20px; 
-        @include H3;
-        font-weight: bold;
-        &:last-child{
-            margin-bottom:0px;
-        }
+        width:70%;
+        justify-content: center;
+        align-items: center;
+        margin:10px auto;
+    }
+
+}
+.ready{
+    background-color: $textColor;
+    color:#fff!important;
+    border-radius: 5px;
+    padding:13px 13px 13px 18px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+@media screen and(max-width:800px) {
+    .status{
+        @include H5;
     }
 }
-#memPhone,#adress,#msg{
-    color:#707070;
-    font-weight: normal;
-    margin:0px 20px;
-    letter-spacing: 0;
+@media screen and(max-width:576px) {
+    .status{
+        @include H6;
+    }
 }
 
-// 訂單明細
+@media screen and(max-width:480px) {
+    .status{
+        @include P1;
+    }
+}
 
-#memName{
+// 個人訂購資訊
+.userinfo{
+    width:90%;
+    display:flex;
+    justify-content: center;
+    color:#707070;
+    margin:55px auto;
+}
+.userpic{
+    max-width: 120px;
+    overflow: hidden;
+    margin-right: 50px;
+}
+.user{
+    width:70%;
+    @include H5;
+}
+.username{
     margin-bottom: 20px;
     font-weight: bold;
 }
 
-.ListTotal{
-    width:80%;
-    margin:100px auto;
-    display:flex;
-    justify-content: space-between;   
+.userphone,.useradd,.usermsg{
+    width:100%;
+    display: flex;
+    align-self: center;
     align-items: center;
-    h2{
-        font-size:$fontsize_H2; 
+    margin-top: 15px;
+    div{
+        display: flex;
     }
 }
 
-#line{
-    width:70%;
-    hr{
-        border-style: none;
-        border-bottom: 1px dashed $textColor;
+.userphonetop,.useraddtop,.usermsgtop{
+    width:40%;
+    img{
+        margin-right: 20px;
+    }
+    div{
+        align-self: center;
     }
 }
+.userphonebottom,.useraddbottom,.usermsgbottom{
+    width:60%;
+}
 
-#orderbtn{
-    display:flex;
-    justify-content: center;    
-    margin:80px auto;      
-    background-color:$textColor ;
-    width:130px;
-    height: 46px;
-    padding:5px;
-    border-radius: 10px;
-    border-style: none;              
-    color:#FFFFFF;
-    font-size:$fontsize_H3 ;    
-   }
-
-// 每個人 買飲料
-
-.group_order_done_person {
-        // border-bottom: 2px solid rgb(192, 191, 191);
-        width: 80%;
-        margin: 0 auto;
-        border-top: 2px solid rgb(192, 191, 191);
-
-        @media screen and (max-width:992px) {
-            width: 65%;
-        }
-
-        @media screen and (max-width:768px) {
-            width: 80%;
-        }
-
-        @media screen and (max-width:576px) {
-            width: 90%;
-        }
-
-        &:last-child {
-            border-bottom: 2px solid rgb(192, 191, 191);
-        }
-
-        &>div {
-            margin: 10px 0;
-        }
-    
-        .group_order_done_person_upbox {
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-
-            .group_order_done_person_infobox {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-
-                .group_order_done_person_img {
-                    width: 60px;
-                    font-size: 0;
-                    margin-right: 20px;
-                }
-
-                .group_order_done_person_name {
-                    font-size: $fontsize_H6;
-                    color: $textColor;
-                    font-weight: bold;
-
-                    @media screen and (min-width:577px) {
-                        font-size: $fontsize_H4;
-                    }
-                }
-            }
-
-
-            .group_order_done_person_total {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                font-size: $fontsize_H6;
-                color: $textColor;
-                font-weight: bold;
-
-                @media screen and (min-width:577px) {
-                    font-size: $fontsize_H4;
-                }
-
-                div:first-child {
-                    margin-right: 20px;
-                }
-            }
-        }
-
-        .group_order_done_person_drink {
-            background-color: rgb(206, 206, 206);
-            padding: 5px 2.5%;
-            margin: 10px 0;
-            font-size: $fontsize_P1;
-            letter-spacing: 2px;
-            position: relative;
-
-            @media(min-width:768px) {
-                font-size: $fontsize_H6;
-            }
-
-            div {
-                margin: 10px 0;
-            }
-
-            div:first-child {
-                font-weight: bold;
-            }
-
-            .order_delete_btn {
-                position: absolute;
-                right: 0;
-                top: 50%;
-                transform: translateY(-50%);
-                margin-right: 2.5%;
-                border-radius: 5px;
-                border: 1px solid black;
-                cursor: pointer;
-                outline: none;
-            }
-        }
-    }
-
-
-//   RWD
-@media screen and (max-width: 376px){
-    .ProgressBar_P {
-        margin: 40px auto;
-        width: 80%;
-        h3{
-            font-size: $fontsize_P2;
-        }
-    }
-    .StepCircle{
-        width:80px;
-        height: 80px;
-    }
-    .Circle1 {
-            &::after {
-                height: 8px;
-                top: 40px;
-                }
-    }
-    .personInfoDetail{
-        justify-content: center;
+@media screen and(max-width:800px) {
+    .userinfo{
         display: block;
+        width:100%;
     }
-    .memImage{
+    .userpic{
         width:30%;
-        margin:0 auto 20px auto;
-    }
-    .orderInfoP{
-        width:80%;
         margin:0 auto;
-        div{
-            font-size: $fontsize_P1;
-            margin-bottom: 5px;
-            letter-spacing: 0;
+    }
+    .user{
+        width:100%;
+    }
+    .username{
+        text-align: center;
+        margin-top: 10px;
+    }
+    .userphonetop,.useraddtop,.usermsgtop{
+        img{
+            margin-right: 15px;
         }
-        h3{
-            font-size: $fontsize_P1;
-        }
-    }
-    #memName{
-        margin :0 auto 20px;
-    }
-    #memPhone,#adress{
-        margin-left:25px;
-    }
-    #msg{
-        margin-left:10px;
-    }
-   
-    .ListTotal{
-        width:80%;
-        margin:30px auto; 
-        h2{
-            font-size: $fontsize_H6;
-        }
-    }
-    #orderbtn{  
-        margin:30px auto;      
-        width:85px;
-        height: 27px;
-        padding:3px;
-        border-radius: 5px; 
-        font-size:$fontsize_H6 ;    
-       }
-}
-
-
-@media screen and (min-width: 377px) and (max-width: 577px){
-    .ProgressBar_P {
-        margin: 40px auto;
-        width: 80%;
-        h3{
-            font-size: $fontsize_P1;
-        }
-    }
-    .StepCircle{
-        width:80px;
-        height: 80px;
-    }
-    .Circle1 {
-            &::after {
-                height: 8px;
-                top: 40px;
-                }
-    }
-    .personInfoDetail{
-        justify-content: center;
-    }
-    .orderInfoP{
-        width:72%;
-        margin-left:20px;
-        div{
-            @include H6;
-            margin-bottom: 10px; 
-        }
-        h3{
-            @include H6;
-        }
-    }
-    #memPhone,#adress,#msg{
-        margin:0px 10px;
-    }
-    .memImage{
-        width:20%;
-    }
-
-    .ListTotal{
-        width:80%;
-        margin:30px auto; 
-        h2{
-            font-size: $fontsize_H5;
-        }
-    }
-    #orderbtn{  
-        margin:50px auto;      
-        width:85px;
-        height: 27px;
-        padding:3px;
-        border-radius: 5px; 
-        font-size:$fontsize_H6 ;    
-       }
-}
-   
-@media screen and (min-width: 578px) and (max-width: 767px){
-    .ProgressBar_P {
-        margin: 40px auto;
-        width: 80%;
-        h3{
-            font-size: $fontsize_H6;
-        }
-    }
-    .StepCircle{
-        width:100px;
-        height: 100px;
-    }
-    .Circle1 {
-            &::after {
-                height: 10px;
-                top: 45px;
-                }
-    }
-
-    .personInfoDetail{
-        justify-content: center;
-    }
-    .orderInfoP{
-        width:72%;
-        margin-left:20px;
-        div{
-            @include H5;
-            margin-bottom: 10px; 
-        }
-        h3{
-            @include H5;
-        }
-    }
-    #memPhone,#adress,#msg{
-        margin:0px 10px;
-    }
-    .memImage{
-        width:20%;
-    }
-
-.ListTotal{
-    width:80%;
-    margin:50px auto; 
-    h2{
-        font-size: $fontsize_H4;
     }
 }
 
-#orderbtn{  
-    margin:50px auto;      
-    width:100px;
-    height: 50px;
-    padding:3px;
-    border-radius: 5px; 
-    font-size:$fontsize_H5 ;    
-   }
-}
-@media screen and (min-width: 768px) and (max-width: 991px){
-    .ProgressBar_P {
-        margin: 40px auto;
-        width: 80%;
-        h3{
-            font-size: $fontsize_H5;
+@media screen and(max-width:576px) {
+    .user{
+        @include P1;
+    }
+    .username{
+        @include H6;
+    }
+    .userphonetop,.useraddtop,.usermsgtop{
+        img{
+            margin-right: 10px;
         }
-    }
-    .StepCircle{
-        width:100px;
-        height: 100px;
-    }
-    .Circle1 {
-            &::after {
-                height: 10px;
-                top: 45px;
-                }
-    }
-    .orderInfoP{
-        width:70%;
-        div{
-            @include H4;
-            }
-        h3{
-            @include H4;
-        }
-    }
-    #memPhone,#adress,#msg{
-        margin:0px 10px;
-    }
-    .memImage{
-        width:20%;
-    }
-    .ListTotal{
-        width:80%;
-        margin:50px auto; 
-        h2{
-            font-size: $fontsize_H3;
-        }
-    }
- 
-} 
-@media screen and (min-width: 992px) and (max-width: 1200px){
-    .ProgressBar_P {
-        margin: 40px auto;
-        width: 80%;
     }
 }
+@media screen and(max-width:376px) {
+    .userphone,.useradd,.usermsg{
+        display: block;       
+    }
+    .userphonetop,.useraddtop,.usermsgtop,
+    .userphonebottom,.useraddbottom,.usermsgbottom{
+        width:100%;
+        margin-top: 5px;
+    }
+}
+// 結帳金額
+.finaltotal{
+    width:75%;
+    margin:0 auto;
+}
+
+.group_order_done_total_box{
+    font-size: $fontsize_P1;
+    letter-spacing: 2px;
+  
+    div{
+      margin: 10px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+  .group_order_done_dis{
+    border-bottom: 1px solid rgb(173, 173, 173);
+  }
+  
+  .group_order_done_finaltotal{
+    font-size: $fontsize_H3;
+    color: $textColor;
+    font-weight: bold;
+    border-top: 2px solid $textColor;
+  }
+  
+  //RWD 字體改變大小
+  
+  @media(min-width:576px){
+    .group_order_done_row{
+      width: 50%;
+    }
+    .group_order_done_groupname{
+      font-size: $fontsize_H3;
+    }
+    .group_order_done_info{
+      font-size: $fontsize_H5;
+    }
+    .group_order_done_person_name,.group_order_done_person_total{
+      font-size: $fontsize_H4;
+    }
+  
+  }
+  
+  @media(min-width:768px){
+    .group_order_done_row{
+      width: 33.3%;
+    }
+    .group_order_done_person_drink,
+    .group_order_done_total,
+    .group_order_done_dis{
+      font-size: $fontsize_H6;
+    }
+  }

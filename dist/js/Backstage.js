@@ -13,7 +13,8 @@ window.addEventListener('load', function () {
                             <li @click="changeTag($event)" id="manager" >管理員帳號管理</li>
                             <li @click="changeTag($event)" id="member" >會員帳號管理</li>
                             <li @click="changeTag($event)" id="drink">商品管理</li>
-                            <li @click="changeTag($event)" id="group">揪團訂單管理</li>
+                            <li @click="changeTag($event)" id="drink_type">商品規格管理</li>
+                            <li @click="changeTag($event)" id="group_ord_list">揪團訂單管理</li>
                             <li @click="changeTag($event)" id="self" >一般訂單管理</li>
                             <li @click="changeTag($event)" id="article">文章檢舉審核</li>
                             <li @click="changeTag($event)" id="message">留言檢舉審核</li>
@@ -21,10 +22,8 @@ window.addEventListener('load', function () {
                         </aside>`,
         methods: {
             changeTag(event) {
-                //獲取被點擊的 ID值
-                this.show = event.currentTarget.id
-                //傳送至上層 (new Vue)
-                this.$emit('change', this.show)
+                //獲取被點擊的 ID值，並傳送至上層 (new Vue)
+                this.$emit('change', event.currentTarget.id)
             },
         },
     })
@@ -34,23 +33,8 @@ window.addEventListener('load', function () {
     Vue.component('manager', {
         data() {
             return {
-                //切換Tag
-                // show: 'show',
-                //撈出來的 會員資料
-                managers: [
-                    { mar_no: 1, mar_id: '213dss', mar_psw: '2112ija', mar_name: '安安你好', mar_status: 1 },
-                    { mar_no: 2, mar_id: 'vjrres42', mar_psw: 'ffd232a', mar_name: 'QQ咩咩', mar_status: 1 },
-                    { mar_no: 2, mar_id: 'vjrres42', mar_psw: 'ffd232a', mar_name: 'QQ咩咩', mar_status: 1 },
-                    { mar_no: 2, mar_id: 'vjrres42', mar_psw: 'ffd232a', mar_name: 'QQ咩咩', mar_status: 1 },
-                    { mar_no: 2, mar_id: 'vjrres42', mar_psw: 'ffd232a', mar_name: 'QQ咩咩', mar_status: 1 },
-                    { mar_no: 2, mar_id: 'vjrres42', mar_psw: 'ffd232a', mar_name: 'QQ咩咩', mar_status: 1 },
-                    { mar_no: 2, mar_id: 'vjrres42', mar_psw: 'ffd232a', mar_name: 'QQ咩咩', mar_status: 1 },
-                    { mar_no: 2, mar_id: 'vjrres42', mar_psw: 'ffd232a', mar_name: 'QQ咩咩', mar_status: 1 },
-                    { mar_no: 2, mar_id: 'vjrres42', mar_psw: 'ffd232a', mar_name: 'QQ咩咩', mar_status: 1 },
-                    { mar_no: 2, mar_id: 'vjrres42', mar_psw: 'ffd232a', mar_name: 'QQ咩咩', mar_status: 1 },
-                    { mar_no: 2, mar_id: 'vjrres42', mar_psw: 'ffd232a', mar_name: 'QQ咩咩', mar_status: 1 },
-                    { mar_no: 2, mar_id: 'vjrres42', mar_psw: 'ffd232a', mar_name: 'QQ咩咩', mar_status: 1 },
-                ],
+                //撈出來的 管理員資料
+                managers: '',
             }
         },
         props: ['show'],
@@ -79,19 +63,20 @@ window.addEventListener('load', function () {
 
                   </section>`,
         methods: {
+            //呼叫php程式，取回 管理員帳號 相關資料，並用json()轉回一般陣列
             get_mar: async function () {
-                const res = await fetch('XML_JSON_CSV/bookData.json', {
-                    // mode: 'cors',
-                    // cache: 'no-cache',
-                    // headers: { 'Content-Type': 'application/json; charset=utf-8' },
-                    // method: 'post',
-                    // headers: { 'Content-Type': 'application/json' },
-                }).then(function (res) {
-                    console.log('res', res.json())
-                    return res.json()
+                const res = await fetch('./php/bs_getall_manager.php', {}).then(function (data) {
+                    return data.json()
                 })
+                // 取回res值後，呼叫另一隻函式
+                this.change_mar(res)
+            },
+            // 將值寫入data中
+            change_mar: function (data) {
+                this.managers = data
             },
         },
+        // template 渲染前 會先去執行以下函式
         created() {
             this.get_mar()
         },
@@ -102,65 +87,7 @@ window.addEventListener('load', function () {
     Vue.component('member', {
         data() {
             return {
-                //切換Tag
-                // show: 'show',
-                //撈出來的 會員資料
-                members: [
-                    {
-                        mem_no: 1,
-                        mem_id: '213dss',
-                        mem_psw: '2112ija',
-                        mem_name: '安安你好',
-                        mem_status: 1,
-                        mem_email: 'a88688547@gmail.com',
-                        mem_phone: '0963328003',
-                    },
-                    {
-                        mem_no: 1,
-                        mem_id: '213dss',
-                        mem_psw: '2112ija',
-                        mem_name: '安安你好',
-                        mem_status: 1,
-                        mem_email: 'a88688547@gmail.com',
-                        mem_phone: '0963328003',
-                    },
-                    {
-                        mem_no: 1,
-                        mem_id: '213dss',
-                        mem_psw: '2112ija',
-                        mem_name: '安安你好',
-                        mem_status: 1,
-                        mem_email: 'a88688547@gmail.com',
-                        mem_phone: '0963328003',
-                    },
-                    {
-                        mem_no: 1,
-                        mem_id: '213dss',
-                        mem_psw: '2112ija',
-                        mem_name: '安安你好',
-                        mem_status: 1,
-                        mem_email: 'a88688547@gmail.com',
-                        mem_phone: '0963328003',
-                    },
-                    {
-                        mem_no: 1,
-                        mem_id: '213dss',
-                        mem_psw: '2112ija',
-                        mem_name: '安安你好',
-                        mem_status: 1,
-                        mem_email: 'a88688547@gmail.com',
-                        mem_phone: '0963328003',
-                    },
-                    {
-                        mem_no: 1,
-                        mem_id: '213dss',
-                        mem_psw: '2112ija',
-                        mem_name: '安安你好',
-                        mem_status: 1,
-                        mem_email: 'a88688547@gmail.com',
-                        mem_phone: '0963328003',
-                    },
-                ],
+                members: '',
             }
         },
         props: ['show'],
@@ -190,7 +117,24 @@ window.addEventListener('load', function () {
                     </div>
 
                   </section>`,
-        methods: {},
+        methods: {
+            //呼叫php程式，取回 管理員帳號 相關資料，並用json()轉回一般陣列
+            get_mar: async function () {
+                const res = await fetch('./php/bs_getall_member.php', {}).then(function (data) {
+                    return data.json()
+                })
+                // 取回res值後，呼叫另一隻函式
+                this.change_mar(res)
+            },
+            // 將值寫入data中
+            change_mar: function (data) {
+                this.members = data
+            },
+        },
+        // template 渲染前 會先去執行以下函式
+        created() {
+            this.get_mar()
+        },
     })
     //-----------------------------------------------------
 
@@ -198,63 +142,11 @@ window.addEventListener('load', function () {
     Vue.component('drink', {
         data() {
             return {
-                //切換Tag
-                // show: 'show',
-                drinkno: 0,
-                //撈出來的 會員資料
-                drinks: [
-                    {
-                        drink_no: 1,
-                        drink_title_ch: 'QQ咩咩',
-                        drink_type: '奶類',
-                        drink_status: 1,
-                        drink_big_price: '60',
-                        drink_small_price: '50',
-                    },
-                    {
-                        drink_no: 2,
-                        drink_title_ch: '阿屋',
-                        drink_type: '奶類',
-                        drink_status: 1,
-                        drink_big_price: '60',
-                        drink_small_price: '50',
-                    },
-                    {
-                        drink_no: 3,
-                        drink_title_ch: '基八',
-                        drink_type: '奶類',
-                        drink_status: 1,
-                        drink_big_price: '60',
-                        drink_small_price: '50',
-                    },
-                    {
-                        drink_no: 4,
-                        drink_title_ch: '你好',
-                        drink_type: '奶類',
-                        drink_status: 1,
-                        drink_big_price: '60',
-                        drink_small_price: '50',
-                    },
-                    {
-                        drink_no: 5,
-                        drink_title_ch: '安安',
-                        drink_type: '奶類',
-                        drink_status: 1,
-                        drink_big_price: '60',
-                        drink_small_price: '50',
-                    },
-                    {
-                        drink_no: 6,
-                        drink_title_ch: '幾歲',
-                        drink_type: '奶類',
-                        drink_status: 1,
-                        drink_big_price: '60',
-                        drink_small_price: '50',
-                    },
-                ],
+                //撈出來的 飲料資料
+                drinks: '',
             }
         },
-        props: ['show'],
+        props: ['show', 'drinkno'],
 
         template: `
                   <section v-if=" show === 'drink' ">
@@ -273,36 +165,48 @@ window.addEventListener('load', function () {
                         <div class="drink_item" v-for="(value,key) in drinks">
                             <div>{{value.drink_no}}</div>
                             <div>{{value.drink_title_ch}}</div>
-                            <div>{{value.drink_type}}</div>
+                            <div>{{value.drink_type_title}}</div>
                             <div>{{value.drink_big_price}}</div>
                             <div>{{value.drink_small_price}}</div>
                             <div class="toggle">
                                 <input checked type="checkbox" :id="key" />
                                 <label :for="key"></label>
                             </div>
-                            <div class="edit_btn" @click="drinkno = value.drink_no" @click="changeTag" @click="changedrinkno">編輯</div>
+                            <div class="edit_btn" @click="changeTag(),changedrinkno(value.drink_no)">編輯</div>
                         </div>
                     </div>
                   </section>`,
         methods: {
             //切換至 編輯商品頁面
             changeTag() {
-                //獲取被點擊的 ID值
-                this.show = 'drink_edit'
-                //傳送至上層 (new Vue)
-                this.$emit('change', this.show)
+                //將drink_edit 傳送至上層 (new Vue)
+                this.$emit('change', 'drink_edit')
             },
             //傳送點擊飲料編號
-            changedrinkno() {
-                this.$emit('changedrinkno', this.drinkno)
-                console.log('changedrinkno', this.drinkno)
+            changedrinkno(drinkno) {
+                this.$emit('changedrinkno', drinkno)
+                // console.log('changedrinkno', drinkno)
             },
             //切換至 新增商品頁面
             additem() {
-                this.show = 'drink_add'
                 //傳送至上層 (new Vue)
-                this.$emit('change', this.show)
+                this.$emit('change', 'drink_add')
             },
+            //呼叫php程式，取回 飲料 相關資料，並用json()轉回一般陣列
+            get_mar: async function () {
+                const res = await fetch('./php/bs_getall_drink.php', {}).then(function (data) {
+                    return data.json()
+                })
+                // 取回res值後，呼叫另一隻函式
+                this.get_drink(res)
+            },
+            // 將值寫入data中
+            get_drink: function (data) {
+                this.drinks = data
+            },
+        },
+        created() {
+            this.get_mar()
         },
     })
     //-----------------------------------------------------
@@ -311,64 +215,41 @@ window.addEventListener('load', function () {
     Vue.component('drink_edit', {
         data() {
             return {
-                //切換Tag
-                // show: 'show',
-                drinkno: 'drinkno',
-                //撈出來的 會員資料
-                drinks: [
+                // 存放撈出來的飲料資訊
+                drink: '',
+                type_info: [
                     {
-                        drink_no: 1,
-                        drink_title_ch: 'QQ咩咩',
-                        drink_type: '奶類',
-                        drink_status: 1,
-                        drink_big_price: '60',
-                        drink_small_price: '50',
-                        drink_img: 'http://fakeimg.pl/600x400',
+                        type_no: 1,
+                        type_title: '甜度',
+                        type_detail: [
+                            { type_no: 1, detail_no: 2, detail_title: '全糖' },
+                            { type_no: 1, detail_no: 3, detail_title: '全糖' },
+                            { type_no: 1, detail_no: 4, detail_title: '全糖' },
+                            { type_no: 1, detail_no: 5, detail_title: '全糖' },
+                            { type_no: 1, detail_no: 5, detail_title: '全糖' },
+                            { type_no: 1, detail_no: 5, detail_title: '全糖' },
+                            { type_no: 1, detail_no: 5, detail_title: '全糖' },
+                        ],
                     },
                     {
-                        drink_no: 2,
-                        drink_title_ch: '阿屋',
-                        drink_type: '奶類',
-                        drink_status: 1,
-                        drink_big_price: '60',
-                        drink_small_price: '50',
-                        drink_img: 'http://fakeimg.pl/200x400',
+                        type_no: 2,
+                        type_title: '冰度',
+                        type_detail: [
+                            { type_no: 1, detail_no: 2, detail_title: '全糖' },
+                            { type_no: 1, detail_no: 3, detail_title: '全糖' },
+                            { type_no: 1, detail_no: 4, detail_title: '全糖' },
+                            { type_no: 1, detail_no: 5, detail_title: '全糖' },
+                        ],
                     },
                     {
-                        drink_no: 3,
-                        drink_title_ch: '基八',
-                        drink_type: '奶類',
-                        drink_status: 1,
-                        drink_big_price: '60',
-                        drink_small_price: '50',
-                        drink_img: 'http://fakeimg.pl/430x220',
-                    },
-                    {
-                        drink_no: 4,
-                        drink_title_ch: '你好',
-                        drink_type: '奶類',
-                        drink_status: 1,
-                        drink_big_price: '60',
-                        drink_small_price: '50',
-                        drink_img: 'http://fakeimg.pl/230x140',
-                    },
-                    {
-                        drink_no: 5,
-                        drink_title_ch: '安安',
-                        drink_type: '奶類',
-                        drink_status: 1,
-                        drink_big_price: '60',
-                        drink_small_price: '50',
-                        drink_img: 'http://fakeimg.pl/500x500',
-                    },
-                    {
-                        drink_no: 6,
-                        drink_title_ch: '幾歲',
-                        drink_type: '奶類',
-                        drink_status: 1,
-                        drink_big_price: '60',
-                        drink_small_price: '50',
-                        drink_img: 'http://fakeimg.pl/300x450',
+                        type_no: 3,
+                        type_title: '加料',
+                        type_detail: [
+                            { type_no: 1, detail_no: 2, detail_title: '全糖' },
+                            { type_no: 1, detail_no: 3, detail_title: '全糖' },
+                            { type_no: 1, detail_no: 4, detail_title: '全糖' },
+                            { type_no: 1, detail_no: 5, detail_title: '全糖' },
+                        ],
                     },
                 ],
             }
@@ -377,29 +258,48 @@ window.addEventListener('load', function () {
 
         template: `
                   <section v-if=" show === 'drink_edit' ">
-                    <h1 class="title">商品編輯 -- {{drinks[drinkno - 1].drink_title_ch}}</h1>
+                    <h1 class="title">商品編輯 -- {{drink[0].drink_title_ch}}</h1>
                     <div class="return_btn_box"><div class="return_btn" @click="changeTag">返回商品列表</div></div>
                     <form class="drink_edit_box">
                       <div>
                         <div class="drink_edit_row">
                             <label>飲料編號</label>
-                            <div>{{drinks[drinkno - 1].drink_no}}</div>
+                            <div>{{drink[0].drink_no}}</div>
                         </div>
                         <div class="drink_edit_row">
-                            <label for="name_ch">飲料名稱</label>
-                            <input type="text" id="name_ch" :value="drinks[drinkno - 1].drink_title_ch" />
+                            <label for="name_ch">飲料名稱(中)</label>
+                            <input type="text" id="name_ch" :value="drink[0].drink_title_ch" />
+                        </div>
+                        <div class="drink_edit_row">
+                            <label for="name_en">飲料名稱(英)</label>
+                            <input type="text" id="name_en"  />
                         </div>
                         <div class="drink_edit_row">
                             <label for="type">飲料類別</label>
-                            <input type="text" id="type" :value="drinks[drinkno - 1].drink_type" />
+                            <select name="type" id="type">
+                              <option value="">-----請選擇飲料類別-----</option>
+                              <option value="1">奶類</option>
+                              <option value="2">茶類</option>
+                              <option value="3">果茶類</option>
+                            </select>
                         </div>
                         <div class="drink_edit_row">
                             <label for="big_price">大杯金額</label>
-                            <input type="text" id="big_price" :value="drinks[drinkno - 1].drink_big_price" />
+                            <input type="text" id="big_price" :value="drink[0].drink_big_price" />
                         </div>
                         <div class="drink_edit_row">
                             <label for="small_price">小杯金額</label>
-                            <input type="text" id="small_price" :value="drinks[drinkno - 1].drink_small_price" />
+                            <input type="text" id="small_price" :value="drink[0].drink_small_price" />
+                        </div>
+                        <div class="type_box">
+                            <div class="type_box_title">選取 商品規格:</div>
+                            <div class="type_name_box" :id="value.type_no" v-for="(value,key) in type_info">
+                                <div class="type_name">{{value.type_title}} : </div>
+                                <div v-for="(value,key) in value.type_detail" class="detali_list">
+                                    <input type="checkbox" :name="value.detail_no" :value="value.detail_no"></input>
+                                    {{value.detail_title}}
+                                </div>
+                            </div>
                         </div>
                       </div>
                       <div class="addinfo_right_box">
@@ -408,17 +308,66 @@ window.addEventListener('load', function () {
                           <input type="file" id="upFile" name="upFile" @change="changeimg($event)"/><br />
                         </div>
                         <div class="upFile_img_box">
-                          <img :src="drinks[drinkno - 1].drink_img" alt="請上傳飲料照片" id="image" />
+                          <img :src="drink[0].drink_img" alt="尚未新增任何照片" id="image" />
                         </div>
                       </div>
                       <button class="drink_edit_btn">確認修改</button>
                     </form>
                   </section>`,
         methods: {
+            // 切換頁面
             changeTag() {
-                this.show = 'drink'
                 //傳送至上層 (new Vue)
-                this.$emit('change', this.show)
+                this.$emit('change', 'drink')
+            },
+            //預覽  上傳圖片
+            changeimg(event) {
+                let file = event.target.files
+                reader = new FileReader()
+                reader.readAsDataURL(file[0])
+                reader.onload = function (event) {
+                    document.getElementById('image').src = event.target.result
+                }
+                console.log('changeimg')
+            },
+            //呼叫php程式，取回 飲料 相關資料，並用json()轉回一般陣列
+            get_mar: async function (drinkno) {
+                console.log('send2', drinkno)
+                const res = await fetch('./php/bs_getone_drink.php', {
+                    method: 'POST', // *GET, POST, PUT, DELETE, etc.
+                    mode: 'same-origin', // no-cors, *cors, same-origin
+                    // cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+                    credentials: 'same-origin', // include, *same-origin, omit
+                    headers: {
+                        'Content-Type': 'application/json', // sent request
+                        // Accept: 'application/json', // expected data sent back
+                    },
+                    // redirect: 'follow', // manual, *follow, error
+                    // referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+                    body: JSON.stringify({
+                        drink_no: drinkno,
+                    }), // body data type must match "Content-Type" header
+                }).then(function (data) {
+                    return data.json()
+                })
+                // 取回res值後，呼叫另一隻函式
+                this.get_drink(res)
+            },
+            // 將值寫入data中
+            get_drink: function (data) {
+                this.drink = data
+            },
+        },
+        created() {
+            // 渲染前 先去撈取資料
+            this.get_mar(this.drinkno)
+            // console.log('send:', this.drinkno)
+        },
+        // 監聽數值變化
+        watch: {
+            // 當選取的飲料不同時，重新撈取一次 單一飲品的資料
+            drinkno: function (newdrinkno) {
+                this.get_mar(newdrinkno)
             },
         },
     })
@@ -466,10 +415,6 @@ window.addEventListener('load', function () {
                             <label for="small_price">小杯金額</label>
                             <input type="text" id="small_price"  />
                         </div>
-                        <div class="drink_edit_row">
-                            <label for="note">飲料敘述</label>
-                            <textarea name="note" id="note" cols="30" rows="10" style=" resize : none;"></textarea>
-                        </div>
                       </div>
                       <div class="addinfo_right_box">
                         <div>
@@ -477,7 +422,7 @@ window.addEventListener('load', function () {
                           <input type="file" id="upFile" name="upFile" @change="changeimg($event)"/><br />
                         </div>
                         <div class="upFile_img_box">
-                          <img src="http://fakeimg.pl/600x400" alt="請上傳飲料照片" id="image" />
+                          <img src="" alt="尚未新增任何照片" id="image" />
                         </div>
                       </div>
                       <button class="drink_add_btn">新增商品</button>
@@ -485,9 +430,8 @@ window.addEventListener('load', function () {
                   </section>`,
         methods: {
             changeTag_drink() {
-                this.show = 'drink'
                 //傳送至上層 (new Vue)
-                this.$emit('change', this.show)
+                this.$emit('change', 'drink')
             },
             changeimg(event) {
                 let file = event.target.files
@@ -501,13 +445,274 @@ window.addEventListener('load', function () {
         },
     })
     //-----------------------------------------------------
+    // 商品規格 管理 -- 組件
+    Vue.component('drink_type', {
+        data() {
+            return {
+                types: '',
+            }
+        },
+        props: ['show', 'type_no'],
+
+        template: `
+                  <section v-if=" show === 'drink_type' ">
+                    <h1 class="title">商品規格管理</h1>
+                    <div class="btn_box"><div class="add_btn" @click="addtype">新增商品規格</div></div>
+                    <div class="type_list_box">
+                        <div class="type_item" v-for="(value,key) in types" @click="changeTag(),changetypeno(value.type_no,value.type_title)">
+                            {{value.type_title}}
+                        </div>
+                    </div>
+                  </section>`,
+        methods: {
+            //切換至 編輯商品規格頁面
+            changeTag() {
+                //將drink_edit 傳送至上層 (new Vue)
+                this.$emit('change', 'type_edit')
+            },
+            //傳送點擊飲料編號
+            changetypeno(type_no, type_title) {
+                this.$emit('changetypeno', type_no, type_title)
+                // console.log('changedrinkno', drinkno)
+            },
+            //切換至 新增商品規格頁面
+            addtype() {
+                //傳送至上層 (new Vue)
+                this.$emit('change', 'type_add')
+            },
+            //呼叫php程式，取回 飲料 相關資料，並用json()轉回一般陣列
+            get_data: async function () {
+                const res = await fetch('./php/bs_getall_type.php', {}).then(function (data) {
+                    return data.json()
+                })
+                // 取回res值後，呼叫另一隻函式
+                this.types = res
+                // this.get_type(res)
+            },
+            // 將值寫入data中
+            // get_type: function (data) {
+            //     this.types = data
+            // },
+        },
+        created() {
+            this.get_data()
+        },
+    })
+    //-----------------------------------------------------
+
+    //---  編輯  商品規格 -- 組件
+    Vue.component('type_edit', {
+        data() {
+            return {
+                type: '',
+            }
+        },
+        props: ['show', 'type_no', 'type_title'],
+
+        template: `
+                  <section v-if=" show === 'type_edit' ">
+                    <h1 class="title">編輯 商品規格 -- {{type_title}}</h1>
+                    <div class="return_btn_box"><div class="return_btn" @click="changeTag">返回 商品規格列表</div></div>
+                    <div class="type_detail_box">
+                        <form class="type_detail_box_left">
+                            <label for="type_title_edit">規格名稱 : </label>
+                            <input name="type_title_edit" id="type_title_edit" :value="type_title"></input>
+                            <button id="edit_type_title">修改名稱</button>
+                        </form>
+                        <form class="type_detail_box_right">
+                            <div>已擁有的細項 :</div>
+                            <ul class="show_type_detail">
+                                <li v-for="(value,key) in type">
+                                    <div>{{value.detail_title}}</div><button>刪除</button>
+                                </li>
+                            </ul>
+                            <input name="type_drtail_edit" id="type_drtail_edit" placeholder="輸入新增規格之名稱"></input>
+                            <button id="add_type_detail">新增細項</button>
+                            
+                        </form>
+
+                    </div>
+                  </section>`,
+        methods: {
+            // 切換頁面
+            changeTag() {
+                //傳送至上層 (new Vue)
+                this.$emit('change', 'drink_type')
+            },
+            //呼叫php程式，取回 飲料 相關資料，並用json()轉回一般陣列
+            get_mar: async function (type_no) {
+                const res = await fetch('./php/bs_getone_type.php', {
+                    method: 'POST', // *GET, POST, PUT, DELETE, etc.
+                    mode: 'same-origin', // no-cors, *cors, same-origin
+                    // cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+                    credentials: 'same-origin', // include, *same-origin, omit
+                    headers: {
+                        'Content-Type': 'application/json', // sent request
+                        // Accept: 'application/json', // expected data sent back
+                    },
+                    // redirect: 'follow', // manual, *follow, error
+                    // referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+                    body: JSON.stringify({
+                        type_no: type_no,
+                    }), // body data type must match "Content-Type" header
+                }).then(function (data) {
+                    return data.json()
+                })
+                // 取回res值後，呼叫另一隻函式
+                this.get_drink(res)
+            },
+            // 將值寫入data中
+            get_drink: function (data) {
+                this.type = data
+            },
+        },
+        created() {
+            this.get_mar(this.type_no)
+            // console.log('send:', this.drinkno)
+        },
+        // 監聽數值變化
+        watch: {
+            // 當選取的飲料不同時，重新撈取一次 單一飲品的資料
+            type_no: function (new_type_no) {
+                this.get_mar(new_type_no)
+            },
+        },
+    })
+    //-----------------------------------------------------
+
+    //---  新增商品規格 -- 組件
+    Vue.component('type_add', {
+        data() {
+            return {}
+        },
+        props: ['show'],
+
+        template: `
+                  <section v-if=" show === 'type_add' ">
+                    <h1 class="title">新增商品規格</h1>
+                    <div class="return_btn_box"><div class="return_btn" @click="changeTag_drink">返回商品列表</div></div>
+                    <form class="type_add_box">
+                        <div class="type_add_row">
+                            <label for="type_add_title">規格名稱 :</label>
+                            <input type="text" id="type_add_title" placeholder="請輸入規格名稱(1~6字)" />
+                        </div>
+                        <button>新增商品規格</button>
+                    </form>
+                  </section>`,
+        methods: {
+            changeTag_drink() {
+                //傳送至上層 (new Vue)
+                this.$emit('change', 'drink_type')
+            },
+        },
+    })
+    //-----------------------------------------------------
+
+    //管理員帳號管理 -- 組件
+    Vue.component('group_ord_list', {
+        data() {
+            return {
+                //撈出來的 揪團訂單資料
+                group_ord_bs: 0,
+                group_ords: '',
+            }
+        },
+        props: ['show', 'group_ord_no'],
+
+        template: `<section v-if=" show === 'group_ord_list' ">
+                    <h1 class="title">揪團訂單管理</h1>
+                    <div class="group_ord_type_box">
+                        <div @click="group_ord_bs = 0">未處理</div>
+                        <div @click="group_ord_bs = 1">已完成</div>
+                    </div>
+                    <div class="group_ord_list_box">
+                        <div class="group_ord_title_row">
+                            <div>訂單編號</div>
+                            <div>訂單日期時間</div>
+                            <div>外送地址</div>
+                            <div>總杯數</div>
+                            <div>備註</div>
+                            <div>訂單狀態</div>
+                            <div></div>
+                        </div>
+                        <div class="group_ord_row" v-for="(value,key) in group_ords">
+                            <div>{{value.group_ord_no}}</div>
+                            <div>{{value.arrive_time}}</div>
+                            <div>{{value.group_adress}}</div>
+                            <div>{{value.now_cup}}</div>
+                            <div>{{value.note}}</div>
+                            <div>{{checkstate(value.group_ord_bs)}}</div>
+                            <div>詳情</div>
+                        </div>
+                    </div>
+
+                  </section>`,
+        methods: {
+            //切換至 揪團訂單 詳情頁面
+            changeTag() {
+                //將drink_edit 傳送至上層 (new Vue)
+                this.$emit('change', 'group_ord_info')
+            },
+            //點擊 傳送 訂單編號
+            changedrinkno(group_ord_no) {
+                this.$emit('changegroupordno', group_ord_no)
+            },
+            get_mar: async function (group_ord_bs) {
+                const res = await fetch('./php/bs_getall_done_group_ord.php', {
+                    method: 'POST', // *GET, POST, PUT, DELETE, etc.
+                    mode: 'same-origin', // no-cors, *cors, same-origin
+                    // cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+                    credentials: 'same-origin', // include, *same-origin, omit
+                    headers: {
+                        'Content-Type': 'application/json', // sent request
+                        // Accept: 'application/json', // expected data sent back
+                    },
+                    // redirect: 'follow', // manual, *follow, error
+                    // referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+                    body: JSON.stringify({
+                        group_ord_bs: group_ord_bs,
+                    }), // body data type must match "Content-Type" header
+                }).then(function (data) {
+                    return data.json()
+                })
+                // 取回res值後，呼叫另一隻函式
+                this.get_ord_type(res)
+            },
+            // 將值寫入data中
+            get_ord_type: function (data) {
+                this.group_ords = data
+            },
+            //判斷 訂單狀態 回傳 對應值
+            checkstate: function (group_ord_bs) {
+                if (group_ord_bs == 1) {
+                    return '已完成'
+                } else if (group_ord_bs == 0) {
+                    return '未處理'
+                }
+            },
+        },
+        // template 渲染前 會先去執行以下函式
+        created() {
+            this.get_mar(this.group_ord_bs)
+        },
+        watch: {
+            // 當選取的不同類型時，重新撈取一次 該類型的資料
+            group_ord_bs: function (group_ord_bs) {
+                this.get_mar(group_ord_bs)
+            },
+        },
+    })
+    //-----------------------------------------------------
 
     //New Vue
     new Vue({
         el: '#app',
         data: {
             show: 'manager',
-            drinkno: 0,
+            drinkno: 1,
+            type_no: 1,
+            type_title: '',
+            group_ord_no: 1,
         },
         methods: {
             //接受到 下層傳遞的值 變更data值
@@ -516,6 +721,13 @@ window.addEventListener('load', function () {
             },
             changedrinkno(drinkno) {
                 this.drinkno = drinkno
+            },
+            changetypeno(type_no, type_title) {
+                this.type_no = type_no
+                this.type_title = type_title
+            },
+            changegroupordno(group_ord_no) {
+                this.group_ord_no = group_ord_no
             },
         },
         components: {},

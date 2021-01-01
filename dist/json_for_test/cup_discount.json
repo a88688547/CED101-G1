@@ -1,0 +1,11 @@
+[
+{"type":"header","version":"5.0.4","comment":"Export to JSON plugin for PHPMyAdmin"},
+{"type":"database","name":"drink_test_2"},
+{"type":"table","name":"cup_discount","database":"drink_test_2","data":
+[
+{"dis_no":"1","dis_cup":"20","dis_count":"0.9"},
+{"dis_no":"2","dis_cup":"30","dis_count":"0.8"},
+{"dis_no":"3","dis_cup":"40","dis_count":"0.7"}
+]
+}
+]

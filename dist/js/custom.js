@@ -10,7 +10,7 @@ window.onload = function () {
         document.querySelector(".rule").style.display = "none";
     });
     function clickCharacter() {
-        // console.log(this);
+        console.log(this);
 
         const myCharacter = document.querySelector('input[name="character"]:checked')
             .value;

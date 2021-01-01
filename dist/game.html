@@ -1,54 +1,64 @@
 <!DOCTYPE html>
 <html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="authoring-tool" content="Adobe_Animate_CC" />
+        <title>game</title>
+        <script src="./vendors/Vue/vue.js"></script>
+        <script src="./vendors/jQuery/js/jquery-3.5.1.js"></script>
+        <link rel="stylesheet" href="./css/game.css" />
+        <link rel="stylesheet" href="./css/style.css" />
+        <script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>
+        <script src="./js/ndgmr.Collision.js"></script>
+        <script src="./js/header_footer.js"></script>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+            integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+            crossorigin="anonymous"
+        />
+        <script src="./js/game.js"></script>
+        <script src="./js/gamerun.js"></script>
+    </head>
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="authoring-tool" content="Adobe_Animate_CC" />
-    <title>game</title>
-    <script src="./vendors/Vue/vue.js"></script>
-    <script src="./vendors/jQuery/js/jquery-3.5.1.js"></script>
-    <link rel="stylesheet" href="./css/game.css" />
-    <link rel="stylesheet" href="./css/style.css" />
-    <script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>
-    <script src="./js/ndgmr.Collision.js"></script>
-    <script src="./js/header_footer.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
-        integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
-        crossorigin="anonymous" />
-    <script src="./js/game.js"></script>
-    <script src="./js/gamerun.js"></script>
-</head>
-
-<body onload="init();">
-
-    <header id="header">
-        <my-header></my-header>
-    </header>
-    <main>
-        <div class="title">
-            <h3><a href="./custom.html">回到客製化</a></h3>
-            <h2>接珍珠小遊戲</h2>
-        </div>
-        <div id="animation_container" style="
+    <body onload="init();">
+        <header id="header">
+            <my-header></my-header>
+        </header>
+        <main>
+            <div class="title">
+                <h3><a href="./custom.html">回到客製化</a></h3>
+                <h2>接珍珠小遊戲</h2>
+            </div>
+            <div
+                id="animation_container"
+                style="
                     background-color: rgba(255, 255, 255, 1);
                     width: 960px;
                     height: 600px;
-                ">
-            <div class="playBtn">START</div>
-            <h2 id="score">0</h2>
-            <div class="hp">
-                <h2>Hp</h2>
-                <div class="hpbox">
-                    <div class="hpbar"></div>
+                "
+            >
+                <div class="playBtn">START</div>
+                <h2 id="score">0</h2>
+                <div class="hp">
+                    <h2>Hp</h2>
+                    <div class="hpbox">
+                        <div class="hpbar"></div>
+                    </div>
                 </div>
-            </div>
-            <div class="gameover">replay</div>
-            <canvas id="canvas" width="960" height="600" style="
+                <canvas
+                    id="canvas"
+                    width="960"
+                    height="600"
+                    style="
                         position: absolute;
                         display: block;
                         background-color: rgba(255, 255, 255, 1);
-                    "></canvas>
-            <div id="dom_overlay_container" style="
+                    "
+                ></canvas>
+                <div
+                    id="dom_overlay_container"
+                    style="
                         pointer-events: none;
                         overflow: hidden;
                         width: 960px;
@@ -57,34 +67,38 @@
                         left: 0px;
                         top: 0px;
                         display: block;
-                    "></div>
-        </div>
-    </main>
-    <div class="lightbox">
-        <div class="lightbox-wrap">
-            <div class="game-close"><img src="./Images/cancel.svg" alt="cancel" /></div>
-            <h2>遊戲結束</h2>
-            <p>總得分:69/100</p>
-            <p>獲得:珍珠兌換券一張</p>
-            <div class="buttons">
-                <button type="" id="again">在玩一次</button>
-                <button type="">
-                    <a href="#">查看優惠券</a>
-                </button>
+                    "
+                ></div>
+            </div>
+        </main>
+        <div class="lightbox">
+            <div class="lightbox-wrap">
+                <div class="game-close">
+                    <img src="./Images/cancel.svg" alt="cancel" />
+                </div>
+                <h2>遊戲結束</h2>
+                <p>總得分:<small id="totalscore">0</small>/300</p>
+                <p id="getcoupon">獲得:珍珠兌換券一張
+                    <p id="couponnum"></p>
+                </p>
+                <div class="buttons">
+                    <button id="again">在玩一次</button>
+                    <button>
+                        <a href="./member.html">查看優惠券</a>
+                    </button>
+                </div>
             </div>
         </div>
-    </div>
-    <footer id="footer">
-        <my-footer></my-footer>
-    </footer>
-    <script src="./layout/header.vue"></script>
-    <script src="./layout/footer.vue"></script>
-    <script>
-        let closeBtn = document.querySelector(".game-close");
-        closeBtn.addEventListener("click", function () {
-            document.querySelector(".lightbox").style.display = "none";
-        });
-    </script>
-</body>
-
+        <footer id="footer">
+            <my-footer></my-footer>
+        </footer>
+        <script src="./layout/header.vue"></script>
+        <script src="./layout/footer.vue"></script>
+        <script>
+            let closeBtn = document.querySelector(".game-close");
+            closeBtn.addEventListener("click", function () {
+                document.querySelector(".lightbox").style.display = "none";
+            });
+        </script>
+    </body>
 </html>

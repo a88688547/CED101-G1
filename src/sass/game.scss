@@ -16,12 +16,13 @@ body {
     width: 100%;
     height: 100%;
     position: fixed;
-    top: 0;
-    display: flex;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    // display: flex;
     justify-content: center;
     align-items: center;
-    display: none;
-    // z-index: 10;
 
     .lightbox-wrap {
         position: relative;
@@ -30,7 +31,6 @@ body {
         box-shadow: 3px 3px 5px 2px rgba($color: #000000, $alpha: 0.2);
         padding: 15px;
         border-radius: 15px;
-
         .game-close {
             position: absolute;
             top: 15px;
@@ -55,7 +55,9 @@ body {
             padding: 0 100px;
             line-height: 1.6;
         }
-
+        #getcoupon {
+            display: none;
+        }
         .buttons {
             text-align: center;
             margin: 45px 0;
@@ -149,8 +151,8 @@ main {
     position: absolute;
     top: 10px;
     left: 15px;
-    font-size: 2rem;
-    color: #fff;
+    font-size: 3rem;
+    color: rgb(161, 25, 25);
     z-index: 1;
 }
 
@@ -162,9 +164,13 @@ main {
     width: 150px;
 }
 
-.hp>h2 {
-    color: #fff;
+.hp > h2 {
+    margin-top: 8px;
+    margin-left: 15px;
+    color: rgb(119, 31, 31);
     float: left;
+    font-size: 2rem;
+    font-weight: bold;
 }
 
 .hpbox {
@@ -191,17 +197,4 @@ main {
     transform: translate(-50%, -50%);
     cursor: pointer;
     font-weight: bold;
-}
-
-.gameover {
-    position: absolute;
-    color: rgb(146, 15, 15);
-    font-size: 4rem;
-    z-index: 2;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    cursor: pointer;
-    font-weight: bold;
-    display: none;
 }

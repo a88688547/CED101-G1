@@ -1,11 +1,5 @@
-
 //遊戲
-var canvas,
-    stage,
-    exportRoot,
-    anim_container,
-    dom_overlay_container,
-    fnStartAnimation;
+var canvas, stage, exportRoot, anim_container, dom_overlay_container, fnStartAnimation;
 function init() {
     canvas = document.getElementById("canvas");
     anim_container = document.getElementById("animation_container");
@@ -48,66 +42,66 @@ function handleComplete(evt, comp) {
     let eatPearl = 0;
     let isKeydown = false;
     let isStart = false;
-    let atk = 10;
-
+    let hp = 100;
     const characters = [
         {
             name: "peaCup",
-            hp: 100,
+            atk: 10,
             speed: 10,
         },
         {
             name: "peaCap",
-            hp: 90,
+            atk: 20,
             speed: 11,
         },
         {
             name: "peaMug",
-            hp: 110,
+            atk: 15,
             speed: 8,
         },
         {
             name: "redCup",
-            hp: 70,
+            atk: 25,
             speed: 13,
         },
         {
             name: "redCap",
-            hp: 80,
+            atk: 25,
             speed: 12,
         },
         {
             name: "redMug",
-            hp: 75,
+            atk: 10,
             speed: 11,
         },
         {
             name: "tanCup",
-            hp: 150,
+            atk: 5,
             speed: 5,
         },
         {
             name: "tanCap",
-            hp: 130,
+            atk: 8,
             speed: 6,
         },
         {
             name: "tanMug",
-            hp: 10,
+            atk: 25,
             speed: 15,
         },
     ];
 
     let character = sessionStorage.getItem("char");
     let activeCharacter = characters.find((item) => item.name === character);
-
+    let couponnum = document.querySelector("#couponnum");
+    let num = 8;
     let char = new lib[activeCharacter.name]();
     // let knightGO = new lib.peaCap();
     char.x = 480;
     char.y = 460;
     exportRoot.addChild(char);
     // document.querySelector(".hpbar").style.width = `${activeCharacter.hp}%`;
-    document.querySelector(".hpbar").style.width = `${activeCharacter.hp}%`;
+    document.querySelector(".hpbar").style.width = `${hp}%`;
     let timePearl = setInterval(() => {
         if (!isStart) return;
         let pearl = new lib.pearlGO();
@@ -116,15 +110,13 @@ function handleComplete(evt, comp) {
         exportRoot.addChildAt(pearl, 1);
 
         createjs.Tween.get(pearl)
-            .to({ y: 520 }, 2500)
+            .to({ y: 520 }, 2000)
             .call(function () {
                 // console.log(activeCharacter.hp);
                 // console.log("沒接到珍珠");
                 exportRoot.removeChild(pearl);
-                activeCharacter.hp -= atk;
-                document.querySelector(
-                    ".hpbar"
-                ).style.width = `${activeCharacter.hp}%`;
+                hp -= activeCharacter.atk;
+                document.querySelector(".hpbar").style.width = `${hp}%`;
             })
             .addEventListener("change", () => {
                 let pearlHit = ndgmr.checkRectCollision(pearl, char);
@@ -132,8 +124,16 @@ function handleComplete(evt, comp) {
                     createjs.Tween.removeTweens(pearl);
                     exportRoot.removeChild(pearl);
                     eatPearl++;
-                    document.querySelector("#score").innerHTML = eatPearl;
+                    document.querySelector("#score").innerHTML = eatPearl * 10;
+                    document.querySelector(
+                        "#totalscore"
+                    ).innerText = document.querySelector("#score").innerHTML;
                 }
+                if (document.querySelector("#totalscore").innerText >= 300) {
+                    document.querySelector("#getcoupon").style.display = "block";
+                }
+
+                // console.log(document.querySelector("#totalscore").innerText);
             });
     }, 1000);
 
@@ -144,12 +144,11 @@ function handleComplete(evt, comp) {
         window.addEventListener("keyup", keyupHandler);
         isStart = true;
     });
+
     // 遊戲重製
-    document
-        .querySelector(".gameover")
-        .addEventListener("click", function () {
-            window.location.reload();
-        });
+    document.querySelector("#again").addEventListener("click", function () {
+        window.location.reload();
+    });
 
     // 左右操作
     function keydownHandler(e) {
@@ -167,9 +166,9 @@ function handleComplete(evt, comp) {
 
     createjs.Ticker.addEventListener("tick", tickHandler);
     function tickHandler() {
-        if (activeCharacter.hp <= 0) {
+        if (hp <= 0) {
             clearInterval(timePearl);
-            document.querySelector(".gameover").style.display = "block";
+            document.querySelector(".lightbox").style.display = "flex";
             window.removeEventListener("keydown", keydownHandler);
             window.removeEventListener("keyup", keyupHandler);
             createjs.Ticker.removeEventListener("tick", tickHandler);
@@ -213,11 +212,9 @@ function handleComplete(evt, comp) {
                 cameraInstance.pinToObject !== undefined
             ) {
                 cameraInstance.x =
-                    cameraInstance.pinToObject.x +
-                    cameraInstance.pinToObject.pinOffsetX;
+                    cameraInstance.pinToObject.x + cameraInstance.pinToObject.pinOffsetX;
                 cameraInstance.y =
-                    cameraInstance.pinToObject.y +
-                    cameraInstance.pinToObject.pinOffsetY;
+                    cameraInstance.pinToObject.y + cameraInstance.pinToObject.pinOffsetY;
                 if (
                     cameraInstance.pinToObject.parent !== undefined &&
                     cameraInstance.pinToObject.parent.depth !== undefined
@@ -250,9 +247,7 @@ function handleComplete(evt, comp) {
                 }
                 var matToApply = new createjs.Matrix2D();
                 var cameraMat = new createjs.Matrix2D();
-                var totalDepth = layerObj.layerDepth
-                    ? layerObj.layerDepth
-                    : 0;
+                var totalDepth = layerObj.layerDepth ? layerObj.layerDepth : 0;
                 var cameraDepth = 0;
                 if (cameraInstance && !layerObj.isAttachedToCamera) {
                     var mat = cameraInstance.getMatrix();
@@ -281,8 +276,7 @@ function handleComplete(evt, comp) {
                         0,
                         0
                     );
-                    if (cameraInstance.depth)
-                        cameraDepth = cameraInstance.depth;
+                    if (cameraInstance.depth) cameraDepth = cameraInstance.depth;
                 }
                 if (layerObj.depth) {
                     totalDepth = layerObj.depth;

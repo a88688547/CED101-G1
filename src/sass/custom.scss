@@ -11,8 +11,22 @@ $mq1199: 1199px;
 body {
     background: $insideBackgroundColor;
 }
-
-
+#replace {
+    display: none;
+    text-align: center;
+    width: 100%;
+    p {
+        width: 300px;
+        margin: auto;
+        padding: 15px;
+        font-size: large;
+        word-wrap: break-word;
+        color: $textColor;
+        line-height: 1.6;
+        font-weight: bold;
+        font-size: 2rem;
+    }
+}
 .rule {
     position: fixed;
     top: 0;
@@ -22,25 +36,16 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-
+    z-index: 5;
     .rule-wrap {
         position: relative;
         width: 600px;
         box-shadow: 3px 3px 5px 2px rgba($color: #000000, $alpha: 0.2);
         padding: 30px;
-        background-color: #013B4F;
+        background-color: #013b4f;
         border-radius: 15px;
         display: flex;
-        flex-direction:column;
-       
-
-        img {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            width: 30px;
-            cursor: pointer;
-        }
+        flex-direction: column;
 
         h2 {
             font-weight: bold;
@@ -48,23 +53,31 @@ body {
             color: $btnColor;
             text-align: center;
             margin: 15px 0;
-            padding-bottom:20px;
-            border-bottom: 1px solid #B3925B;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #b3925b;
         }
 
         p {
             font-size: $fontsize_H4;
             line-height: 1.6;
-            color:white;
+            color: white;
         }
-        button{
+        button {
             font-size: $fontsize_H4;
             border-radius: 20px;
-            background-color:$btnColor;
-            margin:3% auto 0 auto;
-          
-            p{
-                padding:5px; 
+            background-color: $btnColor;
+            margin: 15px auto 0;
+            transition: 0.2s ease-in-out;
+            border: none;
+            cursor: pointer;
+            p {
+                padding: 5px;
+            }
+            &:focus {
+                outline: none;
+            }
+            &:hover {
+                background-color: #be8316;
             }
         }
     }
@@ -80,22 +93,20 @@ section {
     form {
         width: 1200px;
         padding: 15px;
-        margin:0 auto;
+        margin: 0 auto;
     }
 }
 
 .select-container {
     display: flex;
     margin-bottom: 50px;
-
-
     .left {
         width: 50%;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: flex-start;
-        margin-left:50px;
+        margin-left: 50px;
 
         h2 {
             font-size: $fontsize_H2;
@@ -111,8 +122,8 @@ section {
             margin-bottom: 100px;
 
             img {
-                width: 200px;
-                transform: translate(45%, 0%);
+                width: 140px;
+                transform: translate(40%, 0%);
             }
         }
 
@@ -201,8 +212,8 @@ section {
                     width: 33%;
                     height: 150px;
                     background-color: $insideBackgroundColor;
-                    margin: 5px ;
-                    padding:10px;
+                    margin: 5px;
+                    padding: 10px;
                     border-radius: 5px;
                     cursor: pointer;
                     text-align: center;
@@ -213,8 +224,6 @@ section {
 
                     img {
                         height: 100%;
-                      
-                   
                     }
                 }
             }
@@ -246,5 +255,19 @@ section {
         &:focus {
             outline: none;
         }
+    }
+}
+@media screen and (max-width: 991px) {
+    #section {
+        display: none;
+    }
+    .select-container {
+        display: none;
+    }
+    .rule {
+        display: none;
+    }
+    #replace {
+        display: block;
     }
 }

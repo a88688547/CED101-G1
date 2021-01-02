@@ -18,9 +18,18 @@
             <main>
                 <manager :show="show"></manager>
                 <member :show="show"></member>
-                <drink :show="show" @change="changeTag" @changedrinkno="changedrinkno"></drink>
+                <drink :show="show" @change="changeTag" @changedrinkno="changedrinkno" :drinkno="drinkno"></drink>
                 <drink_edit :show="show" :drinkno="drinkno" @change="changeTag"></drink_edit>
                 <drink_add :show="show" @change="changeTag"></drink_add>
+                <drink_type
+                    :show="show"
+                    :type_no="type_no"
+                    @change="changeTag"
+                    @changetypeno="changetypeno"
+                ></drink_type>
+                <type_edit :show="show" :type_no="type_no" :type_title="type_title" @change="changeTag"></type_edit>
+                <type_add :show="show" @change="changeTag"></type_add>
+                <group_ord_list :show="show" @change="changeTag" @changegroupordno="group_ord_no"></group_ord_list>
             </main>
         </div>
         <footer></footer>

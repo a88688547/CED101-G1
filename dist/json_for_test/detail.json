@@ -1,0 +1,26 @@
+[
+{"type":"header","version":"5.0.4","comment":"Export to JSON plugin for PHPMyAdmin"},
+{"type":"database","name":"drink_test_2"},
+{"type":"table","name":"detail","database":"drink_test_2","data":
+[
+{"detail_no":"1","type_no":"1","detail_title":"正常"},
+{"detail_no":"2","type_no":"1","detail_title":"少糖"},
+{"detail_no":"3","type_no":"1","detail_title":"半糖"},
+{"detail_no":"4","type_no":"1","detail_title":"微糖"},
+{"detail_no":"5","type_no":"1","detail_title":"無糖"},
+{"detail_no":"6","type_no":"2","detail_title":"正常"},
+{"detail_no":"7","type_no":"2","detail_title":"少冰"},
+{"detail_no":"8","type_no":"2","detail_title":"微冰"},
+{"detail_no":"9","type_no":"2","detail_title":"去冰"},
+{"detail_no":"10","type_no":"2","detail_title":"熱飲"},
+{"detail_no":"11","type_no":"3","detail_title":"珍珠"},
+{"detail_no":"12","type_no":"3","detail_title":"紅豆"},
+{"detail_no":"13","type_no":"3","detail_title":"愛玉"},
+{"detail_no":"14","type_no":"3","detail_title":"椰果"},
+{"detail_no":"15","type_no":"4","detail_title":"鼻屎"},
+{"detail_no":"16","type_no":"4","detail_title":"口水"},
+{"detail_no":"17","type_no":"4","detail_title":"頭髮"},
+{"detail_no":"18","type_no":"4","detail_title":"指甲"}
+]
+}
+]

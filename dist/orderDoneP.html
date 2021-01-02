@@ -1,14 +1,18 @@
 <!DOCTYPE html>
-<html lang="zh-tw">
+<html>
 
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>自己訂-訂單完成</title>
-    <link rel="stylesheet" href="./css/orderDoneP.css">
-    <link rel="stylesheet" href="./css/style.css">
+    <script src="./vendors/Vue/vue.js"></script>
+    <script src="./vendors/jQuery/js/jquery-3.5.1.js"></script>
+    <script src="./js/header_footer.js"></script>
+    <script src="./js/self.js"></script>
 
-    <script src="vendors/Vue/vue.min.js"></script>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/orderDoneP.css" />
+    <link rel="stylesheet" href="./css/list_data.css">
 </head>
 
 <body>
@@ -16,101 +20,123 @@
         <my-header></my-header>
     </header>
     <div class="main">
-        <!-- 圓形進度條 -->
-        <div class="ProgressBar_P">
-            <div>
-                <div class="StepCircle Circle1"></div>
-                <h3 id="step1">1.建立訂單</h3>
-            </div>
-            <div>
-                <div class="StepCircle Circle2"></div>
-                <h3 id="step2">2.訂單頁面</h3>
-            </div>
-            <div>
-                <div class="StepCircle Circle3"></div>
-                <h3 id="step3">3.訂單完成</h3>
-            </div>
+        <!-- ==============進度條================= -->
+        <div class="step_box">
+            <ul class="step_ball">
+                <li>
+                    <img src="./Images/join_list/step_1_icon.svg" alt="">
+                    <h5>1.建立揪團</h5>
+                </li>
+                <li>
+                    <img src="./Images/join_list/step_3_icon.svg" alt="">
+                    <h5>2.訂單頁面</h5>
+                </li>
+                <li>
+                    <img src="./Images/join_list/step_4_icon.svg" alt="">
+                    <h5>3.訂單完成</h5>
+                </li>
+            </ul>
         </div>
         <!-- 訂單狀態 -->
-        <div class="orderInfo">
-            <div class="orderNoP">
-                <h3>訂單編號<span class="orderNo">123456789</span></h3>
+        <div class="status">
+            <div>
+                <div>訂單編號</div>
+                <div>XXXXXXX</div>
             </div>
-            <div class="orderStatus">
-                <h3>訂單狀態<span class="prepare">準備中</span></h3>
+            <div>
+                <div>訂單狀態</div>
+                <div>
+                    <span class="ready">準備中</span>
+                </div>
+
+            </div>
+        </div>
+        <!-- 個人訂購資訊 -->
+        <div class="userinfo">
+            <div class="userpic"><img src="Images/user_big.svg"></div>
+            <div class="user">
+                <div class="username">董董</div>
+                <div class="userphone">
+                    <div class="userphonetop">
+                        <img src="Images/tell_big.svg">
+                        <div>行動電話</div>
+                    </div>
+                    <div class="userphonebottom">
+                        0912345678
+                    </div>
+                </div>
+                <div class="useradd">
+                    <div class="useraddtop">
+                        <img src="Images/address.svg">
+                        <div>取貨地點</div>
+                    </div>
+                    <div class="useraddbottom">
+                        桃園市春德路191巷26號
+                    </div>
+                </div>
+                <div class="usermsg">
+                    <div class="usermsgtop">
+                        <img src="Images/list.svg">
+                        <div>留言給店家</div>
+                    </div>
+                    <div class="usermsgbottom">
+                        麻煩提供吸管和袋子，謝謝
+                    </div>
+                </div>
             </div>
         </div>
         <!-- 訂購資訊 -->
-
-        <div class="personInfoDetail">
-            <div class="memImage"><img src="Images/user_big.svg"></div>
-            <div class="orderInfoP">
-                <div>
-                    <h3 id="memName">董董</h3>
-                </div>
-                <div class="phone">
-                    <div>
-                        <h3>行動電話<h3>
+        <div id="order_list">
+            <div class="group_order_done_person">
+                <div class="group_order_done_person_downbox">
+                    <!-- 購買的 飲料 -->
+                    <div class="group_order_done_person_drink">
+                        <div class="group_order_done_person_drink_title">珍珠奶茶-大杯</div>
+                        <div class="group_order_done_person_drink_note">少冰/微糖/加珍珠/$65/1杯</div>
                     </div>
-                    <div id="memPhone">0912345678</div>
-                </div>
-                <div class="orderadress">
-                    <div>
-                        <h3>取貨地點</h3>
+                    <div class="group_order_done_person_drink">
+                        <div class="group_order_done_person_drink_title">紅茶-大杯</div>
+                        <div class="group_order_done_person_drink_note">去冰/無糖/加QQ/$50/1杯</div>
                     </div>
-                    <div id="adress">桃園市春德路191巷26號</div>
                 </div>
-                <div class="message">
-                    <div>
-                        <h3>留言給店家</h3>
+            </div>
+            <!-- 結帳金額 -->
+            <div class="finaltotal">
+                <div class="group_order_done_total_box">
+                    <div class="group_order_done_total">
+                        <div>原價</div>
+                        <div>$115</div>
                     </div>
-                    <div id="msg">麻煩提供吸管和袋子，謝謝</div>
+                    <div class="group_order_done_dis">
+                        <div>杯數折扣</div>
+                        <div>x 0</div>
+                    </div>
+                    <div class="group_order_done_total">
+                        <div>杯數折扣後</div>
+                        <div>$115</div>
+                    </div>
+                    <div class="group_order_done_dis">
+                        <div>優惠卷折扣</div>
+                        <div>x 0.8</div>
+                    </div>
+                    <div class="group_order_done_total">
+                        <div>優惠卷折扣後</div>
+                        <div>$92</div>
+                    </div>
+                    <div class="group_order_done_finaltotal">
+                        <div>總金額</div>
+                        <div>$92</div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <!-- 訂單明細 -->
-        <!-- 每個人  -->
-        <div class="group_order_done_person">
-            <div class="group_order_done_person_upbox">
-                <div class="group_order_done_person_total">
-                    <div class="group_order_done_person_total_cup">2杯</div>
-                    <div class="group_order_done_person_total_price">$115</div>
-                </div>
-            </div>
-            <div class="group_order_done_person_downbox">
-                <!-- 購買的 飲料 -->
-                <div class="group_order_done_person_drink">
-                    <div class="group_order_done_person_drink_title">珍珠奶茶-大杯</div>
-                    <div class="group_order_done_person_drink_note">少冰/微糖/加珍珠/$65/1杯</div>
-                </div>
-                <div class="group_order_done_person_drink">
-                    <div class="group_order_done_person_drink_title">紅茶-大杯</div>
-                    <div class="group_order_done_person_drink_note">去冰/無糖/加QQ/$50/1杯</div>
-                </div>
-            </div>
-        </div>
-        <div class="ListTotal">
-            <div class="payTotal">
-                <h2>總金額</h2>
-            </div>
-            <div id="line">
-                <hr>
-            </div>
-            <div>
-                <h2>$.<span id="ordPrice">115</span></h2>
-            </div>
-        </div>
-        <div>
-            <input type="button" value="收到商品" id="orderbtn">
         </div>
     </div>
+
     <footer id="footer">
         <my-footer></my-footer>
     </footer>
-
-
-    <script src="layout/footer.vue"></script>
-    <script src="layout/header.vue"></script>
+    <script src="./layout/footer.vue"></script>
+    <script src="./layout/header.vue"></script>
 </body>
 
 </html>

@@ -195,8 +195,8 @@
 //step ball
 
 @mixin step_ball_size {
-  width: 90px;
-  height: 90px;
+  width: 95px;
+  height: 95px;
 }
 
 @mixin step_ball_size_medium {
@@ -205,11 +205,15 @@
 }
 
 
-@mixin step_ball_size_small {
-  width: 50px;
-  height: 50px;
+@mixin step_ball_size_small{
+  width: 60px;
+  height: 60px;
 }
 
+// @mixin step_ball_size_minimum{
+//   width: 40px;
+//   height: 40px;
+// }
 //input 樣式
 
 @mixin input_style {

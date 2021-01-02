@@ -617,13 +617,13 @@ window.addEventListener('load', function () {
                 group_ords: '',
             }
         },
-        props: ['show', 'group_ord_no'],
+        props: ['show'],
 
         template: `<section v-if=" show === 'group_ord_list' ">
                     <h1 class="title">揪團訂單管理</h1>
                     <div class="group_ord_type_box">
-                        <div @click="group_ord_bs = 0">未處理</div>
-                        <div @click="group_ord_bs = 1">已完成</div>
+                        <div @click="group_ord_bs = 0,changecolor(0)">未處理</div>
+                        <div @click="group_ord_bs = 1,changecolor(1)">已完成</div>
                     </div>
                     <div class="group_ord_list_box">
                         <div class="group_ord_title_row">
@@ -642,7 +642,7 @@ window.addEventListener('load', function () {
                             <div>{{value.now_cup}}</div>
                             <div>{{value.note}}</div>
                             <div>{{checkstate(value.group_ord_bs)}}</div>
-                            <div>詳情</div>
+                            <div @click="changegroupordno(value.group_ord_no),changeTag()">詳情</div>
                         </div>
                     </div>
 
@@ -652,9 +652,10 @@ window.addEventListener('load', function () {
             changeTag() {
                 //將drink_edit 傳送至上層 (new Vue)
                 this.$emit('change', 'group_ord_info')
+                console.log('00')
             },
             //點擊 傳送 訂單編號
-            changedrinkno(group_ord_no) {
+            changegroupordno(group_ord_no) {
                 this.$emit('changegroupordno', group_ord_no)
             },
             get_mar: async function (group_ord_bs) {
@@ -690,6 +691,17 @@ window.addEventListener('load', function () {
                     return '未處理'
                 }
             },
+            //類型 點擊後 切換顏色
+            changecolor: function (num) {
+                let test = document.querySelectorAll('.group_ord_type_box>div').forEach(function (e) {
+                    e.style.color = '#B3925B'
+                    e.style.backgroundColor = '#fff'
+                })
+
+                let item = document.querySelectorAll('.group_ord_type_box>div')[num]
+                item.style.color = '#fff'
+                item.style.backgroundColor = '#B3925B'
+            },
         },
         // template 渲染前 會先去執行以下函式
         created() {
@@ -699,6 +711,206 @@ window.addEventListener('load', function () {
             // 當選取的不同類型時，重新撈取一次 該類型的資料
             group_ord_bs: function (group_ord_bs) {
                 this.get_mar(group_ord_bs)
+            },
+        },
+    })
+    //-----------------------------------------------------
+
+    //---  編輯商品 -- 組件
+    Vue.component('group_ord_info', {
+        data() {
+            return {
+                // 訂單資料
+                group_ord_info: '',
+                // 訂單明細
+                item_info: '',
+            }
+        },
+        props: ['show', 'group_ord_no'],
+
+        template: `
+                  <section v-if=" show === 'group_ord_info' ">
+                    <h1 class="title">訂單詳情 ( No: {{group_ord_info[0].group_ord_no}} )</h1>
+                    <div class="return_btn_box"><div class="return_btn" @click="changeTag">返回訂單列表</div></div>
+                    <div class="group_ord_info_box">
+                        <div class="group_ord_info_first_box">
+                            <div class="group_ord_info_row">
+                                <div>訂單編號</div>
+                                <div>{{group_ord_info[0].group_ord_no}}</div>
+                            </div>
+                            <div class="group_ord_info_row">
+                                <div>期望送達時間</div>
+                                <div>{{group_ord_info[0].arrive_time}}</div>
+                            </div>
+                        </div>
+                        <div class="group_ord_info_sec_box">
+                            <div class="group_ord_info_row">
+                                <div>建立訂單日期</div>
+                                <div>{{group_ord_info[0].group_datetime}}</div>
+                            </div>
+                            <div class="group_ord_info_row">
+                                <div>連絡電話</div>
+                                <div></div>
+                            </div>
+                             <div class="group_ord_info_row">
+                                <div>總共杯數</div>
+                                <div>{{group_ord_info[0].now_cup}}</div>
+                            </div>
+                             <div class="group_ord_info_row">
+                                <div>杯數折扣</div>
+                                <div>{{check_discount(group_ord_info[0].now_cup)}}</div>
+                            </div>
+                             <div class="group_ord_info_row">
+                                <div>優惠券</div>
+                                <div></div>
+                            </div>
+                            <div class="group_ord_info_row">
+                                <div>訂單總金額</div>
+                                <div>{{group_ord_info[0].group_ord_price_2}}</div>
+                            </div>
+                            <div class="group_ord_info_row">
+                                <div>訂單狀態</div>
+                                <div>{{chech_group_ord_bs(group_ord_info[0].group_ord_bs)}}</div>
+                            </div>
+
+                            <div class=" long_info">
+                                <div>備註</div>
+                                <div>{{group_ord_info[0].note}}</div>
+                            </div>
+                            <div class=" long_info">
+                                <div>取貨地點</div>
+                                <div>{{group_ord_info[0].group_adress}}</div>
+                            </div>
+                        </div>
+                        <div class="group_ord_info_thr_box">
+                            <div class="group_ord_item" v-for="(value,key) in item_info">
+                                <div class="group_ord_item_left">
+                                    <div>{{value.drink_title_ch}}-{{checkcup(value.cup_no)}}</div>
+                                    <div>{{value.set_info}}</div>
+                                </div>
+                                <div class="group_ord_item_right">
+                                    <div>{{value.ord_qua}}杯</div>
+                                    <div>$ {{value.total_price}}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="group_ord_info_four_box">
+                            <div class="group_ord_info_four_row">
+                                <div>原價</div>
+                                <div>{{group_ord_info[0].group_ord_price}}</div>
+                            </div>
+                            <div class="group_ord_info_four_row">
+                                <div>杯數折扣</div>
+                                <div>x {{group_ord_info[0].dis_count}}</div>
+                            </div>
+                            <div class="group_ord_info_four_row">
+                                <div>折扣後</div>
+                                <div>{{group_ord_info[0].group_ord_price_1}}</div>
+                            </div>
+                            <div class="group_ord_info_four_row">
+                                <div>優惠卷折扣</div>
+                                <div>x {{group_ord_info[0].cou_discount}}</div>
+                            </div>
+                            <div class="group_ord_info_four_row group_ord_info_four_row_last">
+                                <div>總計</div>
+                                <div class="group_ord_info_four_row_last_count">
+                                    <div>共{{group_ord_info[0].now_cup}}杯</div>
+                                    <div>$ {{group_ord_info[0].group_ord_price_2}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                    </div>
+
+                  </section>`,
+        methods: {
+            // 切換頁面
+            changeTag() {
+                //傳送至上層 (new Vue)
+                this.$emit('change', 'group_ord_list')
+            },
+
+            //呼叫php程式，
+            get_mar: async function (group_ord_no) {
+                // 取回 單一訂單 相關資料，並用json()轉回一般陣列
+                const res = await fetch('./php/bs_getone_group_ord_info.php', {
+                    method: 'POST',
+                    mode: 'same-origin',
+                    credentials: 'same-origin',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        group_ord_no: group_ord_no,
+                    }),
+                }).then(function (data) {
+                    return data.json()
+                })
+                // 取回 單一 訂單明細 相關資料，並用json()轉回一般陣列
+                const info = await fetch('./php/bs_gteone_ord_item.php', {
+                    method: 'POST',
+                    mode: 'same-origin',
+                    credentials: 'same-origin',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        group_ord_no: group_ord_no,
+                    }),
+                }).then(function (data) {
+                    return data.json()
+                })
+
+                // 取回res值後，呼叫另一隻函式
+                this.get_drink(res, info)
+            },
+            // 將值寫入data中
+            get_drink: function (data, info) {
+                this.group_ord_info = data
+                this.item_info = info
+            },
+            //判斷實際杯數 顯示折扣數
+            check_discount: function (data) {
+                if (data < 20) {
+                    console.log('QQQ')
+                    return '無優惠'
+                } else if (20 <= data && data < 30) {
+                    return '九折優惠'
+                } else if (30 <= data && data < 40) {
+                    return '八折優惠'
+                } else if (40 <= data && data < 50) {
+                    return '七折優惠'
+                } else if (50 <= data) {
+                    return '六折優惠'
+                }
+            },
+            //判斷 訂單狀態
+            chech_group_ord_bs: function (data) {
+                if (data == 0) {
+                    return '未處理'
+                } else {
+                    return '已完成'
+                }
+            },
+            //判斷 飲料是大杯還小杯
+            checkcup: function (data) {
+                if (data == 0) {
+                    return '中杯'
+                } else if (data == 1) {
+                    return '大杯'
+                }
+            },
+        },
+        created() {
+            // 渲染前 先去撈取資料
+            this.get_mar(this.group_ord_no)
+            // console.log('send:', this.drinkno)
+        },
+        // 監聽數值變化
+        watch: {
+            // 當選取的飲料不同時，重新撈取一次 單一飲品的資料
+            group_ord_no: function (group_ord_no) {
+                this.get_mar(group_ord_no)
             },
         },
     })

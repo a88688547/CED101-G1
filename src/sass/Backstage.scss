@@ -477,7 +477,7 @@ aside{
     justify-content: center;
 }
 
-// 揪團訂單 詳情頁面
+// 揪團訂單 列表 
 
 .group_ord_type_box{
     font-size: 24px;
@@ -521,6 +521,7 @@ aside{
 }
 
 .group_ord_title_row{
+    font-size: 18px;
     font-weight: bold;
     padding: 5px 5px ;
     width: 95%;
@@ -590,6 +591,158 @@ aside{
         &:hover{
             opacity: 1;
         }
+    }
+}
+
+// 揪團訂單 詳情頁面
+
+.group_ord_info_box{
+    margin: 10px 0;
+    border-top: 1px solid black;
+}
+
+
+.group_ord_info_first_box{
+    width: 90%;
+    margin: 30px auto 10px auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    letter-spacing: 2px;
+    padding: 10px 0;
+    div:nth-child(1){
+        font-size: 24px;
+        color: #013B4F;
+        font-weight: bold;
+        width: auto !important;
+    }
+    div:nth-child(2){
+        font-size: 21px;
+        color: rgb(88, 88, 88);
+        width: auto !important;
+    }
+    border-bottom: 2px solid rgb(172, 172, 172);
+}
+
+.group_ord_info_sec_box{
+    font-size: 18px;
+    padding: 10px 0;
+    width: 90%;
+    margin: 10px auto;
+    display: flex;
+    flex-wrap: wrap;
+    >div{
+        width: 25%;
+        margin: 10px 0;
+    }
+    border-bottom: 2px solid rgb(172, 172, 172);
+
+}
+
+.group_ord_info_row{
+    display: flex;
+    align-items: center;
+    // justify-content: center;
+    div:nth-child(1){
+        margin-right: 20px;
+        width: 40%;
+        color: #013B4F;
+        font-weight: bold;
+    }
+    div:nth-child(2){
+        color: rgb(88, 88, 88);
+    }
+}
+
+.long_info{
+    display: flex;
+    align-items: center;
+    width: 50% !important;
+    div:nth-child(1){
+        margin-right: 20px;
+        color: #013B4F;
+        font-weight: bold;
+    }
+    div:nth-child(2){
+        color: rgb(88, 88, 88);
+    }
+}
+
+.group_ord_info_thr_box{
+    width: 90%;
+    margin: 10px auto;
+    border-bottom: 2px solid rgb(172, 172, 172);
+    padding: 10px 0;
+}
+.group_ord_item{
+    background-color: rgb(209, 209, 209);
+    padding: 10px 10px;
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.group_ord_item_left{
+    font-size: 21px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    >div:nth-child(1){
+        margin: 10px 0;
+    }
+    >div:nth-child(2){
+        color: rgb(88, 88, 88);
+    }
+}
+.group_ord_item_right{
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    letter-spacing: 2px;
+    font-weight: bold;
+    >div:nth-child(1){
+        margin-right: 30px;
+    }
+    >div{
+        width: calc(calc(100% - 30px)/2);
+    }
+}
+
+.group_ord_info_four_box{
+    width: 90%;
+    margin: 10px auto;
+    page-break-after: 10px 0;
+    // font-size: 18px;
+    letter-spacing: 2px;
+    >div:nth-child(2){
+       border-bottom: 1px solid black;
+    }
+}
+
+.group_ord_info_four_row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.group_ord_info_four_row_last{
+    border-top: 2px solid #013B4F;
+    color: #013B4F;
+    font-weight: bold ;
+    font-size: 24px ;
+    
+}
+.group_ord_info_four_row_last_count{
+    display: flex;
+    align-items: center;
+    width: 20%;
+    >div:nth-child(1){
+        margin-right: 30px;
+    }
+    >div{
+        width: calc(calc(100% - 30px)/2);
     }
 }
 

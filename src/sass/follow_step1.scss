@@ -7,90 +7,150 @@ body {
 }
 
 
-$ball_rwd: 0.66;
+// ====進度bar=====
 
-// 進度條
+// 尺寸、對齊方式
 .step_box {
-    max-width: 430px;
-    // border: 1px solid red;
-    margin: $ball_margin auto;
-
-    @media screen and (max-width:576px) {
-        max-width: 240px;
-        margin: $ball_margin_rwd auto;
-    }
+    width: 30%;
+    height: 135px;
+    margin: 0 auto;
+    overflow: hidden;
+    margin-bottom: 30px;
 
     .step_ball {
         display: flex;
         justify-content: space-between;
         position: relative;
-
-        //進度條的球
-        li {
-            width: 120px;
-            height: 120px;
-            // border: 1px solid red;
-            border-radius: 50%;
-            background-color: #D3C8B5;
-            margin-bottom: 10px;
-            position: relative;
-
-            @media screen and (max-width:576px) {
-                width: 120px * $ball_rwd;
-                height: 120px * $ball_rwd;
-            }
-
-            //進度條的線
-            &::before {
-                content: "";
-                position: absolute;
-                width: 300px;
-                height: 14px;
-                background-color: #D3C8B5;
-                left: 50px;
-                top: 50%;
-                transform: translateY(-50%);
-                z-index: -1;
-
-                @media screen and (max-width:576px) {
-                    width: 300px * $ball_rwd;
-                    height: 14px * $ball_rwd;
-                    left: 40px;
-                }
-
-            }
-
-            //最後一條消失
-            &:last-child::before {
-                display: none;
-            }
-        }
-
-        .on {
-            background-color: $btnColor;
-        }
     }
 
-    //進度條文字
-    .step_text {
-        display: flex;
-        justify-content: space-between;
-        color: $orderTextColor;
-        @include H3;
-        letter-spacing: 0;
+}
 
-        @media screen and (max-width:576px) {
-            font-size: 12px;
-            padding: 0 9px;
-        }
+// 球尺寸、顏色、icon、字型
+.step_box .step_ball>li {
 
-        //進度條當前頁面
-        .on {
-            font-weight: bold;
-            color: $textColor;
-        }
+    @include step_ball_size;
+    border-radius: 50%;
+    background-color: #EFE7DA;
+    position: relative;
+
+    // 定位進度球內img置中
+    & img {
+        position: absolute;
+        transform: translate(50%, -50%);
+        top: 50%;
+        right: 50%;
+    }
+
+    // 定位下方步驟文字
+    & h5 {
+        @include H5;
+        color: $btnColor;
+        letter-spacing: 0px;
+        position: absolute;
+        width: 100%;
+        text-align: center;
+        top: 120%;
     }
 }
+
+
+
+
+// 偽元素:進度條及變色方式
+
+.step_box .step_ball>li {
+
+    &:first-child {
+        background-color: $btnColor;
+    }
+
+    &::before {
+        content: "";
+        position: absolute;
+        width: 500%;
+        height: 5px;
+        background-color: #EFE7DA;
+        left: 50px;
+        top: 50%;
+        z-index: -1;
+    }
+
+
+    &:last-child::before {
+        display: none;
+    }
+
+}
+
+
+// ====進度bar結束=====
+
+//1.當前進度-步驟一
+
+.step_box .step_ball li:first-child {
+    font-weight: bold;
+}
+
+// 2.當前進度-步驟二
+
+// .step_ball>li:nth-child(2) {
+//     background-color: $btnColor;
+// }
+
+// .step_ball>li:nth-child(1)::before {
+//     background-color: $btnColor;
+// }
+
+// .step_box .step_ball li:nth-child(2) {
+//     font-weight: bold;
+// }
+
+
+
+//  RWD
+
+
+@media (min-width: 767px) and (max-width: 991px) {
+
+    .step_box {
+        height: 115px;
+    }
+
+    .step_box .step_ball>li {
+        @include step_ball_size_medium;
+    }
+
+    .step_box .step_ball>li>h5 {
+        @include H6;
+        letter-spacing: 0px;
+    }
+
+
+}
+
+@media (max-width: 766px) {
+
+    .step_box {
+        width: 50%;
+        height: 90px;
+    }
+
+    .step_box .step_ball>li {
+        @include step_ball_size_small;
+    }
+
+    .step_box .step_ball>li>h5 {
+        @include P2;
+        letter-spacing: 0px;
+    }
+
+    .step_box .step_ball>li>img {
+        width: 40%;
+    }
+
+}
+
+
 
 // 開團資訊
 #group_info {
@@ -310,8 +370,8 @@ h2 {
     position: fixed;
     top: 0;
     left: 0;
-    opacity: 0;
-    z-index: -1;
+    // opacity: 0;
+    z-index: 3;
     transition: opacity 1s;
     background-color: hsla(0, 2%, 25%, .5);
     width: 100%;
@@ -327,17 +387,21 @@ h2 {
     //  position: absolute;
     //  top:10vh;
     //  left:10vw;    
-    height: 90vh;
+    max-height: 90vh;
     width: 90%;
     max-width: 600px;
-    margin: 2% auto;
+    margin: 0 auto;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
     border-radius: 10px;
     background-color: #fff;
     box-shadow: 0 0 5px #ddd;
+    // overflow-y: auto;
 }
 
 .orderModal.-on {
-    opacity: 1;
+    // opacity: 1;
     z-index: 999;
 }
 
@@ -361,15 +425,17 @@ h2 {
     justify-content: center;
 
     h5 {
-        font-size: $fontsize_H5;
+        font-size: $fontsize_H4;
         letter-spacing: 5px;
         margin-top: 20px;
+        color: $textColor;
+        font-weight: bold;
     }
 }
 
 .orderList {
     width: 100%;
-    height: 80vh;
+    max-height: 80vh;
     // margin:40px auto ;
     margin: auto;
     overflow-y: auto;
@@ -462,48 +528,12 @@ h2 {
     }
 }
 
-.checkInfo {
-    width: 80%;
-    margin: 25px auto;
 
-    div {
-        width: 100%;
-        margin: 10px 0;
-        display: flex;
-    }
 
-    h3 {
-        font-size: $fontsize_H6;
-        color: #707070;
-    }
-}
 
-.modiscount {
-    margin: 20px auto;
-    width: 90%;
 
-    h3 {
-        font-size: $fontsize_H6;
-    }
-}
 
-.modiscountTop {
-    width: 100%;
-    display: flex;
-    //  justify-content: space-between;
-    margin: 10px auto;
-}
 
-.modiscountNo {
-    width: 90%;
-    display: flex;
-    align-items: center;
-    margin: 0 auto;
-
-    h3 {
-        color: #707070;
-    }
-}
 
 .monumber {
     font-size: $fontsize_P1;
@@ -515,16 +545,7 @@ h2 {
     margin: 0 20px 0 30px;
 }
 
-.modiscountBottom {
-    width: 90%;
-    display: flex;
-    justify-content: space-between;
-    margin: 10px auto;
 
-    h3 {
-        color: #707070;
-    }
-}
 
 .amount {
     display: flex;
@@ -750,28 +771,13 @@ h2 {
         width: 100%;
     }
 
-    .checkInfo {
-        width: 100%;
-        margin: 20px auto;
 
-        div {
-            margin: 5px 0;
-        }
-    }
 
     .modalLine {
         width: 40%;
     }
 
-    .modiscount {
-        width: 100%;
-        margin: 0;
-    }
 
-    .modiscountNo,
-    .modiscountBottom {
-        width: 100%;
-    }
 
     .amount {
         div {
@@ -903,28 +909,13 @@ h2 {
         width: 100%;
     }
 
-    .checkInfo {
-        width: 100%;
-        margin: 20px auto;
 
-        div {
-            margin: 5px 0;
-        }
-    }
 
     .modalLine {
         width: 40%;
     }
 
-    .modiscount {
-        width: 100%;
-        margin: 0;
-    }
 
-    .modiscountNo,
-    .modiscountBottom {
-        width: 100%;
-    }
 
     .amount {
         div {

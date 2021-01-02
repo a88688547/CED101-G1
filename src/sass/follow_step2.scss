@@ -6,91 +6,150 @@ body {
     background-color: $insideBackgroundColor;
 }
 
+// ====進度bar=====
 
-$ball_rwd: 0.66;
-
-// 進度條
+// 尺寸、對齊方式
 .step_box {
-    max-width: 430px;
-    // border: 1px solid red;
-    margin: $ball_margin auto;
-
-    @media screen and (max-width:576px) {
-        max-width: 240px;
-        margin: $ball_margin_rwd auto;
-    }
+    width: 30%;
+    height: 135px;
+    margin: 0 auto;
+    overflow: hidden;
+    margin-bottom: 30px;
 
     .step_ball {
         display: flex;
         justify-content: space-between;
         position: relative;
-
-        //進度條的球
-        li {
-            width: 120px;
-            height: 120px;
-            // border: 1px solid red;
-            border-radius: 50%;
-            background-color: #D3C8B5;
-            margin-bottom: 10px;
-            position: relative;
-
-            @media screen and (max-width:576px) {
-                width: 120px * $ball_rwd;
-                height: 120px * $ball_rwd;
-            }
-
-            //進度條的線
-            &::before {
-                content: "";
-                position: absolute;
-                width: 300px;
-                height: 14px;
-                background-color: #D3C8B5;
-                left: 50px;
-                top: 50%;
-                transform: translateY(-50%);
-                z-index: -1;
-
-                @media screen and (max-width:576px) {
-                    width: 300px * $ball_rwd;
-                    height: 14px * $ball_rwd;
-                    left: 40px;
-                }
-
-            }
-
-            //最後一條消失
-            &:last-child::before {
-                display: none;
-            }
-        }
-
-        .on {
-            background-color: $btnColor;
-        }
     }
 
-    //進度條文字
-    .step_text {
-        display: flex;
-        justify-content: space-between;
-        color: $orderTextColor;
-        @include H3;
-        letter-spacing: 0;
+}
 
-        @media screen and (max-width:576px) {
-            font-size: 12px;
-            padding: 0 9px;
-        }
+// 球尺寸、顏色、icon、字型
+.step_box .step_ball>li {
 
-        //進度條當前頁面
-        .on {
-            font-weight: bold;
-            color: $textColor;
-        }
+    @include step_ball_size;
+    border-radius: 50%;
+    background-color: #EFE7DA;
+    position: relative;
+
+    // 定位進度球內img置中
+    & img {
+        position: absolute;
+        transform: translate(50%, -50%);
+        top: 50%;
+        right: 50%;
+    }
+
+    // 定位下方步驟文字
+    & h5 {
+        @include H5;
+        color: $btnColor;
+        letter-spacing: 0px;
+        position: absolute;
+        width: 100%;
+        text-align: center;
+        top: 120%;
     }
 }
+
+
+
+
+// 偽元素:進度條及變色方式
+
+.step_box .step_ball>li {
+
+    &:first-child {
+        background-color: $btnColor;
+    }
+
+    &::before {
+        content: "";
+        position: absolute;
+        width: 500%;
+        height: 5px;
+        background-color: #EFE7DA;
+        left: 50px;
+        top: 50%;
+        z-index: -1;
+    }
+
+
+    &:last-child::before {
+        display: none;
+    }
+
+}
+
+
+// ====進度bar結束=====
+
+//1.當前進度-步驟一
+
+// .step_box .step_ball li:first-child {
+//     font-weight: bold;
+// }
+
+// 2.當前進度-步驟二
+
+.step_ball>li:nth-child(2) {
+    background-color: $btnColor;
+}
+
+.step_ball>li:nth-child(1)::before {
+    background-color: $btnColor;
+}
+
+.step_box .step_ball li:nth-child(2) {
+    font-weight: bold;
+}
+
+
+
+//  RWD
+
+
+@media (min-width: 767px) and (max-width: 991px) {
+
+    .step_box {
+        height: 115px;
+    }
+
+    .step_box .step_ball>li {
+        @include step_ball_size_medium;
+    }
+
+    .step_box .step_ball>li>h5 {
+        @include H6;
+        letter-spacing: 0px;
+    }
+
+
+}
+
+@media (max-width: 766px) {
+
+    .step_box {
+        width: 50%;
+        height: 90px;
+    }
+
+    .step_box .step_ball>li {
+        @include step_ball_size_small;
+    }
+
+    .step_box .step_ball>li>h5 {
+        @include P2;
+        letter-spacing: 0px;
+    }
+
+    .step_box .step_ball>li>img {
+        width: 40%;
+    }
+
+}
+
+
 
 .order_delete_btn {
     display: none;

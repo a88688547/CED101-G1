@@ -8,22 +8,26 @@
     <script src="./vendors/Vue/vue.js"></script>
     <link rel="stylesheet" href="./css/follow_step2.css">
     <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/list_data.css">
+    <link rel="stylesheet" href="./css/list_data_finish.css">
+    <!-- 不加會有錯 -->
+    <link rel="shortcut icon" href="#" />
 </head>
 
 <body>
     <header id="header">
         <my-header></my-header>
     </header>
-    <!-- 進度條 -->
+    <!-- ==============進度條================= -->
     <div class="step_box">
         <ul class="step_ball">
-            <li></li>
-            <li class="on"></li>
-        </ul>
-        <ul class="step_text">
-            <li>1.建立訂單</li>
-            <li class="on">2.訂單頁面</li>
+            <li>
+                <img src="./Images/join_list/step_1_icon.svg" alt="">
+                <h5>1.建立揪團</h5>
+            </li>
+            <li>
+                <img src="./Images/join_list/step_4_icon.svg" alt="">
+                <h5>2.訂單頁面</h5>
+            </li>
         </ul>
     </div>
 
@@ -44,52 +48,15 @@
 
 
 
-    <div id="order_list">
-        <!-- 每個人  -->
-        <div class="group_order_done_person">
-            <div class="group_order_done_person_upbox">
-                <div class="group_order_done_person_infobox">
-                    <div class="group_order_done_person_img"><img src="./Images/user_big.svg" /></div>
-                    <div class="group_order_done_person_name">徐朝亭</div>
-                </div>
-                <div class="group_order_done_person_total">
-                    <div class="group_order_done_person_total_cup">2杯</div>
-                    <div class="group_order_done_person_total_price">$115</div>
-                </div>
-            </div>
-            <div class="group_order_done_person_downbox">
-                <!-- 購買的 飲料 -->
-                <div class="group_order_done_person_drink">
-                    <div class="group_order_done_person_drink_title">珍珠奶茶-大杯</div>
-                    <div class="group_order_done_person_drink_note">少冰/微糖/加珍珠/$65/1杯</div>
-                    <button class="order_delete_btn">刪除</button>
-                </div>
-                <div class="group_order_done_person_drink">
-                    <div class="group_order_done_person_drink_title">紅茶-大杯</div>
-                    <div class="group_order_done_person_drink_note">去冰/無糖/加QQ/$50/1杯</div>
-                    <button class="order_delete_btn">刪除</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="ListTotal_wrapper">
-        <div class="ListTotal">
-            <div class="payTotal">
-                <h2>總金額</h2>
-            </div>
-            <div id="line">
-                <hr>
-            </div>
-            <div>
-                <h2><span>$.</span><span id="ordPrice">400</span></h2>
-            </div>
-        </div>
+    <div id="app">
+        <!-- <orderList v-if="isShow"></orderList> -->
+        <orderList></orderList>
     </div>
 
     <footer id="footer">
         <my-footer></my-footer>
     </footer>
+    <script src="./js/follow_step2.js"></script>
     <script src="./layout/footer.vue"></script>
     <script src="./layout/header.vue"></script>
 

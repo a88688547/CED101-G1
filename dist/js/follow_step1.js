@@ -1,12 +1,31 @@
+
 let storage = sessionStorage;
 Vue.component('orderlist', {
     data() {
         return {
+            order: true,
         }
     },
+    inject: [
+        'reload'
+    ],
     methods: {
+        xyz(state) {
+            if (state === false) {
+                this.order = false
+            } else {
+                this.reload()
+            }
+        }
     },
+    created() {
+        if (storage['addItemList'] == "") {
+            this.order = false
+        }
+    },
+
     computed: {
+
         drinkItem() {
             let itemString = storage.getItem('addItemList');
             let items = itemString.substr(0, itemString.length - 1).split('|');
@@ -36,6 +55,8 @@ Vue.component('orderlist', {
             //最後結果 => 例: arr = [a,a,b,c,c] obj={a:2,b:1,c:2}
             // console.log(obj)
             return obj
+
+
         },
         total_num() {
             let theTotalNum = 0
@@ -50,48 +71,50 @@ Vue.component('orderlist', {
             for (let i = 0; i < objKeys.length; i++) {
                 theTotalPrice += objKeys[i].substr(0, objKeys[i].length).split(',')[5] * Object.values(this.drinkItem)[i]
             }
+
             return theTotalPrice
+
+
         },
 
     },
     template: `
     <div>
-    <div id="order_list">
-    <!-- 每個人  -->
-    <div class="group_order_done_person">
-        <div class="group_order_done_person_upbox">
-            <div class="group_order_done_person_infobox">
-                <div class="group_order_done_person_img"><img src="./Images/user_big.svg" /></div>
-                <div class="group_order_done_person_name">徐朝亭</div>
+        <div id="order_list" v-if="order">
+            <!-- 每個人  -->
+            <div class="group_order_done_person">
+                <div class="group_order_done_person_upbox">
+                    <div class="group_order_done_person_img"><img src="./Images/user_big.svg" /></div>
+                    <div class="group_order_done_person_name">徐朝亭</div>
+                </div>
+                <div class="group_order_done_person_downbox">
+                    <!-- 購買的 飲料 -->
+                    <person-drink v-for="(value,key) in drinkItem" :key_="key" :value_="value" @abc="xyz"></person-drink>
+                </div>
+                <div class="group_order_done_person_total" >
+                    <div>總計</div>
+                    <div class="group_order_done_person_total_cup">{{total_num}}杯</div>
+                    <div class="group_order_done_person_total_price">&#36 {{total_price}}</div>
+                </div>
             </div>
-            <div class="group_order_done_person_total">
-                <div class="group_order_done_person_total_cup">{{total_num}}杯</div>
-                <div class="group_order_done_person_total_price">&#36{{total_price}}</div>
+        </div>
+        <div id="ListTotal_wrapper">
+            <div class="ListTotal" v-if="order">
+                <div class="payTotal">
+                    <h2>應付金額</h2>
+                </div>
+                <div id="line">
+                    <hr>
+                </div>
+                <div>
+                    <h2><span>$.</span><span id="ordPrice">{{total_price}}</span></h2>
+                </div>
+            </div>
+            <div class="orderbtn">
+                <div><a href="orderPaymentGroup.html">繼續加購</a></div>
+                <div class="nextStep"><a href="#">建立訂單</a></div>
             </div>
         </div>
-        <div class="group_order_done_person_downbox">
-            <!-- 購買的 飲料 -->
-            <person-drink v-for="(value,key) in drinkItem" :key_="key" :value_="value"></person-drink>
-        </div>
-    </div>
-    </div>
-    <div id="ListTotal_wrapper">
-    <div class="ListTotal">
-        <div class="payTotal">
-            <h2>應付金額</h2>
-        </div>
-        <div id="line">
-            <hr>
-        </div>
-        <div>
-            <h2><span>$.</span><span id="ordPrice">{{total_price}}</span></h2>
-        </div>
-    </div>
-    <div class="orderbtn">
-        <div><a href="orderPaymentGroup.html">繼續加購</a></div>
-        <div class="nextStep"><a href="#">建立訂單</a></div>
-    </div>
-    </div>
     </div>
     `,
 })
@@ -101,6 +124,53 @@ Vue.component('personDrink', {
     data() {
         return {
             propsKey: this.key_.substr(0, this.key_.length).split(','),
+            num: this.value_,
+
+        }
+    },
+    methods: {
+        //減少杯數
+        handleSub() {
+
+            if (this.num <= 1) {
+                this.num = 1
+            } else {
+                this.num--
+                // let firstIndex = storage['addItemList'].indexOf(`${this.key_}|`)
+                // if (firstIndex == 0) {
+                //     storage['addItemList'] = storage['addItemList'].replace(`${this.key_}|`, "")
+                //     storage['addItemList'] = storage['addItemList'].replace(`${this.key_}|`, "")
+                //     storage['addItemList'] = `${this.key_}|` + storage['addItemList']
+                // } else {
+                //     storage['addItemList'] = storage['addItemList'].replace(`${this.key_}|`, "")
+                // }
+                storage['addItemList'] = storage['addItemList'].replace(`${this.key_}|`, "_")
+                storage['addItemList'] = storage['addItemList'].replace(`${this.key_}|`, "")
+                storage['addItemList'] = storage['addItemList'].replace("_", `${this.key_}|`)
+            }
+            this.$emit('abc')
+
+            // this.reload()
+        },
+
+        //增加杯數
+        handlePlus() {
+            this.num++
+            storage['addItemList'] += `${this.key_}|`
+            this.$emit('abc')
+            // this.reload()
+        },
+
+        deleteItem() {
+            let fa = false
+            storage['addItemList'] = storage['addItemList'].replaceAll(`${this.key_}|`, "")
+            if (storage['addItemList'] == "") {
+                this.$emit('abc', fa)
+                console.log('aa')
+            } else {
+                this.$emit('abc')
+            }
+            // this.reload()
         }
     },
     computed: {
@@ -122,16 +192,31 @@ Vue.component('personDrink', {
         price() {
             return this.propsKey[5]
         },
-        num() {
-            return this.value_
-        },
     },
     template: `
     <div class="group_order_done_person_drink">
-    <div class="group_order_done_person_drink_title">{{drink_name}}-{{cup}}</div>
-    <div class="group_order_done_person_drink_note" v-if="ingredient">{{ice}}/{{sugar}}/加{{ingredient}}/&#36{{price}}/{{num}}杯</div>
-    <div class="group_order_done_person_drink_note" v-else>{{ice}}/{{sugar}}/&#36{{price}}/{{num}}杯</div>
-    <button class="order_delete_btn">刪除</button>
+        <section id="drink_title_wrapper">
+            <div class="group_order_done_person_drink_title">{{drink_name}}-{{cup}}</div>
+            <div class="group_order_done_person_drink_note" v-if="ingredient">{{ice}}/{{sugar}}/加{{ingredient}}</div>
+            <div class="group_order_done_person_drink_note" v-else>{{ice}}/{{sugar}}</div>
+        </section>
+        <section id="num_btn">
+            <button @click="handleSub">
+                <div></div>
+            </button>
+            <div id="num_feedback">{{num}}</div>
+            <button @click="handlePlus">+</button>
+            <span>杯</span>
+        </section>
+        <section id="mob_line">
+        </section>
+        <section id="item_single_price">
+            &#36{{price * num}}
+        </section>
+        <section class="order_delete_btn" @click="deleteItem">
+            <img src="./Images/trash_big.svg" alt="" >
+            <img src="./Images/trash_small.svg" alt="">
+        </section>
     </div>
     `,
 
@@ -139,4 +224,22 @@ Vue.component('personDrink', {
 
 new Vue({
     el: "#app",
+    data: {
+        isShow: true,
+    },
+    provide() {
+        return {
+            reload: this.reload
+        }
+    },
+    methods: {
+        reload() {
+            // 先隱藏
+            this.isShow = false
+            // $nextTick() 將回調延遲到下次 DOM 更新循環之後執行
+            this.$nextTick(() => {
+                this.isShow = true
+            })
+        },
+    },
 })

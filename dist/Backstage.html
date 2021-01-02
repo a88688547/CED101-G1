@@ -29,7 +29,8 @@
                 ></drink_type>
                 <type_edit :show="show" :type_no="type_no" :type_title="type_title" @change="changeTag"></type_edit>
                 <type_add :show="show" @change="changeTag"></type_add>
-                <group_ord_list :show="show" @change="changeTag" @changegroupordno="group_ord_no"></group_ord_list>
+                <group_ord_list :show="show" @change="changeTag" @changegroupordno="changegroupordno"></group_ord_list>
+                <group_ord_info :show="show" @change="changeTag" :group_ord_no="group_ord_no"></group_ord_info>
             </main>
         </div>
         <footer></footer>

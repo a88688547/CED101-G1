@@ -35,6 +35,11 @@
             overflow: hidden;
             background-color: white;
 
+            &:hover{
+                opacity: 0.8;
+                transform: translateY(-5px);
+                transition: 0.5s ease-in-out;
+            }
 
             img{
                 max-width: 100%;
@@ -147,6 +152,7 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            cursor: pointer;
 
             .card_small{
                 width: 100%;
@@ -157,10 +163,14 @@
                 flex-direction: row;
                 margin-bottom: 10px;
                 background-color: white;
+                position: relative;
 
-                &{
-                    position: relative;
-                  }
+                &:hover{
+                    opacity: 0.8;
+                    transform: translateY(-5px);
+                    transition: 0.5s ease-in-out;
+                }
+
                 &::before {
                     position: absolute;
                     top: 0;
@@ -274,21 +284,33 @@
 
 
     .bottom_block{
-
-        margin-top:20px;
-        text-align: center;
+        display: flex;
+        justify-content: center;
+        margin: 50px 0 50px;
           
         button.seemore{
-            margin-top: 15px;
-            border-radius: 20px;
-            color: $btnColor;
-            font-size: $fontsize_H6;
+            @include lineargradient_button;
+            width: 180px;
+            height: 40px;
+            @include H6;
             font-weight: bold;
-            padding: 8px 16px 8px 16px;
-            background-color: $textColor;
-            letter-spacing: 5px;      
+            color: white;
+
+            &:hover{
+                @include lineargradient_button-hover;
+                transform: translateY(-5px);
+            }
+
+            &:focus{
+                outline: none;
+            }
         }
 
+        button.seemore.color-2 {
+            background-image: linear-gradient(to right, #29323c, #485563, #2b5876, #4e4376);
+            box-shadow: 0 4px 15px 0 rgba(45, 54, 65, 0.75);
+        }
+    
     }
 }
 // rwd區域-------------------------------------------------

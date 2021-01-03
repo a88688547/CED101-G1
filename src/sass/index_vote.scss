@@ -152,18 +152,30 @@
         }
     
         button.seemore{
+            @include lineargradient_button;
+            width: 180px;
+            height: 40px;
             border-radius: 20px;
-            color: $btnColor;
-            font-size: $fontsize_H6;
+            @include H6;
             font-weight: bold;
-            padding: 8px 16px 8px 16px;
-            background-color: $textColor;
-            letter-spacing: 5px;      
-        }
+            color: white;
+            margin: 0 auto;
+            &:hover{
+                @include lineargradient_button-hover;
+                transform: translateY(-5px);
+            }
 
+            &:focus {
+                outline: none;
+            }
+        }
     }
 }
 
+button.seemore.color-2 {
+    background-image: linear-gradient(to right, #29323c, #485563, #2b5876, #4e4376);
+    box-shadow: 0 4px 15px 0 rgba(45, 54, 65, 0.75);
+  }
 @media (min-width: 992px) and (max-width: 1199px){
 
     .vote .drinkitem_block {

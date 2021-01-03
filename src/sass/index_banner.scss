@@ -84,11 +84,25 @@ img.under{
     font-family: Roboto;
     color:#B3925B;
     background-color:#013B4F;
-    padding:8px;
     margin-top:20px;
     letter-spacing: 3px;
     border-radius: 20px;
     cursor: pointer;
+    // 更改的元素
+    border: none;
+    font-weight: bold;
+    padding:10px 15px;
+
+    // 更改的元素
+    &:hover{
+        animation: rotate 0.7s ease-in-out both;
+        opacity: 0.8;
+        transition: 0.5s ease-in-out;
+    }
+
+    &:focus{
+        outline: none;
+    }
 
 }
 

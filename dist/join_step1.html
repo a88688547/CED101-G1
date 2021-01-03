@@ -63,12 +63,12 @@
           </li>
           <li>
             <label for="">截單時間</label>
-            <input type="text" class="Atime" />
+            <input type="time" class="Atime" id="Atime" />
           </li>
           <li>
             <label for="time">預計送達時間</label>
             <!-- 不知道用哪個input -->
-            <input id="data" name="time" type="text" placeholder="12/12" />
+            <input id="data" name="time" type="text" placeholder="" />
           </li>
           <li>
             <label for="goal">目標杯數</label>
@@ -117,25 +117,31 @@
   </body>
 
   <script>
-    let AddressTime = document.querySelector(".Atime");
+    let AddressTime = document.getElementById("Atime"); //收單時間
     let oops = document.querySelector(".oops"); //警告視窗
     let btngo = document.querySelector(".btn_go"); //下一步
     let NAME = document.querySelector(".GroupName"); //團名
-    let Goal = document.getElementById("goal");
-    let Address = document.querySelector(".address");
-    let GroupData = document.querySelector(".group_data");
-    let ErrorText = document.querySelector(".error");
+    let Goal = document.getElementById("goal"); //目標杯數
+    let Address = document.querySelector(".address"); //送貨地址
+    let GroupData = document.querySelector(".group_data"); //fomr表單
+    let ErrorText = document.querySelector(".error"); //警告視窗
     let text;
     let storage = sessionStorage;
-
-    $(document).ready(function () {
-      $(".ErrorClose").click(function () {
-        $(".oops").hide();
+    let DrinkTime =
+      // 警告窗關閉
+      $(document).ready(function () {
+        $(".ErrorClose").click(function () {
+          $(".oops").hide();
+        });
       });
+    // 警告窗關閉
+
+    $("#Atime").blur(function () {
+      console.log(AddressTime.value + 30);
     });
 
     GroupData.addEventListener("submit", function (e) {
-      //   console.log($("#goal").val());
+      console.log(AddressTime.value);
       if (NAME.value.trim() == "" || NAME.value.trim() == null) {
         text = "請輸入團名";
         ErrorText.innerText = text;

@@ -3,7 +3,8 @@
 try {
 	require_once("./connect_join_database.php");
 	$sql = "select *
-            from group_ord";
+            from group_ord
+            WHERE CURRENT_DATE() BETWEEN group_datetime AND arrive_time;";
             
 	$grouporddata = $pdo->prepare($sql);
 	$grouporddata->execute();
@@ -11,7 +12,8 @@ try {
     // $grouporddata->bindValue(":group_ord_no", $group_ord_no);
     
         
-	echo json_encode($grouporddata);
+    echo json_encode($grouporddata);
+    
 } catch (PDOException $e) {
 	echo "錯誤原因 : ", $e->getMessage(), "<br>";
 	echo "錯誤行號 : ", $e->getLine(), "<br>";

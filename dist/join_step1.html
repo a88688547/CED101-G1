@@ -62,13 +62,12 @@
             />
           </li>
           <li>
-            <label for="">截單時間</label>
-            <input type="time" class="Atime" id="Atime" />
+            <label for="Atime">截單時間</label>
+            <input type="time" name="Atime" class="Atime" id="Atime" />
           </li>
           <li>
-            <label for="time">預計送達時間</label>
-            <!-- 不知道用哪個input -->
-            <input id="data" name="time" type="text" placeholder="" />
+            <label for="Btime">預計送達時間</label>
+            <input id="data" name="Btime" type="text" placeholder="" />
           </li>
           <li>
             <label for="goal">目標杯數</label>
@@ -81,8 +80,8 @@
             </select>
           </li>
           <li>
-            <label for="">取貨地點</label>
-            <input type="text" class="address" />
+            <label for="address">取貨地點</label>
+            <input type="text" class="address" name="address" />
           </li>
         </ul>
 
@@ -97,12 +96,28 @@
               class="btn_back"
               onclick="location.href='./join_list.html'"
             />
-            <button type="submit" class="btn_go">建立訂單</button>
-            <!-- <input type="submit" value="建立訂單" class="btn_go" /> -->
+
+            <input type="button" value="建立訂單" class="btn_go" />
+            <div class="ConfirmForm">
+              <div class="ConfirmForminfo">
+                <ul>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                </ul>
+                <h2 id="ConfirmName">確認團名</h2>
+                <button type="submit" id="ConfirmButton">確認建立</button>
+              </div>
+            </div>
           </div>
         </div>
+        <!-- 確認框 -->
       </form>
       <!-- ==============團長飲料================= -->
+
+      <!-- 警告框 -->
       <div class="oops">
         <h2>Oops</h2>
         <p class="error"></p>
@@ -140,7 +155,11 @@
       console.log(AddressTime.value + 30);
     });
 
-    GroupData.addEventListener("submit", function (e) {
+    $("#ConfirmButton").click(function () {
+      GroupData.submit();
+    });
+
+    btngo.addEventListener("click", function (e) {
       console.log(AddressTime.value);
       if (NAME.value.trim() == "" || NAME.value.trim() == null) {
         text = "請輸入團名";
@@ -148,6 +167,7 @@
         oops.style.display = "block";
         NAME.placeholder = "請輸入團名!";
         console.log(NAME.placeholder);
+
         return;
       }
       if (NAME.value.length > 10) {
@@ -177,7 +197,9 @@
         Address.value = "";
         return;
       }
-      //   GroupData.submit();
+      document.getElementById("ConfirmName").innerText = NAME.value;
+      // GroupData.submit();
     });
+    console.log(NAME.value);
   </script>
 </html>

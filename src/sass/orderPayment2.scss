@@ -2,12 +2,13 @@
 @import "mixins/mixins.scss";
 @import "mixins/button.scss";
 
-body{
+body {
     background-color: $insideBackgroundColor;
 }
-.main{
-    width:80%;
-    margin:0 auto;
+
+.main {
+    width: 80%;
+    margin: 0 auto;
 }
 
 // ====進度bar=====
@@ -19,7 +20,8 @@ body{
     margin: 0 auto;
     overflow: hidden;
     margin-bottom: 30px;
-    .step_ball{
+
+    .step_ball {
         display: flex;
         justify-content: space-between;
         position: relative;
@@ -27,39 +29,40 @@ body{
 }
 
 // 球尺寸、顏色、icon、字型
-.step_box .step_ball >li{   
+.step_box .step_ball>li {
     @include step_ball_size;
     border-radius: 50%;
     background-color: #EFE7DA;
     position: relative;
 
-            // 定位進度球內img置中
-            & img{
-                position: absolute;
-                transform: translate(50%,-50%);
-                top: 50%;
-                right: 50%;
-            }
+    // 定位進度球內img置中
+    & img {
+        position: absolute;
+        transform: translate(50%, -50%);
+        top: 50%;
+        right: 50%;
+    }
 
-        // 定位下方步驟文字
-            & h5{
-                @include H5;
-                color: $btnColor;
-                letter-spacing: 0px;
-                position: absolute;
-                width: 100%;
-                text-align: center;
-                top: 120%;
-            }
+    // 定位下方步驟文字
+    & h5 {
+        @include H5;
+        color: $btnColor;
+        letter-spacing: 0px;
+        position: absolute;
+        width: 100%;
+        text-align: center;
+        top: 120%;
+    }
 }
 
 // 偽元素:進度條及變色方式
 
-.step_box .step_ball >li{
-    &:first-child{
+.step_box .step_ball>li {
+    &:first-child {
         background-color: $btnColor;
     }
-    &::before{
+
+    &::before {
         content: "";
         position: absolute;
         width: 400%;
@@ -69,7 +72,8 @@ body{
         top: 50%;
         z-index: -1;
     }
-    &:last-child::before{
+
+    &:last-child::before {
         display: none;
     }
 }
@@ -84,15 +88,15 @@ body{
 
 // 2.當前進度-步驟二
 
-.step_ball>li:nth-child(2){
+.step_ball>li:nth-child(2) {
     background-color: $btnColor;
 }
 
-.step_ball>li:nth-child(1)::before{
+.step_ball>li:nth-child(1)::before {
     background-color: $btnColor;
 }
 
-.step_box .step_ball li:nth-child(2){
+.step_box .step_ball li:nth-child(2) {
     font-weight: bold;
 }
 
@@ -112,366 +116,443 @@ body{
 
 //  RWD
 
-@media (min-width: 576px) and (max-width: 991px){
-    .step_box{
+@media (min-width: 576px) and (max-width: 991px) {
+    .step_box {
         height: 115px;
     }
-    .step_box .step_ball >li{
+
+    .step_box .step_ball>li {
         @include step_ball_size_medium;
     }
-    .step_box .step_ball >li>h5{
+
+    .step_box .step_ball>li>h5 {
         @include H6;
         letter-spacing: 0px;
     }
 }
 
-@media (max-width: 575px){
-    .step_box{
+@media (max-width: 575px) {
+    .step_box {
         width: 70%;
         height: 90px;
     }
-    .step_box .step_ball >li{
+
+    .step_box .step_ball>li {
         @include step_ball_size_small;
     }
-    .step_box .step_ball >li>h5{
+
+    .step_box .step_ball>li>h5 {
         @include P2;
         letter-spacing: 0px;
     }
-    .step_box .step_ball >li>img{
+
+    .step_box .step_ball>li>img {
         width: 40%;
     }
 }
 
 // 個人訂購資訊
-.userinfo{
-    width:90%;
-    display:flex;
+.userinfo {
+    width: 90%;
+    display: flex;
     justify-content: center;
-    color:#707070;
-    margin:55px auto;
+    color: #707070;
+    margin: 55px auto;
 }
-.userpic{
+
+.userpic {
     max-width: 120px;
     overflow: hidden;
     margin-right: 50px;
 }
-.user{
-    width:70%;
+
+.user {
+    width: 70%;
     @include H5;
 }
-.username{
+
+.username {
     margin-bottom: 20px;
     font-weight: bold;
 }
 
-.userphone,.useradd,.usermsg{
-    width:100%;
+.userphone,
+.useradd,
+.usermsg {
+    width: 100%;
     display: flex;
     align-self: center;
     align-items: center;
     margin-top: 15px;
-    div{
+
+    div {
         display: flex;
     }
 }
 
-.userphonetop,.useraddtop,.usermsgtop{
-    width:40%;
-    img{
+.userphonetop,
+.useraddtop,
+.usermsgtop {
+    width: 40%;
+
+    img {
         margin-right: 20px;
     }
-    div{
+
+    div {
         align-self: center;
     }
 }
-.userphonebottom,.useraddbottom,.usermsgbottom{
-    width:60%;
+
+.userphonebottom,
+.useraddbottom,
+.usermsgbottom {
+    width: 60%;
 }
 
 @media screen and(max-width:800px) {
-    .userinfo{
+    .userinfo {
         display: block;
-        width:100%;
+        width: 100%;
     }
-    .userpic{
-        width:30%;
-        margin:0 auto;
+
+    .userpic {
+        width: 30%;
+        margin: 0 auto;
     }
-    .user{
-        width:100%;
+
+    .user {
+        width: 100%;
     }
-    .username{
+
+    .username {
         text-align: center;
         margin-top: 10px;
     }
-    .userphonetop,.useraddtop,.usermsgtop{
-        img{
+
+    .userphonetop,
+    .useraddtop,
+    .usermsgtop {
+        img {
             margin-right: 15px;
         }
     }
 }
 
 @media screen and(max-width:576px) {
-    .user{
+    .user {
         @include P1;
     }
-    .username{
+
+    .username {
         @include H6;
     }
-    .userphonetop,.useraddtop,.usermsgtop{
-        img{
+
+    .userphonetop,
+    .useraddtop,
+    .usermsgtop {
+        img {
             margin-right: 10px;
         }
     }
 }
+
 @media screen and(max-width:376px) {
-    .userphone,.useradd,.usermsg{
-        display: block;       
+
+    .userphone,
+    .useradd,
+    .usermsg {
+        display: block;
     }
-    .userphonetop,.useraddtop,.usermsgtop,
-    .userphonebottom,.useraddbottom,.usermsgbottom{
-        width:100%;
+
+    .userphonetop,
+    .useraddtop,
+    .usermsgtop,
+    .userphonebottom,
+    .useraddbottom,
+    .usermsgbottom {
+        width: 100%;
         margin-top: 5px;
     }
 }
 
 // 折扣區
-.discount{
-    width:90%;
-    margin:50px auto;
-    color:#707070;
+.discount {
+    width: 90%;
+    margin: 50px auto;
+    color: #707070;
     border-top: 1px solid #707070;
 }
-.discounttop{
-    width:100%;
+
+.discounttop {
+    width: 100%;
     display: flex;
     justify-content: space-between;
-    margin-top:50px;
+    margin-top: 50px;
     margin-bottom: 50px;
     @include H4;
 }
-.discountbottom{
-    width:100%;
+
+.discountbottom {
+    width: 100%;
     display: flex;
     justify-content: space-between;
     font-weight: bold;
     @include H3;
 }
-.discountno{
+
+.discountno {
     display: flex;
-    width:70%;
+    width: 70%;
     align-items: center;
-    span{
-        margin-right:10px;
+
+    span {
+        margin-right: 10px;
     }
 }
 
-.gamelink{
-    width:30%;
-    max-width:236px;
+.gamelink {
+    width: 30%;
+    max-width: 236px;
 }
+
 @media screen and(max-width:880px) {
-    .discounttop{
+    .discounttop {
         display: block;
         @include H5;
     }
-    .discountno,.gamelink{
-        width:100%;
+
+    .discountno,
+    .gamelink {
+        width: 100%;
     }
-    .discountno{
+
+    .discountno {
         @include H5;
         margin-bottom: 20px;
     }
-    .discountbottom{
+
+    .discountbottom {
         @include H5;
     }
 }
+
 @media screen and(max-width:576px) {
-    .discounttop{
+    .discounttop {
         @include H6;
     }
-    .discountno{
-        width:100%;
+
+    .discountno {
+        width: 100%;
         @include P1;
-        span{
-            margin-right:5px;
-            margin-left:5px;
+
+        span {
+            margin-right: 5px;
+            margin-left: 5px;
         }
     }
-    .gamelink{
-        width:100%;
+
+    .gamelink {
+        width: 100%;
     }
 }
 
 @media screen and(max-width:376px) {
-    .discountno{
+    .discountno {
         display: block;
-        
+
     }
-    .discountno,.gamelink{
-        margin:0 auto;
+
+    .discountno,
+    .gamelink {
+        margin: 0 auto;
     }
-    .discountno{
-        div{
+
+    .discountno {
+        div {
             margin-top: 10px;
         }
     }
 }
+
 // 信用卡
-.creditcard{
-    width:90%;
-    margin:50px auto;
+.creditcard {
+    width: 90%;
+    margin: 50px auto;
     @include H4;
-    color:$textColor;
-    border-bottom:1px solid #707070;
-}
-.cardimg{
-    width:100%;
-    text-align: center;
-    margin:50px 0px;
+    color: $textColor;
+    border-bottom: 1px solid #707070;
 }
 
-.cardname,.cardno,.cardexp,.cardsafeno{
-    width:100%;
+.cardimg {
+    width: 100%;
+    text-align: center;
+    margin: 50px 0px;
+}
+
+.cardname,
+.cardno,
+.cardexp,
+.cardsafeno {
+    width: 100%;
     display: flex;
-    div{
-        margin-top:10px;
-        margin-bottom:10px;
+
+    div {
+        margin-top: 10px;
+        margin-bottom: 10px;
         align-self: center;
-        &:first-child{
-            width:40%;
+
+        &:first-child {
+            width: 40%;
         }
-        &:last-child{
-            width:60%;
+
+        &:last-child {
+            width: 60%;
         }
     }
 }
 
-.cardno{
-    div{
-        &:last-child{
-            display:flex;
+.cardno {
+    div {
+        &:last-child {
+            display: flex;
             justify-content: space-between;
         }
     }
 }
-.cardsafeno{
-    div{
-        &:last-child{
+
+.cardsafeno {
+    div {
+        &:last-child {
             display: flex;
         }
     }
 }
 
 @media screen and(max-width:576px) {
-    .creditcard{
+    .creditcard {
         @include H5;
     }
-    .safeimg{
+
+    .safeimg {
         max-height: 30px;
     }
 }
 
 @media screen and(max-width:400px) {
-    .creditcard{
+    .creditcard {
         @include H6;
     }
-    .cardname,.cardno,.cardexp,.cardsafeno{
-        div{
-            &:first-child{
-                width:45%;
+
+    .cardname,
+    .cardno,
+    .cardexp,
+    .cardsafeno {
+        div {
+            &:first-child {
+                width: 45%;
             }
-            &:last-child{
-                width:55%;
+
+            &:last-child {
+                width: 55%;
             }
         }
     }
 }
 
 // 應付金額
-.money{
-    width:80%;
-    margin:100px auto;
+.money {
+    width: 80%;
+    margin: 100px auto;
     display: flex;
     justify-content: space-between;
-    div{
+
+    div {
         font-size: $fontsize_H3;
         font-weight: bold;
-        color:$textColor;
+        color: $textColor;
     }
 }
 
 @media screen and(max-width:768px) {
-    div{
+    div {
         font-size: $fontsize_H4;
-    } 
+    }
 }
+
 @media screen and(max-width:576px) {
-    .money{
-        margin:50px auto;
+    .money {
+        margin: 50px auto;
     }
 }
 
 @media screen and(max-width:376px) {
-    .money{
-        div{
+    .money {
+        div {
             font-size: $fontsize_P1;
         }
     }
 }
+
 @media screen and(max-width:326px) {
-    .money{
-         div{
+    .money {
+        div {
             font-size: $fontsize_H6;
         }
     }
 }
 
-.line{
-    width:60%;
-    hr{
+.line {
+    width: 60%;
+
+    hr {
         border: none;
         border-bottom: 1px dashed #383232;
     }
 }
+
 @media screen and(max-width:576px) {
-    .line{
-        width:40%;
+    .line {
+        width: 40%;
     }
 }
 
 // 按鈕
-.bottombutton{
-    width:50%;
-    margin:50px auto;
+.bottombutton {
+    width: 50%;
+    margin: 50px auto;
     display: flex;
     justify-content: space-between;
-    .back,.go{
+
+    .back,
+    .go {
         @include list_button;
         border: none;
-        color:#fff;
+        color: #fff;
         cursor: pointer;
     }
 }
-    
+
 @media screen and(max-width:576px) {
-    .bottombutton{
-        width:80%;
-    }    
+    .bottombutton {
+        width: 80%;
+    }
 }
 
 @media screen and(max-width:376px) {
-    .bottombutton{
-        .back,.go{
-        @include list_button_small;
+    .bottombutton {
+
+        .back,
+        .go {
+            @include list_button_small;
         }
-    }    
+    }
 }
 
-@media screen and(max-width:326px){
-    .bottombutton{
-        width:100%;
-    }    
+@media screen and(max-width:326px) {
+    .bottombutton {
+        width: 100%;
+    }
 }
 
 // 燈箱
@@ -510,6 +591,7 @@ body{
     position: absolute;
     top: 5px;
     right: 5px;
+
     &:hover {
         cursor: pointer;
     }
@@ -519,6 +601,7 @@ body{
     display: flex;
     position: relative;
     justify-content: center;
+
     h5 {
         @include H5;
         margin-top: 20px;
@@ -609,9 +692,11 @@ body{
     margin: 10px 0;
     font-size: $fontsize_P1;
     letter-spacing: 2px;
+
     div {
         margin: 10px 0;
     }
+
     div:first-child {
         font-weight: bold;
     }
@@ -621,6 +706,7 @@ body{
 //RWD 字體改變大小
 
 @media(min-width:576px) {
+
     .Modal_group_order_done_person_name,
     .Modal_group_order_done_person_total {
         font-size: $fontsize_H4;
@@ -641,97 +727,115 @@ body{
 
 // 燈箱購買資訊
 
-.modalinfo{
-    width:90%;
-    margin:35px auto;
+.modalinfo {
+    width: 90%;
+    margin: 35px auto;
     @include H6;
-    color:#707070;
+    color: #707070;
 }
-.modalcard,.modaladd,.modaldis,.modalcount{
-    width:90%;
-    margin:20px auto;
+
+.modalcard,
+.modaladd,
+.modaldis,
+.modalcount {
+    width: 90%;
+    margin: 20px auto;
     display: flex;
     justify-content: space-between;
-    div{
-        &:first-child{
-            width:40%;
+
+    div {
+        &:first-child {
+            width: 40%;
         }
-        &:last-child{
-            width:60%;
+
+        &:last-child {
+            width: 60%;
         }
     }
 }
 
-.modalcount{
-    div{
-        &:last-child{
+.modalcount {
+    div {
+        &:last-child {
             text-align: right;
         }
     }
 }
 
-@media screen and(max-width:768px){
-    .modalinfo{
+@media screen and(max-width:768px) {
+    .modalinfo {
         @include P1;
     }
 }
-@media screen and(max-width:400px){
-    .modalinfo{
-        width:90%;
+
+@media screen and(max-width:400px) {
+    .modalinfo {
+        width: 90%;
     }
-    .modalcard,.modaladd,.modaldis{
-    display: block;
-    div{
-        margin-top: 5px;
-            &:first-child{
-                width:100%;
+
+    .modalcard,
+    .modaladd,
+    .modaldis {
+        display: block;
+
+        div {
+            margin-top: 5px;
+
+            &:first-child {
+                width: 100%;
             }
-            &:last-child{
-                width:100%;
+
+            &:last-child {
+                width: 100%;
             }
-    }
+        }
     }
 }
 
 // 應付金額
-.modalmoney{
-    width:80%;
-    margin:20px auto;
+.modalmoney {
+    width: 80%;
+    margin: 20px auto;
     display: flex;
     justify-content: space-between;
-    div{
+
+    div {
         font-size: $fontsize_H4;
         font-weight: bold;
-        color:$textColor;
+        color: $textColor;
     }
 }
-.modalline{
-    width:60%;
-    hr{
+
+.modalline {
+    width: 60%;
+
+    hr {
         border: none;
         border-bottom: 1px dashed #383232;
     }
 }
 
-@media screen and(max-width:577px){
-    .modalmoney{
-        div{
+@media screen and(max-width:577px) {
+    .modalmoney {
+        div {
             font-size: $fontsize_H6;
         }
     }
 }
-@media screen and(max-width:375px){
-    .modalline{
-        width:40%;
+
+@media screen and(max-width:375px) {
+    .modalline {
+        width: 40%;
     }
 }
 
 // 按鈕
 
-.modalbtn{
+.modalbtn {
     text-align: center;
     margin-bottom: 20px;
-    input{
+
+    input {
         background-color: $textColor;
         color: #fff;
         width: 120px;
@@ -739,9 +843,10 @@ body{
         @include P1;
         border-style: none;
         border-radius: 5px;
+
         &:hover {
             cursor: pointer;
         }
     }
-    
+
 }

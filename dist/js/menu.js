@@ -9,145 +9,145 @@ Vue.component('menu_carshop', {
     data() {
         return {
             // 飲料類別
-            item_type: [
+            item_type1: [
                 {
-                    drink_type_text: "奶類",
+                    drink_type_title: "奶類",
                     drink_type_text_en: "Milk Tea",
-                    type: "1",
-                    itemList_milk: [
+                    drink_type_no: "1",
+                    itemList: [
                         {
-                            drink_name: "麥茶拿鐵",
-                            drink_name_en: "Milk Tea1",
-                            medium_price: "40",
-                            large_price: "50",
-                            id: "1",
+                            drink_title_ch: "麥茶拿鐵",
+                            drink_title_en: "Milk Tea1",
+                            drink_small_price: "40",
+                            drink_big_price: "50",
+                            drink_no: "1",
                             imgSrc: "./Images/drinkphoto/milktea/brownsugarmilktea.jpg",
                         },
                         {
-                            drink_name: "港式厚奶",
-                            drink_name_en: "Milk Tea2",
-                            medium_price: "20",
-                            large_price: "30",
-                            id: "2",
+                            drink_title_ch: "港式厚奶",
+                            drink_title_en: "Milk Tea2",
+                            drink_small_price: "20",
+                            drink_big_price: "30",
+                            drink_no: "2",
                             imgSrc: "./Images/drinkphoto/milktea/caffeelattebanner.jpg",
                         },
                         {
-                            drink_name: "紅茶拿鐵",
-                            drink_name_en: "Milk Tea3",
-                            medium_price: "50",
-                            large_price: "60",
-                            id: "3",
+                            drink_title_ch: "紅茶拿鐵",
+                            drink_title_en: "Milk Tea3",
+                            drink_small_price: "50",
+                            drink_big_price: "60",
+                            drink_no: "3",
                             imgSrc: "./Images/drinkphoto/milktea/greentealattebanner.jpg",
                         },
                         {
-                            drink_name: "鮮奶茶",
-                            drink_name_en: "Milk Tea4",
-                            medium_price: "20",
-                            large_price: "30",
-                            id: "4",
+                            drink_title_ch: "鮮奶茶",
+                            drink_title_en: "Milk Tea4",
+                            drink_small_price: "20",
+                            drink_big_price: "30",
+                            drink_no: "4",
                             imgSrc: "./Images/drinkphoto/milktea/jellymilkteabanner.jpg",
                         },
                         {
-                            drink_name: "烏龍拿鐵",
-                            drink_name_en: "Milk Tea5",
-                            medium_price: "20",
-                            large_price: "35",
-                            id: "5",
+                            drink_title_ch: "烏龍拿鐵",
+                            drink_title_en: "Milk Tea5",
+                            drink_small_price: "20",
+                            drink_big_price: "35",
+                            drink_no: "5",
                             imgSrc: "./Images/drinkphoto/milktea/machalattebanner.jpg",
                         },
                     ],
                 },
                 {
-                    drink_type_text: "果茶類",
+                    drink_type_title: "果茶類",
                     drink_type_text_en: "Fruit",
-                    type: "2",
-                    itemList_milk: [
+                    drink_type_no: "2",
+                    itemList: [
                         {
-                            drink_name: "水果茶",
-                            drink_name_en: "Milk Tea6",
-                            medium_price: "40",
-                            large_price: "50",
-                            id: "1",
+                            drink_title_ch: "水果茶",
+                            drink_title_en: "Milk Tea6",
+                            drink_small_price: "40",
+                            drink_big_price: "50",
+                            drink_no: "1",
                             imgSrc: "./Images/drinkphoto/fruit/fruitteaa.jpg",
                             // imgSrc: "./Images/20off.jpg",
                         },
                         {
-                            drink_name: "清寧香茶",
-                            drink_name_en: "Milk Tea7",
-                            medium_price: "20",
-                            large_price: "30",
-                            id: "2",
+                            drink_title_ch: "清寧香茶",
+                            drink_title_en: "Milk Tea7",
+                            drink_small_price: "20",
+                            drink_big_price: "30",
+                            drink_no: "2",
                             imgSrc: "./Images/drinkphoto/fruit/dragonfruit.jpg",
                         },
                         {
-                            drink_name: "香柚綠茶",
-                            drink_name_en: "Milk Tea8",
-                            medium_price: "50",
-                            large_price: "60",
-                            id: "3",
+                            drink_title_ch: "香柚綠茶",
+                            drink_title_en: "Milk Tea8",
+                            drink_small_price: "50",
+                            drink_big_price: "60",
+                            drink_no: "3",
                             imgSrc: "./Images/drinkphoto/fruit/lemontea.jpg",
                         },
                         {
-                            drink_name: "冬瓜檸檬",
-                            drink_name_en: "Milk Tea9",
-                            medium_price: "20",
-                            large_price: "30",
-                            id: "4",
+                            drink_title_ch: "冬瓜檸檬",
+                            drink_title_en: "Milk Tea9",
+                            drink_small_price: "20",
+                            drink_big_price: "30",
+                            drink_no: "4",
                             imgSrc: "./Images/drinkphoto/fruit/passionfruit.jpg",
                         },
                         {
-                            drink_name: "柳丁綠茶",
-                            drink_name_en: "Milk Tea10",
-                            medium_price: "20",
-                            large_price: "35",
-                            id: "5",
+                            drink_title_ch: "柳丁綠茶",
+                            drink_title_en: "Milk Tea10",
+                            drink_small_price: "20",
+                            drink_big_price: "35",
+                            drink_no: "5",
                             imgSrc: "./Images/drinkphoto/fruit/strawberrysmoothie.jpg",
                         },
                     ],
                 },
                 {
-                    drink_type_text: "茶類",
+                    drink_type_title: "茶類",
                     drink_type_text_en: "Tea",
-                    type: "3",
-                    itemList_milk: [
+                    drink_type_no: "3",
+                    itemList: [
                         {
-                            drink_name: "大正紅茶",
-                            drink_name_en: "Milk Tea11",
-                            medium_price: "40",
-                            large_price: "50",
-                            id: "1",
+                            drink_title_ch: "大正紅茶",
+                            drink_title_en: "Milk Tea11",
+                            drink_small_price: "40",
+                            drink_big_price: "50",
+                            drink_no: "1",
                             imgSrc: "./Images/drinkphoto/fruit/strawberrysmoothie.jpg",
                         },
                         {
-                            drink_name: "茉莉綠茶",
-                            drink_name_en: "Milk Tea12",
-                            medium_price: "20",
-                            large_price: "30",
-                            id: "2",
+                            drink_title_ch: "茉莉綠茶",
+                            drink_title_en: "Milk Tea12",
+                            drink_small_price: "20",
+                            drink_big_price: "30",
+                            drink_no: "2",
                             imgSrc: "./Images/drinkphoto/fruit/strawberrysmoothie.jpg",
                         },
                         {
-                            drink_name: "高峰烏龍",
-                            drink_name_en: "Milk Tea13",
-                            medium_price: "50",
-                            large_price: "60",
-                            id: "3",
+                            drink_title_ch: "高峰烏龍",
+                            drink_title_en: "Milk Tea13",
+                            drink_small_price: "50",
+                            drink_big_price: "60",
+                            drink_no: "3",
                             imgSrc: "./Images/drinkphoto/fruit/strawberrysmoothie.jpg",
                         },
                         {
-                            drink_name: "四季春茶",
-                            drink_name_en: "Milk Tea14",
-                            medium_price: "20",
-                            large_price: "30",
-                            id: "4",
+                            drink_title_ch: "四季春茶",
+                            drink_title_en: "Milk Tea14",
+                            drink_small_price: "20",
+                            drink_big_price: "30",
+                            drink_no: "4",
                             imgSrc: "./Images/drinkphoto/fruit/strawberrysmoothie.jpg",
                         },
                         {
-                            drink_name: "金萱茶",
-                            drink_name_en: "Milk Tea15",
-                            medium_price: "20",
-                            large_price: "35",
-                            id: "5",
+                            drink_title_ch: "金萱茶",
+                            drink_title_en: "Milk Tea15",
+                            drink_small_price: "20",
+                            drink_big_price: "35",
+                            drink_no: "5",
                             imgSrc: "./Images/drinkphoto/fruit/strawberrysmoothie.jpg",
                         },
                     ],
@@ -156,6 +156,7 @@ Vue.component('menu_carshop', {
             ],
             //購物車的飲料總數
             shopping_num_total: 0,
+            item_type: [],
         }
     },
     methods: {
@@ -167,6 +168,17 @@ Vue.component('menu_carshop', {
     // 購物車按鈕接收燈箱的飲品數量
     mounted() {
         bus.$on('addToCar_parent', (numx) => this.shopping_num_total = numx);
+
+        fetch('./php/menu.php', {
+            method: 'POST', // or 'PUT'
+            body: JSON.stringify(this.item_type), // data can be `string` or {object}!
+            headers: new Headers({
+                'Content-Type': 'application/json'
+            })
+        }).then(res => res.json())
+            .then(res => this.item_type = res);
+
+
     },
     //網頁重整的時候，購物車按鈕的飲品數會更新
     created() {
@@ -185,10 +197,10 @@ Vue.component('menu_carshop', {
         <div class="row">
             <!-- v-for生成飲料類別 -->
             <section class="drink_type col-md-4" v-for="(parent_item,index) in item_type"
-                :value="parent_item.type">
+                :value="parent_item.drink_type_no">
                 <!-- 飲料標題 -->
                 <div class="drink_type_text">
-                    <span>{{parent_item.drink_type_text}}</span><span>{{parent_item.drink_type_text_en}}</span>
+                    <span>{{parent_item.drink_type_title}}</span><span>{{parent_item.drink_type_text_en}}</span>
                 </div>
                 <!-- 手機板飲料標題 -->
                 <div class="drink_type_text_mob">
@@ -199,19 +211,16 @@ Vue.component('menu_carshop', {
                 <div class="size"><span>M</span><span>L</span></div>
                 <ul class="drink">
                     <!-- v-for生成飲品名稱-->
-                    <li class="drink_item" v-for="(item,index) in parent_item.itemList_milk" :value="item.id"
+                    <li class="drink_item" v-for="(item,index) in parent_item.itemList" :value="item.drink_no"
                         @click="lightBox_handle(item)">
-                        <button>+</button><span class="drink_name">{{item.drink_name}}</span>
+                        <button>+</button><span class="drink_name">{{item.drink_title_ch}}</span>
                         <!-- 中杯價錢 -->
                         <div class="medium_price_wrapper">
-                            <span>$</span><span class="medium_price">{{item.medium_price}}</span>
+                            <span>$</span><span class="medium_price">{{item.drink_small_price}}</span>
                         </div>
                         <!-- 大杯價錢 -->
                         <div class="large_price_wrapper"><span>$</span><span
-                                class="large_price">{{item.large_price}}</span></div>
-                        <div style="display: none;" class="data_none">
-                            {{item.drink_name}}|{{item.drink_name_en}}|{{item.medium_price}}|{{item.large_price}}
-                        </div>
+                                class="large_price">{{item.drink_big_price}}</span></div>
                     </li>
                 </ul>
             </section>
@@ -230,7 +239,7 @@ Vue.component('light_box', {
         return {
             // 燈箱飲料名
             shop_drink_name: "",
-            shop_drink_name_en: "",
+            shop_drink_title_en: "",
             imgSrc: "",
             // 燈箱開啟後的飲料金額
             shop_price: "",
@@ -249,13 +258,13 @@ Vue.component('light_box', {
     },
     methods: {
         lightBox_handle_child(item) {
-            this.shop_drink_name = item.drink_name
-            this.shop_drink_name_en = item.drink_name_en
-            this.shop_price = item.medium_price
+            this.shop_drink_name = item.drink_title_ch
+            this.shop_drink_title_en = item.drink_title_en
+            this.shop_price = item.drink_small_price
             this.imgSrc = item.imgSrc
             this.closeLightBox = true
             //將大小杯價格存入task變數，讓toDoInput父層組件使用
-            this.task = [item.medium_price, item.large_price]
+            this.task = [item.drink_small_price, item.drink_big_price]
         },
         //減少杯數
         handleSub() {
@@ -376,7 +385,7 @@ Vue.component('light_box', {
             <!-- 飲品名稱 -->
             <div id="shop_drink_name_title">
                 <h2 id="shop_drink_name">{{shop_drink_name}}</h2>
-                <h3 id="shop_drink_name_en">{{shop_drink_name_en}}</h3>
+                <h3 id="shop_drink_title_en">{{shop_drink_title_en}}</h3>
             </div>
             <!-- 飲品配置 -->
             <!-- 大小 -->

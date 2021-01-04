@@ -13,9 +13,8 @@ body {
 .step_box {
     width: 30%;
     height: 135px;
-    margin: 0 auto;
+    margin: 80px auto;
     overflow: hidden;
-    margin-bottom: 30px;
 
     .step_ball {
         display: flex;
@@ -899,15 +898,15 @@ h2 {
     }
 
     //燈箱
-    .orderList {
-        // display: block;
-        width: 80%;
-        padding-right: 10px;
-    }
+    // .orderList {
+    //     // display: block;
+    //     width: 80%;
+    //     padding-right: 10px;
+    // }
 
-    .listInfo {
-        width: 100%;
-    }
+    // .listInfo {
+    //     width: 100%;
+    // }
 
 
 
@@ -1053,16 +1052,16 @@ h2 {
     }
 
     //    燈箱
-    .orderList {
-        display: block;
-        width: 80%;
-        padding-right: 10px;
+    // .orderList {
+    //     display: block;
+    //     width: 80%;
+    //     padding-right: 10px;
 
-    }
+    // }
 
-    .listInfo {
-        width: 100%;
-    }
+    // .listInfo {
+    //     width: 100%;
+    // }
 }
 
 @media screen and (min-width: 768px) and (max-width: 991px) {
@@ -1137,29 +1136,29 @@ h2 {
     }
 
     //    燈箱
-    .orderList {
-        display: block;
-        width: 80%;
-    }
+    // .orderList {
+    //     display: block;
+    //     width: 80%;
+    // }
 
-    .listInfo {
-        width: 100%;
-        padding-right: 10px;
+    // .listInfo {
+    //     width: 100%;
+    //     padding-right: 10px;
 
-    }
+    // }
 }
 
-@media screen and (min-width: 992px) and (max-width: 1199px) {
+// @media screen and (min-width: 992px) and (max-width: 1199px) {
 
-    //    燈箱
-    .orderList {
-        display: block;
-        width: 80%;
-    }
+//     //    燈箱
+//     .orderList {
+//         display: block;
+//         width: 80%;
+//     }
 
-    .listInfo {
-        width: 100%;
-        padding-right: 10px;
+//     .listInfo {
+//         width: 100%;
+//         padding-right: 10px;
 
-    }
-}
+//     }
+// }

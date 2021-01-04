@@ -113,7 +113,7 @@ section {
             color: $textColor;
             font-weight: bold;
             margin-bottom: 100px;
-            letter-spacing: 3px;
+            letter-spacing: 1.5rem;
         }
 
         .select-char {
@@ -164,12 +164,14 @@ section {
                 position: absolute;
                 font-size: $fontsize_H3;
                 font-weight: bold;
+                color:$textColor;
             }
 
             .speed {
                 top: -30px;
                 left: 50%;
                 transform: translateX(-50%);
+                letter-spacing: 3px;
             }
 
             .accuracy {
@@ -186,6 +188,7 @@ section {
 
     .right {
         width: 50%;
+        margin-top:12%;
 
         .select-item-wrap {
             width: 100%;

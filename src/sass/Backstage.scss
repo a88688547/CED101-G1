@@ -810,6 +810,364 @@ aside {
     }
 }
 
+// 一般訂單 列表
+
+
+.per_ord_type_box{
+    font-size: 24px;
+    font-weight: bold;
+    width: 60%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    // padding: 10px 0;
+  
+    
+    div:first-child{
+        border-radius: 10px 0 0 0;
+        color: #fff;
+        background-color: #B3925B;
+    }
+    div:nth-child(2){
+        border-radius: 0 10px 0 0;
+        background-color: #fff;
+        color:  #B3925B;
+    }
+    div{
+        padding: 10px 0;
+        width: 50%;
+        text-align: center;
+        cursor: pointer;
+        &:hover{
+            color: #fff;
+            background-color: #B3925B;
+        }
+    }
+}
+
+.per_ord_list_box{
+    width: 95%;
+    margin: 0 auto;
+    padding: 10px 0;
+    background-color: #B3925B;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.per_ord_title_row{
+    font-size: 18px;
+    font-weight: bold;
+    padding: 5px 5px ;
+    width: 95%;
+    margin: 10px auto;
+    display: flex;
+    align-items: center;
+    div:nth-child(1){
+        width: 8% ;
+    }
+    div:nth-child(2){
+        width: 15% ;
+    }
+    div:nth-child(3){
+        width: 25% ;
+    }
+    div:nth-child(4){
+        width: 7% ;
+    }
+    div:nth-child(5){
+        width: 30% ;
+    }
+    div:nth-child(6){
+        width: 10% ;
+    }
+    div:nth-child(7){
+        width: 5% ;
+    }
+}
+
+.per_ord_row{
+    padding: 10px 5px ;
+    width: 95%;
+    margin: 10px auto;
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    div:nth-child(1){
+        width: 8% ;
+    }
+    div:nth-child(2){
+        width: 15% ;
+    }
+    div:nth-child(3){
+        width: 25% ;
+    }
+    div:nth-child(4){
+        width: 7% ;
+    }
+    div:nth-child(5){
+        width: 30% ;
+    }
+    div:nth-child(6){
+        width: 10% ;
+    }
+    div:nth-child(7){
+        width: 5% ;
+        text-align: center;
+        padding: 5px 10px;
+        background-color: #B3925B;
+        color: #fff;
+        opacity: 0.6;
+        border-radius: 10px;
+        overflow: hidden;
+        cursor: pointer;
+        &:hover{
+            opacity: 1;
+        }
+    }
+}
+
+// 一般 訂單詳情 頁面
+
+
+.per_ord_info_box{
+    margin: 10px 0;
+    border-top: 1px solid black;
+}
+
+
+.per_ord_info_first_box{
+    width: 90%;
+    margin: 30px auto 10px auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    letter-spacing: 2px;
+    padding: 10px 0;
+    div:nth-child(1){
+        font-size: 24px;
+        color: #013B4F;
+        font-weight: bold;
+        width: auto !important;
+    }
+    div:nth-child(2){
+        font-size: 21px;
+        color: rgb(88, 88, 88);
+        width: auto !important;
+    }
+    border-bottom: 2px solid rgb(172, 172, 172);
+}
+
+.per_ord_info_sec_box{
+    font-size: 18px;
+    padding: 10px 0;
+    width: 90%;
+    margin: 10px auto;
+    display: flex;
+    flex-wrap: wrap;
+    >div{
+        width: 25%;
+        margin: 10px 0;
+    }
+    border-bottom: 2px solid rgb(172, 172, 172);
+
+}
+
+.per_ord_info_row{
+    display: flex;
+    align-items: center;
+    // justify-content: center;
+    div:nth-child(1){
+        margin-right: 20px;
+        width: 40%;
+        color: #013B4F;
+        font-weight: bold;
+    }
+    div:nth-child(2){
+        color: rgb(88, 88, 88);
+    }
+}
+
+.long_info{
+    display: flex;
+    align-items: center;
+    width: 50% !important;
+    div:nth-child(1){
+        margin-right: 20px;
+        color: #013B4F;
+        font-weight: bold;
+    }
+    div:nth-child(2){
+        color: rgb(88, 88, 88);
+    }
+}
+
+.per_ord_info_thr_box{
+    width: 90%;
+    margin: 10px auto;
+    border-bottom: 2px solid rgb(172, 172, 172);
+    padding: 10px 0;
+}
+.per_ord_item{
+    background-color: rgb(209, 209, 209);
+    padding: 10px 10px;
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.per_ord_item_left{
+    font-size: 21px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    >div:nth-child(1){
+        margin: 10px 0;
+    }
+    >div:nth-child(2){
+        color: rgb(88, 88, 88);
+    }
+}
+.per_ord_item_right{
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    letter-spacing: 2px;
+    font-weight: bold;
+    >div:nth-child(1){
+        margin-right: 30px;
+    }
+    >div{
+        width: calc(calc(100% - 30px)/2);
+    }
+}
+
+.per_ord_info_four_box{
+    width: 90%;
+    margin: 10px auto;
+    page-break-after: 10px 0;
+    // font-size: 18px;
+    letter-spacing: 2px;
+    >div:nth-child(2){
+       border-bottom: 1px solid black;
+    }
+}
+
+.per_ord_info_four_row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.per_ord_info_four_row_last{
+    border-top: 2px solid #013B4F;
+    color: #013B4F;
+    font-weight: bold ;
+    font-size: 24px ;
+    
+}
+.per_ord_info_four_row_last_count{
+    display: flex;
+    align-items: center;
+    width: 20%;
+    >div:nth-child(1){
+        margin-right: 30px;
+    }
+    >div{
+        width: calc(calc(100% - 30px)/2);
+    }
+}
+
+// 文章 檢舉審核
+
+
+.art_report_list_box{
+    overflow-y: auto;
+    height: calc(100vh - 90px) ;
+    width: 90%;
+    margin: 0 auto;
+    div{
+        margin: 0 0 10px 0;
+    }
+}
+
+.art_report_title_row{
+    background-color: #E5E3DD;
+    z-index: 2;
+    position: sticky;
+    top: 0;
+    display: flex;
+    align-items: center;
+    font-size: 21px;
+    letter-spacing: 2px;
+    font-weight: bold;
+     div:nth-child(1){
+        width: 10%;
+     }
+     div:nth-child(2){
+        width: 15%;
+     }
+     div:nth-child(3){
+        width: 15%;
+     }
+     div:nth-child(4){
+        width: 15%;
+     }
+     div:nth-child(5){
+         width: 35%;
+     }
+     div:nth-child(6){
+         width: 10%;
+     }
+}
+
+.art_report_per{
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    // letter-spacing: 2px;
+
+    div:nth-child(1){
+        width: 10%;
+     }
+     div:nth-child(2){
+        width: 15%;
+     }
+     div:nth-child(3){
+        width: 15%;
+     }
+     div:nth-child(4){
+        width: 15%;
+     }
+     div:nth-child(5){
+         width: 35%;
+     }
+     div:nth-child(6){
+         width: 10%;
+     }
+    
+}
+
+.art_report_status_notyet{
+    background-color: #B3925B;
+    color: #fff;
+    border-radius: 10px;
+    text-align: center;
+    padding: 5px 10px;
+    overflow: hidden;
+    cursor: pointer;
+    opacity: 0.6;
+    &:hover{
+        opacity: 1;
+    }
+}
+
+// 留言 檢舉審核
+
+
 // 上下架按鈕樣式
 
 .toggle {

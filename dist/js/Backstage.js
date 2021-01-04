@@ -2,9 +2,7 @@ window.addEventListener('load', function () {
     //側邊導覽列 -- 組件
     Vue.component('my-aside', {
         data() {
-            return {
-                // show: 'manager',
-            }
+            return {}
         },
         props: ['show'],
         template: `
@@ -15,9 +13,9 @@ window.addEventListener('load', function () {
                             <li @click="changeTag($event)" id="drink">商品管理</li>
                             <li @click="changeTag($event)" id="drink_type">商品規格管理</li>
                             <li @click="changeTag($event)" id="group_ord_list">揪團訂單管理</li>
-                            <li @click="changeTag($event)" id="self" >一般訂單管理</li>
-                            <li @click="changeTag($event)" id="article">文章檢舉審核</li>
-                            <li @click="changeTag($event)" id="message">留言檢舉審核</li>
+                            <li @click="changeTag($event)" id="per_ord_list" >一般訂單管理</li>
+                            <li @click="changeTag($event)" id="art_report_list">文章檢舉審核</li>
+                            <li @click="changeTag($event)" id="msg_report_list">留言檢舉審核</li>
                           </ul>
                         </aside>`,
         methods: {
@@ -608,7 +606,7 @@ window.addEventListener('load', function () {
     })
     //-----------------------------------------------------
 
-    //管理員帳號管理 -- 組件
+    // 揪團 訂單列表 -- 組件
     Vue.component('group_ord_list', {
         data() {
             return {
@@ -716,7 +714,7 @@ window.addEventListener('load', function () {
     })
     //-----------------------------------------------------
 
-    //---  編輯商品 -- 組件
+    //---  揪團 訂單詳情 -- 組件
     Vue.component('group_ord_info', {
         data() {
             return {
@@ -916,6 +914,470 @@ window.addEventListener('load', function () {
     })
     //-----------------------------------------------------
 
+    // 一般 訂單列表 -- 組件
+    Vue.component('per_ord_list', {
+        data() {
+            return {
+                //撈出來的 揪團訂單資料
+                per_ord_bs: 0,
+                per_ords: '',
+            }
+        },
+        props: ['show'],
+
+        template: `<section v-if=" show === 'per_ord_list' ">
+                    <h1 class="title">一般訂單管理</h1>
+                    <div class="per_ord_type_box">
+                        <div @click="per_ord_bs = 0,changecolor(0)">未處理</div>
+                        <div @click="per_ord_bs = 1,changecolor(1)">已完成</div>
+                    </div>
+                    <div class="per_ord_list_box">
+                        <div class="per_ord_title_row">
+                            <div>訂單編號</div>
+                            <div>訂單日期時間</div>
+                            <div>外送地址</div>
+                            <div>總杯數</div>
+                            <div>備註</div>
+                            <div>訂單狀態</div>
+                            <div></div>
+                        </div>
+                        <div class="per_ord_row" v-for="(value,key) in per_ords">
+                            <div>{{value.per_ord_no}}</div>
+                            <div>{{value.ord_time}}</div>
+                            <div>{{value.adress}}</div>
+                            <div>{{value.total_cup}}</div>
+                            <div>{{value.note}}</div>
+                            <div>{{checkstate(value.ord_state)}}</div>
+                            <div @click="changeperordno(value.per_ord_no),changeTag()">詳情</div>
+                        </div>
+                    </div>
+
+                  </section>`,
+        methods: {
+            //切換至 揪團訂單 詳情頁面
+            changeTag() {
+                //將drink_edit 傳送至上層 (new Vue)
+                this.$emit('change', 'per_ord_info')
+            },
+            //點擊 傳送 訂單編號
+            changeperordno(per_ord_no) {
+                this.$emit('changeperordno', per_ord_no)
+            },
+            get_mar: async function (per_ord_bs) {
+                const res = await fetch('./php/bs_getall_per_ord.php', {
+                    method: 'POST', // *GET, POST, PUT, DELETE, etc.
+                    mode: 'same-origin', // no-cors, *cors, same-origin
+                    // cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+                    credentials: 'same-origin', // include, *same-origin, omit
+                    headers: {
+                        'Content-Type': 'application/json', // sent request
+                        // Accept: 'application/json', // expected data sent back
+                    },
+                    // redirect: 'follow', // manual, *follow, error
+                    // referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+                    body: JSON.stringify({
+                        per_ord_bs: per_ord_bs,
+                    }), // body data type must match "Content-Type" header
+                }).then(function (data) {
+                    return data.json()
+                })
+                // 取回res值後，呼叫另一隻函式
+                this.get_ord_type(res)
+            },
+            // 將值寫入data中
+            get_ord_type: function (data) {
+                this.per_ords = data
+            },
+            //判斷 訂單狀態 回傳 對應值
+            checkstate: function (per_ord_bs) {
+                if (per_ord_bs == 1) {
+                    return '已完成'
+                } else if (per_ord_bs == 0) {
+                    return '未處理'
+                }
+            },
+            //類型 點擊後 切換顏色
+            changecolor: function (num) {
+                let test = document.querySelectorAll('.per_ord_type_box>div').forEach(function (e) {
+                    e.style.color = '#B3925B'
+                    e.style.backgroundColor = '#fff'
+                })
+
+                let item = document.querySelectorAll('.per_ord_type_box>div')[num]
+                item.style.color = '#fff'
+                item.style.backgroundColor = '#B3925B'
+            },
+        },
+        // template 渲染前 會先去執行以下函式
+        created() {
+            this.get_mar(this.per_ord_bs)
+        },
+        watch: {
+            // 當選取的不同類型時，重新撈取一次 該類型的資料
+            per_ord_bs: function (per_ord_bs) {
+                this.get_mar(per_ord_bs)
+            },
+        },
+    })
+    //-----------------------------------------------------
+
+    //---  一般 訂單詳情 -- 組件
+    Vue.component('per_ord_info', {
+        data() {
+            return {
+                // 訂單資料
+                per_ord_info: '',
+                // 訂單明細
+                item_info: '',
+            }
+        },
+        props: ['show', 'per_ord_no'],
+
+        template: `
+                  <section v-if=" show === 'per_ord_info' ">
+                    <h1 class="title">訂單詳情 ( No: {{per_ord_info[0].per_ord_no}} )</h1>
+                    <div class="return_btn_box"><div class="return_btn" @click="changeTag">返回訂單列表</div></div>
+                    <div class="per_ord_info_box">
+                        <div class="per_ord_info_first_box">
+                            <div class="per_ord_info_row">
+                                <div>訂單編號</div>
+                                <div>{{per_ord_info[0].per_ord_no}}</div>
+                            </div>
+                            <div class="per_ord_info_row">
+                                <div>建立訂單日期</div>
+                                <div>{{per_ord_info[0].ord_time}}</div>
+                            </div>
+                        </div>
+                        <div class="per_ord_info_sec_box">
+                            
+                            <div class="per_ord_info_row">
+                                <div>連絡電話</div>
+                                <div>{{per_ord_info[0].phone}}</div>
+                            </div>
+                             <div class="per_ord_info_row">
+                                <div>總共杯數</div>
+                                <div>{{per_ord_info[0].total_cup}}</div>
+                            </div>
+                             <div class="per_ord_info_row">
+                                <div>杯數折扣</div>
+                                <div>{{check_discount(per_ord_info[0].total_cup)}}</div>
+                            </div>
+                             <div class="per_ord_info_row">
+                                <div>優惠券</div>
+                                <div></div>
+                            </div>
+                            <div class="per_ord_info_row">
+                                <div>訂單總金額</div>
+                                <div>{{per_ord_info[0].ord_price_2}}</div>
+                            </div>
+                            <div class="per_ord_info_row">
+                                <div>訂單狀態</div>
+                                <div>{{chech_per_ord_bs(per_ord_info[0].ord_state)}}</div>
+                            </div>
+
+                            <div class=" long_info">
+                                <div>備註</div>
+                                <div>{{per_ord_info[0].note}}</div>
+                            </div>
+                            <div class=" long_info">
+                                <div>取貨地點</div>
+                                <div>{{per_ord_info[0].adress}}</div>
+                            </div>
+                        </div>
+                        <div class="per_ord_info_thr_box">
+                            <div class="per_ord_item" v-for="(value,key) in item_info">
+                                <div class="per_ord_item_left">
+                                    <div>{{value.drink_title_ch}}-{{checkcup(value.cup_no)}}</div>
+                                    <div>{{value.set_info}}</div>
+                                </div>
+                                <div class="per_ord_item_right">
+                                    <div>{{value.ord_list_qua}}杯</div>
+                                    <div>$ {{value.total_price}}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="per_ord_info_four_box">
+                            <div class="per_ord_info_four_row">
+                                <div>原價</div>
+                                <div>{{per_ord_info[0].ord_price}}</div>
+                            </div>
+                            <div class="per_ord_info_four_row">
+                                <div>杯數折扣</div>
+                                <div>x {{per_ord_info[0].dis_count}}</div>
+                            </div>
+                            <div class="per_ord_info_four_row">
+                                <div>折扣後</div>
+                                <div>{{per_ord_info[0].ord_price_1}}</div>
+                            </div>
+                            <div class="per_ord_info_four_row">
+                                <div>優惠卷折扣</div>
+                                <div>x {{per_ord_info[0].cou_discount}}</div>
+                            </div>
+                            <div class="per_ord_info_four_row per_ord_info_four_row_last">
+                                <div>總計</div>
+                                <div class="per_ord_info_four_row_last_count">
+                                    <div>共{{per_ord_info[0].total_cup}}杯</div>
+                                    <div>$ {{per_ord_info[0].ord_price_2}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                    </div>
+
+                  </section>`,
+        methods: {
+            // 切換頁面
+            changeTag() {
+                //傳送至上層 (new Vue)
+                this.$emit('change', 'per_ord_list')
+            },
+
+            //呼叫php程式，
+            get_mar: async function (per_ord_no) {
+                // 取回 單一訂單 相關資料，並用json()轉回一般陣列
+                const res = await fetch('./php/bs_getone_per_ord_info.php', {
+                    method: 'POST',
+                    mode: 'same-origin',
+                    credentials: 'same-origin',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        per_ord_no: per_ord_no,
+                    }),
+                }).then(function (data) {
+                    return data.json()
+                })
+                // 取回 單一 訂單明細 相關資料，並用json()轉回一般陣列
+                const info = await fetch('./php/bs_gteone_per_ord_item.php', {
+                    method: 'POST',
+                    mode: 'same-origin',
+                    credentials: 'same-origin',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        per_ord_no: per_ord_no,
+                    }),
+                }).then(function (data) {
+                    return data.json()
+                })
+
+                // 取回res值後，呼叫另一隻函式
+                this.get_drink(res, info)
+            },
+            // 將值寫入data中
+            get_drink: function (data, info) {
+                this.per_ord_info = data
+                this.item_info = info
+            },
+            //判斷實際杯數 顯示折扣數
+            check_discount: function (data) {
+                if (data < 20) {
+                    console.log('QQQ')
+                    return '無優惠'
+                } else if (20 <= data && data < 30) {
+                    return '九折優惠'
+                } else if (30 <= data && data < 40) {
+                    return '八折優惠'
+                } else if (40 <= data && data < 50) {
+                    return '七折優惠'
+                } else if (50 <= data) {
+                    return '六折優惠'
+                }
+            },
+            //判斷 訂單狀態
+            chech_per_ord_bs: function (data) {
+                if (data == 0) {
+                    return '未處理'
+                } else {
+                    return '已完成'
+                }
+            },
+            //判斷 飲料是大杯還小杯
+            checkcup: function (data) {
+                if (data == 0) {
+                    return '中杯'
+                } else if (data == 1) {
+                    return '大杯'
+                }
+            },
+        },
+        created() {
+            // 渲染前 先去撈取資料
+            this.get_mar(this.per_ord_no)
+            // console.log('send:', this.drinkno)
+        },
+        // 監聽數值變化
+        watch: {
+            // 當選取的飲料不同時，重新撈取一次 單一飲品的資料
+            per_ord_no: function (per_ord_no) {
+                this.get_mar(per_ord_no)
+            },
+        },
+    })
+    //-----------------------------------------------------
+
+    // 文章 檢舉審核 -- 組件
+    Vue.component('art_report_list', {
+        data() {
+            return {
+                //撈出來的 管理員資料
+                art_reports: '',
+            }
+        },
+        props: ['show'],
+
+        template: `<section v-if=" show === 'art_report_list' ">
+                <h1 class="title">文章檢舉審核</h1>
+                <div class="art_report_list_box">
+                    <div class="art_report_title_row">
+                        <div>編號</div>
+                        <div>檢舉時間</div>
+                        <div>文章編號</div>
+                        <div>檢舉人名稱</div>
+                        <div>檢舉原因</div>
+                        <div>審核狀態</div>
+                    </div>
+                    <div class="art_report_per" v-for="(value,key) in art_reports">
+                        <div>{{value.art_report_no}}</div> 
+                        <div>{{value.art_report_date}}</div>
+                        <div>{{value.art_no}}</div>
+                        <div>{{value.mem_name}}</div>
+                        <div>{{value.art_report_reason}}</div>
+                        <div :class="checkstatusclass(value.art_report_status)" @click="art_report_status(value.art_report_status)">{{checkstatus(value.art_report_status)}}</div>
+                    </div>
+                </div>
+
+              </section>`,
+        methods: {
+            //呼叫php程式，取回 管理員帳號 相關資料，並用json()轉回一般陣列
+            get_mar: async function () {
+                const res = await fetch('./php/bs_getall_art_report.php', {}).then(function (data) {
+                    return data.json()
+                })
+                // 取回res值後，呼叫另一隻函式
+                this.change_mar(res)
+            },
+            // 將值寫入data中
+            change_mar: function (data) {
+                this.art_reports = data
+            },
+
+            // 判斷 審核的狀態為何
+            checkstatus: function (status) {
+                if (status == 0) {
+                    return '未處理'
+                } else if (status == 1) {
+                    return '已通過'
+                } else if (status == 2) {
+                    return '駁回'
+                }
+            },
+            // 根據審核狀態不同 給予不同的 class名稱
+            checkstatusclass: function (status) {
+                if (status == 0) {
+                    return 'art_report_status_notyet'
+                } else {
+                    return 'done'
+                }
+            },
+            // 根據審核狀態不同 給予對應的動作
+            art_report_status: function (status) {
+                if (status == 0) {
+                    console.log('進入審核判斷')
+                } else {
+                    return ''
+                }
+            },
+        },
+        // template 渲染前 會先去執行以下函式
+        created() {
+            this.get_mar()
+        },
+    })
+    //-----------------------------------------------------
+
+    // 留言 檢舉審核 -- 組件
+    Vue.component('msg_report_list', {
+        data() {
+            return {
+                //撈出來的 管理員資料
+                msg_reports: '',
+            }
+        },
+        props: ['show'],
+
+        template: `<section v-if=" show === 'msg_report_list' ">
+                <h1 class="title">留言檢舉審核</h1>
+                <div class="art_report_list_box">
+                    <div class="art_report_title_row">
+                        <div>編號</div>
+                        <div>檢舉時間</div>
+                        <div>文章編號</div>
+                        <div>檢舉人名稱</div>
+                        <div>檢舉原因</div>
+                        <div>審核狀態</div>
+                    </div>
+                    <div class="art_report_per" v-for="(value,key) in art_reports">
+                        <div>{{value.art_report_no}}</div> 
+                        <div>{{value.art_report_date}}</div>
+                        <div>{{value.art_no}}</div>
+                        <div>{{value.mem_name}}</div>
+                        <div>{{value.art_report_reason}}</div>
+                        <div :class="checkstatusclass(value.art_report_status)" @click="art_report_status(value.art_report_status)">{{checkstatus(value.art_report_status)}}</div>
+                    </div>
+                </div>
+
+              </section>`,
+        methods: {
+            //呼叫php程式，取回 管理員帳號 相關資料，並用json()轉回一般陣列
+            get_mar: async function () {
+                const res = await fetch('./php/bs_getall_msg_report.php', {}).then(function (data) {
+                    return data.json()
+                })
+                // 取回res值後，呼叫另一隻函式
+                this.change_mar(res)
+            },
+            // 將值寫入data中
+            change_mar: function (data) {
+                this.msg_reports = data
+            },
+
+            // 判斷 審核的狀態為何
+            checkstatus: function (status) {
+                if (status == 0) {
+                    return '未處理'
+                } else if (status == 1) {
+                    return '已通過'
+                } else if (status == 2) {
+                    return '駁回'
+                }
+            },
+            // 根據審核狀態不同 給予不同的 class名稱
+            checkstatusclass: function (status) {
+                if (status == 0) {
+                    return 'art_report_status_notyet'
+                } else {
+                    return 'done'
+                }
+            },
+            // 根據審核狀態不同 給予對應的動作
+            art_report_status: function (status) {
+                if (status == 0) {
+                    console.log('進入審核判斷')
+                } else {
+                    return ''
+                }
+            },
+        },
+        // template 渲染前 會先去執行以下函式
+        created() {
+            this.get_mar()
+        },
+    })
+    //-----------------------------------------------------
+
     //New Vue
     new Vue({
         el: '#app',
@@ -925,6 +1387,7 @@ window.addEventListener('load', function () {
             type_no: 1,
             type_title: '',
             group_ord_no: 1,
+            per_ord_no: 5,
         },
         methods: {
             //接受到 下層傳遞的值 變更data值
@@ -940,6 +1403,9 @@ window.addEventListener('load', function () {
             },
             changegroupordno(group_ord_no) {
                 this.group_ord_no = group_ord_no
+            },
+            changeperordno(per_ord_no) {
+                this.per_ord_no = per_ord_no
             },
         },
         components: {},

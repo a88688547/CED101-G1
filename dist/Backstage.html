@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="./css/reset.css" />
         <link rel="stylesheet" href="./css/Backstage.css" />
         <script src="./js/Backstage.js"></script>
+        <!-- 不寫這個會報錯誤 -->
         <link rel="shortcut icon" href="#" />
         <style></style>
     </head>
@@ -34,6 +35,8 @@
                 <group_ord_info :show="show" @change="changeTag" :group_ord_no="group_ord_no"></group_ord_info>
                 <per_ord_list :show="show" @change="changeTag" @changeperordno="changeperordno"></per_ord_list>
                 <per_ord_info :show="show" @change="changeTag" :per_ord_no="per_ord_no"></per_ord_info>
+                <art_report_list :show="show"></art_report_list>
+                <msg_report_list :show="show"></msg_report_list>
             </main>
         </div>
         <footer></footer>

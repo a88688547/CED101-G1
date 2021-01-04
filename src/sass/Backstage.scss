@@ -1017,7 +1017,91 @@ aside{
     }
 }
 
+// 文章 檢舉審核
 
+
+.art_report_list_box{
+    overflow-y: auto;
+    height: calc(100vh - 90px) ;
+    width: 90%;
+    margin: 0 auto;
+    div{
+        margin: 0 0 10px 0;
+    }
+}
+
+.art_report_title_row{
+    background-color: #E5E3DD;
+    z-index: 2;
+    position: sticky;
+    top: 0;
+    display: flex;
+    align-items: center;
+    font-size: 21px;
+    letter-spacing: 2px;
+    font-weight: bold;
+     div:nth-child(1){
+        width: 10%;
+     }
+     div:nth-child(2){
+        width: 15%;
+     }
+     div:nth-child(3){
+        width: 15%;
+     }
+     div:nth-child(4){
+        width: 15%;
+     }
+     div:nth-child(5){
+         width: 35%;
+     }
+     div:nth-child(6){
+         width: 10%;
+     }
+}
+
+.art_report_per{
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    // letter-spacing: 2px;
+
+    div:nth-child(1){
+        width: 10%;
+     }
+     div:nth-child(2){
+        width: 15%;
+     }
+     div:nth-child(3){
+        width: 15%;
+     }
+     div:nth-child(4){
+        width: 15%;
+     }
+     div:nth-child(5){
+         width: 35%;
+     }
+     div:nth-child(6){
+         width: 10%;
+     }
+    
+}
+
+.art_report_status_notyet{
+    background-color: #B3925B;
+    color: #fff;
+    border-radius: 10px;
+    text-align: center;
+    padding: 5px 10px;
+    overflow: hidden;
+    cursor: pointer;
+    opacity: 0.6;
+    &:hover{
+        opacity: 1;
+    }
+}
+
+// 留言 檢舉審核
 
 
 // 上下架按鈕樣式

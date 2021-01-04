@@ -2,9 +2,7 @@ window.addEventListener('load', function () {
     //側邊導覽列 -- 組件
     Vue.component('my-aside', {
         data() {
-            return {
-                // show: 'manager',
-            }
+            return {}
         },
         props: ['show'],
         template: `
@@ -16,8 +14,8 @@ window.addEventListener('load', function () {
                             <li @click="changeTag($event)" id="drink_type">商品規格管理</li>
                             <li @click="changeTag($event)" id="group_ord_list">揪團訂單管理</li>
                             <li @click="changeTag($event)" id="per_ord_list" >一般訂單管理</li>
-                            <li @click="changeTag($event)" id="article">文章檢舉審核</li>
-                            <li @click="changeTag($event)" id="message">留言檢舉審核</li>
+                            <li @click="changeTag($event)" id="art_report_list">文章檢舉審核</li>
+                            <li @click="changeTag($event)" id="msg_report_list">留言檢舉審核</li>
                           </ul>
                         </aside>`,
         methods: {
@@ -1218,6 +1216,167 @@ window.addEventListener('load', function () {
             },
         },
     })
+    //-----------------------------------------------------
+
+    // 文章 檢舉審核 -- 組件
+    Vue.component('art_report_list', {
+        data() {
+            return {
+                //撈出來的 管理員資料
+                art_reports: '',
+            }
+        },
+        props: ['show'],
+
+        template: `<section v-if=" show === 'art_report_list' ">
+                <h1 class="title">文章檢舉審核</h1>
+                <div class="art_report_list_box">
+                    <div class="art_report_title_row">
+                        <div>編號</div>
+                        <div>檢舉時間</div>
+                        <div>文章編號</div>
+                        <div>檢舉人名稱</div>
+                        <div>檢舉原因</div>
+                        <div>審核狀態</div>
+                    </div>
+                    <div class="art_report_per" v-for="(value,key) in art_reports">
+                        <div>{{value.art_report_no}}</div> 
+                        <div>{{value.art_report_date}}</div>
+                        <div>{{value.art_no}}</div>
+                        <div>{{value.mem_name}}</div>
+                        <div>{{value.art_report_reason}}</div>
+                        <div :class="checkstatusclass(value.art_report_status)" @click="art_report_status(value.art_report_status)">{{checkstatus(value.art_report_status)}}</div>
+                    </div>
+                </div>
+
+              </section>`,
+        methods: {
+            //呼叫php程式，取回 管理員帳號 相關資料，並用json()轉回一般陣列
+            get_mar: async function () {
+                const res = await fetch('./php/bs_getall_art_report.php', {}).then(function (data) {
+                    return data.json()
+                })
+                // 取回res值後，呼叫另一隻函式
+                this.change_mar(res)
+            },
+            // 將值寫入data中
+            change_mar: function (data) {
+                this.art_reports = data
+            },
+
+            // 判斷 審核的狀態為何
+            checkstatus: function (status) {
+                if (status == 0) {
+                    return '未處理'
+                } else if (status == 1) {
+                    return '已通過'
+                } else if (status == 2) {
+                    return '駁回'
+                }
+            },
+            // 根據審核狀態不同 給予不同的 class名稱
+            checkstatusclass: function (status) {
+                if (status == 0) {
+                    return 'art_report_status_notyet'
+                } else {
+                    return 'done'
+                }
+            },
+            // 根據審核狀態不同 給予對應的動作
+            art_report_status: function (status) {
+                if (status == 0) {
+                    console.log('進入審核判斷')
+                } else {
+                    return ''
+                }
+            },
+        },
+        // template 渲染前 會先去執行以下函式
+        created() {
+            this.get_mar()
+        },
+    })
+    //-----------------------------------------------------
+
+    // 留言 檢舉審核 -- 組件
+    Vue.component('msg_report_list', {
+        data() {
+            return {
+                //撈出來的 管理員資料
+                msg_reports: '',
+            }
+        },
+        props: ['show'],
+
+        template: `<section v-if=" show === 'msg_report_list' ">
+                <h1 class="title">留言檢舉審核</h1>
+                <div class="art_report_list_box">
+                    <div class="art_report_title_row">
+                        <div>編號</div>
+                        <div>檢舉時間</div>
+                        <div>文章編號</div>
+                        <div>檢舉人名稱</div>
+                        <div>檢舉原因</div>
+                        <div>審核狀態</div>
+                    </div>
+                    <div class="art_report_per" v-for="(value,key) in art_reports">
+                        <div>{{value.art_report_no}}</div> 
+                        <div>{{value.art_report_date}}</div>
+                        <div>{{value.art_no}}</div>
+                        <div>{{value.mem_name}}</div>
+                        <div>{{value.art_report_reason}}</div>
+                        <div :class="checkstatusclass(value.art_report_status)" @click="art_report_status(value.art_report_status)">{{checkstatus(value.art_report_status)}}</div>
+                    </div>
+                </div>
+
+              </section>`,
+        methods: {
+            //呼叫php程式，取回 管理員帳號 相關資料，並用json()轉回一般陣列
+            get_mar: async function () {
+                const res = await fetch('./php/bs_getall_msg_report.php', {}).then(function (data) {
+                    return data.json()
+                })
+                // 取回res值後，呼叫另一隻函式
+                this.change_mar(res)
+            },
+            // 將值寫入data中
+            change_mar: function (data) {
+                this.msg_reports = data
+            },
+
+            // 判斷 審核的狀態為何
+            checkstatus: function (status) {
+                if (status == 0) {
+                    return '未處理'
+                } else if (status == 1) {
+                    return '已通過'
+                } else if (status == 2) {
+                    return '駁回'
+                }
+            },
+            // 根據審核狀態不同 給予不同的 class名稱
+            checkstatusclass: function (status) {
+                if (status == 0) {
+                    return 'art_report_status_notyet'
+                } else {
+                    return 'done'
+                }
+            },
+            // 根據審核狀態不同 給予對應的動作
+            art_report_status: function (status) {
+                if (status == 0) {
+                    console.log('進入審核判斷')
+                } else {
+                    return ''
+                }
+            },
+        },
+        // template 渲染前 會先去執行以下函式
+        created() {
+            this.get_mar()
+        },
+    })
+    //-----------------------------------------------------
 
     //New Vue
     new Vue({

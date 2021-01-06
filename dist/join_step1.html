@@ -98,7 +98,7 @@
             />
 
             <input type="button" value="建立訂單" class="btn_go" />
-            <div class="ConfirmForm">
+            <!-- <div class="ConfirmForm">
               <div class="ConfirmForminfo">
                 <ul>
                   <li></li>
@@ -110,7 +110,7 @@
                 <h2 id="ConfirmName">確認團名</h2>
                 <button type="submit" id="ConfirmButton">確認建立</button>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
         <!-- 確認框 -->
@@ -139,7 +139,7 @@
     let Goal = document.getElementById("goal"); //目標杯數
     let Address = document.querySelector(".address"); //送貨地址
     let GroupData = document.querySelector(".group_data"); //fomr表單
-    let ErrorText = document.querySelector(".error"); //警告視窗
+    let ErrorText = document.querySelector(".error"); //警告視窗文字
     let text;
     let storage = sessionStorage;
     let DrinkTime =
@@ -197,8 +197,8 @@
         Address.value = "";
         return;
       }
-      document.getElementById("ConfirmName").innerText = NAME.value;
-      // GroupData.submit();
+      // document.getElementById("ConfirmName").innerText = NAME.value;
+      GroupData.submit();
     });
     console.log(NAME.value);
   </script>

@@ -4,7 +4,7 @@ try {
 	require_once("./connect_join_database.php");
 	$sql = "select *
             from group_ord
-            WHERE CURRENT_DATE() BETWEEN group_datetime AND arrive_time;";
+            WHERE NOW() BETWEEN group_datetime AND deadline_time;";
             
 	$grouporddata = $pdo->prepare($sql);
 	$grouporddata->execute();

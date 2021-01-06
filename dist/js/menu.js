@@ -170,15 +170,13 @@ Vue.component('menu_carshop', {
         bus.$on('addToCar_parent', (numx) => this.shopping_num_total = numx);
 
         fetch('./php/menu.php', {
-            method: 'POST', // or 'PUT'
-            body: JSON.stringify(this.item_type), // data can be `string` or {object}!
+            method: 'GET', // or 'PUT'
+            // body: JSON.stringify(this.item_type), // data can be `string` or {object}!
             headers: new Headers({
                 'Content-Type': 'application/json'
             })
         }).then(res => res.json())
             .then(res => this.item_type = res);
-
-
     },
     //網頁重整的時候，購物車按鈕的飲品數會更新
     created() {
@@ -250,6 +248,8 @@ Vue.component('light_box', {
             closeLightBox: false,
             //toDoInput父層組件接收大小杯價格的變數
             task: "",
+            //飲品編號
+            drink_no: "",
         }
     },
     // 燈箱接收點擊菜單飲品的資料
@@ -263,6 +263,7 @@ Vue.component('light_box', {
             this.shop_price = item.drink_small_price
             this.imgSrc = item.imgSrc
             this.closeLightBox = true
+            this.drink_no = item.drink_no
             //將大小杯價格存入task變數，讓toDoInput父層組件使用
             this.task = [item.drink_small_price, item.drink_big_price]
         },
@@ -353,7 +354,7 @@ Vue.component('light_box', {
             }
 
             //選擇的飲料項目加成字串存到storage
-            let drinkInDetail_first = `${this.shop_drink_name},${selectCupValue},${_selectSugarValue},${_selectIceValue},${selectIngredientValue},${this.shop_price}|`
+            let drinkInDetail_first = `${this.shop_drink_name},${selectCupValue},${_selectSugarValue},${_selectIceValue},${selectIngredientValue},${this.shop_price},${this.drink_no}|`
             let drinkInDetail = ""
             for (let i = 1; i <= this.num_feedback; i++) {
                 drinkInDetail += drinkInDetail_first

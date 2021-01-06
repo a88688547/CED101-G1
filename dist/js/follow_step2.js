@@ -1,10 +1,11 @@
 
 let storage = sessionStorage;
+let dt = storage['dt']
 Vue.component('orderlist', {
     data() {
         return {
             //把storage['addItemList']存在data的變數，變動時drinkItem才會跟著變動
-            addItemList: storage['addItemList'],
+            addItemList: storage[`addItemList${dt}`],
         }
     },
     methods: {
@@ -16,7 +17,7 @@ Vue.component('orderlist', {
         }
     },
     created() {
-        if (storage['addItemList'] == "") {
+        if (storage[`addItemList${dt}`] == "") {
             this.order = false
         }
     },

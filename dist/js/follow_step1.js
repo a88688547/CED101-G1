@@ -12,12 +12,39 @@ Vue.component('orderlist', {
         }
     },
     methods: {
-        xyz(theAddItemList, state) {
+        //下層組件增加減少刪除品項，回傳storage至上層，並由addItemList接收，這樣才會動態更新
+        //如果刪到沒飲料，則回傳一個false上來，隱藏品項
+        parentGetStorage(theAddItemList, state) {
             if (state === false) {
                 this.order = false
             }
             this.addItemList = theAddItemList
-        }
+        },
+        //送出訂單資料到後台
+        postOrder: async function () {
+            await fetch('./php/postOrder.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(this.postOrderData),
+            })
+            await this.createNewStorage()
+            location.href = './follow_step2.html'
+        },
+        createNewStorage: async function () {
+            console.log("aa")
+            let dt = new Date().getTime()
+            if (storage['dt'] == null) {
+                storage['dt'] = ''
+            }
+            storage["dt"] = dt
+            if (storage[`addItemList${dt}`] == null) {
+                storage[`addItemList${dt}`] = ''
+            }
+            storage[`addItemList${dt}`] = this.addItemList
+            storage['addItemList'] = ""
+        },
     },
     created() {
         if (storage['addItemList'] == "") {
@@ -26,7 +53,50 @@ Vue.component('orderlist', {
     },
 
     computed: {
+        //要送到後台的訂單資料
+        postOrderData() {
+            //先創一個空陣列,裡面要放多個物件
+            let dataArray = []
+            //drinkItem裡面有幾個物件
+            let drinkItemLength = Object.values(this.drinkItem).length
+            //drinkItem裡面的key形成的陣列
+            let drinkItemKeys = Object.keys(this.drinkItem);
+            //drinkItem裡面的value形成的陣列
+            let drinkItemValues = Object.values(this.drinkItem);
 
+
+            //drinkItem內有幾個品項就做幾次，逐一把drinkItem內的value拿出來放進物件data，最後再把物件塞進陣列
+            for (let i = 0; i < drinkItemLength; i++) {
+                //要放在陣列裡的物件data
+                let postOrderObj = {
+                    group_ord_no: 1,
+                    mem_no: 1,
+                    drink_no: '',
+                    one_price: '',
+                    ord_qua: '',
+                    total_price: '',
+                    set_info: '',
+                    cup_no: '',
+                }
+                //把key值取出，分割字串，再把值個別放進物件的data內
+                let keyStringArray = drinkItemKeys[i].substr(0, drinkItemKeys[i].length).split(',')
+                postOrderObj['drink_no'] = keyStringArray[6]
+                postOrderObj['one_price'] = keyStringArray[5]
+                postOrderObj['ord_qua'] = drinkItemValues[i]
+                postOrderObj['total_price'] = postOrderObj['one_price'] * postOrderObj['ord_qua']
+                //處理當沒有加料時的字串顯示
+                if (keyStringArray[4] == "") {
+                    postOrderObj['set_info'] = `${keyStringArray[2]},${keyStringArray[3]},${keyStringArray[1]},$${keyStringArray[5]}`
+                } else {
+                    postOrderObj['set_info'] = `${keyStringArray[2]},${keyStringArray[3]},加${keyStringArray[4]},${keyStringArray[1]},$${keyStringArray[5]}`
+                }
+                postOrderObj['cup_no'] = keyStringArray[1]
+                //把物件塞進陣列
+                dataArray.push(postOrderObj)
+            }
+            return dataArray
+        },
+        //飲品的項目及其數量
         drinkItem() {
             let itemString = this.addItemList
             let items = itemString.substr(0, itemString.length - 1).split('|');
@@ -55,10 +125,10 @@ Vue.component('orderlist', {
             })
             //最後結果 => 例: arr = [a,a,b,c,c] obj={a:2,b:1,c:2}
             // console.log(obj)
+
             return obj
-
-
         },
+        //總共幾杯
         total_num() {
             let theTotalNum = 0
             for (let i = 0; i < Object.values(this.drinkItem).length; i++) {
@@ -66,6 +136,7 @@ Vue.component('orderlist', {
             }
             return theTotalNum
         },
+        //總價格
         total_price() {
             let theTotalPrice = 0
 
@@ -92,7 +163,7 @@ Vue.component('orderlist', {
                 </div>
                 <div class="group_order_done_person_downbox">
                     <!-- 購買的 飲料 -->
-                    <person-drink v-for="(value,key) in drinkItem" :key_="key" :value_="value" @abc="xyz"></person-drink>
+                    <person-drink v-for="(value,key) in drinkItem" :key_="key" :value_="value" @childStorageToParent="parentGetStorage"></person-drink>
                 </div>
                 <div class="group_order_done_person_total" >
                     <div>總計</div>
@@ -164,7 +235,8 @@ Vue.component('orderlist', {
                             </div>
                         </div>
                         <div class="sendbtn">
-                            <input type="button" value="確認送出" onclick="location.href='./follow_step2.html'">
+                            <!-- <input type="button" value="確認送出" onclick="location.href='./follow_step2.html'"> -->
+                            <input type="button" value="確認送出" @click="postOrder">
                         </div>
                     </div>
                 </form>
@@ -175,11 +247,15 @@ Vue.component('orderlist', {
     `,
 })
 
+//購買的飲料清單
 Vue.component('personDrink', {
+    //上層組件傳了drinkItem裡的key跟value來，下層組件使用props接收
     props: ['key_', 'value_'],
     data() {
         return {
+            //飲品的詳細資訊，將其切割成陣列
             propsKey: this.key_.substr(0, this.key_.length).split(','),
+            //每個飲品的數量
             num: this.value_,
 
         }
@@ -196,24 +272,28 @@ Vue.component('personDrink', {
                 storage['addItemList'] = storage['addItemList'].replace(`${this.key_}|`, "")
                 storage['addItemList'] = storage['addItemList'].replace("_", `${this.key_}|`)
             }
-            this.$emit('abc', storage['addItemList'])
-
+            //修改storage的資料後，將storage傳遞至上層組件，藉此更新drinkItem
+            this.$emit('childStorageToParent', storage['addItemList'])
         },
 
         //增加杯數
         handlePlus() {
             this.num++
             storage['addItemList'] += `${this.key_}|`
-            this.$emit('abc', storage['addItemList'])
+            //修改storage的資料後，將storage傳遞至上層組件，藉此更新drinkItem
+            this.$emit('childStorageToParent', storage['addItemList'])
         },
 
+        //刪除飲品
         deleteItem() {
             let state = false
             storage['addItemList'] = storage['addItemList'].replaceAll(`${this.key_}|`, "")
+            //修改storage的資料後，將storage傳遞至上層組件，藉此更新drinkItem，由於可能是刪到沒有飲品，
+            //因此多傳遞一個false給上層，判斷將飲品資料都隱藏
             if (storage['addItemList'] == "") {
-                this.$emit('abc', storage['addItemList'], state)
+                this.$emit('childStorageToParent', storage['addItemList'], state)
             } else {
-                this.$emit('abc', storage['addItemList'])
+                this.$emit('childStorageToParent', storage['addItemList'])
             }
         }
     },
@@ -266,6 +346,7 @@ Vue.component('personDrink', {
 
 })
 
+//燈箱內的飲品資訊
 Vue.component('modalPersonDrink', {
     props: ['key_', 'value_'],
     data() {

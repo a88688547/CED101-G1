@@ -33,6 +33,12 @@ window.addEventListener('load', function () {
             return {
                 //撈出來的 管理員資料
                 managers: '',
+                checked: '',
+                lightbox: false,
+                lightbox_mar_no: '',
+                lightbox_status: '',
+                lightbox_mar_name: '',
+                lightbox_text: '',
             }
         },
         props: ['show'],
@@ -52,13 +58,20 @@ window.addEventListener('load', function () {
                             <div>{{value.mar_name}}</div>
                             <div>{{value.mar_id}}</div>
                             <div>{{value.mar_psw}}</div>
-                            <div class="toggle">
-                                <input checked type="checkbox" :id="key" />
-                                <label :for="key"></label>
+                            {{checked_test(value.mar_status)}}
+                            <div class="toggle" @click="lightbox_show(value.mar_no,value.mar_name,value.mar_status)">
+                                <input v-model="checked" type="checkbox"   />
+                                <label ></label>
                             </div>
                         </div>
                     </div>
-
+                    <div class="lightbox_black" v-if="lightbox">
+                        <div class="lightbox" >
+                            <div class="manager_lightbox_close_img" @click="lightbox = false"><img src="./Images/close.svg" ></div>
+                            <div>確定要將  管理員 : <span>{{lightbox_mar_name}}</span>。<span>{{lightbox_text}}</span> 嗎??</div>
+                            <div @click="change_status(lightbox_mar_no,lightbox_status)">確定修改</div>
+                        </div>
+                    </div>
                   </section>`,
         methods: {
             //呼叫php程式，取回 管理員帳號 相關資料，並用json()轉回一般陣列
@@ -73,6 +86,49 @@ window.addEventListener('load', function () {
             change_mar: function (data) {
                 this.managers = data
             },
+            // 點擊修改後，顯示燈箱 並帶入值
+
+            lightbox_show: function (mar_no, mar_name, mar_status) {
+                this.lightbox = true
+                this.lightbox_mar_no = mar_no
+                this.lightbox_mar_name = mar_name
+
+                if (mar_status == 0) {
+                    this.lightbox_status = 1
+                    this.lightbox_text = '啟用'
+                } else if (mar_status == 1) {
+                    this.lightbox_status = 0
+                    this.lightbox_text = '停權'
+                }
+            },
+
+            // 點擊 確定修改後 觸發 php程式。完成後 重新撈取一次資料
+            change_status: async function (mar_no, status) {
+                const res = await fetch('./php/bs_update_manger.php', {
+                    method: 'POST',
+                    mode: 'same-origin',
+                    credentials: 'same-origin',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        mar_no: mar_no,
+                        mar_status: status,
+                    }),
+                })
+                //關閉燈箱
+                this.lightbox = false
+                //完成後 重新撈取一次資料
+                this.get_mar()
+            },
+            //依照 帳號狀態 顯示已經勾選或尚未勾選
+            checked_test(data) {
+                if (data == 0) {
+                    this.checked = false
+                } else if (data == 1) {
+                    this.checked = true
+                }
+            },
         },
         // template 渲染前 會先去執行以下函式
         created() {
@@ -86,6 +142,12 @@ window.addEventListener('load', function () {
         data() {
             return {
                 members: '',
+                checked: '',
+                lightbox: false,
+                lightbox_mem_no: '',
+                lightbox_status: '',
+                lightbox_mem_name: '',
+                lightbox_text: '',
             }
         },
         props: ['show'],
@@ -107,10 +169,18 @@ window.addEventListener('load', function () {
                             <div>{{value.mem_email}}</div>
                             <div>{{value.mem_psw}}</div>
                             <div>{{value.mem_phone}}</div>
-                            <div class="toggle">
-                                <input checked type="checkbox" :id="key" />
-                                <label :for="key"></label>
+                            {{checked_test(value.mem_status)}}
+                            <div class="toggle" @click="lightbox_show(value.mem_no,value.mem_name,value.mem_status)">
+                                <input v-model="checked" type="checkbox"   />
+                                <label ></label>
                             </div>
+                        </div>
+                    </div>
+                    <div class="lightbox_black" v-if="lightbox">
+                        <div class="lightbox" >
+                            <div class="manager_lightbox_close_img" @click="lightbox = false"><img src="./Images/close.svg" ></div>
+                            <div>確定要將  管理員 : <span>{{lightbox_mem_name}}</span>。<span>{{lightbox_text}}</span> 嗎??</div>
+                            <div @click="change_status(lightbox_mem_no,lightbox_status)">確定修改</div>
                         </div>
                     </div>
 
@@ -128,6 +198,47 @@ window.addEventListener('load', function () {
             change_mar: function (data) {
                 this.members = data
             },
+            // 點擊修改後，顯示燈箱 並帶入值
+            lightbox_show: function (mem_no, mem_name, mem_status) {
+                this.lightbox = true
+                this.lightbox_mem_no = mem_no
+                this.lightbox_mem_name = mem_name
+
+                if (mem_status == 0) {
+                    this.lightbox_status = 1
+                    this.lightbox_text = '啟用'
+                } else if (mem_status == 1) {
+                    this.lightbox_status = 0
+                    this.lightbox_text = '停權'
+                }
+            },
+            // 點擊 確定修改後 觸發 php程式。完成後 重新撈取一次資料
+            change_status: async function (mem_no, status) {
+                const res = await fetch('./php/bs_update_member.php', {
+                    method: 'POST',
+                    mode: 'same-origin',
+                    credentials: 'same-origin',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        mem_no: mem_no,
+                        mem_status: status,
+                    }),
+                })
+                //關閉燈箱
+                this.lightbox = false
+                //完成後 重新撈取一次資料
+                this.get_mar()
+            },
+            //依照 帳號狀態 顯示已經勾選或尚未勾選
+            checked_test(data) {
+                if (data == 0) {
+                    this.checked = false
+                } else if (data == 1) {
+                    this.checked = true
+                }
+            },
         },
         // template 渲染前 會先去執行以下函式
         created() {
@@ -142,6 +253,12 @@ window.addEventListener('load', function () {
             return {
                 //撈出來的 飲料資料
                 drinks: '',
+                checked: '',
+                lightbox: false,
+                lightbox_drink_no: '',
+                lightbox_status: '',
+                lightbox_drink_title_ch: '',
+                lightbox_text: '',
             }
         },
         props: ['show', 'drinkno'],
@@ -166,11 +283,19 @@ window.addEventListener('load', function () {
                             <div>{{value.drink_type_title}}</div>
                             <div>{{value.drink_big_price}}</div>
                             <div>{{value.drink_small_price}}</div>
-                            <div class="toggle">
-                                <input checked type="checkbox" :id="key" />
-                                <label :for="key"></label>
+                            {{checked_test(value.status)}}
+                            <div class="toggle" @click="lightbox_show(value.drink_no,value.drink_title_ch,value.status)">
+                                <input v-model="checked" type="checkbox"   />
+                                <label ></label>
                             </div>
                             <div class="edit_btn" @click="changeTag(),changedrinkno(value.drink_no)">編輯</div>
+                        </div>
+                    </div>
+                    <div class="lightbox_black" v-if="lightbox">
+                        <div class="lightbox" >
+                            <div class="manager_lightbox_close_img" @click="lightbox = false"><img src="./Images/close.svg" ></div>
+                            <div>確定要將  商品 : <span>{{lightbox_drink_title_ch}}</span>。<span>{{lightbox_text}}</span> 嗎??</div>
+                            <div @click="change_status(lightbox_drink_no,lightbox_status)">確定修改</div>
                         </div>
                     </div>
                   </section>`,
@@ -202,9 +327,55 @@ window.addEventListener('load', function () {
             get_drink: function (data) {
                 this.drinks = data
             },
+            // 點擊修改後，顯示燈箱 並帶入值
+            lightbox_show: function (drink_no, drink_title_ch, status) {
+                this.lightbox = true
+                this.lightbox_drink_no = drink_no
+                this.lightbox_drink_title_ch = drink_title_ch
+
+                if (status == 0) {
+                    this.lightbox_status = 1
+                    this.lightbox_text = '上架'
+                } else if (status == 1) {
+                    this.lightbox_status = 0
+                    this.lightbox_text = '下架'
+                }
+            },
+            // 點擊 確定修改後 觸發 php程式。完成後 重新撈取一次資料
+            change_status: async function (drink_no, status) {
+                const res = await fetch('./php/bs_update_drink_status.php', {
+                    method: 'POST',
+                    mode: 'same-origin',
+                    credentials: 'same-origin',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        drink_no: drink_no,
+                        status: status,
+                    }),
+                })
+                //關閉燈箱
+                this.lightbox = false
+                //完成後 重新撈取一次資料
+                this.get_mar()
+            },
+            //依照 商品狀態 顯示已經勾選或尚未勾選
+            checked_test(data) {
+                if (data == 0) {
+                    this.checked = false
+                } else if (data == 1) {
+                    this.checked = true
+                }
+            },
         },
         created() {
             this.get_mar()
+        },
+        watch: {
+            show: function () {
+                this.get_mar()
+            },
         },
     })
     //-----------------------------------------------------
@@ -214,7 +385,16 @@ window.addEventListener('load', function () {
         data() {
             return {
                 // 存放撈出來的飲料資訊
-                drink: '',
+                drink_no: '',
+                drink_title_ch: '',
+                drink_title_en: '',
+                drink_type_no: '',
+                drink_big_price: '',
+                drink_small_price: '',
+                drink_src: '',
+                error_text: '',
+                lightbox: false,
+
                 type_info: [
                     {
                         type_no: 1,
@@ -256,25 +436,25 @@ window.addEventListener('load', function () {
 
         template: `
                   <section v-if=" show === 'drink_edit' ">
-                    <h1 class="title">商品編輯 -- {{drink[0].drink_title_ch}}</h1>
+                    <h1 class="title">商品編輯 -- {{drink_title_ch}}</h1>
                     <div class="return_btn_box"><div class="return_btn" @click="changeTag">返回商品列表</div></div>
-                    <form class="drink_edit_box">
+                    <div class="drink_edit_box">
                       <div>
                         <div class="drink_edit_row">
                             <label>飲料編號</label>
-                            <div>{{drink[0].drink_no}}</div>
+                            <div>{{drink_no}}</div>
                         </div>
                         <div class="drink_edit_row">
                             <label for="name_ch">飲料名稱(中)</label>
-                            <input type="text" id="name_ch" :value="drink[0].drink_title_ch" />
+                            <input type="text" id="name_ch" v-model="drink_title_ch"   />
                         </div>
                         <div class="drink_edit_row">
                             <label for="name_en">飲料名稱(英)</label>
-                            <input type="text" id="name_en"  />
+                            <input type="text" id="name_en" v-model="drink_title_en" />
                         </div>
                         <div class="drink_edit_row">
                             <label for="type">飲料類別</label>
-                            <select name="type" id="type">
+                            <select name="type" id="type" v-model="drink_type_no">
                               <option value="">-----請選擇飲料類別-----</option>
                               <option value="1">奶類</option>
                               <option value="2">茶類</option>
@@ -283,11 +463,11 @@ window.addEventListener('load', function () {
                         </div>
                         <div class="drink_edit_row">
                             <label for="big_price">大杯金額</label>
-                            <input type="text" id="big_price" :value="drink[0].drink_big_price" />
+                            <input type="text" id="big_price" v-model="drink_big_price"/>
                         </div>
                         <div class="drink_edit_row">
                             <label for="small_price">小杯金額</label>
-                            <input type="text" id="small_price" :value="drink[0].drink_small_price" />
+                            <input type="text" id="small_price" v-model="drink_small_price" />
                         </div>
                         <div class="type_box">
                             <div class="type_box_title">選取 商品規格:</div>
@@ -306,11 +486,18 @@ window.addEventListener('load', function () {
                           <input type="file" id="upFile" name="upFile" @change="changeimg($event)"/><br />
                         </div>
                         <div class="upFile_img_box">
-                          <img :src="drink[0].drink_img" alt="尚未新增任何照片" id="image" />
+                          <img :src="drink_src" alt="尚未新增任何照片" id="image" />
                         </div>
                       </div>
-                      <button class="drink_edit_btn">確認修改</button>
-                    </form>
+                      <div class="drink_edit_btn" @click="drink_edit(drink_title_ch, drink_title_en, drink_type_no, drink_big_price, drink_small_price)">確認修改</div>
+                    </div>
+                    <div class="lightbox_black" v-if="lightbox">
+                        <div class="lightbox" >
+                            <div class="manager_lightbox_close_img" @click="lightbox = false"><img src="./Images/close.svg" ></div>
+                            <div><span></span><span>{{error_text}}</span></div>
+                            <div @click="lightbox = false">確認</div>
+                        </div>
+                    </div>
                   </section>`,
         methods: {
             // 切換頁面
@@ -353,8 +540,112 @@ window.addEventListener('load', function () {
             },
             // 將值寫入data中
             get_drink: function (data) {
-                this.drink = data
+                this.drink_no = data[0].drink_no
+                this.drink_title_ch = data[0].drink_title_ch
+                this.drink_title_en = data[0].drink_title_en
+                this.drink_type_no = data[0].drink_type_no
+                this.drink_big_price = data[0].drink_big_price
+                this.drink_small_price = data[0].drink_small_price
+                this.drink_src = data[0].drink_src
             },
+
+            //點擊 修改商品
+            drink_edit:function(
+                drink_title_ch,
+                drink_title_en,
+                drink_type_no,
+                drink_big_price,
+                drink_small_price
+                ){
+
+                //新增前 確認欄位 是否符合規定
+
+                //中文名稱 (1~15字)
+                if (
+                    drink_title_ch.replace(/[^\u4e00-\u9fa5]/g, '') &&
+                    drink_title_ch.length >= 1 &&
+                    drink_title_ch.length <= 15
+                ) {
+                    console.log('中文 成功')
+                } else {
+                    this.lightbox = true
+                    this.error_text = '飲料名稱(中)，請輸入中文(1~15字)'
+                    return ''
+                }
+                //英文名稱 (1~50字)
+                if (
+                    drink_title_en.replace(/[^a-zA-Z]/g, '') &&
+                    drink_title_en.length >= 1 &&
+                    drink_title_en.length <= 50
+                ) {
+                    console.log('英文 成功')
+                } else {
+                    this.lightbox = true
+                    this.error_text = '飲料名稱(英)，請輸入英文(1~50字)'
+                    return ''
+                }
+
+                //選擇 飲料類型
+                if (drink_type_no != '') {
+                    console.log('類型 成功')
+                } else {
+                    this.lightbox = true
+                    this.error_text = '請選擇飲料類別'
+                    return ''
+                }
+
+                //輸入大杯金額
+                if (drink_big_price != '' && drink_big_price > 0) {
+                    console.log('大杯 成功')
+                } else {
+                    this.lightbox = true
+                    this.error_text = '請輸入大杯金額(不得為負數)'
+                    return ''
+                }
+
+                //輸入小杯金額
+                if (drink_small_price != '' && drink_small_price > 0) {
+                    console.log('小杯 成功')
+                } else {
+                    this.lightbox = true
+                    this.error_text = '請輸入小杯金額(不得為負數)'
+                    return ''
+                }
+
+                // 大杯金額 必須 大於 小杯金額
+                if (drink_big_price > drink_small_price) {
+                    console.log('大小 成功')
+                } else {
+                    this.lightbox = true
+                    this.error_text = '請確認飲料金額 (大杯金額 > 小杯金額)'
+                    return ''
+                }
+
+                const res = await fetch('./php/bs_insert_drink.php', {
+                    method: 'POST',
+                    mode: 'same-origin',
+                    credentials: 'same-origin',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        drink_title_ch: drink_title_ch,
+                        drink_title_en: drink_title_en,
+                        drink_type_no: drink_type_no,
+                        drink_big_price: drink_big_price,
+                        drink_small_price: drink_small_price,
+                    }),
+                })
+                // 新增成功後 把data內的植 都清空
+                this.drink_title_ch = ''
+                this.drink_title_en = ''
+                this.drink_type_no = ''
+                this.drink_big_price = ''
+                this.drink_small_price = ''
+
+                //跳轉頁面去 商品列表
+                this.changeTag_drink()
+            }
         },
         created() {
             // 渲染前 先去撈取資料
@@ -375,9 +666,15 @@ window.addEventListener('load', function () {
     Vue.component('drink_add', {
         data() {
             return {
-                //切換Tag
-                // show: 'show',
-                //撈出來的 會員資料
+                //同步儲存 將要新增的商品資料
+                drink_title_ch: '',
+                drink_title_en: '',
+                drink_type_no: '',
+                drink_big_price: '',
+                drink_small_price: '',
+                drink_src: '',
+                error_text: '',
+                lightbox: false,
             }
         },
         props: ['show'],
@@ -386,19 +683,19 @@ window.addEventListener('load', function () {
                   <section v-if=" show === 'drink_add' ">
                     <h1 class="title">新增商品</h1>
                     <div class="return_btn_box"><div class="return_btn" @click="changeTag_drink">返回商品列表</div></div>
-                    <form class="drink_edit_box">
+                    <div class="drink_edit_box">
                       <div>
                         <div class="drink_edit_row">
                             <label for="name_ch">飲料名稱(中)</label>
-                            <input type="text" id="name_ch"  />
+                            <input id="name_ch" v-model="drink_title_ch" type="text" placeholder="請輸入中文(1~15字)">
                         </div>
                         <div class="drink_edit_row">
                             <label for="name_en">飲料名稱(英)</label>
-                            <input type="text" id="name_en"  />
+                            <input type="text" id="name_en" v-model="drink_title_en" placeholder="請輸入英文(1~50字)"> 
                         </div>
                         <div class="drink_edit_row">
                             <label for="type">飲料類別</label>
-                            <select name="type" id="type">
+                            <select name="type" id="type" v-model="drink_type_no">
                               <option value="">-----請選擇飲料類別-----</option>
                               <option value="1">奶類</option>
                               <option value="2">茶類</option>
@@ -407,11 +704,12 @@ window.addEventListener('load', function () {
                         </div>
                         <div class="drink_edit_row">
                             <label for="big_price">大杯金額</label>
-                            <input type="text" id="big_price"  />
+                            <input type="number" id="big_price" v-model="drink_big_price" placeholder="請輸入飲料大杯金額">
+                           
                         </div>
                         <div class="drink_edit_row">
                             <label for="small_price">小杯金額</label>
-                            <input type="text" id="small_price"  />
+                            <input type="number" id="small_price" v-model="drink_small_price" placeholder="請輸入飲料小杯金額">
                         </div>
                       </div>
                       <div class="addinfo_right_box">
@@ -423,8 +721,15 @@ window.addEventListener('load', function () {
                           <img src="" alt="尚未新增任何照片" id="image" />
                         </div>
                       </div>
-                      <button class="drink_add_btn">新增商品</button>
-                    </form>
+                      <div class="drink_add_btn" @click="drink_add(drink_title_ch, drink_title_en, drink_type_no, drink_big_price, drink_small_price)">新增商品</div>
+                    </div>
+                    <div class="lightbox_black" v-if="lightbox">
+                        <div class="lightbox" >
+                            <div class="manager_lightbox_close_img" @click="lightbox = false"><img src="./Images/close.svg" ></div>
+                            <div><span></span><span>{{error_text}}</span></div>
+                            <div @click="lightbox = false">確認</div>
+                        </div>
+                    </div>
                   </section>`,
         methods: {
             changeTag_drink() {
@@ -437,8 +742,107 @@ window.addEventListener('load', function () {
                 reader.readAsDataURL(file[0])
                 reader.onload = function (event) {
                     document.getElementById('image').src = event.target.result
+                    this.drink_src = event.target.result
+                    console.log(event.target.result)
                 }
-                console.log('changeimg')
+                // console.log('changeimg')
+            },
+            // 點擊新增商品 觸發 php事件，並跳轉頁面
+
+            drink_add: async function (
+                drink_title_ch,
+                drink_title_en,
+                drink_type_no,
+                drink_big_price,
+                drink_small_price
+            ) {
+                //新增前 確認欄位 是否符合規定
+
+                //中文名稱 (1~15字)
+                if (
+                    drink_title_ch.replace(/[^\u4e00-\u9fa5]/g, '') &&
+                    drink_title_ch.length >= 1 &&
+                    drink_title_ch.length <= 15
+                ) {
+                    console.log('中文 成功')
+                } else {
+                    this.lightbox = true
+                    this.error_text = '飲料名稱(中)，請輸入中文(1~15字)'
+                    return ''
+                }
+                //英文名稱 (1~50字)
+                if (
+                    drink_title_en.replace(/[^a-zA-Z]/g, '') &&
+                    drink_title_en.length >= 1 &&
+                    drink_title_en.length <= 50
+                ) {
+                    console.log('英文 成功')
+                } else {
+                    this.lightbox = true
+                    this.error_text = '飲料名稱(英)，請輸入英文(1~50字)'
+                    return ''
+                }
+
+                //選擇 飲料類型
+                if (drink_type_no != '') {
+                    console.log('類型 成功')
+                } else {
+                    this.lightbox = true
+                    this.error_text = '請選擇飲料類別'
+                    return ''
+                }
+
+                //輸入大杯金額
+                if (drink_big_price != '' && drink_big_price > 0) {
+                    console.log('大杯 成功')
+                } else {
+                    this.lightbox = true
+                    this.error_text = '請輸入大杯金額(不得為負數)'
+                    return ''
+                }
+
+                //輸入小杯金額
+                if (drink_small_price != '' && drink_small_price > 0) {
+                    console.log('小杯 成功')
+                } else {
+                    this.lightbox = true
+                    this.error_text = '請輸入小杯金額(不得為負數)'
+                    return ''
+                }
+
+                // 大杯金額 必須 大於 小杯金額
+                if (drink_big_price > drink_small_price) {
+                    console.log('大小 成功')
+                } else {
+                    this.lightbox = true
+                    this.error_text = '請確認飲料金額 (大杯金額 > 小杯金額)'
+                    return ''
+                }
+
+                const res = await fetch('./php/bs_insert_drink.php', {
+                    method: 'POST',
+                    mode: 'same-origin',
+                    credentials: 'same-origin',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        drink_title_ch: drink_title_ch,
+                        drink_title_en: drink_title_en,
+                        drink_type_no: drink_type_no,
+                        drink_big_price: drink_big_price,
+                        drink_small_price: drink_small_price,
+                    }),
+                })
+                // 新增成功後 把data內的植 都清空
+                this.drink_title_ch = ''
+                this.drink_title_en = ''
+                this.drink_type_no = ''
+                this.drink_big_price = ''
+                this.drink_small_price = ''
+
+                //跳轉頁面去 商品列表
+                this.changeTag_drink()
             },
         },
     })
@@ -783,7 +1187,7 @@ window.addEventListener('load', function () {
                         <div class="group_ord_info_thr_box">
                             <div class="group_ord_item" v-for="(value,key) in item_info">
                                 <div class="group_ord_item_left">
-                                    <div>{{value.drink_title_ch}}-{{checkcup(value.cup_no)}}</div>
+                                    <div>{{value.drink_title_ch}}-{{value.cup_no}}</div>
                                     <div>{{value.set_info}}</div>
                                 </div>
                                 <div class="group_ord_item_right">
@@ -888,14 +1292,6 @@ window.addEventListener('load', function () {
                     return '未處理'
                 } else {
                     return '已完成'
-                }
-            },
-            //判斷 飲料是大杯還小杯
-            checkcup: function (data) {
-                if (data == 0) {
-                    return '中杯'
-                } else if (data == 1) {
-                    return '大杯'
                 }
             },
         },
@@ -1087,7 +1483,7 @@ window.addEventListener('load', function () {
                         <div class="per_ord_info_thr_box">
                             <div class="per_ord_item" v-for="(value,key) in item_info">
                                 <div class="per_ord_item_left">
-                                    <div>{{value.drink_title_ch}}-{{checkcup(value.cup_no)}}</div>
+                                    <div>{{value.drink_title_ch}}-{{value.cup_no}}</div>
                                     <div>{{value.set_info}}</div>
                                 </div>
                                 <div class="per_ord_item_right">
@@ -1194,14 +1590,6 @@ window.addEventListener('load', function () {
                     return '已完成'
                 }
             },
-            //判斷 飲料是大杯還小杯
-            checkcup: function (data) {
-                if (data == 0) {
-                    return '中杯'
-                } else if (data == 1) {
-                    return '大杯'
-                }
-            },
         },
         created() {
             // 渲染前 先去撈取資料
@@ -1224,6 +1612,11 @@ window.addEventListener('load', function () {
             return {
                 //撈出來的 管理員資料
                 art_reports: '',
+                lightbox: false,
+                lightbox_art_report_no: '',
+                lightbox_art_no: '',
+                lightbox_mem_name: '',
+                lightbox_art_report_reason: '',
             }
         },
         props: ['show'],
@@ -1245,7 +1638,26 @@ window.addEventListener('load', function () {
                         <div>{{value.art_no}}</div>
                         <div>{{value.mem_name}}</div>
                         <div>{{value.art_report_reason}}</div>
-                        <div :class="checkstatusclass(value.art_report_status)" @click="art_report_status(value.art_report_status)">{{checkstatus(value.art_report_status)}}</div>
+                        <div :class="checkstatusclass(value.art_report_status)" @click="lightbox_show(value.art_no,value.mem_name,value.art_report_reason,value.art_report_no,value.art_report_status)">{{checkstatus(value.art_report_status)}}</div>
+                    </div>
+                </div>
+                <div class="lightbox_black" v-if="lightbox">
+                    <div class="lightbox_art_report" >
+                        <div class="manager_lightbox_close_img" @click="lightbox = false"><img src="./Images/close.svg" ></div>
+                        <div>
+                            <div class="report_title">檢舉人名稱:</div>
+                            <div class="report_text">{{lightbox_mem_name}}</div>
+                        </div>
+                        <div>
+                            <div class="report_title" >文章編號:</div>
+                            <div class="report_text">{{lightbox_art_no}}</div>
+                        </div>
+                        <div class="report_title">檢舉原因:</div>
+                        <div>{{lightbox_art_report_reason}}</div>
+                        <div>
+                            <div @click="change_status(lightbox_art_report_no,2)">駁回</div>
+                            <div @click="change_status(lightbox_art_report_no,1)">通過</div>
+                        </div>
                     </div>
                 </div>
 
@@ -1282,13 +1694,38 @@ window.addEventListener('load', function () {
                     return 'done'
                 }
             },
-            // 根據審核狀態不同 給予對應的動作
-            art_report_status: function (status) {
+
+            // 點擊修改後，顯示燈箱 並帶入值
+            lightbox_show: function (art_no, mem_name, art_report_reason, art_report_no, status) {
                 if (status == 0) {
                     console.log('進入審核判斷')
+                    this.lightbox = true
+                    this.lightbox_art_report_no = art_report_no
+                    this.lightbox_art_no = art_no
+                    this.lightbox_mem_name = mem_name
+                    this.lightbox_art_report_reason = art_report_reason
                 } else {
                     return ''
                 }
+            },
+            // 點擊 確定修改後 觸發 php程式。完成後 重新撈取一次資料
+            change_status: async function (art_report_no, status) {
+                const res = await fetch('./php/bs_update_articleReport.php', {
+                    method: 'POST',
+                    mode: 'same-origin',
+                    credentials: 'same-origin',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        art_report_no: art_report_no,
+                        art_report_status: status,
+                    }),
+                })
+                //關閉燈箱
+                this.lightbox = false
+                //完成後 重新撈取一次資料
+                this.get_mar()
             },
         },
         // template 渲染前 會先去執行以下函式
@@ -1302,8 +1739,13 @@ window.addEventListener('load', function () {
     Vue.component('msg_report_list', {
         data() {
             return {
-                //撈出來的 管理員資料
+                //撈出來的 資料
                 msg_reports: '',
+                lightbox: false,
+                lightbox_msg_report_no: '',
+                lightbox_msg_no: '',
+                lightbox_mem_name: '',
+                lightbox_msg_report_reason: '',
             }
         },
         props: ['show'],
@@ -1314,18 +1756,37 @@ window.addEventListener('load', function () {
                     <div class="art_report_title_row">
                         <div>編號</div>
                         <div>檢舉時間</div>
-                        <div>文章編號</div>
+                        <div>留言編號</div>
                         <div>檢舉人名稱</div>
                         <div>檢舉原因</div>
                         <div>審核狀態</div>
                     </div>
-                    <div class="art_report_per" v-for="(value,key) in art_reports">
-                        <div>{{value.art_report_no}}</div> 
-                        <div>{{value.art_report_date}}</div>
-                        <div>{{value.art_no}}</div>
+                    <div class="art_report_per" v-for="(value,key) in msg_reports">
+                        <div>{{value.msg_report_no}}</div> 
+                        <div>{{value.msg_report_date }}</div>
+                        <div>{{value.msg_no}}</div>
                         <div>{{value.mem_name}}</div>
-                        <div>{{value.art_report_reason}}</div>
-                        <div :class="checkstatusclass(value.art_report_status)" @click="art_report_status(value.art_report_status)">{{checkstatus(value.art_report_status)}}</div>
+                        <div>{{value.msg_report_reason}}</div>
+                        <div :class="checkstatusclass(value.msg_report_status)" @click="lightbox_show(value.msg_no,value.mem_name,value.msg_report_reason,value.msg_report_no,value.msg_report_status)">{{checkstatus(value.msg_report_status)}}</div>
+                    </div>
+                </div>
+                <div class="lightbox_black" v-if="lightbox">
+                    <div class="lightbox_art_report" >
+                        <div class="manager_lightbox_close_img" @click="lightbox = false"><img src="./Images/close.svg" ></div>
+                        <div>
+                            <div class="report_title">檢舉人名稱:</div>
+                            <div class="report_text">{{lightbox_mem_name}}</div>
+                        </div>
+                        <div>
+                            <div class="report_title" >文章編號:</div>
+                            <div class="report_text">{{lightbox_msg_no}}</div>
+                        </div>
+                        <div class="report_title">檢舉原因:</div>
+                        <div>{{lightbox_msg_report_reason}}</div>
+                        <div>
+                            <div @click="change_status(lightbox_msg_report_no,2)">駁回</div>
+                            <div @click="change_status(lightbox_msg_report_no,1)">通過</div>
+                        </div>
                     </div>
                 </div>
 
@@ -1362,13 +1823,38 @@ window.addEventListener('load', function () {
                     return 'done'
                 }
             },
-            // 根據審核狀態不同 給予對應的動作
-            art_report_status: function (status) {
+
+            //根據審核狀態 判斷是否有點擊功能
+            //點擊修改後，顯示燈箱 並帶入值
+            lightbox_show: function (msg_no, mem_name, msg_report_reason, msg_report_no, status) {
                 if (status == 0) {
-                    console.log('進入審核判斷')
+                    this.lightbox = true
+                    this.lightbox_msg_report_no = msg_report_no
+                    this.lightbox_msg_no = msg_no
+                    this.lightbox_mem_name = mem_name
+                    this.lightbox_msg_report_reason = msg_report_reason
                 } else {
                     return ''
                 }
+            },
+            // 點擊 確定修改後 觸發 php程式。完成後 重新撈取一次資料
+            change_status: async function (msg_report_no, status) {
+                const res = await fetch('./php/bs_update_msgreport.php', {
+                    method: 'POST',
+                    mode: 'same-origin',
+                    credentials: 'same-origin',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        msg_report_no: msg_report_no,
+                        msg_report_status: status,
+                    }),
+                })
+                //關閉燈箱
+                this.lightbox = false
+                //完成後 重新撈取一次資料
+                this.get_mar()
             },
         },
         // template 渲染前 會先去執行以下函式

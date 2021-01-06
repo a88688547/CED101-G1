@@ -182,11 +182,11 @@ Vue.component('orderlist', {
                     <hr>
                 </div>
                 <div>
-                    <h2><span>$.</span><span id="ordPrice">{{total_price}}</span></h2>
+                    <h2><span>$</span><span id="ordPrice">{{total_price}}</span></h2>
                 </div>
             </div>
             <div class="orderbtn">
-                <div><a href="orderPaymentGroup.html">繼續加購</a></div>
+                <div><a href="./menu.html">繼續加購</a></div>
                 <div class="nextStep" @click="lightBoxOpen = true"><a href="#" >建立訂單</a></div>
             </div>
         </div>

@@ -1,4 +1,169 @@
+let a = 0
+Vue.component('group-info', {
+    data() {
+        return {
+            groupInfo: [],
+            nowTime: new Date().getTime(),
+            watchNum: 0,
+            timer: null,
+            inTime: true,
+        }
+    },
+    mounted() {
+        //後台撈出團的資料
+        fetch('./php/group_menu.php', {
+            method: 'GET', // or 'PUT'
+            // body: JSON.stringify(this.item_type), // data can be `string` or {object}!
+            headers: new Headers({
+                'Content-Type': 'application/json'
+            })
+        }).then(res => res.json())
+            .then(res => this.groupInfo = res);
+        this.timer = setInterval(this.getData, 1000)
+    },
+    beforeDestroy() {
+        clearInterval(this.timer)
 
+    },
+    methods: {
+        showNoSeconds(time) {
+            let secondsIndex = time.length - 3
+            let noSecondsTime = time.substring(0, secondsIndex)
+            return noSecondsTime
+        },
+
+        getData() {
+            this.watchNum++
+        },
+    },
+    watch: {
+        watchNum() {
+            this.nowTime = new Date().getTime()
+        }
+    },
+    computed: {
+
+        phone() {
+
+            let phone1 = this.groupInfo[0].mem_phone.substr(0, 4)
+            let phone2 = this.groupInfo[0].mem_phone.substr(4, 3)
+            let phone3 = this.groupInfo[0].mem_phone.substr(7, 3)
+            thePhone = `${phone1}-${phone2}-${phone3}`
+            return thePhone
+        },
+        group_img() {
+            let goal_cup = this.groupInfo[0].goal_cup - 10
+            return `./Images/coupon//${goal_cup}off@2x.jpg`
+        },
+        countDown() {
+            let endTime = new Date(this.groupInfo[0].deadline_time)
+            let endTimeSec = endTime.getTime() //節單時間總毫秒數
+            let offsetTime = (endTimeSec - this.nowTime) / 1000 // ** 以秒為單位
+            let sec = parseInt(offsetTime % 60); // 秒
+            let min = parseInt((offsetTime / 60) % 60); // 分 ex: 90秒
+            let hr = parseInt(offsetTime / 60 / 60); // 時
+            let toatal = [{
+                theHr: hr,
+                theMin: min,
+                theSec: sec,
+            }]
+            if (offsetTime <= 0) {
+                this.inTime = false
+            }
+            return toatal
+        },
+
+
+    },
+    template: `
+    <div>
+        <div  v-for="(item,index) in groupInfo">
+            <!-- 揪團限時時間 -->
+            <div v-if="inTime">
+                <div id="countDown" v-for="(timeItem,index) in countDown"><span>限時:</span><span>{{timeItem.theHr}}</span>小時 <span>{{timeItem.theMin}}</span>分 <span>{{timeItem.theSec}}</span>秒</div>
+            </div>
+            <div v-else>
+                <div id="countDown"><span>限時:</span><span id="inTime">已截止</span></div>
+            </div>
+
+            <div id="group_info">
+                <!-- 揪團圖片 -->
+                <div id="group_img"><img :src=group_img alt="" id="img_group" /></div>
+                <div class="group_info_inner">
+                    <!-- 團名 -->
+                    <div id="name_time_wrapper">
+                        <span id="group_name">{{item.group_name}}</span>
+                        <div id="start_time_wrapper">
+                            <span>建單時間: </span><span id="start_time">{{showNoSeconds(item.group_datetime)}}</span>
+                        </div>
+                    </div>
+                    <div id="info_text_wrapper">
+                        <section id="info_text_left">
+                            <!-- 團長名稱和電話 -->
+                            <div id="name_phone">
+                                <div id="user_img"><img :src=item.mem_img alt="" /></div>
+                                <div id="name_phone_inner">
+                                    <div id="group_leader_name_wrapper">
+                                        <span id="group_leader_name">{{item.mem_name}}</span><span>團長</span>
+                                    </div>
+                                    <div id="phone_wrapper">
+                                        <img src="./Images/tell_big.svg" id="tell_img" alt="" /><span
+                                            id="phone">{{phone}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 杯數門檻 -->
+                            <div class="cup_wrapper">
+                                <img src="./Images/drop-group-gold.svg" alt="" />集杯數:
+                                <span id="cup_max_num">{{item.goal_cup}}</span>杯以上
+                            </div>
+                            <div class="cup_wrapper">
+                                <img src="./Images/drop-group-orange.svg" alt="" />已達杯數:
+                                <span id="cup_now_num">{{item.now_cup}}</span>杯
+                            </div>
+                        </section>
+                        <section id="info_text_right">
+                            <!-- 取貨地址 -->
+                            <div class="info_text_right_inner">
+                                <span>
+                                    <img src="./Images/place.svg" alt="">
+                                    取貨地點:
+                                </span>
+                                <span id="adress">
+                                    {{item.group_adress}}
+                                </span>
+                                <!-- 桃園市中壢區復興路46號9樓 -->
+                                <!-- 桃園市中壢區復興路號號2號3桃園市中壢區復興路1樓號樓樓一號 -->
+                            </div>
+                            <!-- 送達時間 -->
+                            <div class="info_text_right_inner">
+                                <span>
+                                    <img src="./Images/timer.svg" alt="">
+                                    預計送達時間:
+                                </span>
+                                <span id="arrive_time">
+                                {{showNoSeconds(item.arrive_time)}}
+                                </span>
+                            </div>
+                            <!-- 結單時間 -->
+                            <div class="info_text_right_inner">
+                                <span style="color: #B3925B;">
+                                    <img src="./Images/group_list.svg" alt="">
+                                    截單時間:
+                                </span>
+                                <span id="deadline_time" style="color: #B3925B;">
+                                {{showNoSeconds(item.deadline_time)}}
+                                </span>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    `,
+
+})
 const bus = new Vue();
 let storage = sessionStorage;
 if (storage['addItemList'] == null) {
@@ -8,154 +173,9 @@ if (storage['addItemList'] == null) {
 Vue.component('menu_carshop', {
     data() {
         return {
-            // 飲料類別
-            item_type1: [
-                {
-                    drink_type_title: "奶類",
-                    drink_type_text_en: "Milk Tea",
-                    drink_type_no: "1",
-                    itemList: [
-                        {
-                            drink_title_ch: "麥茶拿鐵",
-                            drink_title_en: "Milk Tea1",
-                            drink_small_price: "40",
-                            drink_big_price: "50",
-                            drink_no: "1",
-                            imgSrc: "./Images/drinkphoto/milktea/brownsugarmilktea.jpg",
-                        },
-                        {
-                            drink_title_ch: "港式厚奶",
-                            drink_title_en: "Milk Tea2",
-                            drink_small_price: "20",
-                            drink_big_price: "30",
-                            drink_no: "2",
-                            imgSrc: "./Images/drinkphoto/milktea/caffeelattebanner.jpg",
-                        },
-                        {
-                            drink_title_ch: "紅茶拿鐵",
-                            drink_title_en: "Milk Tea3",
-                            drink_small_price: "50",
-                            drink_big_price: "60",
-                            drink_no: "3",
-                            imgSrc: "./Images/drinkphoto/milktea/greentealattebanner.jpg",
-                        },
-                        {
-                            drink_title_ch: "鮮奶茶",
-                            drink_title_en: "Milk Tea4",
-                            drink_small_price: "20",
-                            drink_big_price: "30",
-                            drink_no: "4",
-                            imgSrc: "./Images/drinkphoto/milktea/jellymilkteabanner.jpg",
-                        },
-                        {
-                            drink_title_ch: "烏龍拿鐵",
-                            drink_title_en: "Milk Tea5",
-                            drink_small_price: "20",
-                            drink_big_price: "35",
-                            drink_no: "5",
-                            imgSrc: "./Images/drinkphoto/milktea/machalattebanner.jpg",
-                        },
-                    ],
-                },
-                {
-                    drink_type_title: "果茶類",
-                    drink_type_text_en: "Fruit",
-                    drink_type_no: "2",
-                    itemList: [
-                        {
-                            drink_title_ch: "水果茶",
-                            drink_title_en: "Milk Tea6",
-                            drink_small_price: "40",
-                            drink_big_price: "50",
-                            drink_no: "1",
-                            imgSrc: "./Images/drinkphoto/fruit/fruitteaa.jpg",
-                            // imgSrc: "./Images/20off.jpg",
-                        },
-                        {
-                            drink_title_ch: "清寧香茶",
-                            drink_title_en: "Milk Tea7",
-                            drink_small_price: "20",
-                            drink_big_price: "30",
-                            drink_no: "2",
-                            imgSrc: "./Images/drinkphoto/fruit/dragonfruit.jpg",
-                        },
-                        {
-                            drink_title_ch: "香柚綠茶",
-                            drink_title_en: "Milk Tea8",
-                            drink_small_price: "50",
-                            drink_big_price: "60",
-                            drink_no: "3",
-                            imgSrc: "./Images/drinkphoto/fruit/lemontea.jpg",
-                        },
-                        {
-                            drink_title_ch: "冬瓜檸檬",
-                            drink_title_en: "Milk Tea9",
-                            drink_small_price: "20",
-                            drink_big_price: "30",
-                            drink_no: "4",
-                            imgSrc: "./Images/drinkphoto/fruit/passionfruit.jpg",
-                        },
-                        {
-                            drink_title_ch: "柳丁綠茶",
-                            drink_title_en: "Milk Tea10",
-                            drink_small_price: "20",
-                            drink_big_price: "35",
-                            drink_no: "5",
-                            imgSrc: "./Images/drinkphoto/fruit/strawberrysmoothie.jpg",
-                        },
-                    ],
-                },
-                {
-                    drink_type_title: "茶類",
-                    drink_type_text_en: "Tea",
-                    drink_type_no: "3",
-                    itemList: [
-                        {
-                            drink_title_ch: "大正紅茶",
-                            drink_title_en: "Milk Tea11",
-                            drink_small_price: "40",
-                            drink_big_price: "50",
-                            drink_no: "1",
-                            imgSrc: "./Images/drinkphoto/fruit/strawberrysmoothie.jpg",
-                        },
-                        {
-                            drink_title_ch: "茉莉綠茶",
-                            drink_title_en: "Milk Tea12",
-                            drink_small_price: "20",
-                            drink_big_price: "30",
-                            drink_no: "2",
-                            imgSrc: "./Images/drinkphoto/fruit/strawberrysmoothie.jpg",
-                        },
-                        {
-                            drink_title_ch: "高峰烏龍",
-                            drink_title_en: "Milk Tea13",
-                            drink_small_price: "50",
-                            drink_big_price: "60",
-                            drink_no: "3",
-                            imgSrc: "./Images/drinkphoto/fruit/strawberrysmoothie.jpg",
-                        },
-                        {
-                            drink_title_ch: "四季春茶",
-                            drink_title_en: "Milk Tea14",
-                            drink_small_price: "20",
-                            drink_big_price: "30",
-                            drink_no: "4",
-                            imgSrc: "./Images/drinkphoto/fruit/strawberrysmoothie.jpg",
-                        },
-                        {
-                            drink_title_ch: "金萱茶",
-                            drink_title_en: "Milk Tea15",
-                            drink_small_price: "20",
-                            drink_big_price: "35",
-                            drink_no: "5",
-                            imgSrc: "./Images/drinkphoto/fruit/strawberrysmoothie.jpg",
-                        },
-                    ],
-                },
-
-            ],
             //購物車的飲料總數
             shopping_num_total: 0,
+            // 飲料類別
             item_type: [],
         }
     },
@@ -165,10 +185,12 @@ Vue.component('menu_carshop', {
             bus.$emit('lightBox_handle_parent', item)
         },
     },
-    // 購物車按鈕接收燈箱的飲品數量
+
     mounted() {
+        // 購物車按鈕接收燈箱的飲品數量
         bus.$on('addToCar_parent', (numx) => this.shopping_num_total = numx);
 
+        //後台撈出menu資料
         fetch('./php/menu.php', {
             method: 'GET', // or 'PUT'
             // body: JSON.stringify(this.item_type), // data can be `string` or {object}!

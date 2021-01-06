@@ -120,12 +120,12 @@ body{
         width: 195px;
         height: 28px;
         // text-align: center;
-        padding: 0 0 0 20px;
+        padding: 0 0 0 0px;
         
       }
 
       select {
-        padding: 0 0 0 20px;
+        padding: 0 0 0 0px;
         @include ls(3px)
       }
      
@@ -143,6 +143,18 @@ body{
         position: absolute;
         right: 0;
         bottom:-100%;
+      }
+      .Btime{
+        // border: 1px solid red;
+        display: flex;
+        width: 195px;
+        select{
+          margin-right: 10px;
+          width: calc(( 195px - 10px) / 2);
+          &:last-child{
+            margin-right: 0;
+          }
+        }
       }
     }
     
@@ -322,7 +334,6 @@ body{
       li{
         select#goal{
           background-color: rgba(221, 170, 99, 0.76);
-          
           option{
             @include H6;
             letter-spacing: 5px;
@@ -395,6 +406,13 @@ body{
           border: none;
           box-shadow:2px 2px 2px 2px rgba(20%,20%,40%,0.2);
         }
+        .Btime{
+          width: 300px;
+          select{
+           width:calc((300px - 10px) / 2) ; 
+          }
+        }
+        
       }
 
       li{
@@ -446,7 +464,7 @@ body{
 
 // 尺寸、對齊方式
 .step_box {
-    width: 80%;
+    width: 100%;
     height: 135px;
     margin: 0 auto;
     overflow: hidden;

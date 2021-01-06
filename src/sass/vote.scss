@@ -6,9 +6,11 @@ $mq575: 575px;
 $mq767: 767px;
 $mq991: 991px;
 $mq1199: 1199px;
+
 * {
     font-family: "Roboto", sans-serif;
 }
+
 body {
     box-sizing: border-box;
     background: $insideBackgroundColor;
@@ -39,6 +41,7 @@ section {
             @include H4;
             letter-spacing: 3px;
             line-height: 1.6;
+
             img {
                 width: 25px;
                 height: 25px;
@@ -80,7 +83,6 @@ section {
         justify-content: space-between;
         width: 80%;
         margin: 0 auto;
-        // padding: 15px;
 
         @media screen and (max-width: $mq1199) {
             width: 100%;
@@ -100,14 +102,19 @@ section {
         }
 
         .vote-wrap {
-            width: 28%;
             margin-right: 30px;
             margin-bottom: 30px;
             position: relative;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+
+
 
             &:nth-child(3) {
                 margin-right: 0px;
             }
+
 
             .votes {
                 display: inline-block;
@@ -119,6 +126,7 @@ section {
                 font-weight: bold;
                 text-align: center;
                 margin: 15px;
+
                 span {
                     @include H4;
                     letter-spacing: 1px;
@@ -126,49 +134,51 @@ section {
                 }
             }
 
-            .vote-first {
+            .vote-item {
                 position: relative;
-                width: 100%;
                 border-radius: 20px;
                 overflow: hidden;
                 box-shadow: 3px 3px 8px 4px rgba($color: #000000, $alpha: 0.2);
                 margin-bottom: 15px;
                 background-color: white;
+                display: flex;
+                flex-direction: column;
 
-                .first-rank {
+                .vote-rank {
                     position: absolute;
                     top: 20px;
                     left: -35px;
                     color: #fff;
                     background-color: #ffa208;
                     width: 150px;
-                    height: 20px;
+                    height: 25px;
                     font-size: 20px;
                     text-align: center;
-                    line-height: 20px;
+                    line-height: 25px;
                     transform: rotate(-35deg);
                 }
 
-                .first-pic {
+                .vote-pic {
                     width: 100%;
                     overflow: hidden;
+
                     img {
                         width: 100%;
                     }
                 }
 
-                .first-txt {
+                .vote-txt {
                     text-align: center;
                     margin: 20px;
 
-                    .first-title {
+                    .vote-name {
                         @include H3;
                         letter-spacing: 5px;
                         font-weight: bold;
                         margin-bottom: 15px;
                     }
 
-                    .first-votes {
+                    .vote-votes {
                         @include H4;
                         letter-spacing: 3px;
 
@@ -179,132 +189,133 @@ section {
                 }
             }
 
+            .vote-first {
+                width: 94%;
+            }
+
             .vote-second {
-                width: 100%;
-                display: flex;
+                width: 45%;
+                position: relative;
+                border-radius: 20px;
+                overflow: hidden;
+                box-shadow: 3px 3px 8px 4px rgba($color: #000000, $alpha: 0.2);
+                background-color: white;
+                margin-right: 15px;
 
-                .vote-second-item {
-                    position: relative;
-                    width: 50%;
-                    border-radius: 20px;
-                    overflow: hidden;
-                    box-shadow: 3px 3px 8px 4px rgba($color: #000000, $alpha: 0.2);
-                    margin: 15px;
-                    background-color: white;
+                &:first-child {
+                    margin-left: 0px;
+                }
 
-                    &:first-child {
-                        margin-left: 0px;
-                    }
+                &:last-child {
+                    margin-right: 0px;
+                }
 
-                    &:last-child {
-                        margin-right: 0px;
-                    }
+                .vote-rank {
+                    top: 20px;
+                    height: 25px;
+                    font-size: 20px;
+                    line-height: 25px;
+                }
 
-                    &:first-child .second-rank {
+                &:nth-child(3) {
+                    .vote-rank {
                         background-color: #e48f2e;
                     }
+                }
 
-                    &:last-child .second-rank {
+                &:nth-child(4) {
+                    .vote-rank {
                         background-color: #b3925b;
                     }
+                }
 
-                    .second-rank {
-                        position: absolute;
-                        top: 20px;
-                        left: -35px;
-                        color: #fff;
-                        background-color: #ffa208;
-                        width: 150px;
-                        height: 20px;
-                        font-size: 20px;
-                        text-align: center;
-                        line-height: 20px;
-                        transform: rotate(-35deg);
-                    }
+                .vote-pic {
+                    width: 100%;
+                    overflow: hidden;
 
-                    .second-pic {
+                    img {
                         width: 100%;
-                        overflow: hidden;
+                    }
+                }
+
+                .vote-txt {
+                    text-align: center;
+                    margin: 15px;
+
+                    .vote-name {
+                        @include H6;
+                        letter-spacing: 0px;
+                        font-weight: bold;
+                        margin-bottom: 15px;
+                    }
+
+                    .vote-votes {
+                        @include P1;
+                        letter-spacing: 2px;
+                        line-height: 1.6;
+
                         img {
-                            width: 100%;
+                            width: 20px;
                         }
                     }
+                }
 
-                    .second-txt {
-                        text-align: center;
-                        margin: 15px;
-
-                        .second-title {
-                            @include H6;
-                            letter-spacing: 0px;
-                            font-weight: bold;
-                            margin-bottom: 15px;
-                        }
-
-                        .second-votes {
-                            @include P1;
-                            letter-spacing: 2px;
-                            line-height: 1.6;
-                            img {
-                                width: 20px;
-                            }
-                        }
-                    }
+                &:nth-child(4) {
+                    margin-right: 0;
                 }
             }
 
-            .vote-button {
-                width: 100%;
-                margin-top: 30px;
-                text-align: center;
-                display: flex;
-                justify-content: center;
 
-                button {
-                    @include lineargradient_button;
-                    width: 150px;
-                    height: 50px;
+        }
 
-                    // background-color: $textColor;
+        .vote-button {
+            width: 100%;
+            margin-top: 30px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
 
-                    h6 {
-                        @include H5;
-                        font-weight: bold;
-                        color: white;
-                    }
+            button {
+                @include lineargradient_button;
+                width: 150px;
+                height: 50px;
 
-                    img {
-                        margin-right: 5px;
-                    }
+                // background-color: $textColor;
+
+                h6 {
+                    @include H5;
+                    font-weight: bold;
+                    color: white;
                 }
 
-                button:focus {
-                    outline: none;
+                img {
+                    margin-right: 5px;
                 }
+            }
 
-                button:hover {
-                    @include lineargradient_button-hover;
-                }
+            button:focus {
+                outline: none;
+            }
 
-                button.color-1 {
-                    background-image: linear-gradient(
-                        to right,
+            button:hover {
+                @include lineargradient_button-hover;
+            }
+
+            button.color-1 {
+                background-image: linear-gradient(to right,
                         #f5ce62,
                         #e43603,
                         #fa7199,
-                        #e85a19
-                    );
-                    box-shadow: 0 2px 5px 0 rgba(229, 66, 10, 0.75);
-                }
+                        #e85a19);
+                box-shadow: 0 2px 5px 0 rgba(229, 66, 10, 0.75);
             }
+        }
 
-            @media screen and (max-width: $mq1199) {
-                width: 100%;
-                padding: 15px;
-            }
+        @media screen and (max-width: $mq1199) {
+            width: 100%;
+            padding: 15px;
 
-            @media screen and (max-width: $mq991) {
-                width: 720px;
+            .vote-wrap {
                 padding: 0 15px;
 
                 &:nth-child(1),
@@ -313,82 +324,86 @@ section {
                 }
             }
 
-            @media screen and (max-width: $mq767) {
-                width: 540px;
-                padding: 0 15px;
-            }
 
-            @media screen and (max-width: $mq575) {
-                width: 100%;
-                padding: 15px;
-                margin-right: 0px;
+        }
 
-                .vote-first {
-                    margin-bottom: 15px;
+        @media screen and (max-width: $mq991) {
+            width: 720px;
+            padding: 0 15px;
 
-                    .first-pic {
-                        width: 100%;
-                    }
+        }
 
-                    .first-txt {
-                        .first-title {
-                            margin-bottom: 15px;
-                            font-size: 32px;
-                        }
+        @media screen and (max-width: $mq767) {
+            width: 540px;
+            padding: 0 15px;
+        }
 
-                        .first-votes {
-                            img {
-                                width: 30px;
-                                position: relative;
-                                top: 0;
-                                right: 5px;
-                            }
-                        }
-                    }
-                }
+        @media screen and (max-width: $mq575) {
+            width: 100%;
+            padding: 15px;
 
-                .vote-second {
+            .vote-first {
+                margin-bottom: 15px;
+
+                .vote-pic {
                     width: 100%;
-                    display: flex;
+                }
 
-                    .vote-second-item {
-                        width: 50%;
-                        margin: 15px;
+                .vote-txt {
+                    .vote-name {
+                        margin-bottom: 15px;
+                        font-size: 32px;
+                    }
 
-                        &:first-child {
-                            margin-left: 0px;
-                        }
-
-                        &:last-child {
-                            margin-right: 0px;
-                        }
-
-                        .second-pic {
-                            width: 100%;
-                        }
-
-                        .second-txt {
-                            margin: 15px;
-
-                            .second-title {
-                                font-size: 1.6rem;
-                                margin-bottom: 15px;
-                            }
-
-                            .second-votes {
-                                img {
-                                    width: 25px;
-                                    position: relative;
-                                    right: 5px;
-                                }
-                            }
+                    .vote-votes {
+                        img {
+                            width: 30px;
+                            position: relative;
+                            top: 0;
+                            right: 5px;
                         }
                     }
                 }
             }
+
+
+            .vote-second {
+                width: 45%;
+
+                &:first-child {
+                    margin-left: 0px;
+                }
+
+                &:last-child {
+                    margin-right: 0px;
+                }
+
+                .vote-pic {
+                    width: 100%;
+                }
+
+                .vote-txt {
+                    margin: 15px;
+
+                    .vote-name {
+                        font-size: 1.6rem;
+                        margin-bottom: 15px;
+                    }
+
+                    .vote-votes {
+                        img {
+                            width: 25px;
+                            position: relative;
+                            right: 5px;
+                        }
+                    }
+                }
+            }
+
         }
     }
 }
+
 
 // 投票燈箱
 .voteLightbox-wrap {
@@ -397,12 +412,13 @@ section {
     left: 0;
     width: 100%;
     height: 100%;
-    display: none;
+    // display: none;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: rgba(204, 204, 204, 0.5);
-    z-index: 10;
+    z-index: 35;
 
     .voting {
         position: relative;
@@ -504,6 +520,18 @@ section {
                         transform: translateY(-50%);
                     }
                 }
+
+                .vote-radio {
+                    .btn-txt {
+
+                        font-size: 1.3rem;
+                        font-weight: bold;
+                    }
+
+                    small {
+                        font-size: 1rem;
+                    }
+                }
             }
 
             .vote-sub {
@@ -515,6 +543,7 @@ section {
                     @include P1;
                     font-weight: bold;
                     color: white;
+
                     #alertvote {
                         position: absolute;
                         top: 50%;
@@ -524,6 +553,7 @@ section {
                         font-size: 20px;
                         color: #e43603;
                     }
+
                     &:focus {
                         outline: none;
                     }
@@ -534,25 +564,21 @@ section {
                 }
 
                 button.color-1 {
-                    background-image: linear-gradient(
-                        to right,
-                        #25aae1,
-                        #40e495,
-                        #30dd8a,
-                        #2bb673
-                    );
+                    background-image: linear-gradient(to right,
+                            #25aae1,
+                            #40e495,
+                            #30dd8a,
+                            #2bb673);
                     box-shadow: 0 4px 15px 0 rgba(49, 196, 190, 0.75);
                 }
             }
 
-            input[type="radio"]:checked + label {
-                background-image: linear-gradient(
-                    to right,
-                    #25aae1,
-                    #83a2d4,
-                    #21a1a56c,
-                    #165163
-                );
+            input[type="radio"]:checked+label {
+                background-image: linear-gradient(to right,
+                        #25aae1,
+                        #83a2d4,
+                        #21a1a56c,
+                        #165163);
                 padding: 5px 10px;
                 transition: 0.5s ease-in-out;
 
@@ -561,7 +587,7 @@ section {
                 }
 
                 small {
-                    right: 32px;
+                    right: 30px;
                 }
 
                 .btn-txt {
@@ -578,7 +604,6 @@ section {
     }
 
     .voting-ok {
-        display: none;
         text-align: center;
         padding: 15px;
 

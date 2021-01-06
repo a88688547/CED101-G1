@@ -38,7 +38,8 @@
         <div class="join_list_row">
           <div class="join_list_img">
             <img
-              src="./Images/drinkphoto/coupon/drive-download-20201228T062855Z-001/10off.jpg"
+              class="list_img"
+              src="./Images/drinkphoto/coupon/drive-download-20201228T062855Z-001/40pff.jpg"
               alt=""
             />
           </div>
@@ -101,10 +102,26 @@
       <div class="join_list" v-for="Groupdata in grouporddata">
         <div class="join_list_row">
           <div class="join_list_img">
-            <img
-              src="./Images/drinkphoto/coupon/drive-download-20201228T062855Z-001/20off.jpg"
-              alt=""
+            <!-- <img
+              class="list_img"
+              src="./Images/drinkphoto/coupon/drive-download-20201228T062855Z-001/30off.jpg"
+            /> -->
+            <!-- <img
+              class="list_img"
+              :src="imgSrc20"
+              v-if="Groupdata.goal_cup == 20"
             />
+            <img
+              class="list_img"
+              :src="imgSrc30"
+              v-if="Groupdata.goal_cup == 30"
+            />
+            <img
+              class="list_img"
+              :src="imgSrc40"
+              v-if="Groupdata.goal_cup == 40"
+            /> -->
+            <img class="list_img" :src="getimg(Groupdata.goal_cup)" />
           </div>
           <div class="join_list_text">
             <div class="join_list_title">
@@ -161,6 +178,7 @@
           </div>
         </div>
       </div>
+
       <!-- ========== -->
 
       <!-- ========= -->
@@ -171,15 +189,32 @@
     <footer id="footer"><my-footer></my-footer></footer>
     <script src="./layout/header.vue"></script>
     <script src="./layout/footer.vue"></script>
+
     <script type="text/javascript">
       window.addEventListener("load", function () {
-        console.log(Groupdata.goal_cup);
         let grouporddata;
         //============去server端拿資料
         let xhr = new XMLHttpRequest();
+        // let ListImg = document.querySelectorAll(".join_list_img");
+        // let ListImg = document.getElementsByClassName("list_img");
+        // console.log(ListImg);
+
         xhr.onload = function () {
           app.grouporddata = JSON.parse(xhr.responseText);
-          console.log(app.grouporddata);
+          let total = app.grouporddata.length;
+
+          // console.log(ListImg);
+          // for (var i = 0; i < total; i++) {
+          //   var GoalCup = app.grouporddata[i].goal_cup;
+          //   // console.log(GoalCup);
+          //   if (GoalCup == 20) {
+          //     ListImg[1].src = `http://localhost/phpLab/CED101-G1/dist/Images/drinkphoto/coupon/drive-download-20201228T062855Z-001/20off.jpg`;
+          //     console.log("打八折");
+          //   }
+          //   if (GoalCup == 50) {
+          //     console.log("打五折");
+          //   }
+          // }
         };
         xhr.open("get", "./php/getGroup.php", true);
         xhr.send(null);
@@ -189,8 +224,28 @@
         data: {
           msg: 1,
           grouporddata: [],
+          imgSrc30:
+            "./Images/drinkphoto/coupon/drive-download-20201228T062855Z-001/20off.jpg",
+          imgSrc50:
+            "./Images/drinkphoto/coupon/drive-download-20201228T062855Z-001/40pff.jpg",
+          imgSrc20:
+            "./Images/drinkphoto/coupon/drive-download-20201228T062855Z-001/10off.jpg",
+          imgSrc40:
+            "./Images/drinkphoto/coupon/drive-download-20201228T062855Z-001/30off.jpg",
         },
-        methods: {},
+        methods: {
+          getimg: function (data) {
+            if (data == 20) {
+              return this.imgSrc20;
+            } else if (data == 30) {
+              return this.imgSrc30;
+            } else if (data == 40) {
+              return this.imgSrc40;
+            } else if (data == 50) {
+              return this.imgSrc50;
+            }
+          },
+        },
       });
 
       //-----------------

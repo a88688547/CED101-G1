@@ -1,308 +1,195 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>飲料排行</title>
-        <script src="./vendors/Vue/vue.js"></script>
-        <link rel="stylesheet" href="./css/vote.css" />
-        <link rel="stylesheet" href="./css/style.css" />
-        <script src="./vendors/jQuery/js/jquery-3.5.1.js"></script>
-        <script src="./js/header_footer.js"></script>
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
-            integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
-            crossorigin="anonymous"
-        />
-        <script src="./js/vote.js"></script>
-    </head>
 
-    <body>
-        <header id="header">
-            <my-header></my-header>
-        </header>
-        <section>
-            <div class="vote-top">
-                <h2>本週飲品排行</h2>
-                <h4>
-                    <img src="./Images/Drop-3.svg" alt="icon" />
-                    每週投下你神聖的三票，各類飲品最多一票，就有機會讓喜歡的飲品成為下週折扣品項!
-                </h4>
-            </div>
-            <div class="vote-bot">
-                <div class="vote-wrap">
-                    <div class="vote-title">
-                        <h3>奶 類&nbsp;<span>Milk Tea</span></h3>
-                    </div>
-                    <div class="vote-first">
-                        <div class="first-rank">上周第一</div>
-                        <div class="first-pic">
-                            <img
-                                src="./Images/vote/milktea/vote_milktea_top1.png"
-                                alt=""
-                            />
-                        </div>
-                        <div class="first-txt">
-                            <div class="first-title">珍珠拿鐵</div>
-                            <div class="first-votes">
-                                <img src="./Images/vote_big.svg" alt="votes" />
-                                總票數 |
-                                <div class="votes">520</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="vote-second">
-                        <div class="vote-second-item">
-                            <div class="second-rank">上周第二</div>
-                            <div class="second-pic">
-                                <img
-                                    src="./Images/vote/milktea/vote_milktea_top2.png"
-                                    alt=""
-                                />
-                            </div>
-                            <div class="second-txt">
-                                <div class="second-title">茉香奶茶</div>
-                                <div class="second-votes">
-                                    <img src="./Images/vote_big.svg" alt="votes" />
-                                    總票數 |
-                                    <div class="votes">520</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="vote-second-item">
-                            <div class="second-rank">上周第三</div>
-                            <div class="second-pic">
-                                <img
-                                    src="./Images/vote/milktea/vote_milktea_top3.png"
-                                    alt=""
-                                />
-                            </div>
-                            <div class="second-txt">
-                                <div class="second-title">小芋圓鮮奶茶</div>
-                                <div class="second-votes">
-                                    <img src="./Images/vote_big.svg" alt="votes" />
-                                    總票數 |
-                                    <div class="votes">520</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="vote-button">
-                        <button class="voteLightboxBtn color-1">
-                            <img src="./Images/drink.svg" alt="votebtn" />
-                            <h6>投票去</h6>
-                        </button>
-                    </div>
-                </div>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>飲料排行</title>
+    <script src="./vendors/Vue/vue.js"></script>
+    <link rel="stylesheet" href="./css/vote.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <script src="./vendors/jQuery/js/jquery-3.5.1.js"></script>
+    <script src="./js/header_footer.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+        integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+        crossorigin="anonymous" />
+</head>
 
-                <div class="vote-wrap">
-                    <div class="vote-title">
-                        <h3>果茶類&nbsp;<span>Fruit</span></h3>
-                    </div>
-                    <div class="vote-first">
-                        <div class="first-rank">上周第一</div>
-                        <div class="first-pic">
-                            <img src="./Images/vote/fruit/vote_fruit_top1.png" alt="" />
+<body>
+    <header id="header">
+        <my-header></my-header>
+    </header>
+    <section>
+        <div class="vote-top">
+            <h2>本週飲品排行</h2>
+            <h4>
+                <img src="./Images/Drop-3.svg" alt="icon" />
+                每週投下你神聖的三票，各類飲品最多一票，就有機會讓喜歡的飲品成為下週折扣品項!
+            </h4>
+        </div>
+        <div id="app">
+            <vote-item></vote-item>
+            <vote-form></vote-form>
+        </div>
+    </section>
+    <footer id="footer">
+        <my-footer></my-footer>
+    </footer>
+    <script src="./layout/header.vue"></script>
+    <script src="./layout/footer.vue"></script>
+    <script>
+        const vm = new Vue();
+        Vue.component("vote-item", {
+            data() {
+                return {
+                    texts: ["一", "二", "三"],
+                    drinks: [],
+                    index: 0,
+                };
+
+            },
+            methods: {
+                lightBoxToggle() {
+                    vm.$emit("lightBoxToggle", true);
+                },
+            },
+            mounted() {
+                fetch('./php/menu2.php', {
+                    method: 'GET',
+                }).then((res) => {
+                    return res.json()
+                }).then((res) => {
+                    this.drinks = res;
+                    console.log(this.drinks)
+                }).catch((err) => {
+                    console.log(err)
+                })
+
+            },
+            computed: {
+                sorts: function () {
+                    // return this.item_type.itemList_milk.count.sort(sortNum);   
+
+                    return this.drinks[0].itemList
+                        .sort((a, b) => b.vote_count_now - a.vote_count_now)
+                        .slice(0, 3)
+
+                },
+            },
+            template: `
+                <div class="vote-bot">
+                    <div class="vote-wrap" v-for="(voteTitle, i) in drinks" :value="voteTitle.type">
+                        <div class="vote-title">
+                            <h3>{{voteTitle.drink_type_title}}&nbsp;<span>{{voteTitle.drink_type_text_en}}</span></h3>
                         </div>
-                        <div class="first-txt">
-                            <div class="first-title">蜜桃紅茶</div>
-                            <div class="first-votes">
-                                <img src="./Images/vote_big.svg" alt="votes" />
-                                總票數 |
-                                <div class="votes">520</div>
+                        <div v-for="(item,index) in voteTitle.itemList" :class="[index===0?'vote-first':'vote-second', 'vote-item']">
+                            <div class="vote-rank">上周第{{texts[index]}}</div>
+                            <div class="vote-pic">
+                                <img :src="item.imgSrc" />
                             </div>
-                        </div>
-                    </div>
-                    <div class="vote-second">
-                        <div class="vote-second-item">
-                            <div class="second-rank">上周第二</div>
-                            <div class="second-pic">
-                                <img
-                                    src="./Images/vote/fruit/vote_fruit_top2.png"
-                                    alt=""
-                                />
-                            </div>
-                            <div class="second-txt">
-                                <div class="second-title">百香果綠茶</div>
-                                <div class="second-votes">
+                            <div class="vote-txt">
+                                <div class="vote-name">{{item.drink_title_ch}}</div>
+                                <div class="vote-votes">
                                     <img src="./Images/vote_big.svg" alt="votes" />
                                     總票數 |
-                                    <div class="votes">520</div>
+                                    <div class="votes">{{item.vote_count_now}}</div>
                                 </div>
                             </div>
                         </div>
-                        <div class="vote-second-item">
-                            <div class="second-rank">上周第三</div>
-                            <div class="second-pic">
-                                <img
-                                    src="./Images/vote/fruit/vote_fruit_top3.png"
-                                    alt=""
-                                />
-                            </div>
-                            <div class="second-txt">
-                                <div class="second-title">芒果冰茶</div>
-                                <div class="second-votes">
-                                    <img src="./Images/vote_big.svg" alt="votes" />
-                                    總票數 |
-                                    <div class="votes">520</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="vote-button">
-                        <button class="voteLightboxBtn color-1">
+                        <div class="vote-button">
+                        <button class="voteLightboxBtn color-1" @click="lightBoxToggle">
                             <img src="./Images/drink.svg" alt="" />
                             <h6>投票去</h6>
                         </button>
                     </div>
-                </div>
-                <div class="vote-wrap">
-                    <div class="vote-title">
-                        <h3>茶 類&nbsp;<span>Tea</span></h3>
-                    </div>
-                    <div class="vote-first">
-                        <div class="first-rank">上周第一</div>
-                        <div class="first-pic">
-                            <img src="./Images/vote/tea/vote_tea_top1.jpg" alt="" />
-                        </div>
-                        <div class="first-txt">
-                            <div class="first-title">台18號紅茶</div>
-                            <div class="first-votes">
-                                <img src="./Images/vote_big.svg" alt="votes" />
-                                總票數 |
-                                <div class="votes">520</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="vote-second">
-                        <div class="vote-second-item">
-                            <div class="second-rank">上周第二</div>
-                            <div class="second-pic">
-                                <img src="./Images/vote/tea/vote_tea_top2.jpg" alt="" />
-                            </div>
-                            <div class="second-txt">
-                                <div class="second-title">水沙連紅茶</div>
-                                <div class="second-votes">
-                                    <img src="./Images/vote_big.svg" alt="votes" />
-                                    總票數 |
-                                    <div class="votes">520</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="vote-second-item">
-                            <div class="second-rank">上周第三</div>
-                            <div class="second-pic">
-                                <img src="./Images/vote/tea/vote_tea_top3.jpg" alt="" />
-                            </div>
-                            <div class="second-txt">
-                                <div class="second-title">烏龍綠茶</div>
-                                <div class="second-votes">
-                                    <img src="./Images/vote_big.svg" alt="votes" />
-                                    總票數 |
-                                    <div class="votes">520</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="vote-button">
-                        <button class="voteLightboxBtn color-1">
-                            <img src="./Images/drink.svg" alt="" />
-                            <h6>投票去</h6>
-                        </button>
                     </div>
                 </div>
-                <form action="" class="voteLightbox-wrap">
-                    <div class="voting">
-                        <div class="pic"></div>
-                        <div class="voting-txt">
-                            <div class="voting-title">
-                                <h2>本周茶類飲品票選</h2>
-                                <small>點選您最喜歡的茶類飲品並送出投票</small>
+                `,
+        });
+        Vue.component("vote-form", {
+            data() {
+                return {
+                    showVote: false,
+                    type: "vote",
+                    textId: ["milkTea", "milkTea1", "milkTea2", "milkTea3", "milkTea4"],
+                    dirnkVote: [],
+                };
+            },
+            mounted() {
+                vm.$on("lightBoxToggle", this.toggleLightBox);
+                fetch('./php/menu.php', {
+                    method: 'GET',
+                }).then((res) => {
+                    return res.json()
+                }).then((res) => {
+                    this.dirnkVote = res;
+                    console.log(this.dirnkVote)
+                }).catch((err) => {
+                    console.log(err)
+                })
+            },
+            methods: {
+                toggleLightBox(open) {
+                    this.showVote = open;
+                },
+                votingHandler(e) {
+                    e.preventDefault();
+                    this.type = "voteok";
+                },
+                closeLightbox() {
+                    this.showVote = false;
+                },
+            },
+            template: `
+                        <form class="voteLightbox-wrap" v-show="showVote">
+                            <div class="voting">
+                                <div class="pic"></div>
+                                <div class="voting-txt" v-if="type=='vote'">
+                                    <div class="voting-title">
+                                        <h2>本周茶類飲品票選</h2>
+                                        <small>點選您最喜歡的茶類飲品並送出投票</small>
+                                    </div>
+                                    <div class="voting-btn">
+                                        <div v-for="(item,index) in dirnkVote[0].itemList">
+                                            <input
+                                                type="radio"
+                                                name="milkTea"
+                                                class="milkTea"
+                                                :id="textId[index]"
+                                            />
+                                            <label :for="textId[index]" class="vote-radio">
+                                                <div class="radiobtn"></div>
+                                                <div class="btn-txt">{{item.drink_title_ch}}</div>
+                                                <small>{{item.vote_count_now}}</small>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="vote-sub">
+                                        <button type="submit" class="submit color-1" @click="votingHandler">
+                                            送出投票
+                                            <small id="alertvote"></small>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="voting-ok" v-if="type =='voteok'">
+                                    <h2>投票成功</h2>
+                                    <p>你最愛的<small>"碧螺春"</small>本週目前票數為:</p>
+                                    <div class="vote-count">
+                                        <img src="./Images/vote_big.svg" alt="votes" />
+                                        39票
+                                    </div>
+                                </div>
+                                <div class="vote-close" @click="closeLightbox">
+                                    <i class="fas fa-times-circle closeBlock"></i>
+                                </div>
                             </div>
-                            <div class="voting-btn">
-                                <input
-                                    type="radio"
-                                    name="milkTea"
-                                    class="milkTea"
-                                    id="milkTea"
-                                />
-                                <label for="milkTea" class="vote-radio">
-                                    <div class="radiobtn"></div>
-                                    <div class="btn-txt">珍珠奶茶</div>
-                                    <small>0</small>
-                                </label>
-                                <input
-                                    type="radio"
-                                    name="milkTea"
-                                    id="milkTea1"
-                                    class="milkTea"
-                                />
-                                <label for="milkTea1" class="vote-radio">
-                                    <div class="radiobtn"></div>
-                                    <div class="btn-txt">奶茶珍珠</div>
-                                    <small>0</small>
-                                </label>
-                                <input
-                                    type="radio"
-                                    name="milkTea"
-                                    id="milkTea2"
-                                    class="milkTea"
-                                />
-                                <label for="milkTea2" class="vote-radio">
-                                    <div class="radiobtn"></div>
-                                    <div class="btn-txt">珍奶</div>
-                                    <small>0</small>
-                                </label>
-                                <input
-                                    type="radio"
-                                    name="milkTea"
-                                    id="milkTea3"
-                                    class="milkTea"
-                                />
-                                <label for="milkTea3" class="vote-radio">
-                                    <div class="radiobtn"></div>
-                                    <div class="btn-txt">奶茶</div>
-                                    <small>0</small>
-                                </label>
-                                <input
-                                    type="radio"
-                                    name="milkTea"
-                                    id="milkTea4"
-                                    class="milkTea"
-                                />
-                                <label for="milkTea4" class="vote-radio">
-                                    <div class="radiobtn"></div>
-                                    <div class="btn-txt">珍珠奶茶</div>
-                                    <small>0</small>
-                                </label>
-                            </div>
-                            <div class="vote-sub">
-                                <button type="submit" class="submit color-1">
-                                    送出投票
-                                    <small id="alertvote"></small>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="voting-ok">
-                            <h2>投票成功</h2>
-                            <p>你最愛的<small>"碧螺春"</small>本週目前票數為:</p>
-                            <div class="vote-count">
-                                <img src="./Images/vote_big.svg" alt="votes" />
-                                39票
-                            </div>
-                        </div>
-                        <div class="vote-close">
-                            <i class="fas fa-times-circle closeBlock"></i>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </section>
-        <footer id="footer">
-            <my-footer></my-footer>
-        </footer>
-        <script src="./layout/header.vue"></script>
-        <script src="./layout/footer.vue"></script>
-    </body>
+                        </form>
+                `,
+        });
+        new Vue({
+            el: "#app",
+        });
+    </script>
+</body>
+
 </html>

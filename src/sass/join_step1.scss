@@ -194,10 +194,39 @@ body{
       display: flex;
       justify-content: space-evenly;
       .btn_back,
-      .btn_go {
+      .btn_go,
+      #ConfirmButton {
       @include list_button_small;
+      
     }
-    
+    .ConfirmForm{
+      position: fixed;
+      z-index: 998;
+      left: 0;
+      top: 0;
+      background-color: rgba(85, 85, 85, 0.521);
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      .ConfirmForminfo{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        // color:red;
+        border: 1px solid rgb(5, 5, 5);
+        h2{
+          background-color: red;
+        }
+        #ConfirmButton{
+         display: inline-block;
+         width: 50%;
+        }
+
+      }
+    }
     }
 
     

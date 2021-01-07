@@ -44,7 +44,7 @@
                 return {
                     texts: ["一", "二", "三"],
                     drinks: [],
-                    index: 0,
+                    index: '',
                 };
 
             },
@@ -67,18 +67,10 @@
 
             },
             computed: {
-                sorts: function () {
-                    // return this.item_type.itemList_milk.count.sort(sortNum);   
-
-                    return this.drinks[0].itemList
-                        .sort((a, b) => b.vote_count_now - a.vote_count_now)
-                        .slice(0, 3)
-
-                },
             },
             template: `
                 <div class="vote-bot">
-                    <div class="vote-wrap" v-for="(voteTitle, i) in drinks" :value="voteTitle.type">
+                    <div class="vote-wrap" v-for="(voteTitle, i) in drinks">
                         <div class="vote-title">
                             <h3>{{voteTitle.drink_type_title}}&nbsp;<span>{{voteTitle.drink_type_text_en}}</span></h3>
                         </div>
@@ -113,6 +105,9 @@
                     type: "vote",
                     textId: ["milkTea", "milkTea1", "milkTea2", "milkTea3", "milkTea4"],
                     dirnkVote: [],
+                    votenow: false,
+                    checkRadio: "",
+
                 };
             },
             mounted() {
@@ -134,14 +129,26 @@
                 },
                 votingHandler(e) {
                     e.preventDefault();
+                    const checkBtn = document.querySelector('input[type="radio"]:checked');
+                    if (!checkBtn) return (this.votenow = true);
                     this.type = "voteok";
                 },
                 closeLightbox() {
+                    this.votenow = false;
                     this.showVote = false;
                 },
             },
+            watch: {
+                // checkRadio: function (now) {
+
+                //     if (this.votingHandler) {
+                //         this.votenow = false
+                //         console.log(checkBtn)
+                //     }
+                // },
+            },
             template: `
-                        <form class="voteLightbox-wrap" v-show="showVote">
+                        <form class="voteLightbox-wrap" v-show="showVote" >
                             <div class="voting">
                                 <div class="pic"></div>
                                 <div class="voting-txt" v-if="type=='vote'">
@@ -167,7 +174,8 @@
                                     <div class="vote-sub">
                                         <button type="submit" class="submit color-1" @click="votingHandler">
                                             送出投票
-                                            <small id="alertvote"></small>
+                                            <small id="alertvote" v-if="votenow==true">請投票!!</small>
+                                            <small v-if="votenow==false"></small>
                                         </button>
                                     </div>
                                 </div>

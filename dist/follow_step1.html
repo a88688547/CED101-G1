@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="./css/follow_step1.css">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/list_data.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="./css/alertLightbox.css">
     <!-- 不加會有錯 -->
     <link rel="shortcut icon" href="#" />
 </head>
@@ -32,24 +32,16 @@
         </ul>
     </div>
 
-    <!-- 開團資訊 -->
-    <div id="group_info">
-        <ul>
-            <li><span>團名</span><span id="group_name">XXXXXX團</span></li>
-            <li><span>結單時間</span><span id="dea">2020-11-15 15:00</span></li>
-            <li><span>預計送達時間</span><span id="arrive_time">2020-11-15 16:00</span></li>
-            <li><span>目標杯數</span><span id="bonus">20杯 / 9折優惠</span></li>
-            <li><span>取貨地點</span><span id="adress">桃園市中壢區復興路46號9樓桃園市中壢區復興路46號9樓</span></li>
-        </ul>
-    </div>
-
 
     <div id="app">
-        <!-- <orderList v-if="isShow"></orderList> -->
+        <!-- 開團資訊 -->
+        <groupInfo></groupInfo>
+        <!-- 飲料訂購清單 -->
         <orderList></orderList>
+
+        <!-- 警示視窗 -->
+        <alert_lightbox></alert_lightbox>
     </div>
-
-
 
 
     <footer id="footer">

@@ -5,6 +5,7 @@ try {
     $content = trim(file_get_contents("php://input"));
     $decoded = json_decode($content, true);
 
+    $drink_no = $decoded["drink_no"];
     $drink_title_ch = $decoded["drink_title_ch"];
     $drink_title_en = $decoded["drink_title_en"];
     $drink_type_no = $decoded["drink_type_no"];
@@ -12,11 +13,13 @@ try {
     $drink_small_price = $decoded["drink_small_price"];
     // $drink_src = $decoded["drink_src"];
 
-    $sql = "insert into drink (drink_title_ch,drink_title_en,drink_type_no,drink_big_price,drink_small_price)
-            values (:drink_title_ch,:drink_title_en,:drink_type_no,:drink_big_price,:drink_small_price)
+    $sql = "update drink
+            set drink_title_ch = :drink_title_ch,drink_title_en = :drink_title_en,drink_type_no = :drink_type_no,drink_big_price = :drink_big_price,drink_small_price = :drink_small_price
+            where drink_no = :drink_no
             ";
     // $grouporddata = $pdo->query($sql);
     $per_ord_data = $pdo->prepare($sql);
+    $per_ord_data->bindValue(":drink_no", $drink_no);
     $per_ord_data->bindValue(":drink_title_ch", $drink_title_ch);
     $per_ord_data->bindValue(":drink_title_en", $drink_title_en);
     $per_ord_data->bindValue(":drink_type_no", $drink_type_no);

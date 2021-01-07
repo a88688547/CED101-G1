@@ -254,14 +254,13 @@ window.addEventListener('load', function () {
                 //撈出來的 飲料資料
                 drinks: '',
                 checked: '',
-                lightbox: false,
                 lightbox_drink_no: '',
                 lightbox_status: '',
                 lightbox_drink_title_ch: '',
                 lightbox_text: '',
             }
         },
-        props: ['show', 'drinkno'],
+        props: ['show', 'drinkno', 'lightbox'],
 
         template: `
                   <section v-if=" show === 'drink' ">
@@ -293,7 +292,7 @@ window.addEventListener('load', function () {
                     </div>
                     <div class="lightbox_black" v-if="lightbox">
                         <div class="lightbox" >
-                            <div class="manager_lightbox_close_img" @click="lightbox = false"><img src="./Images/close.svg" ></div>
+                            <div class="manager_lightbox_close_img" @click="changelightbox(false)"><img src="./Images/close.svg" ></div>
                             <div>確定要將  商品 : <span>{{lightbox_drink_title_ch}}</span>。<span>{{lightbox_text}}</span> 嗎??</div>
                             <div @click="change_status(lightbox_drink_no,lightbox_status)">確定修改</div>
                         </div>
@@ -304,6 +303,10 @@ window.addEventListener('load', function () {
             changeTag() {
                 //將drink_edit 傳送至上層 (new Vue)
                 this.$emit('change', 'drink_edit')
+            },
+            //開關燈箱
+            changelightbox(data) {
+                this.$emit('changelightbox', data)
             },
             //傳送點擊飲料編號
             changedrinkno(drinkno) {
@@ -329,7 +332,7 @@ window.addEventListener('load', function () {
             },
             // 點擊修改後，顯示燈箱 並帶入值
             lightbox_show: function (drink_no, drink_title_ch, status) {
-                this.lightbox = true
+                this.changelightbox(true)
                 this.lightbox_drink_no = drink_no
                 this.lightbox_drink_title_ch = drink_title_ch
 
@@ -356,7 +359,7 @@ window.addEventListener('load', function () {
                     }),
                 })
                 //關閉燈箱
-                this.lightbox = false
+                this.changelightbox(false)
                 //完成後 重新撈取一次資料
                 this.get_mar()
             },
@@ -393,46 +396,48 @@ window.addEventListener('load', function () {
                 drink_small_price: '',
                 drink_src: '',
                 error_text: '',
-                lightbox: false,
 
-                type_info: [
-                    {
-                        type_no: 1,
-                        type_title: '甜度',
-                        type_detail: [
-                            { type_no: 1, detail_no: 2, detail_title: '全糖' },
-                            { type_no: 1, detail_no: 3, detail_title: '全糖' },
-                            { type_no: 1, detail_no: 4, detail_title: '全糖' },
-                            { type_no: 1, detail_no: 5, detail_title: '全糖' },
-                            { type_no: 1, detail_no: 5, detail_title: '全糖' },
-                            { type_no: 1, detail_no: 5, detail_title: '全糖' },
-                            { type_no: 1, detail_no: 5, detail_title: '全糖' },
-                        ],
-                    },
-                    {
-                        type_no: 2,
-                        type_title: '冰度',
-                        type_detail: [
-                            { type_no: 1, detail_no: 2, detail_title: '全糖' },
-                            { type_no: 1, detail_no: 3, detail_title: '全糖' },
-                            { type_no: 1, detail_no: 4, detail_title: '全糖' },
-                            { type_no: 1, detail_no: 5, detail_title: '全糖' },
-                        ],
-                    },
-                    {
-                        type_no: 3,
-                        type_title: '加料',
-                        type_detail: [
-                            { type_no: 1, detail_no: 2, detail_title: '全糖' },
-                            { type_no: 1, detail_no: 3, detail_title: '全糖' },
-                            { type_no: 1, detail_no: 4, detail_title: '全糖' },
-                            { type_no: 1, detail_no: 5, detail_title: '全糖' },
-                        ],
-                    },
-                ],
+                detail_info: '',
+
+                type_info: '',
+                // type_info: [
+                //     {
+                //         type_no: 1,
+                //         type_title: '甜度',
+                //         type_detail: [
+                //             { type_no: 1, detail_no: 2, detail_title: '全糖' },
+                //             { type_no: 1, detail_no: 3, detail_title: '全糖' },
+                //             { type_no: 1, detail_no: 4, detail_title: '全糖' },
+                //             { type_no: 1, detail_no: 5, detail_title: '全糖' },
+                //             { type_no: 1, detail_no: 5, detail_title: '全糖' },
+                //             { type_no: 1, detail_no: 5, detail_title: '全糖' },
+                //             { type_no: 1, detail_no: 5, detail_title: '全糖' },
+                //         ],
+                //     },
+                //     {
+                //         type_no: 2,
+                //         type_title: '冰度',
+                //         type_detail: [
+                //             { type_no: 1, detail_no: 2, detail_title: '全糖' },
+                //             { type_no: 1, detail_no: 3, detail_title: '全糖' },
+                //             { type_no: 1, detail_no: 4, detail_title: '全糖' },
+                //             { type_no: 1, detail_no: 5, detail_title: '全糖' },
+                //         ],
+                //     },
+                //     {
+                //         type_no: 3,
+                //         type_title: '加料',
+                //         type_detail: [
+                //             { type_no: 1, detail_no: 2, detail_title: '全糖' },
+                //             { type_no: 1, detail_no: 3, detail_title: '全糖' },
+                //             { type_no: 1, detail_no: 4, detail_title: '全糖' },
+                //             { type_no: 1, detail_no: 5, detail_title: '全糖' },
+                //         ],
+                //     },
+                // ],
             }
         },
-        props: ['show', 'drinkno'],
+        props: ['show', 'drinkno', 'lightbox'],
 
         template: `
                   <section v-if=" show === 'drink_edit' ">
@@ -473,9 +478,9 @@ window.addEventListener('load', function () {
                             <div class="type_box_title">選取 商品規格:</div>
                             <div class="type_name_box" :id="value.type_no" v-for="(value,key) in type_info">
                                 <div class="type_name">{{value.type_title}} : </div>
-                                <div v-for="(value,key) in value.type_detail" class="detali_list">
-                                    <input type="checkbox" :name="value.detail_no" :value="value.detail_no"></input>
-                                    {{value.detail_title}}
+                                <div v-for="(value,key) in value.detail_title_list" class="detali_list" >
+                                    <input type="checkbox" :id="value.detail_no" :name="value.detail_no" :value="value.detail_no"></input>
+                                    <label :for="value.detail_no"> {{value.detail_title}}</label>
                                 </div>
                             </div>
                         </div>
@@ -489,13 +494,13 @@ window.addEventListener('load', function () {
                           <img :src="drink_src" alt="尚未新增任何照片" id="image" />
                         </div>
                       </div>
-                      <div class="drink_edit_btn" @click="drink_edit(drink_title_ch, drink_title_en, drink_type_no, drink_big_price, drink_small_price)">確認修改</div>
+                      <div class="drink_edit_btn" @click="drink_edit(drink_no,drink_title_ch, drink_title_en, drink_type_no, drink_big_price, drink_small_price)">確認修改</div>
                     </div>
                     <div class="lightbox_black" v-if="lightbox">
                         <div class="lightbox" >
-                            <div class="manager_lightbox_close_img" @click="lightbox = false"><img src="./Images/close.svg" ></div>
+                            <div class="manager_lightbox_close_img" @click="changelightbox(false)"><img src="./Images/close.svg" ></div>
                             <div><span></span><span>{{error_text}}</span></div>
-                            <div @click="lightbox = false">確認</div>
+                            <div @click="changelightbox(false)">確認</div>
                         </div>
                     </div>
                   </section>`,
@@ -505,6 +510,10 @@ window.addEventListener('load', function () {
                 //傳送至上層 (new Vue)
                 this.$emit('change', 'drink')
             },
+            changelightbox(data) {
+                this.$emit('changelightbox', data)
+            },
+
             //預覽  上傳圖片
             changeimg(event) {
                 let file = event.target.files
@@ -517,7 +526,7 @@ window.addEventListener('load', function () {
             },
             //呼叫php程式，取回 飲料 相關資料，並用json()轉回一般陣列
             get_mar: async function (drinkno) {
-                console.log('send2', drinkno)
+                // console.log('send2', drinkno)
                 const res = await fetch('./php/bs_getone_drink.php', {
                     method: 'POST', // *GET, POST, PUT, DELETE, etc.
                     mode: 'same-origin', // no-cors, *cors, same-origin
@@ -549,15 +558,28 @@ window.addEventListener('load', function () {
                 this.drink_src = data[0].drink_src
             },
 
+            // 撈取類型資料
+            get_type: async function () {
+                const res = await fetch('./php/bs_getall_type_detail.php', {}).then(function (data) {
+                    return data.json()
+                })
+                // 取回res值後，呼叫另一隻函式
+                this.change_type(res)
+            },
+            // 將值寫入data中
+            change_type: function (data) {
+                this.type_info = data
+            },
+
             //點擊 修改商品
-            drink_edit:function(
+            drink_edit: async function (
+                drink_no,
                 drink_title_ch,
                 drink_title_en,
                 drink_type_no,
                 drink_big_price,
                 drink_small_price
-                ){
-
+            ) {
                 //新增前 確認欄位 是否符合規定
 
                 //中文名稱 (1~15字)
@@ -580,7 +602,7 @@ window.addEventListener('load', function () {
                 ) {
                     console.log('英文 成功')
                 } else {
-                    this.lightbox = true
+                    this.changelightbox(true)
                     this.error_text = '飲料名稱(英)，請輸入英文(1~50字)'
                     return ''
                 }
@@ -589,7 +611,7 @@ window.addEventListener('load', function () {
                 if (drink_type_no != '') {
                     console.log('類型 成功')
                 } else {
-                    this.lightbox = true
+                    this.changelightbox(true)
                     this.error_text = '請選擇飲料類別'
                     return ''
                 }
@@ -598,7 +620,7 @@ window.addEventListener('load', function () {
                 if (drink_big_price != '' && drink_big_price > 0) {
                     console.log('大杯 成功')
                 } else {
-                    this.lightbox = true
+                    this.changelightbox(true)
                     this.error_text = '請輸入大杯金額(不得為負數)'
                     return ''
                 }
@@ -607,7 +629,7 @@ window.addEventListener('load', function () {
                 if (drink_small_price != '' && drink_small_price > 0) {
                     console.log('小杯 成功')
                 } else {
-                    this.lightbox = true
+                    this.changelightbox(true)
                     this.error_text = '請輸入小杯金額(不得為負數)'
                     return ''
                 }
@@ -616,12 +638,12 @@ window.addEventListener('load', function () {
                 if (drink_big_price > drink_small_price) {
                     console.log('大小 成功')
                 } else {
-                    this.lightbox = true
+                    this.changelightbox(true)
                     this.error_text = '請確認飲料金額 (大杯金額 > 小杯金額)'
                     return ''
                 }
 
-                const res = await fetch('./php/bs_insert_drink.php', {
+                const res = await fetch('./php/bs_update_drink.php', {
                     method: 'POST',
                     mode: 'same-origin',
                     credentials: 'same-origin',
@@ -629,6 +651,7 @@ window.addEventListener('load', function () {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
+                        drink_no: drink_no,
                         drink_title_ch: drink_title_ch,
                         drink_title_en: drink_title_en,
                         drink_type_no: drink_type_no,
@@ -636,21 +659,52 @@ window.addEventListener('load', function () {
                         drink_small_price: drink_small_price,
                     }),
                 })
-                // 新增成功後 把data內的植 都清空
-                this.drink_title_ch = ''
-                this.drink_title_en = ''
-                this.drink_type_no = ''
-                this.drink_big_price = ''
-                this.drink_small_price = ''
+                //修改成功跳出 燈箱
+                this.changelightbox(true)
+                this.error_text = '修改成功'
 
-                //跳轉頁面去 商品列表
-                this.changeTag_drink()
-            }
+                // 修改成功後 把data內的植 都清空
+                // this.drink_title_ch = ''
+                // this.drink_title_en = ''
+                // this.drink_type_no = ''
+                // this.drink_big_price = ''
+                // this.drink_small_price = ''
+
+                //編輯完成後，重新撈取資料
+                // await this.get_mar(this.drinkno)
+            },
+
+            //抓出該飲料 擁有的 所有 配置資訊
+            get_detail_info: async function (drinkno) {
+                // console.log('send2', drinkno)
+                const res = await fetch('./php/bs_getone_drink_detail.php', {
+                    method: 'POST', // *GET, POST, PUT, DELETE, etc.
+                    mode: 'same-origin', // no-cors, *cors, same-origin
+                    // cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+                    credentials: 'same-origin', // include, *same-origin, omit
+                    headers: {
+                        'Content-Type': 'application/json', // sent request
+                        // Accept: 'application/json', // expected data sent back
+                    },
+                    // redirect: 'follow', // manual, *follow, error
+                    // referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+                    body: JSON.stringify({
+                        drink_no: drinkno,
+                    }), // body data type must match "Content-Type" header
+                }).then(function (data) {
+                    return data.json()
+                })
+                // 取回res值後，呼叫另一隻函式
+                this.detail_info = res
+            },
         },
         created() {
             // 渲染前 先去撈取資料
             this.get_mar(this.drinkno)
             // console.log('send:', this.drinkno)
+            this.get_type()
+            //撈 detail資料
+            this.get_detail_info(this.drinkno)
         },
         // 監聽數值變化
         watch: {
@@ -674,10 +728,9 @@ window.addEventListener('load', function () {
                 drink_small_price: '',
                 drink_src: '',
                 error_text: '',
-                lightbox: false,
             }
         },
-        props: ['show'],
+        props: ['show', 'lightbox'],
 
         template: `
                   <section v-if=" show === 'drink_add' ">
@@ -727,7 +780,7 @@ window.addEventListener('load', function () {
                         <div class="lightbox" >
                             <div class="manager_lightbox_close_img" @click="lightbox = false"><img src="./Images/close.svg" ></div>
                             <div><span></span><span>{{error_text}}</span></div>
-                            <div @click="lightbox = false">確認</div>
+                            <div @click="back(error_text)">確認</div>
                         </div>
                     </div>
                   </section>`,
@@ -834,6 +887,9 @@ window.addEventListener('load', function () {
                         drink_small_price: drink_small_price,
                     }),
                 })
+                this.lightbox = true
+                this.error_text = '修改成功'
+
                 // 新增成功後 把data內的植 都清空
                 this.drink_title_ch = ''
                 this.drink_title_en = ''
@@ -842,7 +898,14 @@ window.addEventListener('load', function () {
                 this.drink_small_price = ''
 
                 //跳轉頁面去 商品列表
-                this.changeTag_drink()
+            },
+            //當成功修改時 將會跳轉頁面
+            back(error_text) {
+                if (error_text == '修改成功') {
+                    this.lightbox = false
+                } else {
+                    this.lightbox = false
+                }
             },
         },
     })
@@ -907,6 +970,9 @@ window.addEventListener('load', function () {
         data() {
             return {
                 type: '',
+                detail_title: '',
+                lightbox: false,
+                error_text: '',
             }
         },
         props: ['show', 'type_no', 'type_title'],
@@ -921,18 +987,23 @@ window.addEventListener('load', function () {
                             <input name="type_title_edit" id="type_title_edit" :value="type_title"></input>
                             <button id="edit_type_title">修改名稱</button>
                         </form>
-                        <form class="type_detail_box_right">
+                        <div class="type_detail_box_right">
                             <div>已擁有的細項 :</div>
                             <ul class="show_type_detail">
                                 <li v-for="(value,key) in type">
-                                    <div>{{value.detail_title}}</div><button>刪除</button>
+                                    <div>{{value.detail_title}}</div><div class="detail_title_delete_btn" @click="detail_title_delete(value.detail_no)">刪除</div>
                                 </li>
                             </ul>
-                            <input name="type_drtail_edit" id="type_drtail_edit" placeholder="輸入新增規格之名稱"></input>
-                            <button id="add_type_detail">新增細項</button>
-                            
-                        </form>
-
+                            <input name="type_drtail_edit" id="type_drtail_edit" placeholder="請輸入細項名稱(中文 1~5字)" v-model="detail_title"></input>
+                            <div id="add_type_detail" @click="detail_title_add(type_no,detail_title)">新增細項</div>
+                        </div>
+                    </div>
+                    <div class="lightbox_black" v-if="lightbox">
+                        <div class="lightbox" >
+                            <div class="manager_lightbox_close_img" @click="lightbox = false"><img src="./Images/close.svg" ></div>
+                            <div><span></span><span>{{error_text}}</span></div>
+                            <div @click="lightbox = false">確認</div>
+                        </div>
                     </div>
                   </section>`,
         methods: {
@@ -967,6 +1038,56 @@ window.addEventListener('load', function () {
             get_drink: function (data) {
                 this.type = data
             },
+            //新增 細項
+            async detail_title_add(type_no, detail_title) {
+                if (
+                    detail_title.replace(/[^\u4e00-\u9fa5]/g, '') &&
+                    detail_title.length >= 1 &&
+                    detail_title.length <= 5
+                ) {
+                    console.log('中文 成功')
+                } else {
+                    this.lightbox = true
+                    this.error_text = '請輸入中文(1~5字)'
+                    return ''
+                }
+
+                const res = await fetch('./php/bs_insert_detail.php', {
+                    method: 'POST',
+                    mode: 'same-origin',
+                    credentials: 'same-origin',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        type_no: type_no,
+                        detail_title: detail_title,
+                    }),
+                })
+                this.lightbox = true
+                this.error_text = '新增成功'
+
+                // 新增成功後 把data內的植 都清空
+                this.detail_title = ''
+
+                //重新撈取一次 細項列表
+                this.get_mar(this.type_no)
+            },
+            async detail_title_delete(detail_no) {
+                const res = await fetch('./php/bs_delete_detail.php', {
+                    method: 'POST',
+                    mode: 'same-origin',
+                    credentials: 'same-origin',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        detail_no: detail_no,
+                    }),
+                })
+                //重新撈取一次 細項列表
+                this.get_mar(this.type_no)
+            },
         },
         created() {
             this.get_mar(this.type_no)
@@ -985,7 +1106,11 @@ window.addEventListener('load', function () {
     //---  新增商品規格 -- 組件
     Vue.component('type_add', {
         data() {
-            return {}
+            return {
+                type_title: '',
+                lightbox: false,
+                error_text: '',
+            }
         },
         props: ['show'],
 
@@ -993,18 +1118,53 @@ window.addEventListener('load', function () {
                   <section v-if=" show === 'type_add' ">
                     <h1 class="title">新增商品規格</h1>
                     <div class="return_btn_box"><div class="return_btn" @click="changeTag_drink">返回商品列表</div></div>
-                    <form class="type_add_box">
+                    <div class="type_add_box">
                         <div class="type_add_row">
                             <label for="type_add_title">規格名稱 :</label>
-                            <input type="text" id="type_add_title" placeholder="請輸入規格名稱(1~6字)" />
+                            <input type="text" id="type_add_title" placeholder="請輸入規格名稱(中文 1~5字)" v-model="type_title" />
                         </div>
-                        <button>新增商品規格</button>
-                    </form>
+                        <div @click="drink_type_add(type_title)">新增商品規格</div>
+                    </div>
+                    <div class="lightbox_black" v-if="lightbox">
+                        <div class="lightbox" >
+                            <div class="manager_lightbox_close_img" @click="lightbox = false"><img src="./Images/close.svg" ></div>
+                            <div><span></span><span>{{error_text}}</span></div>
+                            <div @click="lightbox = false">確認</div>
+                        </div>
+                    </div>
                   </section>`,
         methods: {
             changeTag_drink() {
                 //傳送至上層 (new Vue)
                 this.$emit('change', 'drink_type')
+            },
+            //點擊新增商品規格
+            async drink_type_add(type_title) {
+                //中文名稱 (1~5字)
+                if (type_title.replace(/[^\u4e00-\u9fa5]/g, '') && type_title.length >= 1 && type_title.length <= 5) {
+                    console.log('中文 成功')
+                } else {
+                    this.lightbox = true
+                    this.error_text = '請輸入中文(1~5字)'
+                    return ''
+                }
+
+                const res = await fetch('./php/bs_insert_type.php', {
+                    method: 'POST',
+                    mode: 'same-origin',
+                    credentials: 'same-origin',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        type_title: type_title,
+                    }),
+                })
+                this.lightbox = true
+                this.error_text = '新增成功'
+
+                // 新增成功後 把data內的植 都清空
+                this.type_title = ''
             },
         },
     })
@@ -1874,6 +2034,7 @@ window.addEventListener('load', function () {
             type_title: '',
             group_ord_no: 1,
             per_ord_no: 5,
+            lightbox: false,
         },
         methods: {
             //接受到 下層傳遞的值 變更data值
@@ -1892,6 +2053,9 @@ window.addEventListener('load', function () {
             },
             changeperordno(per_ord_no) {
                 this.per_ord_no = per_ord_no
+            },
+            changelightbox(data) {
+                this.lightbox = data
             },
         },
         components: {},

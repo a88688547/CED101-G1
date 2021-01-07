@@ -1,12 +1,12 @@
-let a = 0
+const bus = new Vue();
 Vue.component('group-info', {
     data() {
         return {
             groupInfo: [],
-            nowTime: new Date().getTime(),
+            nowTime: new Date().getTime(), //現在時間毫秒
             watchNum: 0,
-            timer: null,
-            inTime: true,
+            timer: null,   //計時器
+            inTime: true, //現在時間還早於結單時間
         }
     },
     mounted() {
@@ -19,11 +19,11 @@ Vue.component('group-info', {
             })
         }).then(res => res.json())
             .then(res => this.groupInfo = res);
-        this.timer = setInterval(this.getData, 1000)
+        this.timer = setInterval(this.getWatchNum, 1000)
     },
+    //離開時清除定時器
     beforeDestroy() {
         clearInterval(this.timer)
-
     },
     methods: {
         showNoSeconds(time) {
@@ -32,7 +32,7 @@ Vue.component('group-info', {
             return noSecondsTime
         },
 
-        getData() {
+        getWatchNum() {
             this.watchNum++
         },
     },
@@ -42,9 +42,7 @@ Vue.component('group-info', {
         }
     },
     computed: {
-
         phone() {
-
             let phone1 = this.groupInfo[0].mem_phone.substr(0, 4)
             let phone2 = this.groupInfo[0].mem_phone.substr(4, 3)
             let phone3 = this.groupInfo[0].mem_phone.substr(7, 3)
@@ -62,18 +60,20 @@ Vue.component('group-info', {
             let sec = parseInt(offsetTime % 60); // 秒
             let min = parseInt((offsetTime / 60) % 60); // 分 ex: 90秒
             let hr = parseInt(offsetTime / 60 / 60); // 時
-            let toatal = [{
+            let total = [{
                 theHr: hr,
                 theMin: min,
                 theSec: sec,
             }]
+            //如果現在時間晚於結單時間
             if (offsetTime <= 0) {
+                //inTime為false，限時會顯示已截止
                 this.inTime = false
+                //並傳送一個false參數給menu組件
+                bus.$emit('intimeGoFollow_step1', this.inTime)
             }
-            return toatal
+            return total
         },
-
-
     },
     template: `
     <div>
@@ -149,7 +149,7 @@ Vue.component('group-info', {
                             <div class="info_text_right_inner">
                                 <span style="color: #B3925B;">
                                     <img src="./Images/group_list.svg" alt="">
-                                    截單時間:
+                                    結單時間:
                                 </span>
                                 <span id="deadline_time" style="color: #B3925B;">
                                 {{showNoSeconds(item.deadline_time)}}
@@ -164,11 +164,13 @@ Vue.component('group-info', {
     `,
 
 })
-const bus = new Vue();
+
+
 let storage = sessionStorage;
 if (storage['addItemList'] == null) {
     storage['addItemList'] = ''
 }
+
 //菜單組件
 Vue.component('menu_carshop', {
     data() {
@@ -177,6 +179,9 @@ Vue.component('menu_carshop', {
             shopping_num_total: 0,
             // 飲料類別
             item_type: [],
+            //現在時間是否早於結單時間，以此判斷是否要前往下一頁
+            intimeCart: true,
+
         }
     },
     methods: {
@@ -184,11 +189,26 @@ Vue.component('menu_carshop', {
         lightBox_handle(item) {
             bus.$emit('lightBox_handle_parent', item)
         },
+        //前往訂單頁面
+        goFollow_step1() {
+            if (this.intimeCart == false) {
+                bus.$emit('getAlert', '跟團時間已截止')
+            } else {
+                if (this.shopping_num_total >= 1) {
+                    location.href = 'follow_step1.html'
+                } else {
+                    bus.$emit('getAlert', '請選擇飲品')
+                }
+            }
+        },
     },
 
     mounted() {
         // 購物車按鈕接收燈箱的飲品數量
         bus.$on('addToCar_parent', (numx) => this.shopping_num_total = numx);
+
+        //若現在時間晚於結單時間，從group_info接收false參數，帶入本身intimeCart
+        bus.$on('intimeGoFollow_step1', (intime) => this.intimeCart = intime);
 
         //後台撈出menu資料
         fetch('./php/menu.php', {
@@ -212,48 +232,81 @@ Vue.component('menu_carshop', {
     },
     template: `
     <div id="menu">
-    <div id="menu_title"><span>menu</span></div>
-    <div id="menu_table" class="container">
-        <div class="row">
-            <!-- v-for生成飲料類別 -->
-            <section class="drink_type col-md-4" v-for="(parent_item,index) in item_type"
-                :value="parent_item.drink_type_no">
-                <!-- 飲料標題 -->
-                <div class="drink_type_text">
-                    <span>{{parent_item.drink_type_title}}</span><span>{{parent_item.drink_type_text_en}}</span>
-                </div>
-                <!-- 手機板飲料標題 -->
-                <div class="drink_type_text_mob">
-                    <span class="type_mob">{{parent_item.drink_type_text}}</span>
-                    <div class="size_mob"><span>M</span><span>L</span></div>
-                </div>
-                <!-- 中杯大杯 -->
-                <div class="size"><span>M</span><span>L</span></div>
-                <ul class="drink">
-                    <!-- v-for生成飲品名稱-->
-                    <li class="drink_item" v-for="(item,index) in parent_item.itemList" :value="item.drink_no"
-                        @click="lightBox_handle(item)">
-                        <button>+</button><span class="drink_name">{{item.drink_title_ch}}</span>
-                        <!-- 中杯價錢 -->
-                        <div class="medium_price_wrapper">
-                            <span>$</span><span class="medium_price">{{item.drink_small_price}}</span>
-                        </div>
-                        <!-- 大杯價錢 -->
-                        <div class="large_price_wrapper"><span>$</span><span
-                                class="large_price">{{item.drink_big_price}}</span></div>
-                    </li>
-                </ul>
-            </section>
+        <div id="menu_title"><span>menu</span></div>
+        <div id="menu_table" class="container">
+            <div class="row">
+                <!-- v-for生成飲料類別 -->
+                <section class="drink_type col-md-4" v-for="(parent_item,index) in item_type"
+                    :value="parent_item.drink_type_no">
+                    <!-- 飲料標題 -->
+                    <div class="drink_type_text">
+                        <span>{{parent_item.drink_type_title}}</span><span>{{parent_item.drink_type_text_en}}</span>
+                    </div>
+                    <!-- 手機板飲料標題 -->
+                    <div class="drink_type_text_mob">
+                        <span class="type_mob">{{parent_item.drink_type_title}}</span>
+                        <div class="size_mob"><span>M</span><span>L</span></div>
+                    </div>
+                    <!-- 中杯大杯 -->
+                    <div class="size"><span>M</span><span>L</span></div>
+                    <ul class="drink">
+                        <!-- v-for生成飲品名稱-->
+                        <li class="drink_item" v-for="(item,index) in parent_item.itemList" :value="item.drink_no"
+                            @click="lightBox_handle(item)">
+                            <button>+</button><span class="drink_name">{{item.drink_title_ch}}</span>
+                            <!-- 中杯價錢 -->
+                            <div class="medium_price_wrapper">
+                                <span>$</span><span class="medium_price">{{item.drink_small_price}}</span>
+                            </div>
+                            <!-- 大杯價錢 -->
+                            <div class="large_price_wrapper"><span>$</span><span
+                                    class="large_price">{{item.drink_big_price}}</span></div>
+                        </li>
+                    </ul>
+                </section>
+            </div>
         </div>
-    </div>
-    <button id="shopping_btn"><span v-if="shopping_num_total >= 1"
-            id="shopping_num_total">{{shopping_num_total}}</span><img src="./Images/cart.svg" alt=""><div>前往購物車</div></button>
-
+        <button id="shopping_btn" @click="goFollow_step1"><span v-if="shopping_num_total >= 1"
+                id="shopping_num_total">{{shopping_num_total}}</span><img src="./Images/cart.svg" alt=""><div>前往購物車</div></button>
     </div>
 
     `
 })
 
+//警示視窗
+Vue.component('alert_lightbox', {
+    data() {
+        return {
+            alertLightbox: false,
+            alertText: "",
+        }
+    },
+    methods: {
+        closeAlertLightbox() {
+            this.alertLightbox = false
+            if (this.alertText == '跟團時間已截止') {
+                location.href = 'index.html'
+            }
+        }
+    },
+    mounted() {
+        bus.$on('getAlert', (_alertText) => {
+            this.alertText = _alertText
+            this.alertLightbox = true
+        });
+    },
+    template: `
+    <div class="alertLightbox_black" v-if="alertLightbox">
+        <div class="alertLightboxWrapper">
+            <div class="alertLightbox" >
+                <div>Oops!</div>
+                <div>{{alertText}}</div>
+                <div @click="closeAlertLightbox">確定</div>
+            </div>
+        </div>
+    </div>
+    `,
+})
 Vue.component('light_box', {
     data() {
         return {
@@ -345,9 +398,9 @@ Vue.component('light_box', {
                 //關閉燈箱後，飲品數目預設回1杯
                 this.num_feedback = 1
             } else if (selectIce == false) {
-                alert("請選擇飲品溫度")
+                bus.$emit('getAlert', '請選擇飲品溫度')
             } else {
-                alert("請選擇甜度")
+                bus.$emit('getAlert', '請選擇甜度')
             }
 
         },

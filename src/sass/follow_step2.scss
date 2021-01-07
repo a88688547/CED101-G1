@@ -211,6 +211,16 @@ body {
             width: 60%;
             line-height: 24px;
         }
+
+        .time {
+            @media screen and (min-width:577px) {
+                letter-spacing: 5px !important;
+            }
+
+            @media screen and (max-width:576px) {
+                letter-spacing: 3px !important;
+            }
+        }
     }
 }
 

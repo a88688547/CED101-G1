@@ -1,3 +1,59 @@
+Vue.component('group_info', {
+    data() {
+        return {
+            groupInfo: [],
+        }
+    },
+    mounted() {
+        //後台撈出團的資料
+        fetch('./php/group_menu.php', {
+            method: 'GET', // or 'PUT'
+            // body: JSON.stringify(this.item_type), // data can be `string` or {object}!
+            headers: new Headers({
+                'Content-Type': 'application/json'
+            })
+        }).then(res => res.json())
+            .then(res => this.groupInfo = res);
+    },
+    methods: {
+        showNoSeconds(time) {
+            let secondsIndex = time.length - 3
+            let noSecondsTime = time.substring(0, secondsIndex)
+            return noSecondsTime
+        },
+    },
+    computed: {
+        count() {
+            switch (this.groupInfo[0].goal_cup) {
+                case "20":
+                    return "9折"
+                case "30":
+                    return "8折"
+                case "40":
+                    return "7折"
+                case "50":
+                    return "6折"
+                default:
+                    return "無"
+            }
+        }
+    },
+    template: `
+    <div id="group_info">
+        <ul v-for="(item,index) in groupInfo">
+            <li id="order_state"><span>訂單狀態</span>
+                <button>準備中</button>
+            </li>
+            <li><span>團名</span><span>{{item.group_name}}</span></li>
+            <li><span>結單時間</span><span class="time">{{showNoSeconds(item.deadline_time)}}</span></li>
+            <li><span>預計送達時間</span><span class="time">{{showNoSeconds(item.arrive_time)}}</span></li>
+            <li><span>目標杯數</span><span>{{item.goal_cup}}杯 / {{count}}優惠</span></li>
+            <li><span>取貨地點</span><span>{{item.group_adress}}</span></li>
+        </ul>
+    </div>
+    `,
+})
+
 
 let storage = sessionStorage;
 let dt = storage['dt']

@@ -1,5 +1,89 @@
 
 let storage = sessionStorage;
+const bus = new Vue();
+Vue.component('groupinfo', {
+    data() {
+        return {
+            groupInfo: [],
+            nowTime: new Date().getTime(), //現在時間毫秒
+            watchNum: 0,
+            timer: null,   //計時器
+            inTime: true, //現在時間還早於結單時間
+        }
+    },
+    mounted() {
+        //後台撈出團的資料
+        fetch('./php/group_menu.php', {
+            method: 'GET', // or 'PUT'
+            // body: JSON.stringify(this.item_type), // data can be `string` or {object}!
+            headers: new Headers({
+                'Content-Type': 'application/json'
+            })
+        }).then(res => res.json())
+            .then(res => this.groupInfo = res);
+        this.timer = setInterval(this.getWatchNum, 1000)
+    },
+    //離開時清除定時器
+    beforeDestroy() {
+        clearInterval(this.timer)
+    },
+    methods: {
+        showNoSeconds(time) {
+            let secondsIndex = time.length - 3
+            let noSecondsTime = time.substring(0, secondsIndex)
+            return noSecondsTime
+        },
+
+        getWatchNum() {
+            this.watchNum++
+        },
+        countDown() {
+            let endTime = new Date(this.groupInfo[0].deadline_time)
+            let endTimeSec = endTime.getTime() //節單時間總毫秒數
+            let offsetTime = (endTimeSec - this.nowTime) / 1000 // ** 以秒為單位
+            //如果現在時間晚於結單時間
+            if (offsetTime <= 0) {
+                //inTime為false，限時會顯示已截止
+                this.inTime = false
+                //並傳送一個false參數給menu組件
+                bus.$emit('intimeGoFollow_step2', this.inTime)
+            }
+        },
+    },
+    watch: {
+        watchNum() {
+            this.nowTime = new Date().getTime()
+            this.countDown()
+        }
+    },
+    computed: {
+        count() {
+            switch (this.groupInfo[0].goal_cup) {
+                case "20":
+                    return "9折"
+                case "30":
+                    return "8折"
+                case "40":
+                    return "7折"
+                case "50":
+                    return "6折"
+                default:
+                    return "無"
+            }
+        }
+    },
+    template: `
+    <div id="group_info">
+        <ul v-for="(item,index) in groupInfo">
+            <li><span>團名</span><span>{{item.group_name}}</span></li>
+            <li><span>結單時間</span><span class="time">{{showNoSeconds(item.deadline_time)}}</span></li>
+            <li><span>預計送達時間</span><span class="time">{{showNoSeconds(item.arrive_time)}}</span></li>
+            <li><span>目標杯數</span><span>{{item.goal_cup}}杯 / {{count}}優惠</span></li>
+            <li><span>取貨地點</span><span>{{item.group_adress}}</span></li>
+        </ul>
+    </div>
+    `,
+})
 Vue.component('orderlist', {
     data() {
         return {
@@ -9,7 +93,12 @@ Vue.component('orderlist', {
             addItemList: storage['addItemList'],
             // 燈箱開關
             lightBoxOpen: false,
+            //現在時間是否早於結單時間，以此判斷是否要前往下一頁
+            inTimeCart: true,
         }
+    },
+    mounted() {
+        bus.$on('intimeGoFollow_step2', _inTime => this.inTimeCart = _inTime)
     },
     methods: {
         //下層組件增加減少刪除品項，回傳storage至上層，並由addItemList接收，這樣才會動態更新
@@ -19,6 +108,13 @@ Vue.component('orderlist', {
                 this.order = false
             }
             this.addItemList = theAddItemList
+        },
+        checkIntimeToPostOrder() {
+            if (this.inTimeCart) {
+                this.postOrder()
+            } else {
+                bus.$emit('getAlert', "跟團時間已截止")
+            }
         },
         //送出訂單資料到後台
         postOrder: async function () {
@@ -33,7 +129,6 @@ Vue.component('orderlist', {
             location.href = './follow_step2.html'
         },
         createNewStorage: async function () {
-            console.log("aa")
             let dt = new Date().getTime()
             if (storage['dt'] == null) {
                 storage['dt'] = ''
@@ -44,6 +139,13 @@ Vue.component('orderlist', {
             }
             storage[`addItemList${dt}`] = this.addItemList
             storage['addItemList'] = ""
+        },
+        openLightBox() {
+            if (storage['addItemList'] == "") {
+                bus.$emit('getAlert', "請加飲料至購物車")
+            } else {
+                this.lightBoxOpen = true
+            }
         },
     },
     created() {
@@ -187,7 +289,7 @@ Vue.component('orderlist', {
             </div>
             <div class="orderbtn">
                 <div><a href="./menu.html">繼續加購</a></div>
-                <div class="nextStep" @click="lightBoxOpen = true"><a href="#" >建立訂單</a></div>
+                <div class="nextStep" @click="openLightBox"><a href="#" >建立訂單</a></div>
             </div>
         </div>
         
@@ -236,7 +338,7 @@ Vue.component('orderlist', {
                         </div>
                         <div class="sendbtn">
                             <!-- <input type="button" value="確認送出" onclick="location.href='./follow_step2.html'"> -->
-                            <input type="button" value="確認送出" @click="postOrder">
+                            <input type="button" value="確認送出" @click="checkIntimeToPostOrder">
                         </div>
                     </div>
                 </form>
@@ -253,11 +355,9 @@ Vue.component('personDrink', {
     props: ['key_', 'value_'],
     data() {
         return {
-            //飲品的詳細資訊，將其切割成陣列
-            propsKey: this.key_.substr(0, this.key_.length).split(','),
             //每個飲品的數量
             num: this.value_,
-
+            alertLightbox: false,
         }
     },
     methods: {
@@ -295,9 +395,16 @@ Vue.component('personDrink', {
             } else {
                 this.$emit('childStorageToParent', storage['addItemList'])
             }
-        }
+            this.alertLightbox = false
+        },
+
     },
+
     computed: {
+        //飲品的詳細資訊，將其切割成陣列
+        propsKey() {
+            return this.key_.substr(0, this.key_.length).split(',')
+        },
         drink_name() {
             return this.propsKey[0]
         },
@@ -316,6 +423,7 @@ Vue.component('personDrink', {
         price() {
             return this.propsKey[5]
         },
+
     },
     template: `
     <div class="group_order_done_person_drink">
@@ -337,10 +445,20 @@ Vue.component('personDrink', {
         <section id="item_single_price">
             &#36{{price * num}}
         </section>
-        <section class="order_delete_btn" @click="deleteItem">
+        <section class="order_delete_btn" @click="alertLightbox=true">
             <img src="./Images/trash_big.svg" alt="" >
             <img src="./Images/trash_small.svg" alt="">
         </section>
+        <div class="alertLightbox_black" v-if="alertLightbox">
+            <div class="alertLightboxWrapper">
+                <div class="manager_lightbox_close_img" @click="alertLightbox = false"><img src="./Images/close.svg" ></div>
+                <div class="alertLightbox" >
+                    <div>Oops!</div>
+                    <div>確定要刪除?</div>
+                    <div @click="deleteItem">確定</div>
+                </div>
+            </div>
+        </div>
     </div>
     `,
 
@@ -385,6 +503,40 @@ Vue.component('modalPersonDrink', {
     `,
 })
 
+//警示視窗
+Vue.component('alert_lightbox', {
+    data() {
+        return {
+            alertLightbox: false,
+            alertText: "",
+        }
+    },
+    methods: {
+        closeAlertLightbox() {
+            this.alertLightbox = false
+            if (this.alertText == '跟團時間已截止') {
+                location.href = 'index.html'
+            }
+        }
+    },
+    mounted() {
+        bus.$on('getAlert', (_alertText) => {
+            this.alertText = _alertText
+            this.alertLightbox = true
+        });
+    },
+    template: `
+    <div class="alertLightbox_black" v-if="alertLightbox">
+        <div class="alertLightboxWrapper">
+            <div class="alertLightbox" >
+                <div>Oops!</div>
+                <div>{{alertText}}</div>
+                <div @click="closeAlertLightbox">確定</div>
+            </div>
+        </div>
+    </div>
+    `,
+})
 new Vue({
     el: "#app",
     // data: {

@@ -1,0 +1,80 @@
+@import "mixins/mixins.scss";
+@import "base/base.scss";
+
+// 修改動作 顯示的燈箱  (管理員 及 會員 帳號管理)
+.alertLightbox_black {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(107, 107, 107, 0.253);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 20;
+
+}
+
+.alertLightboxWrapper {
+    background-image: url(../../dist/Images/alert_img@2x.png);
+    background-size: cover;
+    border-radius: 10px;
+    width: 600px;
+    height: 400px;
+    position: relative;
+    // border: 1px solid red;
+}
+
+.manager_lightbox_close_img {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    font-size: 0;
+}
+
+.alertLightbox {
+    padding: 60px 50px 50px 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 24px;
+    color: #013B4F;
+    height: 100%;
+
+    // border: 1px solid blue;
+
+    div:first-child {
+        font-size: 36px;
+        font-weight: bold;
+        letter-spacing: 8px;
+    }
+
+    div:nth-child(2) {
+        font-weight: bold;
+        margin: 50px 0 140px 0;
+
+        span:nth-child(1) {
+            color: #B3925B;
+            font-weight: bold;
+        }
+
+        span:nth-child(2) {
+            color: red;
+            font-weight: bold;
+
+        }
+    }
+
+    div:nth-child(3) {
+        background-color: #013B4F;
+        color: #fff;
+        border-radius: 10px;
+        overflow: hidden;
+        padding: 10px 10px;
+        cursor: pointer;
+
+    }
+}

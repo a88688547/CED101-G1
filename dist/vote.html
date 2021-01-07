@@ -44,13 +44,12 @@
                 return {
                     texts: ["一", "二", "三"],
                     drinks: [],
-                    index: 0,
                 };
 
             },
             methods: {
-                lightBoxToggle() {
-                    vm.$emit("lightBoxToggle", true);
+                lightBoxToggle(i) {
+                    vm.$emit("lightBoxToggle", i);
                 },
             },
             mounted() {
@@ -67,18 +66,10 @@
 
             },
             computed: {
-                sorts: function () {
-                    // return this.item_type.itemList_milk.count.sort(sortNum);   
-
-                    return this.drinks[0].itemList
-                        .sort((a, b) => b.vote_count_now - a.vote_count_now)
-                        .slice(0, 3)
-
-                },
             },
             template: `
-                <div class="vote-bot">
-                    <div class="vote-wrap" v-for="(voteTitle, i) in drinks" :value="voteTitle.type">
+                <div class="vote-bot" >
+                    <div class="vote-wrap" v-for="(voteTitle, i) in drinks">
                         <div class="vote-title">
                             <h3>{{voteTitle.drink_type_title}}&nbsp;<span>{{voteTitle.drink_type_text_en}}</span></h3>
                         </div>
@@ -97,7 +88,7 @@
                             </div>
                         </div>
                         <div class="vote-button">
-                        <button class="voteLightboxBtn color-1" @click="lightBoxToggle">
+                        <button class="voteLightboxBtn color-1" @click="lightBoxToggle(i)">
                             <img src="./Images/drink.svg" alt="" />
                             <h6>投票去</h6>
                         </button>
@@ -113,6 +104,11 @@
                     type: "vote",
                     textId: ["milkTea", "milkTea1", "milkTea2", "milkTea3", "milkTea4"],
                     dirnkVote: [],
+                    votenow: false,
+                    checkRadio: "",
+                    drinkIndex: '',
+                    nowVote: '',
+                    nowVoteCount: '',
                 };
             },
             mounted() {
@@ -129,19 +125,41 @@
                 })
             },
             methods: {
-                toggleLightBox(open) {
-                    this.showVote = open;
+                toggleLightBox(i) {
+                    this.showVote = true;
+                    console.log(i)
+                    this.drinkIndex = i;
                 },
                 votingHandler(e) {
                     e.preventDefault();
+                    const checkBtn = document.querySelector('input[type="radio"]:checked');
+                    if (!checkBtn) return (this.votenow = true);
+
                     this.type = "voteok";
                 },
                 closeLightbox() {
+                    this.votenow = false;
                     this.showVote = false;
+                },
+                nowVoteName(e) {
+                    const checkBtn = document.querySelector('input[type="radio"]:checked');
+                    console.log(e.target.lastChild)
+                    this.nowVote = e.target.children[1].innerText
+                    if (checkBtn) {
+                        e.target.lastChild.innerText++
+                        this.nowVoteCount = e.target.lastChild.innerText
+                    }
+                }
+            },
+            watch: {
+                checkRadio: function () {
+                    this.votenow = false
+                    const checkBtn = document.querySelector('input[type="radio"]:checked');
+                    console.log(checkBtn)
                 },
             },
             template: `
-                        <form class="voteLightbox-wrap" v-show="showVote">
+                        <form class="voteLightbox-wrap" v-show="showVote" >
                             <div class="voting">
                                 <div class="pic"></div>
                                 <div class="voting-txt" v-if="type=='vote'">
@@ -150,14 +168,15 @@
                                         <small>點選您最喜歡的茶類飲品並送出投票</small>
                                     </div>
                                     <div class="voting-btn">
-                                        <div v-for="(item,index) in dirnkVote[0].itemList">
+                                        <div v-for="(item,index) in dirnkVote[this.drinkIndex].itemList">
                                             <input
                                                 type="radio"
                                                 name="milkTea"
                                                 class="milkTea"
                                                 :id="textId[index]"
+                                                v-model.lazy="checkRadio"
                                             />
-                                            <label :for="textId[index]" class="vote-radio">
+                                            <label :for="textId[index]" class="vote-radio" @click.stop="nowVoteName" >
                                                 <div class="radiobtn"></div>
                                                 <div class="btn-txt">{{item.drink_title_ch}}</div>
                                                 <small>{{item.vote_count_now}}</small>
@@ -167,16 +186,17 @@
                                     <div class="vote-sub">
                                         <button type="submit" class="submit color-1" @click="votingHandler">
                                             送出投票
-                                            <small id="alertvote"></small>
+                                            <small id="alertvote" v-if="votenow==true">請投票!!</small>
+                                            <small v-else></small>
                                         </button>
                                     </div>
                                 </div>
                                 <div class="voting-ok" v-if="type =='voteok'">
                                     <h2>投票成功</h2>
-                                    <p>你最愛的<small>"碧螺春"</small>本週目前票數為:</p>
+                                    <p>你最愛的<small>"{{nowVote}}"</small>本週目前票數為:</p>
                                     <div class="vote-count">
                                         <img src="./Images/vote_big.svg" alt="votes" />
-                                        39票
+                                        {{this.nowVoteCount}}票
                                     </div>
                                 </div>
                                 <div class="vote-close" @click="closeLightbox">

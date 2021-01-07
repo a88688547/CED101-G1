@@ -12,6 +12,7 @@ try {
     $drink_big_price = $decoded["drink_big_price"];
     $drink_small_price = $decoded["drink_small_price"];
     // $drink_src = $decoded["drink_src"];
+    $update_detail = $decoded["update_detail"];
 
     $sql = "update drink
             set drink_title_ch = :drink_title_ch,drink_title_en = :drink_title_en,drink_type_no = :drink_type_no,drink_big_price = :drink_big_price,drink_small_price = :drink_small_price
@@ -29,7 +30,32 @@ try {
 
     $per_ord_data->execute();
 
+    // 先刪除 該飲料的所有配置 ----------------------------
+    $sql1 = "delete
+                from drink_set
+                where drink_no = :drink_no";
+    // $grouporddata = $pdo->query($sql);
+    $per_ord_data = $pdo->prepare($sql1);
+    $per_ord_data->bindValue(":drink_no", $drink_no);
+    $per_ord_data->execute();
+
+    //將本次 勾選的項目 寫入 --------------------------------
+
+    foreach ($update_detail as $key => $value) {
+
+        $sql2 = "insert into drink_set (drink_no,type_no,detail_no)
+                       values (:drink_no,:type_no,:detail_no)";
+        $per_ord_data = $pdo->prepare($sql2);
+        $per_ord_data->bindValue(":drink_no", $drink_no);
+        $per_ord_data->bindValue(":type_no", $value);
+        $per_ord_data->bindValue(":detail_no", $key);
+
+        $per_ord_data->execute();
+
+    }
+
     echo "修改成功~!!";
+
     // if ($per_ord_data->rowCount() == 0) { //找不到
     //     //傳回空的JSON字串
     //     echo "{}";

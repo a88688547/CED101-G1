@@ -58,9 +58,8 @@ window.addEventListener('load', function () {
                             <div>{{value.mar_name}}</div>
                             <div>{{value.mar_id}}</div>
                             <div>{{value.mar_psw}}</div>
-                            {{checked_test(value.mar_status)}}
                             <div class="toggle" @click="lightbox_show(value.mar_no,value.mar_name,value.mar_status)">
-                                <input v-model="checked" type="checkbox"   />
+                                <input v-model="value.ischecked" type="checkbox"   />
                                 <label ></label>
                             </div>
                         </div>
@@ -121,14 +120,6 @@ window.addEventListener('load', function () {
                 //完成後 重新撈取一次資料
                 this.get_mar()
             },
-            //依照 帳號狀態 顯示已經勾選或尚未勾選
-            checked_test(data) {
-                if (data == 0) {
-                    this.checked = false
-                } else if (data == 1) {
-                    this.checked = true
-                }
-            },
         },
         // template 渲染前 會先去執行以下函式
         created() {
@@ -169,9 +160,8 @@ window.addEventListener('load', function () {
                             <div>{{value.mem_email}}</div>
                             <div>{{value.mem_psw}}</div>
                             <div>{{value.mem_phone}}</div>
-                            {{checked_test(value.mem_status)}}
                             <div class="toggle" @click="lightbox_show(value.mem_no,value.mem_name,value.mem_status)">
-                                <input v-model="checked" type="checkbox"   />
+                                <input v-model="value.ischecked" type="checkbox"   />
                                 <label ></label>
                             </div>
                         </div>
@@ -231,14 +221,6 @@ window.addEventListener('load', function () {
                 //完成後 重新撈取一次資料
                 this.get_mar()
             },
-            //依照 帳號狀態 顯示已經勾選或尚未勾選
-            checked_test(data) {
-                if (data == 0) {
-                    this.checked = false
-                } else if (data == 1) {
-                    this.checked = true
-                }
-            },
         },
         // template 渲染前 會先去執行以下函式
         created() {
@@ -282,9 +264,8 @@ window.addEventListener('load', function () {
                             <div>{{value.drink_type_title}}</div>
                             <div>{{value.drink_big_price}}</div>
                             <div>{{value.drink_small_price}}</div>
-                            {{checked_test(value.status)}}
                             <div class="toggle" @click="lightbox_show(value.drink_no,value.drink_title_ch,value.status)">
-                                <input v-model="checked" type="checkbox"   />
+                                <input  :checked="value.ischecked" type="checkbox"   />
                                 <label ></label>
                             </div>
                             <div class="edit_btn" @click="changeTag(),changedrinkno(value.drink_no)">編輯</div>
@@ -397,48 +378,12 @@ window.addEventListener('load', function () {
                 drink_src: '',
                 error_text: '',
 
-                detail_info: '',
-
                 type_info: '',
-                // type_info: [
-                //     {
-                //         type_no: 1,
-                //         type_title: '甜度',
-                //         type_detail: [
-                //             { type_no: 1, detail_no: 2, detail_title: '全糖' },
-                //             { type_no: 1, detail_no: 3, detail_title: '全糖' },
-                //             { type_no: 1, detail_no: 4, detail_title: '全糖' },
-                //             { type_no: 1, detail_no: 5, detail_title: '全糖' },
-                //             { type_no: 1, detail_no: 5, detail_title: '全糖' },
-                //             { type_no: 1, detail_no: 5, detail_title: '全糖' },
-                //             { type_no: 1, detail_no: 5, detail_title: '全糖' },
-                //         ],
-                //     },
-                //     {
-                //         type_no: 2,
-                //         type_title: '冰度',
-                //         type_detail: [
-                //             { type_no: 1, detail_no: 2, detail_title: '全糖' },
-                //             { type_no: 1, detail_no: 3, detail_title: '全糖' },
-                //             { type_no: 1, detail_no: 4, detail_title: '全糖' },
-                //             { type_no: 1, detail_no: 5, detail_title: '全糖' },
-                //         ],
-                //     },
-                //     {
-                //         type_no: 3,
-                //         type_title: '加料',
-                //         type_detail: [
-                //             { type_no: 1, detail_no: 2, detail_title: '全糖' },
-                //             { type_no: 1, detail_no: 3, detail_title: '全糖' },
-                //             { type_no: 1, detail_no: 4, detail_title: '全糖' },
-                //             { type_no: 1, detail_no: 5, detail_title: '全糖' },
-                //         ],
-                //     },
-                // ],
+                detail_info: '',
+                update_detail: [],
             }
         },
         props: ['show', 'drinkno', 'lightbox'],
-
         template: `
                   <section v-if=" show === 'drink_edit' ">
                     <h1 class="title">商品編輯 -- {{drink_title_ch}}</h1>
@@ -479,7 +424,7 @@ window.addEventListener('load', function () {
                             <div class="type_name_box" :id="value.type_no" v-for="(value,key) in type_info">
                                 <div class="type_name">{{value.type_title}} : </div>
                                 <div v-for="(value,key) in value.detail_title_list" class="detali_list" >
-                                    <input type="checkbox" :id="value.detail_no" :name="value.detail_no" :value="value.detail_no"></input>
+                                    <input type="checkbox" v-model="detail_info" :id="value.detail_no" :name="value.detail_no" :value="value.detail_no"></input>
                                     <label :for="value.detail_no"> {{value.detail_title}}</label>
                                 </div>
                             </div>
@@ -494,7 +439,7 @@ window.addEventListener('load', function () {
                           <img :src="drink_src" alt="尚未新增任何照片" id="image" />
                         </div>
                       </div>
-                      <div class="drink_edit_btn" @click="drink_edit(drink_no,drink_title_ch, drink_title_en, drink_type_no, drink_big_price, drink_small_price)">確認修改</div>
+                      <div class="drink_edit_btn" @click="drink_edit(drink_no,drink_title_ch, drink_title_en, drink_type_no, drink_big_price, drink_small_price,update_detail)">確認修改</div>
                     </div>
                     <div class="lightbox_black" v-if="lightbox">
                         <div class="lightbox" >
@@ -559,16 +504,48 @@ window.addEventListener('load', function () {
             },
 
             // 撈取類型資料
-            get_type: async function () {
-                const res = await fetch('./php/bs_getall_type_detail.php', {}).then(function (data) {
+            get_type: async function (drink_no) {
+                const res = await fetch('./php/bs_getall_type_detail.php', {
+                    method: 'POST', // *GET, POST, PUT, DELETE, etc.
+                    mode: 'same-origin', // no-cors, *cors, same-origin
+                    // cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+                    credentials: 'same-origin', // include, *same-origin, omit
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Accept: 'application/json',
+                    },
+                    // redirect: 'follow', // manual, *follow, error
+                    // referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+                    body: JSON.stringify({
+                        drink_no: drink_no,
+                    }), // body data type must match "Content-Type" header
+                }).then(function (data) {
                     return data.json()
                 })
                 // 取回res值後，呼叫另一隻函式
-                this.change_type(res)
+                this.type_info = res
             },
             // 將值寫入data中
-            change_type: function (data) {
-                this.type_info = data
+            get_detail_info: async function (drink_no) {
+                const res = await fetch('./php/bs_getone_drink_detail.php', {
+                    method: 'POST', // *GET, POST, PUT, DELETE, etc.
+                    mode: 'same-origin', // no-cors, *cors, same-origin
+                    // cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+                    credentials: 'same-origin', // include, *same-origin, omit
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Accept: 'application/json',
+                    },
+                    // redirect: 'follow', // manual, *follow, error
+                    // referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+                    body: JSON.stringify({
+                        drink_no: drink_no,
+                    }), // body data type must match "Content-Type" header
+                }).then(function (data) {
+                    return data.json()
+                })
+                // 取回res值後，呼叫另一隻函式
+                this.detail_info = res
             },
 
             //點擊 修改商品
@@ -578,7 +555,8 @@ window.addEventListener('load', function () {
                 drink_title_en,
                 drink_type_no,
                 drink_big_price,
-                drink_small_price
+                drink_small_price,
+                update_detail
             ) {
                 //新增前 確認欄位 是否符合規定
 
@@ -657,6 +635,7 @@ window.addEventListener('load', function () {
                         drink_type_no: drink_type_no,
                         drink_big_price: drink_big_price,
                         drink_small_price: drink_small_price,
+                        update_detail: update_detail,
                     }),
                 })
                 //修改成功跳出 燈箱
@@ -674,36 +653,30 @@ window.addEventListener('load', function () {
                 // await this.get_mar(this.drinkno)
             },
 
-            //抓出該飲料 擁有的 所有 配置資訊
-            get_detail_info: async function (drinkno) {
-                // console.log('send2', drinkno)
-                const res = await fetch('./php/bs_getone_drink_detail.php', {
-                    method: 'POST', // *GET, POST, PUT, DELETE, etc.
-                    mode: 'same-origin', // no-cors, *cors, same-origin
-                    // cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-                    credentials: 'same-origin', // include, *same-origin, omit
-                    headers: {
-                        'Content-Type': 'application/json', // sent request
-                        // Accept: 'application/json', // expected data sent back
-                    },
-                    // redirect: 'follow', // manual, *follow, error
-                    // referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-                    body: JSON.stringify({
-                        drink_no: drinkno,
-                    }), // body data type must match "Content-Type" header
-                }).then(function (data) {
-                    return data.json()
-                })
-                // 取回res值後，呼叫另一隻函式
-                this.detail_info = res
+            //整理 將要修改的 配置設定
+            update_detail_info() {
+                let obj = {}
+                console.log('000')
+                for (i = 0; i < this.type_info.length; i++) {
+                    for (j = 0; j < this.type_info[i].detail_title_list.length; j++) {
+                        for (k = 0; k < this.detail_info.length; k++) {
+                            if (this.detail_info[k] == this.type_info[i].detail_title_list[j].detail_no) {
+                                obj[`${this.type_info[i].detail_title_list[j].detail_no}`] = this.type_info[
+                                    i
+                                ].detail_title_list[j].type_no
+                            }
+                        }
+                    }
+                }
+                this.update_detail = obj
             },
         },
         created() {
             // 渲染前 先去撈取資料
             this.get_mar(this.drinkno)
             // console.log('send:', this.drinkno)
-            this.get_type()
-            //撈 detail資料
+            this.get_type(this.drinkno)
+
             this.get_detail_info(this.drinkno)
         },
         // 監聽數值變化
@@ -711,6 +684,11 @@ window.addEventListener('load', function () {
             // 當選取的飲料不同時，重新撈取一次 單一飲品的資料
             drinkno: function (newdrinkno) {
                 this.get_mar(newdrinkno)
+                this.get_type(this.drinkno)
+                this.get_detail_info(this.drinkno)
+            },
+            detail_info: function () {
+                this.update_detail_info()
             },
         },
     })
@@ -1815,8 +1793,8 @@ window.addEventListener('load', function () {
                         <div class="report_title">檢舉原因:</div>
                         <div>{{lightbox_art_report_reason}}</div>
                         <div>
-                            <div @click="change_status(lightbox_art_report_no,2)">駁回</div>
-                            <div @click="change_status(lightbox_art_report_no,1)">通過</div>
+                            <div @click="change_status(lightbox_art_no,lightbox_art_report_no,2)">駁回</div>
+                            <div @click="change_status(lightbox_art_no,lightbox_art_report_no,1)">通過</div>
                         </div>
                     </div>
                 </div>
@@ -1869,7 +1847,7 @@ window.addEventListener('load', function () {
                 }
             },
             // 點擊 確定修改後 觸發 php程式。完成後 重新撈取一次資料
-            change_status: async function (art_report_no, status) {
+            change_status: async function (art_no, art_report_no, status) {
                 const res = await fetch('./php/bs_update_articleReport.php', {
                     method: 'POST',
                     mode: 'same-origin',
@@ -1878,6 +1856,7 @@ window.addEventListener('load', function () {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
+                        art_no: art_no,
                         art_report_no: art_report_no,
                         art_report_status: status,
                     }),
@@ -1944,8 +1923,8 @@ window.addEventListener('load', function () {
                         <div class="report_title">檢舉原因:</div>
                         <div>{{lightbox_msg_report_reason}}</div>
                         <div>
-                            <div @click="change_status(lightbox_msg_report_no,2)">駁回</div>
-                            <div @click="change_status(lightbox_msg_report_no,1)">通過</div>
+                            <div @click="change_status(lightbox_msg_no,lightbox_msg_report_no,2)">駁回</div>
+                            <div @click="change_status(lightbox_msg_no,lightbox_msg_report_no,1)">通過</div>
                         </div>
                     </div>
                 </div>
@@ -1998,7 +1977,7 @@ window.addEventListener('load', function () {
                 }
             },
             // 點擊 確定修改後 觸發 php程式。完成後 重新撈取一次資料
-            change_status: async function (msg_report_no, status) {
+            change_status: async function (msg_no, msg_report_no, status) {
                 const res = await fetch('./php/bs_update_msgreport.php', {
                     method: 'POST',
                     mode: 'same-origin',
@@ -2007,6 +1986,7 @@ window.addEventListener('load', function () {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
+                        msg_no: msg_no,
                         msg_report_no: msg_report_no,
                         msg_report_status: status,
                     }),

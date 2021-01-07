@@ -16,6 +16,15 @@ try {
         //取回一筆資料
         $memberdatarow = $memberdata->fetchAll(PDO::FETCH_ASSOC);
 
+        for ($i = 0; $i < count($memberdatarow); $i++) {
+
+            if ($memberdatarow[$i]["mem_status"] == 1) {
+                $memberdatarow[$i]["ischecked"] = true;
+            } else if ($memberdatarow[$i]["mem_status"] == 0) {
+                $memberdatarow[$i]["ischecked"] = false;
+            }
+        }
+
         //送出json字串
         echo json_encode($memberdatarow);
         // echo $managerdatarow;

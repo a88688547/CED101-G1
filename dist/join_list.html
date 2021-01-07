@@ -195,26 +195,9 @@
         let grouporddata;
         //============去server端拿資料
         let xhr = new XMLHttpRequest();
-        // let ListImg = document.querySelectorAll(".join_list_img");
-        // let ListImg = document.getElementsByClassName("list_img");
-        // console.log(ListImg);
-
         xhr.onload = function () {
           app.grouporddata = JSON.parse(xhr.responseText);
           let total = app.grouporddata.length;
-
-          // console.log(ListImg);
-          // for (var i = 0; i < total; i++) {
-          //   var GoalCup = app.grouporddata[i].goal_cup;
-          //   // console.log(GoalCup);
-          //   if (GoalCup == 20) {
-          //     ListImg[1].src = `http://localhost/phpLab/CED101-G1/dist/Images/drinkphoto/coupon/drive-download-20201228T062855Z-001/20off.jpg`;
-          //     console.log("打八折");
-          //   }
-          //   if (GoalCup == 50) {
-          //     console.log("打五折");
-          //   }
-          // }
         };
         xhr.open("get", "./php/getGroup.php", true);
         xhr.send(null);

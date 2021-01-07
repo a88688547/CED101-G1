@@ -94,7 +94,7 @@
                   </select>
                   <select v-model="mm" name="mm" id="mm">
                     <option v-for="mm in minuterOptions" v-bind:value="mm.value" >
-                      {{ mm.value }}
+                      {{ mm.text }}
                     </option>
                   </select>
                 </div>
@@ -110,7 +110,7 @@
                   </select>
                   <select v-model="arrive_mm" name="arrive_mm" id="arrive_mm">
                     <option v-for="arrive_mm in arrive_mm_Options" v-bind:value="arrive_mm.value" >
-                      {{ arrive_mm.value }}
+                      {{ arrive_mm.text }}
                     </option>
                   </select>
                 </div>
@@ -154,8 +154,26 @@
                 />
               </div>
             </div>
+            <h2>{{currentDate}}</h2>
+            <h2>{{formatTime}}</h2>
+            <h2>{{getTodayDateTime}}</h2>
+            <h2>{{geTodayTime}}</h2>
+            <h2>{{getTodayDate}}</h2>
+            <h2>日期</h2>
+            <h2>{{date}}</h2>
+            <hr>
+            <h2>截單時間</h2>
+            <h2>{{hh}}</h2>
+            <h2>{{mm}}</h2>
             <h2>{{DeadLine_Time}}</h2>
+            <h2>{{daedLine_DateTime}}</h2>
+            <hr>
+            <h2>預計送達時間</h2>
+            <h2>{{arrive_hh}}</h2>
+            <h2>{{arrive_mm}}</h2>
             <h2>{{Arrive_Time}}</h2>
+            <h2>{{arrive_DateTime}}</h2>
+            <hr>
             <h2>{{ErrorText}}</h2>
           </form>
         </div>
@@ -168,6 +186,35 @@
             alt=""
             class="ErrorClose"
           />
+        </div>
+        <div class="group_data_confirm">
+          <div>
+            <h3>確認資料</h3>
+          </div>
+          <div>
+            <h4>團名 : </h4>
+            <h4>{{GroupName}}</h4>
+          </div>
+          <div>
+            <h4>截單時間</h4>
+            <h4>{{daedLine_DateTime}}</h4>
+          </div>
+          <div>
+            <h4>預計送達時間</h4>
+            <h4>{{arrive_DateTime}}</h4>
+          </div>
+          <div>
+            <h4>目標杯數</h4>
+            <h4>{{GoalCup}}</h4>
+          </div>
+          <div>
+            <h4>取貨地點</h4>
+            <h4>{{GroupAddress}}</h4>
+          </div>
+          <div>
+            <button>取消</button>
+            <button @click="ok_group">確認送出</button>
+          </div>
         </div>
       </div>
     </div>

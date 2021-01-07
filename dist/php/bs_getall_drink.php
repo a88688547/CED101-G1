@@ -17,6 +17,15 @@ try {
         //取回一筆資料
         $drinkdatarow = $drinkdata->fetchAll(PDO::FETCH_ASSOC);
 
+        for ($i = 0; $i < count($drinkdatarow); $i++) {
+
+            if ($drinkdatarow[$i]["status"] == 1) {
+                $drinkdatarow[$i]["ischecked"] = true;
+            } else if ($drinkdatarow[$i]["status"] == 0) {
+                $drinkdatarow[$i]["ischecked"] = false;
+            }
+        }
+
         //送出json字串
         echo json_encode($drinkdatarow);
         // echo $managerdatarow;

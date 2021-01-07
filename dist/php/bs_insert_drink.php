@@ -11,6 +11,7 @@ try {
     $drink_big_price = $decoded["drink_big_price"];
     $drink_small_price = $decoded["drink_small_price"];
     // $drink_src = $decoded["drink_src"];
+    // $detail_info = $decoded["detail_info"];
 
     $sql = "insert into drink (drink_title_ch,drink_title_en,drink_type_no,drink_big_price,drink_small_price)
             values (:drink_title_ch,:drink_title_en,:drink_type_no,:drink_big_price,:drink_small_price)

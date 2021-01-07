@@ -16,6 +16,15 @@ try {
         //取回一筆資料
         $managerdatarow = $managerdata->fetchAll(PDO::FETCH_ASSOC);
 
+        for ($i = 0; $i < count($managerdatarow); $i++) {
+
+            if ($managerdatarow[$i]["mar_status"] == 1) {
+                $managerdatarow[$i]["ischecked"] = true;
+            } else if ($managerdatarow[$i]["mar_status"] == 0) {
+                $managerdatarow[$i]["ischecked"] = false;
+            }
+        }
+
         //送出json字串
         echo json_encode($managerdatarow);
         // echo $managerdatarow;

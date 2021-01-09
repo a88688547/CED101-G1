@@ -249,13 +249,11 @@ body {
 }
 
 #light_box_wrapper {
-    left: 50%;
+    left: 0;
     position: fixed;
-    // display: none;
-    top: 50%;
+    top: 0;
     width: 100vw;
     height: 100vh;
-    transform: translate(-50%, -50%);
     background-color: rgba(0, 0, 0, 0.4);
     z-index: 19;
     overflow-y: auto;
@@ -266,7 +264,7 @@ body {
     flex-direction: column;
     max-width: 400px;
     width: 95%;
-    height: 90vh;
+    max-height: 90vh;
     margin: 0 auto;
     position: relative;
     top: 50%;
@@ -290,6 +288,10 @@ body {
 
 #drink_data {
     padding: 30px;
+
+    @media screen and (max-width:400px) {
+        padding: 30px 20px;
+    }
 }
 
 #drink_img {
@@ -318,7 +320,7 @@ body {
 }
 
 .drink_set {
-    padding-top: 25px;
+    margin-top: 25px;
 
     .set_title {
         @include H5;
@@ -333,16 +335,24 @@ body {
     .set_item {
         @include P1;
         color: #858585;
+        display: flex;
+        flex-wrap: wrap;
+
         // padding-top: 8px;
+        div {
 
-        input {
-            margin-right: 5px;
+
+            input {
+                margin-right: 5px;
+            }
+
+            label {
+                padding-top: 8px;
+                display: inline-block;
+                margin-right: 5px;
+            }
         }
 
-        label {
-            padding-top: 8px;
-            display: inline-block;
-        }
     }
 }
 

@@ -3,6 +3,7 @@
         $data = json_decode(file_get_contents('php://input'),true);
         require_once "./connect_join_database.php";
         $ord_qua_total = 0;
+        //把團的資料存到資料庫
         for($i=0; $i<count($data); $i++){
             $group_ord_no= $data[$i]['group_ord_no'];
             $mem_no= $data[$i]['mem_no'];
@@ -27,7 +28,8 @@
             $menu->bindValue(":cup_no", $cup_no);
             $menu->execute();
         };
-        // $ord_qua_total = 2;
+        
+        //更新團裡現有杯數
         $sql1 ="UPDATE group_ord SET now_cup = now_cup + :now_cup WHERE group_ord_no = 1";
         $menu1 = $pdo->prepare($sql1);
         $menu1->bindValue(":now_cup", $ord_qua_total);

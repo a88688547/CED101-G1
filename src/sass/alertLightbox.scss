@@ -17,10 +17,10 @@
 }
 
 .alertLightboxWrapper {
-    background-image: url(../../dist/Images/alert_img@2x.png);
+    background-image: url(../../dist/Images/alert/alert-bg.png);
     background-size: cover;
     border-radius: 10px;
-    width: 600px;
+    width: 400px;
     height: 400px;
     position: relative;
     // border: 1px solid red;
@@ -44,17 +44,10 @@
     color: #013B4F;
     height: 100%;
 
-    // border: 1px solid blue;
 
     div:first-child {
-        font-size: 36px;
         font-weight: bold;
-        letter-spacing: 8px;
-    }
-
-    div:nth-child(2) {
-        font-weight: bold;
-        margin: 50px 0 140px 0;
+        margin-top: 170px;
 
         span:nth-child(1) {
             color: #B3925B;
@@ -68,7 +61,7 @@
         }
     }
 
-    div:nth-child(3) {
+    div:nth-child(2) {
         background-color: #013B4F;
         color: #fff;
         border-radius: 10px;

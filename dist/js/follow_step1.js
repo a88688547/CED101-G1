@@ -124,6 +124,7 @@ Vue.component('orderlist', {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(this.postOrderData),
+
             })
             await this.createNewStorage()
             location.href = './follow_step2.html'
@@ -453,7 +454,6 @@ Vue.component('personDrink', {
             <div class="alertLightboxWrapper">
                 <div class="manager_lightbox_close_img" @click="alertLightbox = false"><img src="./Images/close.svg" ></div>
                 <div class="alertLightbox" >
-                    <div>Oops!</div>
                     <div>確定要刪除?</div>
                     <div @click="deleteItem">確定</div>
                 </div>
@@ -529,7 +529,6 @@ Vue.component('alert_lightbox', {
     <div class="alertLightbox_black" v-if="alertLightbox">
         <div class="alertLightboxWrapper">
             <div class="alertLightbox" >
-                <div>Oops!</div>
                 <div>{{alertText}}</div>
                 <div @click="closeAlertLightbox">確定</div>
             </div>

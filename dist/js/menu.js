@@ -115,7 +115,8 @@ Vue.component('group-info', {
                             <!-- 杯數門檻 -->
                             <div class="cup_wrapper">
                                 <img src="./Images/drop-group-gold.svg" alt="" />集杯數:
-                                <span id="cup_max_num">{{item.goal_cup}}</span>杯以上
+                                <span id="cup_max_num" v-if="item.goal_cup == 10">不限制</span>
+                                <span id="cup_max_num" v-else>{{item.goal_cup}}杯以上</span>
                             </div>
                             <div class="cup_wrapper">
                                 <img src="./Images/drop-group-orange.svg" alt="" />已達杯數:
@@ -237,7 +238,7 @@ Vue.component('menu_carshop', {
             <div class="row">
                 <!-- v-for生成飲料類別 -->
                 <section class="drink_type col-md-4" v-for="(parent_item,index) in item_type"
-                    :value="parent_item.drink_type_no">
+                    :key="parent_item.drink_type_no">
                     <!-- 飲料標題 -->
                     <div class="drink_type_text">
                         <span>{{parent_item.drink_type_title}}</span><span>{{parent_item.drink_type_text_en}}</span>
@@ -251,7 +252,7 @@ Vue.component('menu_carshop', {
                     <div class="size"><span>M</span><span>L</span></div>
                     <ul class="drink">
                         <!-- v-for生成飲品名稱-->
-                        <li class="drink_item" v-for="(item,index) in parent_item.itemList" :value="item.drink_no"
+                        <li class="drink_item" v-for="(item,index) in parent_item.itemList" :key="item.drink_no"
                             @click="lightBox_handle(item)">
                             <button>+</button><span class="drink_name">{{item.drink_title_ch}}</span>
                             <!-- 中杯價錢 -->
@@ -299,7 +300,6 @@ Vue.component('alert_lightbox', {
     <div class="alertLightbox_black" v-if="alertLightbox">
         <div class="alertLightboxWrapper">
             <div class="alertLightbox" >
-                <div>Oops!</div>
                 <div>{{alertText}}</div>
                 <div @click="closeAlertLightbox">確定</div>
             </div>
@@ -325,11 +325,16 @@ Vue.component('light_box', {
             task: "",
             //飲品編號
             drink_no: "",
+            drinkSet: [],
         }
+    },
+    computed: {
+
     },
     // 燈箱接收點擊菜單飲品的資料
     mounted() {
         bus.$on('lightBox_handle_parent', this.lightBox_handle_child);
+
     },
     methods: {
         lightBox_handle_child(item) {
@@ -341,6 +346,16 @@ Vue.component('light_box', {
             this.drink_no = item.drink_no
             //將大小杯價格存入task變數，讓toDoInput父層組件使用
             this.task = [item.drink_small_price, item.drink_big_price]
+
+
+            fetch('./php/bs_getall_type_detail.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ drink_no: item.drink_no }),
+            }).then(res => res.json())
+                .then(res => this.drinkSet = res);
         },
         //減少杯數
         handleSub() {
@@ -358,7 +373,7 @@ Vue.component('light_box', {
         addToCar() {
             //是否有勾選飲品溫度
             let selectIce = false
-            let ice = document.getElementById('ice')
+            let ice = document.getElementById('setType2')
             let iceInput = ice.querySelectorAll('input')
             //選到飲品溫度的值
             let selectIceValue
@@ -371,7 +386,7 @@ Vue.component('light_box', {
 
             //是否有勾選甜度
             let selectSugar = false
-            let sugar = document.getElementById('sugar')
+            let sugar = document.getElementById('setType1')
             let sugarInput = sugar.querySelectorAll('input')
             //選到甜度的值
             let selectSugarValue
@@ -381,6 +396,8 @@ Vue.component('light_box', {
                     selectSugarValue = sugarInput[i].value
                 }
             }
+
+
 
             //都有勾選的話就可以正常新增飲品至購物車
             if (selectIce && selectSugar) {
@@ -397,10 +414,12 @@ Vue.component('light_box', {
                 bus.$emit('addToCar_parent', items.length)
                 //關閉燈箱後，飲品數目預設回1杯
                 this.num_feedback = 1
-            } else if (selectIce == false) {
-                bus.$emit('getAlert', '請選擇飲品溫度')
-            } else {
+            } else if (selectIce == false && selectSugar == false) {
+                bus.$emit('getAlert', '請選擇冰度和甜度')
+            } else if (selectSugar == false) {
                 bus.$emit('getAlert', '請選擇甜度')
+            } else {
+                bus.$emit('getAlert', '請選擇冰度')
             }
 
         },
@@ -417,7 +436,7 @@ Vue.component('light_box', {
 
             // 選到的加料
             let selectIngredientValue
-            let ingredient = document.getElementById('ingredient')
+            let ingredient = document.getElementById('setType3')
             let ingredientInput = ingredient.querySelectorAll('input')
             for (let i = 0; i < ingredientInput.length; i++) {
                 if (ingredientInput[i].checked) {
@@ -427,6 +446,7 @@ Vue.component('light_box', {
                     selectIngredientValue = ""
                 }
             }
+
 
             //選擇的飲料項目加成字串存到storage
             let drinkInDetail_first = `${this.shop_drink_name},${selectCupValue},${_selectSugarValue},${_selectIceValue},${selectIngredientValue},${this.shop_price},${this.drink_no}|`
@@ -447,6 +467,18 @@ Vue.component('light_box', {
             this.closeLightBox = false
             this.num_feedback = 1
         },
+        showSetTitle(set) {
+            let show = false
+
+            for (let j = 0; j < set.detail_title_list.length; j++) {
+                if (set.detail_title_list[j].ischecked) {
+                    show = true
+                    break;
+                }
+            }
+
+            return show
+        }
     },
     // v-if="closeLightBox"
     template: `
@@ -472,40 +504,17 @@ Vue.component('light_box', {
                     <toDoInput :toDoInputPrice ="task" @toDoInputNum="addTask"></toDoInput>
                 </div>
             </div>
-            <!-- 冰度 -->
-            <div class="drink_set">
-                <div class="set_title"><img src="./Images/drop-3.svg" alt="" /><span>飲品溫度</span></div>
-                <div id="ice" class="set_item">
-                    <input type="radio" value="正常" id="normal" name="ice" /><label
-                        for="normal">正常</label><input type="radio" value="少冰" id="less_ice"
-                        name="ice" /><label for="less_ice">少冰</label><input type="radio" value="微冰" id="low_ice"
-                        name="ice" /><label for="low_ice">微冰</label><input type="radio" value="去冰" id="no_ice"
-                        name="ice" /><label for="no_ice">去冰</label><input type="radio" value="熱飲" id="hot"
-                        name="ice" /><label for="hot">熱飲</label>
+            
+            <!-- 冰度甜度配料 -->
+            <div class="drink_set" v-for="set in drinkSet" :key="set.type_no">
+                <div class="set_title" v-if="showSetTitle(set)"><img src="./Images/drop-3.svg" alt="" /><span>{{set.type_title}}</span></div>
+                 <div class="set_item" :id="'setType' + set.type_no">
+                    <div v-for="setInput in set.detail_title_list" :key="setInput.detail_no">
+                        <div v-if="setInput.ischecked"><input type="radio" :value="setInput.detail_title" :id="setInput.detail_no" :name="setInput.type_no"/><label :for="setInput.detail_no">{{setInput.detail_title}}</label></div>
+                    </div>
                 </div>
             </div>
-            <!-- 甜度 -->
-            <div class="drink_set">
-                <div class="set_title"><img src="./Images/drop-3.svg" alt="" /><span>甜度</span></div>
-                <div id="sugar" class="set_item">
-                    <input type="radio" value="正常" id="standard" name="sugar" /><label
-                        for="standard">正常</label><input type="radio" value="少糖" id="less_sugar"
-                        name="sugar" /><label for="less_sugar">少糖</label><input type="radio" value="微糖"
-                        id="low_sugar" name="sugar" /><label for="low_sugar">微糖</label><input type="radio"
-                        value="無糖" id="no_sugar" name="sugar" /><label for="no_sugar">無糖</label>
-                </div>
-            </div>
-            <!-- 配料 -->
-            <div class="drink_set">
-                <div class="set_title"><img src="./Images/drop-3.svg" alt="" /><span>加料</span></div>
-                <div id="ingredient" class="set_item">
-                    <input type="radio" value="珍珠" id="tapioca_pearl" name="ingredient" /><label
-                        for="tapioca_pearl">珍珠</label><input type="radio" value="紅豆" id="red_beams"
-                        name="ingredient" /><label for="red_beams">紅豆</label><input type="radio" value="愛玉"
-                        id="aiyu" name="ingredient" /><label for="aiyu">愛玉</label><input type="radio" value="椰果"
-                        id="cococut" name="ingredient" /><label for="cococut">椰果</label>
-                </div>
-            </div>
+          
             <div id="num_btn_wrapper">
                 <!-- 新增數量按鈕 -->
                 <div id="num_btn">

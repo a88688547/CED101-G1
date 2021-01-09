@@ -69,11 +69,11 @@
             },
             template: `
                 <div class="vote-bot" >
-                    <div class="vote-wrap" v-for="(voteTitle, i) in drinks">
+                    <div class="vote-wrap" v-for="(voteType, i) in drinks">
                         <div class="vote-title">
-                            <h3>{{voteTitle.drink_type_title}}&nbsp;<span>{{voteTitle.drink_type_text_en}}</span></h3>
+                            <h3>{{voteType.drink_type_title}}&nbsp;<span>{{voteType.drink_type_text_en}}</span></h3>
                         </div>
-                        <div v-for="(item,index) in voteTitle.itemList" :class="[index===0?'vote-first':'vote-second', 'vote-item']">
+                        <div v-for="(item,index) in voteType.itemList" :class="[index===0?'vote-first':'vote-second', 'vote-item']">
                             <div class="vote-rank">上周第{{texts[index]}}</div>
                             <div class="vote-pic">
                                 <img :src="item.imgSrc" />
@@ -88,7 +88,7 @@
                             </div>
                         </div>
                         <div class="vote-button">
-                        <button class="voteLightboxBtn color-1" @click="lightBoxToggle(i)">
+                        <button class="voteLightboxBtn color-1" @click="lightBoxToggle(voteType.drink_type_no)">
                             <img src="./Images/drink.svg" alt="" />
                             <h6>投票去</h6>
                         </button>
@@ -113,50 +113,63 @@
             },
             mounted() {
                 vm.$on("lightBoxToggle", this.toggleLightBox);
-                fetch('./php/menu.php', {
-                    method: 'GET',
-                }).then((res) => {
-                    return res.json()
-                }).then((res) => {
-                    this.dirnkVote = res;
-                    console.log(this.dirnkVote)
-                }).catch((err) => {
-                    console.log(err)
-                })
+
             },
             methods: {
                 toggleLightBox(i) {
                     this.showVote = true;
-                    console.log(i)
                     this.drinkIndex = i;
+                    fetch("./php/menu1.php", {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ id: this.drinkIndex }),
+
+                    }).then((res) => {
+                        return res.json()
+                    }).then((res) => {
+                        console.log(res)
+                        this.dirnkVote = res;
+
+                    }).catch((err) => {
+                        console.log(err)
+                    })
                 },
                 votingHandler(e) {
                     e.preventDefault();
                     const checkBtn = document.querySelector('input[type="radio"]:checked');
                     if (!checkBtn) return (this.votenow = true);
-
+                    if (!checkBtn) return (this.votenow = false);
                     this.type = "voteok";
                 },
                 closeLightbox() {
                     this.votenow = false;
                     this.showVote = false;
                 },
-                nowVoteName(e) {
+                nowVoteName(item, dirnkVote) {
                     const checkBtn = document.querySelector('input[type="radio"]:checked');
-                    console.log(e.target.lastChild)
-                    this.nowVote = e.target.children[1].innerText
-                    if (checkBtn) {
-                        e.target.lastChild.innerText++
-                        this.nowVoteCount = e.target.lastChild.innerText
-                    }
+                    dirnkVote = this.dirnkVote
+                    console.log(dirnkVote)
+                    this.nowVote = item.drink_title_ch
+                    // if (checkBtn) {
+                    item.vote_count_now++
+                    this.nowVoteCount = item.vote_count_now
+                    // }
+                    // console.log(this.nowVoteCount)
                 }
             },
             watch: {
-                checkRadio: function () {
-                    this.votenow = false
-                    const checkBtn = document.querySelector('input[type="radio"]:checked');
-                    console.log(checkBtn)
-                },
+                // checkRadio: function () {
+                //     const checkBtn = document.querySelector('input[type="radio"]:checked');
+                //     if (!checkBtn) {
+                //         return this.votenow = true
+                //     } else {
+                //         return this.votenow = false
+                //     }
+
+                //     console.log(checkBtn)
+                // },
             },
             template: `
                         <form class="voteLightbox-wrap" v-show="showVote" >
@@ -168,15 +181,14 @@
                                         <small>點選您最喜歡的茶類飲品並送出投票</small>
                                     </div>
                                     <div class="voting-btn">
-                                        <div v-for="(item,index) in dirnkVote[this.drinkIndex].itemList">
+                                        <div v-for="(item,index) in dirnkVote">
                                             <input
                                                 type="radio"
                                                 name="milkTea"
                                                 class="milkTea"
-                                                :id="textId[index]"
-                                                v-model.lazy="checkRadio"
+                                                :id="textId[index]"                                                
                                             />
-                                            <label :for="textId[index]" class="vote-radio" @click.stop="nowVoteName" >
+                                            <label :for="textId[index]" class="vote-radio" @click.stop="nowVoteName(item,dirnkVote)">
                                                 <div class="radiobtn"></div>
                                                 <div class="btn-txt">{{item.drink_title_ch}}</div>
                                                 <small>{{item.vote_count_now}}</small>

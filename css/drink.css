@@ -1,0 +1,114 @@
+.group_order_done_drinklist {
+  margin: 10px 0;
+}
+
+.group_order_done_person {
+  border-bottom: 2px solid #c0bfbf;
+}
+
+.group_order_done_person > div {
+  margin: 10px 0;
+}
+
+.group_order_done_person_upbox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.group_order_done_person_infobox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.group_order_done_person_img {
+  width: 60px;
+  font-size: 0;
+  margin-right: 20px;
+}
+
+.group_order_done_person_name {
+  font-size: 16px;
+  color: #013B4F;
+  font-weight: bold;
+}
+
+.group_order_done_person_total {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  color: #013B4F;
+  font-weight: bold;
+}
+
+.group_order_done_person_total div:first-child {
+  margin-right: 20px;
+}
+
+.group_order_done_person_drink {
+  background-color: #cecece;
+  padding: 5px 2.5%;
+  margin: 10px 0;
+  font-size: 14px;
+  letter-spacing: 2px;
+}
+
+.group_order_done_person_drink div {
+  margin: 10px 0;
+}
+
+.group_order_done_person_drink div:first-child {
+  font-weight: bold;
+}
+
+.group_order_done_total_box {
+  font-size: 14px;
+  letter-spacing: 2px;
+}
+
+.group_order_done_total_box div {
+  margin: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.group_order_done_dis {
+  border-bottom: 1px solid #adadad;
+}
+
+.group_order_done_finaltotal {
+  font-size: 24px;
+  color: #013B4F;
+  font-weight: bold;
+  border-top: 2px solid #013B4F;
+}
+
+@media (min-width: 576px) {
+  .group_order_done_row {
+    width: 50%;
+  }
+  .group_order_done_groupname {
+    font-size: 24px;
+  }
+  .group_order_done_info {
+    font-size: 18px;
+  }
+  .group_order_done_person_name, .group_order_done_person_total {
+    font-size: 21px;
+  }
+}
+
+@media (min-width: 768px) {
+  .group_order_done_row {
+    width: 33.3%;
+  }
+  .group_order_done_person_drink,
+  .group_order_done_total,
+  .group_order_done_dis {
+    font-size: 16px;
+  }
+}
+/*# sourceMappingURL=drink.css.map */

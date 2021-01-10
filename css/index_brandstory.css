@@ -1,0 +1,300 @@
+@charset "UTF-8";
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+}
+
+:root {
+  font-size: 62.5%;
+  /* 設定 1rem: 16px * 62.5% = 10px */
+}
+
+.brandStory {
+  width: 100%;
+  border: 2px solid #013B4F;
+  display: inline-flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 150px;
+}
+
+.brandStory .story_block {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 100px 0 100px;
+}
+
+.brandStory .story_block img {
+  max-width: 100%;
+}
+
+.brandStory .story_block .title_block {
+  text-align: left;
+  width: 40%;
+  margin-left: 120px;
+}
+
+.brandStory .story_block .title_block h2 {
+  font-size: 3.5rem;
+  letter-spacing: 1.5rem;
+  font-family: 'Roboto', sans-serif;
+}
+
+.brandStory .story_block .title_block h6 {
+  font-size: 1.6rem;
+  letter-spacing: 0.3rem;
+  font-family: 'Roboto', sans-serif;
+  margin: 50px 0 20px;
+  line-height: 36px;
+}
+
+.brandStory .address_block {
+  width: 100%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 100px;
+}
+
+.brandStory .address_block .address h2 {
+  font-size: 3.5rem;
+  letter-spacing: 1.5rem;
+  font-family: 'Roboto', sans-serif;
+}
+
+.brandStory .address_block .address .title_block {
+  display: flex;
+  flex-direction: column;
+  margin: 25px 20px 0;
+}
+
+.brandStory .address_block .address .title_block .info_block {
+  display: inline-flex;
+  align-items: center;
+}
+
+.brandStory .address_block .address .title_block .info_block h5 {
+  font-size: 1.8rem;
+  letter-spacing: 0.5rem;
+  font-family: 'Roboto', sans-serif;
+  margin: 10px 0 10px 10px;
+  font-weight: bold;
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .brandStory .story_block {
+    margin: 60px 0 60px;
+  }
+  .brandStory .story_block .title_block {
+    margin-left: 60px;
+  }
+  .brandStory .story_block .title_block h2 {
+    font-size: 2.4rem;
+    letter-spacing: 1rem;
+    font-family: 'Roboto', sans-serif;
+  }
+  .brandStory .story_block .title_block h6 {
+    font-size: 1.4rem;
+    letter-spacing: 0.3rem;
+    font-family: 'Roboto', sans-serif;
+    margin: 50px 0 20px;
+    line-height: 24px;
+  }
+  .brandStory .address_block {
+    margin-bottom: 60px;
+  }
+  .brandStory .address_block .address h2 {
+    font-size: 2.4rem;
+    letter-spacing: 1rem;
+    font-family: 'Roboto', sans-serif;
+  }
+  .brandStory .address_block .address .title_block {
+    margin: 20px 0 0 0;
+  }
+  .brandStory .address_block .address .title_block .info_block {
+    margin-right: 30px;
+  }
+  .brandStory .address_block .address .title_block .info_block h5 {
+    font-size: 1.4rem;
+    letter-spacing: 0.3rem;
+    font-family: 'Roboto', sans-serif;
+    margin-left: 10px;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 991px) {
+  .brandStory .story_block {
+    display: flex;
+    flex-direction: column;
+    margin: 40px 0 40px;
+  }
+  .brandStory .story_block .title_block {
+    margin-top: 50px;
+    margin-left: 0px;
+    width: 80%;
+    text-align: center;
+  }
+  .brandStory .story_block .title_block h2 {
+    font-size: 2.4rem;
+    letter-spacing: 1rem;
+    font-family: 'Roboto', sans-serif;
+  }
+  .brandStory .story_block .title_block h6 {
+    font-size: 1.4rem;
+    letter-spacing: 0.3rem;
+    font-family: 'Roboto', sans-serif;
+    margin: 20px 0 20px;
+    line-height: 24px;
+  }
+  .brandStory .address_block {
+    margin-bottom: 40px;
+    flex-direction: column-reverse;
+  }
+  .brandStory .address_block .address {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .brandStory .address_block .address h2 {
+    font-size: 2.4rem;
+    letter-spacing: 1rem;
+    font-family: 'Roboto', sans-serif;
+  }
+  .brandStory .address_block .address .title_block {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .brandStory .address_block .address .title_block .info_block {
+    margin-right: 0px;
+  }
+  .brandStory .address_block .address .title_block .info_block h5 {
+    font-size: 1.4rem;
+    letter-spacing: 0.3rem;
+    font-family: 'Roboto', sans-serif;
+    margin-left: 10px;
+  }
+  .brandStory .address_block .google_map iframe {
+    width: 100%;
+  }
+}
+
+@media (max-width: 575px) {
+  .brandStory {
+    border: initial;
+  }
+  .brandStory .story_block {
+    display: flex;
+    flex-direction: column;
+    margin: 40px 0 40px;
+  }
+  .brandStory .story_block .title_block {
+    margin-top: 50px;
+    margin-left: 0px;
+    width: 80%;
+    text-align: center;
+  }
+  .brandStory .story_block .title_block h2 {
+    font-size: 2.4rem;
+    letter-spacing: 1rem;
+    font-family: 'Roboto', sans-serif;
+  }
+  .brandStory .story_block .title_block h6 {
+    font-size: 1.4rem;
+    letter-spacing: 0.3rem;
+    font-family: 'Roboto', sans-serif;
+    margin: 20px 0 20px;
+    line-height: 24px;
+  }
+  .brandStory .address_block {
+    margin-bottom: 40px;
+    flex-direction: column-reverse;
+  }
+  .brandStory .address_block .address {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .brandStory .address_block .address h2 {
+    font-size: 2.4rem;
+    letter-spacing: 1rem;
+    font-family: 'Roboto', sans-serif;
+  }
+  .brandStory .address_block .address .title_block {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .brandStory .address_block .address .title_block .info_block {
+    margin-right: 0px;
+  }
+  .brandStory .address_block .address .title_block .info_block h5 {
+    font-size: 1.4rem;
+    letter-spacing: 0.3rem;
+    font-family: 'Roboto', sans-serif;
+    margin-left: 10px;
+  }
+  .brandStory .address_block .google_map iframe {
+    width: 100%;
+  }
+}
+/*# sourceMappingURL=index_brandstory.css.map */

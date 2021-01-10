@@ -77,7 +77,7 @@ body{
   transform: translate(-50%,0);
   text-align: center;
   z-index: 999;
-  display: none;
+  // display: none;
   h2{
     font-size: 24px;
     margin-bottom: 20px;
@@ -110,14 +110,14 @@ body{
       }
       label{
         // border: 1px solid red;
-        width: 140px;
+        width: 40%;
         @include P1;
         // position: relative;
       }
       input,select{
        @include H6;
         // border: 1px solid black;
-        width: 195px;
+        width: 60%;
         height: 28px;
         // text-align: center;
         padding: 0 0 0 0px;
@@ -147,13 +147,16 @@ body{
       .Btime{
         // border: 1px solid red;
         display: flex;
-        width: 195px;
+        width: 60%;
         select{
           margin-right: 10px;
-          width: calc(( 195px - 10px) / 2);
+          width: calc(( 100% - 10px) / 2);
           &:last-child{
             margin-right: 0;
           }
+        }
+        input{
+          width: 100%;
         }
       }
     }
@@ -229,42 +232,77 @@ body{
         justify-content: center;
         // color:red;
         border: 1px solid rgb(5, 5, 5);
-        h2{
-          background-color: red;
-        }
+
         #ConfirmButton{
          display: inline-block;
          width: 50%;
         }
-
+       
       }
     }
     }
 .group_data_confirm{
-  border: 1px solid rgb(0, 0, 0);
-  width: 400px;
-  height: 400px;
+  background-color: #2424245f;
+  position: fixed;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  text-align: center;
-  border-radius: 15px;
-  padding: 15px;
-  div{
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  .data_confirm{
+    background-color: #fff;
+    border: 1px solid rgb(0, 0, 0);
+    width: 300px;
+    height: 400px;
     display: flex;
-    margin-bottom: 30px;
-    h3{
-      font-size: $fontsize_H3;
-      font-weight: bold;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border-radius: 15px;
+    padding: 15px;
+
+    div{
+      // border: 1px solid blue;
+      width: 100%;
+      align-items: center;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      margin-bottom: 30px;
+      h3{
+        font-size: $fontsize_H3;
+        font-weight: bold;
+        color :#013B4F;
+        @include ls(6px);
+      }
+      h4{
+        &:first-child{
+          // text-align: right;
+          // border: 1px solid red;
+          width: 40%;
+        }
+        &:last-child{
+          // border: 1px solid red;
+          width: 60%;
+        }
+        font-size: $fontsize_H5;
+        // margin-right: 10px;
+      }
+      &:last-child{
+        display: flex;
+        justify-content: space-evenly;
+        // border: 1px solid red;
+      }
     }
-    h4{
-      font-size: $fontsize_H5;
-      margin-right: 10px;
-    }
-    &:last-child{
-      border: 1px solid red;
+    button{
+      // border: 3px solid red;
+      @include list_button_small;
     }
   }
+  
 }
     
 
@@ -310,6 +348,9 @@ body{
           font-size: $fontsize_H5;
           letter-spacing: 0;
         }
+        .Btime{
+          width: 200px;
+        }
         
       }
     }
@@ -330,7 +371,11 @@ body{
 }
 
 @media screen and (min-width: $mq991) {
- 
+  .group_data_confirm{
+    .data_confirm{
+      width: 400px;
+    }
+  }
 
   .group_data {
     ul {

@@ -1,0 +1,619 @@
+@charset "UTF-8";
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+}
+
+:root {
+  font-size: 62.5%;
+  /* 設定 1rem: 16px * 62.5% = 10px */
+}
+
+body {
+  background-color: #E5E3DD;
+}
+
+.main {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.step_box {
+  width: 60%;
+  height: 135px;
+  margin: 0 auto;
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+
+.step_box .step_ball {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.step_box .step_ball > li {
+  width: 95px;
+  height: 95px;
+  border-radius: 50%;
+  background-color: #EFE7DA;
+  position: relative;
+}
+
+.step_box .step_ball > li img {
+  position: absolute;
+  transform: translate(50%, -50%);
+  top: 50%;
+  right: 50%;
+}
+
+.step_box .step_ball > li h5 {
+  font-size: 1.8rem;
+  letter-spacing: 0.5rem;
+  font-family: 'Roboto', sans-serif;
+  color: #B3925B;
+  letter-spacing: 0px;
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  top: 120%;
+}
+
+.step_box .step_ball > li:first-child {
+  background-color: #B3925B;
+}
+
+.step_box .step_ball > li::before {
+  content: "";
+  position: absolute;
+  width: 400%;
+  height: 5px;
+  background-color: #EFE7DA;
+  left: 50px;
+  top: 50%;
+  z-index: -1;
+}
+
+.step_box .step_ball > li:last-child::before {
+  display: none;
+}
+
+.step_ball > li:nth-child(2) {
+  background-color: #B3925B;
+}
+
+.step_ball > li:nth-child(1)::before {
+  background-color: #B3925B;
+}
+
+.step_box .step_ball li:nth-child(2) {
+  font-weight: bold;
+}
+
+@media (min-width: 576px) and (max-width: 991px) {
+  .step_box {
+    height: 115px;
+  }
+  .step_box .step_ball > li {
+    width: 80px;
+    height: 80px;
+  }
+  .step_box .step_ball > li > h5 {
+    font-size: 1.6rem;
+    letter-spacing: 0.3rem;
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 0px;
+  }
+}
+
+@media (max-width: 575px) {
+  .step_box {
+    width: 70%;
+    height: 90px;
+  }
+  .step_box .step_ball > li {
+    width: 60px;
+    height: 60px;
+  }
+  .step_box .step_ball > li > h5 {
+    font-size: 1.2rem;
+    letter-spacing: 0.2rem;
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 0px;
+  }
+  .step_box .step_ball > li > img {
+    width: 40%;
+  }
+}
+
+.userinfo {
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  color: #707070;
+  font-weight: bold;
+  margin: 55px auto;
+}
+
+.userpic {
+  max-width: 120px;
+  overflow: hidden;
+  margin-right: 50px;
+}
+
+.user {
+  width: 70%;
+  font-size: 1.8rem;
+  letter-spacing: 0.5rem;
+  font-family: 'Roboto', sans-serif;
+}
+
+.username {
+  margin-bottom: 20px;
+}
+
+.userphone, .useradd, .usermsg {
+  width: 100%;
+  display: flex;
+  align-self: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.userphone div, .useradd div, .usermsg div {
+  display: flex;
+}
+
+.userphone div input, .useradd div input, .usermsg div input {
+  width: 300px;
+  height: 40px;
+  padding: 0;
+  font-size: 1.8rem;
+  letter-spacing: 0.5rem;
+  font-family: 'Roboto', sans-serif;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  border: none;
+  box-shadow: 2px 2px 2px 2px rgba(51, 51, 102, 0.2);
+}
+
+.userphonetop, .useraddtop, .usermsgtop {
+  width: 40%;
+}
+
+.userphonetop img, .useraddtop img, .usermsgtop img {
+  margin-right: 20px;
+}
+
+.userphonetop div, .useraddtop div, .usermsgtop div {
+  align-self: center;
+}
+
+.userphonebottom, .useraddbottom, .usermsgbottom {
+  width: 60%;
+}
+
+@media screen and (max-width: 800px) {
+  .userinfo {
+    display: block;
+    width: 100%;
+  }
+  .userpic {
+    width: 30%;
+    margin: 0 auto;
+  }
+  .user {
+    width: 100%;
+  }
+  .username {
+    text-align: center;
+    margin-top: 10px;
+  }
+  .userphonetop img, .useraddtop img, .usermsgtop img {
+    margin-right: 15px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .user {
+    font-size: 1.4rem;
+    letter-spacing: 0.3rem;
+    font-family: 'Roboto', sans-serif;
+  }
+  .username {
+    font-size: 1.6rem;
+    letter-spacing: 0.3rem;
+    font-family: 'Roboto', sans-serif;
+  }
+  .userphonetop img, .useraddtop img, .usermsgtop img {
+    margin-right: 10px;
+  }
+}
+
+@media screen and (max-width: 376px) {
+  .userphone, .useradd, .usermsg {
+    display: block;
+  }
+  .userphonetop, .useraddtop, .usermsgtop,
+  .userphonebottom, .useraddbottom, .usermsgbottom {
+    width: 100%;
+    margin-top: 5px;
+  }
+}
+
+.discount {
+  width: 90%;
+  margin: 50px auto;
+  color: #707070;
+  border-top: 1px solid #707070;
+}
+
+.discounttop {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  font-size: 2.1rem;
+  letter-spacing: 0.8rem;
+  font-family: 'Roboto', sans-serif;
+}
+
+.discountbottom {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  font-size: 2.4rem;
+  letter-spacing: 1rem;
+  font-family: 'Roboto', sans-serif;
+}
+
+.discountno {
+  display: flex;
+  width: 70%;
+  align-items: center;
+}
+
+select {
+  font-size: 2.1rem;
+  letter-spacing: 0.8rem;
+  font-family: 'Roboto', sans-serif;
+  color: #707070;
+  width: 50%;
+  height: 50px;
+  border-radius: 10px;
+  margin-left: 50px;
+  padding-left: 20px;
+}
+
+.gamelink {
+  width: 30%;
+  max-width: 236px;
+}
+
+@media screen and (max-width: 880px) {
+  .discounttop {
+    display: block;
+    font-size: 1.8rem;
+    letter-spacing: 0.5rem;
+    font-family: 'Roboto', sans-serif;
+  }
+  .discountno, .gamelink {
+    width: 100%;
+  }
+  .discountno {
+    justify-content: space-between;
+  }
+  select {
+    margin: 20px 0px;
+    width: 70%;
+    font-size: 1.8rem;
+    letter-spacing: 0.5rem;
+    font-family: 'Roboto', sans-serif;
+  }
+  .discountbottom {
+    font-size: 1.8rem;
+    letter-spacing: 0.5rem;
+    font-family: 'Roboto', sans-serif;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .discounttop {
+    font-size: 1.6rem;
+    letter-spacing: 0.3rem;
+    font-family: 'Roboto', sans-serif;
+  }
+  .discountno, .gamelink {
+    width: 100%;
+  }
+  select {
+    width: 65%;
+    font-size: 1.6rem;
+    letter-spacing: 0.3rem;
+    font-family: 'Roboto', sans-serif;
+  }
+}
+
+@media screen and (max-width: 376px) {
+  .discountno {
+    display: block;
+    font-size: 1.6rem;
+    letter-spacing: 0.3rem;
+    font-family: 'Roboto', sans-serif;
+  }
+  .discountno, .gamelink {
+    margin: 0 auto;
+  }
+  select {
+    width: 100%;
+  }
+}
+
+.creditcard {
+  width: 90%;
+  margin: 50px auto;
+  font-size: 2.1rem;
+  letter-spacing: 0.8rem;
+  font-family: 'Roboto', sans-serif;
+  color: #013B4F;
+  border-bottom: 1px solid #707070;
+}
+
+.creditcard input {
+  height: 50px;
+  width: 300px;
+  height: 40px;
+  padding: 0;
+  font-size: 1.8rem;
+  letter-spacing: 0.5rem;
+  font-family: 'Roboto', sans-serif;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  border: none;
+  box-shadow: 2px 2px 2px 2px rgba(51, 51, 102, 0.2);
+}
+
+.cardimg {
+  width: 100%;
+  text-align: center;
+  margin: 50px 0px;
+}
+
+.cardname, .cardno, .cardexp, .cardsafeno {
+  width: 100%;
+  display: flex;
+}
+
+.cardname div, .cardno div, .cardexp div, .cardsafeno div {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  align-self: center;
+}
+
+.cardname div:first-child, .cardno div:first-child, .cardexp div:first-child, .cardsafeno div:first-child {
+  width: 40%;
+}
+
+.cardname div:last-child, .cardno div:last-child, .cardexp div:last-child, .cardsafeno div:last-child {
+  width: 60%;
+}
+
+.cardname input {
+  width: 100%;
+}
+
+.cardno div:last-child {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cardno input {
+  width: 22%;
+}
+
+.cardexp input {
+  width: 15%;
+  margin-right: 13px;
+}
+
+.cardsafeno div:last-child {
+  display: flex;
+}
+
+.cardsafeno input {
+  width: 55%;
+}
+
+@media screen and (max-width: 576px) {
+  .creditcard {
+    font-size: 1.8rem;
+    letter-spacing: 0.5rem;
+    font-family: 'Roboto', sans-serif;
+  }
+  .creditcard input {
+    height: 25px;
+  }
+  .safeimg {
+    max-height: 30px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .creditcard {
+    font-size: 1.6rem;
+    letter-spacing: 0.3rem;
+    font-family: 'Roboto', sans-serif;
+  }
+  .cardname div:first-child, .cardno div:first-child, .cardexp div:first-child, .cardsafeno div:first-child {
+    width: 45%;
+  }
+  .cardname div:last-child, .cardno div:last-child, .cardexp div:last-child, .cardsafeno div:last-child {
+    width: 55%;
+  }
+}
+
+.money {
+  width: 80%;
+  margin: 100px auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.money div {
+  font-size: 24px;
+  font-weight: bold;
+  color: #013B4F;
+}
+
+@media screen and (max-width: 768px) {
+  div {
+    font-size: 21px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .money {
+    margin: 50px auto;
+  }
+}
+
+@media screen and (max-width: 376px) {
+  .money div {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 326px) {
+  .money div {
+    font-size: 16px;
+  }
+}
+
+.line {
+  width: 60%;
+}
+
+.line hr {
+  border: none;
+  border-bottom: 1px dashed #383232;
+}
+
+@media screen and (max-width: 576px) {
+  .line {
+    width: 40%;
+  }
+}
+
+.bottombutton {
+  width: 50%;
+  margin: 50px auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.bottombutton .back, .bottombutton .go {
+  background-color: #B3925B;
+  font-size: 1.8rem;
+  letter-spacing: 0.5rem;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  padding: 8px;
+  border-radius: 5px;
+  border: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+}
+
+.bottombutton .back:hover, .bottombutton .go:hover {
+  opacity: 0.7;
+  transition: 0.2s ease-in-out;
+}
+
+@media screen and (max-width: 576px) {
+  .bottombutton {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 376px) {
+  .bottombutton .back, .bottombutton .go {
+    background-color: #B3925B;
+    font-size: 1.6rem;
+    letter-spacing: 0.3rem;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    padding: 8px;
+    color: white;
+    border-radius: 5px;
+    border: none;
+  }
+  .bottombutton .back:hover, .bottombutton .go:hover {
+    opacity: 0.7;
+    transition: 0.2s ease-in-out;
+  }
+}
+
+@media screen and (max-width: 326px) {
+  .bottombutton {
+    width: 100%;
+  }
+}
+/*# sourceMappingURL=orderPayment.css.map */

@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "../src/sass/mixins/font_size.scss"
+    ],
+    "names": [],
+    "file": "font_size.css"
+}

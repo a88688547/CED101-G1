@@ -102,25 +102,6 @@
       <div class="join_list" v-for="Groupdata in grouporddata">
         <div class="join_list_row">
           <div class="join_list_img">
-            <!-- <img
-              class="list_img"
-              src="./Images/drinkphoto/coupon/drive-download-20201228T062855Z-001/30off.jpg"
-            /> -->
-            <!-- <img
-              class="list_img"
-              :src="imgSrc20"
-              v-if="Groupdata.goal_cup == 20"
-            />
-            <img
-              class="list_img"
-              :src="imgSrc30"
-              v-if="Groupdata.goal_cup == 30"
-            />
-            <img
-              class="list_img"
-              :src="imgSrc40"
-              v-if="Groupdata.goal_cup == 40"
-            /> -->
             <img class="list_img" :src="getimg(Groupdata.goal_cup)" />
           </div>
           <div class="join_list_text">
@@ -159,7 +140,7 @@
                       <img src="./Images/timer.svg" alt="" />
                       預計送達時間
                     </div>
-                    <div>2020/12/15 15:00</div>
+                    <div>{{Groupdata.arrive_time}}</div>
                   </div>
                 </div>
               </div>
@@ -167,7 +148,10 @@
               <!-- BTN修改 ----------------------------------------------------------->
               <div class="join_list_right">
                 <button class="join_drink color-1">
-                  <a href="./menu.html" style="text-decoration: none">
+                  <a
+                    :href="'./join_step2.php?group_ord_no=' + Groupdata.group_ord_no"
+                    style="text-decoration: none"
+                  >
                     <img src="./Images/drink.svg" alt="" />
                     <h6>跟團喝</h6>
                   </a>
@@ -202,6 +186,14 @@
         xhr.open("get", "./php/getGroup.php", true);
         xhr.send(null);
       });
+      Vue.component("paginated-list", {
+        data() {
+          return {
+            pageNumber: 0,
+          };
+        },
+      });
+
       var app = new Vue({
         el: "#join_main",
         data: {

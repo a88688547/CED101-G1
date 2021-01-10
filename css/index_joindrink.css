@@ -1,0 +1,408 @@
+@charset "UTF-8";
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+}
+
+:root {
+  font-size: 62.5%;
+  /* 設定 1rem: 16px * 62.5% = 10px */
+}
+
+section.join_drink {
+  margin-top: 30px;
+  justify-content: center;
+}
+
+section.join_drink .title_block {
+  text-align: center;
+}
+
+section.join_drink .title_block h2 {
+  font-size: 3.5rem;
+  letter-spacing: 1.5rem;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+}
+
+section.join_drink .title_block h5 {
+  font-size: 1.8rem;
+  letter-spacing: 0.5rem;
+  font-family: 'Roboto', sans-serif;
+  margin-top: 20px;
+}
+
+section.join_drink .drinkbar_block {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+section.join_drink .drinkbar_block .drink_bar {
+  width: 48%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 30px;
+  border-radius: 25px;
+  overflow: hidden;
+  background-color: white;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  position: relative;
+}
+
+section.join_drink .drinkbar_block .drink_bar::before {
+  position: absolute;
+  top: 0;
+  left: -75%;
+  z-index: 2;
+  display: block;
+  content: '';
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 100%);
+  transform: skewX(-25deg);
+}
+
+section.join_drink .drinkbar_block .drink_bar:hover {
+  animation: rotate 0.7s ease-in-out both;
+  opacity: 0.8;
+  transition: 0.5s ease-in-out;
+}
+
+section.join_drink .drinkbar_block .drink_bar:hover::before {
+  animation: shine .75s;
+}
+
+@keyframes shine {
+  100% {
+    left: 125%;
+  }
+}
+
+section.join_drink .drinkbar_block .drink_bar img {
+  max-width: 100%;
+}
+
+section.join_drink .drinkbar_block .drink_bar img img {
+  max-width: 100%;
+}
+
+section.join_drink .drinkbar_block .drink_bar .drinkbar_textblock {
+  width: 57%;
+  padding: 15px;
+}
+
+section.join_drink .drinkbar_block .drink_bar .drinkbar_textblock .bar_title {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+section.join_drink .drinkbar_block .drink_bar .drinkbar_textblock .bar_title h6 {
+  font-size: 1.6rem;
+  letter-spacing: 0.3rem;
+  font-family: 'Roboto', sans-serif;
+}
+
+section.join_drink .drinkbar_block .drink_bar .drinkbar_textblock hr {
+  margin-top: 10px;
+}
+
+section.join_drink .drinkbar_block .drink_bar .drinkbar_textblock > h6 {
+  font-size: 1.6rem;
+  letter-spacing: 0.3rem;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  margin-top: 10px;
+  line-height: 20px;
+}
+
+section.join_drink .drinkbar_block .drink_bar .drinkbar_textblock > h6 span {
+  font-weight: initial;
+}
+
+section.join_drink .drinkbar_block .drink_bar .drinkbar_textblock .drink_status {
+  display: flex;
+}
+
+section.join_drink .drinkbar_block .drink_bar .drinkbar_textblock .drink_status .status_title {
+  display: flex;
+  align-items: center;
+  margin-top: 15px;
+}
+
+section.join_drink .drinkbar_block .drink_bar .drinkbar_textblock .drink_status .status_title img {
+  margin-right: 5px;
+}
+
+section.join_drink .drinkbar_block .drink_bar .drinkbar_textblock .drink_status .status_title img.complited_cups {
+  margin-left: 20px;
+}
+
+section.join_drink .drinkbar_block .drink_bar .drinkbar_textblock .drink_status .status_title h6 {
+  font-size: 1.6rem;
+  letter-spacing: 0.3rem;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+}
+
+section.join_drink .drinkbar_block .drink_bar .drinkbar_textblock .drink_status .status_title h6 span {
+  color: #B3925B;
+}
+
+section.join_drink .drinkbar_block .drink_bar .drinkbar_textblock .join_drink_btm {
+  display: flex;
+  align-items: center;
+  margin-top: 15px;
+  justify-content: space-between;
+}
+
+section.join_drink .drinkbar_block .drink_bar .drinkbar_textblock .join_drink_btm h6 {
+  font-size: 1.6rem;
+  letter-spacing: 0.3rem;
+  font-family: 'Roboto', sans-serif;
+  color: #B3925B;
+  font-weight: bold;
+}
+
+section.join_drink .drinkbar_block .drink_bar .drinkbar_textblock .join_drink_btm h6 span {
+  color: #B3925B;
+  letter-spacing: 2px;
+}
+
+section.join_drink .drinkbar_block .drink_bar .drinkbar_textblock .join_drink_btm .join_drink {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin: 5px;
+  height: 35px;
+  width: 100px;
+  text-align: center;
+  border: none;
+  border-radius: 30px;
+  background-size: 300% 100%;
+  transition: all .4s ease-in-out;
+}
+
+section.join_drink .drinkbar_block .drink_bar .drinkbar_textblock .join_drink_btm .join_drink h6 {
+  font-size: 1.6rem;
+  letter-spacing: 0.3rem;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  color: white;
+}
+
+section.join_drink .drinkbar_block .drink_bar .drinkbar_textblock .join_drink_btm .join_drink img {
+  margin-right: 5px;
+}
+
+section.join_drink .drinkbar_block .drink_bar .drinkbar_textblock .join_drink_btm .join_drink:hover {
+  background-position: 100% 0;
+  transition: all .4s ease-in-out;
+}
+
+section.join_drink .drinkbar_block .drink_bar .drinkbar_textblock .join_drink_btm .join_drink:focus {
+  outline: none;
+}
+
+section.join_drink .drinkbar_block .drink_bar .drinkbar_textblock .join_drink_btm .join_drink.color-1 {
+  background-image: linear-gradient(to right, #f5ce62, #e43603, #fa7199, #e85a19);
+  box-shadow: 0 2px 5px 0 rgba(229, 66, 10, 0.75);
+}
+
+section.join_drink .bottom_block {
+  display: flex;
+  justify-content: center;
+  margin: 50px 0 50px;
+}
+
+section.join_drink .bottom_block button.seemore {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin: 5px;
+  height: 35px;
+  width: 100px;
+  text-align: center;
+  border: none;
+  border-radius: 30px;
+  background-size: 300% 100%;
+  transition: all .4s ease-in-out;
+  width: 180px;
+  height: 40px;
+}
+
+section.join_drink .bottom_block button.seemore h6 {
+  font-size: 1.6rem;
+  letter-spacing: 0.3rem;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  color: white;
+}
+
+section.join_drink .bottom_block button.seemore img {
+  margin-right: 5px;
+}
+
+section.join_drink .bottom_block button.seemore:hover {
+  background-position: 100% 0;
+  transition: all .4s ease-in-out;
+  transform: translateY(-5px);
+}
+
+section.join_drink .bottom_block button.seemore:focus {
+  outline: none;
+}
+
+section.join_drink .bottom_block button.seemore.color-2 {
+  background-image: linear-gradient(to right, #29323c, #485563, #2b5876, #4e4376);
+  box-shadow: 0 4px 15px 0 rgba(45, 54, 65, 0.75);
+}
+
+@media (min-width: 768px) and (max-width: 1310px) {
+  section.join_drink .drinkbar_block .drink_bar {
+    flex-direction: column;
+    width: 48%;
+  }
+  section.join_drink .drinkbar_block .drink_bar .drinkbar_textblock {
+    width: 100%;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+  section.join_drink .title_block h2 {
+    font-size: 2.4rem;
+    letter-spacing: 1rem;
+    font-family: 'Roboto', sans-serif;
+  }
+  section.join_drink .title_block h5 {
+    font-size: 1.6rem;
+    letter-spacing: 0.3rem;
+    font-family: 'Roboto', sans-serif;
+  }
+  section.join_drink .drinkbar_block {
+    flex-direction: column;
+    align-items: center;
+  }
+  section.join_drink .drinkbar_block .drink_bar {
+    flex-direction: column;
+    width: 75%;
+  }
+  section.join_drink .drinkbar_block .drink_bar .drinkbar_textblock {
+    width: 100%;
+  }
+}
+
+@media (max-width: 575px) {
+  section.join_drink .title_block h2 {
+    font-size: 2.4rem;
+    letter-spacing: 1rem;
+    font-family: 'Roboto', sans-serif;
+  }
+  section.join_drink .title_block h5 {
+    font-size: 1.4rem;
+    letter-spacing: 0.3rem;
+    font-family: 'Roboto', sans-serif;
+    line-height: 24px;
+  }
+  section.join_drink .drinkbar_block {
+    flex-direction: column;
+    align-items: center;
+  }
+  section.join_drink .drinkbar_block .drink_bar {
+    flex-direction: column;
+    width: 90%;
+  }
+  section.join_drink .drinkbar_block .drink_bar .drinkbar_textblock {
+    width: 100%;
+  }
+  section.join_drink .drinkbar_block .drink_bar .drinkbar_textblock .bar_title h6 {
+    font-size: 1.4rem;
+    letter-spacing: 0.3rem;
+    font-family: 'Roboto', sans-serif;
+  }
+  section.join_drink .drinkbar_block .drink_bar .drinkbar_textblock .drink_status {
+    flex-direction: column;
+  }
+  section.join_drink .drinkbar_block .drink_bar .drinkbar_textblock .drink_status .status_title img.complited_cups {
+    margin-left: initial;
+  }
+  section.join_drink .drinkbar_block .drink_bar .drinkbar_textblock .join_drink_btm {
+    flex-direction: column;
+  }
+  section.join_drink .drinkbar_block .drink_bar .drinkbar_textblock .join_drink_btm h6 {
+    font-size: 1.4rem;
+    letter-spacing: 0.3rem;
+    font-family: 'Roboto', sans-serif;
+  }
+  section.join_drink .drinkbar_block .drink_bar .drinkbar_textblock .join_drink_btm button {
+    margin-top: 10px;
+  }
+  section.join_drink .drinkbar_block .drink_bar .drinkbar_textblock .join_drink_btm button h6 {
+    font-size: 1.4rem;
+    letter-spacing: 0.3rem;
+    font-family: 'Roboto', sans-serif;
+  }
+}
+/*# sourceMappingURL=index_joindrink.css.map */

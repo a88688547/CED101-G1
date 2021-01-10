@@ -74,7 +74,7 @@
               </li>
               <li>
                 <label for="Atime">截單時間</label>
-                <div class="">
+                <div class="Btime">
                   <date-picker
                   class="testdata"
                   @update-date="updateDate"
@@ -104,6 +104,7 @@
                 <label for="Btime">預計送達時間</label>
                 <div class="Btime">
                   <select v-model="arrive_hh" name="arrive_hh" id="arrive_hh">
+                    
                     <option v-for="arrive_hh in arrive_h_Options"v-bind:value="arrive_hh.value">
                       {{ arrive_hh.text }}
                     </option>
@@ -117,7 +118,7 @@
               </li>
               <li>
                 <label for="goal">目標杯數</label>
-                <select v-model="GoalCup" name="goal" id="goal">
+                <select v-model="GoalCup" name="goal" id="goal" @change="updateVal">
                   <option v-for="option in options" v-bind:value="option.value">
                     {{ option.text }}
                   </option>
@@ -154,30 +155,11 @@
                 />
               </div>
             </div>
-            <h2>{{currentDate}}</h2>
-            <h2>{{formatTime}}</h2>
-            <h2>{{getTodayDateTime}}</h2>
-            <h2>{{geTodayTime}}</h2>
-            <h2>{{getTodayDate}}</h2>
-            <h2>日期</h2>
-            <h2>{{date}}</h2>
-            <hr>
-            <h2>截單時間</h2>
-            <h2>{{hh}}</h2>
-            <h2>{{mm}}</h2>
-            <h2>{{DeadLine_Time}}</h2>
-            <h2>{{daedLine_DateTime}}</h2>
-            <hr>
-            <h2>預計送達時間</h2>
-            <h2>{{arrive_hh}}</h2>
-            <h2>{{arrive_mm}}</h2>
-            <h2>{{Arrive_Time}}</h2>
-            <h2>{{arrive_DateTime}}</h2>
-            <hr>
-            <h2>{{ErrorText}}</h2>
+            <!-- <h2>{{formatTime}}</h2>
+            <h2>{{currentDate}}</h2> -->
           </form>
         </div>
-        <div class="oops" v-bind:style="{display:OnOff}">
+        <div class="oops"  v-show="Error_show">
           <h2>Oops</h2>
           <p class="error">{{ErrorText}}</p>
           <img
@@ -187,34 +169,37 @@
             class="ErrorClose"
           />
         </div>
-        <div class="group_data_confirm">
-          <div>
-            <h3>確認資料</h3>
+        <div class="group_data_confirm" v-show="group_confirm" >
+          <div class="data_confirm">
+            <div>
+              <h3>確認資料</h3>
+            </div>
+            <div>
+              <h4>團名 : </h4>
+              <h4>{{GroupName}}</h4>
+            </div>
+            <div>
+              <h4>截單時間</h4>
+              <h4>{{daedLine_DateTime}}</h4>
+            </div>
+            <div>
+              <h4>預計送達時間</h4>
+              <h4>{{arrive_DateTime}}</h4>
+            </div>
+            <div>
+              <h4>目標杯數</h4>
+              <h4 class="goal_confirm"></h4>
+            </div>
+            <div>
+              <h4>取貨地點</h4>
+              <h4>{{GroupAddress}}</h4>
+            </div>
+            <div>
+              <button @click="confirmClose">取消</button>
+              <button @click="upGroupData">確認送出</button>
+            </div>
           </div>
-          <div>
-            <h4>團名 : </h4>
-            <h4>{{GroupName}}</h4>
-          </div>
-          <div>
-            <h4>截單時間</h4>
-            <h4>{{daedLine_DateTime}}</h4>
-          </div>
-          <div>
-            <h4>預計送達時間</h4>
-            <h4>{{arrive_DateTime}}</h4>
-          </div>
-          <div>
-            <h4>目標杯數</h4>
-            <h4>{{GoalCup}}</h4>
-          </div>
-          <div>
-            <h4>取貨地點</h4>
-            <h4>{{GroupAddress}}</h4>
-          </div>
-          <div>
-            <button>取消</button>
-            <button @click="ok_group">確認送出</button>
-          </div>
+         
         </div>
       </div>
     </div>

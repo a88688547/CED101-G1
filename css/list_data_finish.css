@@ -1,0 +1,294 @@
+@charset "UTF-8";
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+}
+
+:root {
+  font-size: 62.5%;
+  /* 設定 1rem: 16px * 62.5% = 10px */
+}
+
+#order_list {
+  margin: 40px auto;
+  max-width: 1200px;
+  color: #013B4F;
+}
+
+#order_list .group_order_done_person {
+  width: 75%;
+  margin: 0 auto;
+  border-top: 2px solid #c0bfbf;
+}
+
+@media screen and (max-width: 992px) {
+  #order_list .group_order_done_person {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #order_list .group_order_done_person {
+    width: 85%;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  #order_list .group_order_done_person {
+    width: 90%;
+  }
+}
+
+#order_list .group_order_done_person:last-child {
+  border-bottom: 2px solid #c0bfbf;
+}
+
+#order_list .group_order_done_person > div {
+  margin: 15px 0 30px;
+}
+
+#order_list .group_order_done_person .group_order_done_person_upbox {
+  display: flex;
+  align-items: center;
+}
+
+@media screen and (max-width: 576px) {
+  #order_list .group_order_done_person .group_order_done_person_upbox {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+#order_list .group_order_done_person .group_order_done_person_upbox .group_order_done_person_img {
+  width: 60px;
+  font-size: 0;
+  margin-right: 20px;
+}
+
+@media screen and (max-width: 576px) {
+  #order_list .group_order_done_person .group_order_done_person_upbox .group_order_done_person_img {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+}
+
+#order_list .group_order_done_person .group_order_done_person_upbox .group_order_done_person_name {
+  font-size: 1.6rem;
+  letter-spacing: 0.3rem;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+}
+
+@media screen and (min-width: 577px) {
+  #order_list .group_order_done_person .group_order_done_person_upbox .group_order_done_person_name {
+    font-size: 2.1rem;
+    letter-spacing: 0.8rem;
+    font-family: 'Roboto', sans-serif;
+  }
+}
+
+#order_list .group_order_done_person .group_order_done_person_drink {
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 10px 2.5%;
+  margin: 10px 0;
+  font-size: 2.1rem;
+  letter-spacing: 0.8rem;
+  font-family: 'Roboto', sans-serif;
+  text-indent: 8px;
+  position: relative;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 576px) {
+  #order_list .group_order_done_person .group_order_done_person_drink {
+    font-size: 1.8rem;
+    letter-spacing: 0.5rem;
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 2px;
+    text-indent: 2px;
+  }
+}
+
+#order_list .group_order_done_person .group_order_done_person_drink #drink_title_wrapper {
+  flex-shrink: 0;
+  width: 50%;
+  min-width: 200px;
+}
+
+@media screen and (max-width: 350px) {
+  #order_list .group_order_done_person .group_order_done_person_drink #drink_title_wrapper {
+    min-width: 180px;
+  }
+}
+
+#order_list .group_order_done_person .group_order_done_person_drink #drink_title_wrapper .group_order_done_person_drink_note {
+  font-size: 1.6rem;
+  letter-spacing: 0.3rem;
+  font-family: 'Roboto', sans-serif;
+}
+
+@media screen and (max-width: 576px) {
+  #order_list .group_order_done_person .group_order_done_person_drink #drink_title_wrapper .group_order_done_person_drink_note {
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-indent: 2px;
+  }
+}
+
+#order_list .group_order_done_person .group_order_done_person_drink #drink_title_wrapper div {
+  margin: 10px 0;
+}
+
+#order_list .group_order_done_person .group_order_done_person_drink #drink_title_wrapper div:first-child {
+  font-weight: bold;
+}
+
+#order_list .group_order_done_person .group_order_done_person_drink #num_btn {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 30%;
+}
+
+@media screen and (max-width: 768px) {
+  #order_list .group_order_done_person .group_order_done_person_drink #num_btn {
+    width: 30%;
+  }
+}
+
+#order_list .group_order_done_person .group_order_done_person_drink #num_btn #num_feedback {
+  text-align: center;
+  text-indent: 4px;
+  letter-spacing: 4px;
+}
+
+@media screen and (max-width: 576px) {
+  #order_list .group_order_done_person .group_order_done_person_drink #num_btn #num_feedback {
+    letter-spacing: 1px;
+    text-indent: 1px;
+  }
+}
+
+#order_list .group_order_done_person .group_order_done_person_drink #num_btn span {
+  font-weight: bold;
+}
+
+@media screen and (max-width: 576px) {
+  #order_list .group_order_done_person .group_order_done_person_drink #num_btn {
+    align-items: flex-start;
+    justify-content: center;
+    margin: 10px 0;
+    letter-spacing: 1px;
+  }
+}
+
+#order_list .group_order_done_person .group_order_done_person_drink #item_single_price {
+  font-weight: medium;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-indent: 4px;
+  letter-spacing: 4px;
+  width: 10%;
+  margin: 0 10px;
+}
+
+@media screen and (max-width: 576px) {
+  #order_list .group_order_done_person .group_order_done_person_drink #item_single_price {
+    align-items: flex-start;
+    margin: 10px;
+    letter-spacing: 1px;
+  }
+}
+
+#order_list .group_order_done_person .group_order_done_person_total {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: #B3925B;
+  color: white;
+  font-size: 2.1rem;
+  letter-spacing: 0.8rem;
+  font-family: 'Roboto', sans-serif;
+  letter-spacing: 2px;
+  font-weight: bold;
+  border-radius: 5px;
+  padding: 10px 0;
+}
+
+@media screen and (max-width: 576px) {
+  #order_list .group_order_done_person .group_order_done_person_total {
+    font-size: 1.8rem;
+    letter-spacing: 0.5rem;
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 0px;
+    justify-content: space-around;
+  }
+}
+
+#order_list .group_order_done_person .group_order_done_person_total div {
+  margin-right: 2.5%;
+}
+
+@media screen and (max-width: 576px) {
+  #order_list .group_order_done_person .group_order_done_person_total div {
+    margin-left: 2.5%;
+  }
+}
+/*# sourceMappingURL=list_data_finish.css.map */

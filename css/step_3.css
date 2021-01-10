@@ -1,0 +1,172 @@
+@charset "UTF-8";
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+}
+
+:root {
+  font-size: 62.5%;
+  /* 設定 1rem: 16px * 62.5% = 10px */
+}
+
+.step_box {
+  width: 60%;
+  height: 135px;
+  margin: 0 auto;
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+
+.step_box .step_ball {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.step_box .step_ball > li {
+  width: 95px;
+  height: 95px;
+  border-radius: 50%;
+  background-color: #EFE7DA;
+  position: relative;
+}
+
+.step_box .step_ball > li img {
+  position: absolute;
+  transform: translate(50%, -50%);
+  top: 50%;
+  right: 50%;
+}
+
+.step_box .step_ball > li h5 {
+  font-size: 1.8rem;
+  letter-spacing: 0.5rem;
+  font-family: 'Roboto', sans-serif;
+  color: #B3925B;
+  letter-spacing: 0px;
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  top: 120%;
+}
+
+.step_box .step_ball > li:first-child {
+  background-color: #B3925B;
+}
+
+.step_box .step_ball > li::before {
+  content: "";
+  position: absolute;
+  width: 400%;
+  height: 5px;
+  background-color: #EFE7DA;
+  left: 50px;
+  top: 50%;
+  z-index: -1;
+}
+
+.step_box .step_ball > li:last-child::before {
+  display: none;
+}
+
+.step_ball > li:nth-child(2), .step_ball > li:nth-child(3) {
+  background-color: #B3925B;
+}
+
+.step_ball > li:nth-child(1)::before, .step_ball > li:nth-child(2)::before {
+  background-color: #B3925B;
+}
+
+.step_box .step_ball li:nth-child(3) {
+  font-weight: bold;
+}
+
+@media (min-width: 576px) and (max-width: 991px) {
+  .step_box {
+    height: 115px;
+  }
+  .step_box .step_ball > li {
+    width: 80px;
+    height: 80px;
+  }
+  .step_box .step_ball > li > h5 {
+    font-size: 1.6rem;
+    letter-spacing: 0.3rem;
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 0px;
+  }
+}
+
+@media (max-width: 575px) {
+  .step_box {
+    width: 70%;
+    height: 90px;
+  }
+  .step_box .step_ball > li {
+    width: 60px;
+    height: 60px;
+  }
+  .step_box .step_ball > li > h5 {
+    font-size: 1.2rem;
+    letter-spacing: 0.2rem;
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 0px;
+  }
+  .step_box .step_ball > li > img {
+    width: 40%;
+  }
+}
+/*# sourceMappingURL=step_3.css.map */

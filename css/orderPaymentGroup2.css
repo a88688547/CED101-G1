@@ -1,0 +1,1321 @@
+@charset "UTF-8";
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+}
+
+:root {
+  font-size: 62.5%;
+  /* 設定 1rem: 16px * 62.5% = 10px */
+}
+
+body {
+  background-color: #E5E3DD;
+}
+
+h3 {
+  color: #013B4F;
+  font-size: 24px;
+}
+
+h2 {
+  color: #013B4F;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+h4 {
+  color: #707070;
+  font-size: 21px;
+}
+
+h5 {
+  font-size: 18px;
+  color: #013B4F;
+  font-weight: bold;
+}
+
+.main {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.ProgressBar {
+  /*border: 1px solid black;*/
+  margin: 80px auto 100px auto;
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  overflow: hidden;
+}
+
+.ProgressBar h3 {
+  color: #707070;
+  font-size: 24px;
+}
+
+.StepCircle {
+  /*border: 1px solid brown;*/
+  background-color: #D3C8B5;
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  margin-bottom: 10px;
+}
+
+.Circle1 {
+  position: relative;
+}
+
+.Circle1::after {
+  content: " ";
+  display: block;
+  width: 2000px;
+  height: 14px;
+  background-color: #D3C8B5;
+  position: absolute;
+  top: 54px;
+  left: 0px;
+  z-index: -9999;
+}
+
+.Circle3 {
+  background-color: #B3925B;
+}
+
+#step3 {
+  font-weight: bold;
+  color: #013B4F;
+}
+
+.Info {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.Info h3 {
+  color: #707070;
+  font-size: 24px;
+}
+
+.InfoDetail {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  margin: 80px auto;
+}
+
+.memImage {
+  width: 25%;
+  height: 170px;
+  overflow: hidden;
+}
+
+#memName {
+  color: #013B4F;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.orderInfo {
+  width: 70%;
+}
+
+.orderInfo div {
+  margin-bottom: 40px;
+}
+
+.orderInfo div h3 {
+  font-size: 24px;
+}
+
+.orderInfo label {
+  margin-left: 10px;
+  color: #707070;
+}
+
+.infomsg {
+  display: flex;
+}
+
+#memPhone, #msg {
+  width: 65%;
+}
+
+#memPhone {
+  margin-left: 70px;
+}
+
+#msg {
+  margin-left: 46px;
+  align-self: flex-end;
+}
+
+.discount {
+  margin: 80px auto;
+  width: 90%;
+}
+
+.discountTop {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 50px;
+}
+
+.discountNo {
+  width: 70%;
+  display: flex;
+  align-items: center;
+}
+
+.discountNo h3 {
+  color: #707070;
+  font-size: 24px;
+}
+
+.discountNo select {
+  width: 60%;
+  height: 50px;
+  border: 1px solid #707070;
+  border-radius: 10px;
+  font-size: 2.4rem;
+  letter-spacing: 1rem;
+  font-family: 'Roboto', sans-serif;
+  color: #707070;
+  padding-left: 20px;
+  margin-left: 100px;
+}
+
+.gamelink {
+  width: 30%;
+  height: 50px;
+  overflow: hidden;
+  text-align: right;
+}
+
+.discountBottom {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.discountBottom h3 {
+  color: #707070;
+  font-size: 24px;
+}
+
+.disTotal h3 {
+  font-weight: bold;
+}
+
+.payInfo {
+  margin: 60px auto;
+  text-align: center;
+}
+
+.payInfo:hover {
+  cursor: pointer;
+}
+
+.cardInfo {
+  display: none;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.cardInfo div {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.cardInfo h3 {
+  color: #707070;
+  font-size: 24px;
+}
+
+.cardInfo.-on {
+  display: block;
+}
+
+#cardName label {
+  margin-right: 92px;
+}
+
+#cardNo label {
+  margin-right: 164px;
+}
+
+#cardExp label {
+  margin-right: 108px;
+}
+
+#cardExp span {
+  font-size: 24px;
+  color: #707070;
+  margin: 0px 8px;
+}
+
+#cardSafeNo {
+  margin-bottom: 50px;
+}
+
+#cardSafeNo label {
+  margin-right: 140px;
+}
+
+#cardSafeNo img {
+  margin-left: 30px;
+}
+
+.ListTotal {
+  width: 80%;
+  margin: 100px auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ListTotal h2 {
+  font-size: 35px;
+}
+
+#line {
+  width: 70%;
+}
+
+#line hr {
+  border-style: none;
+  border-bottom: 1px dashed #013B4F;
+}
+
+.orderbtn {
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+  margin: 50px auto;
+}
+
+.orderbtn div {
+  background-color: #B3925B;
+  width: 130px;
+  height: 46px;
+  border-radius: 10px;
+  border-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.orderbtn div:hover {
+  cursor: pointer;
+}
+
+.orderbtn div a {
+  text-decoration: none;
+  color: #FFFFFF;
+  font-size: 24px;
+}
+
+.orderModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 1s;
+  background-color: rgba(65, 62, 62, 0.5);
+  width: 100%;
+  height: 100%;
+}
+
+.orderModal hr {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.modalContent {
+  height: 90%;
+  width: 90%;
+  margin: auto auto;
+  max-width: 600px;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 0 5px #ddd;
+}
+
+.orderModal.-on {
+  opacity: 1;
+  z-index: 999;
+}
+
+.orderModal.-opacity-zero {
+  opacity: 0;
+}
+
+.close {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+.close:hover {
+  cursor: pointer;
+}
+
+.Top {
+  display: flex;
+  position: relative;
+  justify-content: center;
+}
+
+.Top h5 {
+  font-size: 18px;
+  letter-spacing: 5px;
+  margin-top: 20px;
+}
+
+.orderList {
+  width: 100%;
+  height: 80vh;
+  margin: auto;
+  overflow-y: auto;
+}
+
+.orderList::-webkit-scrollbar {
+  width: 10px;
+  background-color: #fff;
+}
+
+.orderList::-webkit-scrollbar-thumb {
+  background-color: #013B4F;
+  border-radius: 10px;
+  height: 10px;
+}
+
+.orderList::-webkit-scrollbar-track {
+  margin-left: 10px;
+  border-radius: 10px;
+}
+
+.listInfo {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.Modal_group_order_done_drinklist {
+  margin: 10px 0;
+}
+
+.Modal_group_order_done_person {
+  border-bottom: 2px solid #c0bfbf;
+}
+
+.Modal_group_order_done_person > div {
+  margin: 10px 0;
+}
+
+.Modal_group_order_done_person_upbox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Modal_group_order_done_person_infobox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Modal_group_order_done_person_img {
+  width: 60px;
+  font-size: 0;
+  margin-right: 20px;
+}
+
+.Modal_group_order_done_person_name {
+  font-size: 16px;
+  color: #013B4F;
+  font-weight: bold;
+}
+
+.Modal_group_order_done_person_total {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  color: #013B4F;
+  font-weight: bold;
+}
+
+.Modal_group_order_done_person_total div:first-child {
+  margin-right: 20px;
+}
+
+.Modal_group_order_done_person_drink {
+  background-color: #cecece;
+  padding: 5px 2.5%;
+  margin: 10px 0;
+  font-size: 14px;
+  letter-spacing: 2px;
+}
+
+.Modal_group_order_done_person_drink div {
+  margin: 10px 0;
+}
+
+.Modal_group_order_done_person_drink div:first-child {
+  font-weight: bold;
+}
+
+.checkInfo {
+  width: 60%;
+  margin: 25px auto;
+}
+
+.checkInfo div {
+  width: 100%;
+  margin: 10px 0;
+  display: flex;
+}
+
+.checkInfo h3 {
+  font-size: 16px;
+  color: #707070;
+}
+
+.modiscount {
+  margin: 20px auto;
+  width: 90%;
+}
+
+.modiscount h3 {
+  font-size: 16px;
+}
+
+.modiscountTop {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin: 10px auto;
+}
+
+.modiscountNo {
+  width: 67%;
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.modiscountNo h3 {
+  color: #707070;
+}
+
+.monumber {
+  font-size: 14px;
+  color: #707070;
+  font-weight: bold;
+}
+
+#voucher_no {
+  margin: 0 20px 0 30px;
+}
+
+.modiscountBottom {
+  width: 67%;
+  display: flex;
+  justify-content: space-between;
+  margin: 10px auto;
+}
+
+.modiscountBottom h3 {
+  color: #707070;
+}
+
+.amount {
+  display: flex;
+  width: 80%;
+  margin: 25px auto;
+  align-items: center;
+}
+
+.amount h4 {
+  color: #013B4F;
+  font-size: 21px;
+  font-weight: bold;
+}
+
+.modalLine {
+  width: 70%;
+}
+
+.modalLine hr {
+  border-style: none;
+  border-bottom: 1px dashed #013B4F;
+}
+
+.sendbtn {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.sendbtn button {
+  background-color: #013B4F;
+  color: #fff;
+  width: 120px;
+  height: 40px;
+  font-size: 1.4rem;
+  letter-spacing: 0.3rem;
+  font-family: 'Roboto', sans-serif;
+  border-style: none;
+  border-radius: 5px;
+}
+
+.sendbtn button:hover {
+  cursor: pointer;
+}
+
+@media (min-width: 576px) {
+  .Modal_group_order_done_person_name,
+  .Modal_group_order_done_person_total {
+    font-size: 21px;
+  }
+}
+
+@media (min-width: 768px) {
+  .Modal_group_order_done_row {
+    width: 33.3%;
+  }
+  .Modal_group_order_done_person_drink,
+  .Modal_group_order_done_total,
+  .Modal_group_order_done_dis {
+    font-size: 16px;
+  }
+}
+
+.Modal_group_order_done_person_drink {
+  background-color: #cecece;
+  padding: 5px 2.5%;
+  margin: 10px 0;
+  font-size: 14px;
+  letter-spacing: 2px;
+  position: relative;
+}
+
+.Modal_group_order_done_person_drink .order_delete_btn {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-right: 2.5%;
+  border-radius: 5px;
+  border: 1px solid black;
+  cursor: pointer;
+  outline: none;
+}
+
+@media screen and (max-width: 325px) {
+  .ProgressBar {
+    margin: 40px auto;
+    width: 90%;
+  }
+  .ProgressBar h3 {
+    font-size: 12px;
+  }
+  .StepCircle {
+    width: 60px;
+    height: 60px;
+  }
+  .Circle1::after {
+    height: 8px;
+    top: 25px;
+  }
+  .InfoDetail {
+    width: 80%;
+    margin: 50px auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .memImage, .name {
+    display: none;
+  }
+  .rwdInfoDetail {
+    width: 50%;
+    margin: 50px auto;
+    text-align: center;
+  }
+  .rwdmemImage {
+    width: 37%;
+    overflow: hidden;
+    margin: 20px auto;
+  }
+  .rwdorderInfo {
+    width: 100%;
+  }
+  #memName {
+    font-size: 3.5rem;
+    letter-spacing: 1.5rem;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+  }
+  .orderInfo {
+    width: 100%;
+  }
+  .orderInfo div h3 {
+    font-size: 16px;
+  }
+  .orderInfo div h3 img {
+    width: 4%;
+  }
+  .infomsg {
+    display: block;
+  }
+  #msg {
+    width: 100%;
+    margin: 10px 0px 0px 27px;
+  }
+  #memPhone {
+    margin-left: 22px;
+  }
+  .discountTop {
+    display: block;
+  }
+  .discountNo {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+  }
+  .discountNo select {
+    width: 60%;
+    height: 30px;
+    border-radius: 5px;
+    font-size: 1.6rem;
+    letter-spacing: 0.3rem;
+    font-family: 'Roboto', sans-serif;
+    padding-left: 10px;
+    margin-left: 0px;
+  }
+  .gamelink {
+    width: 50%;
+  }
+  .payInfo {
+    width: 50%;
+  }
+  .discountNo h3, .discountBottom h3, .cardInfo h3 {
+    font-size: 14px;
+  }
+  .cardInfo div {
+    margin-bottom: 10px;
+  }
+  #cardName label {
+    margin-right: 45px;
+  }
+  #cardNo label {
+    margin-right: 87px;
+  }
+  #cardExp label {
+    margin-right: 59px;
+  }
+  #cardExp span {
+    font-size: 1.6rem;
+    letter-spacing: 0.3rem;
+    font-family: 'Roboto', sans-serif;
+    margin: 0px 3px;
+  }
+  #cardSafeNo label {
+    margin-right: 73px;
+  }
+  .ListTotal {
+    width: 80%;
+    margin: 50px auto;
+  }
+  .ListTotal h2 {
+    font-size: 16px;
+  }
+  #line {
+    width: 50%;
+  }
+  .orderbtn {
+    width: 70%;
+  }
+  .orderbtn div {
+    font-size: 16px;
+    width: 90px;
+    height: 35px;
+    border-radius: 5px;
+  }
+  .orderbtn div a {
+    font-size: 16px;
+  }
+  .modalContent {
+    left: 0vw;
+  }
+  .orderList {
+    width: 80%;
+  }
+  .listInfo {
+    width: 100%;
+  }
+  .checkInfo {
+    margin: 20px auto;
+  }
+  .checkInfo div {
+    margin: 5px 0;
+  }
+  .modalLine {
+    width: 60%;
+  }
+  .amount div h4 {
+    font-size: 16px;
+  }
+  #voucher_no {
+    margin: 0 10px 0 20px;
+  }
+}
+
+@media screen and (min-width: 326px) and (max-width: 575px) {
+  .ProgressBar {
+    margin: 40px auto;
+    width: 80%;
+  }
+  .ProgressBar h3 {
+    font-size: 12px;
+  }
+  .StepCircle {
+    width: 80px;
+    height: 80px;
+  }
+  .Circle1::after {
+    height: 8px;
+    top: 40px;
+  }
+  .InfoDetail {
+    width: 80%;
+    margin: 50px auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .memImage, .name {
+    display: none;
+  }
+  .rwdInfoDetail {
+    width: 50%;
+    margin: 50px auto;
+    text-align: center;
+  }
+  .rwdmemImage {
+    width: 37%;
+    overflow: hidden;
+    margin: 20px auto;
+  }
+  .rwdorderInfo {
+    width: 100%;
+  }
+  #memName {
+    font-size: 3.5rem;
+    letter-spacing: 1.5rem;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+  }
+  .orderInfo {
+    width: 100%;
+  }
+  .orderInfo div h3 {
+    font-size: 16px;
+  }
+  .orderInfo div h3 img {
+    width: 4%;
+  }
+  .infomsg {
+    display: block;
+  }
+  #msg {
+    width: 100%;
+    margin: 10px 0px 0px 27px;
+  }
+  #memPhone {
+    width: 55%;
+    margin-left: 30px;
+  }
+  .discountTop {
+    display: block;
+  }
+  .discountNo {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+  }
+  .discountNo select {
+    width: 80%;
+    height: 30px;
+    border-radius: 5px;
+    font-size: 1.6rem;
+    letter-spacing: 0.3rem;
+    font-family: 'Roboto', sans-serif;
+    padding-left: 10px;
+    margin-left: 0px;
+  }
+  .discountNo h3, .discountBottom h3, .cardInfo h3 {
+    font-size: 1.6rem;
+    letter-spacing: 0.3rem;
+    font-family: 'Roboto', sans-serif;
+  }
+  .cardInfo div {
+    margin-bottom: 10px;
+  }
+  #cardName label {
+    margin-right: 40px;
+  }
+  #cardNo label {
+    margin-right: 97px;
+  }
+  #cardExp label {
+    margin-right: 56px;
+  }
+  #cardExp span {
+    font-size: 1.6rem;
+    letter-spacing: 0.3rem;
+    font-family: 'Roboto', sans-serif;
+    margin: 0px 3px;
+  }
+  #cardSafeNo {
+    margin-bottom: 50px;
+  }
+  #cardSafeNo label {
+    margin-right: 77px;
+  }
+  .ListTotal {
+    width: 80%;
+    margin: 50px auto;
+  }
+  .ListTotal h2 {
+    font-size: 18px;
+  }
+  .orderbtn div {
+    font-size: 16px;
+    width: 90px;
+    height: 35px;
+    border-radius: 5px;
+  }
+  .orderbtn div a {
+    font-size: 16px;
+  }
+  .modalContent {
+    left: 0vw;
+  }
+  .orderList {
+    display: block;
+    width: 80%;
+  }
+  .listInfo {
+    width: 100%;
+  }
+  .checkInfo {
+    margin: 20px auto;
+  }
+  .checkInfo div {
+    margin: 5px 0;
+  }
+  .modalLine {
+    width: 60%;
+  }
+}
+
+@media screen and (min-width: 576px) and (max-width: 767px) {
+  .ProgressBar {
+    margin: 40px auto;
+    width: 80%;
+  }
+  .ProgressBar h3 {
+    font-size: 16px;
+  }
+  .StepCircle {
+    width: 100px;
+    height: 100px;
+  }
+  .Circle1::after {
+    height: 10px;
+    top: 45px;
+  }
+  .InfoDetail {
+    width: 80%;
+    margin: 50px auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .memImage, .name {
+    display: none;
+  }
+  .rwdInfoDetail {
+    width: 50%;
+    margin: 50px auto;
+    text-align: center;
+  }
+  .rwdmemImage {
+    width: 37%;
+    overflow: hidden;
+    margin: 20px auto;
+  }
+  .rwdorderInfo {
+    width: 100%;
+  }
+  #memName {
+    font-size: 3.5rem;
+    letter-spacing: 1.5rem;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+  }
+  .orderInfo {
+    width: 100%;
+  }
+  .orderInfo div h3 {
+    font-size: 18px;
+  }
+  .orderInfo div h3 img {
+    width: 4%;
+  }
+  #memPhone, #msg {
+    width: 60%;
+    margin: 0px 10px;
+  }
+  #memPhone {
+    margin-left: 30px;
+  }
+  .discountTop {
+    display: block;
+  }
+  .discountNo {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+  }
+  .discountNo select {
+    width: 80%;
+    height: 30px;
+    border-radius: 5px;
+    font-size: 1.8rem;
+    letter-spacing: 0.5rem;
+    font-family: 'Roboto', sans-serif;
+    padding-left: 10px;
+    margin-left: 0px;
+  }
+  .discountNo h3, .discountBottom h3, .cardInfo h3 {
+    font-size: 1.8rem;
+    letter-spacing: 0.5rem;
+    font-family: 'Roboto', sans-serif;
+  }
+  .cardInfo div {
+    margin-bottom: 10px;
+  }
+  #cardName label {
+    margin-right: 40px;
+  }
+  #cardNo label {
+    margin-right: 107px;
+  }
+  #cardExp label {
+    margin-right: 59px;
+  }
+  #cardExp span {
+    font-size: 1.8rem;
+    letter-spacing: 0.5rem;
+    font-family: 'Roboto', sans-serif;
+    margin: 0px 3px;
+  }
+  #cardSafeNo {
+    margin-bottom: 50px;
+  }
+  #cardSafeNo label {
+    margin-right: 85px;
+  }
+  .ListTotal {
+    width: 80%;
+    margin: 50px auto;
+  }
+  .ListTotal h2 {
+    font-size: 21px;
+  }
+  .orderbtn div {
+    font-size: 18px;
+    width: 90px;
+    height: 35px;
+    border-radius: 5px;
+  }
+  .orderbtn div a {
+    font-size: 18px;
+  }
+  .modalContent {
+    left: 11vw;
+  }
+  .modalimg, .modalname {
+    display: none;
+  }
+  .orderList {
+    display: block;
+    width: 80%;
+  }
+  .listInfo {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  .ProgressBar {
+    margin: 40px auto;
+    width: 80%;
+  }
+  .ProgressBar h3 {
+    font-size: 18px;
+  }
+  .StepCircle {
+    width: 100px;
+    height: 100px;
+  }
+  .Circle1::after {
+    height: 10px;
+    top: 45px;
+  }
+  .InfoDetail {
+    width: 80%;
+    margin: 50px auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .memImage, .name {
+    display: none;
+  }
+  .rwdInfoDetail {
+    width: 50%;
+    margin: 50px auto;
+    text-align: center;
+  }
+  .rwdmemImage {
+    width: 37%;
+    overflow: hidden;
+    margin: 20px auto;
+  }
+  .rwdorderInfo {
+    width: 100%;
+  }
+  #memName {
+    font-size: 3.5rem;
+    letter-spacing: 1.5rem;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+  }
+  .orderInfo {
+    width: 100%;
+  }
+  .orderInfo div h3 {
+    font-size: 21px;
+  }
+  .orderInfo div h3 img {
+    width: 4%;
+  }
+  #memPhone, #msg {
+    width: 60%;
+    margin: 0px 10px;
+  }
+  #memPhone {
+    margin-left: 40px;
+  }
+  .discountTop {
+    display: block;
+  }
+  .discountNo {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+  }
+  .discountNo select {
+    width: 80%;
+    height: 40px;
+    border-radius: 5px;
+    font-size: 2.1rem;
+    letter-spacing: 0.8rem;
+    font-family: 'Roboto', sans-serif;
+    padding-left: 10px;
+    margin-left: 0px;
+  }
+  .discountNo h3, .discountBottom h3, .cardInfo h3 {
+    font-size: 2.1rem;
+    letter-spacing: 0.8rem;
+    font-family: 'Roboto', sans-serif;
+  }
+  .cardInfo div {
+    margin-bottom: 10px;
+  }
+  #cardName label {
+    margin-right: 40px;
+  }
+  #cardNo label {
+    margin-right: 127px;
+  }
+  #cardExp label {
+    margin-right: 68px;
+  }
+  #cardExp span {
+    font-size: 2.1rem;
+    letter-spacing: 0.8rem;
+    font-family: 'Roboto', sans-serif;
+    margin: 0px 3px;
+  }
+  #cardSafeNo {
+    margin-bottom: 50px;
+  }
+  #cardSafeNo label {
+    margin-right: 99px;
+  }
+  .ListTotal {
+    width: 80%;
+    margin: 50px auto;
+  }
+  .ListTotal h2 {
+    font-size: 24px;
+  }
+  .orderbtn div {
+    font-size: 21px;
+    width: 130px;
+    height: 46px;
+    border-radius: 10px;
+  }
+  .orderbtn div a {
+    font-size: 21px;
+  }
+  .modalContent {
+    left: 20vw;
+  }
+  .orderList {
+    display: block;
+    width: 80%;
+  }
+  .listInfo {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+  .InfoDetail {
+    width: 80%;
+    margin: 50px auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .memImage, .name {
+    display: none;
+  }
+  .rwdInfoDetail {
+    width: 80%;
+    margin: 50px auto;
+    text-align: center;
+  }
+  .rwdmemImage {
+    width: 37%;
+    overflow: hidden;
+    margin: 20px auto;
+  }
+  .rwdorderInfo {
+    width: 100%;
+  }
+  #memName {
+    font-size: 3.5rem;
+    letter-spacing: 1.5rem;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+  }
+  .orderInfo {
+    width: 100%;
+  }
+  #memPhone, #msg {
+    width: 70%;
+    margin: 0px 10px;
+  }
+  #memPhone {
+    margin-left: 45px;
+  }
+  .modalContent {
+    left: 25vw;
+  }
+  .orderList {
+    display: block;
+    width: 80%;
+  }
+  .listInfo {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .rwdInfoDetail {
+    display: none;
+  }
+  .modalContent {
+    left: 30vw;
+  }
+}
+/*# sourceMappingURL=orderPaymentGroup2.css.map */

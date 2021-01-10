@@ -1,0 +1,896 @@
+@charset "UTF-8";
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+}
+
+:root {
+  font-size: 62.5%;
+  /* 設定 1rem: 16px * 62.5% = 10px */
+}
+
+body {
+  background-color: #E5E3DD;
+}
+
+.main {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.step_box {
+  width: 60%;
+  height: 135px;
+  margin: 0 auto;
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+
+.step_box .step_ball {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.step_box .step_ball > li {
+  width: 95px;
+  height: 95px;
+  border-radius: 50%;
+  background-color: #EFE7DA;
+  position: relative;
+}
+
+.step_box .step_ball > li img {
+  position: absolute;
+  transform: translate(50%, -50%);
+  top: 50%;
+  right: 50%;
+}
+
+.step_box .step_ball > li h5 {
+  font-size: 1.8rem;
+  letter-spacing: 0.5rem;
+  font-family: 'Roboto', sans-serif;
+  color: #B3925B;
+  letter-spacing: 0px;
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  top: 120%;
+}
+
+.step_box .step_ball > li:first-child {
+  background-color: #B3925B;
+}
+
+.step_box .step_ball > li::before {
+  content: "";
+  position: absolute;
+  width: 400%;
+  height: 5px;
+  background-color: #EFE7DA;
+  left: 50px;
+  top: 50%;
+  z-index: -1;
+}
+
+.step_box .step_ball > li:last-child::before {
+  display: none;
+}
+
+.step_ball > li:nth-child(2) {
+  background-color: #B3925B;
+}
+
+.step_ball > li:nth-child(1)::before {
+  background-color: #B3925B;
+}
+
+.step_box .step_ball li:nth-child(2) {
+  font-weight: bold;
+}
+
+@media (min-width: 576px) and (max-width: 991px) {
+  .step_box {
+    height: 115px;
+  }
+  .step_box .step_ball > li {
+    width: 80px;
+    height: 80px;
+  }
+  .step_box .step_ball > li > h5 {
+    font-size: 1.6rem;
+    letter-spacing: 0.3rem;
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 0px;
+  }
+}
+
+@media (max-width: 575px) {
+  .step_box {
+    width: 70%;
+    height: 90px;
+  }
+  .step_box .step_ball > li {
+    width: 60px;
+    height: 60px;
+  }
+  .step_box .step_ball > li > h5 {
+    font-size: 1.2rem;
+    letter-spacing: 0.2rem;
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 0px;
+  }
+  .step_box .step_ball > li > img {
+    width: 40%;
+  }
+}
+
+.userinfo {
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  color: #707070;
+  margin: 55px auto;
+}
+
+.userpic {
+  max-width: 120px;
+  overflow: hidden;
+  margin-right: 50px;
+}
+
+.user {
+  width: 70%;
+  font-size: 1.8rem;
+  letter-spacing: 0.5rem;
+  font-family: 'Roboto', sans-serif;
+}
+
+.username {
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.userphone,
+.useradd,
+.usermsg {
+  width: 100%;
+  display: flex;
+  align-self: center;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.userphone div,
+.useradd div,
+.usermsg div {
+  display: flex;
+}
+
+.userphonetop,
+.useraddtop,
+.usermsgtop {
+  width: 40%;
+}
+
+.userphonetop img,
+.useraddtop img,
+.usermsgtop img {
+  margin-right: 20px;
+}
+
+.userphonetop div,
+.useraddtop div,
+.usermsgtop div {
+  align-self: center;
+}
+
+.userphonebottom,
+.useraddbottom,
+.usermsgbottom {
+  width: 60%;
+}
+
+@media screen and (max-width: 800px) {
+  .userinfo {
+    display: block;
+    width: 100%;
+  }
+  .userpic {
+    width: 30%;
+    margin: 0 auto;
+  }
+  .user {
+    width: 100%;
+  }
+  .username {
+    text-align: center;
+    margin-top: 10px;
+  }
+  .userphonetop img,
+  .useraddtop img,
+  .usermsgtop img {
+    margin-right: 15px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .user {
+    font-size: 1.4rem;
+    letter-spacing: 0.3rem;
+    font-family: 'Roboto', sans-serif;
+  }
+  .username {
+    font-size: 1.6rem;
+    letter-spacing: 0.3rem;
+    font-family: 'Roboto', sans-serif;
+  }
+  .userphonetop img,
+  .useraddtop img,
+  .usermsgtop img {
+    margin-right: 10px;
+  }
+}
+
+@media screen and (max-width: 376px) {
+  .userphone,
+  .useradd,
+  .usermsg {
+    display: block;
+  }
+  .userphonetop,
+  .useraddtop,
+  .usermsgtop,
+  .userphonebottom,
+  .useraddbottom,
+  .usermsgbottom {
+    width: 100%;
+    margin-top: 5px;
+  }
+}
+
+.discount {
+  width: 90%;
+  margin: 50px auto;
+  color: #707070;
+  border-top: 1px solid #707070;
+}
+
+.discounttop {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  font-size: 2.1rem;
+  letter-spacing: 0.8rem;
+  font-family: 'Roboto', sans-serif;
+}
+
+.discountbottom {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  font-size: 2.4rem;
+  letter-spacing: 1rem;
+  font-family: 'Roboto', sans-serif;
+}
+
+.discountno {
+  display: flex;
+  width: 70%;
+  align-items: center;
+}
+
+.discountno span {
+  margin-right: 10px;
+}
+
+.gamelink {
+  width: 30%;
+  max-width: 236px;
+}
+
+@media screen and (max-width: 880px) {
+  .discounttop {
+    display: block;
+    font-size: 1.8rem;
+    letter-spacing: 0.5rem;
+    font-family: 'Roboto', sans-serif;
+  }
+  .discountno,
+  .gamelink {
+    width: 100%;
+  }
+  .discountno {
+    font-size: 1.8rem;
+    letter-spacing: 0.5rem;
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 20px;
+  }
+  .discountbottom {
+    font-size: 1.8rem;
+    letter-spacing: 0.5rem;
+    font-family: 'Roboto', sans-serif;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .discounttop {
+    font-size: 1.6rem;
+    letter-spacing: 0.3rem;
+    font-family: 'Roboto', sans-serif;
+  }
+  .discountno {
+    width: 100%;
+    font-size: 1.4rem;
+    letter-spacing: 0.3rem;
+    font-family: 'Roboto', sans-serif;
+  }
+  .discountno span {
+    margin-right: 5px;
+    margin-left: 5px;
+  }
+  .gamelink {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 376px) {
+  .discountno {
+    display: block;
+  }
+  .discountno,
+  .gamelink {
+    margin: 0 auto;
+  }
+  .discountno div {
+    margin-top: 10px;
+  }
+}
+
+.creditcard {
+  width: 90%;
+  margin: 50px auto;
+  font-size: 2.1rem;
+  letter-spacing: 0.8rem;
+  font-family: 'Roboto', sans-serif;
+  color: #013B4F;
+  border-bottom: 1px solid #707070;
+}
+
+.cardimg {
+  width: 100%;
+  text-align: center;
+  margin: 50px 0px;
+}
+
+.cardname,
+.cardno,
+.cardexp,
+.cardsafeno {
+  width: 100%;
+  display: flex;
+}
+
+.cardname div,
+.cardno div,
+.cardexp div,
+.cardsafeno div {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  align-self: center;
+}
+
+.cardname div:first-child,
+.cardno div:first-child,
+.cardexp div:first-child,
+.cardsafeno div:first-child {
+  width: 40%;
+}
+
+.cardname div:last-child,
+.cardno div:last-child,
+.cardexp div:last-child,
+.cardsafeno div:last-child {
+  width: 60%;
+}
+
+.cardno div:last-child {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cardsafeno div:last-child {
+  display: flex;
+}
+
+@media screen and (max-width: 576px) {
+  .creditcard {
+    font-size: 1.8rem;
+    letter-spacing: 0.5rem;
+    font-family: 'Roboto', sans-serif;
+  }
+  .safeimg {
+    max-height: 30px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .creditcard {
+    font-size: 1.6rem;
+    letter-spacing: 0.3rem;
+    font-family: 'Roboto', sans-serif;
+  }
+  .cardname div:first-child,
+  .cardno div:first-child,
+  .cardexp div:first-child,
+  .cardsafeno div:first-child {
+    width: 45%;
+  }
+  .cardname div:last-child,
+  .cardno div:last-child,
+  .cardexp div:last-child,
+  .cardsafeno div:last-child {
+    width: 55%;
+  }
+}
+
+.money {
+  width: 80%;
+  margin: 100px auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.money div {
+  font-size: 24px;
+  font-weight: bold;
+  color: #013B4F;
+}
+
+@media screen and (max-width: 768px) {
+  div {
+    font-size: 21px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .money {
+    margin: 50px auto;
+  }
+}
+
+@media screen and (max-width: 376px) {
+  .money div {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 326px) {
+  .money div {
+    font-size: 16px;
+  }
+}
+
+.line {
+  width: 60%;
+}
+
+.line hr {
+  border: none;
+  border-bottom: 1px dashed #383232;
+}
+
+@media screen and (max-width: 576px) {
+  .line {
+    width: 40%;
+  }
+}
+
+.bottombutton {
+  width: 50%;
+  margin: 50px auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.bottombutton .back,
+.bottombutton .go {
+  background-color: #B3925B;
+  font-size: 1.8rem;
+  letter-spacing: 0.5rem;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  padding: 8px;
+  border-radius: 5px;
+  border: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+}
+
+.bottombutton .back:hover,
+.bottombutton .go:hover {
+  opacity: 0.7;
+  transition: 0.2s ease-in-out;
+}
+
+@media screen and (max-width: 576px) {
+  .bottombutton {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 376px) {
+  .bottombutton .back,
+  .bottombutton .go {
+    background-color: #B3925B;
+    font-size: 1.6rem;
+    letter-spacing: 0.3rem;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    padding: 8px;
+    color: white;
+    border-radius: 5px;
+    border: none;
+  }
+  .bottombutton .back:hover,
+  .bottombutton .go:hover {
+    opacity: 0.7;
+    transition: 0.2s ease-in-out;
+  }
+}
+
+@media screen and (max-width: 326px) {
+  .bottombutton {
+    width: 100%;
+  }
+}
+
+.orderModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 1s;
+  background-color: rgba(65, 62, 62, 0.5);
+  width: 100%;
+  height: 100%;
+}
+
+.modalContent {
+  height: 90vh;
+  width: 90%;
+  max-width: 600px;
+  margin: 2% auto;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 0 5px #ddd;
+}
+
+.orderModal.-on {
+  opacity: 1;
+  z-index: 999;
+}
+
+.orderModal.-opacity-zero {
+  opacity: 0;
+}
+
+.close {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+.close:hover {
+  cursor: pointer;
+}
+
+.Top {
+  display: flex;
+  position: relative;
+  justify-content: center;
+}
+
+.Top h5 {
+  font-size: 1.8rem;
+  letter-spacing: 0.5rem;
+  font-family: 'Roboto', sans-serif;
+  margin-top: 20px;
+}
+
+.orderList {
+  width: 100%;
+  height: 80vh;
+  margin: auto;
+  overflow-y: auto;
+}
+
+.orderList::-webkit-scrollbar {
+  width: 10px;
+  background-color: #fff;
+}
+
+.orderList::-webkit-scrollbar-thumb {
+  background-color: #013B4F;
+  border-radius: 10px;
+  height: 10px;
+}
+
+.orderList::-webkit-scrollbar-track {
+  margin-left: 10px;
+  border-radius: 10px;
+}
+
+.listInfo {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.Modal_group_order_done_drinklist {
+  margin: 10px 0;
+}
+
+.Modal_group_order_done_person {
+  border-bottom: 2px solid #c0bfbf;
+}
+
+.Modal_group_order_done_person > div {
+  margin: 10px 0;
+}
+
+.Modal_group_order_done_person_upbox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Modal_group_order_done_person_infobox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Modal_group_order_done_person_img {
+  width: 60px;
+  font-size: 0;
+  margin-right: 20px;
+}
+
+.Modal_group_order_done_person_name {
+  font-size: 16px;
+  color: #013B4F;
+  font-weight: bold;
+}
+
+.Modal_group_order_done_person_total {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  color: #013B4F;
+  font-weight: bold;
+}
+
+.Modal_group_order_done_person_total div:first-child {
+  margin-right: 20px;
+}
+
+.Modal_group_order_done_person_drink {
+  background-color: #cecece;
+  padding: 5px 2.5%;
+  margin: 10px 0;
+  font-size: 14px;
+  letter-spacing: 2px;
+}
+
+.Modal_group_order_done_person_drink div {
+  margin: 10px 0;
+}
+
+.Modal_group_order_done_person_drink div:first-child {
+  font-weight: bold;
+}
+
+@media (min-width: 576px) {
+  .Modal_group_order_done_person_name,
+  .Modal_group_order_done_person_total {
+    font-size: 21px;
+  }
+}
+
+@media (min-width: 768px) {
+  .Modal_group_order_done_row {
+    width: 33.3%;
+  }
+  .Modal_group_order_done_person_drink,
+  .Modal_group_order_done_total,
+  .Modal_group_order_done_dis {
+    font-size: 16px;
+  }
+}
+
+.modalinfo {
+  width: 90%;
+  margin: 35px auto;
+  font-size: 1.6rem;
+  letter-spacing: 0.3rem;
+  font-family: 'Roboto', sans-serif;
+  color: #707070;
+}
+
+.modalcard,
+.modaladd,
+.modaldis,
+.modalcount {
+  width: 90%;
+  margin: 20px auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.modalcard div:first-child,
+.modaladd div:first-child,
+.modaldis div:first-child,
+.modalcount div:first-child {
+  width: 40%;
+}
+
+.modalcard div:last-child,
+.modaladd div:last-child,
+.modaldis div:last-child,
+.modalcount div:last-child {
+  width: 60%;
+}
+
+.modalcount div:last-child {
+  text-align: right;
+}
+
+@media screen and (max-width: 768px) {
+  .modalinfo {
+    font-size: 1.4rem;
+    letter-spacing: 0.3rem;
+    font-family: 'Roboto', sans-serif;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .modalinfo {
+    width: 90%;
+  }
+  .modalcard,
+  .modaladd,
+  .modaldis {
+    display: block;
+  }
+  .modalcard div,
+  .modaladd div,
+  .modaldis div {
+    margin-top: 5px;
+  }
+  .modalcard div:first-child,
+  .modaladd div:first-child,
+  .modaldis div:first-child {
+    width: 100%;
+  }
+  .modalcard div:last-child,
+  .modaladd div:last-child,
+  .modaldis div:last-child {
+    width: 100%;
+  }
+}
+
+.modalmoney {
+  width: 80%;
+  margin: 20px auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.modalmoney div {
+  font-size: 21px;
+  font-weight: bold;
+  color: #013B4F;
+}
+
+.modalline {
+  width: 60%;
+}
+
+.modalline hr {
+  border: none;
+  border-bottom: 1px dashed #383232;
+}
+
+@media screen and (max-width: 577px) {
+  .modalmoney div {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .modalline {
+    width: 40%;
+  }
+}
+
+.modalbtn {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.modalbtn input {
+  background-color: #013B4F;
+  color: #fff;
+  width: 120px;
+  height: 40px;
+  font-size: 1.4rem;
+  letter-spacing: 0.3rem;
+  font-family: 'Roboto', sans-serif;
+  border-style: none;
+  border-radius: 5px;
+}
+
+.modalbtn input:hover {
+  cursor: pointer;
+}
+/*# sourceMappingURL=orderPayment2.css.map */

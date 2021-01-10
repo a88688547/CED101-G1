@@ -1,3 +1,18 @@
+<?php
+try {
+	require_once("./php/connect_join_database.php");
+	$sql = "select * from group_ord where group_ord_no = ?";
+	$group_ord = $pdo->prepare($sql);
+	$group_ord->bindValue(1, $_GET["group_ord_no"]);
+  $group_ord->execute();
+  $group_ord_Row = $group_ord->fetch(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+	echo "錯誤原因 : ", $e->getMessage(), "<br>";
+	echo "錯誤行號 : ", $e->getLine(), "<br>";
+  // echo "系統錯誤, 請通知系統維護人員<br>";
+  
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -81,25 +96,23 @@
           <ul>
             <li>
               <div>團名</div>
-              <div>Tibame前端班喝起來~</div>
+              <div><?=$group_ord_Row["group_name"]?></div>
             </li>
             <li>
               <div>截單時間</div>
-              <!-- 不知道用哪個input -->
-              <div>2020-11-22 15:00</div>
+              <div><?=$group_ord_Row["deadline_time"]?></div>
             </li>
             <li>
               <div>預計送達時間</div>
-              <!-- 不知道用哪個input -->
-              <div>2020-11-22 15:30</div>
+              <div><?=$group_ord_Row["arrive_time"]?></div>
             </li>
             <li>
               <div>目標杯數</div>
-              <div>滿20杯，打九折</div>
+              <div><?=$group_ord_Row["goal_cup"]?></div>
             </li>
             <li>
               <div>取貨地點</div>
-              <div>桃園市中壢區復興路46號9樓</div>
+              <div><?=$group_ord_Row["group_adress"]?></div>
             </li>
           </ul>
         </div>
@@ -205,14 +218,16 @@
     </div>
 
     <!-- ==============footer================= -->
-    <script>
-      $(document).ready(function () {
-        $(".close_btn").click(function () {
-          $(".fist_QR").hide();
-        });
-      });
-    </script>
+   
     <footer id="footer"><my-footer></my-footer></footer>
+    <script>
+
+        $(document).ready(function () {
+          $(".close_btn").click(function () {
+            $(".fist_QR").hide();
+          });
+        });
+    </script>
     <script src="./layout/header.vue"></script>
     <script src="./layout/footer.vue"></script>
   </body>

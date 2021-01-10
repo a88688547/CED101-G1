@@ -1,0 +1,1069 @@
+@charset "UTF-8";
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+}
+
+:root {
+  font-size: 62.5%;
+  /* 設定 1rem: 16px * 62.5% = 10px */
+}
+
+body {
+  background-color: #E5E3DD;
+}
+
+.main {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.info {
+  width: 100%;
+  display: flex;
+  font-size: 2.4rem;
+  letter-spacing: 1rem;
+  font-family: 'Roboto', sans-serif;
+  margin: 55px auto;
+  align-items: center;
+  align-self: center;
+  justify-content: center;
+}
+
+.info div {
+  align-self: center;
+}
+
+.info_name {
+  color: #013B4F;
+}
+
+.info_phone,
+.info_phone_top,
+.info_msg,
+.info_msg_top {
+  display: flex;
+}
+
+.info_img {
+  max-width: 120px;
+  overflow: hidden;
+  margin-right: 50px;
+}
+
+.info_detail {
+  width: 60%;
+  color: #707070;
+  font-size: 1.8rem;
+  letter-spacing: 0.5rem;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+}
+
+.info_detail div {
+  margin-top: 15px;
+}
+
+.info_phone_top,
+.info_msg_top {
+  width: 40%;
+}
+
+.info_phone_top div :first-child,
+.info_msg_top div :first-child {
+  margin-right: 20px;
+}
+
+.info_phone_bottom,
+.info_msg_bottom {
+  width: 60%;
+}
+
+.discount {
+  margin: 80px auto;
+  width: 90%;
+  font-size: 2.1rem;
+  letter-spacing: 0.8rem;
+  font-family: 'Roboto', sans-serif;
+  letter-spacing: 2px;
+  color: #013B4F;
+}
+
+.discountTop {
+  width: 70%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 50px;
+}
+
+.discountNo {
+  width: 50%;
+  display: flex;
+  align-items: center;
+}
+
+.discountNo h3 {
+  color: #707070;
+}
+
+.discountNo select {
+  width: 50%;
+  height: 50px;
+  border: 1px solid #707070;
+  border-radius: 10px;
+  font-size: 2.1rem;
+  letter-spacing: 0.8rem;
+  font-family: 'Roboto', sans-serif;
+  color: #707070;
+  padding-left: 20px;
+  margin-left: 80px;
+}
+
+.gamelink {
+  width: 28%;
+  height: 50px;
+  overflow: hidden;
+  text-align: right;
+}
+
+.discountBottom {
+  margin: 0 auto;
+  width: 70%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.discountBottom h3 {
+  font-size: 2.4rem;
+  letter-spacing: 1rem;
+  font-family: 'Roboto', sans-serif;
+  color: #707070;
+}
+
+.disTotal h3 {
+  font-size: 2.4rem;
+  letter-spacing: 1rem;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+}
+
+.card {
+  width: 100%;
+  font-size: 2.4rem;
+  letter-spacing: 1rem;
+  font-family: 'Roboto', sans-serif;
+  color: #707070;
+}
+
+.cardimg {
+  text-align: center;
+  margin: 70px 0 30px;
+}
+
+.cardinfo {
+  font-size: 2.1rem;
+  letter-spacing: 0.8rem;
+  font-family: 'Roboto', sans-serif;
+  letter-spacing: 2px;
+  color: #013B4F;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  margin-bottom: 70px;
+}
+
+.cardinfo div {
+  display: flex;
+  margin-top: 10px;
+}
+
+.cardinfo div :first-child {
+  width: 30%;
+}
+
+.cardinfo div :last-child {
+  width: 50%;
+}
+
+.cardimg_safeno {
+  width: 80%;
+  margin: 20px auto;
+}
+
+.cardimg_safeno img {
+  max-width: 10%;
+}
+
+.ListTotal {
+  width: 70%;
+  margin: 100px auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ListTotal h2 {
+  font-size: 2.4rem;
+  letter-spacing: 1rem;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+#line {
+  width: 70%;
+}
+
+#line hr {
+  border-style: none;
+  border-bottom: 1px dashed #013B4F;
+}
+
+.orderModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 1s;
+  background-color: rgba(65, 62, 62, 0.5);
+  width: 100%;
+  height: 100%;
+}
+
+.orderModal hr {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.modalContent {
+  height: 90vh;
+  width: 90%;
+  max-width: 600px;
+  margin: 2% auto;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 0 5px #ddd;
+}
+
+.orderModal.-on {
+  opacity: 1;
+  z-index: 999;
+}
+
+.orderModal.-opacity-zero {
+  opacity: 0;
+}
+
+.close {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+.close:hover {
+  cursor: pointer;
+}
+
+.Top {
+  display: flex;
+  position: relative;
+  justify-content: center;
+}
+
+.Top h5 {
+  font-size: 18px;
+  letter-spacing: 5px;
+  margin-top: 20px;
+}
+
+.orderList {
+  width: 100%;
+  height: 80vh;
+  margin: auto;
+  overflow-y: auto;
+}
+
+.orderList::-webkit-scrollbar {
+  width: 10px;
+  background-color: #fff;
+}
+
+.orderList::-webkit-scrollbar-thumb {
+  background-color: #013B4F;
+  border-radius: 10px;
+  height: 10px;
+}
+
+.orderList::-webkit-scrollbar-track {
+  margin-left: 10px;
+  border-radius: 10px;
+}
+
+.listInfo {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.Modal_group_order_done_drinklist {
+  margin: 10px 0;
+}
+
+.Modal_group_order_done_person {
+  border-bottom: 2px solid #c0bfbf;
+}
+
+.Modal_group_order_done_person > div {
+  margin: 10px 0;
+}
+
+.Modal_group_order_done_person_upbox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Modal_group_order_done_person_infobox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Modal_group_order_done_person_img {
+  width: 60px;
+  font-size: 0;
+  margin-right: 20px;
+}
+
+.Modal_group_order_done_person_name {
+  font-size: 16px;
+  color: #013B4F;
+  font-weight: bold;
+}
+
+.Modal_group_order_done_person_total {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  color: #013B4F;
+  font-weight: bold;
+}
+
+.Modal_group_order_done_person_total div:first-child {
+  margin-right: 20px;
+}
+
+.Modal_group_order_done_person_drink {
+  background-color: #cecece;
+  padding: 5px 2.5%;
+  margin: 10px 0;
+  font-size: 14px;
+  letter-spacing: 2px;
+}
+
+.Modal_group_order_done_person_drink div {
+  margin: 10px 0;
+}
+
+.Modal_group_order_done_person_drink div:first-child {
+  font-weight: bold;
+}
+
+.checkInfo {
+  width: 80%;
+  margin: 25px auto;
+}
+
+.checkInfo div {
+  width: 100%;
+  margin: 10px 0;
+  display: flex;
+}
+
+.checkInfo h3 {
+  font-size: 16px;
+  color: #707070;
+}
+
+.modiscount {
+  margin: 20px auto;
+  width: 90%;
+}
+
+.modiscount h3 {
+  font-size: 16px;
+}
+
+.modiscountTop {
+  width: 100%;
+  display: flex;
+  margin: 10px auto;
+}
+
+.modiscountNo {
+  width: 90%;
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.modiscountNo h3 {
+  color: #707070;
+}
+
+.monumber {
+  font-size: 14px;
+  color: #707070;
+  font-weight: bold;
+}
+
+#voucher_no {
+  margin: 0 20px 0 30px;
+}
+
+.modiscountBottom {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  margin: 10px auto;
+}
+
+.modiscountBottom h3 {
+  color: #707070;
+}
+
+.amount {
+  display: flex;
+  width: 80%;
+  margin: 25px auto;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.amount h4 {
+  color: #013B4F;
+  font-size: 21px;
+  font-weight: bold;
+}
+
+.modalLine {
+  width: 60%;
+}
+
+.modalLine hr {
+  border-style: none;
+  border-bottom: 1px dashed #013B4F;
+}
+
+.sendbtn {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.sendbtn input[type="button"] {
+  background-color: #013B4F;
+  color: #fff;
+  width: 120px;
+  height: 40px;
+  font-size: 1.4rem;
+  letter-spacing: 0.3rem;
+  font-family: 'Roboto', sans-serif;
+  border-style: none;
+  border-radius: 5px;
+}
+
+.sendbtn input[type="button"]:hover {
+  cursor: pointer;
+}
+
+@media (min-width: 576px) {
+  .Modal_group_order_done_person_name,
+  .Modal_group_order_done_person_total {
+    font-size: 21px;
+  }
+}
+
+@media (min-width: 768px) {
+  .Modal_group_order_done_row {
+    width: 33.3%;
+  }
+  .Modal_group_order_done_person_drink,
+  .Modal_group_order_done_total,
+  .Modal_group_order_done_dis {
+    font-size: 16px;
+  }
+}
+
+.Modal_group_order_done_person_drink {
+  background-color: #cecece;
+  padding: 5px 2.5%;
+  margin: 10px 0;
+  font-size: 14px;
+  letter-spacing: 2px;
+  position: relative;
+}
+
+.Modal_group_order_done_person_drink .order_delete_btn {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-right: 2.5%;
+  border-radius: 5px;
+  border: 1px solid black;
+  cursor: pointer;
+  outline: none;
+}
+
+@media screen and (max-width: 325px) {
+  .info {
+    display: block;
+    margin-top: 0;
+  }
+  .info_img {
+    width: 50%;
+    max-width: 60px;
+    margin: 0 auto;
+  }
+  .info_detail {
+    width: 80%;
+    margin: 0 auto;
+    font-size: 12px;
+  }
+  .info_detail div {
+    margin: 5px 0px;
+  }
+  .info_name {
+    text-align: center;
+    font-size: 14px;
+  }
+  .info_phone div :first-child,
+  .info_msg div :first-child {
+    max-width: 20px;
+    margin-right: 10px;
+  }
+  .info_phone_top div :last-child,
+  .info_msg_top div :last-child {
+    width: 40%;
+  }
+  .info_phone_bottom,
+  .info_msg_bottom {
+    width: 60%;
+  }
+  .discount {
+    margin-top: 40px;
+  }
+  .discountTop {
+    display: block;
+    margin-bottom: 10px;
+  }
+  .gamelink {
+    width: 50%;
+    margin-top: 10px;
+  }
+  .cardimg {
+    width: 40%;
+    margin: 0 auto;
+  }
+  .cardinfo {
+    font-size: 14px;
+  }
+  .cardimg_safeno {
+    max-width: 50px;
+  }
+  .discountNo h3,
+  .discountBottom h3 {
+    font-size: 14px;
+  }
+  .ListTotal {
+    width: 80%;
+    margin: 50px auto;
+  }
+  .ListTotal h2 {
+    font-size: 16px;
+  }
+  #line {
+    width: 50%;
+  }
+  .orderList {
+    width: 80%;
+    padding-right: 10px;
+  }
+  .listInfo {
+    width: 100%;
+  }
+  .checkInfo {
+    width: 100%;
+    margin: 20px auto;
+  }
+  .checkInfo div {
+    margin: 5px 0;
+  }
+  .modalLine {
+    width: 40%;
+  }
+  .modiscount {
+    width: 100%;
+    margin: 0;
+  }
+  .modiscountNo,
+  .modiscountBottom {
+    width: 100%;
+  }
+  .amount div h4 {
+    font-size: 16px;
+  }
+  #voucher_no {
+    margin: 0 10px 0 20px;
+  }
+}
+
+@media screen and (min-width: 326px) and (max-width: 575px) {
+  .info {
+    display: block;
+    margin-top: 0;
+  }
+  .info_img {
+    width: 50%;
+    max-width: 120px;
+    margin: 0 auto;
+  }
+  .info_detail {
+    width: 80%;
+    margin: 0 auto;
+    font-size: 14px;
+  }
+  .info_detail div {
+    margin: 10px 0px;
+  }
+  .info_name {
+    text-align: center;
+    font-size: 14px;
+  }
+  .info_phone div :first-child,
+  .info_msg div :first-child {
+    max-width: 50px;
+    margin-right: 10px;
+  }
+  .info_phone_top div :last-child,
+  .info_msg_top div :last-child {
+    width: 40%;
+  }
+  .info_phone_bottom,
+  .info_msg_bottom {
+    width: 60%;
+  }
+  .cardinfo {
+    font-size: 14px;
+  }
+  .discountTop {
+    display: block;
+  }
+  .discountNo {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+  }
+  .discountNo select {
+    width: 80%;
+    height: 30px;
+    border-radius: 5px;
+    font-size: 1.6rem;
+    letter-spacing: 0.3rem;
+    font-family: 'Roboto', sans-serif;
+    padding-left: 10px;
+    margin-left: 0px;
+  }
+  .discountNo h3,
+  .discountBottom h3 {
+    font-size: 1.6rem;
+    letter-spacing: 0.3rem;
+    font-family: 'Roboto', sans-serif;
+  }
+  .ListTotal {
+    width: 80%;
+    margin: 50px auto;
+  }
+  .ListTotal h2 {
+    font-size: 18px;
+  }
+  .orderList {
+    width: 80%;
+    padding-right: 10px;
+  }
+  .listInfo {
+    width: 100%;
+  }
+  .checkInfo {
+    width: 100%;
+    margin: 20px auto;
+  }
+  .checkInfo div {
+    margin: 5px 0;
+  }
+  .modalLine {
+    width: 40%;
+  }
+  .modiscount {
+    width: 100%;
+    margin: 0;
+  }
+  .modiscountNo,
+  .modiscountBottom {
+    width: 100%;
+  }
+  .amount div h4 {
+    font-size: 16px;
+  }
+}
+
+@media screen and (min-width: 576px) and (max-width: 767px) {
+  .ProgressBar {
+    margin: 40px auto;
+    width: 80%;
+  }
+  .ProgressBar h3 {
+    font-size: 1.6rem;
+    letter-spacing: 0.3rem;
+    font-family: 'Roboto', sans-serif;
+  }
+  .StepCircle {
+    width: 100px;
+    height: 100px;
+  }
+  .Circle1::after {
+    height: 10px;
+    top: 45px;
+  }
+  .discountTop {
+    display: block;
+  }
+  .discountNo {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+  }
+  .discountNo select {
+    width: 80%;
+    height: 30px;
+    border-radius: 5px;
+    font-size: 1.8rem;
+    letter-spacing: 0.5rem;
+    font-family: 'Roboto', sans-serif;
+    padding-left: 10px;
+    margin-left: 0px;
+  }
+  .discountNo h3,
+  .discountBottom h3 {
+    font-size: 1.8rem;
+    letter-spacing: 0.5rem;
+    font-family: 'Roboto', sans-serif;
+  }
+  .info {
+    display: block;
+    margin-top: 0;
+  }
+  .info_img {
+    width: 50%;
+    max-width: 120px;
+    margin: 0 auto;
+  }
+  .info_detail {
+    width: 80%;
+    margin: 0 auto;
+    font-size: 18px;
+  }
+  .info_detail div {
+    margin: 10px 0px;
+  }
+  .info_name {
+    text-align: center;
+    font-size: 18px;
+  }
+  .info_phone div :first-child,
+  .info_msg div :first-child {
+    max-width: 50px;
+    margin-right: 10px;
+  }
+  .info_phone_top div :last-child,
+  .info_msg_top div :last-child {
+    width: 40%;
+  }
+  .info_phone_bottom,
+  .info_msg_bottom {
+    width: 60%;
+  }
+  .cardinfo {
+    font-size: 18px;
+  }
+  .ListTotal {
+    width: 80%;
+    margin: 50px auto;
+  }
+  .ListTotal h2 {
+    font-size: 2.1rem;
+    letter-spacing: 0.8rem;
+    font-family: 'Roboto', sans-serif;
+  }
+  .orderList {
+    display: block;
+    width: 80%;
+    padding-right: 10px;
+  }
+  .listInfo {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  .ProgressBar {
+    margin: 40px auto;
+    width: 80%;
+  }
+  .ProgressBar h3 {
+    font-size: 2.4rem;
+    letter-spacing: 1rem;
+    font-family: 'Roboto', sans-serif;
+  }
+  .StepCircle {
+    width: 100px;
+    height: 100px;
+  }
+  .Circle1::after {
+    height: 10px;
+    top: 45px;
+  }
+  .discountTop {
+    display: block;
+  }
+  .discountNo {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+  }
+  .discountNo select {
+    width: 80%;
+    height: 40px;
+    border-radius: 5px;
+    font-size: 2.1rem;
+    letter-spacing: 0.8rem;
+    font-family: 'Roboto', sans-serif;
+    padding-left: 10px;
+    margin-left: 0px;
+  }
+  .discountNo h3,
+  .discountBottom h3 {
+    font-size: 2.1rem;
+    letter-spacing: 0.8rem;
+    font-family: 'Roboto', sans-serif;
+  }
+  .ListTotal {
+    width: 80%;
+    margin: 50px auto;
+  }
+  .ListTotal h2 {
+    font-size: 24px;
+  }
+  .orderList {
+    display: block;
+    width: 80%;
+  }
+  .listInfo {
+    width: 100%;
+    padding-right: 10px;
+  }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+  .orderList {
+    display: block;
+    width: 80%;
+  }
+  .listInfo {
+    width: 100%;
+    padding-right: 10px;
+  }
+}
+
+.step_box {
+  width: 80%;
+  height: 135px;
+  margin: 0 auto;
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+
+.step_box .step_ball {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.step_box .step_ball > li {
+  width: 95px;
+  height: 95px;
+  border-radius: 50%;
+  background-color: #EFE7DA;
+  position: relative;
+}
+
+.step_box .step_ball > li img {
+  position: absolute;
+  transform: translate(50%, -50%);
+  top: 50%;
+  right: 50%;
+}
+
+.step_box .step_ball > li h5 {
+  font-size: 1.8rem;
+  letter-spacing: 0.5rem;
+  font-family: 'Roboto', sans-serif;
+  color: #B3925B;
+  letter-spacing: 0px;
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  top: 120%;
+}
+
+.step_box .step_ball > li:first-child {
+  background-color: #B3925B;
+}
+
+.step_box .step_ball > li::before {
+  content: "";
+  position: absolute;
+  width: 345%;
+  height: 5px;
+  background-color: #EFE7DA;
+  left: 50px;
+  top: 50%;
+  z-index: -1;
+}
+
+.step_box .step_ball > li:last-child::before {
+  display: none;
+}
+
+.step_box .step_ball li:first-child {
+  font-weight: bold;
+}
+
+.step_ball > li:nth-child(2) {
+  background-color: #B3925B;
+}
+
+.step_ball > li:nth-child(1)::before {
+  background-color: #B3925B;
+}
+
+.step_box .step_ball li:nth-child(2) {
+  font-weight: bold;
+}
+
+.step_ball > li:nth-child(2), .step_ball > li:nth-child(3) {
+  background-color: #B3925B;
+}
+
+.step_ball > li:nth-child(1)::before, .step_ball > li:nth-child(2)::before {
+  background-color: #B3925B;
+}
+
+.step_box .step_ball li:nth-child(3) {
+  font-weight: bold;
+}
+
+@media (min-width: 576px) and (max-width: 991px) {
+  .step_box {
+    height: 115px;
+  }
+  .step_box .step_ball > li {
+    width: 80px;
+    height: 80px;
+  }
+  .step_box .step_ball > li > h5 {
+    font-size: 1.6rem;
+    letter-spacing: 0.3rem;
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 0px;
+  }
+}
+
+@media (max-width: 575px) {
+  .step_box {
+    height: 90px;
+  }
+  .step_box .step_ball > li {
+    width: 60px;
+    height: 60px;
+  }
+  .step_box .step_ball > li > h5 {
+    font-size: 1.2rem;
+    letter-spacing: 0.2rem;
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 0px;
+  }
+  .step_box .step_ball > li > img {
+    width: 40%;
+  }
+}
+/*# sourceMappingURL=join_step3B.css.map */

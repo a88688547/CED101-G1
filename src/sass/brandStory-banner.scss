@@ -1,0 +1,225 @@
+
+// 飲料杯------------------------------------
+img.caffeelatte{
+    position: absolute;
+    transform: translate(50%,-50%);
+    top: 53%;
+    right: 45%;
+    max-width: 100%;
+    // padding: 15vh;
+}
+
+// 圈圈文字-----------------------------------
+.circle{
+    width: 80%;
+    height: 390px;
+    position: absolute;
+    transform: translate(50%,-50%);
+    top: 53%;
+    right: 50%;
+    z-index: 1;
+    // border: 1px solid red;
+    img.mobile_text{
+      display: none;
+    }
+}
+
+.circle ul {
+    position: relative;
+    // border: 2px solid green;
+    height: 390px;
+}
+.circle ul > li{
+    @include H5;
+    letter-spacing: 2px;
+    line-height: 28px;
+    font-weight: bold;
+    border-radius: 50%;
+    background-color: rgba(251, 255, 255, 0.637);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+}
+
+li:first-child{
+    width: 9vw;
+    height: 9vw;
+    left: 20%;
+    animation: appear 2ss;
+}
+
+li:nth-child(2){
+    width: 11vw;
+    height: 11vw;
+    top: 35%;
+}
+
+li:nth-child(3){
+    width: 12vw;
+    height: 12vw;
+    left: 85%;
+    top: 30%;
+}
+// 圈圈文字下吉祥物---------------------------
+li>img{
+  position: absolute;
+  top: 110%;
+}
+
+// 水滴------------------------------------------
+.drop{
+  position: absolute;
+  transform: translate(50%,-50%);
+  top: 50%;
+  right: 50%;
+  width: 100%;
+  height: 100%;
+}
+
+.drop img{
+  position: absolute;
+  width: 5vw;
+  height: 5vw;
+  opacity: 0.8;
+  &:nth-child(1){
+    transform: scale(10);
+    // bottom:23vh;
+    right: -5vw;
+    animation: drop_biggest 4.5s infinite;
+  }
+
+  &:nth-child(2){
+    // transform: scale(5);
+    transform: translate(50%,-50%);
+    top: 10%;
+    right: 40%;
+    animation: drop_biggest 4.5s 3s infinite;
+  }
+
+  &:nth-child(3){
+    transform: scale(5);
+    bottom:30vh;
+    left:2.5%;
+    animation: drop_biggest 4.5s 2.2s infinite;
+  }
+}
+
+// 海洋---------------------------------------
+.ocean { 
+    height: 8%;
+    width:100%;
+    position:absolute;
+    bottom:0vh;
+    left:0;
+    // background: #015871;
+    // overflow: hidden;
+}
+
+.wave {
+    // background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/85486/wave.svg) repeat-x;
+    background: url(../../dist/Images/brandStory/banner_btm.svg) repeat-x;
+    position: absolute;
+    top: -198px;
+    width: 6400px;
+    height: 250px;
+    animation: wave 7s cubic-bezier( 0.36, 0.45, 0.63, 0.53) infinite;
+    transform: translate3d(0, 0, 0);
+  }
+  
+  .wave:nth-of-type(2) {
+    top: -175px;
+    animation: wave 7s cubic-bezier( 0.36, 0.45, 0.63, 0.53) -.125s infinite, swell 7s ease -1.25s infinite;
+    opacity: 1;
+  }
+  
+  @keyframes wave {
+    0% {
+      margin-left: 0;
+    }
+    100% {
+      margin-left: -1600px;
+    }
+  }
+  
+  @keyframes swell {
+    0%, 100% {
+      transform: translate3d(0,-25px,0);
+    }
+    50% {
+      transform: translate3d(0,5px,0);
+    }
+}
+
+// rwd----------------------------------------------------------------------------------------
+@media (min-width: 992px) and (max-width: 1199px){
+  .circle ul > li{
+    @include H6;
+    letter-spacing: 2px;
+    line-height: 24px;
+  }
+
+}
+
+@media (min-width: 767px) and (max-width: 991px){
+  .circle ul > li{
+    @include P2;
+    letter-spacing: 1px;
+    line-height: 21px;
+  }
+
+}
+
+@media (min-width: 576px) and (max-width: 767px){
+  .wave{
+    height: 300px;
+  }
+
+  .circle ul > li{
+    display: none;
+  }
+
+  .circle img.mobile_text{
+    display: block;
+    position: absolute;
+    transform: translate(50%,-50%);
+    top: -5%;
+    right: 20%;
+    width: 20vw;
+    height: 20vw;
+  }
+
+  img.caffeelatte{
+    width: 40%;
+    top: 55%;
+    right: 50%;
+  }
+}
+
+@media (max-width: 576px){
+  .wave{
+    height: 300px;
+  }
+
+  .circle ul > li{
+    display: none;
+  }
+
+  .circle img.mobile_text{
+    display: block;
+    position: absolute;
+    transform: translate(50%,-50%);
+    top: -5%;
+    right: 20%;
+    width: 120px;
+    height: 120px;
+  }
+
+  img.caffeelatte{
+    width: 55%;
+    top: 55%;
+    right: 50%;
+  }
+}
+
+

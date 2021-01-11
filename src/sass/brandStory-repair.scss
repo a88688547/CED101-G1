@@ -1,0 +1,244 @@
+@import "./base/base.scss";
+@import "./mixins/mixins.scss";
+// @import "./brandstory_rwd.scss";
+
+body{
+    margin: 0 auto;
+    color: $textColor;
+    div{
+        border: 2px solid green;
+    }
+}
+
+#header{
+    background-color: $mainBackgroundColor;
+    margin-bottom: 0;
+}
+
+
+// 第一屏--------------------------------------------------------
+section.banner{
+    width: 100%;
+    height: calc(100vh - 80px);
+    background-color: $mainBackgroundColor;
+    position: relative;
+    top:0;
+
+    img.wave{
+        max-width: 100%;
+        position: absolute;
+        bottom:0;
+    }
+}
+
+// 第二屏-品牌描述--------------------------------------------------
+section.story_descipt{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: $insideBackgroundColor;
+
+    .descript_block{
+        margin: 0 auto;
+        display: inline-flex;
+        // position: relative;
+
+        // 內容寬度邊界-----------------
+        width: 82%;
+        margin-bottom: 80vh;
+        justify-content: flex-end;
+        align-items: center;
+        justify-content: space-between;
+        // overflow: hidden;
+    }
+}
+
+.shape{
+    width:40vw;
+    height:40vw;
+    background: $textColor;
+    border-radius: 10% 45% 0% 45%;
+    overflow: hidden;
+    max-width: 100%;
+    position: relative;
+    right: 10vw;
+    img{
+        position: absolute;
+        transform: translate(50%,-50%);
+        top: 50%;
+        right: 50%;
+        padding: 50px;
+    }
+}
+
+// 2.文字內容--------------------
+.text_block{
+    display: flex;
+    flex-direction: row;
+
+    .text{
+        flex-direction: column;
+    }
+
+    .mascot{
+        display: flex;
+        align-items: flex-end;
+
+        img{
+            max-width: 100%;
+        }
+    }
+
+}
+
+// 文字區塊內部屬性--------------------
+.text{
+    h1{
+        font-size: 70px;
+        font-family: Adobe Caslon Pro;
+        font-style: italic;
+        font-weight: bold; 
+        letter-spacing: 5px;
+    }
+
+    h2{
+        @include H2;
+        margin: 40px 0 35px;
+        letter-spacing: 5px;
+        font-weight: bold; 
+    }
+
+    p{
+        @include H6;
+        line-height: 32px;
+        letter-spacing: 5px;
+    }
+}
+
+
+// 偶數反轉區塊定位------------------------------------------------
+.descript_block:nth-child(even){
+    flex-direction: row-reverse;
+
+    .shape{
+        background: #F7B447;
+        border-radius: 0% 45% 10% 45%;
+        right: -10vw;
+        img{
+            top: 62%;
+        }
+    }
+
+}
+
+@media (min-width: 762px) and (max-width: 1199px){
+    .text{
+        width: 41vw;
+    }
+}
+
+@media (min-width: 767px) and (max-width: 991px){
+    // 文字屬性-------------------------------
+    .text{
+        width: 49vw;
+        h1{
+            font-size: 48px;
+            letter-spacing: 3px;
+        }
+    
+        h2{
+            @include H3;
+            letter-spacing: 4px;
+            margin: 40px 0 25px;
+        }
+    
+        p{
+            @include P1;
+            line-height: 24px;
+            letter-spacing: 3px;
+        }
+    }
+    .text_block .mascot img {
+        width: 80%;
+    }
+
+    
+}
+
+@media (min-width: 576px) and (max-width: 766px){
+    section.story_descipt .descript_block{
+        width: 90%;
+    }
+
+    .text_block .mascot img {
+        width: 60%;
+    }
+    // 文字屬性-------------------------------
+    .text{
+        width: 55vw;
+        h1{
+            font-size: 35px;
+            letter-spacing: 3px;
+        }
+    
+        h2{
+            @include H4;
+            letter-spacing: 1px;
+            margin: 40px 0 25px;
+        }
+    
+        p{
+            @include P2;
+            line-height: 24px;
+            letter-spacing: 1px;
+        }
+    }
+}
+
+@media (max-width: 576px){
+    // 圖文上下排列----------------------------
+    section.story_descipt .descript_block {
+        flex-direction: column;
+        text-align: center;
+        margin-bottom: 20vw;
+    }
+    
+    // 形狀尺寸改變----------------------------
+    .shape{
+        width: 70vw;
+        height: 70vw;
+        right: 0;
+        margin-bottom: 35px;
+    }
+
+    .descript_block:nth-child(even) .shape{
+        right: 0;
+    }
+    // 文字屬性-------------------------------
+    .text_block .text{
+        width: 100%;
+        
+        h1{
+            font-size: 35px;
+            letter-spacing: 3px;
+        }
+    
+        h2{
+            @include H4;
+            margin: 30px 0 15px;
+        }
+    
+        p{
+            @include P2;
+            line-height: 24px;
+            letter-spacing: 1px;
+        }
+    }
+
+    // 吉祥物消失-----------------------------
+    .text_block .mascot img {
+        display: none;
+    }
+}
+
+

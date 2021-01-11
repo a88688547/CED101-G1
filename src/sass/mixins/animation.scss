@@ -1,0 +1,95 @@
+// banner動畫-------------------------
+@keyframes drop_biggest{
+    0%{ top:-5%; opacity: 0;}
+    70%{ opacity: 1;}
+    100%{ top: 150%; opacity: 0;}
+}
+
+@keyframes appear{
+    from{
+        bottom:-10%;
+        opacity: 0;
+    }
+
+    to{
+        bottom: 30%;
+        opacity: 1;
+    }
+
+}
+// 主頁動畫---------------------------
+@keyframes bubbletea{
+    from{
+        top:110%;
+        opacity: 0;
+    }
+
+    to{
+        // top: 70%;
+        opacity: 1;
+    }
+    // 0% { 
+    //     top:50%; opacity: 0;
+    //     transform: rotate(0deg);
+    // }
+    // 50%{ 
+    //     top:51%; opacity: 0.5;
+    //     transform: rotate(360deg);
+    // }
+    // 100%{
+    //     top:50%; opacity: 1; 
+    //     transform: rotate(360deg);
+    //     // top:30%; opacity: 5;
+    // }
+}
+
+@keyframes qr{
+    from{
+        top:110%;
+        opacity: 0;
+    }
+
+    to{
+        top: 70%;
+        opacity: 1;
+    }
+}
+
+@keyframes bubbletea_handle{
+    from{
+        right: 80%;
+        top:80%;
+        opacity: 0;
+    }
+
+    to{
+        right: 50%;
+        opacity: 1;
+    }
+}
+@keyframes mascot{
+    from{
+        top:90%;
+        opacity: 0;
+    }
+
+    to{
+        top:60%;
+        opacity: 1;
+    }
+}
+
+@keyframes lets_join{
+    from{
+        top:0%;
+        // transform: scale(0);
+        opacity: 0;
+    }
+
+    to{ 
+        // transform: scale(2);
+        top:25%;
+        opacity: 1;
+    }
+}
+

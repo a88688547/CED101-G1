@@ -126,6 +126,7 @@ input {
   font-weight: bold;
   border: none;
   box-shadow: 2px 2px 2px 2px rgba(51, 51, 102, 0.2);
+  color: black;
 }
 
 .info_name {
@@ -338,6 +339,7 @@ input {
   font-weight: bold;
   border: none;
   box-shadow: 2px 2px 2px 2px rgba(51, 51, 102, 0.2);
+  color: black;
 }
 
 .cardname, .cardno, .exp, .safeno {
@@ -559,6 +561,7 @@ input {
     font-weight: bold;
     border: none;
     box-shadow: 2px 2px 2px 2px rgba(51, 51, 102, 0.2);
+    color: black;
     font-size: 1.6rem;
     letter-spacing: 0.3rem;
     font-family: 'Roboto', sans-serif;
@@ -761,6 +764,7 @@ input {
     font-weight: bold;
     border: none;
     box-shadow: 2px 2px 2px 2px rgba(51, 51, 102, 0.2);
+    color: black;
   }
   #cardExp label {
     margin-right: 59px;

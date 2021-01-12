@@ -1,16 +1,19 @@
 Vue.component("date-picker", {
   template: `<input/>`,
   props: ["dateFormat"],
-  mounted: function () {
+  mounted: function ()
+  {
     var self = this;
     $(this.$el).datepicker({
       dateFormat: this.dateFormat,
-      onSelect: function (date) {
+      onSelect: function (date)
+      {
         self.$emit("update-date", date);
       },
     });
   },
-  beforeDestroy: function () {
+  beforeDestroy: function ()
+  {
     $(this.$el).datepicker("hide").datepicker("destroy");
   },
 });
@@ -25,32 +28,32 @@ var app = new Vue({
     group_confirm: false,
     //警告框
     Error_show: false,
-    GroupNo:"",
+    GroupNo: "",
     //小時
     hh: "11",
     HourOptions: [
       // {text:"hh", value: "hh" },
-      {text:"11", value: "11" },
-      {text:"12", value: "12" },
-      {text:"13",value: "13" },
-      {text:"14",value: "14" },
-      {text:"15", value: "15" },
-      {text:"16", value: "16" },
-      {text:"17", value: "17" },
-      {text:"18", value: "18" },
-      {text:"19", value: "19" },
-      {text:"20", value: "20" },
-      {text:"21", value: "21" },
-      {text:"22", value: "22" },
+      { text: "11", value: "11" },
+      { text: "12", value: "12" },
+      { text: "13", value: "13" },
+      { text: "14", value: "14" },
+      { text: "15", value: "15" },
+      { text: "16", value: "16" },
+      { text: "17", value: "17" },
+      { text: "18", value: "18" },
+      { text: "19", value: "19" },
+      { text: "20", value: "20" },
+      { text: "21", value: "21" },
+      { text: "22", value: "22" },
     ],
     //分鐘
     mm: "00",
     minuterOptions: [
       // { text:"mm", value: "mm" },
-      { text:"00", value: "00" },
-      { text:"15", value: "15" },
-      { text:"30", value: "30" },
-      { text:"45", value:"45"},
+      { text: "00", value: "00" },
+      { text: "15", value: "15" },
+      { text: "30", value: "30" },
+      { text: "45", value: "45" },
     ],
     //秒
     ss: "00",
@@ -60,27 +63,27 @@ var app = new Vue({
     arrive_hh: "11",
     arrive_h_Options: [
       // {text:"hh", value: "hh" },
-      {text:"11", value: "11" },
-      {text:"12", value: "12" },
-      {text:"13",value: "13" },
-      {text:"14",value: "14" },
-      {text:"15", value: "15" },
-      {text:"16", value: "16" },
-      {text:"17", value: "17" },
-      {text:"18", value: "18" },
-      {text:"19", value: "19" },
-      {text:"20", value: "20" },
-      {text:"21", value: "21" },
-      {text:"22", value: "22" },
+      { text: "11", value: "11" },
+      { text: "12", value: "12" },
+      { text: "13", value: "13" },
+      { text: "14", value: "14" },
+      { text: "15", value: "15" },
+      { text: "16", value: "16" },
+      { text: "17", value: "17" },
+      { text: "18", value: "18" },
+      { text: "19", value: "19" },
+      { text: "20", value: "20" },
+      { text: "21", value: "21" },
+      { text: "22", value: "22" },
     ],
     //到達mm
     arrive_mm: "00",
     arrive_mm_Options: [
       // { text:"mm", value: "mm" },
-      { text:"00", value: "00" },
-      { text:"15", value: "15" },
-      { text:"30", value: "30" },
-      { text:"45", value: "45" },
+      { text: "00", value: "00" },
+      { text: "15", value: "15" },
+      { text: "30", value: "30" },
+      { text: "45", value: "45" },
     ],
     newDate: 0,
     //警告文字
@@ -109,12 +112,13 @@ var app = new Vue({
     //到達日期時間
     arrive_DateTime: "",
     //抓現在時間yyyy-mm-dd mm-hh-ss
-    currentDate:"",
+    currentDate: "",
 
   },
   computed: {
     //抓現在時間yyyy-mm-dd hh:mm:ss
-    formatTime: function() {
+    formatTime: function ()
+    {
       var date = new Date();
       //月補0
       var month = date.getMonth() + 1;
@@ -126,48 +130,57 @@ var app = new Vue({
       var strMinutes = date.getMinutes();
       //秒補0
       var srtSeconds = date.getSeconds();
-      if (month >= 1 && month <= 9) {
-          month = "0" + month;
+      if (month >= 1 && month <= 9)
+      {
+        month = "0" + month;
       }
-      if (strDate >= 0 && strDate <= 9) {
-          strDate = "0" + strDate;
+      if (strDate >= 0 && strDate <= 9)
+      {
+        strDate = "0" + strDate;
       }
-      if (strHours >= 0 && strHours <= 9) {
+      if (strHours >= 0 && strHours <= 9)
+      {
         strHours = "0" + strHours;
       }
-      if (strMinutes >= 0 && strMinutes <= 9) {
+      if (strMinutes >= 0 && strMinutes <= 9)
+      {
         strMinutes = "0" + strMinutes;
       }
-      if (srtSeconds >= 0 && srtSeconds <= 9) {
+      if (srtSeconds >= 0 && srtSeconds <= 9)
+      {
         srtSeconds = "0" + srtSeconds;
       }
-      this.currentDate = `${date.getFullYear()}-${month}-${strDate} ${strHours}:${strMinutes}:${srtSeconds}` 
+      this.currentDate = `${date.getFullYear()}-${month}-${strDate} ${strHours}:${strMinutes}:${srtSeconds}`
       return this.currentDate;
-      },
+    },
     //預計送達時間hh:mm:ss
-    arriveTime(){
-      this.Arrive_Time =`${this.arrive_hh}:${this.arrive_mm}:${this.ss}`;
+    arriveTime()
+    {
+      this.Arrive_Time = `${this.arrive_hh}:${this.arrive_mm}:${this.ss}`;
       return this.Arrive_Time;
     },
-     //收單時間hh:mm:ss
-    deadlineTime() {
-      this.DeadLine_Time =`${this.hh}:${this.mm}:${this.ss}`;
+    //收單時間hh:mm:ss
+    deadlineTime()
+    {
+      this.DeadLine_Time = `${this.hh}:${this.mm}:${this.ss}`;
       return this.DeadLine_Time;
     },
     //預計送達時間yy-mm-dd + hh:mm:ss
-    arriveDateTime(){
-      this.arrive_DateTime =`${this.date} ${this.Arrive_Time}`;
+    arriveDateTime()
+    {
+      this.arrive_DateTime = `${this.date} ${this.Arrive_Time}`;
       return this.arrive_DateTime;
     },
     //收單時間yy-mm-dd + hh:mm:ss
     deadlineDateTime()
     {
-      this.daedLine_DateTime =`${this.date} ${this.DeadLine_Time}`;
+      this.daedLine_DateTime = `${this.date} ${this.DeadLine_Time}`;
       return this.daedLine_DateTime;
     },
-    
+
     //送後台資料
-    JoinGroup(){
+    JoinGroup()
+    {
       let obj = {
         //團長會員編號
         head_mem_no: "1",
@@ -185,42 +198,46 @@ var app = new Vue({
         goal_cup: this.GoalCup,
         //  
       }
-      return obj         
+      return obj
     },
-    
+
   },
   watch: {
     formatTime: function ()
     {
-      this.currentDate = `${date.getFullYear()}-${month}-${strDate} ${strHours}:${strMinutes}:${srtSeconds}` 
+      this.currentDate = `${date.getFullYear()}-${month}-${strDate} ${strHours}:${strMinutes}:${srtSeconds}`
       return this.currentDate;
     },
-    mm:function () {
-      this.DeadLine_Time =`${this.hh}:${this.mm}:${this.ss}`;
-      this.daedLine_DateTime =`${this.date} ${this.hh}:${this.mm}:${this.ss}`;
+    mm: function ()
+    {
+      this.DeadLine_Time = `${this.hh}:${this.mm}:${this.ss}`;
+      this.daedLine_DateTime = `${this.date} ${this.hh}:${this.mm}:${this.ss}`;
     },
-    hh:function () {
-      this.DeadLine_Time =`${this.hh}:${this.mm}:${this.ss}`;
-      this.daedLine_DateTime =`${this.date} ${this.hh}:${this.mm}:${this.ss}`;
+    hh: function ()
+    {
+      this.DeadLine_Time = `${this.hh}:${this.mm}:${this.ss}`;
+      this.daedLine_DateTime = `${this.date} ${this.hh}:${this.mm}:${this.ss}`;
     },
     date: function ()
     {
-      this.Arrive_Time =`${this.arrive_hh}:${this.arrive_mm}:${this.ss}`;
-      this.arrive_DateTime =`${this.date} ${this.arrive_hh}:${this.arrive_mm}:${this.ss}`;
-      this.DeadLine_Time =`${this.hh}:${this.mm}:${this.ss}`;
-      this.daedLine_DateTime =`${this.date} ${this.hh}:${this.mm}:${this.ss}`;
-      this.daedLine_DateTime =`${this.date} ${this.DeadLine_Time}`
-      this.arrive_DateTime =`${this.date} ${this.Arrive_Time}`
+      this.Arrive_Time = `${this.arrive_hh}:${this.arrive_mm}:${this.ss}`;
+      this.arrive_DateTime = `${this.date} ${this.arrive_hh}:${this.arrive_mm}:${this.ss}`;
+      this.DeadLine_Time = `${this.hh}:${this.mm}:${this.ss}`;
+      this.daedLine_DateTime = `${this.date} ${this.hh}:${this.mm}:${this.ss}`;
+      this.daedLine_DateTime = `${this.date} ${this.DeadLine_Time}`
+      this.arrive_DateTime = `${this.date} ${this.Arrive_Time}`
     },
-    arrive_mm:function () {
-      this.Arrive_Time =`${this.arrive_hh}:${this.arrive_mm}:${this.ss}`;
-      this.arrive_DateTime =`${this.date} ${this.arrive_hh}:${this.arrive_mm}:${this.ss}`;
+    arrive_mm: function ()
+    {
+      this.Arrive_Time = `${this.arrive_hh}:${this.arrive_mm}:${this.ss}`;
+      this.arrive_DateTime = `${this.date} ${this.arrive_hh}:${this.arrive_mm}:${this.ss}`;
     },
-    arrive_hh:function () {
-      this.Arrive_Time =`${this.arrive_hh}:${this.arrive_mm}:${this.ss}`;
-      this.arrive_DateTime =`${this.date} ${this.arrive_hh}:${this.arrive_mm}:${this.ss}`;
+    arrive_hh: function ()
+    {
+      this.Arrive_Time = `${this.arrive_hh}:${this.arrive_mm}:${this.ss}`;
+      this.arrive_DateTime = `${this.date} ${this.arrive_hh}:${this.arrive_mm}:${this.ss}`;
     },
-   
+
   },
   methods: {
     updateVal()
@@ -234,37 +251,41 @@ var app = new Vue({
       else if (this.GoalCup == 20)
       {
         goalConfrim.innerText = "20杯/9折優惠"
-      }else if (this.GoalCup == 30)
+      } else if (this.GoalCup == 30)
       {
         goalConfrim.innerText = "30杯/8折優惠"
       }
       else if (this.GoalCup == 40)
       {
         goalConfrim.innerText = "40杯/7折優惠"
-      }else if (this.GoalCup == 50)
+      } else if (this.GoalCup == 50)
       {
         goalConfrim.innerText = "50杯/6折優惠"
       };
     },
     //jq日期套件傳資料
-    updateDate: function (date) {
+    updateDate: function (date)
+    {
       this.date = date;
     },
     //傳資料到後台
-    upGroupData: async function () {
+    upGroupData: async function ()
+    {
       let test = await fetch('./php/upGroupData.php', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json',
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify(this.JoinGroup),
       }).then(res => res.json())
         .then(res => this.GroupNo = res);
       console.log(this.GroupNo);
-        location.href = `./join_step2.php?group_ord_no=${this.GroupNo}`
+      // location.href = `./join_step2.php?group_ord_no=${this.GroupNo}`
+      location.href = `./join_step2.html?group_ord_no=${this.GroupNo}`
     },
     //警告視窗開關
-    XError: function (){
+    XError: function ()
+    {
       this.Error_show = false;//警告視窗
     },
     confirmClose: function ()
@@ -277,7 +298,7 @@ var app = new Vue({
     {
       let daedLineTime = (Date.parse(this.daedLine_DateTime));
       let arrTime = (Date.parse(this.arrive_DateTime));
-      let groupDateTime =  (Date.parse(this.currentDate));
+      let groupDateTime = (Date.parse(this.currentDate));
       console.log(groupDateTime)
       console.log(daedLineTime);
       console.log(arrTime);
@@ -296,16 +317,18 @@ var app = new Vue({
         this.Error_show = true;
         this.ErrorText = "請輸入團名";
         return;
-      } else if (this.GroupName.length > 10){
+      } else if (this.GroupName.length > 10)
+      {
         this.Error_show = true;
         this.ErrorText = "團名不可以超過十個字";
         this.GroupName = "";
         return;
       }
-      else if (this.date == ""){
+      else if (this.date == "")
+      {
         this.Error_show = true;
         this.ErrorText = "請選擇日期";
-        return;       
+        return;
       }
       else if ((Date.parse(this.daedLine_DateTime)) < (Date.parse(this.currentDate)))
       {
@@ -313,7 +336,7 @@ var app = new Vue({
         this.ErrorText = "請選擇正確時間";
         // alert("請選擇正確時間")
         return
-        }
+      }
       else if ((((Date.parse(this.arrive_DateTime)) - (Date.parse(this.daedLine_DateTime)))) < 1800000)
       {
         this.Error_show = true;
@@ -321,15 +344,18 @@ var app = new Vue({
         // alert("準備時間需30分鐘以上!");
         return
       }
-        else if (this.GoalCup == "1"){
+      else if (this.GoalCup == "1")
+      {
         this.Error_show = true;
         this.ErrorText = "請選擇目標杯數";
         return;
-      } else if (this.GroupAddress == "" || this.GroupAddress == null) {
+      } else if (this.GroupAddress == "" || this.GroupAddress == null)
+      {
         this.Error_show = true;
         this.ErrorText = "請輸入地址";
         return;
-      } else if (this.GroupAddress.length > 30){
+      } else if (this.GroupAddress.length > 30)
+      {
         this.Error_show = true;
         this.ErrorText = "地址太長";
         this.GroupAddress = "";
@@ -338,5 +364,5 @@ var app = new Vue({
       this.group_confirm = true;
     },
   },
-  
+
 });

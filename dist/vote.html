@@ -1,227 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>飲料排行</title>
+        <script src="./vendors/Vue/vue.js"></script>
+        <link rel="stylesheet" href="./css/vote.css" />
+        <link rel="stylesheet" href="./css/style.css" />
+        <script src="./vendors/jQuery/js/jquery-3.5.1.js"></script>
+        <script src="./js/header_footer.js"></script>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+            integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+            crossorigin="anonymous"
+        />
+    </head>
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>飲料排行</title>
-    <script src="./vendors/Vue/vue.js"></script>
-    <link rel="stylesheet" href="./css/vote.css" />
-    <link rel="stylesheet" href="./css/style.css" />
-    <script src="./vendors/jQuery/js/jquery-3.5.1.js"></script>
-    <script src="./js/header_footer.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
-        integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
-        crossorigin="anonymous" />
-</head>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>飲料排行</title>
+        <script src="./vendors/Vue/vue.js"></script>
+        <link rel="stylesheet" href="./css/vote.css" />
+        <link rel="stylesheet" href="./css/style.css" />
+        <script src="./vendors/jQuery/js/jquery-3.5.1.js"></script>
+        <script src="./js/header_footer.js"></script>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+            integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+            crossorigin="anonymous"
+        />
+    </head>
 
-<body>
-    <header id="header">
-        <my-header></my-header>
-    </header>
-    <section>
-        <div class="vote-top">
-            <h2>本週飲品排行</h2>
-            <h4>
-                <img src="./Images/Drop-3.svg" alt="icon" />
-                每週投下你神聖的三票，各類飲品最多一票，就有機會讓喜歡的飲品成為下週折扣品項!
-            </h4>
-        </div>
-        <div id="app">
-            <vote-item></vote-item>
-            <vote-form></vote-form>
-        </div>
-    </section>
-    <footer id="footer">
-        <my-footer></my-footer>
-    </footer>
-    <script src="./layout/header.vue"></script>
-    <script src="./layout/footer.vue"></script>
-    <script>
-        const vm = new Vue();
-        Vue.component("vote-item", {
-            data() {
-                return {
-                    texts: ["一", "二", "三"],
-                    drinks: [],
-                };
-
-            },
-            methods: {
-                lightBoxToggle(i) {
-                    vm.$emit("lightBoxToggle", i);
-                },
-            },
-            mounted() {
-                fetch('./php/menu2.php', {
-                    method: 'GET',
-                }).then((res) => {
-                    return res.json()
-                }).then((res) => {
-                    this.drinks = res;
-                    console.log(this.drinks)
-                }).catch((err) => {
-                    console.log(err)
-                })
-
-            },
-            computed: {
-            },
-            template: `
-                <div class="vote-bot" >
-                    <div class="vote-wrap" v-for="(voteType, i) in drinks">
-                        <div class="vote-title">
-                            <h3>{{voteType.drink_type_title}}&nbsp;<span>{{voteType.drink_type_text_en}}</span></h3>
-                        </div>
-                        <div v-for="(item,index) in voteType.itemList" :class="[index===0?'vote-first':'vote-second', 'vote-item']">
-                            <div class="vote-rank">上周第{{texts[index]}}</div>
-                            <div class="vote-pic">
-                                <img :src="item.imgSrc" />
-                            </div>
-                            <div class="vote-txt">
-                                <div class="vote-name">{{item.drink_title_ch}}</div>
-                                <div class="vote-votes">
-                                    <img src="./Images/vote_big.svg" alt="votes" />
-                                    總票數 |
-                                    <div class="votes">{{item.vote_count_now}}</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="vote-button">
-                        <button class="voteLightboxBtn color-1" @click="lightBoxToggle(voteType.drink_type_no)">
-                            <img src="./Images/drink.svg" alt="" />
-                            <h6>投票去</h6>
-                        </button>
-                    </div>
-                    </div>
-                </div>
-                `,
-        });
-        Vue.component("vote-form", {
-            data() {
-                return {
-                    showVote: false,
-                    type: "vote",
-                    textId: ["milkTea", "milkTea1", "milkTea2", "milkTea3", "milkTea4"],
-                    dirnkVote: [],
-                    votenow: false,
-                    checkRadio: "",
-                    drinkIndex: '',
-                    nowVote: '',
-                    nowVoteCount: '',
-                };
-            },
-            mounted() {
-                vm.$on("lightBoxToggle", this.toggleLightBox);
-
-            },
-            methods: {
-                toggleLightBox(i) {
-                    this.showVote = true;
-                    this.drinkIndex = i;
-                    fetch("./php/menu1.php", {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({ id: this.drinkIndex }),
-
-                    }).then((res) => {
-                        return res.json()
-                    }).then((res) => {
-                        console.log(res)
-                        this.dirnkVote = res;
-
-                    }).catch((err) => {
-                        console.log(err)
-                    })
-                },
-                votingHandler(e) {
-                    e.preventDefault();
-                    const checkBtn = document.querySelector('input[type="radio"]:checked');
-                    if (!checkBtn) return (this.votenow = true);
-                    if (!checkBtn) return (this.votenow = false);
-                    this.type = "voteok";
-                },
-                closeLightbox() {
-                    this.votenow = false;
-                    this.showVote = false;
-                },
-                nowVoteName(item, dirnkVote) {
-                    const checkBtn = document.querySelector('input[type="radio"]:checked');
-                    dirnkVote = this.dirnkVote
-                    console.log(dirnkVote)
-                    this.nowVote = item.drink_title_ch
-                    // if (checkBtn) {
-                    item.vote_count_now++
-                    this.nowVoteCount = item.vote_count_now
-                    // }
-                    // console.log(this.nowVoteCount)
-                }
-            },
-            watch: {
-                // checkRadio: function () {
-                //     const checkBtn = document.querySelector('input[type="radio"]:checked');
-                //     if (!checkBtn) {
-                //         return this.votenow = true
-                //     } else {
-                //         return this.votenow = false
-                //     }
-
-                //     console.log(checkBtn)
-                // },
-            },
-            template: `
-                        <form class="voteLightbox-wrap" v-show="showVote" >
-                            <div class="voting">
-                                <div class="pic"></div>
-                                <div class="voting-txt" v-if="type=='vote'">
-                                    <div class="voting-title">
-                                        <h2>本周茶類飲品票選</h2>
-                                        <small>點選您最喜歡的茶類飲品並送出投票</small>
-                                    </div>
-                                    <div class="voting-btn">
-                                        <div v-for="(item,index) in dirnkVote">
-                                            <input
-                                                type="radio"
-                                                name="milkTea"
-                                                class="milkTea"
-                                                :id="textId[index]"                                                
-                                            />
-                                            <label :for="textId[index]" class="vote-radio" @click.stop="nowVoteName(item,dirnkVote)">
-                                                <div class="radiobtn"></div>
-                                                <div class="btn-txt">{{item.drink_title_ch}}</div>
-                                                <small>{{item.vote_count_now}}</small>
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="vote-sub">
-                                        <button type="submit" class="submit color-1" @click="votingHandler">
-                                            送出投票
-                                            <small id="alertvote" v-if="votenow==true">請投票!!</small>
-                                            <small v-else></small>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="voting-ok" v-if="type =='voteok'">
-                                    <h2>投票成功</h2>
-                                    <p>你最愛的<small>"{{nowVote}}"</small>本週目前票數為:</p>
-                                    <div class="vote-count">
-                                        <img src="./Images/vote_big.svg" alt="votes" />
-                                        {{this.nowVoteCount}}票
-                                    </div>
-                                </div>
-                                <div class="vote-close" @click="closeLightbox">
-                                    <i class="fas fa-times-circle closeBlock"></i>
-                                </div>
-                            </div>
-                        </form>
-                `,
-        });
-        new Vue({
-            el: "#app",
-        });
-    </script>
-</body>
-
+    <body>
+        <header id="header">
+            <my-header></my-header>
+        </header>
+        <section>
+            <div class="vote-top">
+                <h2>本週飲品排行</h2>
+                <h4>
+                    <img src="./Images/Drop-3.svg" alt="icon" />
+                    每週投下你神聖的三票，各類飲品最多一票，就有機會讓喜歡的飲品成為下週折扣品項!
+                </h4>
+            </div>
+            <div id="app">
+                <vote-item></vote-item>
+                <vote-form></vote-form>
+            </div>
+        </section>
+        <footer id="footer">
+            <my-footer></my-footer>
+        </footer>
+        <script src="./layout/header.vue"></script>
+        <script src="./layout/footer.vue"></script>
+        <script src="js/vote.js"></script>
+    </body>
 </html>

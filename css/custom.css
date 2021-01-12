@@ -1,0 +1,339 @@
+@charset "UTF-8";
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+}
+
+:root {
+  font-size: 62.5%;
+  /* 設定 1rem: 16px * 62.5% = 10px */
+}
+
+body {
+  background: #E5E3DD;
+}
+
+#replace {
+  display: none;
+  text-align: center;
+  width: 100%;
+}
+
+#replace p {
+  width: 300px;
+  margin: auto;
+  padding: 15px;
+  font-size: large;
+  word-wrap: break-word;
+  color: #013B4F;
+  line-height: 1.6;
+  font-weight: bold;
+  font-size: 2rem;
+}
+
+.rule {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(204, 204, 204, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 5;
+}
+
+.rule .rule-wrap {
+  position: relative;
+  width: 600px;
+  box-shadow: 3px 3px 5px 2px rgba(0, 0, 0, 0.2);
+  padding: 30px;
+  background-color: #013b4f;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.rule .rule-wrap h2 {
+  font-weight: bold;
+  font-size: 35px;
+  color: #B3925B;
+  text-align: center;
+  margin: 15px 0;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #b3925b;
+}
+
+.rule .rule-wrap p {
+  font-size: 21px;
+  line-height: 1.6;
+  color: white;
+}
+
+.rule .rule-wrap button {
+  font-size: 21px;
+  border-radius: 20px;
+  background-color: #B3925B;
+  margin: 15px auto 0;
+  transition: 0.2s ease-in-out;
+  border: none;
+  cursor: pointer;
+}
+
+.rule .rule-wrap button p {
+  padding: 5px;
+}
+
+.rule .rule-wrap button:focus {
+  outline: none;
+}
+
+.rule .rule-wrap button:hover {
+  background-color: #be8316;
+}
+
+section {
+  width: 100%;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  display: flex;
+  justify-content: center;
+}
+
+section form {
+  width: 1200px;
+  padding: 15px;
+  margin: 0 auto;
+}
+
+.select-container {
+  display: flex;
+  margin-bottom: 50px;
+}
+
+.select-container .left {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin-left: 50px;
+}
+
+.select-container .left h2 {
+  font-size: 35px;
+  color: #013B4F;
+  font-weight: bold;
+  margin-bottom: 100px;
+  letter-spacing: 1.5rem;
+}
+
+.select-container .left .select-char {
+  width: 300px;
+  height: 300px;
+  margin-bottom: 100px;
+}
+
+.select-container .left .select-char img {
+  width: 140px;
+  transform: translate(40%, 0%);
+}
+
+.select-container .left .ability-wrap {
+  width: 250px;
+  height: 250px;
+  position: relative;
+}
+
+.select-container .left .ability-wrap::before, .select-container .left .ability-wrap::after {
+  content: "";
+  position: absolute;
+  display: block;
+}
+
+.select-container .left .ability-wrap::before {
+  top: 0;
+  left: 0;
+  border-bottom: 200px solid #013B4F;
+  border-left: 120px solid transparent;
+  border-right: 120px solid transparent;
+  background-color: #E5E3DD;
+}
+
+.select-container .left .ability-wrap::after {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-bottom: 100px solid #63CCC8;
+  border-left: 60px solid transparent;
+  border-right: 60px solid transparent;
+}
+
+.select-container .left .ability-wrap .speed,
+.select-container .left .ability-wrap .accuracy,
+.select-container .left .ability-wrap .hp {
+  position: absolute;
+  font-size: 24px;
+  font-weight: bold;
+  color: #013B4F;
+}
+
+.select-container .left .ability-wrap .speed {
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  letter-spacing: 3px;
+}
+
+.select-container .left .ability-wrap .accuracy {
+  bottom: 15px;
+  left: -45px;
+}
+
+.select-container .left .ability-wrap .hp {
+  bottom: 15px;
+  right: -45px;
+}
+
+.select-container .right {
+  width: 50%;
+  margin-top: 12%;
+}
+
+.select-container .right .select-item-wrap {
+  width: 100%;
+  height: 300px;
+}
+
+.select-container .right .select-item-wrap .item-title {
+  margin-bottom: 30px;
+}
+
+.select-container .right .select-item-wrap .item-title h2 {
+  font-size: 24px;
+  color: #013B4F;
+  letter-spacing: 3px;
+}
+
+.select-container .right .select-item-wrap .item-wrap {
+  padding: 5px;
+  display: flex;
+  width: 100%;
+  background-color: #013B4F;
+  border-radius: 10px;
+}
+
+.select-container .right .select-item-wrap .item-wrap .item {
+  width: 33%;
+  height: 150px;
+  background-color: #E5E3DD;
+  margin: 5px;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.select-container .right .select-item-wrap .item-wrap .item input {
+  display: none;
+}
+
+.select-container .right .select-item-wrap .item-wrap .item img {
+  height: 100%;
+}
+
+.button-submit {
+  text-align: center;
+}
+
+.button-submit button {
+  cursor: pointer;
+  font-size: 24px;
+  border: none;
+  padding: 10px 15px;
+  transition: 0.5s ease-in-out;
+  border-radius: 20px;
+  background-color: #013B4F;
+}
+
+.button-submit button a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.button-submit button:hover {
+  background-color: #aaa;
+}
+
+.button-submit button:focus {
+  outline: none;
+}
+
+@media screen and (max-width: 991px) {
+  #section {
+    display: none;
+  }
+  .select-container {
+    display: none;
+  }
+  .rule {
+    display: none;
+  }
+  #replace {
+    display: block;
+  }
+}
+/*# sourceMappingURL=custom.css.map */

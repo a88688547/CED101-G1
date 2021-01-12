@@ -1,0 +1,718 @@
+@charset "UTF-8";
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+}
+
+:root {
+  font-size: 62.5%;
+  /* 設定 1rem: 16px * 62.5% = 10px */
+}
+
+* {
+  font-family: "Roboto", sans-serif;
+}
+
+body {
+  box-sizing: border-box;
+  background: #E5E3DD;
+}
+
+section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+section .vote-top {
+  max-width: 1200px;
+  text-align: center;
+  color: #013B4F;
+  margin: 0 auto;
+  margin-top: 60px;
+  margin-bottom: 20px;
+}
+
+section .vote-top h2 {
+  font-size: 3.5rem;
+  letter-spacing: 1.5rem;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+section .vote-top h4 {
+  font-size: 2.1rem;
+  letter-spacing: 0.8rem;
+  font-family: 'Roboto', sans-serif;
+  letter-spacing: 3px;
+  line-height: 1.6;
+}
+
+section .vote-top h4 img {
+  width: 25px;
+  height: 25px;
+  position: relative;
+  top: 5px;
+}
+
+@media screen and (max-width: 1199px) {
+  section .vote-top {
+    width: 100%;
+    padding: 0 30px;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  section .vote-top {
+    width: 100%;
+    padding: 0 30px;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  section .vote-top {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    width: 100%;
+  }
+  section .vote-top h2 {
+    padding: 0 15px;
+    margin-bottom: 15px;
+  }
+  section .vote-top h4 {
+    line-height: 1.6;
+    padding: 0 30px;
+  }
+}
+
+section .vote-bot {
+  color: #013B4F;
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 1199px) {
+  section .vote-bot {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  section .vote-bot {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  section .vote-bot {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+section .vote-bot .vote-wrap {
+  margin-right: 30px;
+  margin-bottom: 30px;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+section .vote-bot .vote-wrap:nth-child(3) {
+  margin-right: 0px;
+}
+
+section .vote-bot .vote-wrap .votes {
+  display: inline-block;
+}
+
+section .vote-bot .vote-wrap .vote-title {
+  font-size: 30px;
+  letter-spacing: 1rem;
+  font-weight: bold;
+  text-align: center;
+  margin: 15px;
+}
+
+section .vote-bot .vote-wrap .vote-title span {
+  font-size: 2.1rem;
+  letter-spacing: 0.8rem;
+  font-family: 'Roboto', sans-serif;
+  letter-spacing: 1px;
+  font-weight: initial;
+}
+
+section .vote-bot .vote-wrap .vote-item {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 3px 3px 8px 4px rgba(0, 0, 0, 0.2);
+  margin-bottom: 15px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+section .vote-bot .vote-wrap .vote-item .vote-rank {
+  position: absolute;
+  top: 20px;
+  left: -35px;
+  color: #fff;
+  background-color: #ffa208;
+  width: 150px;
+  height: 25px;
+  font-size: 20px;
+  text-align: center;
+  line-height: 25px;
+  transform: rotate(-35deg);
+}
+
+section .vote-bot .vote-wrap .vote-item .vote-pic {
+  width: 100%;
+  overflow: hidden;
+}
+
+section .vote-bot .vote-wrap .vote-item .vote-pic img {
+  width: 100%;
+}
+
+section .vote-bot .vote-wrap .vote-item .vote-txt {
+  text-align: center;
+  margin: 20px;
+}
+
+section .vote-bot .vote-wrap .vote-item .vote-txt .vote-name {
+  font-size: 2.4rem;
+  letter-spacing: 1rem;
+  font-family: 'Roboto', sans-serif;
+  letter-spacing: 5px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+section .vote-bot .vote-wrap .vote-item .vote-txt .vote-votes {
+  font-size: 2.1rem;
+  letter-spacing: 0.8rem;
+  font-family: 'Roboto', sans-serif;
+  letter-spacing: 3px;
+}
+
+section .vote-bot .vote-wrap .vote-item .vote-txt .vote-votes img {
+  width: 25px;
+}
+
+section .vote-bot .vote-wrap .vote-first {
+  width: 94%;
+}
+
+section .vote-bot .vote-wrap .vote-second {
+  width: 45%;
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 3px 3px 8px 4px rgba(0, 0, 0, 0.2);
+  background-color: white;
+  margin-right: 15px;
+}
+
+section .vote-bot .vote-wrap .vote-second:first-child {
+  margin-left: 0px;
+}
+
+section .vote-bot .vote-wrap .vote-second:last-child {
+  margin-right: 0px;
+}
+
+section .vote-bot .vote-wrap .vote-second .vote-rank {
+  top: 20px;
+  height: 25px;
+  font-size: 20px;
+  line-height: 25px;
+}
+
+section .vote-bot .vote-wrap .vote-second:nth-child(3) .vote-rank {
+  background-color: #e48f2e;
+}
+
+section .vote-bot .vote-wrap .vote-second:nth-child(4) .vote-rank {
+  background-color: #b3925b;
+}
+
+section .vote-bot .vote-wrap .vote-second .vote-pic {
+  width: 100%;
+  overflow: hidden;
+}
+
+section .vote-bot .vote-wrap .vote-second .vote-pic img {
+  width: 100%;
+}
+
+section .vote-bot .vote-wrap .vote-second .vote-txt {
+  text-align: center;
+  margin: 15px;
+}
+
+section .vote-bot .vote-wrap .vote-second .vote-txt .vote-name {
+  font-size: 1.6rem;
+  letter-spacing: 0.3rem;
+  font-family: 'Roboto', sans-serif;
+  letter-spacing: 0px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+section .vote-bot .vote-wrap .vote-second .vote-txt .vote-votes {
+  font-size: 1.4rem;
+  letter-spacing: 0.3rem;
+  font-family: 'Roboto', sans-serif;
+  letter-spacing: 2px;
+  line-height: 1.6;
+}
+
+section .vote-bot .vote-wrap .vote-second .vote-txt .vote-votes img {
+  width: 20px;
+}
+
+section .vote-bot .vote-wrap .vote-second:nth-child(4) {
+  margin-right: 0;
+}
+
+section .vote-bot .vote-button {
+  width: 100%;
+  margin-top: 30px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+section .vote-bot .vote-button button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin: 5px;
+  height: 35px;
+  width: 100px;
+  text-align: center;
+  border: none;
+  border-radius: 30px;
+  background-size: 300% 100%;
+  transition: all .4s ease-in-out;
+  width: 150px;
+  height: 50px;
+}
+
+section .vote-bot .vote-button button h6 {
+  font-size: 1.8rem;
+  letter-spacing: 0.5rem;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  color: white;
+}
+
+section .vote-bot .vote-button button img {
+  margin-right: 5px;
+}
+
+section .vote-bot .vote-button button:focus {
+  outline: none;
+}
+
+section .vote-bot .vote-button button:hover {
+  background-position: 100% 0;
+  transition: all .4s ease-in-out;
+}
+
+section .vote-bot .vote-button button.color-1 {
+  background-image: linear-gradient(to right, #f5ce62, #e43603, #fa7199, #e85a19);
+  box-shadow: 0 2px 5px 0 rgba(229, 66, 10, 0.75);
+}
+
+@media screen and (max-width: 1199px) {
+  section .vote-bot {
+    width: 100%;
+    padding: 15px;
+  }
+  section .vote-bot .vote-wrap {
+    padding: 0 15px;
+  }
+  section .vote-bot .vote-wrap:nth-child(1), section .vote-bot .vote-wrap:nth-child(2) {
+    margin-right: 0px;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  section .vote-bot {
+    width: 720px;
+    padding: 0 15px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  section .vote-bot {
+    width: 540px;
+    padding: 0 15px;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  section .vote-bot {
+    width: 100%;
+    padding: 15px;
+  }
+  section .vote-bot .vote-first {
+    margin-bottom: 15px;
+  }
+  section .vote-bot .vote-first .vote-pic {
+    width: 100%;
+  }
+  section .vote-bot .vote-first .vote-txt .vote-name {
+    margin-bottom: 15px;
+    font-size: 32px;
+  }
+  section .vote-bot .vote-first .vote-txt .vote-votes img {
+    width: 30px;
+    position: relative;
+    top: 0;
+    right: 5px;
+  }
+  section .vote-bot .vote-second {
+    width: 45%;
+  }
+  section .vote-bot .vote-second:first-child {
+    margin-left: 0px;
+  }
+  section .vote-bot .vote-second:last-child {
+    margin-right: 0px;
+  }
+  section .vote-bot .vote-second .vote-pic {
+    width: 100%;
+  }
+  section .vote-bot .vote-second .vote-txt {
+    margin: 15px;
+  }
+  section .vote-bot .vote-second .vote-txt .vote-name {
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+  }
+  section .vote-bot .vote-second .vote-txt .vote-votes img {
+    width: 25px;
+    position: relative;
+    right: 5px;
+  }
+}
+
+.voteLightbox-wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(204, 204, 204, 0.5);
+  z-index: 35;
+}
+
+.voteLightbox-wrap .voting {
+  position: relative;
+  width: 350px;
+  background-color: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 3px 3px 4px 2px rgba(0, 0, 0, 0.2);
+}
+
+@media screen and (max-width: 575px) {
+  .voteLightbox-wrap .voting {
+    width: 300px;
+  }
+}
+
+.voteLightbox-wrap .voting .vote-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  cursor: pointer;
+}
+
+.voteLightbox-wrap .voting .vote-close i {
+  font-size: 24px;
+}
+
+.voteLightbox-wrap .voting .pic {
+  width: 100%;
+  height: 200px;
+  background-color: #ccc;
+}
+
+.voteLightbox-wrap .voting .voting-txt {
+  padding: 15px;
+}
+
+.voteLightbox-wrap .voting .voting-txt .voting-title h2 {
+  font-size: 2.1rem;
+  letter-spacing: 0.8rem;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.voteLightbox-wrap .voting .voting-txt .voting-title small {
+  font-size: 1.4rem;
+  letter-spacing: 0.3rem;
+  font-family: 'Roboto', sans-serif;
+}
+
+@media screen and (max-width: 575px) {
+  .voteLightbox-wrap .voting .voting-txt .voting-title h2 {
+    font-size: 2rem;
+  }
+  .voteLightbox-wrap .voting .voting-txt .voting-title small {
+    font-size: 1.6rem;
+  }
+}
+
+.voteLightbox-wrap .voting .voting-txt .voting-btn {
+  margin-top: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.voteLightbox-wrap .voting .voting-txt .voting-btn .milkTea {
+  display: none;
+}
+
+.voteLightbox-wrap .voting .voting-txt .voting-btn label {
+  position: relative;
+  cursor: pointer;
+  width: 130px;
+  padding: 5px;
+  margin-bottom: 15px;
+  background-color: #ccc;
+  border-radius: 20px;
+  font-size: 1.6rem;
+  letter-spacing: 0.3rem;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  transition: 0.5s ease-in-out;
+}
+
+@media screen and (max-width: 575px) {
+  .voteLightbox-wrap .voting .voting-txt .voting-btn label {
+    width: 120px;
+    font-size: 1rem;
+  }
+}
+
+.voteLightbox-wrap .voting .voting-txt .voting-btn label .radiobtn {
+  width: 25px;
+  height: 25px;
+  background-color: #fff;
+  border-radius: 50%;
+  margin-right: 5px;
+  transition: 0.5s ease-in-out;
+}
+
+.voteLightbox-wrap .voting .voting-txt .voting-btn label small {
+  position: absolute;
+  top: 50%;
+  right: 3px;
+  transform: translateY(-50%);
+}
+
+.voteLightbox-wrap .voting .voting-txt .voting-btn .vote-radio .btn-txt {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.voteLightbox-wrap .voting .voting-txt .voting-btn .vote-radio small {
+  font-size: 1rem;
+}
+
+.voteLightbox-wrap .voting .voting-txt .vote-sub {
+  text-align: center;
+}
+
+.voteLightbox-wrap .voting .voting-txt .vote-sub button {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin: 5px;
+  height: 35px;
+  width: 100px;
+  text-align: center;
+  border: none;
+  border-radius: 30px;
+  background-size: 300% 100%;
+  transition: all .4s ease-in-out;
+  font-size: 1.4rem;
+  letter-spacing: 0.3rem;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  color: white;
+}
+
+.voteLightbox-wrap .voting .voting-txt .vote-sub button #alertvote {
+  position: absolute;
+  top: 50%;
+  right: -120px;
+  transform: translateY(-50%);
+  width: 100px;
+  font-size: 20px;
+  color: #e43603;
+}
+
+.voteLightbox-wrap .voting .voting-txt .vote-sub button:focus {
+  outline: none;
+}
+
+.voteLightbox-wrap .voting .voting-txt .vote-sub button:hover {
+  background-position: 100% 0;
+  transition: all .4s ease-in-out;
+}
+
+.voteLightbox-wrap .voting .voting-txt .vote-sub button.color-1 {
+  background-image: linear-gradient(to right, #25aae1, #40e495, #30dd8a, #2bb673);
+  box-shadow: 0 4px 15px 0 rgba(49, 196, 190, 0.75);
+}
+
+.voteLightbox-wrap .voting .voting-txt input[type="radio"]:checked + label {
+  background-image: linear-gradient(to right, #25aae1, #83a2d4, #21a1a56c, #165163);
+  padding: 5px 10px;
+  transition: 0.5s ease-in-out;
+}
+
+.voteLightbox-wrap .voting .voting-txt input[type="radio"]:checked + label .radiobtn {
+  transform: translateX(360%);
+}
+
+.voteLightbox-wrap .voting .voting-txt input[type="radio"]:checked + label small {
+  right: 30px;
+}
+
+.voteLightbox-wrap .voting .voting-txt input[type="radio"]:checked + label .btn-txt {
+  position: absolute;
+}
+
+@media screen and (max-width: 575px) {
+  .voteLightbox-wrap .voting .voting-txt input[type="radio"]:checked + label .radiobtn {
+    transform: translateX(320%);
+  }
+}
+
+.voteLightbox-wrap .voting-ok {
+  text-align: center;
+  padding: 15px;
+}
+
+.voteLightbox-wrap .voting-ok h2 {
+  font-size: 32px;
+  font-weight: bold;
+  margin-top: 0px;
+  margin-bottom: 15px;
+}
+
+.voteLightbox-wrap .voting-ok p {
+  font-size: 1.6rem;
+  margin-bottom: 15px;
+}
+
+.voteLightbox-wrap .voting-ok .vote-count {
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+
+.voteLightbox-wrap .voting-ok .vote-count img {
+  width: 30px;
+}
+
+@media screen and (max-width: 575px) {
+  .voteLightbox-wrap .voting-ok h2 {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  .voteLightbox-wrap .voting-ok p {
+    font-size: 1.6rem;
+  }
+  .voteLightbox-wrap .voting-ok .vote-count {
+    font-size: 24px;
+    margin-bottom: 0px;
+  }
+  .voteLightbox-wrap .voting-ok .vote-count img {
+    width: 30px;
+  }
+}
+/*# sourceMappingURL=vote.css.map */

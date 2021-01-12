@@ -17,7 +17,23 @@
         $drinks->bindValue(":drink_no", $drink_no);
 
         $drinks->execute();
-        
+
+        echo json_encode("送出成功");
+
+
+        if($drink_no == 1){
+            $sql = "update member 
+                    set milk_vote = milk_vote + 1 
+                    where member_no = 1";
+    
+            $drinks = $pdo->prepare($sql);
+            // $drinks->bindValue(":member_no", $member_no);
+            // $drinks->bindValue(":drink_no", $drink_no);
+            $drinks->execute();
+            echo json_encode("送出成功");
+        }
+
+
 
     }
     catch (PDOException $e) {

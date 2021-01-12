@@ -91,15 +91,24 @@ aside{
 }
 
 .mem_img_box{
+  // flex-direction: column;
+  
+
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  
 }
 
 .mem_img{
   width: 170px;
   font-size: 0;
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  border: 1px solid black;
+
 }
 .change_img{
   display: flex;
@@ -269,7 +278,7 @@ aside{
 // 第二區  揪團訂單
 
 .group_order{
-  display: none;
+  // display: none;
 }
 
 // 訂單列表
@@ -412,7 +421,7 @@ aside{
 
 // 已成團 詳情 頁面
 .group_order_done_page{
-  display: none;
+  // display: none;
 }
 .group_order_done_groupname{
   display: flex;
@@ -465,69 +474,73 @@ aside{
   }
 }
 
-.group_order_done_drinklist{
-  margin: 10px 0;
-}
+// .group_order_done_drinklist{
+//   margin: 10px 0;
+// }
 
-.group_order_done_person{
-  border-bottom: 2px solid rgb(192, 191, 191);
-}
+// .group_order_done_person{
+//   border-bottom: 2px solid rgb(192, 191, 191);
+// }
 
-.group_order_done_person>div{
-  margin: 10px 0;
-}
+// .group_order_done_person>div{
+//   margin: 10px 0;
+// }
 
-.group_order_done_person_upbox{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+// .group_order_done_person_upbox{
+//   // display: flex;
+//   // justify-content: space-between;
+//   // align-items: center;
+// }
 
-.group_order_done_person_infobox{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+// .group_order_done_person_infobox{
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+// }
 
 .group_order_done_person_img{
+  border: 1px solid $textColor;
+  border-radius: 50%;
+  overflow: hidden;
   width: 60px;
+  height: 60px;
   font-size: 0;
   margin-right: 20px;
 }
 
-.group_order_done_person_name{
-  font-size: $fontsize_H6 ;
-  color: $textColor;
-  font-weight: bold;
-}
+// .group_order_done_person_name{
+//   font-size: $fontsize_H6 ;
+//   color: $textColor;
+//   font-weight: bold;
+// }
 
-.group_order_done_person_total{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: $fontsize_H6 ;
-  color: $textColor;
-  font-weight: bold;
+// .group_order_done_person_total{
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   font-size: $fontsize_H6 ;
+//   color: $textColor;
+//   font-weight: bold;
 
-  div:first-child{
-    margin-right: 20px;
-  }
-}
+//   div:first-child{
+//     margin-right: 20px;
+//   }
+// }
 
-.group_order_done_person_drink{
-  background-color: rgb(206, 206, 206);
-  padding: 5px 2.5%;
-  margin: 10px 0;
-  font-size: $fontsize_P1;
-  letter-spacing: 2px;
+// .group_order_done_person_drink{
+//   background-color: rgb(206, 206, 206);
+//   padding: 5px 2.5%;
+//   margin: 10px 0;
+//   font-size: $fontsize_P1;
+//   letter-spacing: 2px;
 
-  div{
-    margin: 10px 0;
-  }
-  div:first-child{
-    font-weight: bold;
-  }
-}
+//   div{
+//     margin: 10px 0;
+//   }
+//   div:first-child{
+//     font-weight: bold;
+//   }
+// }
 
 .group_order_done_total_box{
   font-size: $fontsize_P1;
@@ -541,7 +554,7 @@ aside{
   }
 }
 .group_order_done_dis{
-  border-bottom: 1px solid rgb(173, 173, 173);
+  // border-bottom: 1px solid rgb(173, 173, 173);
 }
 
 .group_order_done_finaltotal{
@@ -578,19 +591,19 @@ aside{
   .group_order_done_info{
     font-size: $fontsize_H5;
   }
-  .group_order_done_person_name,.group_order_done_person_total{
-    font-size: $fontsize_H4;
+  // .group_order_done_person_name,.group_order_done_person_total{
+  //   font-size: $fontsize_H4;
 
   }
 
 
-}
+// }
 
 @media(min-width:768px){
   .group_order_done_row{
     width: 33.3%;
   }
-  .group_order_done_person_drink,
+  
   .group_order_done_total,
   .group_order_done_dis{
     font-size: $fontsize_H6;
@@ -599,13 +612,13 @@ aside{
 
 // 跟團紀錄
 .follow_order_box{
-  display: none;
+  // display: none;
 }
 
 // 跟團中 詳情頁面
 
 .follow_order_notyet_page{
-  display: none;
+  // display: none;
 }
 
 // 跟團成功 詳情頁面
@@ -614,17 +627,17 @@ aside{
 }
 // 自己訂 | 訂單紀錄
 .self_order_box{
-  display: none;
+  // display: none;
 }
 // 自己訂 | 訂單詳情 頁面
 .self_order_page{
-  display: none;
+  // display: none;
 }
 
 
 // 優惠券 查看 
 .coupon_box{
-  display: none;
+  // display: none;
 }
 
 .coupon_list{
@@ -728,7 +741,7 @@ aside{
 
 // 發文紀錄
 .article_box{
-  display: none;
+  // display: none;
 }
 
 .cancel_img{
@@ -1077,3 +1090,203 @@ aside{
   }
 }
 
+// 單一會員飲料顯示  finished 
+
+
+// 每個人 買飲料
+#order_list {
+  // max-width: 575px;
+  margin: 40px auto;
+  max-width: 1200px;
+  color: $textColor;
+
+  .group_order_done_person {
+      // border-bottom: 2px solid rgb(192, 191, 191);
+      // width: 75%;
+      margin: 0 auto;
+      // border-top: 2px solid rgb(192, 191, 191);
+
+      // @media screen and (max-width:992px) {
+      //     width: 80%;
+      // }
+
+      // @media screen and (max-width:768px) {
+      //     width: 85%;
+      // }
+
+      // @media screen and (max-width:576px) {
+      //     width: 100%;
+      // }
+
+      &:last-child {
+          border-bottom: 2px solid rgb(192, 191, 191);
+      }
+
+      &>div {
+          margin: 15px 0 30px;
+      }
+
+      .group_order_done_person_upbox {
+          display: flex;
+          align-items: center;
+
+          @media screen and (max-width:576px) {
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+          }
+
+          .group_order_done_person_img {
+              width: 60px;
+              font-size: 0;
+              margin-right: 20px;
+
+              @media screen and (max-width:576px) {
+                  margin-right: 0;
+                  margin-bottom: 10px;
+              }
+          }
+
+          .group_order_done_person_name {
+              @include H6;
+              font-weight: bold;
+
+              @media screen and (min-width:577px) {
+                  @include H4;
+              }
+          }
+
+
+      }
+
+      .group_order_done_person_drink {
+          background-color: rgba(255, 255, 255, 0.5);
+          padding: 10px 2.5%;
+          margin: 10px 0;
+          @include H4;
+          text-indent: 8px;
+          position: relative;
+          border-radius: 5px;
+          display: flex;
+          justify-content: space-between;
+
+          @media screen and (max-width:576px) {
+              @include H5;
+              letter-spacing: 2px;
+              text-indent: 2px;
+          }
+
+          #drink_title_wrapper {
+              flex-shrink: 0;
+              width: 50%;
+              min-width: 200px;
+
+              @media screen and (max-width:350px) {
+                  min-width: 180px;
+              }
+
+              .group_order_done_person_drink_note {
+                  @include H6;
+
+                  @media screen and (max-width:576px) {
+                      font-size: 14px;
+                      letter-spacing: 2px;
+                      text-indent: 2px;
+                  }
+              }
+
+              div {
+                  margin: 10px 0;
+              }
+
+              div:first-child {
+                  font-weight: bold;
+              }
+
+
+
+          }
+
+          #num_btn {
+              display: flex;
+              justify-content: flex-end;
+              align-items: center;
+              width: 30%;
+
+              // margin-left: 40%;
+              @media screen and (max-width:768px) {
+                  width: 30%;
+              }
+
+              #num_feedback {
+                  text-align: center;
+                  text-indent: 4px;
+                  letter-spacing: 4px;
+
+                  @media screen and (max-width:576px) {
+                      letter-spacing: 1px;
+                      text-indent: 1px;
+                  }
+              }
+
+              span {
+                  font-weight: bold;
+              }
+
+              @media screen and (max-width:576px) {
+                  align-items: flex-start;
+                  justify-content: center;
+                  margin: 10px 0;
+                  letter-spacing: 1px;
+                  // text-indent: 2px;
+              }
+          }
+
+
+          #item_single_price {
+              font-weight: medium;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              text-indent: 4px;
+              letter-spacing: 4px;
+              width: 10%;
+              margin: 0 10px;
+
+              @media screen and (max-width:576px) {
+                  align-items: flex-start;
+                  margin: 10px;
+                  letter-spacing: 1px;
+                  // text-indent: 2px;
+              }
+          }
+      }
+
+      .group_order_done_person_total {
+          display: flex;
+          justify-content: flex-end;
+          align-items: center;
+          background-color: $btnColor;
+          color: white;
+          @include H4;
+          letter-spacing: 2px;
+          font-weight: bold;
+          border-radius: 5px;
+          padding: 10px 0;
+
+          @media screen and (max-width:576px) {
+              @include H5;
+              letter-spacing: 0px;
+              justify-content: space-around;
+          }
+
+          div {
+              margin-right: 2.5%;
+
+              @media screen and (max-width:576px) {
+                  margin-left: 2.5%;
+              }
+          }
+      }
+  }
+}

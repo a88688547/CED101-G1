@@ -1,0 +1,414 @@
+@import "./base/base.scss";
+@import "./mixins/mixins.scss";
+// @import "./brandstory_rwd.scss";
+
+body{
+    margin: 0 auto;
+    color: $textColor;
+    // div{
+    //     border: 2px solid green;
+    // }
+}
+
+#header{
+    background-color: $mainBackgroundColor;
+    margin-bottom: 0;
+}
+
+
+// 第一屏--------------------------------------------------------
+section.banner{
+    width: 100%;
+    height: calc(100vh - 80px);
+    background-color: $mainBackgroundColor;
+    position: relative;
+    top:0;
+
+    img.wave{
+        max-width: 100%;
+        position: absolute;
+        bottom:0;
+    }
+}
+
+// 第二屏-品牌描述--------------------------------------------------
+section.story_descipt{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: $insideBackgroundColor;
+
+    .descript_block{
+        margin-bottom: 35vh;
+        width: 100%;
+        display: inline-flex;
+        justify-content: center;
+        // justify-content: space-between;
+        align-items: center;
+        overflow: hidden;
+    }
+}
+
+// 偶數反轉區塊定位------------------------------------------------
+.descript_block:nth-child(even){
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    position: relative;
+
+    .shape{
+        right:-1.5%;
+    }
+
+    .text_block{
+        width: 70%;
+
+        .text{
+            margin-left: 20%;
+        }
+
+    }
+
+}
+
+// 不規則形狀區塊---------------------------------------------------------------
+
+// 1.不規則形狀-------------------
+.shape{
+    width:640px;
+    height:620px;
+    background: $textColor;
+    // clip-path: inset(10px 20px 30px 0px round 290px 80px 290px 0);
+    clip-path: inset(10px 20px 30px 0px round 290px 80px 290px 0);
+    position: relative;
+    right: 12%;
+    overflow: hidden;
+    img{
+        position: absolute;
+        transform: translate(50%,20%);
+    }
+}
+
+
+
+
+// 其他區塊形狀顏色、角度---
+// 第三屏----------------------------------------------------------
+.descript_block:nth-child(2){
+    .shape{
+        background: #F7B447;
+
+        img{
+            position: absolute;
+            transform: translate(50%,20%);
+            animation-name: qr;
+            animation-duration:4s;
+        }
+    }
+}
+
+@keyframes qr{
+    from{
+        transform: translate(50%,110%);
+    }
+
+    to{
+        transform: translate(50%,20%);
+    }
+}
+
+// 第四屏----------------------------------------------------------
+.descript_block:nth-child(3){
+    .shape{
+        background: $btnColor;
+        img{
+            position: absolute;
+            transform: translate(0%, 15%);
+            animation-name: bubbletea;
+            animation-duration:3s;
+        }
+    }
+}
+
+@keyframes bubbletea{
+    from{
+        transform: translate(-20%, 40%);
+    }
+
+    to{
+        transform: translate(0%, 15%);
+    }
+}
+
+
+// 第五屏----------------------------------------------------------
+
+.descript_block:nth-child(4){
+    .shape{
+        background: $mainBackgroundColor;
+        transform:rotate(0deg);   
+    }
+}
+
+
+// 2.文字內容--------------------
+.text_block{
+    display: flex;
+    flex-direction: row;
+
+    .text{
+        flex-direction: column;
+    }
+
+    .mascot{
+        display: flex;
+        align-items: flex-end;
+
+        img{
+            // border: 2px solid red;
+            max-width: 100%;
+            padding: 0 30px;
+        }
+    }
+
+}
+
+// 文字區塊內部屬性--------------------
+.text{
+    h1{
+        font-size: 80px;
+        font-family: Adobe Caslon Pro;
+        font-style: italic;
+        margin-bottom: 40px; 
+        font-weight: bold; 
+        letter-spacing: 5px;
+    }
+
+    h2{
+        @include H2;
+        margin-bottom: 35px;
+        letter-spacing: 5px;
+        font-weight: bold; 
+    }
+
+    p{
+        @include H6;
+        line-height: 32px;
+        letter-spacing: 5px;
+    }
+}
+
+// 底部區塊--------------------------------------
+section.btm_block{
+    background-color: $insideBackgroundColor;
+}
+
+.address{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 100px 0;
+}
+
+.address_text{
+    // padding: 75px 0 100px 200px;
+    
+    h2{
+        @include H2;
+        margin-bottom: 35px;
+        letter-spacing: 5px;
+        font-weight: bold; 
+    }
+}
+
+.address_text .title_block{
+    display: flex;
+    flex-direction: column;
+    .info_block{
+        display: inline-flex;
+        align-items: center;
+
+        img{
+            margin-right: 30px;
+        }
+        h5{
+            @include H5;
+            font-weight: bold; 
+            line-height: 36px;
+        }
+    } 
+}
+
+
+
+
+
+
+
+
+
+
+//  RWD--------------------------------------------------------------------------------
+
+
+@media (min-width: 767px) and (max-width: 1199px){
+
+    .shape {
+        width: 450px;
+        height: 450px;
+        clip-path: inset(10px 20px 30px 0px round 200px 80px 200px 0);
+    }
+
+    // 文字調整--------------------------------
+    .text_block{
+        width: 80%;
+        padding-right: 0;
+        display: flex;
+        justify-content: center;
+    }
+    .text_block .text {
+        width: 100%;
+        h1{
+            font-size: 48px;
+            letter-spacing: 3px;
+        }
+
+        h2{
+            @include H3;
+            letter-spacing: 2px;
+        }
+
+        p{
+            @include P1;
+            letter-spacing: 1px;
+        }
+    }
+    // 吉祥物間距調整--------------------------
+    .text_block .mascot img {
+        padding: 0;
+    }
+
+    .descript_block:nth-child(even){
+    
+        .shape{
+            right:-5%;
+        }
+    
+        .text_block{
+            padding-right: 0%;
+            padding-left: 5%;
+    
+            .text{
+                margin-left: 0;
+            }   
+        }   
+    }
+}
+
+
+
+@media (max-width: 766px){
+
+    // 改成直式排列----------------------------------
+    section.story_descipt .descript_block{
+        margin-bottom: 20vh;
+    }
+
+    .descript_block, .descript_block:nth-child(even) {
+        flex-direction: column;
+    }
+
+    .shape {
+        width: 300px;
+        height: 300px;
+        clip-path: inset(10px 20px 30px 0px round 150px 80px 150px 0);
+        right:0;
+    }
+    
+    // 文字調整--------------------------------
+    .text_block{
+        width: 80%;
+        padding-right: 0;
+        display: flex;
+        justify-content: center;
+        text-align: center;
+    }
+    .text_block .text {
+        width: 100%;
+        h1{
+            font-size: 35px;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+        }
+
+        h2{
+            @include H4;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+
+        p{
+            @include P2;
+            letter-spacing: 1px;
+            line-height: 21px;
+        }
+    }
+    // 吉祥物間距調整--------------------------
+    .text_block .mascot{
+        display: none;
+    }
+
+    // 偶數區塊定位--------------------------
+    .descript_block:nth-child(even){
+    
+        .shape{
+            right:-5%;
+        }
+    
+        .text_block{
+            width: 80%;
+            padding: 0;
+
+            .text{
+                margin-left: 0;
+            }   
+        }   
+    }
+
+    .address{
+        flex-direction: column;
+        width: 85%;
+        margin: 0 auto;
+        
+        h2{
+            @include H4;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }       
+    }
+
+    .address_text .title_block .info_block {
+
+        h5{
+            @include P1;
+        }
+        img{
+            margin-right: 10px;
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

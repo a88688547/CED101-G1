@@ -11,7 +11,6 @@ try {
 	$grouporddata = $grouporddata->fetchAll(PDO::FETCH_ASSOC);
     // $grouporddata->bindValue(":group_ord_no", $group_ord_no);
     
-        
     echo json_encode($grouporddata);
     
 } catch (PDOException $e) {

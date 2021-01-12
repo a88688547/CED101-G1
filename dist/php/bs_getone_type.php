@@ -4,6 +4,7 @@ try {
 
     $content = trim(file_get_contents("php://input"));
     $decoded = json_decode($content, true);
+
     $type_no = $decoded["type_no"];
 
     $sql = "select *

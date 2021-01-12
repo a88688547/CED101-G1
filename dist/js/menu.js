@@ -196,7 +196,7 @@ Vue.component('menu_carshop', {
                 bus.$emit('getAlert', '跟團時間已截止')
             } else {
                 if (this.shopping_num_total >= 1) {
-                    location.href = 'follow_step1.html'
+                    location.href = `follow_step1.html?group_ord_no=${window.location.search.split("=")[1]}`
                 } else {
                     bus.$emit('getAlert', '請選擇飲品')
                 }

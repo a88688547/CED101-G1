@@ -29,8 +29,8 @@ try{
     $group_ord_data->bindValue(":goal_cup", $goal_cup);
     $group_ord_data->execute();
     
-    $GroupNo = $pdo->lastInsertId();
-    echo json_encode($GroupNo);
+    $group_ord_no = $pdo->lastInsertId();
+    echo json_encode($group_ord_no);
 
 }
 catch (PDOException $e) {

@@ -162,6 +162,7 @@
     var app = new Vue({
       el:"#app",
       data:{
+        group_ord_no:"",
         msg:"12321321",
         oldNum:"",
         phone:"",
@@ -225,6 +226,10 @@
         }
         
       },
+      created() {
+          //切割字串
+          this.group_ord_no = window.location.search.split("=")[1];
+        },
       methods: {
         confirmData(){
           if(this.phone == ""){

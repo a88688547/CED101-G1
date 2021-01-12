@@ -22,7 +22,7 @@
           <h2>分享QR，立馬揪飲</h2>
           <div class="fist_QR_main">
             <img
-              src="http://chart.apis.google.com/chart?cht=qr&choe=UTF-8&chs=300x300&chl=`./join_step2.php?group_ord_no=${this.GroupNo}`"
+              src="http://chart.apis.google.com/chart?cht=qr&choe=UTF-8&chs=300x300&chl=`./menu.html?group_ord_no=${this.group_ord_no}`"
             />
           </div>
           <img src="./Images/cancel.svg" alt="" class="close_btn" />
@@ -68,38 +68,43 @@
           <div class="QR_box">
             <div class="QR_main">
               <img
-                src="http://chart.apis.google.com/chart?cht=qr&choe=UTF-8&chs=300x300&chl=http://127.0.0.1:5502/dist/menu.html"
+                src="http://chart.apis.google.com/chart?cht=qr&choe=UTF-8&chs=300x300&chl=`./menu.html?group_ord_no=${this.group_ord_no}`"
               />
             </div>
             <h2>分享網址揪團喝飲料!</h2>
             <div class="QR_link">
+              <div>
+                <a :href="`./menu.html?group_ord_no=${this.group_ord_no}`">
+                  123</a
+                >
+              </div>
               <div class="QR_link_text">https://www.fo111111111111odomres</div>
               <div class="QR_copy"></div>
             </div>
           </div>
-          <div><button @click="selectGroupNo">123</button></div>
+
           <!-- ===QR==== -->
           <!-- ===團的資料==== -->
           <ul>
             <li>
               <div>團名</div>
-              <div><?=$group_ord_Row["group_name"]?></div>
+              <div>{{group_ord.group_name}}</div>
             </li>
             <li>
               <div>截單時間</div>
-              <div><?=$group_ord_Row["deadline_time"]?></div>
+              <div>{{group_ord.group_name}}</div>
             </li>
             <li>
               <div>預計送達時間</div>
-              <div><?=$group_ord_Row["arrive_time"]?></div>
+              <div>{{group_ord.group_name}}</div>
             </li>
             <li>
               <div>目標杯數</div>
-              <div><?=$group_ord_Row["goal_cup"]?></div>
+              <div>{{group_ord.group_name}}</div>
             </li>
             <li>
               <div>取貨地點</div>
-              <div><?=$group_ord_Row["group_adress"]?></div>
+              <div>{{group_ord.group_name}}</div>
             </li>
           </ul>
         </div>
@@ -196,7 +201,7 @@
               type="button"
               value="結帳"
               class="btn_cleckout"
-              onclick="location.href='./join_step3A.html'"
+              onclick="location.href=`./join_step3A.html?group_ord_no=${this.group_ord_no}`"
             />
           </div>
         </div>
@@ -243,11 +248,6 @@
             })
               .then((res) => res.json())
               .then((res) => (this.group_ord = res));
-            // .then(function (data) {
-            //   return data.json();
-            //   this.group_ord = res;
-            //   console.log("123");
-            // });
           },
         },
         computed: {
@@ -258,10 +258,10 @@
           },
         },
         created() {
+          //切割字串
           this.group_ord_no = window.location.search.split("=")[1];
         },
         mounted() {
-          //切割字串
           this.selectGroupNo();
         },
       });

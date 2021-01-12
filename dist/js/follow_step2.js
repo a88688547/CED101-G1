@@ -10,10 +10,11 @@ Vue.component('group_info', {
             method: 'GET', // or 'PUT'
             // body: JSON.stringify(this.item_type), // data can be `string` or {object}!
             headers: new Headers({
-                'Content-Type': 'application/json'
-            })
-        }).then(res => res.json())
-            .then(res => this.groupInfo = res);
+                'Content-Type': 'application/json',
+            }),
+        })
+            .then((res) => res.json())
+            .then((res) => (this.groupInfo = res))
     },
     methods: {
         showNoSeconds(time) {
@@ -25,18 +26,18 @@ Vue.component('group_info', {
     computed: {
         count() {
             switch (this.groupInfo[0].goal_cup) {
-                case "20":
-                    return "9折"
-                case "30":
-                    return "8折"
-                case "40":
-                    return "7折"
-                case "50":
-                    return "6折"
+                case '20':
+                    return '9折'
+                case '30':
+                    return '8折'
+                case '40':
+                    return '7折'
+                case '50':
+                    return '6折'
                 default:
-                    return "無"
+                    return '無'
             }
-        }
+        },
     },
     template: `
     <div id="group_info">
@@ -54,8 +55,7 @@ Vue.component('group_info', {
     `,
 })
 
-
-let storage = sessionStorage;
+let storage = sessionStorage
 let dt = storage['dt']
 Vue.component('orderlist', {
     data() {
@@ -70,19 +70,18 @@ Vue.component('orderlist', {
                 this.order = false
             }
             this.addItemList = theAddItemList
-        }
+        },
     },
     created() {
-        if (storage[`addItemList${dt}`] == "") {
+        if (storage[`addItemList${dt}`] == '') {
             this.order = false
         }
     },
 
     computed: {
-
         drinkItem() {
             let itemString = this.addItemList
-            let items = itemString.substr(0, itemString.length - 1).split('|');
+            let items = itemString.substr(0, itemString.length - 1).split('|')
             let obj = {}
             //判斷陣列中飲料品項是否重複
             //把陣列中每個item拿出來執行
@@ -109,8 +108,6 @@ Vue.component('orderlist', {
             //最後結果 => 例: arr = [a,a,b,c,c] obj={a:2,b:1,c:2}
             // console.log(obj)
             return obj
-
-
         },
         total_num() {
             let theTotalNum = 0
@@ -123,16 +120,16 @@ Vue.component('orderlist', {
             let theTotalPrice = 0
 
             let objKeys = Object.keys(this.drinkItem)
-            if (objKeys == "") {
+            if (objKeys == '') {
                 objKeys = 0
             }
             for (let i = 0; i < objKeys.length; i++) {
-                theTotalPrice += objKeys[i].substr(0, objKeys[i].length).split(',')[5] * Object.values(this.drinkItem)[i]
+                theTotalPrice +=
+                    objKeys[i].substr(0, objKeys[i].length).split(',')[5] * Object.values(this.drinkItem)[i]
             }
 
             return theTotalPrice
         },
-
     },
     template: `
     <div>
@@ -179,7 +176,6 @@ Vue.component('personDrink', {
         return {
             propsKey: this.key_.substr(0, this.key_.length).split(','),
             num: this.value_,
-
         }
     },
     computed: {
@@ -218,10 +214,8 @@ Vue.component('personDrink', {
         </section>
     </div>
     `,
-
 })
 
-
 new Vue({
-    el: "#app",
+    el: '#app',
 })

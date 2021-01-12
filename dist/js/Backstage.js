@@ -79,11 +79,7 @@ window.addEventListener('load', function () {
                     return data.json()
                 })
                 // 取回res值後，呼叫另一隻函式
-                this.change_mar(res)
-            },
-            // 將值寫入data中
-            change_mar: function (data) {
-                this.managers = data
+                this.managers = res
             },
             // 點擊修改後，顯示燈箱 並帶入值
 
@@ -381,6 +377,10 @@ window.addEventListener('load', function () {
                 type_info: '',
                 detail_info: '',
                 update_detail: [],
+                img_type: '',
+                formData: new FormData(),
+
+                test: '',
             }
         },
         props: ['show', 'drinkno', 'lightbox'],
@@ -439,7 +439,7 @@ window.addEventListener('load', function () {
                           <img :src="drink_src" alt="尚未新增任何照片" id="image" />
                         </div>
                       </div>
-                      <div class="drink_edit_btn" @click="drink_edit(drink_no,drink_title_ch, drink_title_en, drink_type_no, drink_big_price, drink_small_price,update_detail)">確認修改</div>
+                      <div class="drink_edit_btn" @click="drink_edit(drink_no,drink_title_ch, drink_title_en, drink_type_no, drink_big_price, drink_small_price,update_detail,formData)">確認修改</div>
                     </div>
                     <div class="lightbox_black" v-if="lightbox">
                         <div class="lightbox" >
@@ -464,10 +464,17 @@ window.addEventListener('load', function () {
                 let file = event.target.files
                 reader = new FileReader()
                 reader.readAsDataURL(file[0])
+
                 reader.onload = function (event) {
                     document.getElementById('image').src = event.target.result
                 }
-                console.log('changeimg')
+                // console.log('changeimg')
+
+                //取得 上傳照片之檔案格式，以利送出時判斷
+                this.img_type = file[0].type.split('/').pop()
+                //將上傳的檔案存入 data內
+                this.formData.append('file', event.target.files[0])
+                console.log(this.formData)
             },
             //呼叫php程式，取回 飲料 相關資料，並用json()轉回一般陣列
             get_mar: async function (drinkno) {
@@ -556,7 +563,8 @@ window.addEventListener('load', function () {
                 drink_type_no,
                 drink_big_price,
                 drink_small_price,
-                update_detail
+                update_detail,
+                formData
             ) {
                 //新增前 確認欄位 是否符合規定
 
@@ -620,6 +628,22 @@ window.addEventListener('load', function () {
                     this.error_text = '請確認飲料金額 (大杯金額 > 小杯金額)'
                     return ''
                 }
+                // 大杯金額 必須 大於 小杯金額
+                if (drink_big_price > drink_small_price) {
+                    console.log('大小 成功')
+                } else {
+                    this.changelightbox(true)
+                    this.error_text = '請確認飲料金額 (大杯金額 > 小杯金額)'
+                    return ''
+                }
+                let array = ['jpg', 'jpeg', 'png', 'svg']
+                if (array.indexOf(this.img_type) != -1) {
+                    console.log('格式正確')
+                } else {
+                    this.changelightbox(true)
+                    this.error_text = '請確認上傳照片之格式 (jpg,jpeg,png,svg)'
+                    return ''
+                }
 
                 const res = await fetch('./php/bs_update_drink.php', {
                     method: 'POST',
@@ -636,8 +660,12 @@ window.addEventListener('load', function () {
                         drink_big_price: drink_big_price,
                         drink_small_price: drink_small_price,
                         update_detail: update_detail,
+                        formData: formData,
                     }),
+                }).then(function (data) {
+                    return data.json()
                 })
+                this.test = res
                 //修改成功跳出 燈箱
                 this.changelightbox(true)
                 this.error_text = '修改成功'

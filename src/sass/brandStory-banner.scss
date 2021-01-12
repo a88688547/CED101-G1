@@ -1,4 +1,6 @@
-
+// 導入共用基本
+@import "./base/base.scss";
+@import "./mixins/mixins.scss";
 // 飲料杯------------------------------------
 img.caffeelatte{
     position: absolute;

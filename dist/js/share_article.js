@@ -116,10 +116,15 @@ Vue.component('article_box', {
             message: "",
             parentAlert: false,
             alertText: "",
+            // everClickLike: false,
+            MemberLike: [],
+            testres: "",
         }
     },
+
     mounted() {
         this.getArticle_box_data()
+        this.updateLike()
     },
     methods: {
         getArticle_box_data() {
@@ -130,6 +135,8 @@ Vue.component('article_box', {
             }
             xhr.open("get", `php/getArticleBox.php?art_no=${that.item.art_no}`, true);
             xhr.send(null);
+
+
         },
         doubleCheck() {
             this.parentAlert = true
@@ -160,6 +167,36 @@ Vue.component('article_box', {
 
             this.parentAlert = false
         },
+
+        likeArt: async function () {
+            await this.postLikeArt(this.everClickLike)
+            await this.updateLike()
+            await this.$emit('childUpdate', this.item.art_no)
+        },
+        updateLike() {
+            let that = this
+            let xhr = new XMLHttpRequest();
+            xhr.onload = function () {
+                that.MemberLike = JSON.parse(xhr.responseText);
+            }
+            xhr.open("get", `php/getMemberLike.php?mem_no=1&art_no=${this.item.art_no}`, true);
+            xhr.send(null);
+
+        },
+        postLikeArt: async function (_everClickLike) {
+            await fetch('php/postLikeArt.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    mem_no: 1,
+                    art_no: this.item.art_no,
+                    everClickLike: _everClickLike,
+                }),
+            })
+        },
+
     },
 
     computed: {
@@ -177,6 +214,27 @@ Vue.component('article_box', {
                 msg_intro: this.message,
             }
             return dataObj
+        },
+        heart() {
+            if (this.everClickLike) {
+                return "./Images/like_big.svg"
+            } else {
+                return "./Images/heart_gray.png"
+            }
+        },
+        like_btn_style() {
+            if (this.everClickLike) {
+                return "opacity: 1;"
+            } else {
+                return "opacity: 0.6;"
+            }
+        },
+        everClickLike() {
+            if (Object.keys(this.MemberLike).length != 0) {
+                return true
+            } else {
+                return false
+            }
         },
 
     },
@@ -217,9 +275,11 @@ Vue.component('article_box', {
                 <div class="article_text">
                     {{item.art_intro}}
                 </div>
-                <div class="like_btn">
-                    <div class="like_img"><img src="./Images/like_big.svg"></div>
-                    <div>喜歡</div>
+                <div class="like_btn" >
+                    <div @click="likeArt" :style="like_btn_style">
+                        <div class="like_img"><img :src="heart"></div>
+                        <div>喜歡</div>
+                    </div>
                 </div>
             </div>
             <div class="mseeage_box" v-for="data in article_box_data" :key="data.msg_no">

@@ -1,4 +1,10 @@
 const bus = new Vue();
+let storage = sessionStorage;
+let web_group_no = window.location.search.split("=")[1]
+let storage_key = `addItemList_group=${web_group_no}`
+if (storage[`${storage_key}`] == null) {
+    storage[`${storage_key}`] = ''
+}
 Vue.component('group-info', {
     data() {
         return {
@@ -11,7 +17,7 @@ Vue.component('group-info', {
     },
     mounted() {
         //後台撈出團的資料
-        fetch(`./php/group_menu.php?group_ord_no=${window.location.search.split("=")[1]}`, {
+        fetch(`./php/group_menu.php?group_ord_no=${web_group_no}`, {
             method: 'GET', // or 'PUT'
             // body: JSON.stringify({ group_ord_no: 1 }), // data can be `string` or {object}!
             headers: new Headers({
@@ -167,10 +173,7 @@ Vue.component('group-info', {
 })
 
 
-let storage = sessionStorage;
-if (storage['addItemList'] == null) {
-    storage['addItemList'] = ''
-}
+
 
 //菜單組件
 Vue.component('menu_carshop', {
@@ -196,7 +199,7 @@ Vue.component('menu_carshop', {
                 bus.$emit('getAlert', '跟團時間已截止')
             } else {
                 if (this.shopping_num_total >= 1) {
-                    location.href = `follow_step1.html?group_ord_no=${window.location.search.split("=")[1]}`
+                    location.href = `follow_step1.html?group_ord_no=${web_group_no}`
                 } else {
                     bus.$emit('getAlert', '請選擇飲品')
                 }
@@ -223,7 +226,7 @@ Vue.component('menu_carshop', {
     },
     //網頁重整的時候，購物車按鈕的飲品數會更新
     created() {
-        let itemString = storage.getItem('addItemList');
+        let itemString = storage.getItem(`${storage_key}`);
         let items = itemString.substr(0, itemString.length - 1).split('|');
         if (itemString == '') {
             this.shopping_num_total = 0
@@ -408,7 +411,7 @@ Vue.component('light_box', {
                 //呼叫存入storage函式
                 this.addToStorage(selectIceValue, selectSugarValue)
 
-                let itemString = storage.getItem('addItemList');
+                let itemString = storage.getItem(`${storage_key}`);
                 let items = itemString.substr(0, itemString.length - 1).split('|');
                 //把飲品杯數傳回菜單組件
                 bus.$emit('addToCar_parent', items.length)
@@ -453,7 +456,7 @@ Vue.component('light_box', {
             for (let i = 1; i <= this.num_feedback; i++) {
                 drinkInDetail += drinkInDetail_first
             }
-            storage['addItemList'] += `${drinkInDetail}`
+            storage[`${storage_key}`] += `${drinkInDetail}`
 
         },
         //燈箱內飲料杯數*單價的總價錢

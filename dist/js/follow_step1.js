@@ -1,5 +1,7 @@
 
 let storage = sessionStorage;
+let web_group_no = window.location.search.split("=")[1]
+let storage_key = `addItemList_group=${web_group_no}`
 const bus = new Vue();
 Vue.component('groupinfo', {
     data() {
@@ -13,7 +15,7 @@ Vue.component('groupinfo', {
     },
     mounted() {
         //後台撈出團的資料
-        fetch(`./php/group_menu.php?group_ord_no=${window.location.search.split("=")[1]}`, {
+        fetch(`./php/group_menu.php?group_ord_no=${web_group_no}`, {
             method: 'GET', // or 'PUT'
             // body: JSON.stringify(this.item_type), // data can be `string` or {object}!
             headers: new Headers({
@@ -89,8 +91,8 @@ Vue.component('orderlist', {
         return {
             // 是否有品項，沒有的話就不顯示list
             order: true,
-            //把storage['addItemList']存在data的變數，變動時drinkItem才會跟著變動
-            addItemList: storage['addItemList'],
+            //把storage[`${storage_key}`]存在data的變數，變動時drinkItem才會跟著變動
+            addItemList: storage[`${storage_key}`],
             // 燈箱開關
             lightBoxOpen: false,
             //現在時間是否早於結單時間，以此判斷是否要前往下一頁
@@ -127,7 +129,7 @@ Vue.component('orderlist', {
 
             })
             await this.createNewStorage()
-            location.href = `./follow_step2.html?group_ord_no=${window.location.search.split("=")[1]}`
+            location.href = `./follow_step2.html?group_ord_no=${web_group_no}`
         },
         createNewStorage: async function () {
             let dt = new Date().getTime()
@@ -135,22 +137,25 @@ Vue.component('orderlist', {
                 storage['dt'] = ''
             }
             storage["dt"] = dt
-            if (storage[`addItemList${dt}`] == null) {
-                storage[`addItemList${dt}`] = ''
+            if (storage[`${storage_key}${dt}`] == null) {
+                storage[`${storage_key}${dt}`] = ''
             }
-            storage[`addItemList${dt}`] = this.addItemList
-            storage['addItemList'] = ""
+            storage[`${storage_key}${dt}`] = this.addItemList
+            storage[`${storage_key}`] = ""
         },
         openLightBox() {
-            if (storage['addItemList'] == "") {
+            if (storage[`${storage_key}`] == "") {
                 bus.$emit('getAlert', "請加飲料至購物車")
             } else {
                 this.lightBoxOpen = true
             }
         },
+        goToMenu() {
+            location.href = `./menu.html?group_ord_no=${web_group_no}`
+        }
     },
     created() {
-        if (storage['addItemList'] == "") {
+        if (storage[`${storage_key}`] == "") {
             this.order = false
         }
     },
@@ -172,7 +177,7 @@ Vue.component('orderlist', {
             for (let i = 0; i < drinkItemLength; i++) {
                 //要放在陣列裡的物件data
                 let postOrderObj = {
-                    group_ord_no: 1,
+                    group_ord_no: web_group_no,
                     mem_no: 1,
                     drink_no: '',
                     one_price: '',
@@ -289,7 +294,7 @@ Vue.component('orderlist', {
                 </div>
             </div>
             <div class="orderbtn">
-                <div><a href="./menu.html">繼續加購</a></div>
+                <div @click="goToMenu">繼續加購</div>
                 <div class="nextStep" @click="openLightBox"><a href="#" >建立訂單</a></div>
             </div>
         </div>
@@ -369,32 +374,32 @@ Vue.component('personDrink', {
                 this.num = 1
             } else {
                 this.num--
-                storage['addItemList'] = storage['addItemList'].replace(`${this.key_}|`, "_")
-                storage['addItemList'] = storage['addItemList'].replace(`${this.key_}|`, "")
-                storage['addItemList'] = storage['addItemList'].replace("_", `${this.key_}|`)
+                storage[`${storage_key}`] = storage[`${storage_key}`].replace(`${this.key_}|`, "_")
+                storage[`${storage_key}`] = storage[`${storage_key}`].replace(`${this.key_}|`, "")
+                storage[`${storage_key}`] = storage[`${storage_key}`].replace("_", `${this.key_}|`)
             }
             //修改storage的資料後，將storage傳遞至上層組件，藉此更新drinkItem
-            this.$emit('childStorageToParent', storage['addItemList'])
+            this.$emit('childStorageToParent', storage[`${storage_key}`])
         },
 
         //增加杯數
         handlePlus() {
             this.num++
-            storage['addItemList'] += `${this.key_}|`
+            storage[`${storage_key}`] += `${this.key_}|`
             //修改storage的資料後，將storage傳遞至上層組件，藉此更新drinkItem
-            this.$emit('childStorageToParent', storage['addItemList'])
+            this.$emit('childStorageToParent', storage[`${storage_key}`])
         },
 
         //刪除飲品
         deleteItem() {
             let state = false
-            storage['addItemList'] = storage['addItemList'].replaceAll(`${this.key_}|`, "")
+            storage[`${storage_key}`] = storage[`${storage_key}`].replaceAll(`${this.key_}|`, "")
             //修改storage的資料後，將storage傳遞至上層組件，藉此更新drinkItem，由於可能是刪到沒有飲品，
             //因此多傳遞一個false給上層，判斷將飲品資料都隱藏
-            if (storage['addItemList'] == "") {
-                this.$emit('childStorageToParent', storage['addItemList'], state)
+            if (storage[`${storage_key}`] == "") {
+                this.$emit('childStorageToParent', storage[`${storage_key}`], state)
             } else {
-                this.$emit('childStorageToParent', storage['addItemList'])
+                this.$emit('childStorageToParent', storage[`${storage_key}`])
             }
             this.alertLightbox = false
         },

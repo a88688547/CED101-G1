@@ -465,12 +465,21 @@ main {
     justify-content: flex-end;
     align-items: center;
     @include H6;
-    cursor: pointer;
-    opacity: 0.6;
 
-    &:hover {
-        opacity: 1;
+
+    >div {
+        display: flex;
+        cursor: pointer;
+        align-items: center;
+
+        img {
+            width: 21px;
+            height: 19px;
+        }
     }
+
+
+
 }
 
 .like_img {

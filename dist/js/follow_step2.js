@@ -6,7 +6,7 @@ Vue.component('group_info', {
     },
     mounted() {
         //後台撈出團的資料
-        fetch(`./php/group_menu.php?group_ord_no=${window.location.search.split("=")[1]}`, {
+        fetch(`./php/group_menu.php?group_ord_no=${web_group_no}`, {
             method: 'GET', // or 'PUT'
             // body: JSON.stringify(this.item_type), // data can be `string` or {object}!
             headers: new Headers({
@@ -57,11 +57,13 @@ Vue.component('group_info', {
 
 let storage = sessionStorage
 let dt = storage['dt']
+let web_group_no = window.location.search.split("=")[1]
+let storage_key = `addItemList_group=${web_group_no}`
 Vue.component('orderlist', {
     data() {
         return {
             //把storage['addItemList']存在data的變數，變動時drinkItem才會跟著變動
-            addItemList: storage[`addItemList${dt}`],
+            addItemList: storage[`${storage_key}${dt}`],
         }
     },
     methods: {
@@ -73,7 +75,7 @@ Vue.component('orderlist', {
         },
     },
     created() {
-        if (storage[`addItemList${dt}`] == '') {
+        if (storage[`${storage_key}${dt}`] == '') {
             this.order = false
         }
     },

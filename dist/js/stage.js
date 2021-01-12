@@ -63,8 +63,52 @@ function updown() {
 
     })
 
-    TweenMax.to('.lightspot', 1.2, {
+    TweenMax.to('.l1', 1.2, {
+        scale: 1.8,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+
+    })
+
+    TweenMax.to('.l2', 0.8, {
+        scale: 2.4,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+
+    })
+
+    TweenMax.to('.l3', 0.6, {
         scale: 1.2,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+
+    })
+    TweenMax.to('.l4', 1.4, {
+        scale: 2.2,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+
+    })
+    TweenMax.to('.l5', 1.6, {
+        scale: 2.8,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+
+    })
+    TweenMax.to('.l6', 1.8, {
+        scale: 3.2,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+
+    })
+    TweenMax.to('.l7', 1.2, {
+        scale: 1.8,
         repeat: -1,
         yoyo: true,
         ease: "sine.inOut",

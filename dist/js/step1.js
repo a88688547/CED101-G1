@@ -28,7 +28,7 @@ var app = new Vue({
     group_confirm: false,
     //警告框
     Error_show: false,
-    GroupNo: "",
+    group_ord_no: "",
     //小時
     hh: "11",
     HourOptions: [
@@ -278,10 +278,10 @@ var app = new Vue({
         },
         body: JSON.stringify(this.JoinGroup),
       }).then(res => res.json())
-        .then(res => this.GroupNo = res);
-      console.log(this.GroupNo);
+        .then(res => this.group_ord_no = res);
+      console.log(this.group_ord_no);
       // location.href = `./join_step2.php?group_ord_no=${this.GroupNo}`
-      location.href = `./join_step2.html?group_ord_no=${this.GroupNo}`
+      location.href = `./join_step2.html?group_ord_no=${this.group_ord_no}`
     },
     //警告視窗開關
     XError: function ()

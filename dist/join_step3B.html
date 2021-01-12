@@ -16,7 +16,7 @@
     <header id="header">
         <my-header></my-header>
     </header>
-    <div class="main">
+    <div class="main" id="app">
         <!-- ==============進度條================= -->
         <div class="step_box">
             <ul class="step_ball">
@@ -92,23 +92,24 @@
             <div class="cardinfo">
                 <div>
                     <div>持卡人姓名</div>
-                    <div>小智</div>
+                    <div>{{name}}</div>
                 </div>
                 <div>
                     <div>卡號</div>
-                    <div>123456789***</div>
+                    <div>{{fullCard}}</div>
                 </div>
                 <div>
                     <div>有效期限</div>
-                    <div>12月2021年</div>
+                    <div>{{dealDate}}</div>
                 </div>
                 <div>
                     <div>安全碼</div>
-                    <div>123</div>
+                    <div>{{safeNumber}}</div>
                     <div class="cardimg_safeno"><img src="Images/creditcard.svg"></div>
                 </div>
             </div>
         </div>
+        <h3>{{this.name}}</h3>
     </div>
 
     <div class="ListTotal">
@@ -122,8 +123,9 @@
             <h2><span>$.</span><span id="ordPrice">400</span></h2>
         </div>
     </div>
+   
     <div class="orderbtn">
-        <div><a href="orderPaymentGroup.html">上一步</a></div>
+        <div><a href="join_step3A.html">上一步</a></div>
         <div class="nextStep"><a href="#">下一步</a></div>
     </div>
 
@@ -322,6 +324,24 @@
 
 
         });
+    </script>
+    <script>
+        var app = new Vue({
+            el:"#app",
+            data:{
+                // name:"",
+                name: localStorage.getItem("name"),
+                fullCard:localStorage.getItem("fullCard"),
+                dealDate:localStorage.getItem("dealDate"),
+                safeNumber:localStorage.getItem("safeNumber"),
+            },
+            mounted(){
+                // if(localStorage.getItem('name')){
+                //     this.name = localStorage.getItem('name');
+                //     console.log(this.name);
+                // }
+            }
+        })
     </script>
 </body>
 

@@ -7,7 +7,7 @@
   <title>揪團訂-訂單頁面</title>
   <link rel="stylesheet" href="./css/join_step3A.css" />
   <link rel="stylesheet" href="./css/style.css" />
-  <script src="vendors/Vue/vue.min.js"></script>
+  <script src="vendors/Vue/vue.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
@@ -15,125 +15,138 @@
   <header id="header">
     <my-header></my-header>
   </header>
-  <div class="main">
-    <!-- ==============進度條================= -->
-    <div class="step_box">
-      <ul class="step_ball">
-        <li class="on">
-          <img src="./Images/join_list/step_1_icon.svg" alt="" />
-          <h5>1.建立揪團</h5>
-        </li>
+  <div id="app" >
+    <div class="main">
+      <!-- ==============進度條================= -->
+      <div class="step_box">
+        <ul class="step_ball">
+          <li class="on">
+            <img src="./Images/join_list/step_1_icon.svg" alt="" />
+            <h5>1.建立揪團</h5>
+          </li>
 
-        <li>
-          <img src="./Images/join_list/step_2_icon.svg" alt="" />
-          <h5>2.完成開團</h5>
-        </li>
+          <li>
+            <img src="./Images/join_list/step_2_icon.svg" alt="" />
+            <h5>2.完成開團</h5>
+          </li>
 
-        <li>
-          <img src="./Images/join_list/step_3_icon.svg" alt="" />
-          <h5>3.結帳資訊</h5>
-        </li>
+          <li>
+            <img src="./Images/join_list/step_3_icon.svg" alt="" />
+            <h5>3.結帳資訊</h5>
+          </li>
 
-        <li>
-          <img src="./Images/join_list/step_4_icon.svg" alt="" />
-          <h5>4.訂單明細</h5>
-        </li>
-      </ul>
-    </div>
-    <!-- ==============進度條================= -->
-    <!-- 個人資訊 -->
-    <from class="info">
-      <div class="info_img"><img src="Images/user_big.svg"></div>
-      <div class="info_detail">
-        <div class="info_name">小智</div>
-        <div class="info_phone">
-          <div class="info_phone_top">
-            <div><img src="Images/tell_big.svg"></div>
-            <div>行動電話</div>
+          <li>
+            <img src="./Images/join_list/step_4_icon.svg" alt="" />
+            <h5>4.訂單明細</h5>
+          </li>
+        </ul>
+      </div>
+      <!-- ==============進度條================= -->
+      <!-- 個人資訊 -->
+      <from class="info">
+        <div class="info_img"><img src="Images/user_big.svg"></div>
+        <div class="info_detail">
+          <div class="info_name">小智</div>
+          <div class="info_phone">
+            <div class="info_phone_top">
+              <div><img src="Images/tell_big.svg"></div>
+              <div>行動電話</div>
+            </div> 
+            <div class="info_phone_bottom"><input type="number" class="phone" pattern="/^-?\d+\.?\d*$/" v-model="phone" placeholder="09-XXXXXXXX" onKeyPress="if(this.value.length==12) return false;"></div>
           </div>
-          <div class="info_phone_bottom"><input type="text"></div>
-        </div>
-        <div class="info_msg">
-          <div class="info_msg_top">
-            <div><img src="Images/list.svg"></div>
-            <div>留言給店家</div>
+          <div class="info_msg">
+            <div class="info_msg_top">
+              <div><img src="Images/list.svg"></div>
+              <div>留言給店家</div>
+            </div>
+            <div class="info_msg_bottom"><input type="text" maxlength="30" v-model="message" placeholder="備註最多30字" class="message"></div>
           </div>
-          <div class="info_msg_bottom"><input type="text"></div>
         </div>
-      </div>
-    </from>
-    <hr />
-    <!-- 折扣 -->
-    <div class="discount">
-      <div class="discountTop">
-        <div class="discountNo">
-          <label>
-            <h3>折扣代碼</h3>
-          </label>
-          <select>
-            <option>查看優惠內容</option>
-            <option>join999</option>
-            <option>letsjoin</option>
-            <option>99discount</option>
-          </select>
+      </from>
+      <hr />
+      <!-- 折扣 -->
+      <div class="discount">
+        <div class="discountTop">
+          <div class="discountNo">
+            <label>
+              <h3>折扣代碼</h3>
+            </label>
+            <select>
+              <option>查看優惠內容</option>
+              <option>join999</option>
+              <option>letsjoin</option>
+              <option>99discount</option>
+            </select>
+          </div>
+          <div class="gamelink">
+            <a href="#"><img src="Images/gamelink.svg" /></a>
+          </div>
         </div>
-        <div class="gamelink">
-          <a href="#"><img src="Images/gamelink.svg" /></a>
-        </div>
-      </div>
-      <div class="discountBottom">
-        <div>
-          <h3>商品X<span>7</span></h3>
-        </div>
-        <div class="disTotal">
-          <h3>小計$.<span>400</span></h3>
-        </div>
-      </div>
-    </div>
-    <hr />
-    <!-- 信用卡 -->
-    <div class="card">
-      <div class="cardimg">
-        <img src="Images/pay.svg">
-      </div>
-      <div class="cardinfo">
-        <div class="cardname">
-          <div>持卡人姓名</div>
-          <div><input type="text"></div>
-        </div>
-        <div class="cardno">
-          <div>卡號</div>
-          <div><input type="text"><input type="text"><input type="text"><input type="text"></div>
-        </div>
-        <div class="exp">
-          <div>有效期限</div>
-          <div class="exp_bottom"><input type="text">月<input type="text">年</div>
-        </div>
-        <div class="safeno">
-          <div>安全碼</div>
+        <div class="discountBottom">
           <div>
-            <div><input type="text"></div>
-            <div><img src="Images/creditcard.svg"></div>
+            <h3>商品X<span>7</span></h3>
+          </div>
+          <div class="disTotal">
+            <h3>小計$.<span>400</span></h3>
           </div>
         </div>
       </div>
+      <hr />
+      <!-- 信用卡 -->
+      <div class="card">
+        <div class="cardimg">
+          <img src="Images/pay.svg">
+        </div>
+        <div class="cardinfo">
+          <div class="cardname">
+            <div>持卡人姓名</div>
+            <div><input type="text" v-model="name" class="card_name"></div>
+          </div>
+          <div class="cardno">
+            <div>卡號</div>
+            <div><input type="number" class="cardNumber" pattern="/^-?\d+\.?\d*$/" v-model="card1" onKeyPress="if(this.value.length==4) return false;">
+              <input type="number" class="cardNumber" pattern="/^-?\d+\.?\d*$/" v-model="card2" onKeyPress="if(this.value.length==4) return false;">
+              <input type="number" class="cardNumber" pattern="/^-?\d+\.?\d*$/" v-model="card3" onKeyPress="if(this.value.length==4) return false;">
+              <input type="number" class="cardNumber" pattern="/^-?\d+\.?\d*$/" v-model="card4" onKeyPress="if(this.value.length==4) return false;"></div>
+          </div>
+          <div class="exp">
+            <div>有效期限</div>
+            <div class="exp_bottom"><input type="number" class="safeNumber" pattern="/^-?\d+\.?\d*$/" v-model="month" onKeyPress="if(this.value.length==2) return false;">月
+              <input type="number" class="safeNumber" pattern="/^-?\d+\.?\d*$/" v-model="year" onKeyPress="if(this.value.length==4) return false;">
+              年</div>
+          </div>
+          <div class="safeno">
+            <div>安全碼</div>
+            <div>
+              <div><input type="number" class="safeNumber" pattern="/^-?\d+\.?\d*$/" v-model="safeNumber" onKeyPress="if(this.value.length==3) return false;"></div>
+              <div><img src="Images/creditcard.svg"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 金額 -->
+      <hr />
+      <div class="ListTotal">
+        <div class="payTotal">
+          <h2>應付金額</h2>
+        </div>
+        <div id="line">
+          <hr />
+        </div>
+        <div>
+          <h2>$.<span id="ordPrice">400</span></h2>
+        </div>
+      </div>
+      <div style="width: 200px;height: 200px; border: 1px solid red;">
+      <h3>{{name}}</h3>
+      <h3>{{fullCard}}</h3>
+      <h3>{{dealDate}}</h3>
+      <h3>{{phone}}</h3>
     </div>
-    <!-- 金額 -->
-    <hr />
-    <div class="ListTotal">
-      <div class="payTotal">
-        <h2>應付金額</h2>
+      <div class="orderbtn">
+        <div><a href="./join_step2.html">上一步</a></div>
+        <div class="nextStep"><a  @click="confirmData">下一步</a></div>
       </div>
-      <div id="line">
-        <hr />
-      </div>
-      <div>
-        <h2>$.<span id="ordPrice">400</span></h2>
-      </div>
-    </div>
-    <div class="orderbtn">
-      <div><a href="./join_step2.html">上一步</a></div>
-      <div class="nextStep"><a href="join_step3B.html">下一步</a></div>
     </div>
   </div>
 
@@ -145,7 +158,100 @@
 
   <script src="layout/footer.vue"></script>
   <script src="layout/header.vue"></script>
-
+  <script>
+    var app = new Vue({
+      el:"#app",
+      data:{
+        msg:"12321321",
+        oldNum:"",
+        phone:"",
+        message:"",
+        name:"",
+        card1:"",
+        card2:"",
+        card3:"",
+        card4:"",
+        full_card:"",
+        deal_date:"",
+        month:"",
+        year:"",
+        safeNumber:"",
+      },
+      computed: {
+        fullCard(){
+          this.full_card = `${this.card1}-${this.card2}-${this.card3}-${this.card4}`
+          return this.full_card;
+        },
+        dealDate(){
+          this.deal_date= `${this.month}/${this.year}`
+          return this.deal_date;
+        }
+        
+      },
+      mounted() {
+        // 持卡姓名
+        if (localStorage.name) {
+          this.name = localStorage.name;
+        }
+        //卡號
+        if (localStorage.fullCard) {
+          this.fullCard = localStorage.fullCard;
+        }
+        //有效期限
+        if (localStorage.dealDate) {
+          this.dealDate = localStorage.dealDate;
+        }
+        //安全碼
+        if (localStorage.safeNumber) {
+          this.safeNumber = localStorage.safeNumber;
+        }
+      },
+      watch: {
+        //持卡姓名
+        name(newName) {
+          localStorage.name = newName;
+        },
+        //卡號
+        fullCard(newfullCard){
+          localStorage.fullCard = newfullCard;
+        },
+        //有效期限
+        dealDate(newdealDate){
+          localStorage.dealDate = newdealDate;
+        },
+        //安全碼
+        safeNumber(newsafeNumber){
+          localStorage.safeNumber = newsafeNumber;
+        }
+        
+      },
+      methods: {
+        confirmData(){
+          if(this.phone == ""){
+            console.log(this.phone.length);
+            alert("請輸入電話");
+            return
+          }
+          location.href = ``
+          
+        },
+        checkphone(){
+          console.log(this.phone);
+          var regex = /^[0-9\s]*$/;
+          if(this.phone.length > 10){
+            console.log("電話太長");
+            this.phone = "";
+            return;
+          }
+          else if(regex.test(this.phone) && this.phone ){
+            console.log(123);
+            // this.phone = "";
+          }
+        },
+       
+    }
+    })
+  </script>
 </body>
 
 </html>

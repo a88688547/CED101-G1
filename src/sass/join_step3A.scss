@@ -4,7 +4,7 @@
 body {
     background-color:$insideBackgroundColor;
 }
-
+  
 h3{
     color:$textColor;
     font-size:$fontsize_H3;
@@ -55,13 +55,18 @@ input{
     }
     input{
         @include input_style;
+        color:black;
+        
     }
+    
 }
 .info_name{
     margin-bottom: 20px;
 }
 .info_phone,.info_phone_top,.info_msg,.info_msg_top{
     display:flex;
+    
+    
 }
 .info_img{
     // width:20%;
@@ -77,6 +82,7 @@ input{
     font-weight: bold;
     div{
         margin-top:5px;
+        
     }
 }
 .info_phone_top,.info_msg_top{
@@ -89,6 +95,26 @@ input{
 }
 .info_phone_bottom,.info_msg_bottom{
     width:60%;
+    .phone::-webkit-outer-spin-button,
+    .phone::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+}
+.orderbtn{
+    border: 1px solid red;
+    display: flex;
+    justify-content: space-evenly;
+    div{
+        border: 1px solid red;
+        @include list_button_small;
+        cursor: pointer;
+        a{
+            color: #fff;
+            text-decoration:none;
+        }
+        
+    }
 }
 
 @media screen and (max-width: 756px){
@@ -237,11 +263,23 @@ input{
     }
     input{
         @include input_style;
+        color:black;
     }
 }
 .cardname,.cardno,.exp,.safeno{
     width:80%;
     margin:20px auto;
+    .cardNumber::-webkit-outer-spin-button,
+    .cardNumber::-webkit-inner-spin-button
+    {
+        -webkit-appearance: none;
+         margin: 0;
+    }
+    .safeNumber::-webkit-outer-spin-button,
+    .safeNumber::-webkit-inner-spin-button{
+        -webkit-appearance: none;
+         margin: 0;
+    }
 }
 
 .cardname,.cardno,.exp,.safeno{
@@ -459,6 +497,7 @@ input{
         }
         input{
             @include input_style;
+            color:black;
             @include H6;
             height: 30px;
             border-radius: 5px;
@@ -660,6 +699,7 @@ input{
             // width:15%;;
             // margin-right: 10px;
             @include input_style;
+            color:black;
         }
     }
     #cardExp{
@@ -1126,4 +1166,3 @@ input{
     }
   
   }
-  

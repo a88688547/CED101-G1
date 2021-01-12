@@ -159,19 +159,8 @@ body {
   margin-bottom: 30px;
 }
 
-.fist_QR .fist_QR_box .QR_link .QR_link_text {
-  border: 1px solid #013B4F;
-  position: relative;
-  height: 100%;
-  border-radius: 8% 0% 0% 8%/50%;
-  padding: 0 10px;
-}
-
-.fist_QR .fist_QR_box .QR_link .QR_copy {
-  border-radius: 0% 16% 16% 0%/50%;
-  background-color: #013B4F;
-  height: 17px;
-  width: 40px;
+.fist_QR .fist_QR_box .QR_link input {
+  border-radius: 10px;
 }
 
 .group_data {
@@ -222,21 +211,8 @@ body {
   margin-bottom: 30px;
 }
 
-.group_data .group_data_row .QR_box .QR_link .QR_link_text {
-  font-size: 1rem;
-  font-family: 'Roboto', sans-serif;
-  border: 1px solid #013B4F;
-  position: relative;
-  height: 100%;
-  border-radius: 8% 0% 0% 8%/50%;
-  padding: 0 10px;
-}
-
-.group_data .group_data_row .QR_box .QR_link .QR_copy {
-  border-radius: 0% 8% 8% 0%/50%;
-  background-color: #013B4F;
-  height: 17px;
-  width: 40px;
+.group_data .group_data_row .QR_box .QR_link input {
+  border-radius: 15%;
 }
 
 .group_data .group_data_row ul li {

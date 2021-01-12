@@ -1,7 +1,8 @@
 <?php
     try{
         require_once "./connect_join_database.php";
-        $sql = "SELECT * FROM art_msg a JOIN member m on a.mem_no = m.mem_no WHERE a.art_no = :art_no ORDER BY a.msg_time";
+        $sql = "SELECT * FROM art_msg a JOIN member m on a.mem_no = m.mem_no 
+        WHERE a.art_no = :art_no AND a.msg_status = 1 ORDER BY a.msg_time";
         $msg = $pdo->prepare($sql);
         $msg->bindValue(":art_no", $_GET["art_no"]);
         $msg->execute();

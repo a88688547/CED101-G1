@@ -1,8 +1,8 @@
 <?php
     try{
         require_once "./connect_join_database.php";
-        $sql = "SELECT a.art_no,a.mem_no,a.art_name,a.art_intro,a.art_img,a.art_time,a.art_status,a.art_like,a.art_look,a.art_msg_count,m.mem_name,m.mem_img 
-        FROM art a JOIN member m on a.mem_no = m.mem_no ORDER BY a.art_like DESC LIMIT 3";
+        $sql = "SELECT a.art_no,a.mem_no,a.art_name,a.art_intro,a.art_img,a.art_time,a.art_status,a.art_like_count,a.art_look_count,a.art_msg_count,m.mem_name,m.mem_img 
+        FROM art a JOIN member m on a.mem_no = m.mem_no Where a.art_status = 1 ORDER BY a.art_like_count DESC LIMIT 3";
         $art = $pdo->prepare($sql);
         $art->execute();
         if ($art->rowCount() == 0){

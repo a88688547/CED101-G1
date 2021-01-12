@@ -1,13 +1,14 @@
 Vue.component('hot_article', {
     data() {
         return {
-            top3_article: [],
-            theClickArt: 0,
-            show: false,
-            nowArt_no: "",
+            top3_article: [], //喜歡數前三名的文章
+            theClickArt: [],  //被點擊的文章資料
+            show: false, //是否開啟文章燈箱
+            theClickArtNo: "", //被點擊的文章編號
         }
     },
     mounted() {
+        //網頁掛載的時候呼叫取前三名的文章資料
         this.getTop3_article()
     },
     methods: {
@@ -21,6 +22,7 @@ Vue.component('hot_article', {
             }
             return theShowWords
         },
+        //存放喜歡前三名的文章資料
         getTop3_article() {
             let that = this
             let xhr = new XMLHttpRequest();
@@ -30,12 +32,13 @@ Vue.component('hot_article', {
             xhr.open("get", "php/getTop3_article.php", true);
             xhr.send(null);
         },
+        //存放被點擊的文章資料
         clickWhichOne(item) {
             this.theClickArt = item
             this.show = true
         },
         parentUpdate(_art_no) {
-            this.nowArt_no = _art_no
+            this.theClickArtNo = _art_no
             this.getTop3_article()
         },
 
@@ -45,7 +48,7 @@ Vue.component('hot_article', {
             let chooseArray = {}
 
             for (let i = 0; i < newData.length; i++) {
-                if (newData[i].art_no == this.nowArt_no) {
+                if (newData[i].art_no == this.theClickArtNo) {
                     chooseArray = newData[i]
                     console.log(newData[i].art_no)
                     console.log("a")
@@ -78,7 +81,7 @@ Vue.component('hot_article', {
             <div class="article_count">
                 <div>
                     <div class="article_icon"><img src="./Images/eyes_big.svg" /></div>
-                    <span class="article_num">{{item.art_look}}</span>
+                    <span class="article_num">{{item.art_look_count}}</span>
                 </div>
                 <div>
                     <div class="article_icon"><img src="./Images/message_big.svg" /></div>
@@ -86,7 +89,7 @@ Vue.component('hot_article', {
                 </div>
                 <div>
                     <div class="article_icon"><img src="./Images/like_big.svg" /></div>
-                    <span class="article_num">{{item.art_like}}</span>
+                    <span class="article_num">{{item.art_like_count}}</span>
                 </div>
             </div>
             <div class="article_detail">
@@ -196,7 +199,7 @@ Vue.component('article_box', {
                 <div class="article_count">
                     <div>
                         <div class="article_icon"><img src="./Images/eyes_big.svg" /></div>
-                        <span class="article_num">{{item.art_look}}</span>
+                        <span class="article_num">{{item.art_look_count}}</span>
                     </div>
                     <div>
                         <div class="article_icon"><img src="./Images/message_big.svg" /></div>
@@ -204,7 +207,7 @@ Vue.component('article_box', {
                     </div>
                     <div>
                         <div class="article_icon"><img src="./Images/like_big.svg" /></div>
-                        <span class="article_num">{{item.art_like}}</span>
+                        <span class="article_num">{{item.art_like_count}}</span>
                     </div>
                 </div>
                 <div class="article_detail">

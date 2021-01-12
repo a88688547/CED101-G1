@@ -149,7 +149,7 @@
               <div class="join_list_right">
                 <button class="join_drink color-1">
                   <a
-                    :href="'./join_step2.php?group_ord_no=' + Groupdata.group_ord_no"
+                    :href="'./menu.html?group_ord_no=' + Groupdata.group_ord_no"
                     style="text-decoration: none"
                   >
                     <img src="./Images/drink.svg" alt="" />
@@ -185,13 +185,7 @@
         };
         xhr.open("get", "./php/getGroup.php", true);
         xhr.send(null);
-      });
-      Vue.component("paginated-list", {
-        data() {
-          return {
-            pageNumber: 0,
-          };
-        },
+        console.log(app.grouporddata);
       });
 
       var app = new Vue({

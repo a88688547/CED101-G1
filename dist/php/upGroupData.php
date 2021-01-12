@@ -31,7 +31,7 @@ try{
     
     $GroupNo = $pdo->lastInsertId();
     echo json_encode($GroupNo);
-    // return $GroupNo;
+
 }
 catch (PDOException $e) {
     //echo "系統錯誤, 請通知系維護人員~<br>";

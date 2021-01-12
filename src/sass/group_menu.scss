@@ -89,7 +89,21 @@ body {
                     padding-bottom: 30px;
 
                     #user_img {
-                        width: 30%;
+                        margin-right: 20px;
+                        border-radius: 50%;
+                        width: 76px;
+                        height: 76px;
+                        overflow: hidden;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+
+                        img {
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                            max-width: none;
+                        }
                     }
 
                     #name_phone_inner {
@@ -197,8 +211,8 @@ body {
 
 
                         #user_img {
-                            width: 25%;
-                            padding-right: 10px;
+
+                            margin-right: 10px;
                         }
                     }
 
@@ -261,8 +275,8 @@ body {
 
                     #name_phone {
                         #user_img {
-                            width: 21%;
-                            padding-right: 15px;
+
+                            margin-right: 15px;
                         }
 
                     }

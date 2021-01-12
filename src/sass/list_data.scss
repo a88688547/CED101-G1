@@ -46,8 +46,21 @@
 
             .group_order_done_person_img {
                 width: 60px;
+                height: 60px;
+                overflow: hidden;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 50%;
                 font-size: 0;
                 margin-right: 20px;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    max-width: none;
+                }
 
                 @media screen and (max-width:576px) {
                     margin-right: 0;

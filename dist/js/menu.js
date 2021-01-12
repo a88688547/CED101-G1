@@ -435,15 +435,14 @@ Vue.component('light_box', {
             }
 
             // 選到的加料
-            let selectIngredientValue
+            let selectIngredientValue = ""
             let ingredient = document.getElementById('setType3')
             let ingredientInput = ingredient.querySelectorAll('input')
+
             for (let i = 0; i < ingredientInput.length; i++) {
                 if (ingredientInput[i].checked) {
                     selectIngredientValue = ingredientInput[i].value
                     break;
-                } else {
-                    selectIngredientValue = ""
                 }
             }
 

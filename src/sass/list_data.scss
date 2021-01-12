@@ -101,6 +101,15 @@
                 flex-shrink: 0;
                 width: 40%;
 
+                @media screen and (max-width:768px) {
+                    width: 45%;
+                }
+
+                @media screen and (max-width:576px) {
+                    width: auto;
+                    order: 0;
+                }
+
                 .group_order_done_person_drink_note {
                     @include H6;
 
@@ -117,10 +126,6 @@
                     font-weight: bold;
                 }
 
-                @media screen and (max-width:576px) {
-                    order: 0;
-
-                }
 
             }
 
@@ -197,7 +202,7 @@
                     order: 3;
                     justify-content: flex-start;
                     padding-left: 10px;
-                    // width: 80%;
+                    width: auto;
                     // border-top: 1px solid $textColor;
                 }
             }

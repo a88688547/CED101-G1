@@ -13,7 +13,7 @@ Vue.component('groupinfo', {
     },
     mounted() {
         //後台撈出團的資料
-        fetch('./php/group_menu.php', {
+        fetch(`./php/group_menu.php?group_ord_no=${window.location.search.split("=")[1]}`, {
             method: 'GET', // or 'PUT'
             // body: JSON.stringify(this.item_type), // data can be `string` or {object}!
             headers: new Headers({
@@ -127,7 +127,7 @@ Vue.component('orderlist', {
 
             })
             await this.createNewStorage()
-            location.href = './follow_step2.html'
+            location.href = `./follow_step2.html?group_ord_no=${window.location.search.split("=")[1]}`
         },
         createNewStorage: async function () {
             let dt = new Date().getTime()

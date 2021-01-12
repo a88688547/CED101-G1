@@ -109,6 +109,19 @@ aside{
   overflow: hidden;
   border: 1px solid black;
 
+  img{
+    // width: 100% !important;
+    // height: 100% !important;
+    // object-fit: cover !important;
+    // max-width: none !important;
+  }
+}
+
+#mem_image{
+  width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    max-width: none !important;
 }
 .change_img{
   display: flex;

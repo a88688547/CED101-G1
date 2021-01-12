@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="./vendors/Vue/vue.js"></script>
+    <script src="vendors/jQuery/js/jquery-3.5.1.js"></script>
+    <link rel="stylesheet" href="../src/sass/slick/slick-theme.css" />
+    <link rel="stylesheet" href="../src/sass/slick/slick.css" />
+    <link rel="stylesheet" href="./css/index_vote_new.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+
+  <body>
+    <header id="header"><my-header></my-header></header>
+    <!-- ==============header================= -->
+    <section class="vote">
+        <div class="title_block">
+            <h2>飲品排名</h2>
+            <h5>凡獲選票選第一之飲品，該飲品即得8折優惠。</h5>
+        </div>
+
+        <div class="drink_slick">
+            <div class="vote_block">
+                <div class="drink_item">
+                    <h4>TOP2</h4>
+                    <span>伯爵紅茶</span>
+                    <div class="vote_info">
+                        <img src="./Images/vote_medium.svg" alt="">
+                        <span>150</span>票
+                    </div>
+                    <img src="http://fakeimg.pl/360x220" alt="">
+                    <div class="triangle"></div>
+                </div>
+                <div class="drink_item">
+                    <h4>TOP1</h4>
+                    <span>伯爵紅茶</span>
+                    <div class="vote_info">
+                        <img src="./Images/vote_medium.svg" alt="">
+                        <span>150</span>票
+                    </div>
+                    <img src="http://fakeimg.pl/360x220" alt="">
+                    <div class="triangle"></div>
+                </div>
+                <div class="drink_item">
+                    <h4>TOP3</h4>
+                    <span>伯爵紅茶</span>
+                    <div class="vote_info">
+                        <img src="./Images/vote_medium.svg" alt="">
+                        <span>150</span>票
+                    </div>
+                    <img src="http://fakeimg.pl/360x220" alt="">
+                    <div class="triangle"></div>
+                </div>
+            </div>
+
+            <div class="vote_block">
+                <div class="drink_item">
+                    <h4>TOP2</h4>
+                    <span>伯爵紅茶</span>
+                    <div class="vote_info">
+                        <img src="./Images/vote_medium.svg" alt="">
+                        <span>150</span>票
+                    </div>
+                    <img src="http://fakeimg.pl/360x220" alt="">
+                    <div class="triangle"></div>
+                </div>
+                <div class="drink_item">
+                    <h4>TOP1</h4>
+                    <span>伯爵紅茶</span>
+                    <div class="vote_info">
+                        <img src="./Images/vote_medium.svg" alt="">
+                        <span>150</span>票
+                    </div>
+                    <img src="http://fakeimg.pl/360x220" alt="">
+                    <div class="triangle"></div>
+                </div>
+                <div class="drink_item">
+                    <h4>TOP3</h4>
+                    <span>伯爵紅茶</span>
+                    <div class="vote_info">
+                        <img src="./Images/vote_medium.svg" alt="">
+                        <span>150</span>票
+                    </div>
+                    <img src="http://fakeimg.pl/360x220" alt="">
+                    <div class="triangle"></div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+    </section>
+
+    
+    <!-- ==============footer================= -->
+
+    <footer id="footer"><my-footer></my-footer></footer>
+    <script src="./layout/header.vue"></script>
+    <script src="./layout/footer.vue"></script>
+    <script src="./vendors/slick/slick.js"></script>
+    <script src="../tasks/slick.js"></script>
+
+    <script>
+        $('.drink_slick').slick({
+            dots: true,
+            slidesToShow: 1,
+            slideToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 1500,
+        })
+    </script>
+
+  </body>
+</html>

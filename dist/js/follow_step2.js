@@ -1,5 +1,4 @@
-
-let storage = sessionStorage;
+let storage = sessionStorage
 let dt = storage['dt']
 Vue.component('orderlist', {
     data() {
@@ -14,19 +13,18 @@ Vue.component('orderlist', {
                 this.order = false
             }
             this.addItemList = theAddItemList
-        }
+        },
     },
     created() {
-        if (storage[`addItemList${dt}`] == "") {
+        if (storage[`addItemList${dt}`] == '') {
             this.order = false
         }
     },
 
     computed: {
-
         drinkItem() {
             let itemString = this.addItemList
-            let items = itemString.substr(0, itemString.length - 1).split('|');
+            let items = itemString.substr(0, itemString.length - 1).split('|')
             let obj = {}
             //判斷陣列中飲料品項是否重複
             //把陣列中每個item拿出來執行
@@ -53,8 +51,6 @@ Vue.component('orderlist', {
             //最後結果 => 例: arr = [a,a,b,c,c] obj={a:2,b:1,c:2}
             // console.log(obj)
             return obj
-
-
         },
         total_num() {
             let theTotalNum = 0
@@ -67,16 +63,16 @@ Vue.component('orderlist', {
             let theTotalPrice = 0
 
             let objKeys = Object.keys(this.drinkItem)
-            if (objKeys == "") {
+            if (objKeys == '') {
                 objKeys = 0
             }
             for (let i = 0; i < objKeys.length; i++) {
-                theTotalPrice += objKeys[i].substr(0, objKeys[i].length).split(',')[5] * Object.values(this.drinkItem)[i]
+                theTotalPrice +=
+                    objKeys[i].substr(0, objKeys[i].length).split(',')[5] * Object.values(this.drinkItem)[i]
             }
 
             return theTotalPrice
         },
-
     },
     template: `
     <div>
@@ -123,7 +119,6 @@ Vue.component('personDrink', {
         return {
             propsKey: this.key_.substr(0, this.key_.length).split(','),
             num: this.value_,
-
         }
     },
     computed: {
@@ -162,10 +157,8 @@ Vue.component('personDrink', {
         </section>
     </div>
     `,
-
 })
 
-
 new Vue({
-    el: "#app",
+    el: '#app',
 })

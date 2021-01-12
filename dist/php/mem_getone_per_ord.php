@@ -4,28 +4,27 @@ try {
 
     $content = trim(file_get_contents("php://input"));
     $decoded = json_decode($content, true);
-
-    $type_no = $decoded["type_no"];
+    $per_ord_no = $decoded["per_ord_no"];
 
     $sql = "select *
-            from detail d
-              join type t on d.type_no = t.type_no
-            where d.type_no = :type_no";
-    // $typedata = $pdo->query($sql);
-    $typedata = $pdo->prepare($sql);
-    $typedata->bindValue(":type_no", $type_no);
-    $typedata->execute();
+            from personal_order p
+              join member m on p.mem_no = m.mem_no
+            where per_ord_no = :per_ord_no";
+    // $memberdata = $pdo->query($sql);
+    $memberdata = $pdo->prepare($sql);
+    $memberdata->bindValue(":per_ord_no", $per_ord_no);
+    $memberdata->execute();
 
-    if ($typedata->rowCount() == 0) { //找不到
+    if ($memberdata->rowCount() == 0) { //找不到
         //傳回空的JSON字串
         echo "{}";
 
     } else { //找得到
         //取回一筆資料
-        $typedatarow = $typedata->fetchAll(PDO::FETCH_ASSOC);
+        $memberdatarow = $memberdata->fetchAll(PDO::FETCH_ASSOC);
 
         //送出json字串
-        echo json_encode($typedatarow);
+        echo json_encode($memberdatarow);
         // echo $managerdatarow;
     }
 

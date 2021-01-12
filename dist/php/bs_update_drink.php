@@ -54,6 +54,41 @@ try {
 
     }
 
+    //上傳照片 ------------------------------------------------------------
+    //.......確定是否上傳成功
+    $formData = $decoded["formData"];
+    echo json_encode($formData["upFile"]["error"]);
+
+    if ($formData["upFile"]["error"] == UPLOAD_ERR_OK) {
+        //決定檔案名稱
+        $fileInfoArr = pathinfo($formData["upFile"]["name"]);
+        $imageNo = uniqid();
+        $fileName = "{$imageNo}.{$fileInfoArr["extension"]}"; //312543544.gif
+        //先檢查images資料夾存不存在
+        if (file_exists("images") === false) {
+            mkdir("images");
+        }
+        //將檔案copy到要放的路徑
+        $from = $formData["upFile"]["tmp_name"];
+        $to = "images/drinkphoto/$fileName";
+        if (copy($from, $to) === true) {
+            $sql3 = "update drink
+                        set drink_src = './images/drinkphoto/:drink_src'
+                        where drink_no = :drink_no";
+            $products = $pdo->prepare($sql3);
+            $products->bindValue(":drink_no", $drink_no);
+            $products->bindValue(":drink_src", $fileName);
+            $products->execute();
+            // echo "新增成功~";
+        } else {
+            // echo "失敗~";
+        }
+
+    } else {
+        // echo "錯誤代碼 : {$_FILES["upFile"]["error"]} <br>";
+        // echo "新增失敗<br>";
+    }
+
     echo "修改成功~!!";
 
     // if ($per_ord_data->rowCount() == 0) { //找不到

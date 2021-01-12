@@ -41,14 +41,19 @@ Vue.component('hot_article', {
 
     },
     watch: {
-        top3_article() {
+        top3_article(newData) {
             let chooseArray = {}
-            for (let i = 0; i <= this.top3_article.length; i++) {
-                if (this.top3_article[i].art_no == this.nowArt_no) {
-                    chooseArray = this.top3_article[i]
+
+            for (let i = 0; i < newData.length; i++) {
+                if (newData[i].art_no == this.nowArt_no) {
+                    chooseArray = newData[i]
+                    console.log(newData[i].art_no)
+                    console.log("a")
                     break;
                 }
+
             }
+
             this.theClickArt = chooseArray
         }
     },

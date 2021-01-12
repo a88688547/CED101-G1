@@ -11,7 +11,7 @@ Vue.component('group-info', {
     },
     mounted() {
         //後台撈出團的資料
-        fetch(`./php/group_menu.php?group_ord_no=1`, {
+        fetch(`./php/group_menu.php?group_ord_no=${window.location.search.split("=")[1]}`, {
             method: 'GET', // or 'PUT'
             // body: JSON.stringify({ group_ord_no: 1 }), // data can be `string` or {object}!
             headers: new Headers({

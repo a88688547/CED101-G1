@@ -110,7 +110,6 @@ body {
       position: absolute;
       color: $textColor;
       cursor: pointer;
-      
       right: 10px;
       top: 10px;
     }
@@ -121,6 +120,7 @@ body {
       width: 140px;
       height: 140px;
       background-color: burlywood;
+      // border: 1px solid red;
 
       h2{
         @include H5;
@@ -138,12 +138,15 @@ body {
     align-items: center;
     box-sizing: border-box;
     margin-bottom: 30px;
-    input{
-      border-radius: 10px;
+    .QR_link_text{
+      border-radius: 10px 0% 0% 10px /50%;
     }
-    
-   
-
+    .QR_copy{
+      border-radius: 0px 10px 10px 0px /50%;
+      background-color:#013B4F ;
+      cursor: pointer;
+      color: #013B4F;
+    }
   }
 }
 }
@@ -201,13 +204,16 @@ body {
         height: 17px;
         text-align: center;
         align-items: center;
-       
-        // border-radius: 5px;
-        // overflow: hidden;
         box-sizing: border-box;
         margin-bottom: 30px;
-        input{
-          border-radius:15%;
+        .QR_link_text{
+          border-radius: 10px 0% 0% 10px /50%;
+        }
+        .QR_copy{
+          border-radius: 0px 10px 10px 0px /50%;
+          background-color:#013B4F ;
+          cursor: pointer;
+          color: #013B4F;
         }
        
       }
@@ -473,7 +479,7 @@ body {
         }
         .QR_copy{
           height: 30px;
-          border-radius:0% 30% 30% 0%/50%;
+          // border-radius:0% 30px 30% 0%/50%;
         }
       }
     }
@@ -573,12 +579,10 @@ body {
 
 // 尺寸、對齊方式
 .step_box {
-  width: 80%;
+  width: 100%;
   height: 135px;
-  margin: 0 auto;
+  margin: 80px auto;
   overflow: hidden;
-  margin-bottom: 30px;
-
   .step_ball{
       display: flex;
       justify-content: space-between;

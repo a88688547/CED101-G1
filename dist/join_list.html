@@ -34,72 +34,9 @@
         </div>
       </div>
       <!-- ====標題 + LOGO===== -->
-      <div class="join_list">
-        <div class="join_list_row">
-          <div class="join_list_img">
-            <img
-              class="list_img"
-              src="./Images/drinkphoto/coupon/drive-download-20201228T062855Z-001/40pff.jpg"
-              alt=""
-            />
-          </div>
-          <div class="join_list_text">
-            <div class="join_list_title">
-              <h4>Tibame前端班喝起來~</h4>
-              <h5>限時:<span>05小時 00分 20秒</span></h5>
-            </div>
-            <div class="join_list_content">
-              <div class="join_list_content_left">
-                <div class="join_list_cup">
-                  <div>
-                    <div>
-                      <img src="./Images/joindrinklist_group.svg" alt="" />
-                      集杯數:
-                    </div>
-                    <div>20杯以上</div>
-                  </div>
-                  <div>
-                    <div>
-                      <img src="./Images/joindrinklist_drink.svg" alt="" />
-                      已達杯數:
-                    </div>
-                    <div>15杯</div>
-                  </div>
-                </div>
-                <div class="join_list_address">
-                  <div>
-                    <div>
-                      <img src="./Images/place.svg" alt="" />
-                      取貨地點
-                    </div>
-                    <div>桃園市中壢區復興路46號9樓</div>
-                  </div>
-                  <div>
-                    <div>
-                      <img src="./Images/timer.svg" alt="" />
-                      預計送達時間
-                    </div>
-                    <div>2020/12/15 15:00</div>
-                  </div>
-                </div>
-              </div>
 
-              <!-- BTN修改 ----------------------------------------------------------->
-              <div class="join_list_right">
-                <button class="join_drink color-1">
-                  <a href="./menu.html" style="text-decoration: none">
-                    <img src="./Images/drink.svg" alt="" />
-                    <h6>跟團喝</h6>
-                  </a>
-                </button>
-              </div>
-              <!-- BTN修改 ----------------------------------------------------------->
-            </div>
-          </div>
-        </div>
-      </div>
       <!-- ========== -->
-      <div class="join_list" v-for="Groupdata in grouporddata">
+      <div class="join_list" v-for="Groupdata in grouporddata  ">
         <div class="join_list_row">
           <div class="join_list_img">
             <img class="list_img" :src="getimg(Groupdata.goal_cup)" />
@@ -195,12 +132,12 @@
           grouporddata: [],
           imgSrc30:
             "./Images/drinkphoto/coupon/drive-download-20201228T062855Z-001/20off.jpg",
-          imgSrc50:
-            "./Images/drinkphoto/coupon/drive-download-20201228T062855Z-001/40pff.jpg",
           imgSrc20:
             "./Images/drinkphoto/coupon/drive-download-20201228T062855Z-001/10off.jpg",
           imgSrc40:
             "./Images/drinkphoto/coupon/drive-download-20201228T062855Z-001/30off.jpg",
+          imgSrc50:
+            "./Images/drinkphoto/coupon/drive-download-20201228T062855Z-001/40pff.jpg",
         },
         methods: {
           getimg: function (data) {
@@ -216,9 +153,6 @@
           },
         },
       });
-
-      //-----------------
-      // var jsonStr = '[{"psn":"1","pname":"PHP4+MySQL\u52d5\u614b\u7db2\u9801\u5165\u9580\u5be6\u52d9","price":"220","author":"\u99ac\u5b5d\u7440","pages":"600","image":"1.gif"},{"psn":"2","pname":"Acess2000 \u7a0b\u5f0f\u8a2d\u8a08","price":"710","author":"\u90ed\u5c1a\u541b","pages":"1100","image":"2.gif"},{"psn":"3","pname":"VisualC++ \u5165\u9580\u9032\u968e","price":"620","author":"\u90ed\u5c1a\u541b","pages":"1000","image":"3.gif"},{"psn":"4","pname":"Visio5.0\u8f15\u9b06\u5b78\u7fd2","price":"310","author":"\u4f4d\u5143\u6587\u5316","pages":"470","image":"4.gif"},{"psn":"5","pname":"PHP\u7955\u7b08","price":"710","author":"\u8463\u8463","pages":"600","image":"5.gif"},{"psn":"6","pname":"\u7cbe\u901aVB.NET\u5b8c\u5168\u624b\u518a","price":"960","author":"\u738b\u5c0f\u660e","pages":"750","image":"6.gif"},{"psn":"7","pname":"JavaScript\u5927\u7d76\u62db","price":"998","author":"\u8463\u8463","pages":"888","image":"7.gif"}]';
     </script>
   </body>
 </html>

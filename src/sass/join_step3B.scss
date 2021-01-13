@@ -240,8 +240,8 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    opacity: 0;
-    z-index: -1;
+    // opacity: 0;
+    z-index: 999;
     transition: opacity 1s;
     background-color: hsla(0, 2%, 25%, .5);
     width: 100%;
@@ -267,8 +267,8 @@ body {
 }
 
 .orderModal.-on {
-    opacity: 1;
-    z-index: 999;
+    // opacity: 1;
+    // z-index: 999;
 }
 
 .orderModal.-opacity-zero {
@@ -303,6 +303,7 @@ body {
     // margin:40px auto ;
     margin: auto;
     overflow-y: auto;
+    border: 11px solid red;
 
     &::-webkit-scrollbar {
         width: 10px;
@@ -1057,12 +1058,10 @@ body {
 
 // 尺寸、對齊方式
 .step_box {
-    width: 80%;
+    width: 100%;
     height: 135px;
-    margin: 0 auto;
+    margin: 80px auto;
     overflow: hidden;
-    margin-bottom: 30px;
-  
     .step_ball{
         display: flex;
         justify-content: space-between;

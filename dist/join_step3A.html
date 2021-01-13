@@ -5,8 +5,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>揪團訂-訂單頁面</title>
-  <link rel="stylesheet" href="./css/join_step3A.css" />
+  <!-- <link rel="stylesheet" href="./css/join_step3A.css" /> -->
   <link rel="stylesheet" href="./css/style.css" />
+  <link rel="stylesheet" href="./css/list_data.css" />
+  <link rel="stylesheet" href="./css/join_step3A.css" />
   <script src="vendors/Vue/vue.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
@@ -34,7 +36,6 @@
             <img src="./Images/join_list/step_3_icon.svg" alt="" />
             <h5>3.結帳資訊</h5>
           </li>
-
           <li>
             <img src="./Images/join_list/step_4_icon.svg" alt="" />
             <h5>4.訂單明細</h5>
@@ -43,7 +44,7 @@
       </div>
       <!-- ==============進度條================= -->
       <!-- 個人資訊 -->
-      <from class="info">
+      <div class="info" v-if="type == 10">
         <div class="info_img"><img src="Images/user_big.svg"></div>
         <div class="info_detail">
           <div class="info_name">小智</div>
@@ -52,17 +53,39 @@
               <div><img src="Images/tell_big.svg"></div>
               <div>行動電話</div>
             </div> 
-            <div class="info_phone_bottom"><input type="number" class="phone" pattern="/^-?\d+\.?\d*$/" v-model="phone" placeholder="09-XXXXXXXX" onKeyPress="if(this.value.length==12) return false;"></div>
+            <div class="info_phone_bottom"><input type="number" class="phone" pattern="/^-?\d+\.?\d*$/" v-model="phone" placeholder="09XXXXXXXX" onKeyPress="if(this.value.length==10) return false;"></div>
           </div>
           <div class="info_msg">
             <div class="info_msg_top">
               <div><img src="Images/list.svg"></div>
               <div>留言給店家</div>
             </div>
-            <div class="info_msg_bottom"><input type="text" maxlength="30" v-model="message" placeholder="備註最多30字" class="message"></div>
+            <div class="info_msg_bottom">
+              <input  type="text" maxlength="30" v-model="message" placeholder="備註最多30字" class="message">
+              </div>
           </div>
         </div>
-      </from>
+      </div>
+      <div class="info" v-else>
+        <div class="info_img"><img src="Images/user_big.svg"></div>
+        <div class="info_detail">
+            <div class="info_name">小智</div>
+            <div class="info_phone">
+                <div class="info_phone_top">
+                    <div><img src="Images/tell_big.svg"></div>
+                    <div>行動電話</div>
+                </div>
+                <div class="info_phone_bottom">{{phone}}</div>
+            </div>
+            <div class="info_msg">
+                <div class="info_msg_top">
+                    <div><img src="Images/list.svg"></div>
+                    <div>留言給店家</div>
+                </div>
+                <div class="info_msg_bottom">{{message}}</div>
+            </div>
+        </div>
+      </div>
       <hr />
       <!-- 折扣 -->
       <div class="discount">
@@ -93,11 +116,11 @@
       </div>
       <hr />
       <!-- 信用卡 -->
-      <div class="card">
+      <div class="card"  >
         <div class="cardimg">
           <img src="Images/pay.svg">
         </div>
-        <div class="cardinfo">
+        <div class="cardinfo" v-if="type == 10">
           <div class="cardname">
             <div>持卡人姓名</div>
             <div><input type="text" v-model="name" class="card_name"></div>
@@ -123,7 +146,29 @@
             </div>
           </div>
         </div>
+        <div class="cardinfo" v-else>
+          <div class="cardname">
+            <div>持卡人姓名</div>
+            <div>{{name}}</div>
+          </div>
+          <div class="cardno">
+            <div>卡號</div>
+            <div>{{fullCard}}</div>
+          </div>
+          <div class="exp">
+            <div>有效期限</div>
+            <div class="exp_bottom">{{dealDate}}</div>
+          </div>
+          <div class="safeno">
+            <div>安全碼</div>
+            <div>
+              <div>{{safeNumber}}</div>
+              <div><img src="Images/creditcard.svg"></div>
+            </div>
+          </div>
+        </div>
       </div>
+      
       <!-- 金額 -->
       <hr />
       <div class="ListTotal">
@@ -137,17 +182,59 @@
           <h2>$.<span id="ordPrice">400</span></h2>
         </div>
       </div>
-      <div style="width: 200px;height: 200px; border: 1px solid red;">
-      <h3>{{name}}</h3>
-      <h3>{{fullCard}}</h3>
-      <h3>{{dealDate}}</h3>
-      <h3>{{phone}}</h3>
-    </div>
-      <div class="orderbtn">
+      <!-- //檢查資料有沒有填 -->
+      <div class="orderbtn" v-if="type == 10">
         <div><a href="./join_step2.html">上一步</a></div>
-        <div class="nextStep"><a  @click="confirmData">下一步</a></div>
+        <div class="nextStep" @click="confirmData">下一步</div>
+      </div>
+      <!-- 檢查明細 -->
+      <div class="orderbtn" v-else>
+        <div @click="return_data">上一步</div>
+        <div class="nextStep" @click="check_total" >下一步</div>
+      </div>
+    
+    </div>
+    
+    <!-- ======訂單明細======= -->
+    <div class="orderModal" v-show="closeTotal" >
+      <div id="order_list" > 
+        <h2>訂單明細</h2>
+        <div class="closebtn" @click="close_total" ><img src="./Images/close.svg" alt=""></div>
+      <!-- 每個人  -->
+        <div class="group_order_done_person" v-for="(value,key) in group_order_item">
+          <div class="group_order_done_person_upbox">
+            <div>
+              <div class="group_order_done_person_img"><img :src="value.mem_img" /></div>
+              <div class="group_order_done_person_name">{{value.mem_name}}</div>
+            </div>
+            <div>
+              <div class="group_order_done_person_total_cup">{{value.total_cup}}杯</div>
+              <div class="group_order_done_person_total_price">&#36{{value.total_price_2}}</div>
+            </div>
+              
+          </div>
+          <div class="group_order_done_person_downbox">
+              <!-- 購買的 飲料 -->
+              <div class="group_order_done_person_drink" v-for="(value,key) in value.items">
+                <section id="drink_title_wrapper">
+                    <div class="group_order_done_person_drink_title">{{value.drink_title_ch}}-{{value.cup_no}}</div>
+                    <div class="group_order_done_person_drink_note" >{{value.set_info}}</div>
+                </section>
+              </div>
+          </div>
+        
+        </div>
+        <div class="all_total">
+          <div>應付金額</div>
+          <hr>
+          <div>999</div>
+        </div>
+        <div class="checkoutBtn">
+          <input type="button" value="確認送出" @click="step4"></input>
+        </div>
       </div>
     </div>
+  
   </div>
 
   </div>
@@ -158,104 +245,9 @@
 
   <script src="layout/footer.vue"></script>
   <script src="layout/header.vue"></script>
+  <script src="js/step3.js"></script>
   <script>
-    var app = new Vue({
-      el:"#app",
-      data:{
-        group_ord_no:"",
-        msg:"12321321",
-        oldNum:"",
-        phone:"",
-        message:"",
-        name:"",
-        card1:"",
-        card2:"",
-        card3:"",
-        card4:"",
-        full_card:"",
-        deal_date:"",
-        month:"",
-        year:"",
-        safeNumber:"",
-      },
-      computed: {
-        fullCard(){
-          this.full_card = `${this.card1}-${this.card2}-${this.card3}-${this.card4}`
-          return this.full_card;
-        },
-        dealDate(){
-          this.deal_date= `${this.month}/${this.year}`
-          return this.deal_date;
-        }
-        
-      },
-      mounted() {
-        // 持卡姓名
-        if (localStorage.name) {
-          this.name = localStorage.name;
-        }
-        //卡號
-        if (localStorage.fullCard) {
-          this.fullCard = localStorage.fullCard;
-        }
-        //有效期限
-        if (localStorage.dealDate) {
-          this.dealDate = localStorage.dealDate;
-        }
-        //安全碼
-        if (localStorage.safeNumber) {
-          this.safeNumber = localStorage.safeNumber;
-        }
-      },
-      watch: {
-        //持卡姓名
-        name(newName) {
-          localStorage.name = newName;
-        },
-        //卡號
-        fullCard(newfullCard){
-          localStorage.fullCard = newfullCard;
-        },
-        //有效期限
-        dealDate(newdealDate){
-          localStorage.dealDate = newdealDate;
-        },
-        //安全碼
-        safeNumber(newsafeNumber){
-          localStorage.safeNumber = newsafeNumber;
-        }
-        
-      },
-      created() {
-          //切割字串
-          this.group_ord_no = window.location.search.split("=")[1];
-        },
-      methods: {
-        confirmData(){
-          if(this.phone == ""){
-            console.log(this.phone.length);
-            alert("請輸入電話");
-            return
-          }
-          location.href = ``
-          
-        },
-        checkphone(){
-          console.log(this.phone);
-          var regex = /^[0-9\s]*$/;
-          if(this.phone.length > 10){
-            console.log("電話太長");
-            this.phone = "";
-            return;
-          }
-          else if(regex.test(this.phone) && this.phone ){
-            console.log(123);
-            // this.phone = "";
-          }
-        },
-       
-    }
-    })
+    
   </script>
 </body>
 

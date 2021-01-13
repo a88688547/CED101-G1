@@ -177,12 +177,12 @@ a{
     height:160px;
     background:#013B4F;
     border-radius: 50%;
-    /* box-shadow: 0 0 20px #013B4F,
-                0 0 120px #013B4F; */
 }
 .left:hover{
     box-shadow: 0 0 20px #013B4F,
                 0 0 120px #013B4F;
+    text-shadow: 2px 2px 10px white, -2px -2px 10px white;
+               
     transition: all 0.5s;
 }
 .right{
@@ -197,6 +197,7 @@ a{
 .right:hover{
     box-shadow: 0 0 20px #013B4F,
                 0 0 120px #013B4F;
+                text-shadow: 2px 2px 10px white, -2px -2px 10px white;
     transition: all 0.5s;
 }
 
@@ -208,7 +209,10 @@ h1{
     letter-spacing: 8px;
     font-weight:lighter;
     font-family: Microsoft YaHei UI;
+    margin-top:22px;
+    margin-bottom:12px;
 }
+
 h2{
     font-size:16px;
     color:white;
@@ -216,6 +220,8 @@ h2{
     letter-spacing: 2px;
     font-family:  Microsoft YaHei UI;
     font-weight: lighter;
+    margin-top:0;
+    padding-bottom:20px;
 }
 
 .lightspot{
@@ -233,6 +239,7 @@ h2{
 .l1{
     top:5%;
     left:95%;
+    
     
 }
 .l2{
@@ -271,24 +278,28 @@ h2{
 
 img.logo{
     width:16%;
-    z-index:10;
+    z-index:20;
+    transform: scale(20);
 }
 img.strawberrymilkshake{
     width:6%;
     top:-6vh;
     left: 3%;
+    opacity: 0;
 }
 
 img.bubbletea{
     width:6%;
     top:-8vh;
     left:7%;
+    opacity: 0;
 }
 
 img.greentea{
     width:7%;
     top:-5vh;
     left:10%;
+    opacity: 0;
 }
 
 img{

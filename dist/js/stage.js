@@ -2,7 +2,10 @@ var tl = new TimelineMax({
     onComplete: updown
 });
 
-// var a = TweenMax.to(".f_orange", 2, { scale: 1, rotation: 360, ease: "circ.out" });
+var a = TweenMax.to(".logo", 1, { scale: 1, rotation: -360, ease: "circ.out" });
+var b = TweenMax.to(".strawberrymilkshake", 1, { opacity: 1, ease: "circ.out", delay: 1 });
+var c = TweenMax.to(".greentea", 1, { opacity: 1, ease: "circ.out", delay: 1 });
+var d = TweenMax.to(".bubbletea", 1, { opacity: 1, ease: "circ.out", delay: 1 });
 
 
 tl.add([a, b, c, d, e, f, g, i, j, k, l, m, n, o, p, q]);
@@ -115,6 +118,7 @@ function updown() {
 
     })
 
-
-
 }
+
+
+

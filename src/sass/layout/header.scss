@@ -73,6 +73,11 @@ header{
         align-items: center;
     }
 
+    .nav_list ul > a:hover{
+        text-shadow: 2px 2px 10px #B3925B, -2px -2px 10px #B3925B;
+        transition: all 0.5s;
+    }
+
     .nav_list img{
         margin-right: 10px;
     }

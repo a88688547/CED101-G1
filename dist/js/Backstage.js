@@ -439,7 +439,7 @@ window.addEventListener('load', function () {
                           <img :src="drink_src" alt="尚未新增任何照片" id="image" />
                         </div>
                       </div>
-                      <div class="drink_edit_btn" @click="drink_edit(drink_no,drink_title_ch, drink_title_en, drink_type_no, drink_big_price, drink_small_price,update_detail,formData)">確認修改</div>
+                      <div class="drink_edit_btn" @click="drink_edit(drink_no,drink_title_ch, drink_title_en, drink_type_no, drink_big_price, drink_small_price,update_detail)">確認修改</div>
                     </div>
                     <div class="lightbox_black" v-if="lightbox">
                         <div class="lightbox" >
@@ -509,6 +509,7 @@ window.addEventListener('load', function () {
                 this.drink_big_price = data[0].drink_big_price
                 this.drink_small_price = data[0].drink_small_price
                 this.drink_src = data[0].imgSrc
+                this.img_type = data[0].imgSrc.split('.').pop()
             },
 
             // 撈取類型資料
@@ -564,8 +565,8 @@ window.addEventListener('load', function () {
                 drink_type_no,
                 drink_big_price,
                 drink_small_price,
-                update_detail,
-                formData
+                update_detail
+                // formData
             ) {
                 //新增前 確認欄位 是否符合規定
 
@@ -637,6 +638,8 @@ window.addEventListener('load', function () {
                     this.error_text = '請確認飲料金額 (大杯金額 > 小杯金額)'
                     return ''
                 }
+
+                // 確認 上傳照片之格式
                 let array = ['jpg', 'jpeg', 'png', 'svg']
                 if (array.indexOf(this.img_type) != -1) {
                     console.log('格式正確')
@@ -661,7 +664,7 @@ window.addEventListener('load', function () {
                         drink_big_price: drink_big_price,
                         drink_small_price: drink_small_price,
                         update_detail: update_detail,
-                        formData: formData,
+                        // formData: formData,
                     }),
                 }).then(function (data) {
                     return data.json()

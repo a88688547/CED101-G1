@@ -65,7 +65,6 @@ window.addEventListener('load', function () {
                 update_mem_newPsw: '',
                 update_mem_newPsw_2: '',
                 update_mem_phone: '',
-                lightbox: false,
             }
         },
         props: ['mem_no'],
@@ -90,15 +89,15 @@ window.addEventListener('load', function () {
                                 <input type="text" id="memEmail" v-model="update_mem_email"  />
                             </div>
                             <div class="row">
-                                <label for="mem_OldPsw">請輸入舊密碼</label>
+                                <label for="mem_OldPsw">請輸入舊密碼(<span class="password_note">必要</span>)</label>
                                 <input type="text" id="mem_oldPsw" v-model="update_mem_oldPsw" />
                             </div>
                             <div class="row">
-                                <label for="mem_NewPsw">請輸入新密碼</label>
+                                <label for="mem_NewPsw">請輸入新密碼(非必要)</label>
                                 <input type="text" id="mem_newPsw" v-model="update_mem_newPsw" />
                             </div>
                             <div class="row">
-                                <label for="mem_NewPsw_2">請再次輸入新密碼</label>
+                                <label for="mem_NewPsw_2">請再次輸入新密碼(非必要)</label>
                                 <input type="text" id="mem_newPsw_2" v-model="update_mem_newPsw_2" />
                             </div>
                             <div class="row">
@@ -111,17 +110,10 @@ window.addEventListener('load', function () {
                             <div @click="update_mem_info">確認修改</div>
                         </button>
                     </div>
-                    <div class="lightbox_black" v-if="lightbox">
-                        <div class="lightbox" >
-                            <div class="manager_lightbox_close_img" @click="changelightbox(false)"><img src="./Images/close.svg" ></div>
-                            <div><span></span><span>{{error_text}}</span></div>
-                            <div @click="changelightbox(false)">確認</div>
-                        </div>
-                    </div>
                   </section>
       `,
         methods: {
-            get_mem: async function (mem_no) {
+            get_mem: async function () {
                 // console.log('send2', drinkno)
                 const res = await fetch('./php/mem_getone_member.php', {
                     method: 'POST',
@@ -131,7 +123,7 @@ window.addEventListener('load', function () {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        mem_no: mem_no,
+                        mem_no: this.mem_no,
                     }),
                 }).then(function (data) {
                     return data.json()
@@ -160,12 +152,47 @@ window.addEventListener('load', function () {
                 //將上傳的檔案存入 data內
                 // this.formData.append('file', event.target.files[0])
                 // console.log(this.formData)
+                console.log(file)
+                console.log(event.target.files[0])
+                let test = document.getElementById('upfile').files[0]
+                console.log(test)
             },
 
             //修改 個人資料
             update_mem_info: async function () {
+                //會員名稱長度是否符合
+                if ((this.update_mem_name.length > 10) | (this.update_mem_name.length < 1)) {
+                    bus.$emit('getAlert', '請輸入會員名稱(1~10字)')
+                    return
+                }
+                //判斷 信箱規格是否正確
+                let isEmail = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4})*$/
+                if (!isEmail.test(this.update_mem_email) || this.update_mem_email == '') {
+                    this.$refs.signerror.innerText = '請輸入正確信箱'
+                    return
+                }
+
+                //判斷 舊密碼是否正確
+                if (this.update_mem_oldPsw != this.mem_info[0].mem_psw) {
+                    bus.$emit('getAlert', '請輸入正確密碼')
+                    return
+                }
+                //判斷 新密碼兩次是否一致
+                if ((this.update_mem_newPsw != '') | (this.update_mem_newPsw_2 != '')) {
+                    if (this.update_mem_newPsw != this.update_mem_newPsw_2) {
+                        bus.$emit('getAlert', '新密碼 兩次輸入不一致')
+                        return
+                    }
+                }
+
+                //判斷 是否有輸入電話號碼 (10碼)
+                if (this.update_mem_phone.length != 10) {
+                    bus.$emit('getAlert', '請輸入有效的電話號碼')
+                    return
+                }
+
                 // console.log('send2', drinkno)
-                const res = await fetch('./php/mem_getone_member.php', {
+                const res = await fetch('./php/mem_update_member.php', {
                     method: 'POST',
                     mode: 'same-origin',
                     credentials: 'same-origin',
@@ -173,19 +200,48 @@ window.addEventListener('load', function () {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
+                        mem_no: this.mem_info[0].mem_no,
+                        mem_old_psw: this.mem_info[0].mem_psw,
                         mem_name: this.update_mem_name,
                         mem_email: this.update_mem_email,
-                        mem_psw: this.update_mem_newPsw,
+                        mem_new_psw: this.update_mem_newPsw,
                         mem_phone: this.update_mem_phone,
                     }),
                 }).then(function (data) {
-                    return data.json()
+                    return data.text()
                 })
+
+                if (res == '修改成功~!!') {
+                    bus.$emit('getAlert', '修改成功')
+                } else if (res == '修改失敗~!!') {
+                    bus.$emit('getAlert', '修改失敗')
+                }
+
+                // 上傳會員照片 -----------------------
+                let file = document.getElementById('upfile').files[0]
+                let formData = new FormData()
+                formData.append('mem_no', this.mem_info[0].mem_no)
+                formData.append('upFile', file)
+
+                //=====ajax
+                let xhr = new XMLHttpRequest()
+                xhr.onload = function () {
+                    if (xhr.status == 200) {
+                        console.log(xhr.responseText)
+                    } else {
+                        alert(xhr.status)
+                    }
+                }
+                xhr.open('post', './php/mem_update_member_img.php')
+                xhr.send(formData)
+
+                // 完成修改後，重新撈取資料
+                this.get_mem()
             },
         },
         created() {
             // alert(this.get_mem())
-            this.get_mem(this.mem_no)
+            this.get_mem()
         },
         mounted() {
             // alert(this.get_mem(this.mem_no))
@@ -1518,6 +1574,41 @@ window.addEventListener('load', function () {
       </section>
 `,
         methods: {},
+    })
+    //-----------------------------------------------------
+
+    //警示視窗
+    Vue.component('alert_lightbox', {
+        data() {
+            return {
+                alertLightbox: false,
+                alertText: '',
+            }
+        },
+        methods: {
+            closeAlertLightbox() {
+                this.alertLightbox = false
+                // if (this.alertText == '跟團時間已截止') {
+                //     location.href = 'index.html'
+                // }
+            },
+        },
+        mounted() {
+            bus.$on('getAlert', (_alertText) => {
+                this.alertText = _alertText
+                this.alertLightbox = true
+            })
+        },
+        template: `
+    <div class="alertLightbox_black" v-if="alertLightbox">
+        <div class="alertLightboxWrapper">
+            <div class="alertLightbox" >
+                <div>{{alertText}}</div>
+                <div @click="closeAlertLightbox">確定</div>
+            </div>
+        </div>
+    </div>
+    `,
     })
     //-----------------------------------------------------
 

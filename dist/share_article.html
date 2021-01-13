@@ -21,271 +21,280 @@
 </head>
 
 <body>
-    <header id="header">
-        <my-header></my-header>
-    </header>
-    <div class="body_box">
+    <div id="app">
+        <header>
+            <my-header></my-header>
+        </header>
 
+        <div class="body_box">
+            <main>
+                <!-- 分享區 -->
+                <section class="section_1">
+                    <div class="s1_title">分享區</div>
+                    <div class="s1_text">
 
-        <main>
-            <!-- 分享區 -->
-            <section class="section_1">
-                <div class="s1_title">分享區</div>
-                <div class="s1_text">
-
-                    <div> <img src="./Images/Drop-3.svg" alt="" />分享的飲品日常，讓更多人一起沉浸在揪飲的時光吧!</div>
-                </div>
-            </section>
-
-            <!-- 文章列表 -->
-            <hot_article></hot_article>
-
-            <!-- 搜尋BAR -->
-            <section class="section_3">
-                <div class="show_article_btn">
-                    <div class="show_img"><img src="./Images/article.svg" /></div>
-                    <div class="show_text">所有文章列表</div>
-                </div>
-                <div class="filter_big_box">
-                    <div class="type_box">
-                        <label for="type">類別</label>
-                        <select name="type" id="type">
-                            <option value="">- 所有類別 -</option>
-                            <option value="">綜合心得</option>
-                            <option value="">茶類</option>
-                            <option value="">奶類</option>
-                            <option value="">果茶類</option>
-                        </select>
+                        <div> <img src="./Images/Drop-3.svg" alt="" />分享的飲品日常，讓更多人一起沉浸在揪飲的時光吧!</div>
                     </div>
-                    <div class="filter_box">
-                        <label for="filter">篩選</label>
-                        <select name="filter" id="filter">
-                            <option value="">時間新到舊</option>
-                            <option value="">按讚數</option>
-                            <option value="">喜歡數</option>
-                            <option value="">瀏覽數</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="write_article_btn">
-                    <div class="write_img"><img src="./Images/pen-white.svg" /></div>
-                    <div class="write_text">投稿</div>
-                </div>
-            </section>
-
-            <!-- 文章列表 -->
-            <section class="section_2">
-
-                <div class="s2_hotitem_box">
-                    <a class="s2_hotitem" href="#">
-                        <div class="hotimg"><img src="./Images/article/share_list/small_card/article_smalcard_2.png" />
-                        </div>
-                        <div class="hotinfo">
-                            <div class="memimg"><img src="./Images/user_big.svg" /></div>
-                            <div class="hotright">
-                                <div class="texttime">2020/12/16 17:00</div>
-                                <div class="memname">Yu Lee</div>
-                                <div class="hotcount">
-                                    <div>
-                                        <div class="hot_icon"><img src="./Images/eyes_small.svg" /></div>
-                                        <span class="hot_num">150</span>
-                                    </div>
-                                    <div>
-                                        <div class="hot_icon"><img src="./Images/message_small.svg" /></div>
-                                        <span class="hot_num">8</span>
-                                    </div>
-                                    <div>
-                                        <div class="hot_icon"><img src="./Images/like_small.svg" /></div>
-                                        <span class="hot_num">100</span>
-                                    </div>
-                                </div>
-                                <div class="hot_text">水果茶用料實在，酸酸甜酸酸.....甜....</div>
-                            </div>
-                        </div>
-                    </a>
-                    <a class="s2_hotitem" href="#">
-                        <div class="hotimg"><img src="./Images/article/share_list/small_card/article_smalcard_1.png" />
-                        </div>
-                        <div class="hotinfo">
-                            <div class="memimg"><img src="./Images/user_big.svg" /></div>
-                            <div class="hotright">
-                                <div class="texttime">2020/12/16 17:00</div>
-                                <div class="memname">Yu Lee</div>
-                                <div class="hotcount">
-                                    <div>
-                                        <div class="hot_icon"><img src="./Images/eyes_small.svg" /></div>
-                                        <span class="hot_num">150</span>
-                                    </div>
-                                    <div>
-                                        <div class="hot_icon"><img src="./Images/message_small.svg" /></div>
-                                        <span class="hot_num">8</span>
-                                    </div>
-                                    <div>
-                                        <div class="hot_icon"><img src="./Images/like_small.svg" /></div>
-                                        <span class="hot_num">100</span>
-                                    </div>
-                                </div>
-                                <div class="hot_text">水果茶用料實在，酸酸甜酸酸.....甜....</div>
-                            </div>
-                        </div>
-                    </a>
-                    <a class="s2_hotitem" href="#">
-                        <div class="hotimg"><img src="./Images/article/share_list/small_card/article_smalcard_3.png" />
-                        </div>
-                        <div class="hotinfo">
-                            <div class="memimg"><img src="./Images/user_big.svg" /></div>
-                            <div class="hotright">
-                                <div class="texttime">2020/12/16 17:00</div>
-                                <div class="memname">Yu Lee</div>
-                                <div class="hotcount">
-                                    <div>
-                                        <div class="hot_icon"><img src="./Images/eyes_small.svg" /></div>
-                                        <span class="hot_num">150</span>
-                                    </div>
-                                    <div>
-                                        <div class="hot_icon"><img src="./Images/message_small.svg" /></div>
-                                        <span class="hot_num">8</span>
-                                    </div>
-                                    <div>
-                                        <div class="hot_icon"><img src="./Images/like_small.svg" /></div>
-                                        <span class="hot_num">100</span>
-                                    </div>
-                                </div>
-                                <div class="hot_text">水果茶用料實在，酸酸甜酸酸.....甜....</div>
-                            </div>
-                        </div>
-                    </a>
-                    <a class="s2_hotitem" href="#">
-                        <div class="hotimg"><img src="./Images/article/share_list/small_card/article_smalcard_6.png" />
-                        </div>
-                        <div class="hotinfo">
-                            <div class="memimg"><img src="./Images/user_big.svg" /></div>
-                            <div class="hotright">
-                                <div class="texttime">2020/12/16 17:00</div>
-                                <div class="memname">Yu Lee</div>
-                                <div class="hotcount">
-                                    <div>
-                                        <div class="hot_icon"><img src="./Images/eyes_small.svg" /></div>
-                                        <span class="hot_num">150</span>
-                                    </div>
-                                    <div>
-                                        <div class="hot_icon"><img src="./Images/message_small.svg" /></div>
-                                        <span class="hot_num">8</span>
-                                    </div>
-                                    <div>
-                                        <div class="hot_icon"><img src="./Images/like_small.svg" /></div>
-                                        <span class="hot_num">100</span>
-                                    </div>
-                                </div>
-                                <div class="hot_text">水果茶用料實在，酸酸甜酸酸.....甜....</div>
-                            </div>
-                        </div>
-                    </a>
-                    <a class="s2_hotitem" href="#">
-                        <div class="hotimg"><img src="./Images/article/share_list/small_card/article_smalcard_4.png" />
-                        </div>
-                        <div class="hotinfo">
-                            <div class="memimg"><img src="./Images/user_big.svg" /></div>
-                            <div class="hotright">
-                                <div class="texttime">2020/12/16 17:00</div>
-                                <div class="memname">Yu Lee</div>
-                                <div class="hotcount">
-                                    <div>
-                                        <div class="hot_icon"><img src="./Images/eyes_small.svg" /></div>
-                                        <span class="hot_num">150</span>
-                                    </div>
-                                    <div>
-                                        <div class="hot_icon"><img src="./Images/message_small.svg" /></div>
-                                        <span class="hot_num">8</span>
-                                    </div>
-                                    <div>
-                                        <div class="hot_icon"><img src="./Images/like_small.svg" /></div>
-                                        <span class="hot_num">100</span>
-                                    </div>
-                                </div>
-                                <div class="hot_text">水果茶用料實在，酸酸甜酸酸.....甜....</div>
-                            </div>
-                        </div>
-                    </a>
-                    <a class="s2_hotitem" href="#">
-                        <div class="hotimg"><img src="./Images/article/share_list/small_card/article_smalcard_5.png" />
-                        </div>
-                        <div class="hotinfo">
-                            <div class="memimg"><img src="./Images/user_big.svg" /></div>
-                            <div class="hotright">
-                                <div class="texttime">2020/12/16 17:00</div>
-                                <div class="memname">Yu Lee</div>
-                                <div class="hotcount">
-                                    <div>
-                                        <div class="hot_icon"><img src="./Images/eyes_small.svg" /></div>
-                                        <span class="hot_num">150</span>
-                                    </div>
-                                    <div>
-                                        <div class="hot_icon"><img src="./Images/message_small.svg" /></div>
-                                        <span class="hot_num">8</span>
-                                    </div>
-                                    <div>
-                                        <div class="hot_icon"><img src="./Images/like_small.svg" /></div>
-                                        <span class="hot_num">100</span>
-                                    </div>
-                                </div>
-                                <div class="hot_text">水果茶用料實在，酸酸甜酸酸.....甜....</div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </section>
-
-
-            <!-- 分頁選擇 -->
-            <section class="section_5">
-                <ul>
-                    <li>1</li>
-                    <li>2</li>
-                    <li>3</li>
-                    <li>4</li>
-                    <li>5</li>
-                    <li>6</li>
-                    <img src="./Images/page.svg" />
-                </ul>
-            </section>
-
-
-
-            <!-- 撰寫文章 -->
-            <div class="new_article">
-                <section class="section_7">
-                    <div class="close_img"><img src="http://fakeimg.pl/25x25"></div>
-                    <div class="publish">發表文章</div>
-                    <div class="sendimg_box"><img src="http://fakeimg.pl/900x400" id=""></div>
-                    <div class="sendimgbtn_box">
-                        <select name="" id="">
-                            <option value="">-選擇文章類別-</option>
-                            <option value="">綜合心得</option>
-                            <option value="">茶類</option>
-                            <option value="">奶類</option>
-                            <option value="">果茶類</option>
-                        </select>
-                        <div class="sendimgbtn">
-                            <div class="image_img"><img src="./Images/image.svg"></div>
-                            <div>上傳封面</div>
-                        </div>
-                    </div>
-                    <input type="text" class="set_title" placeholder="請輸入文章標題">
-                    <input type="textarea" class="set_con" placeholder="請輸入文章內容">
-                    <div class="sendform_btn"><button class="sendformbtn" id="sendformbtn">
-                            <div class="sendbtn_img"><img src="./Images/send.svg"></div>
-                            <div class="sendbtn_text">送出</div>
-                        </button></div>
                 </section>
-            </div>
-        </main>
+
+                <!-- 文章列表 -->
+                <hot_article></hot_article>
+
+                <!-- 搜尋BAR -->
+                <section class="section_3">
+                    <div class="show_article_btn">
+                        <div class="show_img"><img src="./Images/article.svg" /></div>
+                        <div class="show_text">所有文章列表</div>
+                    </div>
+                    <div class="filter_big_box">
+                        <div class="type_box">
+                            <label for="type">類別</label>
+                            <select name="type" id="type">
+                                <option value="">- 所有類別 -</option>
+                                <option value="">綜合心得</option>
+                                <option value="">茶類</option>
+                                <option value="">奶類</option>
+                                <option value="">果茶類</option>
+                            </select>
+                        </div>
+                        <div class="filter_box">
+                            <label for="filter">篩選</label>
+                            <select name="filter" id="filter">
+                                <option value="">時間新到舊</option>
+                                <option value="">按讚數</option>
+                                <option value="">喜歡數</option>
+                                <option value="">瀏覽數</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="write_article_btn">
+                        <div class="write_img"><img src="./Images/pen-white.svg" /></div>
+                        <div class="write_text">投稿</div>
+                    </div>
+                </section>
+
+                <!-- 文章列表 -->
+                <section class="section_2">
+
+                    <div class="s2_hotitem_box">
+                        <a class="s2_hotitem" href="#">
+                            <div class="hotimg"><img
+                                    src="./Images/article/share_list/small_card/article_smalcard_2.png" />
+                            </div>
+                            <div class="hotinfo">
+                                <div class="memimg"><img src="./Images/user_big.svg" /></div>
+                                <div class="hotright">
+                                    <div class="texttime">2020/12/16 17:00</div>
+                                    <div class="memname">Yu Lee</div>
+                                    <div class="hotcount">
+                                        <div>
+                                            <div class="hot_icon"><img src="./Images/eyes_small.svg" /></div>
+                                            <span class="hot_num">150</span>
+                                        </div>
+                                        <div>
+                                            <div class="hot_icon"><img src="./Images/message_small.svg" /></div>
+                                            <span class="hot_num">8</span>
+                                        </div>
+                                        <div>
+                                            <div class="hot_icon"><img src="./Images/like_small.svg" /></div>
+                                            <span class="hot_num">100</span>
+                                        </div>
+                                    </div>
+                                    <div class="hot_text">水果茶用料實在，酸酸甜酸酸.....甜....</div>
+                                </div>
+                            </div>
+                        </a>
+                        <a class="s2_hotitem" href="#">
+                            <div class="hotimg"><img
+                                    src="./Images/article/share_list/small_card/article_smalcard_1.png" />
+                            </div>
+                            <div class="hotinfo">
+                                <div class="memimg"><img src="./Images/user_big.svg" /></div>
+                                <div class="hotright">
+                                    <div class="texttime">2020/12/16 17:00</div>
+                                    <div class="memname">Yu Lee</div>
+                                    <div class="hotcount">
+                                        <div>
+                                            <div class="hot_icon"><img src="./Images/eyes_small.svg" /></div>
+                                            <span class="hot_num">150</span>
+                                        </div>
+                                        <div>
+                                            <div class="hot_icon"><img src="./Images/message_small.svg" /></div>
+                                            <span class="hot_num">8</span>
+                                        </div>
+                                        <div>
+                                            <div class="hot_icon"><img src="./Images/like_small.svg" /></div>
+                                            <span class="hot_num">100</span>
+                                        </div>
+                                    </div>
+                                    <div class="hot_text">水果茶用料實在，酸酸甜酸酸.....甜....</div>
+                                </div>
+                            </div>
+                        </a>
+                        <a class="s2_hotitem" href="#">
+                            <div class="hotimg"><img
+                                    src="./Images/article/share_list/small_card/article_smalcard_3.png" />
+                            </div>
+                            <div class="hotinfo">
+                                <div class="memimg"><img src="./Images/user_big.svg" /></div>
+                                <div class="hotright">
+                                    <div class="texttime">2020/12/16 17:00</div>
+                                    <div class="memname">Yu Lee</div>
+                                    <div class="hotcount">
+                                        <div>
+                                            <div class="hot_icon"><img src="./Images/eyes_small.svg" /></div>
+                                            <span class="hot_num">150</span>
+                                        </div>
+                                        <div>
+                                            <div class="hot_icon"><img src="./Images/message_small.svg" /></div>
+                                            <span class="hot_num">8</span>
+                                        </div>
+                                        <div>
+                                            <div class="hot_icon"><img src="./Images/like_small.svg" /></div>
+                                            <span class="hot_num">100</span>
+                                        </div>
+                                    </div>
+                                    <div class="hot_text">水果茶用料實在，酸酸甜酸酸.....甜....</div>
+                                </div>
+                            </div>
+                        </a>
+                        <a class="s2_hotitem" href="#">
+                            <div class="hotimg"><img
+                                    src="./Images/article/share_list/small_card/article_smalcard_6.png" />
+                            </div>
+                            <div class="hotinfo">
+                                <div class="memimg"><img src="./Images/user_big.svg" /></div>
+                                <div class="hotright">
+                                    <div class="texttime">2020/12/16 17:00</div>
+                                    <div class="memname">Yu Lee</div>
+                                    <div class="hotcount">
+                                        <div>
+                                            <div class="hot_icon"><img src="./Images/eyes_small.svg" /></div>
+                                            <span class="hot_num">150</span>
+                                        </div>
+                                        <div>
+                                            <div class="hot_icon"><img src="./Images/message_small.svg" /></div>
+                                            <span class="hot_num">8</span>
+                                        </div>
+                                        <div>
+                                            <div class="hot_icon"><img src="./Images/like_small.svg" /></div>
+                                            <span class="hot_num">100</span>
+                                        </div>
+                                    </div>
+                                    <div class="hot_text">水果茶用料實在，酸酸甜酸酸.....甜....</div>
+                                </div>
+                            </div>
+                        </a>
+                        <a class="s2_hotitem" href="#">
+                            <div class="hotimg"><img
+                                    src="./Images/article/share_list/small_card/article_smalcard_4.png" />
+                            </div>
+                            <div class="hotinfo">
+                                <div class="memimg"><img src="./Images/user_big.svg" /></div>
+                                <div class="hotright">
+                                    <div class="texttime">2020/12/16 17:00</div>
+                                    <div class="memname">Yu Lee</div>
+                                    <div class="hotcount">
+                                        <div>
+                                            <div class="hot_icon"><img src="./Images/eyes_small.svg" /></div>
+                                            <span class="hot_num">150</span>
+                                        </div>
+                                        <div>
+                                            <div class="hot_icon"><img src="./Images/message_small.svg" /></div>
+                                            <span class="hot_num">8</span>
+                                        </div>
+                                        <div>
+                                            <div class="hot_icon"><img src="./Images/like_small.svg" /></div>
+                                            <span class="hot_num">100</span>
+                                        </div>
+                                    </div>
+                                    <div class="hot_text">水果茶用料實在，酸酸甜酸酸.....甜....</div>
+                                </div>
+                            </div>
+                        </a>
+                        <a class="s2_hotitem" href="#">
+                            <div class="hotimg"><img
+                                    src="./Images/article/share_list/small_card/article_smalcard_5.png" />
+                            </div>
+                            <div class="hotinfo">
+                                <div class="memimg"><img src="./Images/user_big.svg" /></div>
+                                <div class="hotright">
+                                    <div class="texttime">2020/12/16 17:00</div>
+                                    <div class="memname">Yu Lee</div>
+                                    <div class="hotcount">
+                                        <div>
+                                            <div class="hot_icon"><img src="./Images/eyes_small.svg" /></div>
+                                            <span class="hot_num">150</span>
+                                        </div>
+                                        <div>
+                                            <div class="hot_icon"><img src="./Images/message_small.svg" /></div>
+                                            <span class="hot_num">8</span>
+                                        </div>
+                                        <div>
+                                            <div class="hot_icon"><img src="./Images/like_small.svg" /></div>
+                                            <span class="hot_num">100</span>
+                                        </div>
+                                    </div>
+                                    <div class="hot_text">水果茶用料實在，酸酸甜酸酸.....甜....</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </section>
+
+
+                <!-- 分頁選擇 -->
+                <section class="section_5">
+                    <ul>
+                        <li>1</li>
+                        <li>2</li>
+                        <li>3</li>
+                        <li>4</li>
+                        <li>5</li>
+                        <li>6</li>
+                        <img src="./Images/page.svg" />
+                    </ul>
+                </section>
+
+
+
+                <!-- 撰寫文章 -->
+                <div class="new_article">
+                    <section class="section_7">
+                        <div class="close_img"><img src="http://fakeimg.pl/25x25"></div>
+                        <div class="publish">發表文章</div>
+                        <div class="sendimg_box"><img src="http://fakeimg.pl/900x400" id=""></div>
+                        <div class="sendimgbtn_box">
+                            <select name="" id="">
+                                <option value="">-選擇文章類別-</option>
+                                <option value="">綜合心得</option>
+                                <option value="">茶類</option>
+                                <option value="">奶類</option>
+                                <option value="">果茶類</option>
+                            </select>
+                            <div class="sendimgbtn">
+                                <div class="image_img"><img src="./Images/image.svg"></div>
+                                <div>上傳封面</div>
+                            </div>
+                        </div>
+                        <input type="text" class="set_title" placeholder="請輸入文章標題">
+                        <input type="textarea" class="set_con" placeholder="請輸入文章內容">
+                        <div class="sendform_btn"><button class="sendformbtn" id="sendformbtn">
+                                <div class="sendbtn_img"><img src="./Images/send.svg"></div>
+                                <div class="sendbtn_text">送出</div>
+                            </button></div>
+                    </section>
+                </div>
+            </main>
+        </div>
+        <footer>
+            <my-footer></my-footer>
+        </footer>
     </div>
-    <footer id="footer">
-        <my-footer></my-footer>
-    </footer>
-    <script src="./layout/footer.vue"></script>
-    <script src="./layout/header.vue"></script>
+
+
+    <script src="./js/layout/header.js"></script>
+    <script src="./js/layout/footer.js"></script>
     <script src="./js/share_article.js"></script>
 </body>
 

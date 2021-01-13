@@ -178,7 +178,7 @@ Vue.component('orderlist', {
                 //要放在陣列裡的物件data
                 let postOrderObj = {
                     group_ord_no: web_group_no,
-                    mem_no: 1,
+                    mem_no: 6,
                     drink_no: '',
                     one_price: '',
                     ord_qua: '',

@@ -14,35 +14,38 @@
 </head>
 
 <body>
-    <header id="header">
-        <my-header></my-header>
-    </header>
-    <!-- ==============進度條================= -->
-    <div class="step_box">
-        <ul class="step_ball">
-            <li>
-                <img src="./Images/join_list/step_1_icon.svg" alt="">
-                <h5>1.建立揪團</h5>
-            </li>
-            <li>
-                <img src="./Images/join_list/step_4_icon.svg" alt="">
-                <h5>2.訂單頁面</h5>
-            </li>
-        </ul>
-    </div>
+
 
     <div id="app">
+        <header>
+            <my-header></my-header>
+        </header>
+        <!-- ==============進度條================= -->
+        <div class="step_box">
+            <ul class="step_ball">
+                <li>
+                    <img src="./Images/join_list/step_1_icon.svg" alt="">
+                    <h5>1.建立揪團</h5>
+                </li>
+                <li>
+                    <img src="./Images/join_list/step_4_icon.svg" alt="">
+                    <h5>2.訂單頁面</h5>
+                </li>
+            </ul>
+        </div>
         <!-- 開團資訊 -->
         <group_info></group_info>
         <orderList></orderList>
+
+        <footer>
+            <my-footer></my-footer>
+        </footer>
     </div>
 
-    <footer id="footer">
-        <my-footer></my-footer>
-    </footer>
+
     <script src="./js/follow_step2.js"></script>
-    <script src="./layout/footer.vue"></script>
-    <script src="./layout/header.vue"></script>
+    <script src="./js/layout/header.js"></script>
+    <script src="./js/layout/footer.js"></script>
 
 </body>
 

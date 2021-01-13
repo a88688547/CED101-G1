@@ -373,12 +373,10 @@ window.addEventListener('load', function () {
                 drink_small_price: '',
                 drink_src: '',
                 error_text: '',
-
                 type_info: '',
                 detail_info: '',
                 update_detail: [],
                 img_type: '',
-                formData: new FormData(),
 
                 test: '',
             }
@@ -432,8 +430,8 @@ window.addEventListener('load', function () {
                       </div>
                       <div class="addinfo_right_box">
                         <div>
-                          <label for="upFile">上傳飲料照片</label>
-                          <input type="file" id="upFile" name="upFile" @change="changeimg($event)"/><br />
+                          <label for="upfile">上傳飲料照片</label>
+                          <input type="file" id="upfile" name="upfile" @change="changeimg($event)"/><br />
                         </div>
                         <div class="upFile_img_box">
                           <img :src="drink_src" alt="尚未新增任何照片" id="image" />
@@ -459,24 +457,51 @@ window.addEventListener('load', function () {
                 this.$emit('changelightbox', data)
             },
 
-            //預覽  上傳圖片
+            //上傳照片 及 更改 預覽圖片
             changeimg(event) {
                 let file = event.target.files
                 reader = new FileReader()
                 reader.readAsDataURL(file[0])
 
+                //取得 上傳照片之檔案格式，以利送出時判斷
+                this.img_type = file[0].type.split('/').pop()
+
+                // 確認 上傳照片之格式
+                let array = ['jpg', 'jpeg', 'png', 'svg']
+                if (array.indexOf(this.img_type) != -1) {
+                    console.log('格式正確')
+                } else {
+                    this.changelightbox(true)
+                    this.error_text = '請確認上傳照片之格式 (jpg,jpeg,png,svg)'
+                    return ''
+                }
+                //顯示 照片預覽
                 reader.onload = function (event) {
                     document.getElementById('image').src = event.target.result
                 }
-                // console.log('changeimg')
 
-                //取得 上傳照片之檔案格式，以利送出時判斷
-                this.img_type = file[0].type.split('/').pop()
-                //將上傳的檔案存入 data內
-                console.log(event.target.files[0])
-                this.formData.append('file', event.target.files[0])
-                console.log(this.formData)
+                // 上傳會員照片 -----------------------
+                let file_2 = document.getElementById('upfile').files[0]
+                let formData = new FormData()
+                formData.append('drink_no', this.drink_no)
+                formData.append('upFile', file_2)
+
+                //=====ajax
+                let xhr = new XMLHttpRequest()
+                xhr.onload = function () {
+                    if (xhr.status == 200) {
+                        console.log(xhr.responseText)
+                        //需要顯示 提示燈箱 (待改) --------------------
+                        // this.$emit('changelightbox', true)
+                        // this.error_text = '上傳照片成功!!'
+                    } else {
+                        alert(xhr.status)
+                    }
+                }
+                xhr.open('post', './php/bs_update_drink_img.php')
+                xhr.send(formData)
             },
+
             //呼叫php程式，取回 飲料 相關資料，並用json()轉回一般陣列
             get_mar: async function (drinkno) {
                 // console.log('send2', drinkno)
@@ -566,7 +591,6 @@ window.addEventListener('load', function () {
                 drink_big_price,
                 drink_small_price,
                 update_detail
-                // formData
             ) {
                 //新增前 確認欄位 是否符合規定
 
@@ -664,7 +688,6 @@ window.addEventListener('load', function () {
                         drink_big_price: drink_big_price,
                         drink_small_price: drink_small_price,
                         update_detail: update_detail,
-                        // formData: formData,
                     }),
                 }).then(function (data) {
                     return data.json()
@@ -738,9 +761,11 @@ window.addEventListener('load', function () {
                 drink_small_price: '',
                 drink_src: '',
                 error_text: '',
+                img_type: '',
+                lightbox: false,
             }
         },
-        props: ['show', 'lightbox'],
+        props: ['show'],
 
         template: `
                   <section v-if=" show === 'drink_add' ">
@@ -777,8 +802,8 @@ window.addEventListener('load', function () {
                       </div>
                       <div class="addinfo_right_box">
                         <div>
-                          <label for="upFile">上傳飲料照片</label>
-                          <input type="file" id="upFile" name="upFile" @change="changeimg($event)"/><br />
+                          <label for="upfile">上傳飲料照片</label>
+                          <input type="file" id="upfile" name="upfile" @change="changeimg($event)"/><br />
                         </div>
                         <div class="upFile_img_box">
                           <img src="" alt="尚未新增任何照片" id="image" />
@@ -803,10 +828,24 @@ window.addEventListener('load', function () {
                 let file = event.target.files
                 reader = new FileReader()
                 reader.readAsDataURL(file[0])
+
+                //取得 上傳照片之檔案格式，以利送出時判斷
+                this.img_type = file[0].type.split('/').pop()
+
+                // 確認 上傳照片之格式
+                let array = ['jpg', 'jpeg', 'png', 'svg']
+                if (array.indexOf(this.img_type) != -1) {
+                    console.log('格式正確')
+                } else {
+                    this.lightbox = true
+                    this.error_text = '請確認上傳照片之格式 (jpg,jpeg,png,svg)'
+                    return ''
+                }
+
                 reader.onload = function (event) {
                     document.getElementById('image').src = event.target.result
                     this.drink_src = event.target.result
-                    console.log(event.target.result)
+                    // console.log(event.target.result)
                 }
                 // console.log('changeimg')
             },
@@ -897,6 +936,26 @@ window.addEventListener('load', function () {
                         drink_small_price: drink_small_price,
                     }),
                 })
+
+                // 上傳飲料照片 -----------------------
+                // let file_2 = document.getElementById('upfile').files[0]
+                // let formData = new FormData()
+                // formData.append('upFile', file_2)
+
+                //=====ajax
+                // let xhr = new XMLHttpRequest()
+                // xhr.onload = function () {
+                //     if (xhr.status == 200) {
+                //         console.log(xhr.responseText)
+                //         bus.$emit('getAlert', '上傳照片成功!!')
+                //     } else {
+                //         alert(xhr.status)
+                //     }
+                // }
+                // xhr.open('post', './php/mem_update_member_img.php')
+                // xhr.send(formData)
+
+                //修改成功  跳出提示燈箱
                 this.lightbox = true
                 this.error_text = '修改成功'
 
@@ -906,16 +965,6 @@ window.addEventListener('load', function () {
                 this.drink_type_no = ''
                 this.drink_big_price = ''
                 this.drink_small_price = ''
-
-                //跳轉頁面去 商品列表
-            },
-            //當成功修改時 將會跳轉頁面
-            back(error_text) {
-                if (error_text == '修改成功') {
-                    this.lightbox = false
-                } else {
-                    this.lightbox = false
-                }
             },
         },
     })

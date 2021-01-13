@@ -4,7 +4,7 @@ try {
 
     if ($_FILES["upFile"]["error"] == UPLOAD_ERR_OK) {
         // 設定要存照片的路徑(以php檔案為出發點)
-        $dir = "../Images/member";
+        $dir = "../Images/drinkphoto";
         //取出檔案副檔名(.PNG ...等等)
         $fileInfoArr = pathinfo($_FILES["upFile"]["name"]);
         // 創造不會重複的亂碼
@@ -20,12 +20,12 @@ try {
         $to = "{$dir}/$fileName";
         if (copy($from, $to) === true) {
 
-            $sql = "update member
-            set mem_img = :mem_img
-            where mem_no = :mem_no";
+            $sql = "update drink
+            set imgSrc = :imgSrc
+            where drink_no = :drink_no";
             $products = $pdo->prepare($sql);
-            $products->bindValue(":mem_no", $_POST["mem_no"]);
-            $products->bindValue(":mem_img", "./Images/member/{$fileName}");
+            $products->bindValue(":drink_no", $_POST["drink_no"]);
+            $products->bindValue(":imgSrc", "./Images/drinkphoto/{$fileName}");
             $products->execute();
 
         } else {

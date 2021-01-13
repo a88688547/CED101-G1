@@ -77,7 +77,7 @@ window.addEventListener('load', function () {
                         </div>
                         <div class="mem_detail_box">
                             <div class="change_img">
-                                <label>上傳頭像</label>
+                                <label>更改頭像</label>
                                 <input type="file" id="upfile" name="upfile" @change="changeimg($event)"/>
                             </div>
                             <div class="row">
@@ -136,26 +136,46 @@ window.addEventListener('load', function () {
                 this.update_mem_phone = this.mem_info[0].mem_phone
             },
 
-            //預覽  上傳圖片
+            //上傳照片 及 更改 預覽圖片
             changeimg(event) {
                 let file = event.target.files
                 reader = new FileReader()
                 reader.readAsDataURL(file[0])
 
+                //取得 上傳照片之檔案格式，以利送出時判斷
+                this.img_type = file[0].type.split('/').pop()
+
+                // 確認 上傳照片之格式
+                let array = ['jpg', 'jpeg', 'png', 'svg']
+                if (array.indexOf(this.img_type) != -1) {
+                    console.log('格式正確')
+                } else {
+                    bus.$emit('getAlert', '請確認上傳照片之格式 (jpg,jpeg,png,svg)')
+                    return
+                }
+                //顯示 照片預覽
                 reader.onload = function (event) {
                     document.getElementById('image').src = event.target.result
                 }
-                // console.log('changeimg')
 
-                //取得 上傳照片之檔案格式，以利送出時判斷
-                this.img_type = file[0].type.split('/').pop()
-                //將上傳的檔案存入 data內
-                // this.formData.append('file', event.target.files[0])
-                // console.log(this.formData)
-                console.log(file)
-                console.log(event.target.files[0])
-                let test = document.getElementById('upfile').files[0]
-                console.log(test)
+                // 上傳會員照片 -----------------------
+                let file_2 = document.getElementById('upfile').files[0]
+                let formData = new FormData()
+                formData.append('mem_no', this.mem_info[0].mem_no)
+                formData.append('upFile', file_2)
+
+                //=====ajax
+                let xhr = new XMLHttpRequest()
+                xhr.onload = function () {
+                    if (xhr.status == 200) {
+                        console.log(xhr.responseText)
+                        bus.$emit('getAlert', '上傳照片成功!!')
+                    } else {
+                        alert(xhr.status)
+                    }
+                }
+                xhr.open('post', './php/mem_update_member_img.php')
+                xhr.send(formData)
             },
 
             //修改 個人資料
@@ -216,24 +236,6 @@ window.addEventListener('load', function () {
                 } else if (res == '修改失敗~!!') {
                     bus.$emit('getAlert', '修改失敗')
                 }
-
-                // 上傳會員照片 -----------------------
-                let file = document.getElementById('upfile').files[0]
-                let formData = new FormData()
-                formData.append('mem_no', this.mem_info[0].mem_no)
-                formData.append('upFile', file)
-
-                //=====ajax
-                let xhr = new XMLHttpRequest()
-                xhr.onload = function () {
-                    if (xhr.status == 200) {
-                        console.log(xhr.responseText)
-                    } else {
-                        alert(xhr.status)
-                    }
-                }
-                xhr.open('post', './php/mem_update_member_img.php')
-                xhr.send(formData)
 
                 // 完成修改後，重新撈取資料
                 this.get_mem()
@@ -1634,7 +1636,13 @@ window.addEventListener('load', function () {
             changeperordno(data) {
                 this.per_ord_no = data
             },
+            // changememno(data) {
+            //     this.mem_no = data.memNo
+            // },
         },
         components: {},
+        // created() {
+        //     member.$on('memberInfo', 'changememno')
+        // },
     })
 })

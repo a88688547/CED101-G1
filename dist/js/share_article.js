@@ -50,8 +50,6 @@ Vue.component('hot_article', {
             for (let i = 0; i < newData.length; i++) {
                 if (newData[i].art_no == this.theClickArtNo) {
                     chooseArray = newData[i]
-                    console.log(newData[i].art_no)
-                    console.log("a")
                     break;
                 }
 

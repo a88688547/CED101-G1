@@ -12,16 +12,20 @@
     justify-content: center;
     align-items: center;
     z-index: 2;
-    display: none;
+
+    // display: none;
+
     .lightbox-wrap {
         border-radius: 20px;
         background-color: #e5e3dd;
         width: 400px;
         box-shadow: 3px 3px 5px 2px rgba($color: #000000, $alpha: 0.2);
         overflow: hidden;
+
         @media screen and (max-width: 575px) {
             width: 300px;
         }
+
         .lightbox-top {
             display: flex;
             position: relative;
@@ -42,11 +46,13 @@
                 .fas {
                     color: #e5e3dd;
                 }
+
                 .far {
                     color: $textColor;
 
                     display: none;
                 }
+
                 .closeBlock {
                     display: block;
                 }
@@ -58,16 +64,20 @@
                 justify-content: center;
                 cursor: pointer;
                 background-color: $textColor;
+
                 .h3 {
                     @include H3;
                     color: #fff;
                     padding: 15px;
                 }
+
                 .textcolor {
                     color: $textColor;
                 }
             }
+
             @media screen and (max-width: 575px) {
+
                 .tab,
                 .tab {
                     .h3 {
@@ -75,6 +85,7 @@
                     }
                 }
             }
+
             .tabbackgroud {
                 background-color: #e5e3dd;
             }
@@ -90,7 +101,8 @@
 
             .sign-up {
                 display: none;
-                margin-top: 30px;
+                margin-top: 0px;
+
                 label,
                 input {
                     display: inline-block;
@@ -107,6 +119,7 @@
                     width: 150px;
                     border-radius: 10px;
                     padding: 0 10px;
+
                     &:focus {
                         outline: none;
                     }
@@ -124,6 +137,7 @@
                 top: 50%;
                 margin-top: 45px;
                 display: none;
+
                 label,
                 input {
                     display: inline-block;
@@ -142,19 +156,23 @@
                     padding: 0px 10px;
                     border-radius: 10px;
                     font-size: 20px;
+
                     &:focus {
                         outline: none;
                     }
                 }
             }
+
             .tabBodyNone {
                 display: block;
             }
+
             .sure-cancel {
                 width: 100%;
                 text-align: center;
                 margin-top: 10px;
                 margin-bottom: 15px;
+
                 button {
                     margin: 0 15px;
                     padding: 5px 15px;
@@ -164,6 +182,7 @@
                     border: none;
                     cursor: pointer;
                     transition: 0.2s ease-in-out;
+
                     &:focus {
                         outline: none;
                     }
@@ -171,6 +190,7 @@
                     &:first-child {
                         background-color: rgb(165, 165, 165);
                         color: #fff;
+
                         &:hover {
                             background-color: rgb(131, 131, 131);
                         }
@@ -179,6 +199,7 @@
                     &:last-child {
                         background-color: $btnColor;
                         color: #fff;
+
                         &:hover {
                             background-color: rgb(182, 116, 31);
                         }
@@ -187,4 +208,15 @@
             }
         }
     }
+}
+
+.user {
+    color: #fff;
+    font-size: 20px;
+}
+
+#logout {
+    cursor: pointer;
+    color: red;
+    font-size: 24px;
 }

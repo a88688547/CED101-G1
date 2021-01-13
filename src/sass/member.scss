@@ -110,19 +110,19 @@ aside{
   border: 1px solid black;
 
   img{
-    // width: 100% !important;
-    // height: 100% !important;
-    // object-fit: cover !important;
-    // max-width: none !important;
+    width: 100% ;
+    height: 100% ;
+    object-fit: cover ;
+    max-width: none ;
   }
 }
 
-#mem_image{
-  width: 100% !important;
-    height: 100% !important;
-    object-fit: cover !important;
-    max-width: none !important;
-}
+// #mem_image{
+//   width: 100% !important;
+//     height: 100% !important;
+//     object-fit: cover !important;
+//     max-width: none !important;
+// }
 .change_img{
   display: flex;
   // flex-direction: column;
@@ -519,6 +519,12 @@ aside{
   height: 60px;
   font-size: 0;
   margin-right: 20px;
+  img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    max-width: none;
+  }
 }
 
 // .group_order_done_person_name{
@@ -1302,4 +1308,49 @@ aside{
           }
       }
   }
+}
+
+// 會員資料修改  提示燈箱
+.lightbox{
+  background-image: url(../../dist/Images/alert_img@2x.png);
+  background-size: cover;
+  // background-color: #fff;
+  border: 1px ;
+  width: 600px;
+  height: 400px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  color: #013B4F;
+  div:nth-child(2){
+      margin-bottom: 100px;
+      span:nth-child(1){
+          color:#B3925B;
+          font-weight: bold;
+      }
+      span:nth-child(2){
+          color: red;
+          font-weight: bold;
+
+      }
+  }
+  div:nth-child(3){
+      background-color: #013B4F;
+      color: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      padding: 10px 10px;
+      cursor: pointer;
+     
+  }
+}
+.manager_lightbox_close_img{
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  font-size: 0;
 }

@@ -35,27 +35,29 @@
     </head>
 
     <body>
-        <header id="header">
-            <my-header></my-header>
-        </header>
-        <section>
-            <div class="vote-top">
-                <h2>本週飲品排行</h2>
-                <h4>
-                    <img src="./Images/Drop-3.svg" alt="icon" />
-                    每週投下你神聖的三票，各類飲品最多一票，就有機會讓喜歡的飲品成為下週折扣品項!
-                </h4>
-            </div>
-            <div id="app">
-                <vote-item></vote-item>
-                <vote-form></vote-form>
-            </div>
-        </section>
-        <footer id="footer">
-            <my-footer></my-footer>
-        </footer>
-        <script src="./layout/header.vue"></script>
-        <script src="./layout/footer.vue"></script>
+        <div id="app">
+            <header>
+                <my-header></my-header>
+            </header>
+            <section>
+                <div class="vote-top">
+                    <h2>本週飲品排行</h2>
+                    <h4>
+                        <img src="./Images/Drop-3.svg" alt="icon" />
+                        每週投下你神聖的三票，各類飲品最多一票，就有機會讓喜歡的飲品成為下週折扣品項!
+                    </h4>
+                </div>
+                <div>
+                    <vote-item></vote-item>
+                    <vote-form></vote-form>
+                </div>
+            </section>
+            <footer>
+                <my-footer></my-footer>
+            </footer>
+        </div>
+        <script src="./js/layout/header.js"></script>
+        <script src="./js/layout/footer.js"></script>
         <script src="js/vote.js"></script>
     </body>
 </html>

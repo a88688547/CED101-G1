@@ -58,51 +58,66 @@ window.addEventListener('load', function () {
         data() {
             return {
                 mem_info: '',
+                img_type: '',
+                update_mem_name: '',
+                update_mem_email: '',
+                update_mem_oldPsw: '',
+                update_mem_newPsw: '',
+                update_mem_newPsw_2: '',
+                update_mem_phone: '',
+                lightbox: false,
             }
         },
         props: ['mem_no'],
         template: `
                   <section class="mem_info content">
-                    <form action="" id="mem_change_info">
+                    <div  id="mem_change_info">
                         <div class="tag_title">修改會員資料</div>
                         <div class="mem_img_box">
-                            <div class="mem_img"><img :src="mem_info[0].mem_img" id="mem_image" /></div>
+                            <div class="mem_img"><img id="image" :src="mem_info[0].mem_img" /></div>
                         </div>
                         <div class="mem_detail_box">
                             <div class="change_img">
                                 <label>上傳頭像</label>
-                                <input type="file" id="upfile" name="upfile" />
+                                <input type="file" id="upfile" name="upfile" @change="changeimg($event)"/>
                             </div>
                             <div class="row">
-                                <label for="memName">姓名</label>
-                                <input type="text" id="memName" :value="mem_info[0].mem_name" />
+                                <label for="memName">會員名稱</label>
+                                <input type="text" id="memName" v-model="update_mem_name"  />
                             </div>
                             <div class="row">
                                 <label for="memEmail">電子信箱</label>
-                                <input type="text" id="memEmail" :value="mem_info[0].mem_email" />
+                                <input type="text" id="memEmail" v-model="update_mem_email"  />
                             </div>
                             <div class="row">
                                 <label for="mem_OldPsw">請輸入舊密碼</label>
-                                <input type="text" id="mem_oldPsw" />
+                                <input type="text" id="mem_oldPsw" v-model="update_mem_oldPsw" />
                             </div>
                             <div class="row">
                                 <label for="mem_NewPsw">請輸入新密碼</label>
-                                <input type="text" id="mem_newPsw" />
+                                <input type="text" id="mem_newPsw" v-model="update_mem_newPsw" />
                             </div>
                             <div class="row">
                                 <label for="mem_NewPsw_2">請再次輸入新密碼</label>
-                                <input type="text" id="mem_newPsw_2" />
+                                <input type="text" id="mem_newPsw_2" v-model="update_mem_newPsw_2" />
                             </div>
                             <div class="row">
                                 <label for="memPhone">手機號碼</label>
-                                <input type="text" id="mem_Phone" :value="mem_info[0].mem_phone" />
+                                <input type="text" id="mem_Phone" v-model="update_mem_phone" />
                             </div>
                         </div>
                         <button class="change_btn">
                             <div class="send_img"><img src="./Images/send.svg" /></div>
-                            <div>確認修改</div>
+                            <div @click="update_mem_info">確認修改</div>
                         </button>
-                    </form>
+                    </div>
+                    <div class="lightbox_black" v-if="lightbox">
+                        <div class="lightbox" >
+                            <div class="manager_lightbox_close_img" @click="changelightbox(false)"><img src="./Images/close.svg" ></div>
+                            <div><span></span><span>{{error_text}}</span></div>
+                            <div @click="changelightbox(false)">確認</div>
+                        </div>
+                    </div>
                   </section>
       `,
         methods: {
@@ -123,6 +138,49 @@ window.addEventListener('load', function () {
                 })
                 // 取回res值後，呼叫另一隻函式
                 this.mem_info = res
+
+                this.update_mem_name = this.mem_info[0].mem_name
+                this.update_mem_email = this.mem_info[0].mem_email
+                this.update_mem_phone = this.mem_info[0].mem_phone
+            },
+
+            //預覽  上傳圖片
+            changeimg(event) {
+                let file = event.target.files
+                reader = new FileReader()
+                reader.readAsDataURL(file[0])
+
+                reader.onload = function (event) {
+                    document.getElementById('image').src = event.target.result
+                }
+                // console.log('changeimg')
+
+                //取得 上傳照片之檔案格式，以利送出時判斷
+                this.img_type = file[0].type.split('/').pop()
+                //將上傳的檔案存入 data內
+                // this.formData.append('file', event.target.files[0])
+                // console.log(this.formData)
+            },
+
+            //修改 個人資料
+            update_mem_info: async function () {
+                // console.log('send2', drinkno)
+                const res = await fetch('./php/mem_getone_member.php', {
+                    method: 'POST',
+                    mode: 'same-origin',
+                    credentials: 'same-origin',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        mem_name: this.update_mem_name,
+                        mem_email: this.update_mem_email,
+                        mem_psw: this.update_mem_newPsw,
+                        mem_phone: this.update_mem_phone,
+                    }),
+                }).then(function (data) {
+                    return data.json()
+                })
             },
         },
         created() {

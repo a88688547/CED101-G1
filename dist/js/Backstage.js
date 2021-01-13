@@ -473,6 +473,7 @@ window.addEventListener('load', function () {
                 //取得 上傳照片之檔案格式，以利送出時判斷
                 this.img_type = file[0].type.split('/').pop()
                 //將上傳的檔案存入 data內
+                console.log(event.target.files[0])
                 this.formData.append('file', event.target.files[0])
                 console.log(this.formData)
             },
@@ -507,7 +508,7 @@ window.addEventListener('load', function () {
                 this.drink_type_no = data[0].drink_type_no
                 this.drink_big_price = data[0].drink_big_price
                 this.drink_small_price = data[0].drink_small_price
-                this.drink_src = data[0].drink_src
+                this.drink_src = data[0].imgSrc
             },
 
             // 撈取類型資料

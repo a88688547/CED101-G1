@@ -2,9 +2,10 @@ const bus = new Vue();
 let storage = sessionStorage;
 let web_group_no = window.location.search.split("=")[1]
 let storage_key = `addItemList_group=${web_group_no}`
-if (storage[`${storage_key}`] == null) {
-    storage[`${storage_key}`] = ''
-}
+// if (storage[`${storage_key}`] == null) {
+//     storage[`${storage_key}`] = ''
+// }
+
 Vue.component('group-info', {
     data() {
         return {
@@ -185,6 +186,7 @@ Vue.component('menu_carshop', {
             item_type: [],
             //現在時間是否早於結單時間，以此判斷是否要前往下一頁
             intimeCart: true,
+            mem_no: "",
 
         }
     },
@@ -214,6 +216,7 @@ Vue.component('menu_carshop', {
         //若現在時間晚於結單時間，從group_info接收false參數，帶入本身intimeCart
         bus.$on('intimeGoFollow_step1', (intime) => this.intimeCart = intime);
 
+        member.$on('memberInfo', (mem_no) => this.mem_no = mem_no)
         //後台撈出menu資料
         fetch('./php/menu.php', {
             method: 'GET', // or 'PUT'
@@ -223,9 +226,14 @@ Vue.component('menu_carshop', {
             })
         }).then(res => res.json())
             .then(res => this.item_type = res);
+
     },
     //網頁重整的時候，購物車按鈕的飲品數會更新
     created() {
+
+        if (storage[`${storage_key}`] == null) {
+            storage[`${storage_key}`] = ''
+        }
         let itemString = storage.getItem(`${storage_key}`);
         let items = itemString.substr(0, itemString.length - 1).split('|');
         if (itemString == '') {
@@ -233,6 +241,8 @@ Vue.component('menu_carshop', {
         } else {
             this.shopping_num_total = items.length
         }
+
+
     },
     template: `
     <div id="menu">
@@ -310,6 +320,8 @@ Vue.component('alert_lightbox', {
     </div>
     `,
 })
+
+//飲品燈箱
 Vue.component('light_box', {
     data() {
         return {
@@ -329,6 +341,7 @@ Vue.component('light_box', {
             //飲品編號
             drink_no: "",
             drinkSet: [],
+            mem_no: "",
         }
     },
     computed: {
@@ -337,7 +350,7 @@ Vue.component('light_box', {
     // 燈箱接收點擊菜單飲品的資料
     mounted() {
         bus.$on('lightBox_handle_parent', this.lightBox_handle_child);
-
+        member.$on('memberInfo', (mem_no) => this.mem_no = mem_no)
     },
     methods: {
         lightBox_handle_child(item) {
@@ -555,6 +568,6 @@ Vue.component('toDoInput', {
         },
     }
 })
-new Vue({
+let app = new Vue({
     el: "#app",
 })

@@ -16,11 +16,11 @@
 </head>
 
 <body>
-    <header id="header">
-        <my-header></my-header>
-    </header>
-    <div id="app">
 
+    <div id="app">
+        <header>
+            <my-header></my-header>
+        </header>
         <!-- 揪團資訊 -->
         <group-info></group-info>
 
@@ -36,25 +36,16 @@
 
         <!-- 警示視窗 -->
         <alert_lightbox></alert_lightbox>
+
+        <footer>
+            <my-footer></my-footer>
+        </footer>
     </div>
 
-
-    <footer id="footer">
-        <my-footer></my-footer>
-    </footer>
-    <script src="./layout/footer.vue"></script>
-    <script src="./layout/header.vue"></script>
+    <script src="./js/layout/header.js"></script>
+    <script src="./js/layout/footer.js"></script>
     <script src="./js/menu.js"></script>
-    <script>
-        // document.getElementById('shopping_btn').addEventListener('click', function () {
-        //     if (this.querySelectorAll('span').length >= 1) {
-        //         location.href = 'follow_step1.html'
-        //     } else {
-        //         alert('請選擇飲品')
-        //     }
 
-        // })
-    </script>
 </body>
 
 </html>

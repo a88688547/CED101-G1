@@ -12,7 +12,7 @@
     overflow: hidden;
     margin-bottom: 30px;
 
-    .step_ball{
+    .step_ball {
         display: flex;
         justify-content: space-between;
         position: relative;
@@ -21,31 +21,31 @@
 }
 
 // 球尺寸、顏色、icon、字型
-.step_box .step_ball >li{
-    
+.step_box .step_ball>li {
+
     @include step_ball_size;
     border-radius: 50%;
     background-color: #EFE7DA;
     position: relative;
 
-            // 定位進度球內img置中
-            & img{
-                position: absolute;
-                transform: translate(50%,-50%);
-                top: 50%;
-                right: 50%;
-            }
+    // 定位進度球內img置中
+    & img {
+        position: absolute;
+        transform: translate(50%, -50%);
+        top: 50%;
+        right: 50%;
+    }
 
-        // 定位下方步驟文字
-            & h5{
-                @include H5;
-                color: $btnColor;
-                letter-spacing: 0px;
-                position: absolute;
-                width: 100%;
-                text-align: center;
-                top: 120%;
-            }
+    // 定位下方步驟文字
+    & h5 {
+        @include H5;
+        color: $btnColor;
+        letter-spacing: 0px;
+        position: absolute;
+        width: 100%;
+        text-align: center;
+        top: 120%;
+    }
 }
 
 
@@ -53,13 +53,13 @@
 
 // 偽元素:進度條及變色方式
 
-.step_box .step_ball >li{
+.step_box .step_ball>li {
 
-    &:first-child{
+    &:first-child {
         background-color: $btnColor;
     }
 
-    &::before{
+    &::before {
         content: "";
         position: absolute;
         width: 400%;
@@ -71,7 +71,7 @@
     }
 
 
-    &:last-child::before{
+    &:last-child::before {
         display: none;
     }
 
@@ -102,15 +102,17 @@
 
 // 3.當前進度-步驟三
 
-.step_ball>li:nth-child(2) , .step_ball>li:nth-child(3){
+.step_ball>li:nth-child(2),
+.step_ball>li:nth-child(3) {
     background-color: $btnColor;
 }
 
-.step_ball>li:nth-child(1)::before , .step_ball>li:nth-child(2)::before{
+.step_ball>li:nth-child(1)::before,
+.step_ball>li:nth-child(2)::before {
     background-color: $btnColor;
 }
 
-.step_box .step_ball li:nth-child(3){
+.step_box .step_ball li:nth-child(3) {
     font-weight: bold;
 }
 
@@ -120,17 +122,17 @@
 //  RWD
 
 
-@media (min-width: 576px) and (max-width: 991px){
+@media (min-width: 576px) and (max-width: 991px) {
 
-    .step_box{
+    .step_box {
         height: 115px;
     }
 
-    .step_box .step_ball >li{
+    .step_box .step_ball>li {
         @include step_ball_size_medium;
     }
 
-    .step_box .step_ball >li>h5{
+    .step_box .step_ball>li>h5 {
         @include H6;
         letter-spacing: 0px;
     }
@@ -138,37 +140,24 @@
 
 }
 
-@media (max-width: 575px){
+@media (max-width: 575px) {
 
-    .step_box{
+    .step_box {
         width: 70%;
         height: 90px;
     }
 
-    .step_box .step_ball >li{
+    .step_box .step_ball>li {
         @include step_ball_size_small;
     }
 
-    .step_box .step_ball >li>h5{
+    .step_box .step_ball>li>h5 {
         @include P2;
         letter-spacing: 0px;
     }
 
-    .step_box .step_ball >li>img{
+    .step_box .step_ball>li>img {
         width: 40%;
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

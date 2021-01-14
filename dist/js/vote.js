@@ -34,7 +34,7 @@ Vue.component("vote-item", {
                 <div class="vote-bot" >
                     <div class="vote-wrap" v-for="(voteType, i) in drinks">
                         <div class="vote-title">
-                            <h3>{{voteType.drink_type_title}}&nbsp;<span>{{voteType.drink_type_text_en}}</span></h3>
+                            <h3>{{voteType.drink_type_title}}&nbsp</h3>
                         </div>
                         <div v-for="(item,index) in voteType.itemList" :class="[index===0?'vote-first':'vote-second', 'vote-item']">
                             <div class="vote-rank">本周第{{texts[index]}}</div>
@@ -84,6 +84,10 @@ Vue.component("vote-form", {
             timer: null,
             timeNum: 0,
             votedok: false,
+            lightBoxImg: ['./Images/drinkitem_15/drinkitem_15/milktea/milktea_item-1.png',
+                './Images/drinkitem_15/drinkitem_15/tea/tea_item-1.png',
+                './Images/drinkitem_15/drinkitem_15/fruit/Fruit_item-3.png'
+            ],
         };
     },
     mounted() {
@@ -169,17 +173,16 @@ Vue.component("vote-form", {
             // console.log(this.nowTime.substring(8, 10))
 
             if (this.nowTime.substring(8, 10) != parseInt(this.members.milkVote.substring(8, 10)) + 7) {
-
                 return (this.votedok = true, this.type = false)
             }
             if (this.nowTime.substring(8, 10) != parseInt(this.members.teaVote.substring(8, 10)) + 7) {
-
                 return (this.votedok = true, this.type = false)
             }
             if (this.nowTime.substring(8, 10) != parseInt(this.members.fruitVote.substring(8, 10)) + 7) {
-
                 return (this.votedok = true, this.type = false)
             }
+            console.log(this.members.milkVote !== null)
+
 
             fetch("./php/menu1.php", {
                 method: "POST",
@@ -199,6 +202,9 @@ Vue.component("vote-form", {
                     console.log(err);
                 });
 
+
+
+
         },
         votingHandler(e) {
             e.preventDefault();
@@ -206,8 +212,9 @@ Vue.component("vote-form", {
                 return (this.$refs.alertvote.innerText = "請投票!!");
             }
             this.getNowTime()
-            console.log(this.members.milkVote.substring(8, 10))
-            console.log(this.nowTime.substring(8, 10))
+
+            // console.log(this.members.milkVote.substring(8, 10))
+            // console.log(this.nowTime.substring(8, 10))
 
             fetch("./php/menu3.php", {
                 method: "POST",
@@ -221,7 +228,7 @@ Vue.component("vote-form", {
                     vote_time: this.voteTime,
                 }),
             })
-                .then((res) => {
+                .then(() => {
                     this.voted[this.drinkIndex] = true;
                     this.votedValue[this.drinkIndex] = this.dirnkVote[
                         this.activeIndex
@@ -247,7 +254,9 @@ Vue.component("vote-form", {
                 this.selected = val;
             }
         },
-
+        closeAlert() {
+            this.showVote = false
+        },
         nowVoteName(index, textIdIndex) {
             if (this.activeIndex !== -1) {
                 this.dirnkVote[this.activeIndex].vote_count_now--;
@@ -263,7 +272,9 @@ Vue.component("vote-form", {
     template: `
                         <form class="voteLightbox-wrap" v-show="showVote" >
                             <div class="voting">
-                                <div class="pic"></div>
+                                <div class="pic">
+                                    <img :src="lightBoxImg[this.drinkIndex]" />
+                                </div>
                                 <div class="voting-txt" v-if="type=='vote'">
                                     <div class="voting-title">
                                         <h2>本周茶類飲品票選</h2>
@@ -305,11 +316,12 @@ Vue.component("vote-form", {
                                     <i class="fas fa-times-circle closeBlock"></i>
                                 </div>
                             </div>
-                            <div class="isvoted-box" v-if="votedok">
-                                <div class="isvoted">
-                                    <p>本周已經投過票了</p>
-                                    <p>{{this.votedName[this.drinkIndex]}}</p>
-                                    <p>{{this.votedValue[this.drinkIndex]}}</p>
+                            <div class="alertLightbox_black" v-if="votedok">
+                                <div class="alertLightboxWrapper">
+                                    <div class="alertLightbox" >
+                                        <div>本周已經投過票了</div>
+                                        <div @click="closeAlert">確定</div>
+                                    </div>
                                 </div>
                             </div>
                         </form>

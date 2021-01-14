@@ -269,9 +269,12 @@ section.vote .slick-slider img{
             @include H6;
         } 
     }
+    .vote_info h4{
+        @include H5;
+    }
 
     section.vote .card_rwd-slider .triangle{
-        height: 11vw;
+        height: 20%;
     }
 
     .card{
@@ -279,12 +282,20 @@ section.vote .slick-slider img{
     }
 
     .card_rwd{
+        margin: 0 auto;
+        width: 80%;
         display: block ;
+        h2{
+            @include H3;
+        }
+    
+        h5{
+            @include H6;
+        } 
+
     }
 
     .bottom_block h5{
          @include P1;      
     }
- 
 }
-

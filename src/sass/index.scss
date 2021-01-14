@@ -9,7 +9,7 @@
 @import "./index_joindrink.scss";
 
 //飲品排名
-@import "./index_vote.scss";
+@import "./index_vote_new.-repair.scss";
 
 //分享區
 @import "./index_atricle.scss";
@@ -21,24 +21,23 @@
 @import "./index_game.scss";
 
 
-*{
+* {
   color: $textColor;
 }
 
-header{
+header {
   background-color: $mainBackgroundColor;
 }
 
-main{
-    max-width: 1200px;
-    width: 80%;
-    margin: 0 auto;
-    // border: 1px solid red;
-  }
-@media (max-width:768px){
-  main{
+main {
+  max-width: 1200px;
+  width: 80%;
+  margin: 0 auto;
+  // border: 1px solid red;
+}
+
+@media (max-width:768px) {
+  main {
     width: 90%;
   }
 }
-
- 

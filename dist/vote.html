@@ -1,63 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>飲料排行</title>
-        <script src="./vendors/Vue/vue.js"></script>
-        <link rel="stylesheet" href="./css/vote.css" />
-        <link rel="stylesheet" href="./css/style.css" />
-        <script src="./vendors/jQuery/js/jquery-3.5.1.js"></script>
-        <script src="./js/header_footer.js"></script>
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
-            integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
-            crossorigin="anonymous"
-        />
-    </head>
 
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>飲料排行</title>
-        <script src="./vendors/Vue/vue.js"></script>
-        <link rel="stylesheet" href="./css/vote.css" />
-        <link rel="stylesheet" href="./css/style.css" />
-        <script src="./vendors/jQuery/js/jquery-3.5.1.js"></script>
-        <script src="./js/header_footer.js"></script>
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
-            integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
-            crossorigin="anonymous"
-        />
-    </head>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>飲料排行</title>
+    <script src="./vendors/Vue/vue.js"></script>
+    <link rel="stylesheet" href="./css/vote.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+        integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+        crossorigin="anonymous" />
+</head>
 
-    <body>
-        <div id="app">
-            <header>
-                <my-header></my-header>
-            </header>
-            <section>
-                <div class="vote-top">
-                    <h2>本週飲品排行</h2>
-                    <h4>
-                        <img src="./Images/Drop-3.svg" alt="icon" />
-                        每週投下你神聖的三票，各類飲品最多一票，就有機會讓喜歡的飲品成為下週折扣品項!
-                    </h4>
-                </div>
-                <div>
-                    <vote-item></vote-item>
-                    <vote-form></vote-form>
-                </div>
-            </section>
-            <footer>
-                <my-footer></my-footer>
-            </footer>
-        </div>
-        <script src="./js/layout/header.js"></script>
-        <script src="./js/layout/footer.js"></script>
-        <script src="js/vote.js"></script>
-    </body>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>飲料排行</title>
+    <script src="./vendors/Vue/vue.js"></script>
+    <link rel="stylesheet" href="./css/vote.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <script src="./vendors/jQuery/js/jquery-3.5.1.js"></script>
+    <script src="./js/header_footer.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+        integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+        crossorigin="anonymous" />
+</head>
+
+<body>
+    <div id="app">
+        <header>
+            <my-header></my-header>
+        </header>
+        <section>
+            <div class="vote-top">
+                <h2>本週飲品排行</h2>
+                <h4>
+                    <img src="./Images/Drop-3.svg" alt="icon" />
+                    每週投下你神聖的三票，各類飲品最多一票，就有機會讓喜歡的飲品成為下週折扣品項!
+                </h4>
+            </div>
+            <div>
+                <vote-item></vote-item>
+                <vote-form></vote-form>
+            </div>
+        </section>
+        <footer>
+            <my-footer></my-footer>
+        </footer>
+    </div>
+    <script src="./js/layout/header.js"></script>
+    <script src="./js/layout/footer.js"></script>
+    <script src="js/vote.js"></script>
+</body>
+
 </html>

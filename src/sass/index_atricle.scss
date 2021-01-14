@@ -342,6 +342,17 @@
 @media (min-width: 576px) and (max-width: 991px){
 
     .article{
+
+        .title_block{
+            h2{
+              @include H3;
+            }
+      
+            h5{
+              @include P1;
+              line-height: 24px;
+            }
+        }
         
         .article_block{
 

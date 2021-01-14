@@ -9,6 +9,7 @@
     $_SESSION["teaVote"] = null;
     $_SESSION["milkVote"] = null;
     $_SESSION["fruitVote"] = null;
+    $_SESSION["memImg"] = null;
     unset($_SESSION["memNo"]);
     unset($_SESSION["memPsw"]);
     unset($_SESSION["memName"]);
@@ -18,6 +19,7 @@
     unset($_SESSION["teaVote"]);
     unset($_SESSION["milkVote"]);
     unset($_SESSION["fruitVote"]);
+    unset($_SESSION["memImg"]);
     // session_destroy();
 
 ?>

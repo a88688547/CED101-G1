@@ -10,8 +10,6 @@ section.join_drink{
   justify-content: center;
 
   .title_block{
-    // border: 1px solid red;
-
     text-align: center;
 
     h2{
@@ -36,8 +34,8 @@ section.join_drink{
 
     //跟團版
     .drink_bar{
-    //   border: 3px solid purple;
       width: 48%;
+      // width: 270px;
       display: flex;
       flex-direction: row;
       justify-content: space-between;
@@ -86,8 +84,9 @@ section.join_drink{
         }
       }
 
-      img{
+      img.top_img{
         max-width: 100%;
+        // width: 250px;
         img{
           max-width: 100%;
         }
@@ -99,7 +98,6 @@ section.join_drink{
         padding: 15px;
 
         .bar_title{
-          // border: 2px solid green;
           display: flex;
           justify-content: space-between;
           align-items: flex-end;
@@ -207,9 +205,10 @@ section.join_drink{
   }
 
   .bottom_block{
+    width: 100%;
     display: flex;
     justify-content: center;
-    margin: 50px 0 50px;
+    margin: 50px 0 150px;
 
     button.seemore{
       @include lineargradient_button;
@@ -252,7 +251,7 @@ section.join_drink{
 
   section.join_drink .drinkbar_block .drink_bar {
     flex-direction: column;
-    width: 48%;
+    width: 280px;
 
     .drinkbar_textblock {
       width: 100%;
@@ -281,7 +280,7 @@ section.join_drink{
 
       .drink_bar {
         flex-direction: column;
-        width: 75%;
+        width: 280px;
     
         .drinkbar_textblock {
           width: 100%;
@@ -312,7 +311,7 @@ section.join_drink{
 
       .drink_bar {
         flex-direction: column;
-        width: 90%;
+        width: 250px;
     
         .drinkbar_textblock {
           width: 100%;

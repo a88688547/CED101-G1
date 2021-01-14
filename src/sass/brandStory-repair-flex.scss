@@ -197,7 +197,7 @@ section.btm_block{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    padding: 100px 0;
+    padding: 100px;
 }
 
 .address_text{
@@ -227,6 +227,10 @@ section.btm_block{
             line-height: 36px;
         }
     } 
+}
+
+#footer{
+    margin-top: 0;
 }
 
 

@@ -33,6 +33,7 @@
             $_SESSION["teaVote"] = $memRow["tea_vote"];
             $_SESSION["milkVote"] = $memRow["milk_vote"];
             $_SESSION["fruitVote"] = $memRow["fruit_vote"];
+            $_SESSION["memImg"] = $memRow["mem_img"];
             // echo "登入成功~!!";
             
             echo json_encode($memRow);

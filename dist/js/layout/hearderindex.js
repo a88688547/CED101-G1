@@ -13,37 +13,44 @@ Vue.component("my-header", {
             showLogin: false,
             isActiveTab: 1,
             isLogin: false,
-            memberInfo: '',
+            memberInfo: "",
         };
     },
     methods: {
         openLoginBox() {
-            this.showLogin = true;
+            if (this.memberInfo != "") {
+                this.showLogin = false;
+                location.href = "./member.html";
+                return;
+            } else {
+                this.showLogin = true;
+                return;
+            }
         },
         closeLoginBox() {
             this.showLogin = false;
-            this.username = ""
-            this.signemail = ""
-            this.signPassword = ""
-            this.phone = ""
-            this.passwordTwo = ""
-            this.loginEmail = ""
-            this.loginPassword = ""
-            this.$refs.errorLogin.innerText = ""
+            this.username = "";
+            this.signemail = "";
+            this.signPassword = "";
+            this.phone = "";
+            this.passwordTwo = "";
+            this.loginEmail = "";
+            this.loginPassword = "";
+            this.$refs.errorLogin.innerText = "";
         },
         toggleClass(id) {
             this.isActiveTab = id;
         },
         clearText() {
-            this.username = ""
-            this.signemail = ""
-            this.signPassword = ""
-            this.phone = ""
-            this.passwordTwo = ""
-            this.loginEmail = ""
-            this.loginPassword = ""
-            this.$refs.errorLogin.innerText = ""
-            this.$refs.signerror.innerText = ""
+            this.username = "";
+            this.signemail = "";
+            this.signPassword = "";
+            this.phone = "";
+            this.passwordTwo = "";
+            this.loginEmail = "";
+            this.loginPassword = "";
+            this.$refs.errorLogin.innerText = "";
+            this.$refs.signerror.innerText = "";
         },
         loginMember() {
             let isEmail = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4})*$/;
@@ -73,14 +80,15 @@ Vue.component("my-header", {
                 })
 
                 .then((res) => {
-                    if (res != '查無此帳號') {
-                        this.isLogin = true;
+                    if (res != "查無此帳號") {
+                        this.memberInfo = res;
                         this.$refs.UserName.innerText = `hi~${res.mem_name}`;
                         this.$refs.errorLogin.innerText = "";
                         this.loginEmail = "";
                         this.loginPassword = "";
+                        this.isLogin = true;
                         this.showLogin = false;
-                        alert('登入成功')
+                        alert("登入成功");
                         // console.log(res);
                     } else {
                         this.$refs.errorLogin.innerText = "帳號密碼錯誤";
@@ -111,7 +119,11 @@ Vue.component("my-header", {
                 return;
             }
 
-            if (this.signPassword !== this.passwordTwo || this.passwordTwo == "" || this.signPassword == "") {
+            if (
+                this.signPassword !== this.passwordTwo ||
+                this.passwordTwo == "" ||
+                this.signPassword == ""
+            ) {
                 this.$refs.signerror.innerText = "密碼不一致";
                 return;
             }
@@ -131,22 +143,22 @@ Vue.component("my-header", {
                     account: this.signemail,
                     password: this.signPassword,
                     phone: this.phone,
-                })
+                }),
             })
                 .then((res) => {
-                    return res.json()
+                    return res.json();
                 })
                 .then((res) => {
-                    if (res !== '註冊成功') {
+                    if (res !== "註冊成功") {
                         this.$refs.signerror.innerText = "此信箱已註冊過";
                     } else {
-                        this.username = ""
-                        this.signemail = ""
-                        this.signPassword = ""
-                        this.phone = ""
-                        this.passwordTwo = ""
-                        this.$refs.signerror.innerText = ""
-                        alert('註冊成功')
+                        this.username = "";
+                        this.signemail = "";
+                        this.signPassword = "";
+                        this.phone = "";
+                        this.passwordTwo = "";
+                        this.$refs.signerror.innerText = "";
+                        alert("註冊成功");
                         // console.log(res)
                     }
                 })
@@ -162,14 +174,21 @@ Vue.component("my-header", {
                 headers: {
                     "Content-Type": "application/json",
                 },
-            }).then(() => {
-                this.isLogin = false;
-                this.$refs.UserName.innerText = "";
-                alert('登出成功')
-            }).catch((err) => {
-                console.log('錯誤')
-                // console.log(err)
             })
+                .then(() => {
+                    this.isLogin = false;
+                    this.$refs.UserName.innerText = "";
+                    sessionStorage.clear();
+                    alert("登出成功");
+                })
+                .catch((err) => {
+                    console.log("錯誤");
+                    // console.log(err)
+                });
+        },
+        hamburgHandler() {
+            this.$refs.hamburg_btn.classList.toggle("btn-on");
+            this.$refs.nav_list.classList.toggle("nav-open");
         },
     },
     mounted() {
@@ -182,7 +201,7 @@ Vue.component("my-header", {
             },
         })
             .then((res) => {
-                return res.json()
+                return res.json();
             })
             .then((res) => {
                 if (JSON.stringify(res) !== "{}") {
@@ -193,23 +212,24 @@ Vue.component("my-header", {
                 } else if (JSON.stringify(res) === "{}") {
                     this.isLogin = false;
                 }
-            }).catch((err) => {
+            })
+            .catch((err) => {
                 console.log(err);
 
-                console.log("錯誤")
-            })
-        member.$emit('memberInfo', this.memInfo);
+                console.log("錯誤");
+            });
+        member.$emit("memberInfo", this.memberInfo);
     },
     template: `
             <nav>
-                <button class="hamburg_btn">
+                <button class="hamburg_btn" ref="hamburg_btn" @click="hamburgHandler">
                     <div class="hamburg_line line_1"></div>
                     <div class="hamburg_line line_2"></div>
                     <div class="hamburg_line line_3"></div>
                 </button>
                 <a href="./index.html" class="logo_img"><img class="logo" src="./Images/logo-header.svg" alt="" /></a>
 
-                <div class="nav_list" id="header_nav">
+                <div class="nav_list" id="header_nav" ref="nav_list">
                     <ul>
                         <a href="./menu_self.html"><img src="./Images/drop-header.svg" alt="" />菜單</a>
                         <a href="./join_list.html"><img src="./Images/drop-header.svg" alt="" />揪團喝</a>
@@ -218,21 +238,15 @@ Vue.component("my-header", {
                         <a href="./custom.html"><img src="./Images/drop-header.svg" alt="" />小遊戲</a>
                         <a href=""><img src="./Images/drop-header.svg" alt="" />關於揪飲</a>
                     </ul>
-                    <div v-show="isLogin">
+                    <div class="user_wrap" v-show="isLogin">
                         <span ref="UserName" class="user"></span>
                         <span id="logout" @click="logoutBtn">登出</span>
                     </div>
-                    <a  class="user_logo_img_web" v-if="!isLogin" @click="openLoginBox"
-                        ><img class="user_logo" src="./Images/login.svg" alt=""
-                    /></a>
-                    <a  class="user_logo_img_web" v-else href="./member.html"
+                    <a  class="user_logo_img_web" @click="openLoginBox"
                         ><img class="user_logo" src="./Images/login.svg" alt=""
                     /></a>
                 </div>
-                <a  class="user_logo_img_phone" v-if="!isLogin" @click="openLoginBox"
-                    ><img class="user_logo" src="./Images/login.svg" alt=""
-                /></a>
-                <a  class="user_logo_img_phone" v-else href="./member.html"
+                <a  class="user_logo_img_phone" @click="openLoginBox"
                     ><img class="user_logo" src="./Images/login.svg" alt=""
                 /></a>
 
@@ -299,6 +313,7 @@ Vue.component("my-header", {
             </nav>
             `,
 });
+
 new Vue({
-    el: '#header',
-})
+    el: "#header",
+});

@@ -18,7 +18,14 @@ Vue.component('my-header', {
     },
     methods: {
         openLoginBox() {
-            this.showLogin = true
+            if (this.memberInfo != '') {
+                // this.showLogin = false
+                location.href = './member.html'
+                return
+            } else {
+                this.showLogin = true
+                return
+            }
         },
         closeLoginBox() {
             this.showLogin = false
@@ -45,7 +52,7 @@ Vue.component('my-header', {
             this.$refs.errorLogin.innerText = ''
             this.$refs.signerror.innerText = ''
         },
-        loginMember() {
+        async loginMember() {
             let isEmail = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4})*$/
 
             if (this.loginEmail === '' || this.loginPassword === '') {
@@ -56,7 +63,7 @@ Vue.component('my-header', {
                 this.$refs.errorLogin.innerText = '請輸入正確信箱!!'
                 return
             }
-            fetch('./php/login.php', {
+            await fetch('./php/login.php', {
                 method: 'POST',
                 mode: 'same-origin',
                 credentials: 'same-origin',
@@ -74,11 +81,12 @@ Vue.component('my-header', {
 
                 .then((res) => {
                     if (res != '查無此帳號') {
-                        this.isLogin = true
+                        this.memberInfo = res
                         this.$refs.UserName.innerText = `hi~${res.mem_name}`
                         this.$refs.errorLogin.innerText = ''
                         this.loginEmail = ''
                         this.loginPassword = ''
+                        this.isLogin = true
                         this.showLogin = false
                         alert('登入成功')
                         // console.log(res);
@@ -91,6 +99,8 @@ Vue.component('my-header', {
                     console.log(err)
                     console.log('失敗')
                 })
+
+            await member.$emit('memberInfo', this.memberInfo)
         },
         signMember() {
             let isEmail = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4})*$/
@@ -166,6 +176,9 @@ Vue.component('my-header', {
                 .then(() => {
                     this.isLogin = false
                     this.$refs.UserName.innerText = ''
+                    this.memberInfo = ''
+                    location.href = './index.html'
+                    sessionStorage.clear()
                     alert('登出成功')
                 })
                 .catch((err) => {
@@ -173,46 +186,88 @@ Vue.component('my-header', {
                     // console.log(err)
                 })
         },
-    },
-    mounted() {
-        fetch('./php/checkMember.php', {
-            method: 'POST',
-            mode: 'same-origin',
-            credentials: 'same-origin',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        })
-            .then((res) => {
-                return res.json()
-            })
-            .then((res) => {
-                if (JSON.stringify(res) !== '{}') {
-                    this.isLogin = true
-                    this.memberInfo = res
-                    this.$refs.UserName.innerText = `hi~${res.memName}`
-                    // console.log(this.memberInfo)
-                } else if (JSON.stringify(res) === '{}') {
-                    this.isLogin = false
-                }
-            })
-            .catch((err) => {
-                console.log(err)
+        hamburgHandler() {
+            this.$refs.hamburg_btn.classList.toggle('btn-on')
+            this.$refs.nav_list.classList.toggle('nav-open')
+        },
 
-                console.log('錯誤')
+        get_mem: async function () {
+            // console.log('send2', drinkno)
+            await fetch('./php/checkMember.php', {
+                method: 'POST',
+                mode: 'same-origin',
+                credentials: 'same-origin',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
             })
-        member.$emit('memberInfo', this.memInfo)
+                .then((res) => {
+                    return res.json()
+                })
+                .then((res) => {
+                    if (JSON.stringify(res) !== '{}') {
+                        this.isLogin = true
+                        this.memberInfo = res
+                        this.$refs.UserName.innerText = `hi~${res.memName}`
+                        // console.log(this.memberInfo)
+                    } else if (JSON.stringify(res) === '{}') {
+                        this.isLogin = false
+                    }
+                })
+                .catch((err) => {
+                    console.log(err)
+
+                    console.log('錯誤')
+                })
+
+            await member.$emit('memberInfo', this.memberInfo)
+        },
     },
+    mounted() {},
+    created() {
+        this.get_mem()
+
+        // fetch('./php/checkMember.php', {
+        //     method: 'POST',
+        //     mode: 'same-origin',
+        //     credentials: 'same-origin',
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //     },
+        // })
+        //     .then((res) => {
+        //         return res.json()
+        //     })
+        //     .then((res) => {
+        //         if (JSON.stringify(res) !== '{}') {
+        //             this.isLogin = true
+        //             this.memberInfo = res
+        //             this.$refs.UserName.innerText = `hi~${res.memName}`
+        //             // console.log(this.memberInfo)
+        //         } else if (JSON.stringify(res) === '{}') {
+        //             this.isLogin = false
+        //         }
+        //     })
+        //     .catch((err) => {
+        //         console.log(err)
+
+        //         console.log('錯誤')
+        //     })
+
+        // member.$emit('memberInfo', this.memberInfo)
+        // console.log('hwader', this.memberInfo)
+    },
+    beforeCreate() {},
     template: `
             <nav>
-                <button class="hamburg_btn">
+                <button class="hamburg_btn" ref="hamburg_btn" @click="hamburgHandler">
                     <div class="hamburg_line line_1"></div>
                     <div class="hamburg_line line_2"></div>
                     <div class="hamburg_line line_3"></div>
                 </button>
                 <a href="./index.html" class="logo_img"><img class="logo" src="./Images/logo-header.svg" alt="" /></a>
 
-                <div class="nav_list" id="header_nav">
+                <div class="nav_list" id="header_nav" ref="nav_list">
                     <ul>
                         <a href="./menu_self.html"><img src="./Images/drop-header.svg" alt="" />菜單</a>
                         <a href="./join_list.html"><img src="./Images/drop-header.svg" alt="" />揪團喝</a>
@@ -221,25 +276,19 @@ Vue.component('my-header', {
                         <a href="./custom.html"><img src="./Images/drop-header.svg" alt="" />小遊戲</a>
                         <a href=""><img src="./Images/drop-header.svg" alt="" />關於揪飲</a>
                     </ul>
-                    <div v-show="isLogin">
+                    <div class="user_wrap" v-show="isLogin">
                         <span ref="UserName" class="user"></span>
                         <span id="logout" @click="logoutBtn">登出</span>
                     </div>
-                    <a  class="user_logo_img_web" v-if="!isLogin" @click="openLoginBox"
-                        ><img class="user_logo" src="./Images/login.svg" alt=""
-                    /></a>
-                    <a  class="user_logo_img_web" v-else href="./member.html"
+                    <a  class="user_logo_img_web" @click="openLoginBox"
                         ><img class="user_logo" src="./Images/login.svg" alt=""
                     /></a>
                 </div>
-                <a  class="user_logo_img_phone" v-if="!isLogin" @click="openLoginBox"
-                    ><img class="user_logo" src="./Images/login.svg" alt=""
-                /></a>
-                <a  class="user_logo_img_phone" v-else href="./member.html"
+                <a  class="user_logo_img_phone" @click="openLoginBox"
                     ><img class="user_logo" src="./Images/login.svg" alt=""
                 /></a>
 
-                <div class="lightbox-container" v-show="showLogin">
+                <div class="lightbox-container" v-if="showLogin">
                     <div class="lightbox-wrap">
                         <div class="lightbox-top">
                             <div class="tab" :class="{tabbackgroud:isActiveTab==1}" @click="toggleClass(1)">

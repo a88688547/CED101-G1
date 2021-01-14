@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="./css/style.css" />
   <link rel="stylesheet" href="./css/list_data.css" />
   <link rel="stylesheet" href="./css/join_step3A.css" />
+  <link rel="stylesheet" href="./css/alertLightbox.css">
   <script src="vendors/Vue/vue.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
@@ -53,7 +54,7 @@
               <div><img src="Images/tell_big.svg"></div>
               <div>行動電話</div>
             </div> 
-            <div class="info_phone_bottom"><input type="number" class="phone" pattern="/^-?\d+\.?\d*$/" v-model="phone" placeholder="09XXXXXXXX" onKeyPress="if(this.value.length==10) return false;"></div>
+            <div class="info_phone_bottom"><input type="number" @blur="check_phone" class="phone" pattern="/^-?\d+\.?\d*$/" v-model.trim="phone" placeholder="09XXXXXXXX" onKeyPress="if(this.value.length==10) return false;"></div>
           </div>
           <div class="info_msg">
             <div class="info_msg_top">
@@ -134,8 +135,8 @@
           </div>
           <div class="exp">
             <div>有效期限</div>
-            <div class="exp_bottom"><input type="number" class="safeNumber" pattern="/^-?\d+\.?\d*$/" v-model="month" onKeyPress="if(this.value.length==2) return false;">月
-              <input type="number" class="safeNumber" pattern="/^-?\d+\.?\d*$/" v-model="year" onKeyPress="if(this.value.length==4) return false;">
+            <div class="exp_bottom"><input type="number" class="safeNumber" pattern="/^-?\d+\.?\d*$/" v-model="month" placeholder="01" onKeyPress="if(this.value.length==2) return false;">月
+              <input type="number" class="safeNumber" pattern="/^-?\d+\.?\d*$/" v-model="year" placeholder="21" onKeyPress="if(this.value.length==2) return false;">
               年</div>
           </div>
           <div class="safeno">
@@ -181,6 +182,7 @@
         <div>
           <h2>$.<span id="ordPrice">400</span></h2>
         </div>
+        <button @click="cardLong">test</button>
       </div>
       <!-- //檢查資料有沒有填 -->
       <div class="orderbtn" v-if="type == 10">
@@ -194,7 +196,16 @@
       </div>
     
     </div>
-    
+    <!-- //警告框 -->
+    <div class="alertLightbox_black" v-show="Error_show">
+      <div class="alertLightboxWrapper">
+          <div class="manager_lightbox_close_img" ><img src="./Images/close.svg" @click="XError" ></div>
+          <div class="alertLightbox" >
+              <div>{{ErrorText}}</div>
+              <div @click="XError">確定</div>
+          </div>
+      </div>
+    </div>
     <!-- ======訂單明細======= -->
     <div class="orderModal" v-show="closeTotal" >
       <div id="order_list" > 

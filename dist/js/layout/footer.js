@@ -26,13 +26,4 @@ Vue.component('my-footer', {
             <p class="footer_cmp">Copyright © Join drink inc.</p>
         </nav>
     `,
-    methods: {
-        memberInfo(data) {
-            console.log('sdadsa')
-            this.data = data
-        },
-    },
-    created() {
-        member.$on('memberInfo', this.memberInfo)
-    },
 })

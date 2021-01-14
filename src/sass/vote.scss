@@ -649,3 +649,20 @@ section {
         }
     }
 }
+
+.isvoted {
+    width: 350px;
+    border-radius: 20px;
+    box-shadow: 3px 3px 4px 2px rgba($color: #000000, $alpha: 0.2);
+    color: $textColor;
+    @include H4;
+    font-weight: bold;
+    text-align: center;
+    padding: 15px;
+    background-color: #fff;
+
+    @media screen and(max-width:$mq575) {
+        width: 300px;
+        @include H5;
+    }
+}

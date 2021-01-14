@@ -279,6 +279,7 @@ var app = new Vue({
         body: JSON.stringify(this.JoinGroup),
       }).then(res => res.json())
         .then(res => this.group_ord_no = res);
+      
       console.log(this.group_ord_no);
       // location.href = `./join_step2.php?group_ord_no=${this.GroupNo}`
       location.href = `./join_step2.html?group_ord_no=${this.group_ord_no}`

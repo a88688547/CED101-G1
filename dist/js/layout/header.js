@@ -100,8 +100,8 @@ Vue.component('my-header', {
                     console.log(err)
                     console.log('失敗')
                 })
-
             await member.$emit('memberInfo', this.memberInfo)
+            location.reload()
         },
         signMember() {
             let isEmail = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4})*$/
@@ -178,7 +178,7 @@ Vue.component('my-header', {
                     this.isLogin = false
                     this.$refs.UserName.innerText = ''
                     this.memberInfo = ''
-                    location.href = './index.html'
+                    location.href = './homepage.html'
                     sessionStorage.clear()
                     alert('登出成功')
                 })
@@ -186,6 +186,7 @@ Vue.component('my-header', {
                     console.log('錯誤')
                     // console.log(err)
                 })
+
         },
         hamburgHandler() {
             this.$refs.hamburg_btn.classList.toggle('btn-on')
@@ -232,38 +233,7 @@ Vue.component('my-header', {
     },
     created() {
         this.get_mem()
-
-        // fetch('./php/checkMember.php', {
-        //     method: 'POST',
-        //     mode: 'same-origin',
-        //     credentials: 'same-origin',
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //     },
-        // })
-        //     .then((res) => {
-        //         return res.json()
-        //     })
-        //     .then((res) => {
-        //         if (JSON.stringify(res) !== '{}') {
-        //             this.isLogin = true
-        //             this.memberInfo = res
-        //             this.$refs.UserName.innerText = `hi~${res.memName}`
-        //             // console.log(this.memberInfo)
-        //         } else if (JSON.stringify(res) === '{}') {
-        //             this.isLogin = false
-        //         }
-        //     })
-        //     .catch((err) => {
-        //         console.log(err)
-
-        //         console.log('錯誤')
-        //     })
-
-        // member.$emit('memberInfo', this.memberInfo)
-        // console.log('hwader', this.memberInfo)
     },
-    beforeCreate() { },
     template: `
             <nav>
                 <button class="hamburg_btn" ref="hamburg_btn" @click="hamburgHandler">
@@ -271,8 +241,8 @@ Vue.component('my-header', {
                     <div class="hamburg_line line_2"></div>
                     <div class="hamburg_line line_3"></div>
                 </button>
-                <a href="./index.html" class="logo_img"><img class="logo" src="./Images/logo-header.svg" alt="" /></a>
-
+                <a href="./homepage.html" class="logo_img"><img class="logo" src="./Images/logo-header.svg" alt="" /></a>
+            
                 <div class="nav_list" id="header_nav" ref="nav_list">
                     <ul>
                         <a href="./menu_self.html"><img src="./Images/drop-header.svg" alt="" />菜單</a>

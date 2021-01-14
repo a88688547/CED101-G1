@@ -9,8 +9,9 @@
         $mem_no = $data["mem_no"];
         $everClickLike = $data["everClickLike"];
         if($everClickLike == true){
-            $sql = "DELETE FROM artlike WHERE art_no = :art_no";
+            $sql = "DELETE FROM artlike WHERE mem_no = :mem_no AND art_no = :art_no";
             $art = $pdo->prepare($sql);
+            $art->bindValue(":mem_no", $mem_no);
             $art->bindValue(":art_no", $art_no);
             $art->execute();
 

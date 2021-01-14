@@ -97,10 +97,12 @@ Vue.component('orderlist', {
             lightBoxOpen: false,
             //現在時間是否早於結單時間，以此判斷是否要前往下一頁
             inTimeCart: true,
+            mem_no: "",
         }
     },
     mounted() {
         bus.$on('intimeGoFollow_step2', _inTime => this.inTimeCart = _inTime)
+        member.$on('memberInfo', (memberInfo) => this.mem_no = memberInfo.memNo)
     },
     methods: {
         //下層組件增加減少刪除品項，回傳storage至上層，並由addItemList接收，這樣才會動態更新
@@ -178,7 +180,7 @@ Vue.component('orderlist', {
                 //要放在陣列裡的物件data
                 let postOrderObj = {
                     group_ord_no: web_group_no,
-                    mem_no: 6,
+                    mem_no: this.mem_no,
                     drink_no: '',
                     one_price: '',
                     ord_qua: '',

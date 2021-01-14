@@ -6,11 +6,13 @@ Vue.component('hot_article', {
             theClickArt: [],  //被點擊的文章資料
             show: false, //是否開啟文章燈箱
             theClickArtNo: "", //被點擊的文章編號
+            mem_no: "",
         }
     },
     mounted() {
         //網頁掛載的時候呼叫取前三名的文章資料
         this.getTop3_article()
+        member.$on('memberInfo', (memberInfo) => this.mem_no = memberInfo.memNo)
     },
     methods: {
         //文章內容只顯示50個字
@@ -105,7 +107,7 @@ Vue.component('hot_article', {
     <!-- 文章詳情 -->
     <!-- theClickArt被點擊的文章資料往下層傳 -->
     <!-- childUpdate若下層有送出留言到資料庫，則會呼叫上層的parentUpdate方法 -->
-    <article_box :item="theClickArt" v-if="show" @childUpdate="parentUpdate"></article_box>
+    <article_box :item="theClickArt" v-if="show" @childUpdate="parentUpdate" :mem_no="mem_no"></article_box>
 
 </section>
     `,
@@ -113,7 +115,7 @@ Vue.component('hot_article', {
 
 //文章內容燈箱
 Vue.component('article_box', {
-    props: ["item"],  //上層傳來被點擊的文章資料
+    props: ["item", "mem_no"],  //上層傳來被點擊的文章資料
     data() {
         return {
             artMsgdata: [], //存放撈取的留言資料
@@ -121,12 +123,14 @@ Vue.component('article_box', {
             parentAlert: false, //是否開啟警示視窗
             alertText: "", //警示視窗內的提示字
             MemberLike: [], //存放該會員是否有喜歡開啟的燈箱文章
+            // mem_no: this.mem_no,
         }
     },
 
     mounted() {
         this.getArtMsgdata() //呼叫撈取留言的函式
         this.updateLike()
+
     },
     methods: {
         //從資料庫撈取留言資料
@@ -184,7 +188,7 @@ Vue.component('article_box', {
             xhr.onload = function () {
                 that.MemberLike = JSON.parse(xhr.responseText);
             }
-            xhr.open("get", `php/getMemberLike.php?mem_no=6&art_no=${this.item.art_no}`, true);
+            xhr.open("get", `php/getMemberLike.php?mem_no=${this.mem_no}&art_no=${this.item.art_no}`, true);
             xhr.send(null);
         },
         //點擊喜歡文章或取消喜歡文章
@@ -204,7 +208,7 @@ Vue.component('article_box', {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    mem_no: 6,
+                    mem_no: this.mem_no,
                     art_no: this.item.art_no,
                     everClickLike: _everClickLike,
                 }),
@@ -225,7 +229,7 @@ Vue.component('article_box', {
             let now = `${dt.getFullYear()}-${dt.getMonth() + 1}-${dt.getDate()} ${dt.getHours()}:${dt.getMinutes()}:${dt.getSeconds()}`
             let dataObj = {
                 art_no: this.item.art_no,
-                mem_no: 6,
+                mem_no: this.mem_no,
                 msg_time: now,
                 msg_text: this.message,
             }

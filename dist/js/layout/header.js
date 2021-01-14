@@ -14,6 +14,7 @@ Vue.component('my-header', {
             isActiveTab: 1,
             isLogin: false,
             memberInfo: '',
+            voteTime: '',
         }
     },
     methods: {
@@ -222,8 +223,13 @@ Vue.component('my-header', {
 
             await member.$emit('memberInfo', this.memberInfo)
         },
+        unMember() {
+            this.showLogin = true;
+        },
     },
-    mounted() {},
+    mounted() {
+        member.$on("plsLogin", this.unMember);
+    },
     created() {
         this.get_mem()
 
@@ -257,7 +263,7 @@ Vue.component('my-header', {
         // member.$emit('memberInfo', this.memberInfo)
         // console.log('hwader', this.memberInfo)
     },
-    beforeCreate() {},
+    beforeCreate() { },
     template: `
             <nav>
                 <button class="hamburg_btn" ref="hamburg_btn" @click="hamburgHandler">
@@ -306,7 +312,7 @@ Vue.component('my-header', {
                             <div class="login tabBody" :class="{tabBodyNone:isActiveTab==1}">
                                 <div class="login-email">
                                     <label for="login-email">信箱</label>
-                                    <input type="email" id="login-email" v-model.trim="loginEmail" placeholder="Useremail" maxlength="20"/>
+                                    <input type="email" id="login-email" v-model.trim="loginEmail" placeholder="Useremail" maxlength="50"/>
                                 </div>
                                 <div class="login-password">
                                     <label for="password">密碼</label>
@@ -325,7 +331,7 @@ Vue.component('my-header', {
                                 </div>
                                 <div class="email">
                                     <label for="email">信箱</label>
-                                    <input type="email" id="email" v-model.trim="signemail" name="email" placeholder="Useremail" maxlength="20" />
+                                    <input type="email" id="email" v-model.trim="signemail" name="email" placeholder="Useremail" maxlength="50" />
                                 </div>
                                 <div class="password">
                                     <label for="sign-password">密碼</label>

@@ -351,3 +351,7 @@ Vue.component('my-header', {
             </nav>
             `,
 })
+
+new Vue({
+    el: '#header',
+})

@@ -27,7 +27,11 @@ try {
 
     $per_ord_data->execute();
 
-    echo "修改成功~!!";
+    $drink_no = $pdo->lastInsertId();
+
+    echo json_encode($drink_no);
+
+    // echo "修改成功~!!";
     // if ($per_ord_data->rowCount() == 0) { //找不到
     //     //傳回空的JSON字串
     //     echo "{}";

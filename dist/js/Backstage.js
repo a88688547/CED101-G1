@@ -764,6 +764,7 @@ window.addEventListener('load', function () {
                 error_text: '',
                 img_type: '',
                 lightbox: false,
+                add_drink_no: '',
             }
         },
         props: ['show'],
@@ -850,6 +851,7 @@ window.addEventListener('load', function () {
                 }
                 // console.log('changeimg')
             },
+
             // 點擊新增商品 觸發 php事件，並跳轉頁面
 
             drink_add: async function (
@@ -936,30 +938,19 @@ window.addEventListener('load', function () {
                         drink_big_price: drink_big_price,
                         drink_small_price: drink_small_price,
                     }),
-                }).then(function (data) {
-                    return data.json()
                 })
+                    .then((res) => res.json())
+                    .then((res) => (this.add_drink_no = res))
+                console.log(this.add_drink_no)
 
                 // 將新增商品之 商品編號 取回寫入
-                this.drink_no = res.drink_no
 
-                // 上傳飲料照片 -----------------------
-                let file_2 = document.getElementById('upfile').files[0]
-                let formData = new FormData()
-                formData.append('upFile', file_2)
+                console.log('傳值')
 
-                // =====ajax
-                let xhr = new XMLHttpRequest()
-                xhr.onload = function () {
-                    if (xhr.status == 200) {
-                        console.log(xhr.responseText)
-                        bus.$emit('getAlert', '上傳照片成功!!')
-                    } else {
-                        alert(xhr.status)
-                    }
-                }
-                xhr.open('post', './php/mem_update_member_img.php')
-                xhr.send(formData, this.drink_no)
+                console.log(this.add_drink_no)
+
+                // 呼叫上傳照片之動作
+                await this.add_drink_img()
 
                 //修改成功  跳出提示燈箱
                 this.lightbox = true
@@ -971,6 +962,28 @@ window.addEventListener('load', function () {
                 this.drink_type_no = ''
                 this.drink_big_price = ''
                 this.drink_small_price = ''
+            },
+
+            add_drink_img() {
+                console.log('上傳照片動作')
+                // 上傳飲料照片 -----------------------
+                let file_2 = document.getElementById('upfile').files[0]
+                let formData = new FormData()
+                formData.append('add_drink_no', this.add_drink_no)
+                formData.append('upFile', file_2)
+
+                // =====ajax
+                let xhr = new XMLHttpRequest()
+                xhr.onload = function () {
+                    if (xhr.status == 200) {
+                        console.log(xhr.responseText)
+                    } else {
+                        alert(xhr.status)
+                    }
+                }
+                xhr.open('post', './php/bs_insert_drink_img.php')
+                xhr.send(formData)
+                console.log('上傳照片 結束')
             },
         },
     })

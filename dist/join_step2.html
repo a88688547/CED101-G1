@@ -6,9 +6,11 @@
     <title>2.完成開團</title>
     <script src="./vendors/Vue/vue.js"></script>
     <script src="vendors/jQuery/js/jquery-3.5.1.js"></script>
-    <link rel="stylesheet" href="./css/list_data.css" />
+
     <link rel="stylesheet" href="./css/join_step2.css" />
     <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/list_data.css" />
+    <link rel="stylesheet" href="./css/alertLightbox.css">
   </head>
 
   <body>
@@ -17,19 +19,19 @@
 
     <div class="w-338" id="app">
       <!-- =====一進來的QR== -->
-      <div class="fist_QR">
+      <div class="fist_QR" v-show="firstQR">
         <div class="fist_QR_box">
           <h2>分享QR，立馬揪飲</h2>
           <div class="fist_QR_main">
             <img
-              src="http://chart.apis.google.com/chart?cht=qr&choe=UTF-8&chs=300x300&chl=`./menu.html?group_ord_no=${this.group_ord_no}`"
-            />
+            :src="`http://chart.apis.google.com/chart?cht=qr&choe=UTF-8&chs=300x300&chl=http://localhost/phpLab/CED101-G1/dist/menu.html?group_ord_no=${this.group_ord_no}`"
+          />
           </div>
-          <img src="./Images/cancel.svg" alt="" class="close_btn" />
+          <img src="./Images/cancel.svg" alt="" @click="close_btn" class="close_btn" />
           <h2>分享網址揪團喝飲料!</h2>
           <div class="QR_link">
-            <input type="text" id="biao1" value="123" />
-            <input type="button" onClick="copyUrl2()" value="COPY" />
+            <input  type="text" class="QR_link_text" id="biao1" :value="`http://localhost/phpLab/CED101-G1/dist/menu.html?group_ord_no=${this.group_ord_no}`" />
+            <input type="button" class="QR_copy" onClick="copyUrl2()" value="COPY" />
           </div>
         </div>
       </div>
@@ -68,18 +70,13 @@
           <div class="QR_box">
             <div class="QR_main">
               <img
-                src="http://chart.apis.google.com/chart?cht=qr&choe=UTF-8&chs=300x300&chl=`./menu.html?group_ord_no=${this.group_ord_no}`"
+                :src="`http://chart.apis.google.com/chart?cht=qr&choe=UTF-8&chs=300x300&chl=http://localhost/phpLab/CED101-G1/dist/menu.html?group_ord_no=${this.group_ord_no}`"
               />
             </div>
             <h2>分享網址揪團喝飲料!</h2>
             <div class="QR_link">
-              <div>
-                <a :href="`./menu.html?group_ord_no=${this.group_ord_no}`">
-                  123</a
-                >
-              </div>
-              <div class="QR_link_text">https://www.fo111111111111odomres</div>
-              <div class="QR_copy"></div>
+              <input  type="text" class="QR_link_text" id="biao2" :value="`http://localhost/phpLab/CED101-G1/dist/menu.html?group_ord_no=${this.group_ord_no}`" />
+              <input type="button" class="QR_copy" onClick="copyUrl1()" value="COPY" />
             </div>
           </div>
 
@@ -92,19 +89,19 @@
             </li>
             <li>
               <div>截單時間</div>
-              <div>{{group_ord.group_name}}</div>
+              <div>{{group_ord.deadline_time}}</div>
             </li>
             <li>
               <div>預計送達時間</div>
-              <div>{{group_ord.group_name}}</div>
+              <div>{{group_ord.arrive_time}}</div>
             </li>
             <li>
               <div>目標杯數</div>
-              <div>{{group_ord.group_name}}</div>
+              <div class="goal_confirm">{{group_ord.goal_cup}}</div>
             </li>
             <li>
               <div>取貨地點</div>
-              <div>{{group_ord.group_name}}</div>
+              <div>{{group_ord.group_adress}}</div>
             </li>
           </ul>
         </div>
@@ -113,86 +110,43 @@
         <!-- ==============開團資料================= -->
         <div class="line"></div>
         <!-- ==============團長&團員飲料================= -->
-        <div class="Head_data">
+        <div class="Head_data" >
           <div id="order_list">
             <!-- 每個人  -->
-            <div class="group_order_done_person">
-              <div class="group_order_done_person_upbox">
-                <div class="group_order_done_person_infobox">
-                  <div class="group_order_done_person_img">
-                    <img src="./Images/user_big.svg" />
-                  </div>
-                  <div class="group_order_done_person_name">Yu Lee</div>
+            <div class="group_order_done_person" v-for="(value,key) in group_order_item">
+                <div class="group_order_done_person_upbox">
+                    <div class="group_order_done_person_img"><img :src="value.mem_img" /></div>
+                    <div class="group_order_done_person_name">{{value.mem_name}}</div>
                 </div>
-                <div class="group_order_done_person_total">
-                  <div class="group_order_done_person_total_cup">2杯</div>
-                  <div class="group_order_done_person_total_price">$115</div>
+                <div class="group_order_done_person_downbox">
+                    <!-- 購買的 飲料 -->
+                    <div class="group_order_done_person_drink" v-for="(value,key) in value.items">
+                      <section id="drink_title_wrapper">
+                          <div class="group_order_done_person_drink_title">{{value.drink_title_ch}}-{{value.cup_no}}</div>
+                          <div class="group_order_done_person_drink_note" >{{value.set_info}}</div>
+                      </section>
+                      <section id="num_btn">
+                          <div id="num_feedback">{{value.ord_qua}}</div>
+                          <span>杯</span>
+                      </section>
+                      <section id="item_single_price">
+                          &#36{{value.total_price}}
+                      </section>
+                    </div>
                 </div>
-              </div>
-              <div class="group_order_done_person_downbox">
-                <!-- 購買的 飲料 -->
-                <div class="group_order_done_person_drink">
-                  <div class="group_order_done_person_drink_title">
-                    珍珠奶茶-大杯
-                  </div>
-                  <div class="group_order_done_person_drink_note">
-                    少冰/微糖/加珍珠/$65/1杯
-                  </div>
-                  <button class="order_delete_btn">刪除</button>
+                <div class="group_order_done_person_total" >
+                    <div>總計</div>
+                    <div class="group_order_done_person_total_cup">{{value.total_cup}}杯</div>
+                    <div class="group_order_done_person_total_price">&#36{{value.total_price_2}}</div>
                 </div>
-                <div class="group_order_done_person_drink">
-                  <div class="group_order_done_person_drink_title">
-                    紅茶-大杯
-                  </div>
-                  <div class="group_order_done_person_drink_note">
-                    去冰/無糖/加QQ/$50/1杯
-                  </div>
-                  <button class="order_delete_btn">刪除</button>
-                </div>
-              </div>
             </div>
-            <div class="group_order_done_person">
-              <div class="group_order_done_person_upbox">
-                <div class="group_order_done_person_infobox">
-                  <div class="group_order_done_person_img">
-                    <img src="./Images/user_big.svg" />
-                  </div>
-                  <div class="group_order_done_person_name">徐朝亭</div>
-                </div>
-                <div class="group_order_done_person_total">
-                  <div class="group_order_done_person_total_cup">2杯</div>
-                  <div class="group_order_done_person_total_price">$150</div>
-                </div>
-              </div>
-              <div class="group_order_done_person_downbox">
-                <!-- 購買的 飲料 -->
-                <div class="group_order_done_person_drink">
-                  <div class="group_order_done_person_drink_title">
-                    珍珠奶茶-大杯
-                  </div>
-                  <div class="group_order_done_person_drink_note">
-                    少冰/微糖/加珍珠/$65/1杯
-                  </div>
-                  <button class="order_delete_btn">刪除</button>
-                </div>
-                <div class="group_order_done_person_drink">
-                  <div class="group_order_done_person_drink_title">
-                    紅茶-大杯
-                  </div>
-                  <div class="group_order_done_person_drink_note">
-                    去冰/無糖/加QQ/$50/1杯
-                  </div>
-                  <button class="order_delete_btn">刪除</button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="group_button">
+        </div>
+        <div class="group_button">
             <input
               type="button"
               value="添加飲品"
               class="btn_back_drink"
-              onclick="location.href='./menu.html'"
+              @click="addDrink"
             />
             <div class="btn_f5">
               <img src="./Images/drink.svg" alt="" /> 重新整理
@@ -201,9 +155,20 @@
               type="button"
               value="結帳"
               class="btn_cleckout"
-              onclick="location.href=`./join_step3A.html?group_ord_no=${this.group_ord_no}`"
+              @click="change"
             />
+        </div>
+        <div class="alertLightbox_black" v-show="confirm">
+          <div class="alertLightboxWrapper">
+              <div class="manager_lightbox_close_img" @click="closeBox" ><img src="./Images/close.svg" ></div>
+              <div class="alertLightbox" >
+                  <div></div>
+                  <div @click="nextStep">確認送出!</div>
+              </div>
           </div>
+      </div>
+          <!-- <div><a href="./join_step_3A.html?group_ord_no={{group_ord_no}}">test</a></div> -->
+          
         </div>
       </div>
       <!-- ==============團長飲料================= -->
@@ -212,59 +177,23 @@
     <!-- ==============footer================= -->
 
     <footer id="footer"><my-footer></my-footer></footer>
-    <script>
-      $(document).ready(function () {
-        $(".close_btn").click(function () {
-          $(".fist_QR").hide();
-        });
-      });
-    </script>
     <script type="text/javascript">
       function copyUrl2() {
         var Url2 = document.getElementById("biao1");
         Url2.select(); // 選擇物件
         document.execCommand("Copy"); // 執行瀏覽器複製命令
-        alert("已複製好，可貼粘。");
+        // alert("已複製好，可貼粘。");
+      }
+      function copyUrl1() {
+        var Url1 = document.getElementById("biao2");
+        Url1.select(); // 選擇物件
+        document.execCommand("Copy"); // 執行瀏覽器複製命令
+        // alert("已複製好，可貼粘。");
       }
     </script>
+    <script src="js/step2.js"></script>
     <script>
-      var app = new Vue({
-        el: "#app",
-        data: {
-          group_ord: [],
-          group_ord_no: "",
-          URL: window.location.search,
-        },
-        methods: {
-          selectGroupNo: async function (group_ord_no) {
-            const res = await fetch("./php/group_no.php", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-                group_ord_no: this.group_ord_no,
-              }),
-            })
-              .then((res) => res.json())
-              .then((res) => (this.group_ord = res));
-          },
-        },
-        computed: {
-          group_no() {
-            let obj_no = {
-              group_no: this.group_ord_no,
-            };
-          },
-        },
-        created() {
-          //切割字串
-          this.group_ord_no = window.location.search.split("=")[1];
-        },
-        mounted() {
-          this.selectGroupNo();
-        },
-      });
+      
     </script>
     <script src="./layout/header.vue"></script>
     <script src="./layout/footer.vue"></script>

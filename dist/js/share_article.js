@@ -1,3 +1,4 @@
+//熱門文章
 Vue.component('hot_article', {
     data() {
         return {
@@ -22,7 +23,7 @@ Vue.component('hot_article', {
             }
             return theShowWords
         },
-        //存放喜歡前三名的文章資料
+        //撈取後台資料，存放喜歡前三名的文章資料
         getTop3_article() {
             let that = this
             let xhr = new XMLHttpRequest();
@@ -32,11 +33,15 @@ Vue.component('hot_article', {
             xhr.open("get", "php/getTop3_article.php", true);
             xhr.send(null);
         },
-        //存放被點擊的文章資料
+        //點擊文章後，theClickArt存放被點擊的文章資料，並開啟文章燈箱
         clickWhichOne(item) {
             this.theClickArt = item
             this.show = true
         },
+        //若下層(文章燈箱)有送出留言到資料庫，則會呼叫上層的該方法
+        //下層傳遞了目前開啟燈箱的文章編號，存入theClickArtNo
+        //呼叫更新熱門文章，但不會更新theClickArt(被點擊的文章存放的資料)，所以文章燈箱也不會更新
+        //解決方法: watch熱門文章的資料
         parentUpdate(_art_no) {
             this.theClickArtNo = _art_no
             this.getTop3_article()
@@ -44,20 +49,16 @@ Vue.component('hot_article', {
 
     },
     watch: {
+        //當熱門文章資料變動(parentUpdate方法呼叫才會變動)
+        //藉由theClickArtNo尋找熱門文章的該筆文章，再存入theClickArt，下層props就會跟著更新
         top3_article(newData) {
-            let chooseArray = {}
-
             for (let i = 0; i < newData.length; i++) {
                 if (newData[i].art_no == this.theClickArtNo) {
-                    chooseArray = newData[i]
-                    console.log(newData[i].art_no)
-                    console.log("a")
+                    this.theClickArt = newData[i]
                     break;
                 }
-
             }
 
-            this.theClickArt = chooseArray
         }
     },
     template: `
@@ -102,44 +103,47 @@ Vue.component('hot_article', {
 
     </div>
     <!-- 文章詳情 -->
+    <!-- theClickArt被點擊的文章資料往下層傳 -->
+    <!-- childUpdate若下層有送出留言到資料庫，則會呼叫上層的parentUpdate方法 -->
     <article_box :item="theClickArt" v-if="show" @childUpdate="parentUpdate"></article_box>
 
 </section>
     `,
 })
 
+//文章內容燈箱
 Vue.component('article_box', {
-    props: ["item"],
+    props: ["item"],  //上層傳來被點擊的文章資料
     data() {
         return {
-            article_box_data: [],
-            message: "",
-            parentAlert: false,
-            alertText: "",
-            // everClickLike: false,
-            MemberLike: [],
-            testres: "",
+            artMsgdata: [], //存放撈取的留言資料
+            message: "", //留言區的留言
+            parentAlert: false, //是否開啟警示視窗
+            alertText: "", //警示視窗內的提示字
+            MemberLike: [], //存放該會員是否有喜歡開啟的燈箱文章
         }
     },
 
     mounted() {
-        this.getArticle_box_data()
+        this.getArtMsgdata() //呼叫撈取留言的函式
         this.updateLike()
     },
     methods: {
-        getArticle_box_data() {
+        //從資料庫撈取留言資料
+        getArtMsgdata() {
             let that = this
             let xhr = new XMLHttpRequest();
             xhr.onload = function () {
-                that.article_box_data = JSON.parse(xhr.responseText);
+                that.artMsgdata = JSON.parse(xhr.responseText);
             }
-            xhr.open("get", `php/getArticleBox.php?art_no=${that.item.art_no}`, true);
+            xhr.open("get", `php/getArtMsgdata.php?art_no=${that.item.art_no}`, true);
             xhr.send(null);
-
-
         },
+        //點送出留言，會把parentAlert改成true，，此data變動會開啟警示視窗
         doubleCheck() {
             this.parentAlert = true
+
+            //如果留言為空，則送出"請輸入留言"讓下層接收，若有值則送出"確定要送出留言?"
             if (this.message.trim() == "") {
                 this.alertText = "請輸入留言"
             } else {
@@ -147,6 +151,19 @@ Vue.component('article_box', {
             }
 
         },
+        //警示視窗點確認，往上層傳遞並呼叫此函式
+        //如果是送出留言則呼叫postMsg方法，將留言送到後台，並關閉警示視窗
+        //如果是沒輸入留言，按確認或關閉都只會關閉警示視窗
+        parentGetClose(status) {
+            if (status === "toDo") {
+                this.postMsg()
+            }
+            this.parentAlert = false
+        },
+        //把留言送到後台，並將留言區的留言清空
+        //並使用childUpdate，傳遞本次開啟的文章編號讓上層接收
+        //接收後會及時更新文章的資料(主要是留言數)，上層有更新由於下層是用props接收
+        //所以燈箱內的文章資料也會跟著更新
         postMsg: async function () {
             await fetch('php/postMsg.php', {
                 method: 'POST',
@@ -155,34 +172,31 @@ Vue.component('article_box', {
                 },
                 body: JSON.stringify(this.postMsgData),
             })
-            await this.getArticle_box_data()
+            await this.getArtMsgdata()
             await this.$emit('childUpdate', this.item.art_no)
             // this.item.art_msg_count++
             this.message = ""
         },
-        parentGetClose(status) {
-            if (status === "toDo") {
-                this.postMsg()
-            }
-
-            this.parentAlert = false
-        },
-
-        likeArt: async function () {
-            await this.postLikeArt(this.everClickLike)
-            await this.updateLike()
-            await this.$emit('childUpdate', this.item.art_no)
-        },
+        //開啟文章時會判斷該會員是否有點過該文章喜歡，並存放到MemberLike
         updateLike() {
             let that = this
             let xhr = new XMLHttpRequest();
             xhr.onload = function () {
                 that.MemberLike = JSON.parse(xhr.responseText);
             }
-            xhr.open("get", `php/getMemberLike.php?mem_no=1&art_no=${this.item.art_no}`, true);
+            xhr.open("get", `php/getMemberLike.php?mem_no=6&art_no=${this.item.art_no}`, true);
             xhr.send(null);
-
         },
+        //點擊喜歡文章或取消喜歡文章
+        //1.把會員喜歡文章或取消喜歡文章送到資料庫
+        //2.開啟文章時會判斷該會員是否有點過該文章喜歡，並存放到MemberLike => 再次呼叫的原因是要更改紅色愛心或灰色愛心
+        //3.呼叫父層組件更新文章燈箱(邏輯與留言數一樣)
+        likeArt: async function () {
+            await this.postLikeArt(this.everClickLike)
+            await this.updateLike()
+            await this.$emit('childUpdate', this.item.art_no)
+        },
+        //把會員喜歡文章或取消喜歡文章送到資料庫
         postLikeArt: async function (_everClickLike) {
             await fetch('php/postLikeArt.php', {
                 method: 'POST',
@@ -190,7 +204,7 @@ Vue.component('article_box', {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    mem_no: 1,
+                    mem_no: 6,
                     art_no: this.item.art_no,
                     everClickLike: _everClickLike,
                 }),
@@ -200,21 +214,24 @@ Vue.component('article_box', {
     },
 
     computed: {
+        //提示留言區還有幾個字可以輸入
         msg_hint() {
             let textLength = this.message.length >= 100 ? 0 : 100 - this.message.length
             return textLength
         },
+        //存放要送到資料庫的留言資料
         postMsgData() {
             let dt = new Date()
             let now = `${dt.getFullYear()}-${dt.getMonth() + 1}-${dt.getDate()} ${dt.getHours()}:${dt.getMinutes()}:${dt.getSeconds()}`
             let dataObj = {
                 art_no: this.item.art_no,
-                mem_no: 1,
+                mem_no: 6,
                 msg_time: now,
-                msg_intro: this.message,
+                msg_text: this.message,
             }
             return dataObj
         },
+        //點喜歡會更換愛心圖片
         heart() {
             if (this.everClickLike) {
                 return "./Images/like_big.svg"
@@ -222,6 +239,7 @@ Vue.component('article_box', {
                 return "./Images/heart_gray.png"
             }
         },
+        //點喜歡會更換愛心及喜歡文字的透明度
         like_btn_style() {
             if (this.everClickLike) {
                 return "opacity: 1;"
@@ -229,6 +247,9 @@ Vue.component('article_box', {
                 return "opacity: 0.6;"
             }
         },
+        //MemberLike:開啟文章時會判斷該會員是否有點過該文章喜歡
+        //如果有，MemberLike內就有資料，everClickLike就是true
+        //如果沒有，MemberLike內就沒有資料，everClickLike就是false
         everClickLike() {
             if (Object.keys(this.MemberLike).length != 0) {
                 return true
@@ -282,7 +303,7 @@ Vue.component('article_box', {
                     </div>
                 </div>
             </div>
-            <div class="mseeage_box" v-for="data in article_box_data" :key="data.msg_no">
+            <div class="mseeage_box" v-for="data in artMsgdata" :key="data.msg_no">
                 <div class="msg_mem">
                     <div class="msg_time">{{data.msg_time}}</div>
                     <div class="msg_text_box">
@@ -293,7 +314,7 @@ Vue.component('article_box', {
                     </div>
                     <div class="msg_info">
                         <div class="msg_memmsg">
-                        {{data.msg_intro}}
+                        {{data.msg_text}}
                         </div>
                     </div>
 
@@ -317,6 +338,10 @@ Vue.component('article_box', {
                     <div class="sendbtn_text" >送出</div>
                 </button>
             </div>
+            <!-- 警示視窗 -->
+            <!-- parentAlert為是否開啟警示視窗的變數，往下層傳遞 -->
+            <!-- alertText為警示視窗的內文，往下層傳遞 -->
+            <!-- childSendClose為警示內點擊確認或關閉時，會往上傳遞並接收的事件，接收後呼叫parentGetClose這個方法 -->
             <alert_lightbox :parentAlert_ = "parentAlert" :_alertText="alertText" @childSendClose="parentGetClose"></alert_lightbox>
 
         </section>
@@ -326,6 +351,7 @@ Vue.component('article_box', {
 
 //警示視窗
 Vue.component('alert_lightbox', {
+    //接收來自上層是"否開啟警示視窗"及"視窗內文字"的參數
     props: ["parentAlert_", "_alertText"],
     data() {
         return {
@@ -333,9 +359,12 @@ Vue.component('alert_lightbox', {
         }
     },
     methods: {
+        //點選關閉視窗
         closeAlertLightbox() {
             this.$emit('childSendClose', "close")
         },
+        //如果是請使用者輸入留言的訊息，點選確認就呼叫父層組件childSendClose的方法，直接關閉視窗
+        //若是確認送出，點確認就會傳遞toDo參數，父層組件會判斷是否有這個參數，才會執行送留言到資料庫的動作
         sureToDo() {
             if (this._alertText == "請輸入留言") {
                 this.$emit('childSendClose', "close")
@@ -346,9 +375,11 @@ Vue.component('alert_lightbox', {
         },
     },
     computed: {
+        //下層由alertLightbox接收來自上層的parentAlert，若為true開啟燈箱，false則關閉
         alertLightbox() {
             return this.parentAlert_
         },
+        //警示視窗內的文字，
         alertText() {
             return this._alertText
         }
@@ -366,5 +397,5 @@ Vue.component('alert_lightbox', {
     `,
 })
 new Vue({
-    el: ".body_box"
+    el: "#app"
 })

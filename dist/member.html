@@ -16,10 +16,15 @@
         <!-- <script src="./js/header_footer.js"></script> -->
         <script src="./js/member_vue.js"></script>
         <!-- 本頁 (含有reset 記得優先導入)-->
+        <!-- 燈箱 -->
+        <link rel="stylesheet" href="./css/alertLightbox.css" />
+
         <link rel="stylesheet" href="./css/member.css" />
         <!-- <script src="./js/member.js"></script> -->
         <!-- 共用 -->
         <link rel="stylesheet" href="./css/style.css" />
+        <script src="./js/layout/header.js"></script>
+        <script src="./js/layout/footer.js"></script>
         <!-- 不寫這個會報錯誤 -->
         <link rel="shortcut icon" href="#" />
     </head>
@@ -29,13 +34,14 @@
                 <my-header></my-header>
             </header>
             <main id="app">
+                <!-- 側邊欄 -->
                 <my-aside
                     :content="content"
                     :mem_no="mem_no"
                     @changecontent="changecontent"
                     @changecontentselect="changecontentselect"
                 ></my-aside>
-
+                <!-- 主要顯示內容 -->
                 <component
                     :is="content"
                     :mem_no="mem_no"
@@ -45,7 +51,8 @@
                     @changegroupordno="changegroupordno"
                     @changeperordno="changeperordno"
                 ></component>
-
+                <!-- 燈箱 -->
+                <alert_lightbox></alert_lightbox>
                 <!-- 文章詳情 -->
 
                 <!-- <div class="article_box">
@@ -156,7 +163,5 @@
         </div>
         <!-- <script src="./layout/header.vue"></script> -->
         <!-- <script src="./layout/footer.vue"></script> -->
-        <script src="./js/layout/header.js"></script>
-        <script src="./js/layout/footer.js"></script>
     </body>
 </html>

@@ -1,7 +1,7 @@
 <?php
     try{
         require_once "./connect_join_database.php";
-        $sql = "SELECT * FROM art_like WHERE mem_no = :mem_no AND art_no = :art_no";
+        $sql = "SELECT * FROM artlike WHERE mem_no = :mem_no AND art_no = :art_no";
         $art = $pdo->prepare($sql);
         $art->bindValue(":mem_no", $_GET["mem_no"]);
         $art->bindValue(":art_no", $_GET["art_no"]);

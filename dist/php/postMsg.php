@@ -2,9 +2,9 @@
     try{
         $data = json_decode(file_get_contents('php://input'),true);
         require_once "./connect_join_database.php";
-        $sql = "INSERT INTO art_msg(art_no,mem_no,msg_time,msg_intro) VALUES(:art_no,:mem_no,:msg_time,:msg_intro)";
+        $sql = "INSERT INTO artmsg(art_no,mem_no,msg_time,msg_text) VALUES(:art_no,:mem_no,:msg_time,:msg_text)";
         $msg = $pdo->prepare($sql);
-        $msg->bindValue(":msg_intro", $data["msg_intro"]);
+        $msg->bindValue(":msg_text", $data["msg_text"]);
         $msg->bindValue(":art_no", $data["art_no"]);
         $msg->bindValue(":msg_time", $data["msg_time"]);
         $msg->bindValue(":mem_no", $data["mem_no"]);

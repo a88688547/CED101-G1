@@ -30,9 +30,10 @@
         };
         
         //更新團裡現有杯數
-        $sql1 ="UPDATE group_ord SET now_cup = now_cup + :now_cup WHERE group_ord_no = 1";
+        $sql1 ="UPDATE group_ord SET now_cup = now_cup + :now_cup WHERE group_ord_no = :group_ord_no";
         $menu1 = $pdo->prepare($sql1);
         $menu1->bindValue(":now_cup", $ord_qua_total);
+        $menu1->bindValue(":group_ord_no", $group_ord_no);
         $menu1->execute();
     }
     catch (PDOException $e) {

@@ -9,7 +9,7 @@
         $mem_no = $data["mem_no"];
         $everClickLike = $data["everClickLike"];
         if($everClickLike == true){
-            $sql = "DELETE FROM art_like WHERE art_no = :art_no";
+            $sql = "DELETE FROM artlike WHERE art_no = :art_no";
             $art = $pdo->prepare($sql);
             $art->bindValue(":art_no", $art_no);
             $art->execute();
@@ -19,7 +19,7 @@
             $art1->bindValue(":art_no", $art_no);
             $art1->execute();
         }else{
-            $sql = "INSERT INTO art_like(art_no,mem_no) VALUES(:art_no,:mem_no)";
+            $sql = "INSERT INTO artlike(art_no,mem_no) VALUES(:art_no,:mem_no)";
             $art = $pdo->prepare($sql);
             $art->bindValue(":mem_no", $mem_no);
             $art->bindValue(":art_no", $art_no);

@@ -1,0 +1,290 @@
+// 導入共用基本
+@import "./base/base.scss";
+@import "./mixins/mixins.scss";
+
+.vote_title_block {
+    width: 80%;
+    margin: 0 auto;
+    color: $textColor;
+    text-align: center;
+    h2{
+        @include H2;
+        font-weight: bold;
+    }
+
+    h5{
+        @include H5;
+        margin-top: 20px;
+        line-height: 24px;
+    } 
+}
+// rwd區塊------------------------------------------
+section.vote .card_rwd{
+    // display: none;
+    text-align: center;
+    h3{
+        @include H3;
+        letter-spacing: 12px;
+        font-weight: bold;
+        margin-top: 50px;
+    }
+}
+section.vote .card_rwd-slider{
+
+    .item-inner{
+        height: initial;
+    }
+}
+
+// 輪播圖尺寸----------------------------------------------
+section.vote .slick-slider{
+    // width: 80%;
+    margin: 0 auto;
+    transform: scale(1);
+    transition: all ease 0.5s;
+}
+
+section.vote .slick-slider img{
+
+    margin: 0 auto;
+    margin-right: 10px;
+    max-width: 100%;
+}
+// 放大圖尺寸
+.slick-current{
+    transform: scale(1.15);
+    opacity: 1;
+    .triangle{
+        width: 16%;
+        height: 4.6vw;
+    }  
+}
+// 箭頭樣式------------------------------------------------
+// .slick-arrow{
+//     position: absolute;
+//     bottom: 0;
+//     z-index: 99;
+//     background: $btnColor;
+//     border: none;
+//     padding: 15px;
+//     border-radius: 50%;
+//     width: 30px;
+//     outline: none;
+// }
+// // 箭頭圖案樣式
+// .slick-prev:before {
+//     content: '←';
+//     color: white; 
+//     font-weight: bold;
+//     position: absolute;
+//     transform: translate(50%,-50%);
+//     top: 50%;
+//     right: 50%;
+// }
+
+// .slick-next:before {
+//     content: '→';
+//     color: white; 
+//     font-weight: bold;
+//     position: absolute;
+//     transform: translate(50%,-50%);
+//     top: 50%;
+//     right: 50%;
+// }
+
+
+.slick-list{
+    padding-top: 40px !important;
+    padding-bottom: 40px !important;
+}
+
+
+.item-inner{
+    width: 80%;
+    height: 23vw;
+    border: 1px solid $btnColor;
+    margin: 0 auto;
+    clip-path: polygon(0 80%, 0 0, 100% 0, 100% 100%, 20% 100%);
+    background-color:white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+}
+
+.triangle{
+    width: 0.75%;
+    background-color: $btnColor;
+    position: absolute;
+    border-radius: 0 10px 0;
+    bottom: 0;
+}
+
+
+.vote_info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    line-height: 36px;
+    justify-content: space-between;
+    padding-top: 10px;
+    h4{
+        @include H4;
+        font-weight: bold;
+        color: $btnColor;
+    }
+    h5{
+        @include H3;
+        font-weight: bold;
+    }
+
+}
+
+.vote_number{
+    display: inline-flex;
+    align-items: center;
+    @include H5;
+    img{
+        margin-right: 10px;
+    }
+    span{
+        @include H5;
+        line-height: 3px;
+        font-weight: bold;
+    }
+}
+
+.bottom_block{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin: 50px 0;
+    h5{
+        @include H5;
+        margin:10px 0 20px;
+    } 
+    
+    button.seemore{
+        @include lineargradient_button;
+        width: 180px;
+        height: 40px;
+        @include H6;
+        font-weight: bold;
+        color: white;
+
+        &:hover{
+            @include lineargradient_button-hover;
+            transform: translateY(-5px);
+        }
+
+        &:focus{
+            outline: none;
+        }
+    }
+
+    button.seemore.color-2 {
+        background-image: linear-gradient(to right, #29323c, #485563, #2b5876, #4e4376);
+        box-shadow: 0 4px 15px 0 rgba(45, 54, 65, 0.75);
+    }
+
+}
+@media (min-width:1200px){
+    .card_rwd{
+        display: none;
+    }
+
+    .triangle{
+        height: 4.6vw;
+    }
+}
+
+
+@media (min-width: 992px) and (max-width: 1199px){
+
+    .card_rwd{
+        display: none;
+    }
+
+    .vote_info{
+        line-height: 28px;
+        h4{
+            @include H6;
+            padding-top: 10px;
+        }
+        h5{
+            @include H4;
+        }
+        
+        .vote_number{
+            @include H6;
+            span{
+                @include H6;
+            }
+        }
+    }
+
+    .triangle{
+        height: 4.6vw;
+    }
+}
+
+@media (min-width: 767px) and (max-width: 992px){
+    .card_rwd{
+        display: none;
+    }
+    .vote_info{
+        line-height: 24px;
+        h4{
+            @include P1;
+            padding-top: 10px;
+        }
+        h5{
+            @include H5;
+        }
+        
+        .vote_number{
+            @include P1;
+            span{
+                @include P1;
+            }
+        }
+    }
+
+    .triangle{
+        height: 4.6vw;
+    }
+}
+
+@media (max-width: 767px){
+    .vote_title_block{
+        h2{
+            @include H3;
+        }
+    
+        h5{
+            @include H6;
+        } 
+    }
+
+    section.vote .card_rwd-slider .triangle{
+        height: 11vw;
+    }
+
+    .card{
+        display: none;
+    }
+
+    .card_rwd{
+        display: block ;
+    }
+
+    .bottom_block h5{
+         @include P1;      
+    }
+ 
+}
+

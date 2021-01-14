@@ -1,4 +1,9 @@
 Vue.component('my-footer', {
+    data() {
+        return {
+            data: '',
+        }
+    },
     template: `
         <nav>
             <a href="./index.html"><img class="logo" src="./Images/footer_logo.svg" alt="" /></a>
@@ -20,5 +25,14 @@ Vue.component('my-footer', {
             </div>
             <p class="footer_cmp">Copyright © Join drink inc.</p>
         </nav>
-    `
-});
+    `,
+    methods: {
+        memberInfo(data) {
+            console.log('sdadsa')
+            this.data = data
+        },
+    },
+    created() {
+        member.$on('memberInfo', this.memberInfo)
+    },
+})

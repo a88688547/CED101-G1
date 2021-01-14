@@ -114,6 +114,8 @@ window.addEventListener('load', function () {
       `,
         methods: {
             get_mem: async function () {
+                console.log('get_mem')
+
                 // console.log('send2', drinkno)
                 const res = await fetch('./php/mem_getone_member.php', {
                     method: 'POST',
@@ -240,18 +242,29 @@ window.addEventListener('load', function () {
                 // 完成修改後，重新撈取資料
                 this.get_mem()
             },
+            async changememno(data) {
+                console.log('mem')
+                await member.$emit('getmemberInfo', data)
+                await this.get_mem()
+            },
         },
         created() {
+            member.$on('memberInfo', this.changememno)
             // alert(this.get_mem())
+            // this.get_mem()
             this.get_mem()
         },
         mounted() {
             // alert(this.get_mem(this.mem_no))
             // this.get_mem(this.mem_no)
             // this.get_mem(this.mem_no)
+            // this.get_mem()
+            // this.get_mem()
         },
         updated() {
             // this.get_mem(this.mem_no)
+            // this.get_mem()
+            // this.get_mem()
         },
     })
     //-----------------------------------------------------
@@ -1619,7 +1632,7 @@ window.addEventListener('load', function () {
         el: '#app',
         data: {
             content: 'mem_info',
-            mem_no: 1,
+            mem_no: '',
             group_ord_no: '',
             per_ord_no: '',
         },
@@ -1636,13 +1649,16 @@ window.addEventListener('load', function () {
             changeperordno(data) {
                 this.per_ord_no = data
             },
-            // changememno(data) {
-            //     this.mem_no = data.memNo
-            // },
+            changememno(data) {
+                console.log('header', data)
+                this.mem_no = data.memNo
+            },
         },
         components: {},
-        // created() {
-        //     member.$on('memberInfo', 'changememno')
-        // },
+        created() {
+            member.$on('getmemberInfo', this.changememno)
+        },
+        mounted() {},
+        beforeCreate() {},
     })
 })

@@ -97,12 +97,17 @@ Vue.component('orderlist', {
             lightBoxOpen: false,
             //現在時間是否早於結單時間，以此判斷是否要前往下一頁
             inTimeCart: true,
-            mem_no: "",
+            mem_info: "",
         }
     },
     mounted() {
+        member.$on('memberInfo', (data) => {
+            this.mem_info = data
+            if (this.mem_info === "") {
+                location.href = 'homepage.html'
+            }
+        })
         bus.$on('intimeGoFollow_step2', _inTime => this.inTimeCart = _inTime)
-        member.$on('memberInfo', (memberInfo) => this.mem_no = memberInfo.memNo)
     },
     methods: {
         //下層組件增加減少刪除品項，回傳storage至上層，並由addItemList接收，這樣才會動態更新
@@ -154,7 +159,9 @@ Vue.component('orderlist', {
         },
         goToMenu() {
             location.href = `./menu.html?group_ord_no=${web_group_no}`
-        }
+        },
+
+
     },
     created() {
         if (storage[`${storage_key}`] == "") {
@@ -180,7 +187,7 @@ Vue.component('orderlist', {
                 //要放在陣列裡的物件data
                 let postOrderObj = {
                     group_ord_no: web_group_no,
-                    mem_no: this.mem_no,
+                    mem_no: this.mem_info.memNo,
                     drink_no: '',
                     one_price: '',
                     ord_qua: '',
@@ -268,8 +275,8 @@ Vue.component('orderlist', {
             <!-- 每個人  -->
             <div class="group_order_done_person">
                 <div class="group_order_done_person_upbox">
-                    <div class="group_order_done_person_img"><img src="./Images/user_big.svg" /></div>
-                    <div class="group_order_done_person_name">徐朝亭</div>
+                    <div class="group_order_done_person_img"><img :src="mem_info.memImg" /></div>
+                    <div class="group_order_done_person_name">{{mem_info.memName}}</div>
                 </div>
                 <div class="group_order_done_person_downbox">
                     <!-- 購買的 飲料 -->
@@ -316,9 +323,9 @@ Vue.component('orderlist', {
                             <div class="Modal_group_order_done_person" v-if="order">
                                 <div class="Modal_group_order_done_person_upbox">
                                     <div class="Modal_group_order_done_person_infobox">
-                                        <div class="Modal_group_order_done_person_img"><img src="./Images/user_big.svg" />
+                                        <div class="Modal_group_order_done_person_img"><img :src="mem_info.memImg" />
                                         </div>
-                                        <div class="Modal_group_order_done_person_name">徐朝亭</div>
+                                        <div class="Modal_group_order_done_person_name">{{mem_info.memName}}</div>
                                     </div>
                                     <div class="Modal_group_order_done_person_total">
                                         <div class="Modal_group_order_done_person_total_cup">{{total_num}}杯</div>
@@ -522,7 +529,7 @@ Vue.component('alert_lightbox', {
         closeAlertLightbox() {
             this.alertLightbox = false
             if (this.alertText == '跟團時間已截止') {
-                location.href = 'index.html'
+                location.href = 'homepage.html'
             }
         }
     },

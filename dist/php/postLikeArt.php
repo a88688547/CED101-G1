@@ -15,10 +15,7 @@
             $art->bindValue(":art_no", $art_no);
             $art->execute();
 
-            $sql1 = "UPDATE art SET art_like_count = art_like_count - 1 WHERE art_no = :art_no";
-            $art1 = $pdo->prepare($sql1);
-            $art1->bindValue(":art_no", $art_no);
-            $art1->execute();
+
         }else{
             $sql = "INSERT INTO artlike(art_no,mem_no) VALUES(:art_no,:mem_no)";
             $art = $pdo->prepare($sql);
@@ -26,12 +23,15 @@
             $art->bindValue(":art_no", $art_no);
             $art->execute();
 
-            $sql1 = "UPDATE art SET art_like_count = art_like_count + 1 WHERE art_no = :art_no";
-            $art1 = $pdo->prepare($sql1);
-            $art1->bindValue(":art_no", $art_no);
-            $art1->execute();
+            // $sql1 = "UPDATE art SET art_like_count = art_like_count + 1 WHERE art_no = :art_no";
+            // $art1 = $pdo->prepare($sql1);
+            // $art1->bindValue(":art_no", $art_no);
+            // $art1->execute();
         };
-        
+        $sql1 = "UPDATE art SET art_like_count = (SELECT COUNT(*) FROM artlike WHERE art_no = :art_no) WHERE art_no = :art_no";
+        $art1 = $pdo->prepare($sql1);
+        $art1->bindValue(":art_no", $art_no);
+        $art1->execute();
     
         
 

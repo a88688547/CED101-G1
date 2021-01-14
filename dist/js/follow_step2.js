@@ -64,6 +64,7 @@ Vue.component('orderlist', {
         return {
             //把storage['addItemList']存在data的變數，變動時drinkItem才會跟著變動
             addItemList: storage[`${storage_key}${dt}`],
+            mem_info: "",
         }
     },
     methods: {
@@ -73,6 +74,14 @@ Vue.component('orderlist', {
             }
             this.addItemList = theAddItemList
         },
+    },
+    mounted() {
+        member.$on('memberInfo', (data) => {
+            this.mem_info = data
+            if (this.mem_info === "") {
+                location.href = 'homepage.html'
+            }
+        })
     },
     created() {
         if (storage[`${storage_key}${dt}`] == '') {
@@ -139,8 +148,8 @@ Vue.component('orderlist', {
             <!-- 每個人  -->
             <div class="group_order_done_person">
                 <div class="group_order_done_person_upbox">
-                    <div class="group_order_done_person_img"><img src="./Images/user_big.svg" /></div>
-                    <div class="group_order_done_person_name">徐朝亭</div>
+                    <div class="group_order_done_person_img"><img :src="mem_info.memImg" /></div>
+                    <div class="group_order_done_person_name">{{mem_info.memName}}</div>
                 </div>
                 <div class="group_order_done_person_downbox">
                     <!-- 購買的 飲料 -->

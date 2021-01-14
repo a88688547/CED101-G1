@@ -10,7 +10,7 @@
         $msg->bindValue(":mem_no", $data["mem_no"]);
         $msg->execute();
 
-        $sql1 = "UPDATE art SET art_msg_count = art_msg_count + 1 WHERE art_no = :art_no";
+        $sql1 = "UPDATE art SET art_msg_count = (SELECT COUNT(*) FROM artmsg WHERE art_no = :art_no) WHERE art_no = :art_no";
         $msg1 = $pdo->prepare($sql1);
         $msg1->bindValue(":art_no", $data["art_no"]);
         $msg1->execute();

@@ -186,14 +186,18 @@ Vue.component('menu_carshop', {
             item_type: [],
             //現在時間是否早於結單時間，以此判斷是否要前往下一頁
             intimeCart: true,
-            mem_no: "",
-
+            mem_info: "",
         }
     },
     methods: {
         //點擊飲品後把資料從菜單送出，之後燈箱接收
         lightBox_handle(item) {
-            bus.$emit('lightBox_handle_parent', item)
+            if (this.mem_info == "") {
+                bus.$emit('getAlert', "請登入會員")
+            } else {
+                bus.$emit('lightBox_handle_parent', item)
+            }
+
         },
         //前往訂單頁面
         goFollow_step1() {
@@ -216,7 +220,7 @@ Vue.component('menu_carshop', {
         //若現在時間晚於結單時間，從group_info接收false參數，帶入本身intimeCart
         bus.$on('intimeGoFollow_step1', (intime) => this.intimeCart = intime);
 
-        member.$on('memberInfo', (mem_no) => this.mem_no = mem_no)
+        member.$on('memberInfo', (memberInfo) => this.mem_info = memberInfo)
         //後台撈出menu資料
         fetch('./php/menu.php', {
             method: 'GET', // or 'PUT'
@@ -299,7 +303,7 @@ Vue.component('alert_lightbox', {
         closeAlertLightbox() {
             this.alertLightbox = false
             if (this.alertText == '跟團時間已截止') {
-                location.href = 'index.html'
+                location.href = 'homepage.html'
             }
         }
     },
@@ -341,7 +345,6 @@ Vue.component('light_box', {
             //飲品編號
             drink_no: "",
             drinkSet: [],
-            mem_no: "",
         }
     },
     computed: {
@@ -350,7 +353,6 @@ Vue.component('light_box', {
     // 燈箱接收點擊菜單飲品的資料
     mounted() {
         bus.$on('lightBox_handle_parent', this.lightBox_handle_child);
-        member.$on('memberInfo', (mem_no) => this.mem_no = mem_no)
     },
     methods: {
         lightBox_handle_child(item) {

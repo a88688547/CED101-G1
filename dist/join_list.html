@@ -8,109 +8,110 @@
     <script src="vendors/jQuery/js/jquery-3.5.1.js"></script>
     <link rel="stylesheet" href="./css/join_list.css" />
     <link rel="stylesheet" href="./css/style.css" />
+    <script src="./js/layout/header.js"></script>
+    <script src="./js/layout/footer.js"></script>
   </head>
 
   <body>
-    <header id="header"><my-header></my-header></header>
-    <!-- ==============header================= -->
-    <div class="w-338" id="join_main">
-      <!-- ====標題 + LOGO===== -->
-      <div class="join_wrap_title">
-        <div class="join_wrap_A">
-          <h2>揪團喝</h2>
-          <h5>
-            <img src="./Images/Drop-2.svg" alt="" />
-            參團集優惠，跟團喝起來!
-          </h5>
-        </div>
-        <div class="join_wrap_B">
-          <div class="join_wrap_B_btn">
-            <img src="./Images/drink.svg" alt="" />
-            <a href="./join_step1.html">我要揪團</a>
+    <div id="join_main">
+      <header><my-header></my-header></header>
+      <!-- ==============header================= -->
+      <div class="w-338">
+        <!-- ====標題 + LOGO===== -->
+        <div class="join_wrap_title">
+          <div class="join_wrap_A">
+            <h2>揪團喝</h2>
+            <h5>
+              <img src="./Images/Drop-2.svg" alt="" />
+              參團集優惠，跟團喝起來!
+            </h5>
           </div>
-          <div class="">
-            <img src="./Images/mascot.svg" alt="" />
-          </div>
-        </div>
-      </div>
-      <!-- ====標題 + LOGO===== -->
-
-      <!-- ========== -->
-      <div class="join_list" v-for="Groupdata in grouporddata  ">
-        <div class="join_list_row">
-          <div class="join_list_img">
-            <img class="list_img" :src="getimg(Groupdata.goal_cup)" />
-          </div>
-          <div class="join_list_text">
-            <div class="join_list_title">
-              <h4>{{Groupdata.group_name}}</h4>
-              <h5>限時:<span>05小時 00分 20秒</span></h5>
+          <div class="join_wrap_B">
+            <div class="join_wrap_B_btn">
+              <img src="./Images/drink.svg" alt="" />
+              <a href="./join_step1.html">我要揪團</a>
             </div>
-            <div class="join_list_content">
-              <div class="join_list_content_left">
-                <div class="join_list_cup">
-                  <div>
-                    <div>
-                      <img src="./Images/joindrinklist_group.svg" alt="" />
-                      集杯數:
-                    </div>
-                    <div>{{Groupdata.goal_cup}}杯</div>
-                  </div>
-                  <div>
-                    <div>
-                      <img src="./Images/joindrinklist_drink.svg" alt="" />
-                      已達杯數:
-                    </div>
-                    <div>{{Groupdata.now_cup}}杯</div>
-                  </div>
-                </div>
-                <div class="join_list_address">
-                  <div>
-                    <div>
-                      <img src="./Images/place.svg" alt="" />
-                      取貨地點
-                    </div>
-                    <div>{{Groupdata.group_adress}}</div>
-                  </div>
-                  <div>
-                    <div>
-                      <img src="./Images/timer.svg" alt="" />
-                      預計送達時間
-                    </div>
-                    <div>{{Groupdata.arrive_time}}</div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- BTN修改 ----------------------------------------------------------->
-              <div class="join_list_right">
-                <button class="join_drink color-1">
-                  <a
-                    :href="'./menu.html?group_ord_no=' + Groupdata.group_ord_no"
-                    style="text-decoration: none"
-                  >
-                    <img src="./Images/drink.svg" alt="" />
-                    <h6>跟團喝</h6>
-                  </a>
-                </button>
-              </div>
-              <!-- BTN修改 ----------------------------------------------------------->
+            <div class="">
+              <img src="./Images/mascot.svg" alt="" />
             </div>
           </div>
         </div>
+        <!-- ====標題 + LOGO===== -->
+
+        <!-- ========== -->
+        <div class="join_list" v-for="Groupdata in grouporddata  ">
+          <div class="join_list_row">
+            <div class="join_list_img">
+              <img class="list_img" :src="getimg(Groupdata.goal_cup)" />
+            </div>
+            <div class="join_list_text">
+              <div class="join_list_title">
+                <h4>{{Groupdata.group_name}}</h4>
+                <h5>限時:<span>05小時 00分 20秒</span></h5>
+              </div>
+              <div class="join_list_content">
+                <div class="join_list_content_left">
+                  <div class="join_list_cup">
+                    <div>
+                      <div>
+                        <img src="./Images/joindrinklist_group.svg" alt="" />
+                        集杯數:
+                      </div>
+                      <div>{{Groupdata.goal_cup}}杯</div>
+                    </div>
+                    <div>
+                      <div>
+                        <img src="./Images/joindrinklist_drink.svg" alt="" />
+                        已達杯數:
+                      </div>
+                      <div>{{Groupdata.now_cup}}杯</div>
+                    </div>
+                  </div>
+                  <div class="join_list_address">
+                    <div>
+                      <div>
+                        <img src="./Images/place.svg" alt="" />
+                        取貨地點
+                      </div>
+                      <div>{{Groupdata.group_adress}}</div>
+                    </div>
+                    <div>
+                      <div>
+                        <img src="./Images/timer.svg" alt="" />
+                        預計送達時間
+                      </div>
+                      <div>{{Groupdata.arrive_time}}</div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- BTN修改 ----------------------------------------------------------->
+                <div class="join_list_right">
+                  <button class="join_drink color-1">
+                    <a
+                      :href="'./menu.html?group_ord_no=' + Groupdata.group_ord_no"
+                      style="text-decoration: none"
+                    >
+                      <img src="./Images/drink.svg" alt="" />
+                      <h6>跟團喝</h6>
+                    </a>
+                  </button>
+                </div>
+                <!-- BTN修改 ----------------------------------------------------------->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ========== -->
+
+        <!-- ========= -->
       </div>
 
-      <!-- ========== -->
+      <!-- ==============footer================= -->
 
-      <!-- ========= -->
+      <footer><my-footer></my-footer></footer>
     </div>
-
-    <!-- ==============footer================= -->
-
-    <footer id="footer"><my-footer></my-footer></footer>
-    <script src="./layout/header.vue"></script>
-    <script src="./layout/footer.vue"></script>
-
     <script type="text/javascript">
       window.addEventListener("load", function () {
         let grouporddata;

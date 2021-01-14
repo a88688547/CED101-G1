@@ -1,11 +1,14 @@
 var app = new Vue({
     el:"#app",
     data:{
-    //訂單編號
-    group_ord_no: "",
-    //訂單資料
-    group_order_item:"",
-    oldNum:"",
+      //訂單編號
+      group_ord_no: "",
+      //訂單資料
+      group_order_item: "",
+      //警告框
+      Error_show: false,
+      ErrorText:"警告字",
+      oldNum:"",
       phone:"",
       message:"",
       name:"",
@@ -13,13 +16,16 @@ var app = new Vue({
       card2:"",
       card3:"",
       card4:"",
-      full_card:"",
+      full_card: "",
+      testCard:[this.card1],
       deal_date:"",
       month:"",
-      year:"",
-      safeNumber:"",
-      
+      year: "",
+      //安全碼
+      safeNumber: "",
+      //切換確認
       type: "10",
+      //明細
       closeTotal: false,
     },
     computed: {
@@ -36,6 +42,7 @@ var app = new Vue({
     },
     mounted()
     {
+      console.log(this.card1.length);
       this.get_group_ord_item();
       // 持卡姓名
       if (localStorage.name) {
@@ -88,7 +95,38 @@ var app = new Vue({
         //切割字串
         this.group_ord_no = window.location.search.split("=")[1];
       },
-    methods: {
+  methods: {
+    //警告視窗開關
+    XError: function ()
+    {
+      this.Error_show = false;//警告視窗
+    },
+    //檢查手機格式
+    check_phone()
+    {
+      let myreg = /^09[0-9]{8}$/;
+      let phoneNumber = document.querySelector("phone");
+      if (this.phone && myreg.test(this.phone))
+      {
+        console.log("good")
+      }
+      else if(this.phone =="")
+      {
+        this.Error_show = true;
+        this.ErrorText = "請輸入電話";
+        return;
+      } else
+      {
+        this.Error_show = true;
+        this.ErrorText = "電話錯誤!";
+        return;
+      }
+    },
+    cardLong()
+    {
+      console.log(this.fullCard.length);
+      console.log(this.phone.length);
+    },
       return_data(){
             this.type = 10;
         },
@@ -97,20 +135,65 @@ var app = new Vue({
       },
       check_total(){
             this.closeTotal = true;
-      },
-      confirmData(){
-        if(this.phone == ""){
-          console.log(this.phone.length);
-          alert("請輸入電話");
+    },
+      //確認資料
+    confirmData()
+    {
+      currentDate = new Date()
+      currenYear = currentDate.getFullYear()
+      ones_number = currenYear % 10
+      tens_number = Math.floor(currenYear % 100 / 10)
+      let regrexStr   = '^((0[1-9])|(1[0-2]))\/?((' + tens_number + '[' + ones_number + '-9])|([' + (tens_number + 1) + '-9][0-9]))$'
+      //20XX年
+      let year_reg = /^20[21-40]{2}$/;
+      //1-12
+      let dateline_reg = /(0[1-9]1[0-2])\/[21-50]{2}$/;
+      //xxxx-xxxx-xxxx-xxxx
+      let card_reg = /^\d{4}-\d{4}-\d{4}-\d{4}$/;
+      // 09XXXXXXXX
+      let phone_reg = /^09[0-9]{8}$/;
+      if (this.phone && phone_reg.test(this.phone))
+      {
+        console.log("phone good")
+        // this.type = 11;
+        if (this.name == "")
+        {
+          this.Error_show = true;
+          this.ErrorText = "請輸入姓名";
+          return;
+        } else if (this.fullCard && card_reg.test(this.fullCard))//信用卡驗證完
+        {
+          if (this.dealDate && dateline_reg.test(this.dealDate))
+          {
+            console.log("dealDate good");
+          } else
+          {
+            console.log("dealDate bad");
+          }
+        } else
+        {
+          this.Error_show = true;
+          this.ErrorText = "請輸入信用卡";
           return
         }
-        this.type = 11;
-        
-        },
-        step4()
-        {
-            location.href = `./join_step4.html?group_ord_no=${this.group_ord_no}`
-        },
+      }
+      else if(this.phone =="")
+      {
+        this.Error_show = true;
+        this.ErrorText = "請輸入電話";
+        return;
+      } else
+      {
+        this.Error_show = true;
+        this.ErrorText = "電話錯誤";
+        return;
+      }
+      },
+      //下一步
+      step4()
+      {
+        location.href = `./join_step4.html?group_ord_no=${this.group_ord_no}`
+      },
       //抓飲料資料
       get_group_ord_item: async function () {
           // console.log('send2', drinkno)

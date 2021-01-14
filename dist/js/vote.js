@@ -1,4 +1,4 @@
-const vm = new Vue();
+// const member = new Vue();
 Vue.component("vote-item", {
     data() {
         return {
@@ -8,7 +8,7 @@ Vue.component("vote-item", {
     },
     methods: {
         lightBoxToggle(id, index) {
-            vm.$emit("lightBoxToggle", id, index);
+            member.$emit("lightBoxToggle", id, index);
         },
         fetchData() {
             fetch("./php/menu2.php", {
@@ -28,9 +28,8 @@ Vue.component("vote-item", {
     },
     mounted() {
         this.fetchData();
-        vm.$on("votedSus", this.fetchData);
+        member.$on("votedSus", this.fetchData);
     },
-    computed: {},
     template: `
                 <div class="vote-bot" >
                     <div class="vote-wrap" v-for="(voteType, i) in drinks">
@@ -79,12 +78,20 @@ Vue.component("vote-form", {
             votedName: ["", "", ""],
             selected: false,
             textIndex: "",
+            member: "",
         };
     },
     mounted() {
-        vm.$on("lightBoxToggle", this.toggleLightBox);
+        member.$on("lightBoxToggle", this.toggleLightBox);
+        // member.$on("memberInfo", this.gerMemberInfo);
+        member.$on("memberInfo", function (data) {
+            this.member = data;
+        });
     },
     methods: {
+        gerMemberInfo(data) {
+            this.member = data;
+        },
         toggleLightBox(id, index) {
             if (this.voted[index]) {
                 this.type = "voteok";
@@ -133,7 +140,7 @@ Vue.component("vote-form", {
                         this.activeIndex
                     ].drink_title_ch;
                     this.type = "voteok";
-                    vm.$emit("votedSus");
+                    member.$emit("votedSus");
                 })
                 .catch((err) => {
                     console.log(err);

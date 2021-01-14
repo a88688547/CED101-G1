@@ -1,67 +1,74 @@
-const member = new Vue()
-Vue.component('my-header', {
+const member = new Vue();
+Vue.component("my-header", {
     data() {
         return {
-            username: '',
-            signemail: '',
-            signPassword: '',
-            phone: '',
-            passwordTwo: '',
-            loginEmail: '',
-            loginPassword: '',
-            mem_no: '',
+            username: "",
+            signemail: "",
+            signPassword: "",
+            phone: "",
+            passwordTwo: "",
+            loginEmail: "",
+            loginPassword: "",
+            mem_no: "",
             showLogin: false,
             isActiveTab: 1,
             isLogin: false,
-            memberInfo: '',
-        }
+            memberInfo: "",
+        };
     },
     methods: {
         openLoginBox() {
-            this.showLogin = true
+            if (this.memberInfo != "") {
+                this.showLogin = false;
+                location.href = "./member.html";
+                return;
+            } else {
+                this.showLogin = true;
+                return;
+            }
         },
         closeLoginBox() {
-            this.showLogin = false
-            this.username = ''
-            this.signemail = ''
-            this.signPassword = ''
-            this.phone = ''
-            this.passwordTwo = ''
-            this.loginEmail = ''
-            this.loginPassword = ''
-            this.$refs.errorLogin.innerText = ''
+            this.showLogin = false;
+            this.username = "";
+            this.signemail = "";
+            this.signPassword = "";
+            this.phone = "";
+            this.passwordTwo = "";
+            this.loginEmail = "";
+            this.loginPassword = "";
+            this.$refs.errorLogin.innerText = "";
         },
         toggleClass(id) {
-            this.isActiveTab = id
+            this.isActiveTab = id;
         },
         clearText() {
-            this.username = ''
-            this.signemail = ''
-            this.signPassword = ''
-            this.phone = ''
-            this.passwordTwo = ''
-            this.loginEmail = ''
-            this.loginPassword = ''
-            this.$refs.errorLogin.innerText = ''
-            this.$refs.signerror.innerText = ''
+            this.username = "";
+            this.signemail = "";
+            this.signPassword = "";
+            this.phone = "";
+            this.passwordTwo = "";
+            this.loginEmail = "";
+            this.loginPassword = "";
+            this.$refs.errorLogin.innerText = "";
+            this.$refs.signerror.innerText = "";
         },
         loginMember() {
-            let isEmail = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4})*$/
+            let isEmail = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4})*$/;
 
-            if (this.loginEmail === '' || this.loginPassword === '') {
-                this.$refs.errorLogin.innerText = '請輸入帳號密碼!!'
-                return
+            if (this.loginEmail === "" || this.loginPassword === "") {
+                this.$refs.errorLogin.innerText = "請輸入帳號密碼!!";
+                return;
             }
             if (!isEmail.test(this.loginEmail)) {
-                this.$refs.errorLogin.innerText = '請輸入正確信箱!!'
-                return
+                this.$refs.errorLogin.innerText = "請輸入正確信箱!!";
+                return;
             }
-            fetch('./php/login.php', {
-                method: 'POST',
-                mode: 'same-origin',
-                credentials: 'same-origin',
+            fetch("./php/login.php", {
+                method: "POST",
+                mode: "same-origin",
+                credentials: "same-origin",
                 headers: {
-                    'Content-Type': 'application/json',
+                    "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
                     mem_email: this.loginEmail,
@@ -69,62 +76,67 @@ Vue.component('my-header', {
                 }),
             })
                 .then(function (data) {
-                    return data.json()
+                    return data.json();
                 })
 
                 .then((res) => {
-                    if (res != '查無此帳號') {
-                        this.isLogin = true
-                        this.$refs.UserName.innerText = `hi~${res.mem_name}`
-                        this.$refs.errorLogin.innerText = ''
-                        this.loginEmail = ''
-                        this.loginPassword = ''
-                        this.showLogin = false
-                        alert('登入成功')
+                    if (res != "查無此帳號") {
+                        this.memberInfo = res;
+                        this.$refs.UserName.innerText = `hi~${res.mem_name}`;
+                        this.$refs.errorLogin.innerText = "";
+                        this.loginEmail = "";
+                        this.loginPassword = "";
+                        this.isLogin = true;
+                        this.showLogin = false;
+                        alert("登入成功");
                         // console.log(res);
                     } else {
-                        this.$refs.errorLogin.innerText = '帳號密碼錯誤'
+                        this.$refs.errorLogin.innerText = "帳號密碼錯誤";
                     }
                 })
                 .catch((err) => {
-                    this.$refs.errorLogin.innerText = '帳號密碼錯誤'
-                    console.log(err)
-                    console.log('失敗')
-                })
+                    this.$refs.errorLogin.innerText = "帳號密碼錯誤";
+                    console.log(err);
+                    console.log("失敗");
+                });
         },
         signMember() {
-            let isEmail = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4})*$/
-            let isName = /^[\u0391-\uFFE5]+$/
-            let isPassword = /^[0-9a-zA-Z]*$/
-            let isphonenum = /^09\d{2}?\d{3}?\d{3}$/
+            let isEmail = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4})*$/;
+            let isName = /^[\u0391-\uFFE5]+$/;
+            let isPassword = /^[0-9a-zA-Z]*$/;
+            let isphonenum = /^09\d{2}?\d{3}?\d{3}$/;
 
-            if (!isName.test(this.username) || this.username == '') {
-                this.$refs.signerror.innerText = '請輸入中文姓名'
-                return
+            if (!isName.test(this.username) || this.username == "") {
+                this.$refs.signerror.innerText = "請輸入中文姓名";
+                return;
             }
-            if (!isEmail.test(this.signemail) || this.signemail == '') {
-                this.$refs.signerror.innerText = '請輸入正確信箱'
-                return
+            if (!isEmail.test(this.signemail) || this.signemail == "") {
+                this.$refs.signerror.innerText = "請輸入正確信箱";
+                return;
             }
-            if (!isPassword.test(this.signPassword) || this.signPassword == '') {
-                this.$refs.signerror.innerText = '請輸入數字英文'
-                return
+            if (!isPassword.test(this.signPassword) || this.signPassword == "") {
+                this.$refs.signerror.innerText = "請輸入數字英文";
+                return;
             }
 
-            if (this.signPassword !== this.passwordTwo || this.passwordTwo == '' || this.signPassword == '') {
-                this.$refs.signerror.innerText = '密碼不一致'
-                return
+            if (
+                this.signPassword !== this.passwordTwo ||
+                this.passwordTwo == "" ||
+                this.signPassword == ""
+            ) {
+                this.$refs.signerror.innerText = "密碼不一致";
+                return;
             }
-            if (!isphonenum.test(this.phone) || this.phone == '') {
-                this.$refs.signerror.innerText = '請輸入正確手機號碼'
-                return
+            if (!isphonenum.test(this.phone) || this.phone == "") {
+                this.$refs.signerror.innerText = "請輸入正確手機號碼";
+                return;
             }
-            fetch('./php/registered.php', {
-                method: 'POST',
-                mode: 'same-origin',
-                credentials: 'same-origin',
+            fetch("./php/registered.php", {
+                method: "POST",
+                mode: "same-origin",
+                credentials: "same-origin",
                 headers: {
-                    'Content-Type': 'application/json',
+                    "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
                     name: this.username,
@@ -134,85 +146,92 @@ Vue.component('my-header', {
                 }),
             })
                 .then((res) => {
-                    return res.json()
+                    return res.json();
                 })
                 .then((res) => {
-                    if (res !== '註冊成功') {
-                        this.$refs.signerror.innerText = '此信箱已註冊過'
+                    if (res !== "註冊成功") {
+                        this.$refs.signerror.innerText = "此信箱已註冊過";
                     } else {
-                        this.username = ''
-                        this.signemail = ''
-                        this.signPassword = ''
-                        this.phone = ''
-                        this.passwordTwo = ''
-                        this.$refs.signerror.innerText = ''
-                        alert('註冊成功')
+                        this.username = "";
+                        this.signemail = "";
+                        this.signPassword = "";
+                        this.phone = "";
+                        this.passwordTwo = "";
+                        this.$refs.signerror.innerText = "";
+                        alert("註冊成功");
                         // console.log(res)
                     }
                 })
                 .catch((err) => {
-                    console.log(err)
-                })
+                    console.log(err);
+                });
         },
         logoutBtn() {
-            fetch('./php/logout.php', {
-                method: 'POST',
-                mode: 'same-origin',
-                credentials: 'same-origin',
+            fetch("./php/logout.php", {
+                method: "POST",
+                mode: "same-origin",
+                credentials: "same-origin",
                 headers: {
-                    'Content-Type': 'application/json',
+                    "Content-Type": "application/json",
                 },
             })
                 .then(() => {
-                    this.isLogin = false
-                    this.$refs.UserName.innerText = ''
-                    alert('登出成功')
+                    this.isLogin = false;
+                    this.$refs.UserName.innerText = "";
+                    this.memberInfo = "";
+                    location.href = "./index.html";
+                    sessionStorage.clear();
+                    alert("登出成功");
                 })
                 .catch((err) => {
-                    console.log('錯誤')
+                    console.log("錯誤");
                     // console.log(err)
-                })
+                });
+        },
+        hamburgHandler() {
+            this.$refs.hamburg_btn.classList.toggle("btn-on");
+            this.$refs.nav_list.classList.toggle("nav-open");
         },
     },
     mounted() {
-        fetch('./php/checkMember.php', {
-            method: 'POST',
-            mode: 'same-origin',
-            credentials: 'same-origin',
+        fetch("./php/checkMember.php", {
+            method: "POST",
+            mode: "same-origin",
+            credentials: "same-origin",
             headers: {
-                'Content-Type': 'application/json',
+                "Content-Type": "application/json",
             },
         })
             .then((res) => {
-                return res.json()
+                return res.json();
             })
             .then((res) => {
-                if (JSON.stringify(res) !== '{}') {
-                    this.isLogin = true
-                    this.memberInfo = res
-                    this.$refs.UserName.innerText = `hi~${res.memName}`
+                if (JSON.stringify(res) !== "{}") {
+                    this.isLogin = true;
+                    this.memberInfo = res;
+                    this.$refs.UserName.innerText = `hi~${res.memName}`;
                     // console.log(this.memberInfo)
-                } else if (JSON.stringify(res) === '{}') {
-                    this.isLogin = false
+                } else if (JSON.stringify(res) === "{}") {
+                    this.isLogin = false;
                 }
             })
             .catch((err) => {
-                console.log(err)
+                console.log(err);
 
-                console.log('錯誤')
-            })
-        member.$emit('memberInfo', this.memInfo)
+                console.log("錯誤");
+            });
+        member.$emit("memberInfo", this.memberInfo);
     },
     template: `
             <nav>
-                <button class="hamburg_btn">
+                <button class="hamburg_btn" ref="hamburg_btn" @click="hamburgHandler">
                     <div class="hamburg_line line_1"></div>
                     <div class="hamburg_line line_2"></div>
                     <div class="hamburg_line line_3"></div>
                 </button>
                 <a href="./index.html" class="logo_img"><img class="logo" src="./Images/logo-header.svg" alt="" /></a>
 
-                <div class="nav_list" id="header_nav">
+                <div class="nav_list" id="header_nav" ref="nav_list">
                     <ul>
                         <a href="./menu_self.html"><img src="./Images/drop-header.svg" alt="" />菜單</a>
                         <a href="./join_list.html"><img src="./Images/drop-header.svg" alt="" />揪團喝</a>
@@ -221,21 +240,15 @@ Vue.component('my-header', {
                         <a href="./custom.html"><img src="./Images/drop-header.svg" alt="" />小遊戲</a>
                         <a href=""><img src="./Images/drop-header.svg" alt="" />關於揪飲</a>
                     </ul>
-                    <div v-show="isLogin">
+                    <div class="user_wrap" v-show="isLogin">
                         <span ref="UserName" class="user"></span>
                         <span id="logout" @click="logoutBtn">登出</span>
                     </div>
-                    <a  class="user_logo_img_web" v-if="!isLogin" @click="openLoginBox"
-                        ><img class="user_logo" src="./Images/login.svg" alt=""
-                    /></a>
-                    <a  class="user_logo_img_web" v-else href="./member.html"
+                    <a  class="user_logo_img_web" @click="openLoginBox"
                         ><img class="user_logo" src="./Images/login.svg" alt=""
                     /></a>
                 </div>
-                <a  class="user_logo_img_phone" v-if="!isLogin" @click="openLoginBox"
-                    ><img class="user_logo" src="./Images/login.svg" alt=""
-                /></a>
-                <a  class="user_logo_img_phone" v-else href="./member.html"
+                <a  class="user_logo_img_phone" @click="openLoginBox"
                     ><img class="user_logo" src="./Images/login.svg" alt=""
                 /></a>
 
@@ -301,4 +314,4 @@ Vue.component('my-header', {
                 </div>
             </nav>
             `,
-})
+});

@@ -11,13 +11,15 @@
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/list_data.css" />
     <link rel="stylesheet" href="./css/alertLightbox.css">
+    <script src="./js/layout/header.js"></script>
+    <script src="./js/layout/footer.js"></script>
   </head>
 
   <body>
-    <header id="header"><my-header></my-header></header>
+    <div id="app">
+    <header><my-header></my-header></header>
     <!-- ==============header================= -->
-
-    <div class="w-338" id="app">
+    <div class="w-338">
       <!-- =====一進來的QR== -->
       <div class="fist_QR" v-show="firstQR">
         <div class="fist_QR_box">
@@ -171,12 +173,14 @@
           
         </div>
       </div>
-      <!-- ==============團長飲料================= -->
-    </div>
 
+      
+    </div>
+    <footer><my-footer></my-footer></footer>
+  </div>
     <!-- ==============footer================= -->
 
-    <footer id="footer"><my-footer></my-footer></footer>
+    
     <script type="text/javascript">
       function copyUrl2() {
         var Url2 = document.getElementById("biao1");
@@ -195,7 +199,5 @@
     <script>
       
     </script>
-    <script src="./layout/header.vue"></script>
-    <script src="./layout/footer.vue"></script>
   </body>
 </html>

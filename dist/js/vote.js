@@ -172,17 +172,6 @@ Vue.component("vote-form", {
             // console.log(parseInt(this.members.teaVote.substring(8, 10)) + 7)
             // console.log(this.nowTime.substring(8, 10))
 
-            if (this.nowTime.substring(8, 10) != parseInt(this.members.milkVote.substring(8, 10)) + 7) {
-                return (this.votedok = true, this.type = false)
-            }
-            if (this.nowTime.substring(8, 10) != parseInt(this.members.teaVote.substring(8, 10)) + 7) {
-                return (this.votedok = true, this.type = false)
-            }
-            if (this.nowTime.substring(8, 10) != parseInt(this.members.fruitVote.substring(8, 10)) + 7) {
-                return (this.votedok = true, this.type = false)
-            }
-            console.log(this.members.milkVote !== null)
-
 
             fetch("./php/menu1.php", {
                 method: "POST",
@@ -202,7 +191,16 @@ Vue.component("vote-form", {
                     console.log(err);
                 });
 
-
+            if (this.nowTime.substring(8, 10) != parseInt(this.members.milkVote.substring(8, 10)) + 7) {
+                return (this.votedok = true, this.type = false)
+            }
+            if (this.nowTime.substring(8, 10) != parseInt(this.members.teaVote.substring(8, 10)) + 7) {
+                return (this.votedok = true, this.type = false)
+            }
+            if (this.nowTime.substring(8, 10) != parseInt(this.members.fruitVote.substring(8, 10)) + 7) {
+                return (this.votedok = true, this.type = false)
+            }
+            console.log(this.members.milkVote !== null)
 
 
         },

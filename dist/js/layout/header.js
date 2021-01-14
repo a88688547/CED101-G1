@@ -64,6 +64,7 @@ Vue.component('my-header', {
                 this.$refs.errorLogin.innerText = '請輸入正確信箱!!'
                 return
             }
+
             await fetch('./php/login.php', {
                 method: 'POST',
                 mode: 'same-origin',
@@ -89,6 +90,7 @@ Vue.component('my-header', {
                         this.loginPassword = ''
                         this.isLogin = true
                         this.showLogin = false
+                        member.$emit('memberInfo', this.memberInfo)
                         alert('登入成功')
                         // console.log(res);
                     } else {
@@ -100,8 +102,10 @@ Vue.component('my-header', {
                     console.log(err)
                     console.log('失敗')
                 })
-            await member.$emit('memberInfo', this.memberInfo)
-            location.reload()
+
+            // await member.$emit('memberInfo', this.memberInfo)
+            // //location.reload()
+
         },
         signMember() {
             let isEmail = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4})*$/
@@ -178,7 +182,7 @@ Vue.component('my-header', {
                     this.isLogin = false
                     this.$refs.UserName.innerText = ''
                     this.memberInfo = ''
-                    location.href = './homepage.html'
+                    // location.href = './homepage.html'
                     sessionStorage.clear()
                     alert('登出成功')
                 })

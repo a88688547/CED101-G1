@@ -754,6 +754,7 @@ window.addEventListener('load', function () {
         data() {
             return {
                 //同步儲存 將要新增的商品資料
+                drink_no: '',
                 drink_title_ch: '',
                 drink_title_en: '',
                 drink_type_no: '',
@@ -935,25 +936,30 @@ window.addEventListener('load', function () {
                         drink_big_price: drink_big_price,
                         drink_small_price: drink_small_price,
                     }),
+                }).then(function (data) {
+                    return data.json()
                 })
 
-                // 上傳飲料照片 -----------------------
-                // let file_2 = document.getElementById('upfile').files[0]
-                // let formData = new FormData()
-                // formData.append('upFile', file_2)
+                // 將新增商品之 商品編號 取回寫入
+                this.drink_no = res.drink_no
 
-                //=====ajax
-                // let xhr = new XMLHttpRequest()
-                // xhr.onload = function () {
-                //     if (xhr.status == 200) {
-                //         console.log(xhr.responseText)
-                //         bus.$emit('getAlert', '上傳照片成功!!')
-                //     } else {
-                //         alert(xhr.status)
-                //     }
-                // }
-                // xhr.open('post', './php/mem_update_member_img.php')
-                // xhr.send(formData)
+                // 上傳飲料照片 -----------------------
+                let file_2 = document.getElementById('upfile').files[0]
+                let formData = new FormData()
+                formData.append('upFile', file_2)
+
+                // =====ajax
+                let xhr = new XMLHttpRequest()
+                xhr.onload = function () {
+                    if (xhr.status == 200) {
+                        console.log(xhr.responseText)
+                        bus.$emit('getAlert', '上傳照片成功!!')
+                    } else {
+                        alert(xhr.status)
+                    }
+                }
+                xhr.open('post', './php/mem_update_member_img.php')
+                xhr.send(formData, this.drink_no)
 
                 //修改成功  跳出提示燈箱
                 this.lightbox = true

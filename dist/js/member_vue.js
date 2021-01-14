@@ -659,7 +659,7 @@ window.addEventListener('load', function () {
             this.get_mem(this.group_ord_no)
             this.get_group_ord_item(this.group_ord_no)
         },
-        mounted() {},
+        mounted() { },
     })
     //-----------------------------------------------------
 
@@ -1038,7 +1038,7 @@ window.addEventListener('load', function () {
             this.get_mem(this.group_ord_no)
             this.get_group_ord_item(this.mem_no, this.group_ord_no)
         },
-        mounted() {},
+        mounted() { },
     })
     //-----------------------------------------------------
 
@@ -1228,7 +1228,7 @@ window.addEventListener('load', function () {
             this.get_mem(this.group_ord_no)
             this.get_group_ord_item(this.mem_no, this.group_ord_no)
         },
-        mounted() {},
+        mounted() { },
     })
     //-----------------------------------------------------
 
@@ -1512,7 +1512,7 @@ window.addEventListener('load', function () {
             this.get_mem()
             this.get_group_ord_item()
         },
-        mounted() {},
+        mounted() { },
     })
     //-----------------------------------------------------
 
@@ -1658,7 +1658,7 @@ window.addEventListener('load', function () {
         created() {
             member.$on('getmemberInfo', this.changememno)
         },
-        mounted() {},
-        beforeCreate() {},
+        mounted() { },
+        beforeCreate() { },
     })
 })

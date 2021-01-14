@@ -78,26 +78,109 @@ Vue.component("vote-form", {
             votedName: ["", "", ""],
             selected: false,
             textIndex: "",
-            member: "",
+            members: "",
+            voteTime: "",
+            nowTime: "",
+            timer: null,
+            timeNum: 0,
+            votedok: false,
         };
     },
     mounted() {
         member.$on("lightBoxToggle", this.toggleLightBox);
-        // member.$on("memberInfo", this.gerMemberInfo);
-        member.$on("memberInfo", function (data) {
-            this.member = data;
-        });
+        member.$on("memberInfo", this.gerMemberInfo);
+        this.timer = setInterval(this.getWatchNum, 1000);
+    },
+    beforeDestroy() {
+        clearInterval(this.timer)
+    },
+    watch: {
+        timeNum() {
+            let date = new Date();
+            let year = date.getFullYear();
+            let month = date.getMonth() + 1;
+            let strDate = date.getDate();
+            let strHours = date.getHours();
+            let strMinutes = date.getMinutes();
+            let srtSeconds = date.getSeconds();
+
+            if (month >= 1 && month <= 9) {
+                month = "0" + month;
+            }
+            if (strDate >= 0 && strDate <= 9) {
+                strDate = "0" + strDate;
+            }
+            if (strHours >= 0 && strHours <= 9) {
+                strHours = "0" + strHours;
+            }
+            if (strMinutes >= 0 && strMinutes <= 9) {
+                strMinutes = "0" + strMinutes;
+            }
+            if (srtSeconds >= 0 && srtSeconds <= 9) {
+                srtSeconds = "0" + srtSeconds;
+            }
+            this.nowTime = `${year}-${month}-${strDate} ${strHours}:${strMinutes}:${srtSeconds}`
+        },
     },
     methods: {
+        getNowTime() {
+            let date = new Date();
+            let year = date.getFullYear();
+            let month = date.getMonth() + 1;
+            let strDate = date.getDate();
+            let strHours = date.getHours();
+            let strMinutes = date.getMinutes();
+            let srtSeconds = date.getSeconds();
+
+            if (month >= 1 && month <= 9) {
+                month = "0" + month;
+            }
+            if (strDate >= 0 && strDate <= 9) {
+                strDate = "0" + strDate;
+            }
+            if (strHours >= 0 && strHours <= 9) {
+                strHours = "0" + strHours;
+            }
+            if (strMinutes >= 0 && strMinutes <= 9) {
+                strMinutes = "0" + strMinutes;
+            }
+            if (srtSeconds >= 0 && srtSeconds <= 9) {
+                srtSeconds = "0" + srtSeconds;
+            }
+
+            this.voteTime = `${year}-${month}-${strDate} ${strHours}:${strMinutes}:${srtSeconds}`
+        },
+        getWatchNum() {
+            this.timeNum++
+        },
         gerMemberInfo(data) {
-            this.member = data;
+            this.members = data;
         },
         toggleLightBox(id, index) {
+            if (this.members === "") {
+                return member.$emit("plsLogin")
+            }
             if (this.voted[index]) {
                 this.type = "voteok";
             }
             this.showVote = true;
             this.drinkIndex = index;
+            // console.log(parseInt(this.members.teaVote.substring(8, 10)) + 7)
+            // console.log(this.nowTime.substring(8, 10))
+
+            if (this.nowTime.substring(8, 10) != parseInt(this.members.milkVote.substring(8, 10)) + 7) {
+
+                return (this.votedok = true, this.type = false)
+            }
+            if (this.nowTime.substring(8, 10) != parseInt(this.members.teaVote.substring(8, 10)) + 7) {
+
+                return (this.votedok = true, this.type = false)
+            }
+            if (this.nowTime.substring(8, 10) != parseInt(this.members.fruitVote.substring(8, 10)) + 7) {
+
+                return (this.votedok = true, this.type = false)
+            }
+
             fetch("./php/menu1.php", {
                 method: "POST",
                 headers: {
@@ -115,20 +198,27 @@ Vue.component("vote-form", {
                 .catch((err) => {
                     console.log(err);
                 });
+
         },
         votingHandler(e) {
             e.preventDefault();
             if (this.activeIndex === -1) {
                 return (this.$refs.alertvote.innerText = "請投票!!");
             }
+            this.getNowTime()
+            console.log(this.members.milkVote.substring(8, 10))
+            console.log(this.nowTime.substring(8, 10))
+
             fetch("./php/menu3.php", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
+                    mem_no: this.members.memNo,
                     vote_count_now: this.dirnkVote[this.activeIndex].vote_count_now,
-                    drink_no: this.dirnkVote[this.activeIndex].drink_no,
+                    drink_no: this.dirnkVote[this.activeIndex].drink_type_no,
+                    vote_time: this.voteTime,
                 }),
             })
                 .then((res) => {
@@ -213,6 +303,13 @@ Vue.component("vote-form", {
                                 </div>
                                 <div class="vote-close" @click="closeLightbox(this.textIndex)">
                                     <i class="fas fa-times-circle closeBlock"></i>
+                                </div>
+                            </div>
+                            <div class="isvoted-box" v-if="votedok">
+                                <div class="isvoted">
+                                    <p>本周已經投過票了</p>
+                                    <p>{{this.votedName[this.drinkIndex]}}</p>
+                                    <p>{{this.votedValue[this.drinkIndex]}}</p>
                                 </div>
                             </div>
                         </form>

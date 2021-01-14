@@ -103,6 +103,7 @@ input{
 }
 .orderbtn{
     // border: 1px solid red;
+    margin-bottom: 80px;
     display: flex;
     justify-content: space-evenly;
     div{
@@ -117,6 +118,7 @@ input{
     }
 }
 .orderModal{
+    // border: 1px solid red;
     position: fixed;
     top: 0;
     left: 0;
@@ -1075,6 +1077,7 @@ input{
     .cardinfo div {
         display: flex;
         align-items: center;
+        font-size: 22px;
     }
 
     .cardinfo {
@@ -1277,4 +1280,28 @@ input{
         width: 40%;
     }
   
+  }
+ 
+
+  @media screen and (min-width: 1199px){
+      .card{
+          .cardinfo{
+              .cardname{
+                //   border: 1px solid red;
+                  height: 40px;
+                //   margin-bottom: 10px;
+              } 
+              .cardno{
+                height: 40px;
+              }
+              .safeno{
+                height: 40px;
+              }
+              .exp{
+                height: 40px;
+              }
+              font-size: 22px;
+            //   border: 1px solid red;
+          }
+      }
   }

@@ -11,7 +11,11 @@ var app = new Vue({
       //QR網址
       URL: window.location.search,
     },
-    methods: {
+  methods: {
+    test()
+    {
+      console.log(this.group_ord)
+        },
         closeBox()
         {
             this.confirm = false;
@@ -78,7 +82,7 @@ var app = new Vue({
     },
     mounted()
     {
-      
+      console.log(this.group_ord);
       this.selectGroupNo();
       this.get_group_ord_item();
     },

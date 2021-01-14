@@ -10,12 +10,15 @@
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/join_step4.css" />
     <link rel="stylesheet" href="./css/list_data.css" />
+    <script src="./js/layout/header.js"></script>
+    <script src="./js/layout/footer.js"></script>
   </head>
   
   <body>
-    <header id="header"><my-header></my-header></header>
+    <div id="app">
+    <header><my-header></my-header></header>
     <!-- ==============header================= -->
-    <div class="w-338" id="app">
+    <div class="w-338" >
         
       <!-- ==============進度條================= -->
       <div class="step_box">
@@ -76,7 +79,7 @@
                 <img src="./Images/user_big.svg" />
               </div>
               <div class="group_data_total_imgB">
-                團長姓名
+                {{mem_info.memName}}
               </div>
             </div>
             
@@ -85,11 +88,11 @@
               <ul class="group_data_total_textA">
                 <li>
                   <div><img src="./Images/tell_big.svg" alt="">行動電話</div>
-                  <div>09-XXXXXXXX</div>
+                  <div>{{group_ord.group_ord_phone}}</div>
                 </li>
                 <li>
                   <div><img src="Images/list.svg" alt=""> 留言給店家</div>
-                  <div>麻煩提供袋子和吸管，謝謝。</div>
+                  <div>{{group_ord.note}}</div>
                 </li>
               </ul>
               <hr style="margin: 50px 0;"/>
@@ -196,11 +199,10 @@
       <!-- ==============總金額================= -->
     </div>
   </div>
+  <footer><my-footer></my-footer></footer>
+  </div>
     <!-- ==============footer================= -->
-    
-    <footer id="footer"><my-footer></my-footer></footer>
-    <script src="./layout/header.vue"></script>
-    <script src="./layout/footer.vue"></script>
+  
     <script src="./js/step4.js"></script>
   </body>
   

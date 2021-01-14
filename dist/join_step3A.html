@@ -12,10 +12,13 @@
   <link rel="stylesheet" href="./css/alertLightbox.css">
   <script src="vendors/Vue/vue.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="./js/layout/header.js"></script>
+  <script src="./js/layout/footer.js"></script>
 </head>
 
 <body>
-  <header id="header">
+  <div id="app">
+  <header>
     <my-header></my-header>
   </header>
   <div id="app" >
@@ -48,7 +51,7 @@
       <div class="info" v-if="type == 10">
         <div class="info_img"><img src="Images/user_big.svg"></div>
         <div class="info_detail">
-          <div class="info_name">小智</div>
+          <div class="info_name">{{mem_info.memName}}</div>
           <div class="info_phone">
             <div class="info_phone_top">
               <div><img src="Images/tell_big.svg"></div>
@@ -70,7 +73,7 @@
       <div class="info" v-else>
         <div class="info_img"><img src="Images/user_big.svg"></div>
         <div class="info_detail">
-            <div class="info_name">小智</div>
+            <div class="info_name">{{mem_info.memName}}</div>
             <div class="info_phone">
                 <div class="info_phone_top">
                     <div><img src="Images/tell_big.svg"></div>
@@ -182,11 +185,10 @@
         <div>
           <h2>$.<span id="ordPrice">400</span></h2>
         </div>
-        <button @click="cardLong">test</button>
       </div>
       <!-- //檢查資料有沒有填 -->
       <div class="orderbtn" v-if="type == 10">
-        <div><a href="./join_step2.html">上一步</a></div>
+        <div @click="return_step2">上一步</div>
         <div class="nextStep" @click="confirmData">下一步</div>
       </div>
       <!-- 檢查明細 -->
@@ -245,17 +247,9 @@
         </div>
       </div>
     </div>
-  
   </div>
-
-  </div>
-
-  <footer id="footer">
-    <my-footer></my-footer>
-  </footer>
-
-  <script src="layout/footer.vue"></script>
-  <script src="layout/header.vue"></script>
+  <footer><my-footer></my-footer></footer>
+</div>
   <script src="js/step3.js"></script>
   <script>
     

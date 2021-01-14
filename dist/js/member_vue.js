@@ -1650,8 +1650,14 @@ window.addEventListener('load', function () {
                 this.per_ord_no = data
             },
             changememno(data) {
-                console.log('header', data)
+                console.log('two')
+
                 this.mem_no = data.memNo
+
+                if ((this.mem_no === undefined) | (this.mem_no === '')) {
+                    location.href = `./index.html`
+                } else {
+                }
             },
         },
         components: {},

@@ -24,6 +24,8 @@ Vue.component("date-picker", {
 var app = new Vue({
   el: "#app",
   data: {
+    mem_info: "",
+    mem_no:"",
     //確認框
     group_confirm: false,
     //警告框
@@ -183,7 +185,7 @@ var app = new Vue({
     {
       let obj = {
         //團長會員編號
-        head_mem_no: "1",
+        head_mem_no: this.mem_no,
         //團名
         group_name: this.GroupName,
         //成團時間
@@ -269,8 +271,7 @@ var app = new Vue({
       this.date = date;
     },
     //傳資料到後台
-    upGroupData: async function ()
-    {
+    upGroupData: async function (){
       let test = await fetch('./php/upGroupData.php', {
         method: 'POST',
         headers: {
@@ -313,6 +314,7 @@ var app = new Vue({
       let oops = document.querySelector(".oops"); //警告視窗
       let ErrorText = document.querySelector(".error"); //警告視窗文字
       let GroupData = document.querySelector(".group_data"); //fomr表單
+      
       if (this.GroupName == "" || this.GroupName == null)
       {
         this.Error_show = true;
@@ -364,6 +366,13 @@ var app = new Vue({
       }
       this.group_confirm = true;
     },
+    get_mem_info(data){
+      this.mem_info = data
+      this.mem_no = data.memNo
+    }
+  },
+  created() {
+    member.$on('memberInfo', this.get_mem_info)
   },
 
 });

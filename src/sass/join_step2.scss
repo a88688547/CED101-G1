@@ -276,11 +276,12 @@ body {
   .Head_data {
     box-sizing: border-box;
     .group_button {
+      margin: 80px auto;
       // border: 1px solid blue;
       width: 100%;
-      // padding: 0 35px;
       display: flex;
       justify-content: space-evenly;
+      // margin-bottom: 80px;
       .btn_back_drink,
       .btn_f5,
       .btn_cleckout {
@@ -531,9 +532,7 @@ body {
         justify-content: space-evenly;
         // border: 1px solid red;
         width: 60%;
-        margin: 0 auto;
-
-
+        // margin: 80px auto;
         .btn_back_drink,
         .btn_f5,
         .btn_cleckout {

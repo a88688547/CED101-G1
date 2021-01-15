@@ -1,9 +1,11 @@
 var app = new Vue({
     el: "#app",
     data: {
-        group_order_item: "",
-        group_ord_no: "",
-        group_ord:"",
+      group_order_item: "",
+      group_ord_no: "",
+      group_ord: "",
+      mem_info:"",
+      mem_no:"",
     },
     methods: {
          //抓飲料資料
@@ -38,7 +40,11 @@ var app = new Vue({
             })
               .then((res) => res.json())
               .then((res) => (this.group_ord = res));
-          },
+        },
+        get_mem_info(data){
+          this.mem_info = data
+          this.mem_no = data.memNo
+        }
     },
     mounted()
     {
@@ -48,7 +54,11 @@ var app = new Vue({
         this.get_group_ord_item();
     },
     created() {
-        //切割字串
-        this.group_ord_no = window.location.search.split("=")[1];
+      
+      //抓會員資料
+      member.$on('memberInfo', this.get_mem_info)
+      //切割字串
+      this.group_ord_no = window.location.search.split("=")[1];
+      
       },
 })

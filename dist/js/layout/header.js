@@ -64,6 +64,7 @@ Vue.component('my-header', {
                 this.$refs.errorLogin.innerText = '請輸入正確信箱!!'
                 return
             }
+
             await fetch('./php/login.php', {
                 method: 'POST',
                 mode: 'same-origin',
@@ -89,6 +90,8 @@ Vue.component('my-header', {
                         this.loginPassword = ''
                         this.isLogin = true
                         this.showLogin = false
+                        member.$emit('memberInfo', this.memberInfo)
+                        this.$emit('changemem', this.memberInfo)
                         alert('登入成功')
                         // console.log(res);
                     } else {
@@ -102,6 +105,8 @@ Vue.component('my-header', {
                 })
 
             await member.$emit('memberInfo', this.memberInfo)
+            this.$emit('checked_mem', this.memberInfo)
+            // //location.reload()
         },
         signMember() {
             let isEmail = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4})*$/
@@ -178,7 +183,7 @@ Vue.component('my-header', {
                     this.isLogin = false
                     this.$refs.UserName.innerText = ''
                     this.memberInfo = ''
-                    location.href = './index.html'
+                    location.href = './homepage.html'
                     sessionStorage.clear()
                     alert('登出成功')
                 })
@@ -221,49 +226,19 @@ Vue.component('my-header', {
                     console.log('錯誤')
                 })
 
-            await member.$emit('memberInfo', this.memberInfo)
+            member.$emit('memberInfo', this.memberInfo)
+            await this.$emit('checked_mem', this.memberInfo)
         },
         unMember() {
-            this.showLogin = true;
+            this.showLogin = true
         },
     },
     mounted() {
-        member.$on("plsLogin", this.unMember);
+        member.$on('plsLogin', this.unMember)
     },
     created() {
         this.get_mem()
-
-        // fetch('./php/checkMember.php', {
-        //     method: 'POST',
-        //     mode: 'same-origin',
-        //     credentials: 'same-origin',
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //     },
-        // })
-        //     .then((res) => {
-        //         return res.json()
-        //     })
-        //     .then((res) => {
-        //         if (JSON.stringify(res) !== '{}') {
-        //             this.isLogin = true
-        //             this.memberInfo = res
-        //             this.$refs.UserName.innerText = `hi~${res.memName}`
-        //             // console.log(this.memberInfo)
-        //         } else if (JSON.stringify(res) === '{}') {
-        //             this.isLogin = false
-        //         }
-        //     })
-        //     .catch((err) => {
-        //         console.log(err)
-
-        //         console.log('錯誤')
-        //     })
-
-        // member.$emit('memberInfo', this.memberInfo)
-        // console.log('hwader', this.memberInfo)
     },
-    beforeCreate() { },
     template: `
             <nav>
                 <button class="hamburg_btn" ref="hamburg_btn" @click="hamburgHandler">
@@ -271,16 +246,15 @@ Vue.component('my-header', {
                     <div class="hamburg_line line_2"></div>
                     <div class="hamburg_line line_3"></div>
                 </button>
-                <a href="./index.html" class="logo_img"><img class="logo" src="./Images/logo-header.svg" alt="" /></a>
-
+                <a href="./homepage.html" class="logo_img"><img class="logo" src="./Images/logo-header.svg" alt="" /></a>
                 <div class="nav_list" id="header_nav" ref="nav_list">
                     <ul>
                         <a href="./menu_self.html"><img src="./Images/drop-header.svg" alt="" />菜單</a>
                         <a href="./join_list.html"><img src="./Images/drop-header.svg" alt="" />揪團喝</a>
                         <a href="./vote.html"><img src="./Images/drop-header.svg" alt="" />飲品排名</a>
-                        <a href="./share_list.html"><img src="./Images/drop-header.svg" alt="" />分享區</a>
+                        <a href="./share_article.html"><img src="./Images/drop-header.svg" alt="" />分享區</a>
                         <a href="./custom.html"><img src="./Images/drop-header.svg" alt="" />小遊戲</a>
-                        <a href=""><img src="./Images/drop-header.svg" alt="" />關於揪飲</a>
+                        <a href="./brandStory-repair-flex.html"><img src="./Images/drop-header.svg" alt="" />關於揪飲</a>
                     </ul>
                     <div class="user_wrap" v-show="isLogin">
                         <span ref="UserName" class="user"></span>

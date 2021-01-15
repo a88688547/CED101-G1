@@ -10,6 +10,10 @@ body{
     margin:0 auto;
 }
 
+.main input{
+    color:$textColor!important;
+}
+
 // ====進度bar=====
 
 // 尺寸、對齊方式
@@ -158,6 +162,7 @@ body{
 }
 .user{
     width:70%;
+    color:#707070;
     @include H5;
 }
 .username{

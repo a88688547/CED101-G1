@@ -29,9 +29,9 @@ try{
     $group_ord_data->bindValue(":goal_cup", $goal_cup);
     $group_ord_data->execute();
     
-    $group_ord_no = $pdo->lastInsertId();
-    echo json_encode($group_ord_no);
-
+    $GroupNo = $pdo->lastInsertId();
+    echo json_encode($GroupNo);
+    // return $GroupNo;
 }
 catch (PDOException $e) {
     //echo "系統錯誤, 請通知系維護人員~<br>";

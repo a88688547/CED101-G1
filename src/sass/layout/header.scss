@@ -71,12 +71,17 @@ header {
         transition: all 0.5s;
     }
 
+
     .nav_list img {
         margin-right: 10px;
     }
 
     .nav_list .user_logo {
         margin-right: initial;
+        &:hover{
+            opacity: 0.7;
+            transition: all 0.5s;
+        }
     }
 
     .user_logo_img_phone,

@@ -73,7 +73,7 @@ window.addEventListener('load', function () {
                     <div  id="mem_change_info">
                         <div class="tag_title">修改會員資料</div>
                         <div class="mem_img_box">
-                            <div class="mem_img"><img id="image" :src="mem_info[0].mem_img" /></div>
+                            <div class="mem_img"><img id="image" :src="mem_info.mem_img" /></div>
                         </div>
                         <div class="mem_detail_box">
                             <div class="change_img">
@@ -114,7 +114,12 @@ window.addEventListener('load', function () {
       `,
         methods: {
             get_mem: async function () {
-                console.log('get_mem')
+                //判斷是否有 接收到 會員編號，若無 則跳轉頁面
+                if (this.mem_no === undefined) {
+                    location.href = `./homepage.html`
+                }
+
+                // console.log('get_mem')
 
                 // console.log('send2', drinkno)
                 const res = await fetch('./php/mem_getone_member.php', {
@@ -133,9 +138,9 @@ window.addEventListener('load', function () {
                 // 取回res值後，呼叫另一隻函式
                 this.mem_info = res
 
-                this.update_mem_name = this.mem_info[0].mem_name
-                this.update_mem_email = this.mem_info[0].mem_email
-                this.update_mem_phone = this.mem_info[0].mem_phone
+                this.update_mem_name = this.mem_info.mem_name
+                this.update_mem_email = this.mem_info.mem_email
+                this.update_mem_phone = this.mem_info.mem_phone
             },
 
             //上傳照片 及 更改 預覽圖片
@@ -163,7 +168,7 @@ window.addEventListener('load', function () {
                 // 上傳會員照片 -----------------------
                 let file_2 = document.getElementById('upfile').files[0]
                 let formData = new FormData()
-                formData.append('mem_no', this.mem_info[0].mem_no)
+                formData.append('mem_no', this.mem_info.mem_no)
                 formData.append('upFile', file_2)
 
                 //=====ajax
@@ -195,7 +200,7 @@ window.addEventListener('load', function () {
                 }
 
                 //判斷 舊密碼是否正確
-                if (this.update_mem_oldPsw != this.mem_info[0].mem_psw) {
+                if (this.update_mem_oldPsw != this.mem_info.mem_psw) {
                     bus.$emit('getAlert', '請輸入正確密碼')
                     return
                 }
@@ -222,8 +227,8 @@ window.addEventListener('load', function () {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        mem_no: this.mem_info[0].mem_no,
-                        mem_old_psw: this.mem_info[0].mem_psw,
+                        mem_no: this.mem_info.mem_no,
+                        mem_old_psw: this.mem_info.mem_psw,
                         mem_name: this.update_mem_name,
                         mem_email: this.update_mem_email,
                         mem_new_psw: this.update_mem_newPsw,
@@ -249,22 +254,28 @@ window.addEventListener('load', function () {
             },
         },
         created() {
-            member.$on('memberInfo', this.changememno)
+            // member.$on('memberInfo', this.changememno)
             // alert(this.get_mem())
             // this.get_mem()
-            this.get_mem()
+            // setTimeout(this.get_mem(), 1000)
+            // this.get_mem()
         },
         mounted() {
             // alert(this.get_mem(this.mem_no))
             // this.get_mem(this.mem_no)
             // this.get_mem(this.mem_no)
-            // this.get_mem()
+            this.get_mem()
             // this.get_mem()
         },
         updated() {
             // this.get_mem(this.mem_no)
             // this.get_mem()
             // this.get_mem()
+        },
+        watch: {
+            mem_no() {
+                this.get_mem()
+            },
         },
     })
     //-----------------------------------------------------
@@ -349,7 +360,8 @@ window.addEventListener('load', function () {
         methods: {
             change(group_ord_no) {
                 // 改變上層的 content
-                this.$emit('changegroupordno', group_ord_no)
+                // this.$emit('changegroupordno', group_ord_no)
+                location.href = `./join_step2.html?group_ord_no=${group_ord_no}`
             },
             //取得 已揪團的 訂單資訊
             get_mem: async function (mem_no) {
@@ -659,7 +671,7 @@ window.addEventListener('load', function () {
             this.get_mem(this.group_ord_no)
             this.get_group_ord_item(this.group_ord_no)
         },
-        mounted() { },
+        mounted() {},
     })
     //-----------------------------------------------------
 
@@ -1038,7 +1050,7 @@ window.addEventListener('load', function () {
             this.get_mem(this.group_ord_no)
             this.get_group_ord_item(this.mem_no, this.group_ord_no)
         },
-        mounted() { },
+        mounted() {},
     })
     //-----------------------------------------------------
 
@@ -1228,7 +1240,7 @@ window.addEventListener('load', function () {
             this.get_mem(this.group_ord_no)
             this.get_group_ord_item(this.mem_no, this.group_ord_no)
         },
-        mounted() { },
+        mounted() {},
     })
     //-----------------------------------------------------
 
@@ -1512,7 +1524,7 @@ window.addEventListener('load', function () {
             this.get_mem()
             this.get_group_ord_item()
         },
-        mounted() { },
+        mounted() {},
     })
     //-----------------------------------------------------
 
@@ -1655,16 +1667,40 @@ window.addEventListener('load', function () {
                 this.mem_no = data.memNo
 
                 if ((this.mem_no === undefined) | (this.mem_no === '')) {
-                    location.href = `./index.html`
+                    location.href = `./homepage.html`
                 } else {
                 }
+            },
+            //進行會員判斷
+            checked_mem(data) {
+                // console.log('會員判斷')
+                // if ((data != '') | (data != undefined)) {
+                //     this.mem_no = data.memNo
+                // } else {
+                //     location.href = `./homepage.html`
+                // }
+                this.mem_no = data.memNo
             },
         },
         components: {},
         created() {
-            member.$on('getmemberInfo', this.changememno)
+            // member.$on('getmemberInfo', this.changememno)
+            // console.log('創造')
+            // this.checked_mem()
         },
-        mounted() { },
-        beforeCreate() { },
+        mounted() {
+            // this.checked_mem()
+            // this.content = 'mem_info'
+        },
+        beforeUpdate() {
+            // this.content = 'mem_info'
+        },
+        beforeCreate() {},
+        watch: {
+            mem_no() {
+                // console.log('監控')
+                // this.checked_mem()
+            },
+        },
     })
 })

@@ -20,7 +20,7 @@ try {
 
     } else { //找得到
         //取回一筆資料
-        $memberdatarow = $memberdata->fetchAll(PDO::FETCH_ASSOC);
+        $memberdatarow = $memberdata->fetch(PDO::FETCH_ASSOC);
 
         //送出json字串
         echo json_encode($memberdatarow);

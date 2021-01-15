@@ -64,6 +64,7 @@ Vue.component('my-header', {
                 this.$refs.errorLogin.innerText = '請輸入正確信箱!!'
                 return
             }
+
             await fetch('./php/login.php', {
                 method: 'POST',
                 mode: 'same-origin',
@@ -89,6 +90,8 @@ Vue.component('my-header', {
                         this.loginPassword = ''
                         this.isLogin = true
                         this.showLogin = false
+                        member.$emit('memberInfo', this.memberInfo)
+                        this.$emit('changemem', this.memberInfo)
                         alert('登入成功')
                         // console.log(res);
                     } else {
@@ -100,8 +103,10 @@ Vue.component('my-header', {
                     console.log(err)
                     console.log('失敗')
                 })
+
             await member.$emit('memberInfo', this.memberInfo)
-            location.reload()
+            this.$emit('checked_mem', this.memberInfo)
+            // //location.reload()
         },
         signMember() {
             let isEmail = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4})*$/
@@ -186,7 +191,6 @@ Vue.component('my-header', {
                     console.log('錯誤')
                     // console.log(err)
                 })
-
         },
         hamburgHandler() {
             this.$refs.hamburg_btn.classList.toggle('btn-on')
@@ -222,14 +226,15 @@ Vue.component('my-header', {
                     console.log('錯誤')
                 })
 
-            await member.$emit('memberInfo', this.memberInfo)
+            member.$emit('memberInfo', this.memberInfo)
+            await this.$emit('checked_mem', this.memberInfo)
         },
         unMember() {
-            this.showLogin = true;
+            this.showLogin = true
         },
     },
     mounted() {
-        member.$on("plsLogin", this.unMember);
+        member.$on('plsLogin', this.unMember)
     },
     created() {
         this.get_mem()

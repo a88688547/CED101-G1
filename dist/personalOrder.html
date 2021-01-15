@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>自己訂-建立訂單</title>
+    <script src="./vendors/jQuery/js/jquery-3.5.1.min.js"></script>
     <script src="./vendors/Vue/vue.js"></script>
-    <script src="./vendors/jQuery/js/jquery-3.5.1.js"></script>
     <script src="./js/header_footer.js"></script>
-    <script src="./js/self.js"></script>
+
 
     <link rel="stylesheet" href="./css/style.css" />
-    <link rel="stylesheet" href="./css/personalOrder.css" />
+    <link rel="stylesheet" href="./css/personalorder.css" />
     <link rel="stylesheet" href="./css/list_data.css">
 
 </head>
@@ -20,75 +20,21 @@
     <header id="header">
         <my-header></my-header>
     </header>
-
-    <div class="main">
-        <!-- ==============進度條================= -->
-        <div class="step_box">
-            <ul class="step_ball">
-                <li>
-                    <img src="./Images/join_list/step_1_icon.svg" alt="">
-                    <h5>1.建立揪團</h5>
-                </li>
-                <li>
-                    <img src="./Images/join_list/step_3_icon.svg" alt="">
-                    <h5>2.訂單頁面</h5>
-                </li>
-                <li>
-                    <img src="./Images/join_list/step_4_icon.svg" alt="">
-                    <h5>3.訂單完成</h5>
-                </li>
-            </ul>
-        </div>
-
-        <!-- 訂購資訊 -->
-        <div id="order_list">
-            <div class="group_order_done_person">
-                <div class="group_order_done_person_upbox">
-                    <div class="group_order_done_person_infobox">
-                        <div class="group_order_done_person_img"><img src="./Images/user_big.svg" /></div>
-                        <div class="group_order_done_person_name">董董</div>
-                    </div>
-                    <div class="group_order_done_person_total">
-                        <div class="group_order_done_person_total_cup">2杯</div>
-                        <div class="group_order_done_person_total_price">$115</div>
-                    </div>
-                </div>
-                <div class="group_order_done_person_downbox">
-                    <!-- 購買的 飲料 -->
-                    <div class="group_order_done_person_drink">
-                        <div class="group_order_done_person_drink_title">珍珠奶茶-大杯</div>
-                        <div class="group_order_done_person_drink_note">少冰/微糖/加珍珠/$65/1杯</div>
-                        <button class="order_delete_btn">刪除</button>
-                    </div>
-                    <div class="group_order_done_person_drink">
-                        <div class="group_order_done_person_drink_title">紅茶-大杯</div>
-                        <div class="group_order_done_person_drink_note">去冰/無糖/加QQ/$50/1杯</div>
-                        <button class="order_delete_btn">刪除</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- 應付金額 -->
-        <div class="money">
-            <div>應付金額</div>
-            <div class="line">
-                <hr>
-            </div>
-            <div>$.<span id="total">115</span></div>
-        </div>
-        <!-- 按鈕 -->
-        <div class="bottombutton">
-            <div><input type="button" value="繼續加購" class="back" onclick="window.history.go(-1)"></div>
-            <div><input type="button" value="建立訂單" class="go" onclick="javascript:location.href='orderPayment.html'">
-            </div>
+    <!-- ==============進度條================= -->
+    <div id="app">
+        <top></top>
+        <div class="main">
+            <order></order>
         </div>
     </div>
-
     <footer id="footer">
         <my-footer></my-footer>
     </footer>
+
     <script src="./layout/footer.vue"></script>
     <script src="./layout/header.vue"></script>
+    <script src="./js/personalorder.js"></script>
+
 </body>
 
 </html>

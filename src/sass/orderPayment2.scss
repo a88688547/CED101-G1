@@ -168,6 +168,7 @@ body {
 
 .user {
     width: 70%;
+    color: #707070;
     @include H5;
 }
 
@@ -555,13 +556,70 @@ body {
     }
 }
 
+// 結帳金額
+.finaltotal{
+    width:90%;
+    margin:0 auto;
+}
+
+.group_order_done_total_box{
+    font-size: $fontsize_P1;
+    letter-spacing: 2px;
+  
+    div{
+      margin: 10px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+  .group_order_done_dis{
+    border-bottom: 1px solid rgb(173, 173, 173);
+  }
+  
+  .group_order_done_finaltotal{
+    font-size: $fontsize_H3;
+    color: $textColor;
+    font-weight: bold;
+    border-top: 2px solid $textColor;
+  }
+  
+  //RWD 字體改變大小
+  
+  @media(min-width:576px){
+    .group_order_done_row{
+      width: 50%;
+    }
+    .group_order_done_groupname{
+      font-size: $fontsize_H3;
+    }
+    .group_order_done_info{
+      font-size: $fontsize_H5;
+    }
+    .group_order_done_person_name,.group_order_done_person_total{
+      font-size: $fontsize_H4;
+    }
+  
+  }
+  
+  @media(min-width:768px){
+    .group_order_done_row{
+      width: 33.3%;
+    }
+    .group_order_done_person_drink,
+    .group_order_done_total,
+    .group_order_done_dis{
+      font-size: $fontsize_H6;
+    }
+  }
+
 // 燈箱
 .orderModal {
     position: fixed;
     top: 0;
     left: 0;
-    opacity: 0;
-    z-index: -1;
+    // opacity: 0;
+    z-index: 99;
     transition: opacity 1s;
     background-color: hsla(0, 2%, 25%, .5);
     width: 100%;
@@ -578,14 +636,14 @@ body {
     box-shadow: 0 0 5px #ddd;
 }
 
-.orderModal.-on {
-    opacity: 1;
-    z-index: 999;
-}
+// .orderModal.-on {
+//     opacity: 1;
+//     z-index: 999;
+// }
 
-.orderModal.-opacity-zero {
-    opacity: 0;
-}
+// .orderModal.-opacity-zero {
+//     opacity: 0;
+// }
 
 .close {
     position: absolute;

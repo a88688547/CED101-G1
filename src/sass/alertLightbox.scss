@@ -61,16 +61,6 @@
             margin-top: 94px;
         }
 
-        span:nth-child(1) {
-            color: #B3925B;
-            font-weight: bold;
-        }
-
-        span:nth-child(2) {
-            color: red;
-            font-weight: bold;
-
-        }
     }
 
     div:nth-child(2) {
@@ -78,8 +68,84 @@
         color: #fff;
         border-radius: 10px;
         overflow: hidden;
-        padding: 10px 10px;
+        padding: 8px 10px 6px 10px;
         cursor: pointer;
 
     }
+}
+
+
+
+//檢舉燈箱
+
+.report {
+    .alertLightboxWrapper {
+
+        .alertLightbox {
+
+            @media screen and (max-width:576px) {
+                padding: 32px 50px 20px 50px;
+            }
+
+            div:first-child {
+                margin-top: 27px;
+
+
+                @media screen and (max-width:576px) {
+                    margin-top: 0px;
+                }
+
+            }
+
+            ul {
+                li {
+                    // border: 1px solid $textColor;
+                    margin: 15px 0;
+                    width: 100%;
+                    // padding: 12px;
+                    // font-size: 16px;
+                    // border-radius: 50px;
+                    // cursor: pointer;
+                    // text-align: center;
+
+                    input {
+                        display: none;
+
+                        &:checked+label {
+                            background-color: $textColor;
+                            color: white;
+                        }
+                    }
+
+                    label {
+                        cursor: pointer;
+                        width: 100%;
+                        border: 1px solid $textColor;
+                        padding: 12px;
+                        font-size: 16px;
+                        border-radius: 50px;
+                        cursor: pointer;
+                        text-align: center;
+                        display: inline-block;
+
+                        &:hover {
+                            background-color: $textColor;
+                            color: white;
+                        }
+                    }
+
+
+                }
+            }
+        }
+    }
+}
+
+#sure {
+    background-color: #013B4F;
+    color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 8px 10px 6px 10px;
+    cursor: pointer;
 }

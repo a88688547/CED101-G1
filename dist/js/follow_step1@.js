@@ -188,30 +188,30 @@ Vue.component('orderlist', {
 
             //drinkItem內有幾個品項就做幾次，逐一把drinkItem內的value拿出來放進物件data，最後再把物件塞進陣列
             for (let i = 0; i < drinkItemLength; i++) {
-                //要放在陣列裡的物件data
-                let postOrderObj = {
-                    group_ord_no: web_group_no,
-                    mem_no: this.mem_info.memNo,
-                    drink_no: '',
-                    one_price: '',
-                    ord_qua: '',
-                    total_price: '',
-                    set_info: '',
-                    cup_no: '',
-                }
                 //把key值取出，分割字串，再把值個別放進物件的data內
                 let keyStringArray = drinkItemKeys[i].substr(0, drinkItemKeys[i].length).split(',')
-                postOrderObj['drink_no'] = keyStringArray[6]
-                postOrderObj['one_price'] = keyStringArray[5]
-                postOrderObj['ord_qua'] = drinkItemValues[i]
-                postOrderObj['total_price'] = postOrderObj['one_price'] * postOrderObj['ord_qua']
-                //處理當沒有加料時的字串顯示
-                if (keyStringArray[4] == "") {
-                    postOrderObj['set_info'] = `${keyStringArray[2]},${keyStringArray[3]},${keyStringArray[1]},$${keyStringArray[5]}`
-                } else {
-                    postOrderObj['set_info'] = `${keyStringArray[2]},${keyStringArray[3]},加${keyStringArray[4]},${keyStringArray[1]},$${keyStringArray[5]}`
+
+                //飲料配置處理
+                let set_info_text = ""
+                for (let j = 4; j < keyStringArray.length; j++) {
+                    set_info_text += `${keyStringArray[j]},`
                 }
-                postOrderObj['cup_no'] = keyStringArray[1]
+                set_info_text += `${keyStringArray[2]},$${keyStringArray[3]}`
+
+                //要放在陣列裡的物件data
+                let postOrderObj = {
+                    group_ord_no: web_group_no, //團號
+                    mem_no: this.mem_info.memNo, //會員編號
+                    drink_no: keyStringArray[1], //飲料編號
+                    one_price: keyStringArray[3], //單杯價格
+                    ord_qua: drinkItemValues[i], //該品項杯數
+                    total_price: keyStringArray[3] * drinkItemValues[i], //總價格
+                    set_info: set_info_text, //飲料配置
+                    cup_no: keyStringArray[2], //大杯小杯
+                }
+
+
+
                 //把物件塞進陣列
                 dataArray.push(postOrderObj)
             }
@@ -266,7 +266,7 @@ Vue.component('orderlist', {
                 objKeys = 0
             }
             for (let i = 0; i < objKeys.length; i++) {
-                theTotalPrice += objKeys[i].substr(0, objKeys[i].length).split(',')[5] * Object.values(this.drinkItem)[i]
+                theTotalPrice += objKeys[i].substr(0, objKeys[i].length).split(',')[3] * Object.values(this.drinkItem)[i]
             }
 
             return theTotalPrice
@@ -374,8 +374,8 @@ Vue.component('personDrink', {
     props: ['key_', 'value_'],
     data() {
         return {
-            //每個飲品的數量
-            num: this.value_,
+
+            num: this.value_, //每個飲品的數量
             alertLightbox: false,
         }
     },
@@ -428,28 +428,26 @@ Vue.component('personDrink', {
             return this.propsKey[0]
         },
         cup() {
-            return this.propsKey[1]
-        },
-        sugar() {
             return this.propsKey[2]
         },
-        ice() {
+        price() {
             return this.propsKey[3]
         },
-        ingredient() {
-            return this.propsKey[4]
-        },
-        price() {
-            return this.propsKey[5]
-        },
+        setItem() {
+            //飲料配置處理
+            let set_info_text = ""
+            for (let j = 4; j < this.propsKey.length; j++) {
+                set_info_text += `${this.propsKey[j]}/`
+            }
+            return set_info_text.substring(0, set_info_text.length - 1)
+        }
 
     },
     template: `
     <div class="group_order_done_person_drink">
         <section id="drink_title_wrapper">
             <div class="group_order_done_person_drink_title">{{drink_name}}-{{cup}}</div>
-            <div class="group_order_done_person_drink_note" v-if="ingredient">{{ice}}/{{sugar}}/加{{ingredient}}</div>
-            <div class="group_order_done_person_drink_note" v-else>{{ice}}/{{sugar}}</div>
+            <div class="group_order_done_person_drink_note">{{setItem}}</div>
         </section>
         <section id="num_btn">
             <button @click="handleSub">
@@ -497,26 +495,25 @@ Vue.component('modalPersonDrink', {
             return this.propsKey[0]
         },
         cup() {
-            return this.propsKey[1]
-        },
-        sugar() {
             return this.propsKey[2]
         },
-        ice() {
+        price() {
             return this.propsKey[3]
         },
-        ingredient() {
-            return this.propsKey[4]
-        },
-        price() {
-            return this.propsKey[5]
-        },
+        setItem() {
+            //飲料配置處理
+            let set_info_text = ""
+            for (let j = 4; j < this.propsKey.length; j++) {
+                set_info_text += `${this.propsKey[j]}/`
+            }
+            return set_info_text
+        }
+
     },
     template: `
     <div class="Modal_group_order_done_person_drink">
         <div class="Modal_group_order_done_person_drink_title">{{drink_name}}-{{cup}}</div>
-        <div class="Modal_group_order_done_person_drink_note" v-if="ingredient">{{ice}}/{{sugar}}/加{{ingredient}}/&#36{{price * num}}/{{num}}杯</div>
-        <div class="Modal_group_order_done_person_drink_note" v-else>{{ice}}/{{sugar}}/&#36{{price * num}}/{{num}}杯</div>
+        <div class="Modal_group_order_done_person_drink_note">{{setItem}}&#36{{price * num}}/{{num}}杯</div>
     </div>
     `,
 })

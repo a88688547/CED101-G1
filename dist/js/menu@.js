@@ -2,9 +2,9 @@ const bus = new Vue();
 let storage = sessionStorage;
 let web_group_no = window.location.search.split("=")[1]
 let storage_key = `addItemList_group=${web_group_no}`
-// if (storage[`${storage_key}`] == null) {
-//     storage[`${storage_key}`] = ''
-// }
+if (storage[`${storage_key}`] == null) {
+    storage[`${storage_key}`] = ''
+}
 
 Vue.component('group-info', {
     data() {
@@ -33,6 +33,7 @@ Vue.component('group-info', {
         clearInterval(this.timer)
     },
     methods: {
+        //把秒數隱藏
         showNoSeconds(time) {
             let secondsIndex = time.length - 3
             let noSecondsTime = time.substring(0, secondsIndex)
@@ -49,6 +50,7 @@ Vue.component('group-info', {
         }
     },
     computed: {
+        //處理手機號碼
         phone() {
             let phone1 = this.groupInfo[0].mem_phone.substr(0, 4)
             let phone2 = this.groupInfo[0].mem_phone.substr(4, 3)
@@ -56,10 +58,12 @@ Vue.component('group-info', {
             thePhone = `${phone1}-${phone2}-${phone3}`
             return thePhone
         },
+        //依據目標杯數處理跟團圖片
         group_img() {
             let goal_cup = this.groupInfo[0].goal_cup - 10
             return `./Images/coupon//${goal_cup}off@2x.jpg`
         },
+        //倒數結單時間
         countDown() {
             let endTime = new Date(this.groupInfo[0].deadline_time)
             let endTimeSec = endTime.getTime() //節單時間總毫秒數
@@ -180,13 +184,10 @@ Vue.component('group-info', {
 Vue.component('menu_carshop', {
     data() {
         return {
-            //購物車的飲料總數
-            shopping_num_total: 0,
-            // 飲料類別
-            item_type: [],
-            //現在時間是否早於結單時間，以此判斷是否要前往下一頁
-            intimeCart: true,
-            mem_info: "",
+            shopping_num_total: 0, //購物車的飲料總數
+            item_type: [], // 飲料類別
+            intimeCart: true, //現在時間是否早於結單時間，以此判斷是否要前往下一頁
+            mem_info: "", //登入的會員
         }
     },
     methods: {
@@ -220,7 +221,9 @@ Vue.component('menu_carshop', {
         //若現在時間晚於結單時間，從group_info接收false參數，帶入本身intimeCart
         bus.$on('intimeGoFollow_step1', (intime) => this.intimeCart = intime);
 
+        //從header接收會員的資料
         member.$on('memberInfo', (memberInfo) => this.mem_info = memberInfo)
+
         //後台撈出menu資料
         fetch('./php/menu.php', {
             method: 'GET', // or 'PUT'
@@ -234,10 +237,6 @@ Vue.component('menu_carshop', {
     },
     //網頁重整的時候，購物車按鈕的飲品數會更新
     created() {
-
-        if (storage[`${storage_key}`] == null) {
-            storage[`${storage_key}`] = ''
-        }
         let itemString = storage.getItem(`${storage_key}`);
         let items = itemString.substr(0, itemString.length - 1).split('|');
         if (itemString == '') {
@@ -245,7 +244,6 @@ Vue.component('menu_carshop', {
         } else {
             this.shopping_num_total = items.length
         }
-
 
     },
     template: `
@@ -329,27 +327,25 @@ Vue.component('alert_lightbox', {
 Vue.component('light_box', {
     data() {
         return {
-            // 燈箱飲料名
-            shop_drink_name: "",
-            shop_drink_title_en: "",
-            imgSrc: "",
-            // 燈箱開啟後的飲料金額
-            shop_price: "",
-            // 燈箱開啟後的飲品數量
-            num_feedback: 1,
-            shopBtn_num_feedback: 1,
-            //燈箱關閉
-            closeLightBox: false,
-            //toDoInput父層組件接收大小杯價格的變數
-            task: "",
-            //飲品編號
-            drink_no: "",
-            drinkSet: [],
-
+            shop_drink_name: "", // 燈箱飲料名
+            shop_drink_title_en: "", // 燈箱飲料英文名
+            imgSrc: "", //飲料圖片
+            num_feedback: 1, // 燈箱開啟後的飲品數量
+            shopBtn_num_feedback: 1, //購物車按鈕的飲料數目
+            closeLightBox: false, //燈箱關閉
+            drink_no: "", //飲品編號
+            drinkSet: [], //飲料配置
+            modelArray: [],//飲料配置的v-model
+            drink_small_price: "", //小杯價錢
+            drink_big_price: "", //大杯價錢
+            cup: "", //大小杯價錢的v-model
         }
     },
     computed: {
-
+        // 燈箱開啟後的飲料金額
+        shop_price() {
+            return this.cup * this.num_feedback
+        }
     },
     // 燈箱接收點擊菜單飲品的資料
     mounted() {
@@ -359,13 +355,12 @@ Vue.component('light_box', {
         lightBox_handle_child(item) {
             this.shop_drink_name = item.drink_title_ch
             this.shop_drink_title_en = item.drink_title_en
-            this.shop_price = item.drink_small_price
             this.imgSrc = item.imgSrc
             this.closeLightBox = true
             this.drink_no = item.drink_no
-            //將大小杯價格存入task變數，讓toDoInput父層組件使用
-            this.task = [item.drink_small_price, item.drink_big_price]
-
+            this.drink_small_price = item.drink_small_price
+            this.drink_big_price = item.drink_big_price
+            this.cup = item.drink_small_price
 
             fetch('./php/bs_getall_type_detail.php', {
                 method: 'POST',
@@ -392,40 +387,26 @@ Vue.component('light_box', {
         addToCar() {
             //是否有勾選飲品溫度
             let selectIce = false
-            let ice = document.getElementById('setType2')
-            let iceInput = ice.querySelectorAll('input')
-            //選到飲品溫度的值
-            let selectIceValue
-            for (let i = 0; i < iceInput.length; i++) {
-                if (iceInput[i].checked) {
-                    selectIce = true
-                    selectIceValue = iceInput[i].value
-                }
+            if (this.modelArray[1]) {
+                selectIce = true
             }
 
             //是否有勾選甜度
             let selectSugar = false
-            let sugar = document.getElementById('setType1')
-            let sugarInput = sugar.querySelectorAll('input')
-            //選到甜度的值
-            let selectSugarValue
-            for (let i = 0; i < sugarInput.length; i++) {
-                if (sugarInput[i].checked) {
-                    selectSugar = true
-                    selectSugarValue = sugarInput[i].value
-                }
+            if (this.modelArray[0]) {
+                selectSugar = true
             }
-
-
 
             //都有勾選的話就可以正常新增飲品至購物車
             if (selectIce && selectSugar) {
                 //關閉燈箱
                 this.closeLightBox = false
-                //關閉燈箱後，所有input取消勾選
-                document.querySelectorAll('input').checked = false
+
                 //呼叫存入storage函式
-                this.addToStorage(selectIceValue, selectSugarValue)
+                this.addToStorage()
+
+                //關閉燈箱後，所有input取消勾選
+                this.modelArray = []
 
                 let itemString = storage.getItem(`${storage_key}`);
                 let items = itemString.substr(0, itemString.length - 1).split('|');
@@ -434,40 +415,34 @@ Vue.component('light_box', {
                 //關閉燈箱後，飲品數目預設回1杯
                 this.num_feedback = 1
             } else if (selectIce == false && selectSugar == false) {
-                bus.$emit('getAlert', '請選擇冰度和甜度')
+                bus.$emit('getAlert', `請選擇${this.drinkSet[1].type_title}和${this.drinkSet[0].type_title}`)
             } else if (selectSugar == false) {
-                bus.$emit('getAlert', '請選擇甜度')
+                bus.$emit('getAlert', `請選擇${this.drinkSet[0].type_title}`)
             } else {
-                bus.$emit('getAlert', '請選擇冰度')
+                bus.$emit('getAlert', `請選擇${this.drinkSet[1].type_title}`)
             }
 
         },
-        addToStorage(_selectIceValue, _selectSugarValue) {
-            let cup = document.getElementById('cup')
-            let cupInput = cup.querySelectorAll('input')
+        addToStorage() {
             // 選到大杯還是小杯
             let selectCupValue
-            for (let i = 0; i < cupInput.length; i++) {
-                if (cupInput[i].checked) {
-                    selectCupValue = cupInput[i].parentNode.innerText
-                }
+            if (this.cup > this.drink_small_price) {
+                selectCupValue = "大杯"
+            } else {
+                selectCupValue = "小杯"
             }
 
-            // 選到的加料
-            let selectIngredientValue = ""
-            let ingredient = document.getElementById('setType3')
-            let ingredientInput = ingredient.querySelectorAll('input')
-
-            for (let i = 0; i < ingredientInput.length; i++) {
-                if (ingredientInput[i].checked) {
-                    selectIngredientValue = ingredientInput[i].value
-                    break;
+            //飲料配置
+            let setItem = ""
+            for (let j = 0; j < this.modelArray.length; j++) {
+                if (this.modelArray[j]) {
+                    setItem += `,${this.modelArray[j]}`
                 }
             }
 
 
             //選擇的飲料項目加成字串存到storage
-            let drinkInDetail_first = `${this.shop_drink_name},${selectCupValue},${_selectSugarValue},${_selectIceValue},${selectIngredientValue},${this.shop_price},${this.drink_no}|`
+            let drinkInDetail_first = `${this.shop_drink_name},${this.drink_no},${selectCupValue},${this.cup}${setItem}|`
             let drinkInDetail = ""
             for (let i = 1; i <= this.num_feedback; i++) {
                 drinkInDetail += drinkInDetail_first
@@ -475,13 +450,10 @@ Vue.component('light_box', {
             storage[`${storage_key}`] += `${drinkInDetail}`
 
         },
-        //燈箱內飲料杯數*單價的總價錢
-        addTask(item_num) {
-            this.shop_price = item_num
-        },
+
         //關閉燈箱，把input全部取消勾選，飲品數量變成1
         cancel_shop() {
-            document.querySelectorAll('input').checked = false
+            this.modelArray = []
             this.closeLightBox = false
             this.num_feedback = 1
         },
@@ -498,7 +470,7 @@ Vue.component('light_box', {
             return show
         }
     },
-    // v-if="closeLightBox"
+
     template: `
     <!-- v-if 控制開關燈箱 -->
     <div id="light_box_wrapper" v-if="closeLightBox">
@@ -518,17 +490,20 @@ Vue.component('light_box', {
             <div class="drink_set">
                 <div class="set_title"><img src="./Images/drop-3.svg" alt="" /><span>大小</span></div>
                 <div id="cup" class="set_item">
-                    <!-- toDoInput父層組件, toDoInputPrice 由上往下傳的參數名稱, toDoInputNum 由下往上傳的參數名稱-->
-                    <toDoInput :toDoInputPrice ="task" @toDoInputNum="addTask"></toDoInput>
+                    <div>
+                        <label for="medium_cup"><input type="radio" :value="drink_small_price" id="medium_cup" v-model="cup"/>中杯</label>
+                        <label for="large_cup"><input type="radio" :value="drink_big_price" id="large_cup"  v-model="cup"/>大杯</label>
+                    </div>
+                    
                 </div>
             </div>
             
             <!-- 冰度甜度配料 -->
-            <div class="drink_set" v-for="set in drinkSet" :key="set.type_no">
+            <div class="drink_set" v-for="(set,index) in drinkSet" :key="set.type_no">
                 <div class="set_title" v-if="showSetTitle(set)"><img src="./Images/drop-3.svg" alt="" /><span>{{set.type_title}}</span></div>
-                 <div class="set_item" :id="'setType' + set.type_no">
+                 <div class="set_item">
                     <div v-for="setInput in set.detail_title_list" :key="setInput.detail_no">
-                        <div v-if="setInput.ischecked"><input type="radio" :value="setInput.detail_title" :id="setInput.detail_no" :name="setInput.type_no" /><label :for="setInput.detail_no">{{setInput.detail_title}}</label></div>
+                        <div v-if="setInput.ischecked"><input type="radio" :value="setInput.detail_title" :id="setInput.detail_no" v-model="modelArray[index]" /><label :for="setInput.detail_no">{{setInput.detail_title}}</label></div>
                     </div>
                 </div>
             </div>
@@ -545,7 +520,7 @@ Vue.component('light_box', {
                 <!-- 新增至購物車 -->
                 <div id="num_btn_text">
                     <button @click="addToCar">新增<span>{{num_feedback}}</span>杯飲品至購物車<span>$<span
-                                id="shop_price">{{shop_price * num_feedback}}</span></span></button>
+                                id="shop_price">{{shop_price}}</span></span></button>
                 </div>
             </div>
         </div>
@@ -555,22 +530,7 @@ Vue.component('light_box', {
 
 })
 
-Vue.component('toDoInput', {
-    props: ['toDoInputPrice'],
-    template: `
-    <div>
-    <!-- input的value接收toDoInputPrice大小杯的價錢 -->
-    <label for="medium_cup"><input type="radio"  @change="chooseSize($event)" :value="toDoInputPrice[0]" id="medium_cup" name="cup" checked/>中杯</label>
-    <label for="large_cup"><input type="radio"  @change="chooseSize($event)" :value="toDoInputPrice[1]" id="large_cup" name="cup" />大杯</label>
-    </div>
-    `,
-    methods: {
-        //選擇大小杯，把input的value值往上傳
-        chooseSize(e) {
-            this.$emit('toDoInputNum', e.target.value)
-        },
-    }
-})
+
 let app = new Vue({
     el: "#app",
 })

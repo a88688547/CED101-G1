@@ -262,7 +262,7 @@ body {
 #drink_light_box {
     display: flex;
     flex-direction: column;
-    max-width: 400px;
+    max-width: 430px;
     width: 95%;
     max-height: 90vh;
     margin: 0 auto;
@@ -324,14 +324,14 @@ body {
         color: $textColor;
     }
 
-    #shop_drink_name_en {
+    #shop_drink_title_en {
         @include P2;
         align-self: center;
     }
 }
 
 .drink_set {
-    margin-top: 25px;
+    margin-top: 15px;
 
     .set_title {
         @include H5;
@@ -355,25 +355,25 @@ body {
 
             input {
                 margin-right: 5px;
+                cursor: pointer;
             }
 
             label {
                 padding-top: 8px;
                 display: inline-block;
                 margin-right: 5px;
+                cursor: pointer;
             }
         }
+
 
     }
 }
 
-.drink_set:nth-child(2) {
-    padding-top: 15px;
-}
+
 
 #num_btn_wrapper {
     padding-top: 25px;
-    margin-top: 15px;
     border-top: 1px solid #707070;
     display: flex;
     justify-content: space-between;

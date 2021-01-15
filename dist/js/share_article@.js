@@ -125,6 +125,8 @@ Vue.component('article_box', {
             alertText: "", //警示視窗內的提示字
             artBoxData: "",
             parentReport: false,
+            reportData: "",
+
         }
     },
 
@@ -218,6 +220,15 @@ Vue.component('article_box', {
         parentGetCloseReport() {
             this.parentReport = false
         },
+        sendReport(_report_no, _msg_or_art) {
+            this.parentReport = true
+            this.reportData = {
+                mem_no: this.mem_no,
+                report_no: _report_no,
+                msg_or_art: _msg_or_art,
+            }
+        },
+
 
     },
 
@@ -264,6 +275,7 @@ Vue.component('article_box', {
             }
         },
 
+
     },
     template: `
     <div class="article_box">
@@ -307,6 +319,9 @@ Vue.component('article_box', {
                         <div class="like_img"><img :src="heart"></div>
                         <div>喜歡</div>
                     </div>
+                    <div class="msg_action" id="art_report">
+                        <div class="msg_report" @click="sendReport(item,'art')">檢舉</div>
+                    </div>
                 </div>
             </div>
             <div class="mseeage_box" v-for="data in artMsgdata" :key="data.msg_no">
@@ -325,7 +340,7 @@ Vue.component('article_box', {
                     </div>
 
                     <div class="msg_action">
-                        <div class="msg_report" @click="parentReport = true">檢舉</div>
+                        <div class="msg_report" @click="sendReport(data.msg_no,'msg')">檢舉</div>
                     </div>
 
                 </div>
@@ -352,7 +367,7 @@ Vue.component('article_box', {
             <alert_lightbox :parentAlert_ = "parentAlert" :_alertText="alertText" @childSendCloseAlert="parentGetCloseAlert"></alert_lightbox>
 
 
-            <report_lightbox :parentReport_ = "parentReport" @childSendCloseReport="parentGetCloseReport"></report_lightbox>
+            <report_lightbox :parentReport_ = "parentReport" :reportData_="reportData" @childSendCloseReport="parentGetCloseReport"></report_lightbox>
         </section>
     </div>
     `,
@@ -407,32 +422,51 @@ Vue.component('alert_lightbox', {
     `,
 })
 
-
+//檢舉燈箱
 Vue.component('report_lightbox', {
     //接收來自上層是"否開啟警示視窗"及"視窗內文字"的參數
-    props: ["parentReport_"],
+    props: ["parentReport_", "reportData_"],
     data() {
         return {
-            reasonText: ""
+            reasonText: "",
+            noChoose: false,
+            x: {},
         }
     },
     methods: {
         //點選關閉視窗
         closeReportLightbox() {
-            this.$emit('childSendCloseReport', "close")
+            this.$emit('childSendCloseReport')
+            this.reasonText = ""
         },
 
         sureToDo() {
-            await fetch('php/postLookArt.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    reasonText: this.reasonText,
-                }),
-            })
+            if (!this.reasonText) {
+                this.noChoose = true
+            } else {
+                let dt = new Date()
+                let now = `${dt.getFullYear()}-${dt.getMonth() + 1}-${dt.getDate()} ${dt.getHours()}:${dt.getMinutes()}:${dt.getSeconds()}`
+                let theReportData = {
+                    mem_no: this.reportData_.mem_no,
+                    report_no: this.reportData_.report_no,
+                    reason: this.reasonText,
+                    reportTime: now,
+                    msg_or_art: this.reportData_.msg_or_art,
+                }
 
+
+                fetch('php/postReport.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(theReportData),
+                })
+
+
+                this.$emit('childSendCloseReport')
+                this.reasonText = ""
+            }
         },
     },
     computed: {
@@ -440,10 +474,22 @@ Vue.component('report_lightbox', {
         reportLightbox() {
             return this.parentReport_
         },
-        // //警示視窗內的文字，
-        // alertText() {
-        //     return this._alertText
-        // }
+        reportReason() {
+            if (this.reportData_.msg_or_art == "msg") {
+                return {
+                    reason1: "此留言與該文章不相關",
+                    reason2: "此留言為不當發言",
+                    reason3: "此留言帶有污辱性文字",
+                }
+            } else {
+                return {
+                    reason1: "該文章為不實訊息",
+                    reason2: "該文章含有暴力、色情內容",
+                    reason3: "該文章帶有仇視言論",
+                }
+            }
+        },
+
     },
     template: `
     <div class="alertLightbox_black report" v-if="reportLightbox">
@@ -452,26 +498,19 @@ Vue.component('report_lightbox', {
             <div class="alertLightbox" >
                 <div>檢舉原因</div>
                 <ul>
-                    <li> 
-                    <input type="radio" name="reason" id="reason1" v-model="reasonText" value="此留言與該文章不相關">
-                    <label for="reason1">此留言與該文章不相關</label>
-                    </li>
-                    <li> 
-                    <input type="radio" name="reason" id="reason2" v-model="reasonText" value="此留言為不當發言">
-                    <label for="reason2">此留言為不當發言</label>
-                    </li>
-                    <li> 
-                    <input type="radio" name="reason" id="reason3" v-model="reasonText" value="此留言帶有污辱性文字">
-                    <label for="reason3">此留言帶有污辱性文字</label>
+                    <li v-for="(value,key) in reportReason"> 
+                    <input type="radio" name="reason" :id="key" v-model="reasonText" :value="value" @change="noChoose = false">
+                    <label :for="key">{{value}}</label>
                     </li>
                 </ul>
                 <div @click="sureToDo" id="sure">確定</div>
+                <span id="hint" v-if="noChoose">請選擇一個!</span>
             </div>
         </div>
     </div>
     `,
 })
-//檢舉燈箱
+
 
 new Vue({
     el: "#app"

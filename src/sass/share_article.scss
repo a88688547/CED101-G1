@@ -478,6 +478,21 @@ main {
         }
     }
 
+    #art_report {
+        @include H6;
+        margin-left: 20px;
+        position: relative;
+
+        &::before {
+            content: "";
+            position: absolute;
+            width: 1px;
+            height: 22px;
+            background-color: black;
+            left: 0;
+            transform: translateX(-11px);
+        }
+    }
 
 
 }

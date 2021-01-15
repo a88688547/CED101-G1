@@ -2,13 +2,12 @@
 @import "./base/base.scss";
 @import "./mixins/mixins.scss";
 
-// 飲品排名
+// 飲品分享區塊
 
 .article{
     margin-top: 150px;
-
+    // 標題區塊-------------------------------------
     .title_block{
-
         text-align: center;
         h2{
             @include H2;
@@ -21,12 +20,13 @@
         }
     }
 
+    // 內容區塊定位---------------------------------
     .article_block{
-        // border: 2px solid red;
         display: flex;
         flex-direction: row;
         justify-content: center;
         
+        // 大卡片區塊-----------------------------------------
         .card_big{
             display: none;
             width: 40%;
@@ -45,23 +45,23 @@
                 max-width: 100%;
             }
 
+            // 大卡片資訊區塊--------------------------------------
             .text_block{
-
                 display: flex;
                 justify-content: space-around;
-                padding: 15px 10px 15px 10px;
+                padding: 35px 15px;
 
+                // 文字區塊-----------------------------------------
                 .user_info_block{
-                    // border: 1px solid blue;
                     display: flex;
                     flex-direction: column;
-                    width: 75%;
-
+                    width: 65%;
+                    // 發文時間---------------------
                     p.article_time{
                         @include P2;
                         text-align: right;
                     }
-
+                    // icon區塊----------------------
                     .user_info{
                         display: inline-flex;
                         justify-content: flex-end;
@@ -73,8 +73,6 @@
                             .status_icon{
                                 display: inline-flex;
                                 align-items: center;
- 
-
                                 img{
                                     margin-left: 15px;
                                 }
@@ -83,21 +81,22 @@
                                     margin-left: 5px;
                                 }
                             }
-
                         }
                     }
-        
                 }
-
+                // 卡片標題與段落-------------------------------------
                 .article_descirption{
                     width: 100%;
-
+                    // 大標
                     h6{
                         @include H6;
                         margin-top: 15px;
                         font-weight: bold;
+                        text-overflow: ellipsis;
+                        white-space : nowrap;
+                        overflow: hidden;
                     }
-
+                    // 敘述文字
                     p{
                         @include P1;
                         margin-top: 8px;
@@ -105,18 +104,14 @@
                         white-space : nowrap;
                         overflow: hidden;
                     }
-                }
-                
+                } 
             }
-            
         }
-
+        // 第一張大卡片出現--------------------------------------------------------------
         .card_big:first-child{
             display: block;
         }
-        .card_big{
-            position: relative;
-          }
+        // 卡片hover效果------------------------------------------------------------------
         .card_big::before {
             position: absolute;
             top: 0;
@@ -135,6 +130,7 @@
             -webkit-animation: shine .75s;
             animation: shine .75s;
           }
+        //   hover動畫效果---------------------------------------------------------------------------------------
           @-webkit-keyframes shine {
             100% {
               left: 125%;
@@ -145,7 +141,8 @@
               left: 125%;
             }
           }
-
+        
+        // 小卡片區塊------------------------------------------------------------------------------------------------------------
         .card_small_block{
             width: 40%;
             margin-left: 20px;
@@ -198,27 +195,23 @@
                     100% {
                       left: 125%;
                     }
-                  }
-
-                
+                }
 
                 img{
                     max-width: 100%;
                 }
 
                 .text_block{
-
-                    padding: 10px;
+                    width: 55%;
+                    padding: 15px;
 
                     img.user{
                         width: 20%;
                     }
     
                     .user_info_block{
-                        // border: 1px solid blue;
                         display: flex;
                         flex-direction: column;
-                        width: 80%;
     
                         p.article_time{
                             display: none;
@@ -237,7 +230,6 @@
                                     display: inline-flex;
                                     align-items: center;
      
-    
                                     img{
                                         margin-left: 15px;
                                     }
@@ -247,10 +239,8 @@
                                         margin-left: 5px;
                                     }
                                 }
-    
                             }
                         }
-            
                     }
     
                     .article_descirption{
@@ -261,6 +251,9 @@
                             @include P1;
                             margin-top: 15px;
                             font-weight: bold;
+                            text-overflow: ellipsis;
+                            white-space : nowrap;
+                            overflow: hidden;
                         }
     
                         p{
@@ -273,7 +266,6 @@
                     }
                     
                 }
-
             }
 
             .card_small:nth-child(3){
@@ -281,8 +273,7 @@
             }
         }
     }
-
-
+    // 底部區塊-------------------------------------------------------------------------------
     .bottom_block{
         display: flex;
         justify-content: center;
@@ -313,36 +304,37 @@
     
     }
 }
-// rwd區域-------------------------------------------------
+// rwd區域---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 @media (min-width: 992px) and (max-width: 1199px){
 
     .article{
-
         .article_block{
-
             .card_big{
-
                 display: block;
                 margin-right: 20px;
+                .text_block{
+                    padding: 15px;
+                }
+                // user圖片大小調整
+                img.user{
+                    width: 25%;
+                }
             }
 
             .card_big:nth-child(3){
                 margin-right: 0px;
             }
- 
+            // 小卡片消失---------------------------------
             .card_small_block{
                 display: none;
             }
         }
-
     }
-
 }
 
 @media (min-width: 576px) and (max-width: 991px){
 
     .article{
-
         .title_block{
             h2{
               @include H3;
@@ -355,7 +347,6 @@
         }
         
         .article_block{
-
             flex-direction: column;
             align-items: center;
 
@@ -365,9 +356,14 @@
                 margin-bottom: 30px;
 
                 .text_block{
+                    padding: 15px;
                     img{
-                        width: 26%;
+                        width: 25%;
                         margin-right: 10px;
+                    }
+
+                    img.user{
+                        width: 15%;
                     }
 
                     .user_info_block{
@@ -376,19 +372,8 @@
                             @include P3;
                         }
     
-                        .user_info{
-                            
-                            .user_status{
-                                
-                                .status_icon{
-                                  
-                                    p.number{
-                                        @include P2;
-
-                                    }
-                                }
-    
-                            }
+                        .user_info.user_status.status_icon.status_icon p.number{
+                            @include P2;
                         }
             
                     }
@@ -398,7 +383,6 @@
     
                         h6{
                             @include P1;
-                           
                         }
     
                         p{
@@ -413,15 +397,12 @@
                 display: none;
             }
         }
-
     }
-
 }
 
 @media (max-width: 575px){
 
     .article{
-
         .title_block{
             h2{
               @include H3;
@@ -434,7 +415,6 @@
         }
         
         .article_block{
-
             flex-direction: column;
             align-items: center;
 
@@ -446,29 +426,26 @@
                 .text_block{
                     flex-direction: column;
                     align-items: center;
+                    padding: 15px;
                     img{
-                        width: 26%;
-                        margin-right: 10px;
+                        width: 25%;
+                        margin-right: 5px;
+                    }
+
+                    img.user{
+                        width: 20%;
                     }
 
                     .user_info_block{
-                        
+                        width: 80%;
                         p.article_time{
                             display: none;
                         }
     
                         .user_info{
-                            
-                            .user_status{
-                                
-                                .status_icon{
-                                  
-                                    p.number{
-                                        @include P2;
-
-                                    }
-                                }
-    
+                            justify-content: initial;
+                            .user_status .status_icon p.number{
+                                    @include P2;
                             }
                         }
             
@@ -480,14 +457,12 @@
     
                         h6{
                             @include P1;
-                           
                         }
     
                         p{
                             @include P2;
                         }
-                    }
-                    
+                    }  
                 }
             }
  
@@ -495,9 +470,7 @@
                 display: none;
             }
         }
-
     }
-
 }
 
 

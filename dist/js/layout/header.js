@@ -182,7 +182,7 @@ Vue.component('my-header', {
                     this.isLogin = false
                     this.$refs.UserName.innerText = ''
                     this.memberInfo = ''
-                    // location.href = './homepage.html'
+                    location.href = './homepage.html'
                     sessionStorage.clear()
                     alert('登出成功')
                 })
@@ -225,7 +225,6 @@ Vue.component('my-header', {
 
                     console.log('錯誤')
                 })
-
             await member.$emit('memberInfo', this.memberInfo)
         },
         unMember() {

@@ -445,8 +445,10 @@ section {
 
         .pic {
             width: 100%;
-            height: 200px;
-            background-color: #ccc;
+
+            img {
+                width: 100%;
+            }
         }
 
         .voting-txt {

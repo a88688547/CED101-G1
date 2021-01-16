@@ -24,16 +24,15 @@
             $memRow = $member->fetch(PDO::FETCH_ASSOC);
             //登入成功,將登入者的資料寫入session
             session_start();
-            $_SESSION["memNo"] = $memRow["mem_no"];
-            $_SESSION["memPsw"] = $memRow["mem_psw"];
-            $_SESSION["memName"] = $memRow["mem_name"];
-            $_SESSION["email"] = $memRow["mem_email"];
-            $_SESSION["memStatus"] = $memRow["mem_status"];
-            $_SESSION["memPhone"] = $memRow["mem_phone"];
-            $_SESSION["teaVote"] = $memRow["tea_vote"];
-            $_SESSION["milkVote"] = $memRow["milk_vote"];
-            $_SESSION["fruitVote"] = $memRow["fruit_vote"];
-            $_SESSION["memImg"] = $memRow["mem_img"];
+            $_SESSION["mem_no"] = $memRow["mem_no"];
+            $_SESSION["mem_name"] = $memRow["mem_name"];
+            $_SESSION["mem_email"] = $memRow["mem_email"];
+            $_SESSION["mem_status"] = $memRow["mem_status"];
+            $_SESSION["mem_phone"] = $memRow["mem_phone"];
+            $_SESSION["tea_vote"] = $memRow["tea_vote"];
+            $_SESSION["milk_vote"] = $memRow["milk_vote"];
+            $_SESSION["fruit_vote"] = $memRow["fruit_vote"];
+            $_SESSION["mem_img"] = $memRow["mem_img"];
             // echo "登入成功~!!";
             
             echo json_encode($memRow);

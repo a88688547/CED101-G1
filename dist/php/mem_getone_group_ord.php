@@ -20,7 +20,14 @@ try {
 
     } else { //找得到
         //取回一筆資料
-        $memberdatarow = $memberdata->fetchAll(PDO::FETCH_ASSOC);
+        $memberdatarow = $memberdata->fetch(PDO::FETCH_ASSOC);
+
+        if ($memberdatarow["group_ord_bs"] == 0) {
+            $memberdatarow["ischecked"] = true;
+        } else if ($memberdatarow["group_ord_bs"] == 1) {
+            $memberdatarow["ischecked"] = false;
+        }
+        ;
 
         //送出json字串
         echo json_encode($memberdatarow);

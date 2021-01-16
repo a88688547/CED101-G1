@@ -24,27 +24,27 @@ try {
 
     } else { //找得到
         //取回一筆資料
-        $memberdatarow = $memberdata->fetchAll(PDO::FETCH_ASSOC);
+        $memberdatarow = $memberdata->fetch(PDO::FETCH_ASSOC);
 
-        for ($i = 0; $i < count($memberdatarow); $i++) {
+        // for ($i = 0; $i < count($memberdatarow); $i++) {
 
-            $mem_no = $memberdatarow[$i]["mem_no"];
+        $mem_no = $memberdatarow["mem_no"];
 
-            $sql1 = "select *
+        $sql1 = "select *
                         from group_order_item g
                         join drink d on g.drink_no = d.drink_no
                         where g.group_ord_no = :group_ord_no and g.mem_no = :mem_no
                         order by group_ord_item_no";
-            // $memberdata = $pdo->query($sql);
-            $grouporderitem = $pdo->prepare($sql1);
-            $grouporderitem->bindValue(":mem_no", $mem_no);
-            $grouporderitem->bindValue(":group_ord_no", $group_ord_no);
-            $grouporderitem->execute();
+        // $memberdata = $pdo->query($sql);
+        $grouporderitem = $pdo->prepare($sql1);
+        $grouporderitem->bindValue(":mem_no", $mem_no);
+        $grouporderitem->bindValue(":group_ord_no", $group_ord_no);
+        $grouporderitem->execute();
 
-            $grouporderitemrow = $grouporderitem->fetchAll(PDO::FETCH_ASSOC);
+        $grouporderitemrow = $grouporderitem->fetchAll(PDO::FETCH_ASSOC);
 
-            $memberdatarow[$i]["items"] = $grouporderitemrow;
-        }
+        $memberdatarow["items"] = $grouporderitemrow;
+        // }
 
         //送出json字串
         echo json_encode($memberdatarow);

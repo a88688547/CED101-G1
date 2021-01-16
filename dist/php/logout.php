@@ -1,25 +1,23 @@
 <?php
     session_start();
-    $_SESSION["memNo"] = null;
-    $_SESSION["memPsw"] = null;
-    $_SESSION["memName"] = null;
-    $_SESSION["email"] = null;
-    $_SESSION["memPhone"] = null;
-    $_SESSION["memStatus"] = null;
-    $_SESSION["teaVote"] = null;
-    $_SESSION["milkVote"] = null;
-    $_SESSION["fruitVote"] = null;
-    $_SESSION["memImg"] = null;
-    unset($_SESSION["memNo"]);
-    unset($_SESSION["memPsw"]);
-    unset($_SESSION["memName"]);
-    unset($_SESSION["email"]);
-    unset($_SESSION["memStatus"]);
-    unset($_SESSION["memPhone"]);
-    unset($_SESSION["teaVote"]);
-    unset($_SESSION["milkVote"]);
-    unset($_SESSION["fruitVote"]);
-    unset($_SESSION["memImg"]);
+    $_SESSION["mem_no"] = null;
+    $_SESSION["mem_name"] = null;
+    $_SESSION["mem_email"] = null;
+    $_SESSION["mem_status"] = null;
+    $_SESSION["mem_phone"] = null;
+    $_SESSION["tea_vote"] = null;
+    $_SESSION["milk_vote"] = null;
+    $_SESSION["fruit_vote"] = null;
+    $_SESSION["mem_img"] = null;
+    unset($_SESSION["mem_no"]);
+    unset($_SESSION["mem_name"]);
+    unset($_SESSION["mem_email"]);
+    unset($_SESSION["mem_status"]);
+    unset($_SESSION["mem_phone"]);
+    unset($_SESSION["tea_vote"]);
+    unset($_SESSION["milk_vote"]);
+    unset($_SESSION["fruit_vote"]);
+    unset($_SESSION["mem_img"]);
     // session_destroy();
 
 ?>

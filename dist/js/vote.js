@@ -1,4 +1,11 @@
 // const member = new Vue();
+
+function fomateTime(timeStr) {
+    console.log(timeStr)
+    return dateFns.parse(timeStr, 'YYYY-MM-DD hh:mm:ss', new Date())
+}
+
+
 Vue.component("vote-item", {
     data() {
         return {
@@ -65,10 +72,10 @@ Vue.component("vote-form", {
         return {
             showVote: false,
             type: "vote",
+            group: "",
             textId: ["milkTea", "milkTea1", "milkTea2", "milkTea3", "milkTea4"],
             dirnkVote: [],
             votenow: false,
-            checkRadio: "",
             drinkIndex: "",
             nowVote: "",
             nowVoteCount: "",
@@ -80,10 +87,6 @@ Vue.component("vote-form", {
             textIndex: "",
             members: "",
             voteTime: "",
-            nowTime: "",
-            timer: null,
-            timeNum: 0,
-            votedok: false,
             lightBoxImg: ['./Images/drinkitem_15/drinkitem_15/milktea/milktea_item-1.png',
                 './Images/drinkitem_15/drinkitem_15/tea/tea_item-1.png',
                 './Images/drinkitem_15/drinkitem_15/fruit/Fruit_item-3.png'
@@ -93,38 +96,6 @@ Vue.component("vote-form", {
     mounted() {
         member.$on("lightBoxToggle", this.toggleLightBox);
         member.$on("memberInfo", this.gerMemberInfo);
-        this.timer = setInterval(this.getWatchNum, 1000);
-    },
-    beforeDestroy() {
-        clearInterval(this.timer)
-    },
-    watch: {
-        timeNum() {
-            let date = new Date();
-            let year = date.getFullYear();
-            let month = date.getMonth() + 1;
-            let strDate = date.getDate();
-            let strHours = date.getHours();
-            let strMinutes = date.getMinutes();
-            let srtSeconds = date.getSeconds();
-
-            if (month >= 1 && month <= 9) {
-                month = "0" + month;
-            }
-            if (strDate >= 0 && strDate <= 9) {
-                strDate = "0" + strDate;
-            }
-            if (strHours >= 0 && strHours <= 9) {
-                strHours = "0" + strHours;
-            }
-            if (strMinutes >= 0 && strMinutes <= 9) {
-                strMinutes = "0" + strMinutes;
-            }
-            if (srtSeconds >= 0 && srtSeconds <= 9) {
-                srtSeconds = "0" + srtSeconds;
-            }
-            this.nowTime = `${year}-${month}-${strDate} ${strHours}:${strMinutes}:${srtSeconds}`
-        },
     },
     methods: {
         getNowTime() {
@@ -152,26 +123,39 @@ Vue.component("vote-form", {
                 srtSeconds = "0" + srtSeconds;
             }
 
-            this.voteTime = `${year}-${month}-${strDate} ${strHours}:${strMinutes}:${srtSeconds}`
-        },
-        getWatchNum() {
-            this.timeNum++
+            this.voteTime = `${year}-${month}-${strDate} ${strHours}-${strMinutes}-${srtSeconds}`
         },
         gerMemberInfo(data) {
             this.members = data;
         },
         toggleLightBox(id, index) {
+            this.type = 'vote'
             if (this.members === "") {
                 return member.$emit("plsLogin")
             }
             if (this.voted[index]) {
                 this.type = "voteok";
             }
+            const groupMap = {
+                1: 'milk_vote',
+                2: 'tea_vote',
+                3: 'fruit_vote'
+            }
+            this.group = groupMap[id]
             this.showVote = true;
             this.drinkIndex = index;
             // console.log(parseInt(this.members.teaVote.substring(8, 10)) + 7)
             // console.log(this.nowTime.substring(8, 10))
 
+            const votedTime = fomateTime(this.members[this.group])
+            if (this.members[this.group] && dateFns.isSameWeek(votedTime, new Date())) {
+                this.type = 'done'
+                return
+            }
+            // if (this.members[this.group] && this.nowTime.substring(8, 10) != parseInt(this.members[this.group].substring(8, 10)) + 7) {
+            //     this.type = 'done'
+            //     return
+            // }
 
             fetch("./php/menu1.php", {
                 method: "POST",
@@ -191,16 +175,16 @@ Vue.component("vote-form", {
                     console.log(err);
                 });
 
-            if (this.nowTime.substring(8, 10) != parseInt(this.members.milkVote.substring(8, 10)) + 7) {
-                return (this.votedok = true, this.type = false)
-            }
-            if (this.nowTime.substring(8, 10) != parseInt(this.members.teaVote.substring(8, 10)) + 7) {
-                return (this.votedok = true, this.type = false)
-            }
-            if (this.nowTime.substring(8, 10) != parseInt(this.members.fruitVote.substring(8, 10)) + 7) {
-                return (this.votedok = true, this.type = false)
-            }
-            console.log(this.members.milkVote !== null)
+            // if (this.nowTime.substring(8, 10) != parseInt(this.members.milkVote.substring(8, 10)) + 7) {
+            //     return (this.votedok = true, this.type = false)
+            // }
+            // if (this.nowTime.substring(8, 10) != parseInt(this.members.teaVote.substring(8, 10)) + 7) {
+            //     return (this.votedok = true, this.type = false)
+            // }
+            // if (this.nowTime.substring(8, 10) != parseInt(this.members.fruitVote.substring(8, 10)) + 7) {
+            //     return (this.votedok = true, this.type = false)
+            // }
+            // console.log(this.members.milkVote !== null)
 
 
         },
@@ -220,7 +204,7 @@ Vue.component("vote-form", {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    mem_no: this.members.memNo,
+                    mem_no: this.members.mem_no,
                     vote_count_now: this.dirnkVote[this.activeIndex].vote_count_now,
                     drink_no: this.dirnkVote[this.activeIndex].drink_type_no,
                     vote_time: this.voteTime,
@@ -234,7 +218,10 @@ Vue.component("vote-form", {
                     this.votedName[this.drinkIndex] = this.dirnkVote[
                         this.activeIndex
                     ].drink_title_ch;
+
                     this.type = "voteok";
+                    this.members[this.group] = this.voteTime
+
                     member.$emit("votedSus");
                 })
                 .catch((err) => {
@@ -314,7 +301,7 @@ Vue.component("vote-form", {
                                     <i class="fas fa-times-circle closeBlock"></i>
                                 </div>
                             </div>
-                            <div class="alertLightbox_black" v-if="votedok">
+                            <div class="alertLightbox_black" v-if="type=='done'">
                                 <div class="alertLightboxWrapper">
                                     <div class="alertLightbox" >
                                         <div>本周已經投過票了</div>

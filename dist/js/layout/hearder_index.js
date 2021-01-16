@@ -80,7 +80,6 @@ Vue.component('my-header', {
                 .then(function (data) {
                     return data.json()
                 })
-
                 .then((res) => {
                     if (res != '查無此帳號') {
                         this.memberInfo = res
@@ -91,6 +90,7 @@ Vue.component('my-header', {
                         this.isLogin = true
                         this.showLogin = false
                         member.$emit('memberInfo', this.memberInfo)
+                        window.memberInfo = this.memberInfo
                         this.$emit('changemem', this.memberInfo)
                         alert('登入成功')
                         // console.log(res);
@@ -104,8 +104,8 @@ Vue.component('my-header', {
                     console.log('失敗')
                 })
 
-            await member.$emit('memberInfo', this.memberInfo)
-            this.$emit('checked_mem', this.memberInfo)
+            // await member.$emit('memberInfo', this.memberInfo)
+            // this.$emit('checked_mem', this.memberInfo)
             // //location.reload()
         },
         signMember() {
@@ -214,7 +214,7 @@ Vue.component('my-header', {
                     if (JSON.stringify(res) !== '{}') {
                         this.isLogin = true
                         this.memberInfo = res
-                        this.$refs.UserName.innerText = `hi~${res.memName}`
+                        this.$refs.UserName.innerText = `hi~${res.mem_name}`
                         // console.log(this.memberInfo)
                     } else if (JSON.stringify(res) === '{}') {
                         this.isLogin = false

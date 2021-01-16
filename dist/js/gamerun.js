@@ -93,12 +93,33 @@ function handleComplete(evt, comp) {
 
     let character = sessionStorage.getItem("char");
     let activeCharacter = characters.find((item) => item.name === character);
-    let couponnum = document.querySelector("#couponnum");
-    let num = 8;
+    let couponId = document.querySelector("#coupon");
+    let randomNum = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    let couponlength = 16
     let char = new lib[activeCharacter.name]();
     // let knightGO = new lib.peaCap();
     char.x = 480;
     char.y = 460;
+
+    let closeBtn = document.querySelector(".game-close");
+    closeBtn.addEventListener("click", function () {
+        document.querySelector(".lightbox").style.display = "none";
+    });
+
+
+    function generatepassword() {
+        let coupon = ""
+        let i = 0
+        let randomnumber = 0
+        while (i < couponlength) {
+            i++
+            randomnumber = Math.floor(randomNum.length * Math.random());
+            coupon += randomNum.substring(randomnumber, randomnumber + 1)
+        }
+
+        return coupon
+    }
+    console.log(generatepassword())
     exportRoot.addChild(char);
     // document.querySelector(".hpbar").style.width = `${activeCharacter.hp}%`;
     document.querySelector(".hpbar").style.width = `${hp}%`;
@@ -129,7 +150,7 @@ function handleComplete(evt, comp) {
                         "#totalscore"
                     ).innerText = document.querySelector("#score").innerHTML;
                 }
-                if (document.querySelector("#totalscore").innerText >= 300) {
+                if (document.querySelector("#totalscore").innerText >= 100) {
                     document.querySelector("#getcoupon").style.display = "block";
                 }
 

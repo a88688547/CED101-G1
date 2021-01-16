@@ -4,11 +4,11 @@ window.addEventListener('load', function () {
         data() {
             return {}
         },
-        props: ['show'],
+        props: [],
         template: `
                         <aside>
                           <ul class="tag_list">
-                            <li @click="changeTag($event)" id="manager" >管理員帳號管理</li>
+                            <li class="tag_list_on" @click="changeTag($event)" id="manager" >管理員帳號管理</li>
                             <li @click="changeTag($event)" id="member" >會員帳號管理</li>
                             <li @click="changeTag($event)" id="drink">商品管理</li>
                             <li @click="changeTag($event)" id="drink_type">商品規格管理</li>
@@ -22,6 +22,13 @@ window.addEventListener('load', function () {
             changeTag(event) {
                 //獲取被點擊的 ID值，並傳送至上層 (new Vue)
                 this.$emit('change', event.currentTarget.id)
+
+                //改變 被點擊之樣式
+                document.querySelectorAll('.tag_list>li').forEach(function (e) {
+                    e.classList.remove('tag_list_on')
+                })
+
+                event.currentTarget.classList.add('tag_list_on')
             },
         },
     })
@@ -41,9 +48,9 @@ window.addEventListener('load', function () {
                 lightbox_text: '',
             }
         },
-        props: ['show'],
+        props: [],
 
-        template: `<section v-if=" show === 'manager' ">
+        template: `<section>
                     <h1 class="title">管理員帳號管理</h1>
                     <div class="manager_list_box">
                         <div class="manager_title_row">
@@ -137,9 +144,9 @@ window.addEventListener('load', function () {
                 lightbox_text: '',
             }
         },
-        props: ['show'],
+        props: [],
 
-        template: `<section v-if=" show === 'member' ">
+        template: `<section>
                     <h1 class="title">會員帳號管理</h1>
                     <div class="member_list_box">
                         <div class="member_title_row">
@@ -238,10 +245,10 @@ window.addEventListener('load', function () {
                 lightbox_text: '',
             }
         },
-        props: ['show', 'drinkno', 'lightbox'],
+        props: [, 'drinkno', 'lightbox'],
 
         template: `
-                  <section v-if=" show === 'drink' ">
+                  <section>
                     <h1 class="title">商品管理</h1>
                     <div class="btn_box"><div class="add_btn" @click="additem">新增商品</div></div>
                     <div class="drink_list_box">
@@ -381,9 +388,9 @@ window.addEventListener('load', function () {
                 test: '',
             }
         },
-        props: ['show', 'drinkno', 'lightbox'],
+        props: ['drinkno', 'lightbox'],
         template: `
-                  <section v-if=" show === 'drink_edit' ">
+                  <section >
                     <h1 class="title">商品編輯 -- {{drink_title_ch}}</h1>
                     <div class="return_btn_box"><div class="return_btn" @click="changeTag">返回商品列表</div></div>
                     <div class="drink_edit_box">
@@ -767,10 +774,10 @@ window.addEventListener('load', function () {
                 add_drink_no: '',
             }
         },
-        props: ['show'],
+        props: [],
 
         template: `
-                  <section v-if=" show === 'drink_add' ">
+                  <section >
                     <h1 class="title">新增商品</h1>
                     <div class="return_btn_box"><div class="return_btn" @click="changeTag_drink">返回商品列表</div></div>
                     <div class="drink_edit_box">
@@ -995,10 +1002,10 @@ window.addEventListener('load', function () {
                 types: '',
             }
         },
-        props: ['show', 'type_no'],
+        props: ['type_no'],
 
         template: `
-                  <section v-if=" show === 'drink_type' ">
+                  <section>
                     <h1 class="title">商品規格管理</h1>
                     <div class="btn_box"><div class="add_btn" @click="addtype">新增商品規格</div></div>
                     <div class="type_list_box">
@@ -1053,10 +1060,10 @@ window.addEventListener('load', function () {
                 error_text: '',
             }
         },
-        props: ['show', 'type_no', 'type_title'],
+        props: ['type_no', 'type_title'],
 
         template: `
-                  <section v-if=" show === 'type_edit' ">
+                  <section >
                     <h1 class="title">編輯 商品規格 -- {{type_title}}</h1>
                     <div class="return_btn_box"><div class="return_btn" @click="changeTag">返回 商品規格列表</div></div>
                     <div class="type_detail_box">
@@ -1190,10 +1197,10 @@ window.addEventListener('load', function () {
                 error_text: '',
             }
         },
-        props: ['show'],
+        props: [],
 
         template: `
-                  <section v-if=" show === 'type_add' ">
+                  <section >
                     <h1 class="title">新增商品規格</h1>
                     <div class="return_btn_box"><div class="return_btn" @click="changeTag_drink">返回商品列表</div></div>
                     <div class="type_add_box">
@@ -1257,18 +1264,18 @@ window.addEventListener('load', function () {
                 group_ords: '',
             }
         },
-        props: ['show'],
+        props: [],
 
-        template: `<section v-if=" show === 'group_ord_list' ">
+        template: `<section >
                     <h1 class="title">揪團訂單管理</h1>
                     <div class="group_ord_type_box">
-                        <div @click="group_ord_bs = 0,changecolor(0)">未處理</div>
-                        <div @click="group_ord_bs = 1,changecolor(1)">已完成</div>
+                        <div class="group_ord_type_box_on" @click="group_ord_bs = 0,changecolor($event)">未處理</div>
+                        <div @click="group_ord_bs = 1,changecolor($event)">已完成</div>
                     </div>
                     <div class="group_ord_list_box">
                         <div class="group_ord_title_row">
                             <div>訂單編號</div>
-                            <div>訂單日期時間</div>
+                            <div>期望飲料送達時間</div>
                             <div>外送地址</div>
                             <div>總杯數</div>
                             <div>備註</div>
@@ -1317,11 +1324,7 @@ window.addEventListener('load', function () {
                     return data.json()
                 })
                 // 取回res值後，呼叫另一隻函式
-                this.get_ord_type(res)
-            },
-            // 將值寫入data中
-            get_ord_type: function (data) {
-                this.group_ords = data
+                this.group_ords = res
             },
             //判斷 訂單狀態 回傳 對應值
             checkstate: function (group_ord_bs) {
@@ -1332,15 +1335,12 @@ window.addEventListener('load', function () {
                 }
             },
             //類型 點擊後 切換顏色
-            changecolor: function (num) {
-                let test = document.querySelectorAll('.group_ord_type_box>div').forEach(function (e) {
-                    e.style.color = '#B3925B'
-                    e.style.backgroundColor = '#fff'
+            changecolor: function (event) {
+                document.querySelectorAll('.group_ord_type_box>div').forEach(function (e) {
+                    e.classList.remove('group_ord_type_box_on')
                 })
 
-                let item = document.querySelectorAll('.group_ord_type_box>div')[num]
-                item.style.color = '#fff'
-                item.style.backgroundColor = '#B3925B'
+                event.currentTarget.classList.add('group_ord_type_box_on')
             },
         },
         // template 渲染前 會先去執行以下函式
@@ -1366,10 +1366,10 @@ window.addEventListener('load', function () {
                 item_info: '',
             }
         },
-        props: ['show', 'group_ord_no'],
+        props: ['group_ord_no'],
 
         template: `
-                  <section v-if=" show === 'group_ord_info' ">
+                  <section>
                     <h1 class="title">訂單詳情 ( No: {{group_ord_info[0].group_ord_no}} )</h1>
                     <div class="return_btn_box"><div class="return_btn" @click="changeTag">返回訂單列表</div></div>
                     <div class="group_ord_info_box">
@@ -1557,13 +1557,13 @@ window.addEventListener('load', function () {
                 per_ords: '',
             }
         },
-        props: ['show'],
+        props: [],
 
-        template: `<section v-if=" show === 'per_ord_list' ">
+        template: `<section >
                     <h1 class="title">一般訂單管理</h1>
                     <div class="per_ord_type_box">
-                        <div @click="per_ord_bs = 0,changecolor(0)">未處理</div>
-                        <div @click="per_ord_bs = 1,changecolor(1)">已完成</div>
+                        <div class="per_ord_type_box_on" @click="per_ord_bs = 0,changecolor($event)">未處理</div>
+                        <div  @click="per_ord_bs = 1,changecolor($event)">已完成</div>
                     </div>
                     <div class="per_ord_list_box">
                         <div class="per_ord_title_row">
@@ -1631,15 +1631,12 @@ window.addEventListener('load', function () {
                 }
             },
             //類型 點擊後 切換顏色
-            changecolor: function (num) {
-                let test = document.querySelectorAll('.per_ord_type_box>div').forEach(function (e) {
-                    e.style.color = '#B3925B'
-                    e.style.backgroundColor = '#fff'
+            changecolor: function (event) {
+                document.querySelectorAll('.per_ord_type_box>div').forEach(function (e) {
+                    e.classList.remove('per_ord_type_box_on')
                 })
 
-                let item = document.querySelectorAll('.per_ord_type_box>div')[num]
-                item.style.color = '#fff'
-                item.style.backgroundColor = '#B3925B'
+                event.currentTarget.classList.add('per_ord_type_box_on')
             },
         },
         // template 渲染前 會先去執行以下函式
@@ -1665,10 +1662,10 @@ window.addEventListener('load', function () {
                 item_info: '',
             }
         },
-        props: ['show', 'per_ord_no'],
+        props: ['per_ord_no'],
 
         template: `
-                  <section v-if=" show === 'per_ord_info' ">
+                  <section >
                     <h1 class="title">訂單詳情 ( No: {{per_ord_info[0].per_ord_no}} )</h1>
                     <div class="return_btn_box"><div class="return_btn" @click="changeTag">返回訂單列表</div></div>
                     <div class="per_ord_info_box">
@@ -1857,9 +1854,9 @@ window.addEventListener('load', function () {
                 lightbox_art_report_reason: '',
             }
         },
-        props: ['show'],
+        props: [],
 
-        template: `<section v-if=" show === 'art_report_list' ">
+        template: `<section>
                 <h1 class="title">文章檢舉審核</h1>
                 <div class="art_report_list_box">
                     <div class="art_report_title_row">
@@ -1987,9 +1984,9 @@ window.addEventListener('load', function () {
                 lightbox_msg_report_reason: '',
             }
         },
-        props: ['show'],
+        props: [],
 
-        template: `<section v-if=" show === 'msg_report_list' ">
+        template: `<section >
                 <h1 class="title">留言檢舉審核</h1>
                 <div class="art_report_list_box">
                     <div class="art_report_title_row">
@@ -2104,11 +2101,35 @@ window.addEventListener('load', function () {
     })
     //-----------------------------------------------------
 
+    // 後台 header 管理員系統 -- 組件
+    Vue.component('bs-header', {
+        data() {
+            return {
+                mar_info: '',
+            }
+        },
+        props: [],
+
+        template: `
+        <nav>
+          <div class="logo_img"><img src="./Images/logo-header.svg"></div>
+          <div class="mar_name_box">
+            <div>管理員 : <span></span></div>
+            <div class="logout_btn">登出</div>
+          </div>
+
+        </nav>`,
+        methods: {},
+        // template 渲染前 會先去執行以下函式
+        created() {},
+    })
+    //-----------------------------------------------------
+
     //New Vue
     new Vue({
         el: '#app',
         data: {
-            show: 'manager',
+            content: 'manager',
             drinkno: 1,
             type_no: 1,
             type_title: '',
@@ -2118,8 +2139,8 @@ window.addEventListener('load', function () {
         },
         methods: {
             //接受到 下層傳遞的值 變更data值
-            changeTag(show) {
-                this.show = show
+            changeTag(data) {
+                this.content = data
             },
             changedrinkno(drinkno) {
                 this.drinkno = drinkno

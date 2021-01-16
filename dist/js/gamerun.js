@@ -122,7 +122,7 @@ function handleComplete(evt, comp) {
         })
     }
 
-    function generatepassword() {
+    function getCoupon() {
         coupon = ""
         let i = 0
         let randomnumber = 0
@@ -134,7 +134,6 @@ function handleComplete(evt, comp) {
 
         return coupon
     }
-    console.log(generatepassword())
     exportRoot.addChild(char);
     document.querySelector(".hpbar").style.width = `${hp}%`;
     let timePearl = setInterval(() => {

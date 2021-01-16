@@ -6,11 +6,13 @@
 
 .brandStory{
     width: 100%;
-    border: 2px solid #013B4F;
+    // border: 2px solid #013B4F;
+    background-color: $btnColor;
     display: inline-flex;
     align-items: center;
     flex-direction: column;
     margin-top: 150px;
+    border-radius: 5px;
 
     .story_block{
         display: inline-flex;
@@ -26,15 +28,28 @@
             text-align: left;
             width: 40%;
             margin-left: 120px;
+            h1{
+                @include H1;
+                letter-spacing: 5px;
+                font-style: italic;
+                font-weight: bold;
+                font-family: Adobe Caslon Pro;
+                color: white;
+                border-bottom: 1px solid white;
+                padding: 20px 0;
+            }
     
-            h2{
-                @include H2;
+            h3{
+                margin-top: 40px;
+                @include H3;
+                color: white;
             }
     
             h6{
                 @include H6;
-                margin: 50px 0 20px;
+                margin: 20px 0 20px;
                 line-height: 36px;
+                color: white;
             }
         }
     }
@@ -48,8 +63,21 @@
 
         .address{
     
-            h2{
-                @include H2;
+            h1{
+                @include H1;
+                letter-spacing: 5px;
+                font-style: italic;
+                font-weight: bold;
+                font-family: Adobe Caslon Pro;
+                color: white;
+                border-bottom: 1px solid white;
+                padding: 20px 0;
+            }
+
+            h3{
+                margin-top: 40px;
+                @include H3;
+                color: white;
             }
     
             .title_block{
@@ -59,11 +87,14 @@
                 .info_block{
                     display: inline-flex;
                     align-items: center;
-                   
+
                     h5{
                         @include H5;
                         margin: 10px 0 10px 10px;
-                        font-weight: bold;
+                        color: white;
+                        span{
+                            color: white;
+                        }
                     }
                 }
             }
@@ -233,6 +264,10 @@
     .brandStory{
         border: initial;
 
+        .story_block img {
+            max-width: 80%;
+        }
+
         .story_block{
             display: flex;
             flex-direction: column;
@@ -242,14 +277,19 @@
                 margin-top: 50px;
                 margin-left: 0px;
                 width: 80%;
-                text-align: center;
-        
-                h2{
+
+                h1{
                     @include H3;
+                    letter-spacing: 3px;
+                    font-family: Adobe Caslon Pro;
+                }
+        
+                h3{
+                    @include H5;
                 }
         
                 h6{
-                    @include P1;
+                    @include P2;
                     margin: 20px 0 20px;
                     line-height: 24px;
                 }
@@ -265,26 +305,29 @@
                 margin-top: 20px;
                 display: flex;
                 flex-direction: column;
-                align-items: center;
 
-                h2{
+                h1{
                     @include H3;
-   
+                    letter-spacing: 3px;
+                    font-family: Adobe Caslon Pro;
+                }
+
+                h3{
+                    @include H5;
                 }
         
                 .title_block{
                     margin-top: 20px;
                     display: flex;
                     flex-direction: column;
-                    align-items: center;
              
                     .info_block{
 
                         margin-right: 0px;
                         
                         h5{
-                            @include P1;
-                            margin-left: 10px;
+                            @include P2;
+                            margin-left: 5px;
                             
                         }
                     }

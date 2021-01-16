@@ -15,49 +15,68 @@
         <style></style>
     </head>
     <body>
-        <header></header>
         <div id="app">
-            <my-aside :show="show" @change="changeTag"></my-aside>
-            <main>
-                <manager :show="show"></manager>
-                <member :show="show"></member>
-                <drink
+            <header>
+                <bs-header></bs-header>
+            </header>
+            <div class="app">
+                <my-aside @change="changeTag"></my-aside>
+                <main>
+                    <component
+                        :is="content"
+                        :lightbox="lightbox"
+                        :drinkno="drinkno"
+                        :type_no="type_no"
+                        :type_title="type_title"
+                        :group_ord_no="group_ord_no"
+                        :per_ord_no="per_ord_no"
+                        @change="changeTag"
+                        @changedrinkno="changedrinkno"
+                        @changelightbox="changelightbox"
+                        @changetypeno="changetypeno"
+                        @changegroupordno="changegroupordno"
+                        @changeperordno="changeperordno"
+                    ></component>
+                    <!-- <manager :show="show"></manager>
+                <member :show="show"></member> -->
+                    <!-- <drink
                     :show="show"
                     :lightbox="lightbox"
                     @change="changeTag"
                     @changedrinkno="changedrinkno"
                     :drinkno="drinkno"
                     @changelightbox="changelightbox"
-                ></drink>
-                <drink_edit
+                ></drink> -->
+                    <!-- <drink_edit
                     :show="show"
                     :lightbox="lightbox"
                     :drinkno="drinkno"
                     @change="changeTag"
                     @changelightbox="changelightbox"
-                ></drink_edit>
-                <drink_add
+                ></drink_edit> -->
+                    <!-- <drink_add
                     :show="show"
                     :lightbox="lightbox"
                     @change="changeTag"
                     @changelightbox="changelightbox"
-                ></drink_add>
-                <drink_type
+                ></drink_add> -->
+                    <!-- <drink_type
                     :show="show"
                     :type_no="type_no"
                     @change="changeTag"
                     @changetypeno="changetypeno"
-                ></drink_type>
-                <type_edit :show="show" :type_no="type_no" :type_title="type_title" @change="changeTag"></type_edit>
-                <type_add :show="show" @change="changeTag"></type_add>
-                <group_ord_list :show="show" @change="changeTag" @changegroupordno="changegroupordno"></group_ord_list>
-                <group_ord_info :show="show" @change="changeTag" :group_ord_no="group_ord_no"></group_ord_info>
+                ></drink_type> -->
+                    <!-- <type_edit :show="show" :type_no="type_no" :type_title="type_title" @change="changeTag"></type_edit> -->
+                    <!-- <type_add :show="show" @change="changeTag"></type_add> -->
+                    <!-- <group_ord_list :show="show" @change="changeTag" @changegroupordno="changegroupordno"></group_ord_list> -->
+                    <!-- <group_ord_info :show="show" @change="changeTag" :group_ord_no="group_ord_no"></group_ord_info>
                 <per_ord_list :show="show" @change="changeTag" @changeperordno="changeperordno"></per_ord_list>
                 <per_ord_info :show="show" @change="changeTag" :per_ord_no="per_ord_no"></per_ord_info>
                 <art_report_list :show="show"></art_report_list>
-                <msg_report_list :show="show"></msg_report_list>
-            </main>
+                <msg_report_list :show="show"></msg_report_list> -->
+                </main>
+            </div>
+            <footer></footer>
         </div>
-        <footer></footer>
     </body>
 </html>

@@ -9,7 +9,7 @@ try {
     $sql = "select *
             from group_ord
             where group_ord_bs = :group_ord_bs
-            order by arrive_time desc";
+            order by arrive_time";
     // $grouporddata = $pdo->query($sql);
     $grouporddata = $pdo->prepare($sql);
     $grouporddata->bindValue(":group_ord_bs", $group_ord_bs);

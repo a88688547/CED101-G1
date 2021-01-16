@@ -10,12 +10,12 @@ window.addEventListener('load', function () {
         template: `
         <aside>
           <ul class="tag_big">
-              <li id="mem_info" @click="changecontent($event)">個人資料</li>
-              <li id="group_order" @click="changecontent($event)">揪團紀錄</li>
-              <li id="follow_order_box" @click="changecontent($event)">跟團紀錄</li>
-              <li id="self_order_box" @click="changecontent($event)">自己訂 | 訂單紀錄</li>
-              <li id="coupon_box" @click="changecontent($event)">優惠券查詢</li>
-              <li id="article_box" @click="changecontent($event)">發文紀錄</li>
+              <li class="tag_big_on" id="mem_info" @click="changecontent($event)">個人資料</li>
+              <li id="group_order" @click="changecontent($event)" >揪團紀錄</li>
+              <li id="follow_order_box" @click="changecontent($event)" >跟團紀錄</li>
+              <li id="self_order_box" @click="changecontent($event)" >自己訂 | 訂單紀錄</li>
+              <li id="coupon_box" @click="changecontent($event)" >優惠券查詢</li>
+              <li id="article_box" @click="changecontent($event)" >發文紀錄</li>
           </ul>
           <select name="tag_select" id="tag_select" class="tag_select" v-model="content" @change="changecontentselect($event)">
               <option value="mem_info">會員資料</option>
@@ -31,23 +31,34 @@ window.addEventListener('load', function () {
             changecontent(event) {
                 //獲取被點擊的 ID值，並傳送至上層 (new Vue)
                 this.$emit('changecontent', event.currentTarget.id)
+
                 document.querySelectorAll('.tag_big>li').forEach(function (e) {
-                    e.style.opacity = 0.6
-                    e.style.color = 'rgb(161, 161, 161)'
+                    e.classList.remove('tag_big_on')
+                    // e.style.opacity = 0.6
+                    // e.style.color = 'rgb(161, 161, 161)'
                 })
-                event.currentTarget.style.opacity = 1
-                event.currentTarget.style.color = '#013B4F'
+
+                event.currentTarget.classList.add('tag_big_on')
+
+                // document.querySelectorAll('.tag_big>li').forEach(function (e) {
+                //     e.style.opacity = 0.6
+                //     e.style.color = 'rgb(161, 161, 161)'
+                // })
+                // event.currentTarget.style.opacity = 1
+                // event.currentTarget.style.color = '#013B4F'
             },
             changecontentselect(event) {
                 this.$emit('changecontentselect', event.currentTarget.value)
 
                 document.querySelectorAll('.tag_big>li').forEach(function (e) {
-                    e.style.opacity = 0.6
-                    e.style.color = 'rgb(161, 161, 161)'
+                    // e.style.opacity = 0.6
+                    // e.style.color = 'rgb(161, 161, 161)'
+                    e.classList.remove('tag_big_on')
                 })
+                document.querySelectorAll(`#${event.currentTarget.value}`)[0].classList.add('tag_big_on')
 
-                document.querySelectorAll(`#${event.currentTarget.value}`)[0].style.opacity = 1
-                document.querySelectorAll(`#${event.currentTarget.value}`)[0].style.color = '#013B4F'
+                // document.querySelectorAll(`#${event.currentTarget.value}`)[0].style.opacity = 1
+                // document.querySelectorAll(`#${event.currentTarget.value}`)[0].style.color = '#013B4F'
             },
         },
     })
@@ -293,7 +304,7 @@ window.addEventListener('load', function () {
             <div class="tag_title">揪團紀錄</div>
             <div class="order_box">
                 <div class="type_box group_type_box">
-                    <div id="notyet_order_box" @click="content = 'notyet_order_box',changecolor($event)">揪團中</div>
+                    <div class="type_box_on" id="notyet_order_box" @click="content = 'notyet_order_box',changecolor($event)">揪團中</div>
                     <div id="done_order_box" @click="content = 'done_order_box',changecolor($event)">揪團成功</div>
                 </div>
                 <component :is="content" :group_ord_no="group_ord_no" @changegroupordno="changegroupordno" @changecontent="changecontent" :mem_no="mem_no"></component>
@@ -314,11 +325,15 @@ window.addEventListener('load', function () {
             //改變 被點擊的樣式
             changecolor(event) {
                 document.querySelectorAll('.type_box>div').forEach(function (e) {
-                    e.style.backgroundColor = '#fff'
-                    e.style.color = '#B3925B'
+                    e.classList.remove('type_box_on')
+
+                    // e.style.backgroundColor = '#fff'
+                    // e.style.color = '#B3925B'
                 })
-                event.currentTarget.style.backgroundColor = '#B3925B'
-                event.currentTarget.style.color = '#fff'
+                event.currentTarget.classList.add('type_box_on')
+
+                // event.currentTarget.style.backgroundColor = '#B3925B'
+                // event.currentTarget.style.color = '#fff'
             },
         },
     })
@@ -707,7 +722,7 @@ window.addEventListener('load', function () {
                     <div class="tag_title">跟團紀錄</div>
                     <div class="order_box">
                         <div class="type_box follow_type_box">
-                            <div id="follow_notyet_order_box" @click="content = 'follow_notyet_order_box',changecolor($event)">跟團中</div>
+                            <div class="type_box_on" id="follow_notyet_order_box" @click="content = 'follow_notyet_order_box',changecolor($event)">跟團中</div>
                             <div id="follow_done_order_box" @click="content = 'follow_done_order_box',changecolor($event)">跟團成功</div>
                         </div>
                         <div class="follow_order_list_box">
@@ -729,11 +744,15 @@ window.addEventListener('load', function () {
             //改變 被點擊的樣式
             changecolor(event) {
                 document.querySelectorAll('.type_box>div').forEach(function (e) {
-                    e.style.backgroundColor = '#fff'
-                    e.style.color = '#B3925B'
+                    e.classList.remove('type_box_on')
+
+                    // e.style.backgroundColor = '#fff'
+                    // e.style.color = '#B3925B'
                 })
-                event.currentTarget.style.backgroundColor = '#B3925B'
-                event.currentTarget.style.color = '#fff'
+                event.currentTarget.classList.add('type_box_on')
+
+                // event.currentTarget.style.backgroundColor = '#B3925B'
+                // event.currentTarget.style.color = '#fff'
             },
         },
     })
@@ -1280,7 +1299,7 @@ window.addEventListener('load', function () {
         <div class="tag_title">自己訂 | 訂單紀錄</div>
         <div class="order_box">
             <div class="type_box self_type_box">
-                <div id="self_notyet_order_box" @click="changetype(0),changecolor($event)">未完成</div>
+                <div class="type_box_on" id="self_notyet_order_box" @click="changetype(0),changecolor($event)">未完成</div>
                 <div id="self_done_order_box" @click="changetype(1),changecolor($event)">已完成</div>
             </div>
             <div class="self_order_list_box">
@@ -1333,12 +1352,16 @@ window.addEventListener('load', function () {
 
             //改變 被點擊的樣式
             changecolor(event) {
-                document.querySelectorAll('.self_type_box>div').forEach(function (e) {
-                    e.style.backgroundColor = '#fff'
-                    e.style.color = '#B3925B'
+                document.querySelectorAll('.type_box>div').forEach(function (e) {
+                    e.classList.remove('type_box_on')
+
+                    // e.style.backgroundColor = '#fff'
+                    // e.style.color = '#B3925B'
                 })
-                event.currentTarget.style.backgroundColor = '#B3925B'
-                event.currentTarget.style.color = '#fff'
+                event.currentTarget.classList.add('type_box_on')
+
+                // event.currentTarget.style.backgroundColor = '#B3925B'
+                // event.currentTarget.style.color = '#fff'
             },
 
             //取得 訂單資料
@@ -1391,43 +1414,43 @@ window.addEventListener('load', function () {
                     <div class="group_order_done_info">
                         <div class="group_order_done_row">
                             <div>訂單編號</div>
-                            <div>{{per_ord_info[0].per_ord_no}}</div>
+                            <div>{{per_ord_info.per_ord_no}}</div>
                         </div>
                         <div class="group_order_done_row">
                             <div>訂單日期</div>
-                            <div>{{per_ord_info[0].ord_time}}</div>
+                            <div>{{per_ord_info.ord_time}}</div>
                         </div>
                         <div class="group_order_done_row">
                             <div>總共杯數</div>
-                            <div>{{per_ord_info[0].total_cup}}杯</div>
+                            <div>{{per_ord_info.total_cup}}杯</div>
                         </div>
                         <div class="group_order_done_row">
                             <div>杯數優惠</div>
-                            <div>{{check_cup_dis(per_ord_info[0].total_cup)}}</div>
+                            <div>{{check_cup_dis(per_ord_info.total_cup)}}</div>
                         </div>
                         <div class="group_order_done_row">
                             <div>優惠卷</div>
-                            <div>{{per_ord_info[0].cou_no}}/幾折?</div>
+                            <div>{{per_ord_info.cou_no}}/幾折?</div>
                         </div>
                         <div class="group_order_done_row">
                             <div>訂單金額</div>
-                            <div>$ {{per_ord_info[0].ord_price_2}}</div>
+                            <div>$ {{per_ord_info.ord_price_2}}</div>
                         </div>
                          <div class="group_order_done_row">
                             <div>外送地址</div>
-                            <div>{{per_ord_info[0].adress}}</div>
+                            <div>{{per_ord_info.adress}}</div>
                         </div>
                         <div class="group_order_done_row">
                             <div>訂單狀態</div>
-                            <div>{{checkstatuse(per_ord_info[0].ord_state)}}</div>
+                            <div>{{checkstatuse(per_ord_info.ord_state)}}</div>
                         </div>
                     </div>
                     <div id="order_list">
                       <!-- 每個人  -->
                       <div class="group_order_done_person">
                           <div class="group_order_done_person_upbox">
-                              <div class="group_order_done_person_img"><img :src="per_ord_info[0].mem_img" /></div>
-                              <div class="group_order_done_person_name">{{per_ord_info[0].mem_name}}</div>
+                              <div class="group_order_done_person_img"><img :src="per_ord_info.mem_img" /></div>
+                              <div class="group_order_done_person_name">{{per_ord_info.mem_name}}</div>
                           </div>
                           <div class="group_order_done_person_downbox">
                               <!-- 購買的 飲料 -->
@@ -1447,34 +1470,34 @@ window.addEventListener('load', function () {
                           </div>
                           <div class="group_order_done_person_total" >
                               <div>總計</div>
-                              <div class="group_order_done_person_total_cup">{{per_ord_info[0].total_cup}}杯</div>
-                              <div class="group_order_done_person_total_price">&#36{{per_ord_info[0].ord_price}}</div>
+                              <div class="group_order_done_person_total_cup">{{per_ord_info.total_cup}}杯</div>
+                              <div class="group_order_done_person_total_price">&#36{{per_ord_info.ord_price}}</div>
                           </div>
                       </div>
                     </div>
                     <div class="group_order_done_total_box">
                         <div class="group_order_done_total">
                             <div>原價</div>
-                            <div>$ {{per_ord_info[0].ord_price}}</div>
+                            <div>$ {{per_ord_info.ord_price}}</div>
                         </div>
                         <div class="group_order_done_dis">
                             <div>杯數折扣</div>
-                            <div>x {{per_ord_info[0].dis_count}}</div>
+                            <div>x {{per_ord_info.dis_count}}</div>
                         </div>
                         <div class="group_order_done_total">
                             <div>杯數折扣後</div>
-                            <div>$ {{per_ord_info[0].ord_price_1}}</div>
+                            <div>$ {{per_ord_info.ord_price_1}}</div>
                         </div>
                         <div class="group_order_done_dis">
                             <div>優惠卷折扣</div>
-                            <div>x {{per_ord_info[0].cou_discount}}</div>
+                            <div>x {{per_ord_info.cou_discount}}</div>
                         </div>
                         <div class="group_order_done_finaltotal">
                             <div>總金額</div>
-                            <div>$ {{per_ord_info[0].ord_price_2}}</div>
+                            <div>$ {{per_ord_info.ord_price_2}}</div>
                         </div>
                     </div>
-                    <div class="getitem_btn_box" v-if="per_ord_info[0].ord_state == 0"><div id="getitem_btn">收到商品</div></div>
+                    <div class="getitem_btn_box" v-if="per_ord_info.ord_state == 0"><div id="getitem_btn" @click="getitem">收到商品</div></div>
                   </section>
     `,
         methods: {
@@ -1540,6 +1563,25 @@ window.addEventListener('load', function () {
                 } else if (data == 1) {
                     return '已完成'
                 }
+            },
+            //點擊 收到商品 跳出燈箱提示
+            getitem: async function () {
+                const res = await fetch('./php/mem_update_per_ord_status.php', {
+                    method: 'POST',
+                    mode: 'same-origin',
+                    credentials: 'same-origin',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        per_ord_no: this.per_ord_no,
+                    }),
+                })
+
+                //跳出燈箱
+                bus.$emit('getAlert', '確實收到商品')
+                //重撈資料
+                this.get_mem()
             },
         },
         created() {

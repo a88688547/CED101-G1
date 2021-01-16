@@ -483,56 +483,56 @@ window.addEventListener('load', function () {
                     <div class="tag_title">揪團詳情 - 揪團成功</div>
                     <div class="group_order_done_groupname">
                         <div>團名:</div>
-                        <div>{{group_ord_info[0].group_name}}</div>
+                        <div>{{group_ord_info.group_name}}</div>
                     </div>
                     <div class="group_order_done_info">
                         <div class="group_order_done_row">
                             <div>訂單編號</div>
-                            <div>{{group_ord_info[0].group_ord_no}}</div>
+                            <div>{{group_ord_info.group_ord_no}}</div>
                         </div>
                         <div class="group_order_done_row">
                             <div>訂單日期</div>
-                            <div>{{group_ord_info[0].group_datetime}}/12/21</div>
+                            <div>{{group_ord_info.group_datetime}}/12/21</div>
                         </div>
                         <div class="group_order_done_row">
                             <div>連絡電話</div>
-                            <div>{{group_ord_info[0].group_ord_phone}}</div>
+                            <div>{{group_ord_info.group_ord_phone}}</div>
                         </div>
                         <div class="group_order_done_row">
                             <div>給店家話</div>
-                            <div>{{group_ord_info[0].note}}</div>
+                            <div>{{group_ord_info.note}}</div>
                         </div>
                         <div class="group_order_done_row">
                             <div>目標杯數</div>
-                            <div>{{check_goal_cup(group_ord_info[0].goal_cup)}}</div>
+                            <div>{{check_goal_cup(group_ord_info.goal_cup)}}</div>
                         </div>
                         <div class="group_order_done_row">
                             <div>目前杯數</div>
-                            <div>{{group_ord_info[0].now_cup}}杯</div>
+                            <div>{{group_ord_info.now_cup}}杯</div>
                         </div>
                         <div class="group_order_done_row">
                             <div>杯數優惠</div>
-                            <div>{{check_cup_dis(group_ord_info[0].dis_count)}}</div>
+                            <div>{{check_cup_dis(group_ord_info.dis_count)}}</div>
                         </div>
                         <div class="group_order_done_row">
                             <div>優惠卷</div>
-                            <div>{{group_ord_info[0].cou_no}}/幾折?</div>
+                            <div>{{group_ord_info.cou_no}}/幾折?</div>
                         </div>
                         <div class="group_order_done_row">
                             <div>預計送達時間</div>
-                            <div>{{group_ord_info[0].arrive_time}}</div>
+                            <div>{{group_ord_info.arrive_time}}</div>
                         </div>
                         <div class="group_order_done_row">
                             <div>取貨地點</div>
-                            <div>{{group_ord_info[0].group_adress}}</div>
+                            <div>{{group_ord_info.group_adress}}</div>
                         </div>
                         <div class="group_order_done_row">
                             <div>訂單金額</div>
-                            <div>$ {{group_ord_info[0].group_ord_price_2}}</div>
+                            <div>$ {{group_ord_info.group_ord_price_2}}</div>
                         </div>
                         <div class="group_order_done_row">
                             <div>訂單狀態</div>
-                            <div>{{checkstatuse(group_ord_info[0].group_ord_bs)}}</div>
+                            <div>{{checkstatuse(group_ord_info.group_ord_bs)}}</div>
                         </div>
                     </div>
                     <div id="order_list">
@@ -568,26 +568,26 @@ window.addEventListener('load', function () {
                     <div class="group_order_done_total_box">
                         <div class="group_order_done_total">
                             <div>原價</div>
-                            <div>$ {{group_ord_info[0].group_ord_price}}</div>
+                            <div>$ {{group_ord_info.group_ord_price}}</div>
                         </div>
                         <div class="group_order_done_dis">
                             <div>杯數折扣</div>
-                            <div>x {{group_ord_info[0].dis_count}}</div>
+                            <div>x {{group_ord_info.dis_count}}</div>
                         </div>
                         <div class="group_order_done_total">
                             <div>杯數折扣後</div>
-                            <div>$ {{group_ord_info[0].group_ord_price_1}}</div>
+                            <div>$ {{group_ord_info.group_ord_price_1}}</div>
                         </div>
                         <div class="group_order_done_dis">
                             <div>優惠卷折扣</div>
-                            <div>x {{group_ord_info[0].cou_discount}}</div>
+                            <div>x {{group_ord_info.cou_discount}}</div>
                         </div>
                         <div class="group_order_done_finaltotal">
                             <div>總金額</div>
-                            <div>$ {{group_ord_info[0].group_ord_price_2}}</div>
+                            <div>$ {{group_ord_info.group_ord_price_2}}</div>
                         </div>
                     </div>
-                    <div class="getitem_btn_box"><div id="getitem_btn">收到商品</div></div>
+                    <div class="getitem_btn_box" v-if="group_ord_info.ischecked"><div id="getitem_btn" @click="getitem">收到商品</div></div>
                 </section>
       `,
         methods: {
@@ -665,6 +665,25 @@ window.addEventListener('load', function () {
                 } else if (data == 1) {
                     return '已完成'
                 }
+            },
+            //點擊 收到商品 跳出燈箱提示
+            getitem: async function () {
+                const res = await fetch('./php/mem_update_group_ord_status.php', {
+                    method: 'POST',
+                    mode: 'same-origin',
+                    credentials: 'same-origin',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        group_ord_no: this.group_ord_no,
+                    }),
+                })
+
+                //跳出燈箱
+                bus.$emit('getAlert', '確實收到商品')
+                //重撈資料
+                this.get_mem(this.group_ord_no)
             },
         },
         created() {
@@ -881,41 +900,41 @@ window.addEventListener('load', function () {
         <div class="tag_title">跟團詳情 - 跟團中</div>
         <div class="group_order_done_groupname">
             <div>團名:</div>
-            <div>{{follow_order_notyet_ord_info[0].group_name}}</div>
+            <div>{{follow_order_notyet_ord_info.group_name}}</div>
         </div>
         <div class="group_order_done_info">
             <div class="group_order_done_row">
                 <div>揪團編號</div>
-                <div>{{follow_order_notyet_ord_info[0].group_ord_no}}</div>
+                <div>{{follow_order_notyet_ord_info.group_ord_no}}</div>
             </div>
             <div class="group_order_done_row">
                 <div>預計送達時間</div>
-                <div>{{follow_order_notyet_ord_info[0].arrive_time}}</div>
+                <div>{{follow_order_notyet_ord_info.arrive_time}}</div>
             </div>
             <div class="group_order_done_row">
                 <div>截止時間</div>
-                <div>{{follow_order_notyet_ord_info[0].deadline_time}}</div>
+                <div>{{follow_order_notyet_ord_info.deadline_time}}</div>
             </div>
             
             <div class="group_order_done_row">
                 <div>取貨地點</div>
-                <div>{{follow_order_notyet_ord_info[0].group_adress}}</div>
+                <div>{{follow_order_notyet_ord_info.group_adress}}</div>
             </div>
             <div class="group_order_done_row">
                 <div>目標杯數</div>
-                <div>{{check_goal_cup(follow_order_notyet_ord_info[0].goal_cup)}}</div>
+                <div>{{check_goal_cup(follow_order_notyet_ord_info.goal_cup)}}</div>
             </div>
             <div class="group_order_done_row">
                 <div>目前杯數</div>
-                <div>{{follow_order_notyet_ord_info[0].now_cup}}杯</div>
+                <div>{{follow_order_notyet_ord_info.now_cup}}杯</div>
             </div>
             <div class="group_order_done_row">
                 <div>杯數優惠</div>
-                <div>{{check_cup_dis(follow_order_notyet_ord_info[0].now_cup)}}</div>
+                <div>{{check_cup_dis(follow_order_notyet_ord_info.now_cup)}}</div>
             </div>
             <div class="group_order_done_row">
                 <div>應付金額</div> <!-- 原價*杯數折扣  -->
-                <div>$ {{follow_order_notyet_ord_item[0].total_price_2 * follow_order_notyet_ord_info[0].dis_count}}</div>
+                <div>$ {{follow_order_notyet_ord_item.total_price_2 * follow_order_notyet_ord_info.dis_count}}</div>
             </div>
             <div class="group_order_done_row">
                 <div>狀態</div>
@@ -924,14 +943,14 @@ window.addEventListener('load', function () {
         </div>
         <div id="order_list">
           <!-- 每個人  -->
-          <div class="group_order_done_person" v-for="(value,key) in follow_order_notyet_ord_item">
+          <div class="group_order_done_person">
             <div class="group_order_done_person_upbox">                
-              <div class="group_order_done_person_img"><img :src="value.mem_img" /></div>
-              <div class="group_order_done_person_name">{{value.mem_name}}</div>
+              <div class="group_order_done_person_img"><img :src="follow_order_notyet_ord_item.mem_img" /></div>
+              <div class="group_order_done_person_name">{{follow_order_notyet_ord_item.mem_name}}</div>
             </div>                                                    
             <div class="group_order_done_person_downbox">                  
               <!-- 購買的 飲料 -->                      
-              <div class="group_order_done_person_drink" v-for="(value,key) in value.items">                      
+              <div class="group_order_done_person_drink" v-for="(value,key) in follow_order_notyet_ord_item.items">                      
                 <section id="drink_title_wrapper">                        
                   <div class="group_order_done_person_drink_title">{{value.drink_title_ch}}-{{value.cup_no}}</div>                          
                   <div class="group_order_done_person_drink_note" >{{value.set_info}}</div>
@@ -947,23 +966,23 @@ window.addEventListener('load', function () {
             </div>
             <div class="group_order_done_person_total" >
               <div>總計</div>
-              <div class="group_order_done_person_total_cup">{{value.total_cup}}杯</div>
-              <div class="group_order_done_person_total_price">&#36{{value.total_price_2}}</div>
+              <div class="group_order_done_person_total_cup">{{follow_order_notyet_ord_item.total_cup}}杯</div>
+              <div class="group_order_done_person_total_price">&#36{{follow_order_notyet_ord_item.total_price_2}}</div>
             </div>
           </div>
         </div>                            
         <div class="group_order_done_total_box">
             <div class="group_order_done_total">
                 <div>原價</div>
-                <div>$ {{follow_order_notyet_ord_item[0].total_price_2}}</div>
+                <div>$ {{follow_order_notyet_ord_item.total_price_2}}</div>
             </div>
             <div class="group_order_done_dis">
                 <div>杯數折扣</div>
-                <div>x {{follow_order_notyet_ord_info[0].dis_count}}</div>
+                <div>x {{follow_order_notyet_ord_info.dis_count}}</div>
             </div>
             <div class="group_order_done_finaltotal">
                 <div>總金額</div>
-                <div>$ {{follow_order_notyet_ord_item[0].total_price_2 * follow_order_notyet_ord_info[0].dis_count}}</div>
+                <div>$ {{follow_order_notyet_ord_item.total_price_2 * follow_order_notyet_ord_info.dis_count}}</div>
             </div>
         </div>
       </section>
@@ -1047,10 +1066,13 @@ window.addEventListener('load', function () {
             },
         },
         created() {
+            // this.get_mem(this.group_ord_no)
+            // this.get_group_ord_item(this.mem_no, this.group_ord_no)
+        },
+        mounted() {
             this.get_mem(this.group_ord_no)
             this.get_group_ord_item(this.mem_no, this.group_ord_no)
         },
-        mounted() {},
     })
     //-----------------------------------------------------
 
@@ -1068,60 +1090,60 @@ window.addEventListener('load', function () {
                   <div class="tag_title">跟團詳情 - 跟團成功</div>
                   <div class="group_order_done_groupname">
                       <div>團名:</div>
-                      <div>{{follow_order_done_ord_info[0].group_name}}</div>
+                      <div>{{follow_order_done_ord_info.group_name}}</div>
                   </div>
                   <div class="group_order_done_info">
                       <div class="group_order_done_row">
                           <div>訂單編號</div>
-                          <div>{{follow_order_done_ord_info[0].group_ord_no}}</div>
+                          <div>{{follow_order_done_ord_info.group_ord_no}}</div>
                       </div>
                       <div class="group_order_done_row">
                           <div>連絡電話</div>
-                          <div>{{follow_order_done_ord_info[0].group_ord_phone}}</div>
+                          <div>{{follow_order_done_ord_info.group_ord_phone}}</div>
                       </div>
                       <div class="group_order_done_row">
                           <div>給店家話</div>
-                          <div>{{follow_order_done_ord_info[0].note}}</div>
+                          <div>{{follow_order_done_ord_info.note}}</div>
                       </div>
                       <div class="group_order_done_row">
                           <div>目標杯數</div>
-                          <div>{{check_goal_cup(follow_order_done_ord_info[0].goal_cup)}}</div>
+                          <div>{{check_goal_cup(follow_order_done_ord_info.goal_cup)}}</div>
                       </div>
                       <div class="group_order_done_row">
                           <div>總共杯數</div>
-                          <div>{{follow_order_done_ord_info[0].now_cup}}</div>
+                          <div>{{follow_order_done_ord_info.now_cup}}</div>
                       </div>
                       <div class="group_order_done_row">
                           <div>杯數優惠</div>
-                          <div>{{check_cup_dis(follow_order_done_ord_info[0].dis_count)}}</div>
+                          <div>{{check_cup_dis(follow_order_done_ord_info.dis_count)}}</div>
                       </div>
                       <div class="group_order_done_row">
                           <div>預計送達時間</div>
-                          <div>{{follow_order_done_ord_info[0].arrive_time}}</div>
+                          <div>{{follow_order_done_ord_info.arrive_time}}</div>
                       </div>
                       <div class="group_order_done_row">
                           <div>取貨地點</div>
-                          <div>{{follow_order_done_ord_info[0].group_adress}}</div>
+                          <div>{{follow_order_done_ord_info.group_adress}}</div>
                       </div>
                       <div class="group_order_done_row">
                           <div>應付金額</div>
-                          <div>$ {{follow_order_done_ord_item[0].total_price_2 * follow_order_done_ord_info[0].dis_count}}</div>
+                          <div>$ {{follow_order_done_ord_item.total_price_2 * follow_order_done_ord_info.dis_count}}</div>
                       </div>
                       <div class="group_order_done_row">
                           <div>訂單狀態</div>
-                          <div>{{checkstatuse(follow_order_done_ord_info[0].group_ord_bs)}}</div>
+                          <div>{{checkstatuse(follow_order_done_ord_info.group_ord_bs)}}</div>
                       </div>
                   </div>
                   <div id="order_list">
                       <!-- 每個人  -->
-                      <div class="group_order_done_person" v-for="(value,key) in follow_order_done_ord_item">
+                      <div class="group_order_done_person" >
                           <div class="group_order_done_person_upbox">
-                              <div class="group_order_done_person_img"><img :src="value.mem_img" /></div>
-                              <div class="group_order_done_person_name">{{value.mem_name}}</div>
+                              <div class="group_order_done_person_img"><img :src="follow_order_done_ord_item.mem_img" /></div>
+                              <div class="group_order_done_person_name">{{follow_order_done_ord_item.mem_name}}</div>
                           </div>
                           <div class="group_order_done_person_downbox">
                               <!-- 購買的 飲料 -->
-                              <div class="group_order_done_person_drink" v-for="(value,key) in value.items">
+                              <div class="group_order_done_person_drink" v-for="(value,key) in follow_order_done_ord_item.items">
                                 <section id="drink_title_wrapper">
                                     <div class="group_order_done_person_drink_title">{{value.drink_title_ch}}-{{value.cup_no}}</div>
                                     <div class="group_order_done_person_drink_note" >{{value.set_info}}</div>
@@ -1137,23 +1159,23 @@ window.addEventListener('load', function () {
                           </div>
                           <div class="group_order_done_person_total" >
                               <div>總計</div>
-                              <div class="group_order_done_person_total_cup">{{value.total_cup}}杯</div>
-                              <div class="group_order_done_person_total_price">&#36{{value.total_price_2}}</div>
+                              <div class="group_order_done_person_total_cup">{{follow_order_done_ord_item.total_cup}}杯</div>
+                              <div class="group_order_done_person_total_price">&#36{{follow_order_done_ord_item.total_price_2}}</div>
                           </div>
                       </div>
                   </div>
                   <div class="group_order_done_total_box">
                       <div class="group_order_done_total">
                           <div>原價</div>
-                          <div>$ {{follow_order_done_ord_item[0].total_price_2}}</div>
+                          <div>$ {{follow_order_done_ord_item.total_price_2}}</div>
                       </div>
                       <div class="group_order_done_dis">
                           <div>杯數折扣</div>
-                          <div>x {{follow_order_done_ord_info[0].dis_count}}</div>
+                          <div>x {{follow_order_done_ord_info.dis_count}}</div>
                       </div>
                       <div class="group_order_done_finaltotal">
                           <div>總金額</div>
-                          <div>$ {{follow_order_done_ord_item[0].total_price_2 * follow_order_done_ord_info[0].dis_count}}</div>
+                          <div>$ {{follow_order_done_ord_item.total_price_2 * follow_order_done_ord_info.dis_count}}</div>
                       </div>
                   </div>
               </section>

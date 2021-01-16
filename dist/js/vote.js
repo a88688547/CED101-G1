@@ -144,18 +144,12 @@ Vue.component("vote-form", {
             this.group = groupMap[id]
             this.showVote = true;
             this.drinkIndex = index;
-            // console.log(parseInt(this.members.teaVote.substring(8, 10)) + 7)
-            // console.log(this.nowTime.substring(8, 10))
 
             const votedTime = fomateTime(this.members[this.group])
             if (this.members[this.group] && dateFns.isSameWeek(votedTime, new Date())) {
                 this.type = 'done'
                 return
             }
-            // if (this.members[this.group] && this.nowTime.substring(8, 10) != parseInt(this.members[this.group].substring(8, 10)) + 7) {
-            //     this.type = 'done'
-            //     return
-            // }
 
             fetch("./php/menu1.php", {
                 method: "POST",
@@ -168,24 +162,11 @@ Vue.component("vote-form", {
                     return res.json();
                 })
                 .then((res) => {
-                    // console.log(res);
                     this.dirnkVote = res;
                 })
                 .catch((err) => {
                     console.log(err);
                 });
-
-            // if (this.nowTime.substring(8, 10) != parseInt(this.members.milkVote.substring(8, 10)) + 7) {
-            //     return (this.votedok = true, this.type = false)
-            // }
-            // if (this.nowTime.substring(8, 10) != parseInt(this.members.teaVote.substring(8, 10)) + 7) {
-            //     return (this.votedok = true, this.type = false)
-            // }
-            // if (this.nowTime.substring(8, 10) != parseInt(this.members.fruitVote.substring(8, 10)) + 7) {
-            //     return (this.votedok = true, this.type = false)
-            // }
-            // console.log(this.members.milkVote !== null)
-
 
         },
         votingHandler(e) {
@@ -194,9 +175,6 @@ Vue.component("vote-form", {
                 return (this.$refs.alertvote.innerText = "請投票!!");
             }
             this.getNowTime()
-
-            // console.log(this.members.milkVote.substring(8, 10))
-            // console.log(this.nowTime.substring(8, 10))
 
             fetch("./php/menu3.php", {
                 method: "POST",

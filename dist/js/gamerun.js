@@ -47,7 +47,7 @@ function handleComplete(evt, comp) {
         {
             name: "peaCup",
             atk: 10,
-            speed: 10,
+            speed: 14,
         },
         {
             name: "peaCap",
@@ -57,7 +57,7 @@ function handleComplete(evt, comp) {
         {
             name: "peaMug",
             atk: 15,
-            speed: 8,
+            speed: 10,
         },
         {
             name: "redCup",
@@ -67,33 +67,35 @@ function handleComplete(evt, comp) {
         {
             name: "redCap",
             atk: 25,
-            speed: 12,
+            speed: 14,
         },
         {
             name: "redMug",
             atk: 10,
-            speed: 11,
+            speed: 12,
         },
         {
             name: "tanCup",
             atk: 5,
-            speed: 5,
+            speed: 10,
         },
         {
             name: "tanCap",
             atk: 8,
-            speed: 6,
+            speed: 12,
         },
         {
             name: "tanMug",
             atk: 25,
-            speed: 15,
+            speed: 17,
         },
     ];
 
     let character = sessionStorage.getItem("char");
     let activeCharacter = characters.find((item) => item.name === character);
     let couponId = document.querySelector("#coupon");
+    let totalscore = document.querySelector("#totalscore");
+    let getcoupon = document.querySelector("#getcoupon");
     let randomNum = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     let couponlength = 16
     let char = new lib[activeCharacter.name]();
@@ -106,9 +108,22 @@ function handleComplete(evt, comp) {
         document.querySelector(".lightbox").style.display = "none";
     });
 
+    function sendForm(cou, dis) {
+        fetch("./php/coupon.php", {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                mem_no: members.mem_no,
+                cou_code: cou,
+                cou_discount: dis
+            }),
+        })
+    }
 
     function generatepassword() {
-        let coupon = ""
+        coupon = ""
         let i = 0
         let randomnumber = 0
         while (i < couponlength) {
@@ -121,7 +136,6 @@ function handleComplete(evt, comp) {
     }
     console.log(generatepassword())
     exportRoot.addChild(char);
-    // document.querySelector(".hpbar").style.width = `${activeCharacter.hp}%`;
     document.querySelector(".hpbar").style.width = `${hp}%`;
     let timePearl = setInterval(() => {
         if (!isStart) return;
@@ -146,12 +160,7 @@ function handleComplete(evt, comp) {
                     exportRoot.removeChild(pearl);
                     eatPearl++;
                     document.querySelector("#score").innerHTML = eatPearl * 10;
-                    document.querySelector(
-                        "#totalscore"
-                    ).innerText = document.querySelector("#score").innerHTML;
-                }
-                if (document.querySelector("#totalscore").innerText >= 100) {
-                    document.querySelector("#getcoupon").style.display = "block";
+                    totalscore.innerText = document.querySelector("#score").innerHTML;
                 }
 
                 // console.log(document.querySelector("#totalscore").innerText);
@@ -194,6 +203,30 @@ function handleComplete(evt, comp) {
             window.removeEventListener("keyup", keyupHandler);
             createjs.Ticker.removeEventListener("tick", tickHandler);
             exportRoot.removeChild(char);
+            if (members) {
+                if (totalscore.innerText >= 300) {
+                    getcoupon.style.display = "block";
+                    getcoupon.innerText = "獲得七折兌換卷一張"
+                    couponId.innerText = `${coupon}`;
+                    // discount = 0.7
+                    return sendForm(coupon, 0.7)
+                }
+                if (totalscore.innerText >= 200) {
+                    getcoupon.style.display = "block";
+                    getcoupon.innerText = "獲得八折兌換卷一張"
+                    couponId.innerText = `${coupon}`;
+                    // discount = 0.8
+                    return sendForm(coupon, 0.8)
+                }
+                if (totalscore.innerText >= 100) {
+                    getcoupon.style.display = "block";
+                    getcoupon.innerText = "獲得九折兌換卷一張"
+                    couponId.innerText = `${coupon}`;
+                    // discount = 0.9
+                    return sendForm(coupon, 0.9)
+                }
+            }
+
         }
         if (!isKeydown) return;
         char.x += activeCharacter.speed * direction;

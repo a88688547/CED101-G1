@@ -90,7 +90,7 @@ Vue.component('my-header', {
                         this.isLogin = true
                         this.showLogin = false
                         member.$emit('memberInfo', this.memberInfo)
-                        window.memberInfo = this.memberInfo
+                        window.members = this.memberInfo
                         this.$emit('changemem', this.memberInfo)
                         alert('登入成功')
                         // console.log(res);
@@ -103,10 +103,6 @@ Vue.component('my-header', {
                     console.log(err)
                     console.log('失敗')
                 })
-
-            // await member.$emit('memberInfo', this.memberInfo)
-            // this.$emit('checked_mem', this.memberInfo)
-            // //location.reload()
         },
         signMember() {
             let isEmail = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4})*$/
@@ -183,6 +179,7 @@ Vue.component('my-header', {
                     this.isLogin = false
                     this.$refs.UserName.innerText = ''
                     this.memberInfo = ''
+                    window.members = ''
                     location.href = './homepage.html'
                     sessionStorage.clear()
                     alert('登出成功')
@@ -215,6 +212,7 @@ Vue.component('my-header', {
                         this.isLogin = true
                         this.memberInfo = res
                         this.$refs.UserName.innerText = `hi~${res.mem_name}`
+                        window.members = this.memberInfo
                         // console.log(this.memberInfo)
                     } else if (JSON.stringify(res) === '{}') {
                         this.isLogin = false
@@ -238,6 +236,7 @@ Vue.component('my-header', {
     },
     created() {
         this.get_mem()
+        window.members = ''
     },
     template: `
             <nav>

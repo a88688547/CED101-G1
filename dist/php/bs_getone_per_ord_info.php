@@ -20,7 +20,7 @@ try {
 
     } else { //找得到
         //取回一筆資料
-        $per_ord_datarow = $per_ord_data->fetchAll(PDO::FETCH_ASSOC);
+        $per_ord_datarow = $per_ord_data->fetch(PDO::FETCH_ASSOC);
 
         //送出json字串
         echo json_encode($per_ord_datarow);

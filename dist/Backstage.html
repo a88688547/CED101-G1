@@ -17,7 +17,7 @@
     <body>
         <div id="app">
             <header>
-                <bs-header></bs-header>
+                <bs-header :mar_info="mar_info"></bs-header>
             </header>
             <div class="app">
                 <my-aside @change="changeTag"></my-aside>
@@ -30,6 +30,7 @@
                         :type_title="type_title"
                         :group_ord_no="group_ord_no"
                         :per_ord_no="per_ord_no"
+                        :mar_info="mar_info"
                         @change="changeTag"
                         @changedrinkno="changedrinkno"
                         @changelightbox="changelightbox"

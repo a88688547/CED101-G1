@@ -48,7 +48,7 @@ window.addEventListener('load', function () {
                 lightbox_text: '',
             }
         },
-        props: [],
+        props: ['mar_info'],
 
         template: `<section>
                     <h1 class="title">管理員帳號管理</h1>
@@ -64,7 +64,7 @@ window.addEventListener('load', function () {
                             <div>{{value.mar_no}}</div>
                             <div>{{value.mar_name}}</div>
                             <div>{{value.mar_id}}</div>
-                            <div>{{value.mar_psw}}</div>
+                            <div>*****{{value.mar_psw.substr(-3,3)}}</div>
                             <div class="toggle" @click="lightbox_show(value.mar_no,value.mar_name,value.mar_status)">
                                 <input v-model="value.ischecked" type="checkbox"   />
                                 <label ></label>
@@ -124,9 +124,24 @@ window.addEventListener('load', function () {
                 this.get_mar()
             },
         },
+        watch: {
+            mar_info() {
+                if (this.mar_info.mar_no) {
+                    // console.log('有-會員資料')
+                    this.get_mar()
+                } else {
+                    // console.log('沒有-會員資料')
+                }
+            },
+        },
         // template 渲染前 會先去執行以下函式
         created() {
-            this.get_mar()
+            if (this.mar_info.mar_no) {
+                console.log('有-會員資料')
+                this.get_mar()
+            } else {
+                console.log('沒有-會員資料')
+            }
         },
     })
     //-----------------------------------------------------
@@ -161,8 +176,8 @@ window.addEventListener('load', function () {
                             <div>{{value.mem_no}}</div>
                             <div>{{value.mem_name}}</div>
                             <div>{{value.mem_email}}</div>
-                            <div>{{value.mem_psw}}</div>
-                            <div>{{value.mem_phone}}</div>
+                            <div>*****{{value.mem_psw.substr(-3,3)}}</div>
+                            <div>*****{{value.mem_phone.substr(-3,3)}}</div>
                             <div class="toggle" @click="lightbox_show(value.mem_no,value.mem_name,value.mem_status)">
                                 <input v-model="value.ischecked" type="checkbox"   />
                                 <label ></label>
@@ -386,6 +401,8 @@ window.addEventListener('load', function () {
                 img_type: '',
 
                 test: '',
+                check_sweet: false,
+                check_ice: false,
             }
         },
         props: ['drinkno', 'lightbox'],
@@ -502,11 +519,15 @@ window.addEventListener('load', function () {
                         // this.$emit('changelightbox', true)
                         // this.error_text = '上傳照片成功!!'
                     } else {
+                        return
                         alert(xhr.status)
                     }
                 }
                 xhr.open('post', './php/bs_update_drink_img.php')
                 xhr.send(formData)
+
+                this.$emit('changelightbox', true)
+                this.error_text = '上傳照片成功!!'
             },
 
             //呼叫php程式，取回 飲料 相關資料，並用json()轉回一般陣列
@@ -670,13 +691,38 @@ window.addEventListener('load', function () {
                     return ''
                 }
 
-                // 確認 上傳照片之格式
-                let array = ['jpg', 'jpeg', 'png', 'svg']
-                if (array.indexOf(this.img_type) != -1) {
-                    console.log('格式正確')
+                //-----------------
+                //判斷 甜度 和 冰度 至少要勾選一種類型
+
+                // 甜度陣列
+                var sweet = new Array()
+                for (let k = 0; k < this.type_info[0].detail_title_list.length; k++) {
+                    sweet.push(this.type_info[0].detail_title_list[k].detail_no)
+                }
+                // 冰度陣列
+                var ice = new Array()
+                for (let j = 0; j < this.type_info[1].detail_title_list.length; j++) {
+                    ice.push(this.type_info[1].detail_title_list[j].detail_no)
+                }
+
+                // 將 this.update_detail 原Obj 轉成 陣列
+                let array_update_detail = Object.keys(this.update_detail)
+                // 若有勾選 冰度 或 甜度 其中之一的會 將會改變 判斷狀態
+                for (let q = 0; q < array_update_detail.length; q++) {
+                    if (sweet.indexOf(array_update_detail[q]) != -1) {
+                        this.check_sweet = true
+                    }
+                    if (ice.indexOf(array_update_detail[q]) != -1) {
+                        this.check_ice = true
+                    }
+                }
+                // 檢視勾選的內容 甜度 和 冰度 是否有勾選至少一個
+                if (this.check_sweet == true && this.check_sweet == true) {
+                    // 確實都有勾選至少一個
                 } else {
+                    // 若都無勾選至少一個 跳出視窗提示
                     this.changelightbox(true)
-                    this.error_text = '請確認上傳照片之格式 (jpg,jpeg,png,svg)'
+                    this.error_text = '甜度 及 冰度 請至少勾選一種格式'
                     return ''
                 }
 
@@ -704,12 +750,9 @@ window.addEventListener('load', function () {
                 this.changelightbox(true)
                 this.error_text = '修改成功'
 
-                // 修改成功後 把data內的植 都清空
-                // this.drink_title_ch = ''
-                // this.drink_title_en = ''
-                // this.drink_type_no = ''
-                // this.drink_big_price = ''
-                // this.drink_small_price = ''
+                // 修改成功後 把data內的植 修正
+                this.check_sweet = false
+                this.check_ice = false
 
                 //編輯完成後，重新撈取資料
                 // await this.get_mar(this.drinkno)
@@ -824,7 +867,7 @@ window.addEventListener('load', function () {
                         <div class="lightbox" >
                             <div class="manager_lightbox_close_img" @click="lightbox = false"><img src="./Images/close.svg" ></div>
                             <div><span></span><span>{{error_text}}</span></div>
-                            <div @click="back(error_text)">確認</div>
+                            <div @click="close_lightbox">確認</div>
                         </div>
                     </div>
                   </section>`,
@@ -840,11 +883,20 @@ window.addEventListener('load', function () {
 
                 //取得 上傳照片之檔案格式，以利送出時判斷
                 this.img_type = file[0].type.split('/').pop()
+                console.log(file[0].name.split('.')[0])
+
+                if (file[0].name.split('.')[0].replace(/[^\u4e00-\u9fa5]/g, '')) {
+                    this.lightbox = true
+                    this.error_text = '請確認上傳照片之檔名 (不能有中文)'
+                    return ''
+                } else {
+                    console.log('檔名正確')
+                }
 
                 // 確認 上傳照片之格式
                 let array = ['jpg', 'jpeg', 'png', 'svg']
                 if (array.indexOf(this.img_type) != -1) {
-                    console.log('格式正確')
+                    // console.log('格式正確')
                 } else {
                     this.lightbox = true
                     this.error_text = '請確認上傳照片之格式 (jpg,jpeg,png,svg)'
@@ -876,7 +928,7 @@ window.addEventListener('load', function () {
                     drink_title_ch.length >= 1 &&
                     drink_title_ch.length <= 15
                 ) {
-                    console.log('中文 成功')
+                    // console.log('中文 成功')
                 } else {
                     this.lightbox = true
                     this.error_text = '飲料名稱(中)，請輸入中文(1~15字)'
@@ -888,7 +940,7 @@ window.addEventListener('load', function () {
                     drink_title_en.length >= 1 &&
                     drink_title_en.length <= 50
                 ) {
-                    console.log('英文 成功')
+                    // console.log('英文 成功')
                 } else {
                     this.lightbox = true
                     this.error_text = '飲料名稱(英)，請輸入英文(1~50字)'
@@ -897,7 +949,7 @@ window.addEventListener('load', function () {
 
                 //選擇 飲料類型
                 if (drink_type_no != '') {
-                    console.log('類型 成功')
+                    // console.log('類型 成功')
                 } else {
                     this.lightbox = true
                     this.error_text = '請選擇飲料類別'
@@ -906,7 +958,7 @@ window.addEventListener('load', function () {
 
                 //輸入大杯金額
                 if (drink_big_price != '' && drink_big_price > 0) {
-                    console.log('大杯 成功')
+                    // console.log('大杯 成功')
                 } else {
                     this.lightbox = true
                     this.error_text = '請輸入大杯金額(不得為負數)'
@@ -915,7 +967,7 @@ window.addEventListener('load', function () {
 
                 //輸入小杯金額
                 if (drink_small_price != '' && drink_small_price > 0) {
-                    console.log('小杯 成功')
+                    // console.log('小杯 成功')
                 } else {
                     this.lightbox = true
                     this.error_text = '請輸入小杯金額(不得為負數)'
@@ -924,10 +976,17 @@ window.addEventListener('load', function () {
 
                 // 大杯金額 必須 大於 小杯金額
                 if (drink_big_price > drink_small_price) {
-                    console.log('大小 成功')
+                    // console.log('大小 成功')
                 } else {
                     this.lightbox = true
                     this.error_text = '請確認飲料金額 (大杯金額 > 小杯金額)'
+                    return ''
+                }
+
+                //一定要上傳照片才可以新增商品
+                if (this.img_type == '') {
+                    this.lightbox = true
+                    this.error_text = '請上傳 商品照片'
                     return ''
                 }
 
@@ -948,20 +1007,20 @@ window.addEventListener('load', function () {
                 })
                     .then((res) => res.json())
                     .then((res) => (this.add_drink_no = res))
-                console.log(this.add_drink_no)
+                // console.log(this.add_drink_no)
 
                 // 將新增商品之 商品編號 取回寫入
 
-                console.log('傳值')
+                // console.log('傳值')
 
-                console.log(this.add_drink_no)
+                // console.log(this.add_drink_no)
 
                 // 呼叫上傳照片之動作
                 await this.add_drink_img()
 
                 //修改成功  跳出提示燈箱
-                this.lightbox = true
-                this.error_text = '修改成功'
+                // this.lightbox = true
+                // this.error_text = '新增商品成功'
 
                 // 新增成功後 把data內的植 都清空
                 this.drink_title_ch = ''
@@ -972,7 +1031,7 @@ window.addEventListener('load', function () {
             },
 
             add_drink_img() {
-                console.log('上傳照片動作')
+                // console.log('上傳照片動作')
                 // 上傳飲料照片 -----------------------
                 let file_2 = document.getElementById('upfile').files[0]
                 let formData = new FormData()
@@ -983,14 +1042,39 @@ window.addEventListener('load', function () {
                 let xhr = new XMLHttpRequest()
                 xhr.onload = function () {
                     if (xhr.status == 200) {
-                        console.log(xhr.responseText)
+                        // console.log(xhr.responseText)
+                        this.lightbox = true
+                        this.error_text = '新增商品成功'
                     } else {
-                        alert(xhr.status)
+                        this.lightbox = true
+                        this.error_text = '上傳照片失敗'
+                        // alert(xhr.status)
                     }
                 }
                 xhr.open('post', './php/bs_insert_drink_img.php')
                 xhr.send(formData)
-                console.log('上傳照片 結束')
+                // console.log('上傳照片 結束')
+
+                // 依照上傳照片之結果 判斷顯示
+                if (xhr.status == 200) {
+                    // console.log(xhr.responseText)
+                    this.lightbox = true
+                    this.error_text = '新增商品成功'
+                } else {
+                    this.lightbox = true
+                    this.error_text = '上傳照片失敗'
+                    // alert(xhr.status)
+                }
+            },
+            //關閉燈箱之判斷
+            close_lightbox() {
+                if (this.error_text === '新增商品成功') {
+                    this.lightbox = false
+                    //跳轉頁面
+                    this.$emit('change', 'drink')
+                } else {
+                    this.lightbox = false
+                }
             },
         },
     })
@@ -1214,7 +1298,7 @@ window.addEventListener('load', function () {
                         <div class="lightbox" >
                             <div class="manager_lightbox_close_img" @click="lightbox = false"><img src="./Images/close.svg" ></div>
                             <div><span></span><span>{{error_text}}</span></div>
-                            <div @click="lightbox = false">確認</div>
+                            <div @click="close_lightbox">確認</div>
                         </div>
                     </div>
                   </section>`,
@@ -1250,6 +1334,13 @@ window.addEventListener('load', function () {
 
                 // 新增成功後 把data內的植 都清空
                 this.type_title = ''
+            },
+            close_lightbox() {
+                this.lightbox = false
+
+                if (this.error_text === '新增成功') {
+                    this.$emit('change', 'drink_type')
+                }
             },
         },
     })
@@ -1370,23 +1461,23 @@ window.addEventListener('load', function () {
 
         template: `
                   <section>
-                    <h1 class="title">訂單詳情 ( No: {{group_ord_info[0].group_ord_no}} )</h1>
+                    <h1 class="title">訂單詳情 ( No: {{group_ord_info.group_ord_no}} )</h1>
                     <div class="return_btn_box"><div class="return_btn" @click="changeTag">返回訂單列表</div></div>
                     <div class="group_ord_info_box">
                         <div class="group_ord_info_first_box">
                             <div class="group_ord_info_row">
                                 <div>訂單編號</div>
-                                <div>{{group_ord_info[0].group_ord_no}}</div>
+                                <div>{{group_ord_info.group_ord_no}}</div>
                             </div>
                             <div class="group_ord_info_row">
                                 <div>期望送達時間</div>
-                                <div>{{group_ord_info[0].arrive_time}}</div>
+                                <div>{{group_ord_info.arrive_time}}</div>
                             </div>
                         </div>
                         <div class="group_ord_info_sec_box">
                             <div class="group_ord_info_row">
                                 <div>建立訂單日期</div>
-                                <div>{{group_ord_info[0].group_datetime}}</div>
+                                <div>{{group_ord_info.group_datetime}}</div>
                             </div>
                             <div class="group_ord_info_row">
                                 <div>連絡電話</div>
@@ -1394,11 +1485,11 @@ window.addEventListener('load', function () {
                             </div>
                              <div class="group_ord_info_row">
                                 <div>總共杯數</div>
-                                <div>{{group_ord_info[0].now_cup}}</div>
+                                <div>{{group_ord_info.now_cup}}</div>
                             </div>
                              <div class="group_ord_info_row">
                                 <div>杯數折扣</div>
-                                <div>{{check_discount(group_ord_info[0].now_cup)}}</div>
+                                <div>{{check_discount(group_ord_info.now_cup)}}</div>
                             </div>
                              <div class="group_ord_info_row">
                                 <div>優惠券</div>
@@ -1406,20 +1497,20 @@ window.addEventListener('load', function () {
                             </div>
                             <div class="group_ord_info_row">
                                 <div>訂單總金額</div>
-                                <div>{{group_ord_info[0].group_ord_price_2}}</div>
+                                <div>{{group_ord_info.group_ord_price_2}}</div>
                             </div>
                             <div class="group_ord_info_row">
                                 <div>訂單狀態</div>
-                                <div>{{chech_group_ord_bs(group_ord_info[0].group_ord_bs)}}</div>
+                                <div>{{chech_group_ord_bs(group_ord_info.group_ord_bs)}}</div>
                             </div>
 
                             <div class=" long_info">
                                 <div>備註</div>
-                                <div>{{group_ord_info[0].note}}</div>
+                                <div>{{group_ord_info.note}}</div>
                             </div>
                             <div class=" long_info">
                                 <div>取貨地點</div>
-                                <div>{{group_ord_info[0].group_adress}}</div>
+                                <div>{{group_ord_info.group_adress}}</div>
                             </div>
                         </div>
                         <div class="group_ord_info_thr_box">
@@ -1437,25 +1528,25 @@ window.addEventListener('load', function () {
                         <div class="group_ord_info_four_box">
                             <div class="group_ord_info_four_row">
                                 <div>原價</div>
-                                <div>{{group_ord_info[0].group_ord_price}}</div>
+                                <div>{{group_ord_info.group_ord_price}}</div>
                             </div>
                             <div class="group_ord_info_four_row">
                                 <div>杯數折扣</div>
-                                <div>x {{group_ord_info[0].dis_count}}</div>
+                                <div>x {{group_ord_info.dis_count}}</div>
                             </div>
                             <div class="group_ord_info_four_row">
                                 <div>折扣後</div>
-                                <div>{{group_ord_info[0].group_ord_price_1}}</div>
+                                <div>{{group_ord_info.group_ord_price_1}}</div>
                             </div>
                             <div class="group_ord_info_four_row">
                                 <div>優惠卷折扣</div>
-                                <div>x {{group_ord_info[0].cou_discount}}</div>
+                                <div>x {{group_ord_info.cou_discount}}</div>
                             </div>
                             <div class="group_ord_info_four_row group_ord_info_four_row_last">
                                 <div>總計</div>
                                 <div class="group_ord_info_four_row_last_count">
-                                    <div>共{{group_ord_info[0].now_cup}}杯</div>
-                                    <div>$ {{group_ord_info[0].group_ord_price_2}}</div>
+                                    <div>共{{group_ord_info.now_cup}}杯</div>
+                                    <div>$ {{group_ord_info.group_ord_price_2}}</div>
                                 </div>
                             </div>
                         </div>
@@ -1666,32 +1757,32 @@ window.addEventListener('load', function () {
 
         template: `
                   <section >
-                    <h1 class="title">訂單詳情 ( No: {{per_ord_info[0].per_ord_no}} )</h1>
+                    <h1 class="title">訂單詳情 ( No: {{per_ord_info.per_ord_no}} )</h1>
                     <div class="return_btn_box"><div class="return_btn" @click="changeTag">返回訂單列表</div></div>
                     <div class="per_ord_info_box">
                         <div class="per_ord_info_first_box">
                             <div class="per_ord_info_row">
                                 <div>訂單編號</div>
-                                <div>{{per_ord_info[0].per_ord_no}}</div>
+                                <div>{{per_ord_info.per_ord_no}}</div>
                             </div>
                             <div class="per_ord_info_row">
                                 <div>建立訂單日期</div>
-                                <div>{{per_ord_info[0].ord_time}}</div>
+                                <div>{{per_ord_info.ord_time}}</div>
                             </div>
                         </div>
                         <div class="per_ord_info_sec_box">
                             
                             <div class="per_ord_info_row">
                                 <div>連絡電話</div>
-                                <div>{{per_ord_info[0].phone}}</div>
+                                <div>{{per_ord_info.phone}}</div>
                             </div>
                              <div class="per_ord_info_row">
                                 <div>總共杯數</div>
-                                <div>{{per_ord_info[0].total_cup}}</div>
+                                <div>{{per_ord_info.total_cup}}</div>
                             </div>
                              <div class="per_ord_info_row">
                                 <div>杯數折扣</div>
-                                <div>{{check_discount(per_ord_info[0].total_cup)}}</div>
+                                <div>{{check_discount(per_ord_info.total_cup)}}</div>
                             </div>
                              <div class="per_ord_info_row">
                                 <div>優惠券</div>
@@ -1699,20 +1790,20 @@ window.addEventListener('load', function () {
                             </div>
                             <div class="per_ord_info_row">
                                 <div>訂單總金額</div>
-                                <div>{{per_ord_info[0].ord_price_2}}</div>
+                                <div>{{per_ord_info.ord_price_2}}</div>
                             </div>
                             <div class="per_ord_info_row">
                                 <div>訂單狀態</div>
-                                <div>{{chech_per_ord_bs(per_ord_info[0].ord_state)}}</div>
+                                <div>{{chech_per_ord_bs(per_ord_info.ord_state)}}</div>
                             </div>
 
                             <div class=" long_info">
                                 <div>備註</div>
-                                <div>{{per_ord_info[0].note}}</div>
+                                <div>{{per_ord_info.note}}</div>
                             </div>
                             <div class=" long_info">
                                 <div>取貨地點</div>
-                                <div>{{per_ord_info[0].adress}}</div>
+                                <div>{{per_ord_info.adress}}</div>
                             </div>
                         </div>
                         <div class="per_ord_info_thr_box">
@@ -1730,25 +1821,25 @@ window.addEventListener('load', function () {
                         <div class="per_ord_info_four_box">
                             <div class="per_ord_info_four_row">
                                 <div>原價</div>
-                                <div>{{per_ord_info[0].ord_price}}</div>
+                                <div>{{per_ord_info.ord_price}}</div>
                             </div>
                             <div class="per_ord_info_four_row">
                                 <div>杯數折扣</div>
-                                <div>x {{per_ord_info[0].dis_count}}</div>
+                                <div>x {{per_ord_info.dis_count}}</div>
                             </div>
                             <div class="per_ord_info_four_row">
                                 <div>折扣後</div>
-                                <div>{{per_ord_info[0].ord_price_1}}</div>
+                                <div>{{per_ord_info.ord_price_1}}</div>
                             </div>
                             <div class="per_ord_info_four_row">
                                 <div>優惠卷折扣</div>
-                                <div>x {{per_ord_info[0].cou_discount}}</div>
+                                <div>x {{per_ord_info.cou_discount}}</div>
                             </div>
                             <div class="per_ord_info_four_row per_ord_info_four_row_last">
                                 <div>總計</div>
                                 <div class="per_ord_info_four_row_last_count">
-                                    <div>共{{per_ord_info[0].total_cup}}杯</div>
-                                    <div>$ {{per_ord_info[0].ord_price_2}}</div>
+                                    <div>共{{per_ord_info.total_cup}}杯</div>
+                                    <div>$ {{per_ord_info.ord_price_2}}</div>
                                 </div>
                             </div>
                         </div>
@@ -2104,23 +2195,32 @@ window.addEventListener('load', function () {
     // 後台 header 管理員系統 -- 組件
     Vue.component('bs-header', {
         data() {
-            return {
-                mar_info: '',
-            }
+            return {}
         },
-        props: [],
+        props: ['mar_info'],
 
         template: `
         <nav>
           <div class="logo_img"><img src="./Images/logo-header.svg"></div>
           <div class="mar_name_box">
-            <div>管理員 : <span></span></div>
-            <div class="logout_btn">登出</div>
+            <div>管理員 : <span>{{mar_info.mar_name}}</span></div>
+            <div class="logout_btn" @click="logout">登出</div>
           </div>
 
         </nav>`,
-        methods: {},
-        // template 渲染前 會先去執行以下函式
+        methods: {
+            logout() {
+                const res = fetch('./php/mar_logout.php', {
+                    method: 'POST',
+                    mode: 'same-origin',
+                    credentials: 'same-origin',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                })
+                location.href = `backstage_login.html`
+            },
+        },
         created() {},
     })
     //-----------------------------------------------------
@@ -2129,6 +2229,7 @@ window.addEventListener('load', function () {
     new Vue({
         el: '#app',
         data: {
+            mar_info: '',
             content: 'manager',
             drinkno: 1,
             type_no: 1,
@@ -2158,8 +2259,54 @@ window.addEventListener('load', function () {
             changelightbox(data) {
                 this.lightbox = data
             },
+            async check_mar() {
+                // console.log('確認')
+                // const res = await fetch('./php/check_mar.php', {
+                //     method: 'POST',
+                //     mode: 'same-origin',
+                //     credentials: 'same-origin',
+                //     headers: {
+                //         'Content-Type': 'application/json',
+                //     },
+                // })
+                //     .then(function (data) {
+                //         return data.json()
+                //     })
+                //     .then((data) => {
+                //         if (data.mar_no) {
+                //             this.mar_info = data
+                //             console.log('有')
+                //         } else {
+                //             console.log('沒有')
+                //             location.href = `backstage_login.html`
+                //         }
+                //     })
+            },
         },
         components: {},
+        created() {
+            // this.check_mar()
+            const res = fetch('./php/check_mar.php', {
+                method: 'POST',
+                mode: 'same-origin',
+                credentials: 'same-origin',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+                .then(function (data) {
+                    return data.json()
+                })
+                .then((data) => {
+                    if (data.mar_no) {
+                        this.mar_info = data
+                        // console.log('有')
+                    } else {
+                        // console.log('沒有')
+                        location.href = `backstage_login.html`
+                    }
+                })
+        },
     })
     //--------------------------------------------
 })

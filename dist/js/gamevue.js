@@ -56,7 +56,7 @@ Vue.component('game', {
                 </div>
                 <h2>遊戲結束</h2>
                 <p>總得分:<small id="totalscore">0</small>/300</p>
-                <p id="getcoupon">獲得:珍珠兌換券一張
+                <p id="getcoupon">
                 <p id="coupon"></p>
                 </p>
                 <div class="buttons">

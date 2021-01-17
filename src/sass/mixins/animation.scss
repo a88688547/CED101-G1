@@ -5,18 +5,17 @@
     100%{ top: 150%; opacity: 0;}
 }
 
-@keyframes appear{
+
+@keyframes mascot{
     from{
-        bottom:-10%;
         opacity: 0;
     }
 
     to{
-        bottom: 30%;
         opacity: 1;
     }
-
 }
+
 // 主頁動畫---------------------------
 @keyframes bubbletea{
     from{

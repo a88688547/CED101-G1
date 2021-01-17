@@ -1,6 +1,7 @@
 // 導入共用基本
 @import "./base/base.scss";
 @import "./mixins/mixins.scss";
+@import "./mixins/animation.scss";
 // 飲料杯------------------------------------
 img.caffeelatte{
     position: absolute;
@@ -44,27 +45,29 @@ img.caffeelatte{
     position: absolute;
 }
 
-li:first-child{
+.circle ul li:first-child{
     width: 9vw;
     height: 9vw;
     left: 20%;
-    animation: appear 2ss;
+    // animation: mascot 2s;
 }
 
-li:nth-child(2){
+.circle ul li:nth-child(2){
     width: 11vw;
     height: 11vw;
     top: 35%;
+    // animation: mascot 2s 0.5s;
 }
 
-li:nth-child(3){
+.circle ul li:nth-child(3){
     width: 12vw;
     height: 12vw;
     left: 85%;
     top: 30%;
+    // animation: mascot 2s 1s;
 }
 // 圈圈文字下吉祥物---------------------------
-li>img{
+.circle ul li>img{
   position: absolute;
   top: 110%;
 }

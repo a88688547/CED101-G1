@@ -27,9 +27,25 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 21px;
+    letter-spacing: 2px;
 
     div:first-child {
         margin-right: 40px;
+        color: #fff;
+        font-weight: bold;
+    }
+    span {
+        color: #b3925b;
+    }
+    .logout_btn {
+        color: red;
+        font-weight: bold;
+        cursor: pointer;
+        opacity: 0.6;
+        &:hover {
+            opacity: 1;
+        }
     }
 }
 
@@ -370,6 +386,11 @@ aside {
     margin: 10px 0;
     display: flex;
     flex-wrap: wrap;
+    border-bottom: 1px solid #013b4f;
+}
+
+.type_name_box:last-child {
+    border-bottom: 0px;
 }
 
 .type_name {
@@ -378,8 +399,8 @@ aside {
 }
 
 .detali_list {
-    width: 15%;
-    margin: 5px 0 5px 40px;
+    width: 25%;
+    margin: 5px 0 5px 30px;
 }
 
 .drink_add_btn {
@@ -664,6 +685,7 @@ aside {
 
     div:nth-child(1) {
         width: 8%;
+        text-align: center;
     }
 
     div:nth-child(2) {
@@ -963,6 +985,7 @@ aside {
     overflow: hidden;
     div:nth-child(1) {
         width: 8%;
+        text-align: center;
     }
     div:nth-child(2) {
         width: 15%;

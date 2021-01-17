@@ -24,6 +24,10 @@ Vue.component("date-picker", {
 var app = new Vue({
   el: "#app",
   data: {
+    nowtime2:"",
+    watchNum:0,
+    timer: null,   //計時器
+    nowTime: new Date().getTime(), //現在時間毫秒
     mem_info: "",
     mem_no:"",
     //確認框
@@ -118,43 +122,8 @@ var app = new Vue({
 
   },
   computed: {
-    //抓現在時間yyyy-mm-dd hh:mm:ss
-    formatTime: function ()
-    {
-      var date = new Date();
-      //月補0
-      var month = date.getMonth() + 1;
-      //日補0
-      var strDate = date.getDate();
-      //時補0
-      var strHours = date.getHours();
-      //分補0
-      var strMinutes = date.getMinutes();
-      //秒補0
-      var srtSeconds = date.getSeconds();
-      if (month >= 1 && month <= 9)
-      {
-        month = "0" + month;
-      }
-      if (strDate >= 0 && strDate <= 9)
-      {
-        strDate = "0" + strDate;
-      }
-      if (strHours >= 0 && strHours <= 9)
-      {
-        strHours = "0" + strHours;
-      }
-      if (strMinutes >= 0 && strMinutes <= 9)
-      {
-        strMinutes = "0" + strMinutes;
-      }
-      if (srtSeconds >= 0 && srtSeconds <= 9)
-      {
-        srtSeconds = "0" + srtSeconds;
-      }
-      this.currentDate = `${date.getFullYear()}-${month}-${strDate} ${strHours}:${strMinutes}:${srtSeconds}`
-      return this.currentDate;
-    },
+    
+    
     //預計送達時間hh:mm:ss
     arriveTime()
     {
@@ -179,7 +148,11 @@ var app = new Vue({
       this.daedLine_DateTime = `${this.date} ${this.DeadLine_Time}`;
       return this.daedLine_DateTime;
     },
-
+    nowTimeTest()
+    {
+      this.nowtime2 = (Date.parse(this.currentDate));
+      return this.nowtime2;
+    },
     //送後台資料
     JoinGroup()
     {
@@ -205,6 +178,9 @@ var app = new Vue({
 
   },
   watch: {
+    watchNum() {
+      this.nowTime = new Date().getTime()
+    },
     formatTime: function ()
     {
       this.currentDate = `${date.getFullYear()}-${month}-${strDate} ${strHours}:${strMinutes}:${srtSeconds}`
@@ -242,6 +218,46 @@ var app = new Vue({
 
   },
   methods: {
+    //抓現在時間yyyy-mm-dd hh:mm:ss
+    formatTime: function ()
+    {
+      var date = new Date();
+      //月補0
+      var month = date.getMonth() + 1;
+      //日補0
+      var strDate = date.getDate();
+      //時補0
+      var strHours = date.getHours();
+      //分補0
+      var strMinutes = date.getMinutes();
+      //秒補0
+      var srtSeconds = date.getSeconds();
+      if (month >= 1 && month <= 9)
+      {
+        month = "0" + month;
+      }
+      if (strDate >= 0 && strDate <= 9)
+      {
+        strDate = "0" + strDate;
+      }
+      if (strHours >= 0 && strHours <= 9)
+      {
+        strHours = "0" + strHours;
+      }
+      if (strMinutes >= 0 && strMinutes <= 9)
+      {
+        strMinutes = "0" + strMinutes;
+      }
+      if (srtSeconds >= 0 && srtSeconds <= 9)
+      {
+        srtSeconds = "0" + srtSeconds;
+      }
+      this.currentDate = `${date.getFullYear()}-${month}-${strDate} ${strHours}:${strMinutes}:${srtSeconds}`
+      return this.currentDate;
+    },
+    getWatchNum() {
+      this.watchNum++
+    },
     updateVal()
     {
       let goalConfrim = document.querySelector(".goal_confirm");
@@ -271,7 +287,11 @@ var app = new Vue({
       this.date = date;
     },
     //傳資料到後台
-    upGroupData: async function (){
+    upGroupData: async function ()
+    {
+      //
+      this.formatTime();
+      console.log(this.currentDate);
       let test = await fetch('./php/upGroupData.php', {
         method: 'POST',
         headers: {
@@ -282,7 +302,7 @@ var app = new Vue({
         .then(res => this.group_ord_no = res);
       
       console.log(this.group_ord_no);
-      // location.href = `./join_step2.php?group_ord_no=${this.GroupNo}`
+      
       location.href = `./join_step2.html?group_ord_no=${this.group_ord_no}`
     },
     //警告視窗開關
@@ -309,6 +329,7 @@ var app = new Vue({
 
     check: function ()
     {
+      this.formatTime();
       this.GroupTime();
       let text;
       let oops = document.querySelector(".oops"); //警告視窗
@@ -373,6 +394,9 @@ var app = new Vue({
   },
   created() {
     member.$on('memberInfo', this.get_mem_info)
+  },
+  mounted() {
+    this.timer = setInterval(this.getWatchNum, 1000)
   },
 
 });

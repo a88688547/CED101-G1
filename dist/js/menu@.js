@@ -182,12 +182,13 @@ Vue.component('group-info', {
 
 //菜單組件
 Vue.component('menu_carshop', {
+    props: ["child_mem_info"],
     data() {
         return {
             shopping_num_total: 0, //購物車的飲料總數
             item_type: [], // 飲料類別
             intimeCart: true, //現在時間是否早於結單時間，以此判斷是否要前往下一頁
-            mem_info: "", //登入的會員
+            mem_info: this.child_mem_info, //登入的會員
         }
     },
     methods: {
@@ -533,4 +534,12 @@ Vue.component('light_box', {
 
 let app = new Vue({
     el: "#app",
+    data: {
+        parent_mem_info: '',
+    },
+    methods: {
+        checked_mem(data) {
+            this.parent_mem_info = data
+        },
+    },
 })

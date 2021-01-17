@@ -22,7 +22,7 @@
 
     <div id="app">
         <header>
-            <my-header></my-header>
+            <my-header @checked_mem="checked_mem"></my-header>
         </header>
         <!-- 揪團資訊 -->
         <group-info></group-info>
@@ -32,7 +32,7 @@
         <div id="follow"><img src="./Images/group.svg" alt="" /><span>跟團訂</span></div>
 
         <!-- 飲品價目表 -->
-        <menu_carshop></menu_carshop>
+        <menu_carshop :child_mem_info="parent_mem_info"></menu_carshop>
 
         <!-- 飲品燈箱 -->
         <light_box></light_box>

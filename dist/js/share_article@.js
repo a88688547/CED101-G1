@@ -1,41 +1,111 @@
-//熱門文章
-Vue.component('hot_article', {
+//文章組件
+Vue.component('article_list', {
+    props: ["child_mem_no"],
     data() {
         return {
-            top3_article: [], //喜歡數前三名的文章
             show: false, //是否開啟文章燈箱
             theClickArtNo: "", //被點擊的文章編號
-            mem_no: "",
+            mem_no: this.child_mem_no,
             parentAlert: false,
             alertText: "",
+            allArticle: [],//全部文章
+            selected: "art_time", //篩選排序
+            anotherAllArticle: [],
+            pagination: {
+                currentPage: "",
+                pageTotal: "",
+                per_page: "",
+                totalResult: "",
+            },
+            selectedArticle: [],
+            theCurrentPage: 1,
         }
     },
     mounted() {
-        //網頁掛載的時候呼叫取前三名的文章資料
-        this.getTop3_article()
-        member.$on('memberInfo', (memberInfo) => this.mem_no = memberInfo.memNo)
+        //網頁掛載的時候呼叫全部文章資料
+        this.getAllArticle()
+
+        member.$on('memberInfo', (memberInfo) => this.mem_no = memberInfo.mem_no)
     },
     methods: {
-        //文章內容只顯示50個字
-        showWords(art_intro) {
+        //文章內容顯示個字
+        showWords(data, name_or_intro) {
             let theShowWords
-            if (art_intro.length <= 50) {
-                theShowWords = art_intro
+
+            let showHowManyWords = (name_or_intro == "art_intro") ? 50 : 15
+            if (data.length <= showHowManyWords) {
+                theShowWords = data
             } else {
-                theShowWords = art_intro.substr(0, 50) + "..."
+                theShowWords = data.substr(0, showHowManyWords) + "..."
             }
             return theShowWords
         },
-        //撈取後台資料，存放喜歡前三名的文章資料
-        getTop3_article() {
+        //撈取後台資料，存放全部文章資料
+        getAllArticle() {
             let that = this
             let xhr = new XMLHttpRequest();
             xhr.onload = function () {
-                that.top3_article = JSON.parse(xhr.responseText);
+                that.allArticle = JSON.parse(xhr.responseText);
+
+                that.getSelectedArticle(JSON.parse(xhr.responseText))
+
+                that.getPagination(that.theCurrentPage)
             }
-            xhr.open("get", "php/getTop3_article.php", true);
+            xhr.open("get", "php/getAllArticle.php", true);
             xhr.send(null);
         },
+        getNowCurrentPage(currentPage) {
+            this.theCurrentPage = currentPage
+            this.getPagination(currentPage)
+        },
+        getPagination(currentPage = 1) {
+            let that = this
+            let handleArt = that.selectedArticle
+            //總共幾筆文章
+            that.pagination.totalResult = handleArt.length
+            //每頁要有幾筆
+            that.pagination.per_page = 3
+            //總共幾頁
+            that.pagination.pageTotal = Math.ceil(that.pagination.totalResult / that.pagination.per_page)
+            //當前頁數，預設1
+            that.pagination.currentPage = currentPage
+            // 但是要注意，當前頁數是不可能超過總頁數，所以需要做一個判斷來避免
+            if (that.pagination.currentPage > that.pagination.pageTotal) {
+                that.pagination.currentPage = that.pagination.pageTotal
+            }
+            // 接下來當我們目前位於第二頁時，資料會是 11~20
+            // 所以這邊會有一段公式來做計算
+            // 假設當前位於第二頁，所以就是 (10 * 2) - 10 = 10，最後 + 1，所以最小頁數就是 11 開始
+            let minPage = (that.pagination.currentPage * that.pagination.per_page) - that.pagination.per_page + 1
+            let maxPage = (that.pagination.currentPage * that.pagination.per_page)
+            that.anotherAllArticle = []
+            handleArt.forEach((item, index) => {
+                // 由於 index 是從 0 開始，所以要建立一個變數儲存正確的數量
+                let num = index + 1
+                // 接下來寫上判斷式
+                // 當 num 比 minPage 大並且比 maxPage 小的時候，就 push 資料進去
+                if (num >= minPage && num <= maxPage) {
+                    that.anotherAllArticle.push(item);
+                }
+            });
+        },
+        getSelectedArticle(data) {
+            //深層拷貝，不會動到原本的陣列
+            let theSelectedArticle = [...data]
+            let theSelected = this.selected
+            if (this.selected == "art_time") {
+                theSelectedArticle.sort(function (a, b) {
+                    return new Date(b.art_time).getTime() - new Date(a.art_time).getTime()
+                })
+            } else {
+                theSelectedArticle.sort(function (a, b) {
+                    return b[theSelected] - a[theSelected]
+                })
+            }
+
+            this.selectedArticle = theSelectedArticle
+        },
+
         //點擊文章後，theClickArt存放被點擊的文章資料，並開啟文章燈箱
         clickWhichOne: async function (item) {
             if (this.mem_no === undefined) {
@@ -60,57 +130,147 @@ Vue.component('hot_article', {
             this.parentAlert = false
         },
         parentCloseArtBox() {
-            this.getTop3_article()
+            this.getAllArticle()
             this.show = false
         }
 
     },
+    watch: {
+        selected() {
+            this.getSelectedArticle(this.allArticle)
+            this.getPagination(this.theCurrentPage)
+        }
+    },
+    computed: {
+        //喜歡數前三名的文章
+        top3_article() {
+            let top3 = this.allArticle.slice(0, 3)
 
+            return top3
+        },
+    },
     template: `
-    <section class="section_4">
-    <div class="s2_title">
-        <img src="./Images/hot.svg" alt="" />
-        <div>熱門文章</div>
+    <div>
+        <!-- 熱門文章前三 -->
+        <section class="section_4">
+            <div class="s2_title">
+                <img src="./Images/hot.svg" alt="" />
+                <div>熱門文章</div>
+            </div>
+
+            <div class="article_item" v-for="item in top3_article" :key="item.art_no" @click="clickWhichOne(item)"> 
+                <div class="article_img"><img :src="item.art_img" alt="" /></div>
+                <div class="article_right" >
+                    <div class="article_time">{{item.art_time}}</div>
+                    <div class="article_info">
+                        <div class="article_info_left">
+                            <div class="article_memimg"><img :src="item.mem_img" /></div>
+                            <div class="article_memname">{{item.mem_name}}</div>
+                        </div>
+
+                    </div>
+                    <div class="article_count">
+                        <div>
+                            <div class="article_icon"><img src="./Images/eyes_big.svg" /></div>
+                            <span class="article_num">{{item.art_look_count}}</span>
+                        </div>
+                        <div>
+                            <div class="article_icon"><img src="./Images/message_big.svg" /></div>
+                            <span class="article_num">{{item.art_msg_count}}</span>
+                        </div>
+                        <div>
+                            <div class="article_icon"><img src="./Images/like_big.svg" /></div>
+                            <span class="article_num">{{item.art_like_count}}</span>
+                        </div>
+                    </div>
+                    <div class="article_detail">
+                        <div class="article_title">{{item.art_name}}</div>
+                    </div>
+                    <div class="article_text">
+                        {{showWords(item.art_intro,"art_intro")}}
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- 文章詳情 -->
+            <article_box :item="theClickArtNo" v-if="show" @childCloseArtBox="parentCloseArtBox" :mem_no="mem_no"></article_box>
+            <!-- 警示視窗 -->
+            <alert_lightbox :parentAlert_ = "parentAlert" :_alertText="alertText" @childSendCloseAlert="parentGetCloseAlert"></alert_lightbox>
+        </section>
+
+        <!-- 搜尋BAR -->
+        <section class="section_3">
+            <div class="show_article_btn">
+                <div class="show_img"><img src="./Images/article.svg" /></div>
+                <div class="show_text">所有文章列表</div>
+            </div>
+            <div class="filter_big_box">
+                <!--<div class="type_box">
+                    <label for="type">類別</label>
+                    <select name="type" id="type">
+                        <option value="">- 所有類別 -</option>
+                        <option value="">綜合心得</option>
+                        <option value="">茶類</option>
+                        <option value="">奶類</option>
+                        <option value="">果茶類</option>
+                    </select>
+                </div> -->
+                <div class="filter_box">
+                    <label for="filter">篩選</label>
+                    <select name="filter" id="filter" v-model="selected">
+                        <option value="art_time">時間新到舊</option>
+                        <option value="art_like_count">按讚數</option>
+                        <option value="art_msg_count">留言數</option>
+                        <option value="art_look_count">瀏覽數</option>
+                    </select>
+                </div>
+            </div>
+            <div class="write_article_btn">
+                <div class="write_img"><img src="./Images/pen-white.svg" /></div>
+                <div class="write_text">投稿</div>
+            </div>
+        </section>
+
+
+
+        <!-- 文章列表 -->
+        <section class="section_2">
+            <div class="s2_hotitem_box">
+                <div class="s2_hotitem" v-for="item in anotherAllArticle" :key="item.art_no" @click="clickWhichOne(item)">
+                    <div class="hotimg"><img
+                            :src="item.art_img" />
+                    </div>
+                    <div class="hotinfo">
+                        <div class="memimg"><img :src="item.mem_img" /></div>
+                        <div class="hotright">
+                            <div class="texttime">{{item.art_time}}</div>
+                            <div class="memname">{{item.mem_name}}</div>
+                            <div class="hotcount">
+                                <div>
+                                    <div class="hot_icon"><img src="./Images/eyes_small.svg" /></div>
+                                    <span class="hot_num">{{item.art_look_count}}</span>
+                                </div>
+                                <div>
+                                    <div class="hot_icon"><img src="./Images/message_small.svg" /></div>
+                                    <span class="hot_num">{{item.art_msg_count}}</span>
+                                </div>
+                                <div>
+                                    <div class="hot_icon"><img src="./Images/like_small.svg" /></div>
+                                    <span class="hot_num">{{item.art_like_count}}</span>
+                                </div>
+                            </div>
+                            <div class="hot_text">{{showWords(item.art_name,"art_name")}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 分頁選擇 -->
+        <paginationComponents :paginationService='pagination' @pageService="getNowCurrentPage"></paginationComponents>
     </div>
 
-    <div class="article_item" v-for="item in top3_article" :key="item.art_no" @click="clickWhichOne(item)"> 
-        <div class="article_img"><img :src="item.art_img" alt="" /></div>
-        <div class="article_right" >
-            <div class="article_time">{{item.art_time}}</div>
-            <div class="article_info">
-                <div class="article_info_left">
-                    <div class="article_memimg"><img :src="item.mem_img" /></div>
-                    <div class="article_memname">{{item.mem_name}}</div>
-                </div>
-
-            </div>
-            <div class="article_count">
-                <div>
-                    <div class="article_icon"><img src="./Images/eyes_big.svg" /></div>
-                    <span class="article_num">{{item.art_look_count}}</span>
-                </div>
-                <div>
-                    <div class="article_icon"><img src="./Images/message_big.svg" /></div>
-                    <span class="article_num">{{item.art_msg_count}}</span>
-                </div>
-                <div>
-                    <div class="article_icon"><img src="./Images/like_big.svg" /></div>
-                    <span class="article_num">{{item.art_like_count}}</span>
-                </div>
-            </div>
-            <div class="article_detail">
-                <div class="article_title">{{item.art_name}}</div>
-            </div>
-            <div class="article_text">
-                {{showWords(item.art_intro)}}
-            </div>
-        </div>
-
-    </div>
-    <!-- 文章詳情 -->
-    <article_box :item="theClickArtNo" v-if="show" @childCloseArtBox="parentCloseArtBox" :mem_no="mem_no"></article_box>
-    <alert_lightbox :parentAlert_ = "parentAlert" :_alertText="alertText" @childSendCloseAlert="parentGetCloseAlert"></alert_lightbox>
-</section>
     `,
 })
 
@@ -511,7 +671,34 @@ Vue.component('report_lightbox', {
     `,
 })
 
+//分頁選擇
+Vue.component('paginationComponents', {
+    props: ['paginationService'],
+
+    methods: {
+        getPagesService(item) {
+            this.$emit('pageService', item);
+        },
+    },
+    template: `
+    <section class="section_5">
+        <ul>
+            <li v-for="pages in paginationService.pageTotal" :key='pages' @click='getPagesService(pages)' :class="{'active':paginationService.currentPage === pages}" >{{pages}}</li>
+            <img src="./Images/page.svg" @click="getPagesService(paginationService.currentPage + 1)"/>
+        </ul>
+    </section>
+    `,
+})
+
 
 new Vue({
-    el: "#app"
+    el: "#app",
+    data: {
+        parent_mem_no: '',
+    },
+    methods: {
+        checked_mem(data) {
+            this.parent_mem_no = data.mem_no
+        },
+    },
 })

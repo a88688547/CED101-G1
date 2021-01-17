@@ -148,8 +148,8 @@ Vue.component('orderlist', {
             <!-- 每個人  -->
             <div class="group_order_done_person">
                 <div class="group_order_done_person_upbox">
-                    <div class="group_order_done_person_img"><img :src="mem_info.memImg" /></div>
-                    <div class="group_order_done_person_name">{{mem_info.memName}}</div>
+                    <div class="group_order_done_person_img"><img :src="mem_info.mem_img" /></div>
+                    <div class="group_order_done_person_name">{{mem_info.mem_name}}</div>
                 </div>
                 <div class="group_order_done_person_downbox">
                     <!-- 購買的 飲料 -->

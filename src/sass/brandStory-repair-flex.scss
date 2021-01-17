@@ -123,29 +123,6 @@ section.story_descipt{
     }
     
 }
-// .text{
-//     h1{
-//         font-size: 70px;
-//         font-family: Adobe Caslon Pro;
-//         font-style: italic;
-//         font-weight: bold; 
-//         letter-spacing: 5px;
-//     }
-
-//     h2{
-//         @include H2;
-//         margin: 40px 0 35px;
-//         letter-spacing: 5px;
-//         font-weight: bold; 
-//     }
-
-//     p{
-//         @include H6;
-//         line-height: 32px;
-//         letter-spacing: 5px;
-//     }
-// }
-
 
 // 偶數反轉區塊定位------------------------------------------------
 .descript_block:nth-child(even){
@@ -223,6 +200,7 @@ section.btm_block{
     flex-direction: row;
     justify-content: space-around;
     padding: 100px;
+    align-items: center;
 }
 
 .address_text{
@@ -248,8 +226,7 @@ section.btm_block{
         }
         h5{
             @include H5;
-            font-weight: bold; 
-            line-height: 36px;
+            margin: 0 0 10px 0; 
         }
     } 
 }
@@ -260,7 +237,6 @@ section.btm_block{
     width: 100%;
     height: 200px;
     background-color: #013B4F;
-    // margin-top: 10rem;
     position: relative;
 }
 
@@ -288,6 +264,12 @@ section.btm_block{
     }
     .text_block .mascot img {
         width: 80%;
+    }
+    .address{
+        padding: 50px;
+    }
+    .address_text .title_block .info_block h5{
+        @include H6;
     }   
 }
 
@@ -332,7 +314,7 @@ section.btm_block{
         }
     
         h2{
-            @include H3;
+            @include H4;
             letter-spacing: 4px;
             margin: 40px 0 25px;
         }
@@ -354,6 +336,7 @@ section.btm_block{
     .address{
         flex-direction: column;
         align-items: center;
+        padding: 50px;
         h2{
             text-align: center;
         }
@@ -366,6 +349,9 @@ section.btm_block{
                 margin-top: 20px;
             }
         }
+        .address_text .title_block .info_block h5{
+            @include H6;
+        }  
     }
 }
 
@@ -431,6 +417,7 @@ section.btm_block{
     .address{
         flex-direction: column;
         align-items: center;
+        padding: 10px;
         h2{
             @include H4;
             letter-spacing: 4px;

@@ -47,7 +47,7 @@ section.story_descipt{
 
         // 內容寬度邊界-----------------
         width: 90%;
-        margin-bottom: 40vh;
+        margin-bottom: 180px;
         align-items: center;
         justify-content: space-between;
 
@@ -98,28 +98,53 @@ section.story_descipt{
 }
 
 // 文字區塊內部屬性--------------------
-.text{
-    h1{
-        font-size: 70px;
-        font-family: Adobe Caslon Pro;
-        font-style: italic;
-        font-weight: bold; 
-        letter-spacing: 5px;
+.descript_block{
+    .text{
+        h1{
+            font-size: 70px;
+            font-family: Adobe Caslon Pro;
+            font-style: italic;
+            font-weight: bold; 
+            letter-spacing: 5px;
+        }
+    
+        h2{
+            @include H2;
+            margin: 40px 0 35px;
+            letter-spacing: 5px;
+            font-weight: bold; 
+        }
+    
+        p{
+            @include H6;
+            line-height: 32px;
+            letter-spacing: 5px;
+        }
     }
-
-    h2{
-        @include H2;
-        margin: 40px 0 35px;
-        letter-spacing: 5px;
-        font-weight: bold; 
-    }
-
-    p{
-        @include H6;
-        line-height: 32px;
-        letter-spacing: 5px;
-    }
+    
 }
+// .text{
+//     h1{
+//         font-size: 70px;
+//         font-family: Adobe Caslon Pro;
+//         font-style: italic;
+//         font-weight: bold; 
+//         letter-spacing: 5px;
+//     }
+
+//     h2{
+//         @include H2;
+//         margin: 40px 0 35px;
+//         letter-spacing: 5px;
+//         font-weight: bold; 
+//     }
+
+//     p{
+//         @include H6;
+//         line-height: 32px;
+//         letter-spacing: 5px;
+//     }
+// }
 
 
 // 偶數反轉區塊定位------------------------------------------------
@@ -231,6 +256,12 @@ section.btm_block{
 
 #footer{
     margin-top: 0;
+    padding: 20px 0 0 0;
+    width: 100%;
+    height: 200px;
+    background-color: #013B4F;
+    // margin-top: 10rem;
+    position: relative;
 }
 
 

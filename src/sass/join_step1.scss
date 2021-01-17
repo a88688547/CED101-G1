@@ -7,6 +7,7 @@ $mq1199: 1199px;
 
 
 
+
 // $f = font-size
 // $p = padding
 // $l-s = letter-spacing
@@ -240,6 +241,7 @@ body{
     }
     }
 .group_data_confirm{
+  // border: 3px solid red;
   background-color: #2424245f;
   position: fixed;
   display: flex;
@@ -252,9 +254,9 @@ body{
   z-index: 999;
   .data_confirm{
     background-image: url(../../dist/Images/alert/alert-bg.png);
-    // border: 1px solid rgb(0, 0, 0);
+    border: 1px solid rgb(0, 0, 0);
     width: 300px;
-    height: 400px;
+    min-height: 400px;
     display: flex;
     flex-direction: column;
     align-items: center;

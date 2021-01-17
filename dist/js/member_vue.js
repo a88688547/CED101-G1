@@ -125,10 +125,11 @@ window.addEventListener('load', function () {
       `,
         methods: {
             get_mem: async function () {
+                console.log('撈取會員資料')
                 //判斷是否有 接收到 會員編號，若無 則跳轉頁面
-                if (this.mem_no === undefined) {
-                    location.href = `./homepage.html`
-                }
+                // if (this.mem_no === undefined) {
+                //     location.href = `./homepage.html`
+                // }
 
                 // console.log('get_mem')
 
@@ -275,8 +276,8 @@ window.addEventListener('load', function () {
             // alert(this.get_mem(this.mem_no))
             // this.get_mem(this.mem_no)
             // this.get_mem(this.mem_no)
-            this.get_mem()
             // this.get_mem()
+            this.get_mem()
         },
         updated() {
             // this.get_mem(this.mem_no)
@@ -1728,22 +1729,22 @@ window.addEventListener('load', function () {
             changememno(data) {
                 console.log('two')
 
-                this.mem_no = data.memNo
+                this.mem_no = data.mem_no
 
-                if ((this.mem_no === undefined) | (this.mem_no === '')) {
-                    location.href = `./homepage.html`
-                } else {
-                }
+                // if ((this.mem_no === undefined) | (this.mem_no === '')) {
+                //     location.href = `./homepage.html`
+                // } else {
+                // }
             },
             //進行會員判斷
             checked_mem(data) {
-                // console.log('會員判斷')
+                console.log('會員判斷')
                 // if ((data != '') | (data != undefined)) {
                 //     this.mem_no = data.memNo
                 // } else {
                 //     location.href = `./homepage.html`
                 // }
-                this.mem_no = data.memNo
+                this.mem_no = data.mem_no
             },
         },
         components: {},

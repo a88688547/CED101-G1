@@ -87,6 +87,7 @@ Vue.component("vote-form", {
             textIndex: "",
             members: "",
             voteTime: "",
+            drink_type_no: "",
             lightBoxImg: ['./Images/drinkitem_15/drinkitem_15/milktea/milktea_item-1.png',
                 './Images/drinkitem_15/drinkitem_15/tea/tea_item-1.png',
                 './Images/drinkitem_15/drinkitem_15/fruit/Fruit_item-3.png'
@@ -144,7 +145,8 @@ Vue.component("vote-form", {
             this.group = groupMap[id]
             this.showVote = true;
             this.drinkIndex = index;
-
+            this.drink_type_no = id;
+            // console.log(this.drink_type_no)
             const votedTime = fomateTime(this.members[this.group])
             if (this.members[this.group] && dateFns.isSameWeek(votedTime, new Date())) {
                 this.type = 'done'
@@ -184,7 +186,8 @@ Vue.component("vote-form", {
                 body: JSON.stringify({
                     mem_no: this.members.mem_no,
                     vote_count_now: this.dirnkVote[this.activeIndex].vote_count_now,
-                    drink_no: this.dirnkVote[this.activeIndex].drink_type_no,
+                    drink_no: this.dirnkVote[this.activeIndex].drink_no,
+                    dirnk_type_no: this.drink_type_no,
                     vote_time: this.voteTime,
                 }),
             })
@@ -199,6 +202,7 @@ Vue.component("vote-form", {
 
                     this.type = "voteok";
                     this.members[this.group] = this.voteTime
+                    // member.$emit("update_voteTime")
 
                     member.$emit("votedSus");
                 })

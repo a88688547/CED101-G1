@@ -27,8 +27,11 @@ window.onload = function () {
         const myCharacter = document.querySelector('input[name="character"]:checked')
             .value;
         const myWrap = document.querySelector('input[name="wrap"]:checked').value;
+        mywrap = myWrap.charAt(0).toUpperCase() + myWrap.slice(1)
 
-        let charc = `${myCharacter}${myWrap}`;
+        // console.log(mywrap)
+
+        let charc = `${myCharacter}${mywrap}`;
 
         storage["char"] = charc;
 

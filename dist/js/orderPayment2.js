@@ -72,8 +72,7 @@ Vue.component('top', {
                 show: false,
                 // 杯數折扣
                 cup_dis: storage["cup_dis"],
-                discuptotal: storage["discuptotal"],
-                discoutotal: storage["discoutotal"]
+                // cou_discount: "",
             }
         },
 
@@ -106,13 +105,8 @@ Vue.component('top', {
             close() {
                 this.show = false
             },
-            // 若未使用折價券，則*1
-            count() {
-                if (this.cou_discount === "") {
-                    this.cou_discount === 1
-                    storage["cou_discount"] = 1
-                }
-            },
+
+
 
             // 使用PHP從後台判斷折數
             // cupdis() {
@@ -145,50 +139,43 @@ Vue.component('top', {
                 switch (true) {
                     case totalcup < 20:
                         this.cup_dis = 1
-                        discuptotal = Math.round(1 * this.totalprice)
-                        storage["discuptotal"] = discuptotal
-                        // console.log(discuptotal)
                         storage["cup_dis"] = 1
                         break;
 
                     case totalcup >= 20 && totalcup < 30:
                         this.cup_dis = 0.9
-                        discuptotal = Math.round(0.9 * this.totalprice)
-                        storage["discuptotal"] = discuptotal
                         storage["cup_dis"] = 0.9
                         break;
 
                     case totalcup >= 30 && totalcup < 40:
                         this.cup_dis = 0.8
-                        discuptotal = Math.round(0.8 * this.totalprice)
-                        storage["discuptotal"] = discuptotal
                         storage["cup_dis"] = 0.8
                         break;
 
                     case totalcup >= 40 && totalcu < 50:
                         this.cup_dis = 0.7
-                        discuptotal = Math.round(0.7 * this.totalprice)
-                        storage["discuptotal"] = discuptotal
                         storage["cup_dis"] = 0.7
                         break;
 
                     default:
                         this.cup_dis = 0.6
-                        discuptotal = Math.round(0.6 * this.totalprice)
-                        storage["discuptotal"] = discuptotal
                         storage["cup_dis"] = 0.6
                 }
 
-                let discoutotal = Math.round(this.discuptotal * this.cou_discount)
-                // console.log(discoutotal)
-                storage["discoutotal"] = discoutotal
             },
             checked_mem(data) {
                 this.mem_info = data
                 if (this.mem_info.mem_no === undefined) {
                     location.href = `./homepage.html`
                 }
-            }
+            },
+            // 若未使用折價券，則*1
+            // coudiscount() {
+            //     if (this.cou_discount === "") {
+            //         this.cou_discount === 1
+            //         storage["cou_discount"] = 1
+            //     }
+            // }
             // ----------test--------------------
             // send() {
             // var arr1 = [];
@@ -219,6 +206,19 @@ Vue.component('top', {
 
 
         },
+        computed: {
+            discuptotal: function () {
+                // console.log(this.totalprice * this.cup_dis)
+                return Math.round(this.totalprice * this.cup_dis)
+            },
+            discoutotal: function () {
+                if (this.cou_discount === "") {
+                    return Math.round(this.totalprice * this.cup_dis * 1)
+                } else {
+                    return Math.round(this.totalprice * this.cup_dis * this.cou_discount)
+                }
+            }
+        },
 
         mounted() {
 
@@ -227,8 +227,8 @@ Vue.component('top', {
         created() {
             this.action()
             this.drinklist()
-            this.count()
             this.dis()
+
 
         },
 

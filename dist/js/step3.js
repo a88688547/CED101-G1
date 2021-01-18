@@ -1,6 +1,15 @@
 var app = new Vue({
   el:"#app",
-  data:{
+  data: {
+    group_ord: [],
+    //原價總額
+    group_ord_price: 0,
+    cup_count: "",
+    group_ord_total_cup:0,
+    //杯數折扣
+    group_ord_price_1: "",
+    //杯數折扣+優惠卷
+    group_ord_price2:"",
     //訂單編號
     group_ord_no: "",
     //訂單資料
@@ -11,7 +20,7 @@ var app = new Vue({
     //會員資料
     mem_info:"",
     oldNum:"",
-    phone:"",
+    phone:"0988188888",
     message:"",//備註
     name:"",//持卡人姓名
     card1:"",
@@ -28,10 +37,28 @@ var app = new Vue({
     //切換確認
     type: "10",
     //明細
-    closeTotal: false,
+    closeTotal: true,
   },
   computed: {
-    
+    count() {
+      switch (this.group_ord.goal_cup) {
+          case "20":
+              return this.cup_count = "0.9"
+          case "30":
+              return this.cup_count = "0.8"
+          case "40":
+              return this.cup_count = "0.7"
+          case "50":
+              return this.cup_count = "0.6"
+          default:
+              return "無"
+      }
+    },
+    group_ord_count1()
+    {
+      this.group_ord_price_1 =  Math.round(this.group_ord_price * this.count)
+      return this.group_ord_price_1
+    },
     fullCard(){
       this.full_card = `${this.card1}-${this.card2}-${this.card3}-${this.card4}`
       return this.full_card;
@@ -44,7 +71,11 @@ var app = new Vue({
   },
   mounted()
   {
-    console.log(this.card1.length);
+    this.selectGroupNo();
+    //總杯數
+    this.get_order_total_cup();
+    //總價
+    this.get_order_total();
     this.get_group_ord_item();
     // 持卡姓名
     if (localStorage.name) {
@@ -99,7 +130,66 @@ var app = new Vue({
       //接會員資料
       member.$on('memberInfo', this.get_mem_info);
     },
-methods: {
+  methods: {
+      //用訂單編號抓訂單資料
+  selectGroupNo: async function (group_ord_no)
+  {
+    const res = await fetch("./php/group_no.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        group_ord_no: this.group_ord_no,
+      }),
+    })
+      .then((res) => res.json())
+      .then((res) => (this.group_ord = res));
+    },
+    //抓總杯數
+  get_order_total_cup: async function () {
+    const res = await fetch('./php/get_order_total_cup.php', {
+      method: 'POST',
+      mode: 'same-origin',
+      credentials: 'same-origin',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        group_ord_no: this.group_ord_no,
+      }),
+    })
+    .then(function (data) {
+      return data.json()
+    })
+    console.log(res)
+    this.group_ord_total_cup = res.group_ord_total_cup
+      // .then((res) => res.json())
+      // .then((res) => console.log(res.group_ord_total))
+      // .then((res) => (this.group_total = res))
+  },
+  //抓總價
+  get_order_total: async function () {
+    const res = await fetch('./php/get_order_total.php', {
+      method: 'POST',
+      mode: 'same-origin',
+      credentials: 'same-origin',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        group_ord_no: this.group_ord_no,
+      }),
+    })
+    .then(function (data) {
+      return data.json()
+    })
+    console.log(res)
+    this.group_ord_price = res.group_ord_total
+      // .then((res) => res.json())
+      // .then((res) => console.log(res.group_ord_total))
+      // .then((res) => (this.group_total = res))
+  },
   //警告視窗開關
   XError: function ()
   {
@@ -198,7 +288,7 @@ methods: {
       return;
     }
     },
-    //下一步
+    //下一步 //新增原價,折扣價,優惠
     step4 : async function()
     {
       //UP電話 備註
@@ -210,7 +300,9 @@ methods: {
         body: JSON.stringify({
           group_ord_no: this.group_ord_no,
           group_ord_phone: this.phone,
-          note:this.message
+          note: this.message,
+          group_ord_price: this.group_ord_price,
+          group_ord_price_1: this.group_ord_price_1,
         })
       })
       location.href = `./join_step4.html?group_ord_no=${this.group_ord_no}`

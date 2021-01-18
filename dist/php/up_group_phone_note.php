@@ -9,10 +9,14 @@ try{
     $group_ord_no = $decoded["group_ord_no"];
     $group_ord_phone = $decoded["group_ord_phone"];
     $note = $decoded["note"];
+    $group_ord_price = $decoded["group_ord_price"];
+    $group_ord_price_1 = $decoded["group_ord_price_1"];
 
     $sql = "update group_ord 
             set group_ord_phone = :group_ord_phone,
             note = :note,
+            group_ord_price = :group_ord_price,
+            group_ord_price_1 = :group_ord_price_1,
             group_state = 1
             where group_ord_no = :group_ord_no";
 
@@ -20,6 +24,8 @@ try{
     $group_ord_data->bindValue(":group_ord_no", $group_ord_no);
     $group_ord_data->bindValue(":group_ord_phone", $group_ord_phone);
     $group_ord_data->bindValue(":note", $note);
+    $group_ord_data->bindValue(":group_ord_price", $group_ord_price);
+    $group_ord_data->bindValue(":group_ord_price_1", $group_ord_price_1);
 
     $group_ord_data->execute();
     

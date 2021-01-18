@@ -225,6 +225,11 @@ aside {
     font-weight: bold;
     color: #fff;
     padding: 5px 10px;
+    cursor: pointer;
+    opacity: 0.6;
+    &:hover {
+        opacity: 1;
+    }
 }
 .send_img {
     margin: 0 10px 0 0;
@@ -265,7 +270,7 @@ aside {
     }
     aside {
         width: calc(30% - 70px) !important;
-        display: flex;
+        // display: flex;
         align-self: stretch;
         // left: 0;
         border-right: 2px solid rgb(184, 180, 180) !important;
@@ -410,6 +415,11 @@ aside {
     border-radius: 5px;
     overflow: hidden;
     line-height: 12px;
+    cursor: pointer;
+    opacity: 0.6;
+    &:hover {
+        opacity: 1;
+    }
 }
 
 @media (min-width: 576px) {

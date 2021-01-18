@@ -6,76 +6,70 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="./vendors/Vue/vue.js"></script>
+    <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/menu.css">
-    <link rel="stylesheet" href="./css/menu_self.css">
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/menu_self.css">
     <link rel="stylesheet" href="./css/alertLightbox.css">
-
+    <script src="./js/layout/header.js"></script>
+    <script src="./js/layout/footer.js"></script>
 </head>
 
 <body>
-    <header id="header">
-        <my-header></my-header>
-    </header>
-    <div id="top_info">
-        <section id="left_info">
-            <div id="info_title">
-                <h2>飲品項目|MENU</h2>
-            </div>
-            <div class="text_info">
-                <div><img src="./Images/drop-2.svg" alt=""></div><span>點擊下方飲品，立刻建立訂單</span>
-            </div>
-            <div class="text_info">
-                <div><img src="./Images/drop-2.svg" alt=""></div><span>揪團訂即產生QR，分享揪飲折扣滿滿!</span>
-            </div>
-            <div id="text_info_1" class="text_info">
-                <div><img src="./Images/drop-2.svg" alt=""></div><span>揪團集杯優惠資訊</span>
-
-            </div>
-            <div id="text_info_2">
-
-                <ul>
-                    <li>滿<span>20杯</span>，杯杯打<span>九折</span></li>
-                    <li>滿<span>30杯</span>，杯杯打<span>八折</span></li>
-                    <li>滿<span>40杯</span>，杯杯打<span>七折</span></li>
-                </ul>
-            </div>
-        </section>
-        <section id="right_info">
-            <div id="mascot_wrapper">
-                <button class="group_btn color-1" onclick="location.href='join_step1.html'">
-                    <a href="./join_step1.html" style="text-decoration: none;"></a>
-                    <div>一起</div>
-                    <div>揪團訂</div>
-                    </a>
-                </button>
-
-                <img src="./Images/mascot.svg" alt="" id="mascot">
-            </div>
-        </section>
-    </div>
-
     <div id="app">
-        <!-- 飲品價目表 -->
-        <menu_carshop></menu_carshop>
-
-        <!-- 飲品燈箱 -->
-        <light_box></light_box>
-
-        <alert_lightbox></alert_lightbox>
-
+        <header>
+            <my-header @checked_mem="checked_mem"></my-header>
+        </header>
+        <div id="top_info">
+            <section id="left_info">
+                <div id="info_title">
+                    <h2>飲品項目|MENU</h2>
+                </div>
+                <div class="text_info">
+                    <div><img src="./Images/drop-2.svg" alt=""></div><span>點擊下方飲品，立刻建立訂單</span>
+                </div>
+                <div class="text_info">
+                    <div><img src="./Images/drop-2.svg" alt=""></div><span>揪團訂即產生QR，分享揪飲折扣滿滿!</span>
+                </div>
+                <div id="text_info_1" class="text_info">
+                    <div><img src="./Images/drop-2.svg" alt=""></div><span>揪團集杯優惠資訊</span>
+                </div>
+                <div id="text_info_2">
+                    <ul>
+                        <li>滿<span>20杯</span>，杯杯打<span>九折</span></li>
+                        <li>滿<span>30杯</span>，杯杯打<span>八折</span></li>
+                        <li>滿<span>40杯</span>，杯杯打<span>七折</span></li>
+                    </ul>
+                </div>
+            </section>
+            <section id="right_info">
+                <div id="mascot_wrapper">
+                    <button class="group_btn color-1" onclick="location.href='join_step1.html'">
+                        <a href="./join_step1.html" style="text-decoration: none;"></a>
+                        <div>一起</div>
+                        <div>揪團訂</div>
+                        </a>
+                    </button>
+                    <img src="./Images/mascot.svg" alt="" id="mascot">
+                </div>
+            </section>
+        </div>
+        <div>
+            <!-- 飲品價目表 -->
+            <menu_carshop :mem_info="mem_info"></menu_carshop>
+            <!-- 飲品燈箱 -->
+            <light_box></light_box>
+            <alert_lightbox></alert_lightbox>
+        </div>
+        <footer>
+            <my-footer></my-footer>
+        </footer>
     </div>
-
-    <footer id="footer">
-        <my-footer></my-footer>
-    </footer>
-    <script src="./layout/footer.vue"></script>
-    <script src="./layout/header.vue"></script>
     <script src="./js/menu_self.js"></script>
     <script>
-        document.getElementById('shopping_btn').addEventListener('click', function () {
-            location.href = 'personalOrder.html'
-        })
+    // document.getElementById('shopping_btn').addEventListener('click', function() {
+    //     location.href = 'personalOrder.html'
+    // })
     </script>
 </body>
 

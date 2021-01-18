@@ -11,7 +11,7 @@ function size() {
     })
 
     TweenMax.to('.light2', 2.2, {
-        scale: 0.7,
+        scale: 0.6,
         repeat: -1,
         yoyo: true,
     })
@@ -23,7 +23,7 @@ function size() {
     })
 
     TweenMax.to('.light4', 1.4, {
-        scale: 0.8,
+        scale: 1.3,
         repeat: -1,
         yoyo: true,
     })

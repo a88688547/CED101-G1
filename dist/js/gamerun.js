@@ -134,6 +134,7 @@ function handleComplete(evt, comp) {
 
         return coupon
     }
+    getCoupon();
     exportRoot.addChild(char);
     document.querySelector(".hpbar").style.width = `${hp}%`;
     let timePearl = setInterval(() => {
@@ -203,6 +204,7 @@ function handleComplete(evt, comp) {
             createjs.Ticker.removeEventListener("tick", tickHandler);
             exportRoot.removeChild(char);
             if (members) {
+                console.log(members)
                 if (totalscore.innerText >= 300) {
                     getcoupon.style.display = "block";
                     getcoupon.innerText = "獲得七折兌換卷一張"

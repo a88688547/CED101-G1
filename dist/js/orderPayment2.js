@@ -53,11 +53,10 @@ Vue.component('top', {
 
         data() {
             return {
+                mem_info: "",
                 info_phone: storage["info_phone"],
                 info_address: storage["info_address"],
                 info_note: storage["info_note"],
-                couname: storage["couname"],
-                cou_dis: storage["cou_dis"],
                 cardno: storage["cardno"],
                 exp_month: storage["exp_month"],
                 exp_year: storage["exp_year"],
@@ -66,6 +65,9 @@ Vue.component('top', {
                 totalcup: storage["totalcup"],
                 totalprice: storage["totalprice"],
                 drink: [],
+                cou_discount: storage["cou_discount"],
+                cou_code: storage["cou_code"],
+                cou_no: storage["cou_no"],
                 //燈箱
                 show: false,
                 // 杯數折扣
@@ -106,9 +108,9 @@ Vue.component('top', {
             },
             // 若未使用折價券，則*1
             count() {
-                if (this.cou_dis === "") {
-                    this.cou_dis === 1
-                    storage["cou_dis"] = 1
+                if (this.cou_discount === "") {
+                    this.cou_discount === 1
+                    storage["cou_discount"] = 1
                 }
             },
 
@@ -177,10 +179,16 @@ Vue.component('top', {
                         storage["cup_dis"] = 0.6
                 }
 
-                let discoutotal = Math.round(this.discuptotal * this.cou_dis)
+                let discoutotal = Math.round(this.discuptotal * this.cou_discount)
                 // console.log(discoutotal)
                 storage["discoutotal"] = discoutotal
             },
+            checked_mem(data) {
+                this.mem_info = data
+                if (this.mem_info.mem_no === undefined) {
+                    location.href = `./homepage.html`
+                }
+            }
             // ----------test--------------------
             // send() {
             // var arr1 = [];
@@ -211,10 +219,14 @@ Vue.component('top', {
 
 
         },
+
+        mounted() {
+
+        },
+
         created() {
             this.action()
             this.drinklist()
-            // this.cupdis()
             this.count()
             this.dis()
 

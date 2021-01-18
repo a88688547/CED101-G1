@@ -1,7 +1,7 @@
-@import "./base/base.scss";
-@import "./mixins/font_size.scss";
-@import "./base/color.scss";
-@import "./mixins/button.scss";
+@import './base/base.scss';
+@import './mixins/font_size.scss';
+@import './base/color.scss';
+@import './mixins/button.scss';
 
 $mq575: 575px;
 $mq767: 767px;
@@ -58,6 +58,7 @@ body {
         }
 
         p {
+            margin: 5px 0 !important;
             font-size: $fontsize_H4;
             line-height: 1.6;
             color: white;
@@ -79,6 +80,10 @@ body {
             &:hover {
                 background-color: #be8316;
             }
+        }
+        p:nth-child(5) {
+            color: #be8316;
+            font-weight: bold;
         }
     }
 }
@@ -134,7 +139,7 @@ section {
 
             &::before,
             &::after {
-                content: "";
+                content: '';
                 position: absolute;
                 display: block;
             }
@@ -164,7 +169,7 @@ section {
                 position: absolute;
                 font-size: $fontsize_H3;
                 font-weight: bold;
-                color:$textColor;
+                color: $textColor;
             }
 
             .speed {
@@ -188,7 +193,7 @@ section {
 
     .right {
         width: 50%;
-        margin-top:12%;
+        margin-top: 12%;
 
         .select-item-wrap {
             width: 100%;

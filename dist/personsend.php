@@ -99,6 +99,13 @@ $orderdata->bindValue(":cou_no", $_POST["cou_no"]);
 
 $orderdata->execute();
 
+
+$sql="UPDATE coupon SET cou_status = '1' WHERE cou_no =:cou_no";
+
+$orderdata = $pdo->prepare($sql);
+$orderdata->bindValue(":cou_no", $_POST["cou_no"]);
+$orderdata->execute();
+
 }
 
 // 找出最新建立的個人訂單編號

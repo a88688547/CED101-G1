@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/orderPayment2.css" />
     <link rel="stylesheet" href="./css/list_data.css">
+    <link rel="stylesheet" href="./css/alertLightbox.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
 </head>
 
 <body>
@@ -23,8 +25,6 @@
         <div>
             <top></top>
             <div class="main">
-
-
                 <!-- 個人訂購資訊 -->
                 <div class="userinfo">
                     <div class="userpic"><img src="Images/user_big.svg"></div>
@@ -105,7 +105,6 @@
                         </div>
                     </div>
                 </div>
-
                 <!-- 結帳金額 -->
                 <div class="finaltotal">
                     <div class="group_order_done_total_box">
@@ -155,8 +154,7 @@
                                     <div class="Modal_group_order_done_person">
                                         <div class="Modal_group_order_done_person_upbox">
                                             <div class="Modal_group_order_done_person_infobox">
-                                                <div class="Modal_group_order_done_person_img"><img
-                                                        src="./Images/user_big.svg" />
+                                                <div class="Modal_group_order_done_person_img"><img src="./Images/user_big.svg" />
                                                 </div>
                                                 <div class="Modal_group_order_done_person_name">{{mem_info.mem_name}}
                                                 </div>
@@ -168,14 +166,11 @@
                                                 <div class="Modal_group_order_done_person_total_price">${{totalprice}}
                                                 </div>
                                                 <input type="hidden" :value="totalprice" name="totalprice">
-
                                             </div>
                                         </div>
                                         <!-- 購買的 飲料 -->
                                         <div class="Modal_group_order_done_person_downbox">
-
-                                            <drinklist v-for="(value,key) in drink" :key_="key" :value_="value"
-                                                :drink="drink">
+                                            <drinklist v-for="(value,key) in drink" :key_="key" :value_="value" :drink="drink">
                                             </drinklist>
                                         </div>
                                     </div>
@@ -198,15 +193,12 @@
                                         <div>
                                             <span v-if='this.cou_discount === "1" '>未使用折價券</span>
                                             <span v-else>{{cou_code}}已使用</span>
-
                                             <input type="hidden" :value="cou_no" name="cou_no">
-
                                         </div>
                                     </div>
                                     <div class="modalcount">
                                         <div>
                                             商品X<span>{{totalcup}}</span>
-
                                         </div>
                                         <div>
                                             小計$.<span>{{totalprice}}</span>
@@ -243,11 +235,9 @@
                                         <div class="group_order_done_finaltotal">
                                             <div>總金額</div>
                                             <div>${{discoutotal}}</div>
-
                                         </div>
                                     </div>
                                 </div>
-
                                 <!-- 按鈕 -->
                                 <div class="modalbtn">
                                     <input type="submit" value="確認送出">
@@ -263,8 +253,6 @@
         </footer>
     </div>
     <script src="./js/orderPayment2.js"></script>
-
-
 </body>
 
 </html>

@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="./css/list_data.css">
     <link rel="stylesheet" href="./css/alertLightbox.css">
     <link rel="stylesheet" href="./css/orderPayment.css" />
+    <link rel="stylesheet" href="./css/alertLightbox.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="./js/layout/header.js"></script>
     <script src="./js/layout/footer.js"></script>
@@ -18,7 +20,6 @@
 
 <body>
     <div id="app">
-
         <header>
             <my-header @checked_mem="checked_mem"></my-header>
         </header>
@@ -26,14 +27,11 @@
         <div>
             <top></top>
             <div class="main">
-
-
                 <!-- 個人訂購資訊 -->
                 <div class="userinfo">
                     <div class="userpic"><img src></div>
                     <div class="user">
                         <div class="username">{{mem_info.mem_name}}</div>
-
                         <div class="userphone">
                             <div class="userphonetop">
                                 <img src="Images/tell_big.svg">
@@ -132,8 +130,6 @@
                     </div>
                 </div>
             </div>
-
-
             <!-- 警示燈箱 -->
             <div class="alertLightbox_black" v-if="show">
                 <div class="alertLightboxWrapper">
@@ -149,7 +145,6 @@
         </footer>
     </div>
     <script src="./js/orderPayment.js"></script>
-
 </body>
 
 </html>

@@ -6,137 +6,122 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>自己訂-訂單完成</title>
     <script src="./vendors/Vue/vue.js"></script>
-    <script src="./vendors/jQuery/js/jquery-3.5.1.js"></script>
-    <script src="./js/header_footer.js"></script>
-    <script src="./js/self.js"></script>
-
+    <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/style.css" />
-    <link rel="stylesheet" href="./css/orderDoneP.css" />
     <link rel="stylesheet" href="./css/list_data.css">
+    <link rel="stylesheet" href="./css/orderDoneP.css" />
+    <link rel="stylesheet" href="./css/alertLightbox.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="./js/layout/header.js"></script>
+    <script src="./js/layout/footer.js"></script>
 </head>
 
 <body>
-    <header id="header">
-        <my-header></my-header>
-    </header>
-    <div class="main">
+    <div id="app">
+        <header>
+            <my-header @checked_mem="checked_mem"></my-header>
+        </header>
         <!-- ==============進度條================= -->
-        <div class="step_box">
-            <ul class="step_ball">
-                <li>
-                    <img src="./Images/join_list/step_1_icon.svg" alt="">
-                    <h5>1.建立揪團</h5>
-                </li>
-                <li>
-                    <img src="./Images/join_list/step_3_icon.svg" alt="">
-                    <h5>2.訂單頁面</h5>
-                </li>
-                <li>
-                    <img src="./Images/join_list/step_4_icon.svg" alt="">
-                    <h5>3.訂單完成</h5>
-                </li>
-            </ul>
-        </div>
-        <!-- 訂單狀態 -->
-        <div class="status">
-            <div>
-                <div>訂單編號</div>
-                <div>XXXXXXX</div>
-            </div>
-            <div>
-                <div>訂單狀態</div>
+        <top></top>
+        <div class="main">
+            <!-- 訂單狀態 -->
+            <div class="status">
                 <div>
-                    <span class="ready">準備中</span>
+                    <div>訂單編號</div>
+                    <div>{{per_ord_no}}</div>
                 </div>
-
+                <div>
+                    <div>訂單狀態</div>
+                    <div>
+                        <span class="ready">準備中</span>
+                    </div>
+                </div>
+            </div>
+            <!-- 個人訂購資訊 -->
+            <div class="userinfo">
+                <div class="userpic"><img src="Images/user_big.svg"></div>
+                <div class="user">
+                    <div class="username">{{mem_info.memName}}</div>
+                    <div class="userphone">
+                        <div class="userphonetop">
+                            <img src="Images/tell_big.svg">
+                            <div>行動電話</div>
+                        </div>
+                        <div class="userphonebottom">
+                            {{per_ord[0].phone}}
+                        </div>
+                    </div>
+                    <div class="useradd">
+                        <div class="useraddtop">
+                            <img src="Images/address.svg">
+                            <div>取貨地點</div>
+                        </div>
+                        <div class="useraddbottom">
+                            {{per_ord[0].adress}}
+                        </div>
+                    </div>
+                    <div class="usermsg">
+                        <div class="usermsgtop">
+                            <img src="Images/list.svg">
+                            <div>留言給店家</div>
+                        </div>
+                        <div class="usermsgbottom">
+                            {{per_ord[0].note}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 訂購資訊 -->
+            <div id="order_list">
+                <div class="group_order_done_person">
+                    <div class="group_order_done_person_downbox">
+                        <!-- 購買的 飲料 -->
+                        <div class="group_order_done_person_drink" v-for="value in order_item">
+                            <div class="group_order_done_person_drink_title">{{value.drink_title_ch}}-{{value.cup_no}}
+                            </div>
+                            <div class="group_order_done_person_drink_note">
+                                {{value.set_info}}/${{value.price}}/{{value.ord_list_qua}}杯
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 結帳金額 -->
+                <div class="finaltotal">
+                    <div class="group_order_done_total_box">
+                        <div class="group_order_done_total">
+                            <div>原價</div>
+                            <div>${{per_ord[0].ord_price}}</div>
+                        </div>
+                        <div class="group_order_done_dis">
+                            <div>杯數折扣</div>
+                            <div>x {{per_ord[0].dis_count}}</div>
+                        </div>
+                        <div class="group_order_done_total">
+                            <div>杯數折扣後</div>
+                            <div>${{per_ord[0].ord_price_1}}</div>
+                        </div>
+                        <div class="group_order_done_dis">
+                            <div>優惠卷折扣</div>
+                            <div>x {{per_ord[0].cou_discount}}</div>
+                        </div>
+                        <div class="group_order_done_total">
+                            <div>優惠卷折扣後</div>
+                            <div>${{per_ord[0].ord_price_2}}</div>
+                        </div>
+                        <div class="group_order_done_finaltotal">
+                            <div>總金額</div>
+                            <div>${{per_ord[0].ord_price_2}}</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <!-- 個人訂購資訊 -->
-        <div class="userinfo">
-            <div class="userpic"><img src="Images/user_big.svg"></div>
-            <div class="user">
-                <div class="username">董董</div>
-                <div class="userphone">
-                    <div class="userphonetop">
-                        <img src="Images/tell_big.svg">
-                        <div>行動電話</div>
-                    </div>
-                    <div class="userphonebottom">
-                        0912345678
-                    </div>
-                </div>
-                <div class="useradd">
-                    <div class="useraddtop">
-                        <img src="Images/address.svg">
-                        <div>取貨地點</div>
-                    </div>
-                    <div class="useraddbottom">
-                        桃園市春德路191巷26號
-                    </div>
-                </div>
-                <div class="usermsg">
-                    <div class="usermsgtop">
-                        <img src="Images/list.svg">
-                        <div>留言給店家</div>
-                    </div>
-                    <div class="usermsgbottom">
-                        麻煩提供吸管和袋子，謝謝
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- 訂購資訊 -->
-        <div id="order_list">
-            <div class="group_order_done_person">
-                <div class="group_order_done_person_downbox">
-                    <!-- 購買的 飲料 -->
-                    <div class="group_order_done_person_drink">
-                        <div class="group_order_done_person_drink_title">珍珠奶茶-大杯</div>
-                        <div class="group_order_done_person_drink_note">少冰/微糖/加珍珠/$65/1杯</div>
-                    </div>
-                    <div class="group_order_done_person_drink">
-                        <div class="group_order_done_person_drink_title">紅茶-大杯</div>
-                        <div class="group_order_done_person_drink_note">去冰/無糖/加QQ/$50/1杯</div>
-                    </div>
-                </div>
-            </div>
-            <!-- 結帳金額 -->
-            <div class="finaltotal">
-                <div class="group_order_done_total_box">
-                    <div class="group_order_done_total">
-                        <div>原價</div>
-                        <div>$115</div>
-                    </div>
-                    <div class="group_order_done_dis">
-                        <div>杯數折扣</div>
-                        <div>x 0</div>
-                    </div>
-                    <div class="group_order_done_total">
-                        <div>杯數折扣後</div>
-                        <div>$115</div>
-                    </div>
-                    <div class="group_order_done_dis">
-                        <div>優惠卷折扣</div>
-                        <div>x 0.8</div>
-                    </div>
-                    <div class="group_order_done_total">
-                        <div>優惠卷折扣後</div>
-                        <div>$92</div>
-                    </div>
-                    <div class="group_order_done_finaltotal">
-                        <div>總金額</div>
-                        <div>$92</div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <footer>
+            <my-footer></my-footer>
+        </footer>
     </div>
-
-    <footer id="footer">
-        <my-footer></my-footer>
-    </footer>
-    <script src="./layout/footer.vue"></script>
-    <script src="./layout/header.vue"></script>
+    <script src="./js/orderDoneP.js"></script>
 </body>
 
 </html>

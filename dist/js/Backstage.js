@@ -2286,6 +2286,7 @@ window.addEventListener('load', function () {
         components: {},
         created() {
             // this.check_mar()
+            //判斷是否有登入狀態
             const res = fetch('./php/check_mar.php', {
                 method: 'POST',
                 mode: 'same-origin',
@@ -2300,6 +2301,8 @@ window.addEventListener('load', function () {
                 .then((data) => {
                     if (data.mar_no) {
                         this.mar_info = data
+                        if (data.mar_login_time) {
+                        }
                         // console.log('有')
                     } else {
                         // console.log('沒有')

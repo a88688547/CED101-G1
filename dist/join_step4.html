@@ -80,9 +80,10 @@
                 <img src="./Images/user_big.svg" />
               </div>
               <div class="group_data_total_imgB">
-                {{mem_info.memName}}
+                {{mem_info.mem_name}}
               </div>
             </div>
+            <button @click="select_cou">test</button>
             
             <!-- ===團的資料==== -->
             <div class="group_data_total_text">
@@ -183,15 +184,15 @@
           </div>
           <div class="group_order_done_dis">
               <div>優惠卷折扣</div>
-              <div>x </div>
+              <div>x{{cou_discount}}</div>
           </div>
           <div class="group_order_done_total">
               <div>優惠卷折扣後</div>
-              <div>$</div>
+              <div>${{group_ord.group_ord_price_2}}</div>
           </div>
           <div class="group_order_done_finaltotal">
               <div>總金額</div>
-              <div>$</div>
+              <div>${{group_ord.group_ord_price_2}}</div>
           </div>
       </div>
           

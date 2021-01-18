@@ -1596,7 +1596,10 @@ window.addEventListener('load', function () {
     // --- 查看 優惠券  ---
     Vue.component('coupon_box', {
         data() {
-            return {}
+            return {
+                coupons: '',
+                empty: 'false',
+            }
         },
         props: ['mem_no'],
         template: `
@@ -1605,24 +1608,53 @@ window.addEventListener('load', function () {
           <div class="tag_title">優惠券查看</div>
           <a href="./custom.html" class="coupon_link"><img src="./Images/coupon_list.png" /></a>
       </div>
-      <div class="coupon_list">
-          <div class="coupon_item">
-              <div class="coupon_img"><img src="./Images/coupon.png" /></div>
+      <div v-if=" empty == 'true' ">
+            <span>目前尚無任何優惠券</span>
+      </div>
+      <div class="coupon_list" v-if=" empty == 'false' ">
+          <div class="coupon_item" v-for="(value,key) in coupons">
+              <div class="coupon_img"><img :src="value.img" /></div>
               <div class="coupon_info">
                   <div class="coupon_info_row">
                       <div>優惠券代碼:</div>
-                      <div>JIS!&@*2781</div>
+                      <div>{{value.cou_code}}</div>
                   </div>
                   <div class="coupon_info_row">
                       <div>折扣數:</div>
-                      <div>8折</div>
+                      <div>{{value.cou_discount}}</div>
                   </div>
               </div>
           </div>
       </div>
     </section>
   `,
-        methods: {},
+        methods: {
+            async get_coupon() {
+                const res = await fetch('./php/mem_get_coupon.php', {
+                    method: 'POST',
+                    mode: 'same-origin',
+                    credentials: 'same-origin',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        mem_no: this.mem_no,
+                    }),
+                }).then(function (data) {
+                    return data.json()
+                })
+                // 取回res值後，呼叫另一隻函式
+
+                if (res === '{}') {
+                    this.empty = 'true'
+                } else {
+                    this.coupons = res
+                }
+            },
+        },
+        created() {
+            this.get_coupon()
+        },
     })
     //-----------------------------------------------------
 

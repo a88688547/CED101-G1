@@ -2201,7 +2201,7 @@ window.addEventListener('load', function () {
 
         template: `
         <nav>
-          <div class="logo_img"><img src="./Images/logo-header.svg"></div>
+          <a class="logo_img" href="./index.html"><img src="./Images/logo-header.svg"></a>
           <div class="mar_name_box">
             <div>管理員 : <span>{{mar_info.mar_name}}</span></div>
             <div class="logout_btn" @click="logout">登出</div>

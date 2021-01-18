@@ -3,6 +3,7 @@ var app = new Vue({
 data: function ()
 { 
   return {
+    group_total:0,
     TimeError:false,
     goal:1,
     joinStage:1,
@@ -19,7 +20,7 @@ data: function ()
     group_order_item:"",
     group_ord: [],
     group_ord_no: "",
-      msg: "123",
+    msg: "123",
     cup_text:"",
     //QR網址
     URL: window.location.search,
@@ -121,16 +122,8 @@ methods: {
       close_btn()
       {
           this.firstQR = false;
-  },
-      //時間超過不能送出
-  timeCheck()
-  {
-    
-    
-    
-
-    
-  },
+      },
+      
       checkout()
       {
         this.get_group_ord_item();
@@ -181,7 +174,7 @@ methods: {
         location.href = `./join_step3A.html?group_ord_no=${this.group_ord_no}`
       },
     
-    //抓飲料資訊
+    //用訂單編號抓飲料資料
     get_group_ord_item: async function () {
           // console.log('send2', drinkno)
           const res = await fetch('./php/mem_getone_group_ord_item.php', {
@@ -195,54 +188,53 @@ methods: {
                   group_ord_no: this.group_ord_no,
               }),
           }).then(function (data) {
-              return data.json()
+            return data.json()
           })
           // 取回res值後，塞入data內
           this.group_order_item = res
       },
-    //抓訂單編號資料
-    selectGroupNo: async function (group_ord_no) {
-      const res = await fetch("./php/group_no.php", {
-        method: "POST",
+    //用訂單編號抓訂單資料
+  selectGroupNo: async function (group_ord_no)
+  {
+    const res = await fetch("./php/group_no.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        group_ord_no: this.group_ord_no,
+      }),
+    })
+      .then((res) => res.json())
+      .then((res) => (this.group_ord = res));
+    },
+   
+ //抓總價
+    get_order_total: async function () {
+      const res = await fetch('./php/get_order_total.php', {
+        method: 'POST',
+        mode: 'same-origin',
+        credentials: 'same-origin',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           group_ord_no: this.group_ord_no,
         }),
       })
-        .then((res) => res.json())
-        .then((res) => (this.group_ord = res));
-    },
-  //   //抓飲料筆數
-  //   get_order_count: async function () {
-  //     const res = await fetch('./php/get_order_count.php', {
-  //       method: 'POST',
-  //       mode: 'same-origin',
-  //       credentials: 'same-origin',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify({
-  //         group_ord_no: this.group_ord_no,
-  //       }),
-  //     }).then((res) => res.json())
-  //       .then((res) => this.old = res.count)
-  //       .then((res)=>this.check(res))
-  // },
-  // check: function (data)
-  // { 
-  //   if (this.order_count < data)
-  //   {
-  //     this.order_count = data;
-  //   } else
-  //   { 
-  //     alert('new order');
-  //   }
-  // },
+      .then(function (data) {
+        return data.json()
+      })
+      console.log(res)
+      this.group_total = res.group_ord_total
+        // .then((res) => res.json())
+        // .then((res) => console.log(res.group_ord_total))
+        // .then((res) => (this.group_total = res))
+  },
+  
   get_mem_info(data){
     this.mem_info = data
-    this.mem_no = data.memNo
+    this.mem_no = data.mem_no
   }
   },
 computed: {
@@ -262,6 +254,7 @@ computed: {
   },
   mounted()
   {
+    this.get_order_total();
     this.timer = setInterval(this.getWatchNum, 1000);
     this.selectGroupNo();
     this.get_group_ord_item();

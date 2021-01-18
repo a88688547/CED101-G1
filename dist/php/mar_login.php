@@ -29,6 +29,7 @@ try {
         $_SESSION["mar_no"] = $memRow["mar_no"];
         $_SESSION["mar_id"] = $memRow["mar_id"];
         $_SESSION["mar_name"] = $memRow["mar_name"];
+        $_SESSION["mar_login_time"] = time();
 
         // echo "登入成功~!!";
 

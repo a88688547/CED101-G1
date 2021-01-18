@@ -10,6 +10,7 @@ body{
     margin:0 auto;
 }
 
+
 // ====進度bar=====
 
 // 尺寸、對齊方式
@@ -191,7 +192,7 @@ body{
     width:90%;
     display:flex;
     justify-content: center;
-    color:#707070;
+    
     margin:55px auto;
 }
 .userpic{
@@ -202,6 +203,7 @@ body{
 .user{
     width:70%;
     @include H5;
+    color:#707070;
 }
 .username{
     margin-bottom: 20px;

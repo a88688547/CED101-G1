@@ -72,6 +72,7 @@ Vue.component('top', {
                 show: false,
                 // 杯數折扣
                 cup_dis: storage["cup_dis"],
+                // cou_discount: "",
             }
         },
 
@@ -104,12 +105,8 @@ Vue.component('top', {
             close() {
                 this.show = false
             },
-            // 若未使用折價券，則*1
-            count() {
-                if (this.cou_discount === "") {
-                    this.cou_discount === 1
-                }
-            },
+
+
 
             // 使用PHP從後台判斷折數
             // cupdis() {
@@ -171,7 +168,14 @@ Vue.component('top', {
                 if (this.mem_info.mem_no === undefined) {
                     location.href = `./homepage.html`
                 }
-            }
+            },
+            // 若未使用折價券，則*1
+            // coudiscount() {
+            //     if (this.cou_discount === "") {
+            //         this.cou_discount === 1
+            //         storage["cou_discount"] = 1
+            //     }
+            // }
             // ----------test--------------------
             // send() {
             // var arr1 = [];
@@ -208,7 +212,11 @@ Vue.component('top', {
                 return Math.round(this.totalprice * this.cup_dis)
             },
             discoutotal: function () {
-                return Math.round(this.totalprice * this.cup_dis * this.cou_discount)
+                if (this.cou_discount === "") {
+                    return Math.round(this.totalprice * this.cup_dis * 1)
+                } else {
+                    return Math.round(this.totalprice * this.cup_dis * this.cou_discount)
+                }
             }
         },
 
@@ -219,7 +227,6 @@ Vue.component('top', {
         created() {
             this.action()
             this.drinklist()
-            this.count()
             this.dis()
 
 

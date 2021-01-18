@@ -1,5 +1,6 @@
 <?php
     try{
+        session_start();
         require_once "./connect_join_database.php";
         $content = trim(file_get_contents("php://input"));
         $data = json_decode($content, true);
@@ -23,6 +24,7 @@
         echo json_encode($drink_no);
 
         if($dirnk_type_no == 1){
+            $_SESSION["fruit_vote"] = $vote_time;
             $sql = "update member 
                     set milk_vote = :vote_time
                     where mem_no = :mem_no";
@@ -30,10 +32,12 @@
             $votetime = $pdo->prepare($sql);
             $votetime->bindValue(":mem_no", $mem_no);
             $votetime->bindValue(":vote_time",  $vote_time);
+            $_SESSION["milk_vote"] = $vote_time;
             $votetime->execute();
             echo json_encode("送出成功");
         }
         if($dirnk_type_no == 2){
+            $_SESSION["tea_vote"] = $vote_time;
             $sql = "update member 
                     set tea_vote = :vote_time 
                     where mem_no = :mem_no";
@@ -45,13 +49,14 @@
             echo json_encode("送出成功");
         }
         if($dirnk_type_no == 3){
+            $_SESSION["fruit_vote"] = $vote_time;
             $sql = "update member 
                     set fruit_vote = :vote_time 
                     where mem_no = :mem_no";
     
             $votetime = $pdo->prepare($sql);
             $votetime->bindValue(":mem_no", $mem_no);
-            $votetime->bindValue(":vote_time",  $vote_time);
+            $votetime->bindValue(":vote_time",  $vote_time);              
             $votetime->execute();
             echo json_encode("送出成功");
         }

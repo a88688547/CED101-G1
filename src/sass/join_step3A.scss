@@ -118,7 +118,7 @@ input{
     }
 }
 .orderModal{
-    // border: 1px solid red;
+    border: 1px solid red;
     position: fixed;
     top: 0;
     left: 0;
@@ -127,14 +127,21 @@ input{
     background-color: rgba(65,62,62,0.5);
     width: 100%;
     height: 100%;
+    z-index: 999;
     #order_list{
-        overflow-y: auto;
+        .group_list{
+            // border: 3px solid red;
+            overflow-y: auto;
+        }
+        // border: 1px solid red;
+        
         .closebtn{
             position: absolute;
             right: 5px;
             top: 5px;
             cursor: pointer;
         }
+        
         display: flex;
         flex-direction: column;
         h2{
@@ -191,7 +198,7 @@ input{
             }
         }
         .all_total{
-            // border: 1px solid red;
+            border: 1px solid red;
             display: flex;
             width: 80%;
             margin: 25px auto;
@@ -454,10 +461,16 @@ input{
 }
 //金額
 .ListTotal{
+    // display: flex;
+    // flex-direction: column;
+    .group_ord_price{
+        display:flex;
+        justify-content: space-between; 
+    }
+    border: 1px solid red;
     width:70%;
     margin:70px auto;
-    display:flex;
-    justify-content: space-between;   
+      
     align-items: center;
     h2{
         @include H3;
@@ -1244,6 +1257,9 @@ input{
   
   
   @media (min-width: 576px) and (max-width: 991px){
+    .group_order_done_total_box{
+        width: 80%;
+      }
   
     .step_box{
         height: 115px;
@@ -1304,4 +1320,28 @@ input{
             //   border: 1px solid red;
           }
       }
+  }
+  .group_order_done_total_box{
+    font-size: $fontsize_P1;
+    letter-spacing: 2px;
+    // border: 1px solid red;
+    max-width: 90%;
+    margin: 0 auto;
+  
+    div{
+      margin: 10px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+  }
+  .group_order_done_dis{
+    border-bottom: 1px solid rgb(173, 173, 173);
+  }
+  .group_order_done_finaltotal{
+    font-size: $fontsize_H3;
+    color: $textColor;
+    font-weight: bold;
+    border-top: 2px solid $textColor;
   }

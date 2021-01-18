@@ -1,4 +1,4 @@
-let storage = sessionStorage
+let storage = sessionStorage;
 
 Vue.component('top', {
     template: `
@@ -18,13 +18,15 @@ Vue.component('top', {
             </li>
         </ul>
     </div>
-`,
+`
 }),
+
     // 燈箱內購買的飲料列表
     Vue.component('drinklist', {
         props: ['drink', 'value_', 'key_'],
         data() {
-            return {}
+            return {
+            }
         },
         template: `
             <div class="Modal_group_order_done_person_drink" >
@@ -45,43 +47,43 @@ Vue.component('top', {
        
         `,
     }),
+
     new Vue({
-        el: '#app',
+        el: "#app",
 
         data() {
             return {
-                mem_info: '',
-                info_phone: storage['info_phone'],
-                info_address: storage['info_address'],
-                info_note: storage['info_note'],
-                cardno: storage['cardno'],
-                exp_month: storage['exp_month'],
-                exp_year: storage['exp_year'],
-                safeno: storage['safeno'],
-                cardname: storage['cardname'],
-                totalcup: storage['totalcup'],
-                totalprice: storage['totalprice'],
+                mem_info: "",
+                info_phone: storage["info_phone"],
+                info_address: storage["info_address"],
+                info_note: storage["info_note"],
+                cardno: storage["cardno"],
+                exp_month: storage["exp_month"],
+                exp_year: storage["exp_year"],
+                safeno: storage["safeno"],
+                cardname: storage["cardname"],
+                totalcup: storage["totalcup"],
+                totalprice: storage["totalprice"],
                 drink: [],
-                cou_discount: storage['cou_discount'],
-                cou_code: storage['cou_code'],
-                cou_no: storage['cou_no'],
+                cou_discount: storage["cou_discount"],
+                cou_code: storage["cou_code"],
+                cou_no: storage["cou_no"],
                 //燈箱
                 show: false,
                 // 杯數折扣
-                cup_dis: storage['cup_dis'],
-                discuptotal: storage['discuptotal'],
-                discoutotal: storage['discoutotal'],
+                cup_dis: storage["cup_dis"],
+                // cou_discount: "",
             }
         },
 
         methods: {
             // 修改信用卡後三碼為*
             action() {
-                let cardno = storage['cardno']
-                this.cardno = cardno.substr(0, 16) + '***'
+                let cardno = storage["cardno"]
+                this.cardno = cardno.substr(0, 16) + "***"
             },
             drinklist() {
-                let tmp = storage['addDrinkList']
+                let tmp = storage["addDrinkList"]
                 let arr = JSON.parse(tmp)
                 for (let i = 0; i < arr.length; i++) {
                     this.drink.push({
@@ -93,7 +95,7 @@ Vue.component('top', {
                         price: arr[i].shop_price,
                         cup: arr[i].num_feedback,
                         drinkno: arr[i].drink_no,
-                    })
+                    });
                 }
             },
             // 燈箱開關
@@ -103,6 +105,8 @@ Vue.component('top', {
             close() {
                 this.show = false
             },
+
+
 
             // 使用PHP從後台判斷折數
             // cupdis() {
@@ -124,7 +128,7 @@ Vue.component('top', {
             //     //建立好Get連接
             //     var url = "./php/personpayment2.php?dis_cup=" + totalcup;
             //     xhr.open("Get", url, true);
-            //     //送出請求
+            //     //送出請求 
             //     xhr.send(null);
             // },
 
@@ -135,28 +139,29 @@ Vue.component('top', {
                 switch (true) {
                     case totalcup < 20:
                         this.cup_dis = 1
-                        storage['cup_dis'] = 1
-                        break
+                        storage["cup_dis"] = 1
+                        break;
 
                     case totalcup >= 20 && totalcup < 30:
                         this.cup_dis = 0.9
-                        storage['cup_dis'] = 0.9
-                        break
+                        storage["cup_dis"] = 0.9
+                        break;
 
                     case totalcup >= 30 && totalcup < 40:
                         this.cup_dis = 0.8
-                        storage['cup_dis'] = 0.8
-                        break
+                        storage["cup_dis"] = 0.8
+                        break;
 
                     case totalcup >= 40 && totalcu < 50:
                         this.cup_dis = 0.7
-                        storage['cup_dis'] = 0.7
-                        break
+                        storage["cup_dis"] = 0.7
+                        break;
 
                     default:
                         this.cup_dis = 0.6
-                        storage['cup_dis'] = 0.6
+                        storage["cup_dis"] = 0.6
                 }
+
             },
             checked_mem(data) {
                 this.mem_info = data
@@ -198,6 +203,8 @@ Vue.component('top', {
             // });
 
             // }
+
+
         },
         computed: {
             discuptotal: function () {
@@ -205,19 +212,24 @@ Vue.component('top', {
                 return Math.round(this.totalprice * this.cup_dis)
             },
             discoutotal: function () {
-                if (this.cou_discount === '') {
+                if (this.cou_discount === "") {
                     return Math.round(this.totalprice * this.cup_dis * 1)
                 } else {
                     return Math.round(this.totalprice * this.cup_dis * this.cou_discount)
                 }
-            },
+            }
         },
 
-        mounted() {},
+        mounted() {
+
+        },
 
         created() {
             this.action()
             this.drinklist()
             this.dis()
+
+
         },
+
     })

@@ -19,7 +19,7 @@ window.onload = function () {
         console.log(myCharacter);
         const imgSrc = `${myCharacter}${myWrap}`;
         console.log(imgSrc);
-        char.src = `./images/${imgSrc}.png`;
+        char.src = `./Images/${imgSrc}.png`;
     }
     start.addEventListener("click", function (e) {
         e.preventDefault();

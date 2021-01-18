@@ -130,12 +130,8 @@ Vue.component("vote-form", {
             this.members = data;
         },
         toggleLightBox(id, index) {
-            this.type = 'vote'
             if (this.members === "") {
                 return member.$emit("plsLogin")
-            }
-            if (this.voted[index]) {
-                this.type = "voteok";
             }
             const groupMap = {
                 1: 'milk_vote',
@@ -149,8 +145,12 @@ Vue.component("vote-form", {
             // console.log(this.drink_type_no)
             const votedTime = fomateTime(this.members[this.group])
             if (this.members[this.group] && dateFns.isSameWeek(votedTime, new Date())) {
-                this.type = 'done'
+                this.type = 'done';
                 return
+            }
+            this.type = 'vote'
+            if (this.voted[index]) {
+                this.type = "voteok";
             }
 
             fetch("./php/menu1.php", {

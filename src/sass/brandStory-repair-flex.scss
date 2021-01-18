@@ -35,6 +35,7 @@ section.story_descipt{
 
     .descript_block{
         display: inline-flex;
+        opacity: 0;
 
         // 內容寬度邊界-----------------
         width: 90%;
@@ -158,13 +159,13 @@ section.story_descipt{
 }
 // 形狀背景色及動畫效果-------------------------------------
 .descript_block:nth-child(1) .shape img{
-    animation: bubbletea 2s;
+    animation: bubbletea 2s linear 0.5s;
 }
 .descript_block:nth-child(2) .shape{
     background: #F7B447;
     img{
         top: 70%;
-        animation: qr 2s;
+        animation: qr 1s linear 3s;
     }
 }
 
@@ -173,7 +174,7 @@ section.story_descipt{
     img{
         width: 100%;
         top: 45%;
-        animation: bubbletea_handle 2s;
+        animation: bubbletea_handle 1s linear 3s;
     }
 }
 
@@ -184,14 +185,12 @@ section.story_descipt{
         &:first-child{
             z-index: 1;
             top:60%;
-            animation: mascot 1s cubic-bezier(.89,-0.93,.2,1.58);
+            animation: mascot 1s linear 3s;
         }
         &:nth-child(2){
             width: 35%;
             top:25%;
-            // animation: lets_join 1s cubic-bezier(.91,.05,.69,.93);
             animation: lets_join 0.8s linear 0.2s;
-
         }
         &:nth-child(3){
             width: 100%;

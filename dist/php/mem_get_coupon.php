@@ -24,6 +24,20 @@ try {
         //取回一筆資料
         $memberdatarow = $memberdata->fetchAll(PDO::FETCH_ASSOC);
 
+        for ($i = 0; $i < count($memberdatarow); $i++) {
+            if ($memberdatarow[$i]["cou_discount"] == 0.9) {
+                $memberdatarow[$i]["img"] = "./Images/coupon_10off.png";
+            } else if ($memberdatarow[$i]["cou_discount"] == 0.8) {
+                $memberdatarow[$i]["img"] = "./Images/coupon_20off.png";
+            } else if ($memberdatarow[$i]["cou_discount"] == 0.7) {
+                $memberdatarow[$i]["img"] = "./Images/coupon_30off.png";
+            } else if ($memberdatarow[$i]["cou_discount"] == 0.6) {
+                $memberdatarow[$i]["img"] = "./Images/coupon_40off.png";
+            }
+            ;
+        }
+        ;
+
         //送出json字串
         echo json_encode($memberdatarow);
         // echo $managerdatarow;

@@ -1613,7 +1613,7 @@ window.addEventListener('load', function () {
       </div>
       <div class="coupon_list" v-if=" empty == 'false' ">
           <div class="coupon_item" v-for="(value,key) in coupons">
-              <div class="coupon_img"><img src="./Images/coupon.png" /></div>
+              <div class="coupon_img"><img :src="value.img" /></div>
               <div class="coupon_info">
                   <div class="coupon_info_row">
                       <div>優惠券代碼:</div>

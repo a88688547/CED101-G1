@@ -1,11 +1,28 @@
 var app = new Vue({
   el: "#app",
   data: {
+    cup_count:"",
     group_order_item: "",
     group_ord_no: "",
     group_ord: "",
     mem_info:"",
     mem_no:"",
+  },
+  computed: {
+    count() {
+      switch (this.group_ord.goal_cup) {
+          case "20":
+              return this.cup_count = "0.9"
+          case "30":
+              return this.cup_count = "0.8"
+          case "40":
+              return this.cup_count = "0.7"
+          case "50":
+              return this.cup_count = "0.6"
+          default:
+              return "無"
+      }
+    },
   },
   methods: {
        //抓飲料資料

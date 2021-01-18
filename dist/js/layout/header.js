@@ -90,7 +90,7 @@ Vue.component('my-header', {
                         this.isLogin = true
                         this.showLogin = false
                         member.$emit('memberInfo', this.memberInfo)
-                        window.memberInfo = this.memberInfo
+                        window.members = this.memberInfo
                         this.$emit('changemem', this.memberInfo)
                         alert('登入成功')
                         // console.log(res);
@@ -183,6 +183,7 @@ Vue.component('my-header', {
                     this.isLogin = false
                     this.$refs.UserName.innerText = ''
                     this.memberInfo = ''
+                    window.members = ''
                     location.href = './homepage.html'
                     sessionStorage.clear()
                     alert('登出成功')
@@ -215,6 +216,7 @@ Vue.component('my-header', {
                         this.isLogin = true
                         this.memberInfo = res
                         this.$refs.UserName.innerText = `hi~${res.mem_name}`
+                        window.members = this.memberInfo
                         // console.log(this.memberInfo)
                     } else if (JSON.stringify(res) === '{}') {
                         this.isLogin = false

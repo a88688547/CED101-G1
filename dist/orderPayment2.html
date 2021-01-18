@@ -6,260 +6,262 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>自己訂-訂單頁面</title>
     <script src="./vendors/Vue/vue.js"></script>
-    <script src="./js/header_footer.js"></script>
-
+    <script src="./js/layout/header.js"></script>
+    <script src="./js/layout/footer.js"></script>
+    <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/orderPayment2.css" />
     <link rel="stylesheet" href="./css/list_data.css">
 </head>
 
 <body>
-    <header id="header">
-        <my-header></my-header>
-    </header>
-    <!-- ==============進度條================= -->
     <div id="app">
-        <top></top>
-        <div class="main">
+        <header>
+            <my-header @checked_mem="checked_mem"></my-header>
+        </header>
+        <!-- ==============進度條================= -->
+        <div>
+            <top></top>
+            <div class="main">
 
 
-            <!-- 個人訂購資訊 -->
-            <div class="userinfo">
-                <div class="userpic"><img src="Images/user_big.svg"></div>
-                <div class="user">
-                    <div class="username">{{mem_name}}</div>
-                    <div class="userphone">
-                        <div class="userphonetop">
-                            <img src="Images/tell_big.svg">
-                            <div>行動電話</div>
+                <!-- 個人訂購資訊 -->
+                <div class="userinfo">
+                    <div class="userpic"><img src="Images/user_big.svg"></div>
+                    <div class="user">
+                        <div class="username">{{mem_info.mem_name}}</div>
+                        <div class="userphone">
+                            <div class="userphonetop">
+                                <img src="Images/tell_big.svg">
+                                <div>行動電話</div>
+                            </div>
+                            <div class="userphonebottom">
+                                {{info_phone}}
+                            </div>
                         </div>
-                        <div class="userphonebottom">
-                            {{info_phone}}
+                        <div class="useradd">
+                            <div class="useraddtop">
+                                <img src="Images/address.svg">
+                                <div>取貨地點</div>
+                            </div>
+                            <div class="useraddbottom">
+                                {{info_address}}
+                            </div>
                         </div>
-                    </div>
-                    <div class="useradd">
-                        <div class="useraddtop">
-                            <img src="Images/address.svg">
-                            <div>取貨地點</div>
-                        </div>
-                        <div class="useraddbottom">
-                            {{info_address}}
-                        </div>
-                    </div>
-                    <div class="usermsg">
-                        <div class="usermsgtop">
-                            <img src="Images/list.svg">
-                            <div>留言給店家</div>
-                        </div>
-                        <div class="usermsgbottom">
-                            {{info_note}}
+                        <div class="usermsg">
+                            <div class="usermsgtop">
+                                <img src="Images/list.svg">
+                                <div>留言給店家</div>
+                            </div>
+                            <div class="usermsgbottom">
+                                {{info_note}}
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- 折扣區 -->
-            <div class="discount">
-                <div class="discounttop">
-                    <div class="discountno">
-                        <span>折扣代碼</span>
-                        <div>
-                            <span v-if='this.cou_dis === "" '>未使用折價券</span>
-                            <span v-else>{{couname}}已使用</span>
+                <!-- 折扣區 -->
+                <div class="discount">
+                    <div class="discounttop">
+                        <div class="discountno">
+                            <span>折扣代碼</span>
+                            <div>
+                                <span v-if='this.cou_discount === "" '>未使用折價券</span>
+                                <span v-else>{{cou_code}}已使用</span>
+                            </div>
+                        </div>
+                        <div class="gamelink">
+                            <a href="game.html">
+                                <img src="Images/gamelink.svg">
+                            </a>
                         </div>
                     </div>
-                    <div class="gamelink">
-                        <a href="game.html">
-                            <img src="Images/gamelink.svg">
-                        </a>
+                    <div class="discountbottom">
+                        <div>商品X<span>{{totalcup}}</span></div>
+                        <div>小計$.<span>{{totalprice}}</span></div>
                     </div>
                 </div>
-                <div class="discountbottom">
-                    <div>商品X<span>{{totalcup}}</span></div>
-                    <div>小計$.<span>{{totalprice}}</span></div>
-                </div>
-            </div>
-            <!-- 信用卡 -->
-            <div class="creditcard">
-                <div class="cardimg"><img src="Images/pay.svg"></div>
-                <div class="cardinfo">
-                    <div class="cardname">
-                        <div><label>持卡人姓名</label></div>
-                        <div>{{cardname}}</div>
-                    </div>
-                    <div class="cardno">
-                        <div><label>卡號</label></div>
-                        <div>{{safeno}}</div>
-                    </div>
-                    <div class="cardexp">
-                        <div><label>有效期限</label></div>
-                        <div>{{exp_month}}月{{exp_year}}年</div>
-                    </div>
-                    <div class="cardsafeno">
-                        <div><label>安全碼</label></div>
-                        <div>
+                <!-- 信用卡 -->
+                <div class="creditcard">
+                    <div class="cardimg"><img src="Images/pay.svg"></div>
+                    <div class="cardinfo">
+                        <div class="cardname">
+                            <div><label>持卡人姓名</label></div>
+                            <div>{{cardname}}</div>
+                        </div>
+                        <div class="cardno">
+                            <div><label>卡號</label></div>
                             <div>{{safeno}}</div>
-                            <div class="safeimg"><img src="Images/creditcard.svg"></div>
+                        </div>
+                        <div class="cardexp">
+                            <div><label>有效期限</label></div>
+                            <div>{{exp_month}}月{{exp_year}}年</div>
+                        </div>
+                        <div class="cardsafeno">
+                            <div><label>安全碼</label></div>
+                            <div>
+                                <div>{{safeno}}</div>
+                                <div class="safeimg"><img src="Images/creditcard.svg"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- 結帳金額 -->
-            <div class="finaltotal">
-                <div class="group_order_done_total_box">
-                    <div class="group_order_done_total">
-                        <div>原價</div>
-                        <div>${{totalprice}}</div>
-                    </div>
-                    <div class="group_order_done_dis">
-                        <div>杯數折扣</div>
-                        <div>x {{cup_dis}}</div>
-                    </div>
-                    <div class="group_order_done_total">
-                        <div>杯數折扣後</div>
-                        <div>${{discuptotal}}</div>
-                    </div>
-                    <div class="group_order_done_dis">
-                        <div>優惠卷折扣</div>
-                        <div>x {{cou_dis}}</div>
-                    </div>
-                    <div class="group_order_done_total">
-                        <div>優惠卷折扣後</div>
-                        <div>${{discoutotal}}</div>
-                    </div>
-                    <div class="group_order_done_finaltotal">
-                        <div>總金額</div>
-                        <div>${{discoutotal}}</div>
+                <!-- 結帳金額 -->
+                <div class="finaltotal">
+                    <div class="group_order_done_total_box">
+                        <div class="group_order_done_total">
+                            <div>原價</div>
+                            <div>${{totalprice}}</div>
+                        </div>
+                        <div class="group_order_done_dis">
+                            <div>杯數折扣</div>
+                            <div>x {{cup_dis}}</div>
+                        </div>
+                        <div class="group_order_done_total">
+                            <div>杯數折扣後</div>
+                            <div>${{discuptotal}}</div>
+                        </div>
+                        <div class="group_order_done_dis">
+                            <div>優惠卷折扣</div>
+                            <div>x {{cou_discount}}</div>
+                        </div>
+                        <div class="group_order_done_total">
+                            <div>優惠卷折扣後</div>
+                            <div>${{discoutotal}}</div>
+                        </div>
+                        <div class="group_order_done_finaltotal">
+                            <div>總金額</div>
+                            <div>${{discoutotal}}</div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!-- 按鈕 -->
-            <div class="bottombutton">
-                <div><input type="button" value="上一步" class="back" onclick="window.history.go(-1)"></div>
-                <div><input type="button" value="下一步" class="go" @click="check"></div>
-            </div>
-            <!-- 燈箱 -->
-            <div class="orderModal" v-if="show">
-                <div class="modalContent">
-                    <div class="Top">
-                        <h5>訂單明細</h5>
-                        <img src="Images/close.svg" class="close" @click="close">
-                    </div>
-                    <form action="personsend.php" method="POST">
-                        <div class="orderList">
-                            <!-- 購買列表 -->
-                            <div class="listInfo">
-                                <!-- 每個人  -->
-                                <div class="Modal_group_order_done_person">
-                                    <div class="Modal_group_order_done_person_upbox">
-                                        <div class="Modal_group_order_done_person_infobox">
-                                            <div class="Modal_group_order_done_person_img"><img
-                                                    src="./Images/user_big.svg" />
+                <!-- 按鈕 -->
+                <div class="bottombutton">
+                    <div><input type="button" value="上一步" class="back" onclick="window.history.go(-1)"></div>
+                    <div><input type="button" value="下一步" class="go" @click="check"></div>
+                </div>
+                <!-- 燈箱 -->
+                <div class="orderModal" v-if="show">
+                    <div class="modalContent">
+                        <div class="Top">
+                            <h5>訂單明細</h5>
+                            <img src="Images/close.svg" class="close" @click="close">
+                        </div>
+                        <form action="personsend.php" method="POST">
+                            <div class="orderList">
+                                <!-- 購買列表 -->
+                                <div class="listInfo">
+                                    <!-- 每個人  -->
+                                    <div class="Modal_group_order_done_person">
+                                        <div class="Modal_group_order_done_person_upbox">
+                                            <div class="Modal_group_order_done_person_infobox">
+                                                <div class="Modal_group_order_done_person_img"><img
+                                                        src="./Images/user_big.svg" />
+                                                </div>
+                                                <div class="Modal_group_order_done_person_name">{{mem_info.mem_name}}
+                                                </div>
+                                                <input type="hidden" :value="mem_info.mem_no" name="mem_no">
                                             </div>
-                                            <div class="Modal_group_order_done_person_name">{{mem_name}}</div>
-                                            <input type="hidden" :value="mem_name" name="mem_name">
-                                            <input type="hidden" :value="mem_no" name="mem_no">
+                                            <div class="Modal_group_order_done_person_total">
+                                                <div class="Modal_group_order_done_person_total_cup">{{totalcup}}杯</div>
+                                                <input type="hidden" :value="totalcup" name="totalcup">
+                                                <div class="Modal_group_order_done_person_total_price">${{totalprice}}
+                                                </div>
+                                                <input type="hidden" :value="totalprice" name="totalprice">
+
+                                            </div>
                                         </div>
-                                        <div class="Modal_group_order_done_person_total">
-                                            <div class="Modal_group_order_done_person_total_cup">{{totalcup}}杯</div>
-                                            <input type="hidden" :value="totalcup" name="totalcup">
-                                            <div class="Modal_group_order_done_person_total_price">${{totalprice}}</div>
-                                            <input type="hidden" :value="totalprice" name="totalprice">
+                                        <!-- 購買的 飲料 -->
+                                        <div class="Modal_group_order_done_person_downbox">
+
+                                            <drinklist v-for="(value,key) in drink" :key_="key" :value_="value"
+                                                :drink="drink">
+                                            </drinklist>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- 個人購買資訊 -->
+                                <div class="modalinfo">
+                                    <div class="modalcard">
+                                        <div>信用卡卡號</div>
+                                        <div>{{safeno}}</div>
+                                    </div>
+                                    <div class="modaladd">
+                                        <div>取貨地點</div>
+                                        <div>{{info_address}}</div>
+                                        <input type="hidden" :value="info_address" name="info_address">
+                                        <input type="hidden" :value="info_note" name="info_note">
+                                        <input type="hidden" :value="info_phone" name="info_phone">
+                                    </div>
+                                    <div class="modaldis">
+                                        <div>折扣代碼</div>
+                                        <div>
+                                            <span v-if='this.cou_discount === "1" '>未使用折價券</span>
+                                            <span v-else>{{cou_code}}已使用</span>
+
+                                            <input type="hidden" :value="cou_no" name="cou_no">
 
                                         </div>
                                     </div>
-                                    <!-- 購買的 飲料 -->
-                                    <div class="Modal_group_order_done_person_downbox">
+                                    <div class="modalcount">
+                                        <div>
+                                            商品X<span>{{totalcup}}</span>
 
-                                        <drinklist v-for="(value,key) in drink" :key_="key" :value_="value"
-                                            :drink="drink">
-                                        </drinklist>
+                                        </div>
+                                        <div>
+                                            小計$.<span>{{totalprice}}</span>
+                                        </div>
                                     </div>
+                                </div>
+                                <!-- 結帳金額 -->
+                                <div class="finaltotal">
+                                    <div class="group_order_done_total_box">
+                                        <div class="group_order_done_total">
+                                            <div>原價</div>
+                                            <div>${{totalprice}}</div>
+                                        </div>
+                                        <div class="group_order_done_dis">
+                                            <div>杯數折扣</div>
+                                            <div>x {{cup_dis}}</div>
+                                            <input type="hidden" :value="cup_dis" name="cup_dis">
+                                        </div>
+                                        <div class="group_order_done_total">
+                                            <div>杯數折扣後</div>
+                                            <div>${{discuptotal}}</div>
+                                            <input type="hidden" :value="discuptotal" name="discuptotal">
+                                        </div>
+                                        <div class="group_order_done_dis">
+                                            <div>優惠卷折扣</div>
+                                            <div>x {{cou_discount}}</div>
+                                            <input type="hidden" :value="cou_discount" name="cou_discount">
+                                        </div>
+                                        <div class="group_order_done_total">
+                                            <div>優惠卷折扣後</div>
+                                            <div>${{discoutotal}}</div>
+                                            <input type="hidden" :value="discoutotal" name="discoutotal">
+                                        </div>
+                                        <div class="group_order_done_finaltotal">
+                                            <div>總金額</div>
+                                            <div>${{discoutotal}}</div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 按鈕 -->
+                                <div class="modalbtn">
+                                    <input type="submit" value="確認送出">
                                 </div>
                             </div>
-                            <!-- 個人購買資訊 -->
-                            <div class="modalinfo">
-                                <div class="modalcard">
-                                    <div>信用卡卡號</div>
-                                    <div>{{safeno}}</div>
-                                </div>
-                                <div class="modaladd">
-                                    <div>取貨地點</div>
-                                    <div>{{info_address}}</div>
-                                    <input type="hidden" :value="info_address" name="info_address">
-                                    <input type="hidden" :value="info_note" name="info_note">
-                                    <input type="hidden" :value="info_phone" name="info_phone">
-                                </div>
-                                <div class="modaldis">
-                                    <div>折扣代碼</div>
-                                    <div>
-                                        <span v-if='this.cou_dis === "" '>未使用折價券</span>
-                                        <span v-else>{{couname}}已使用</span>
-
-                                        <input type="hidden" :value="couname" name="couname">
-
-                                    </div>
-                                </div>
-                                <div class="modalcount">
-                                    <div>
-                                        商品X<span>{{totalcup}}</span>
-
-                                    </div>
-                                    <div>
-                                        小計$.<span>{{totalprice}}</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- 結帳金額 -->
-                            <div class="finaltotal">
-                                <div class="group_order_done_total_box">
-                                    <div class="group_order_done_total">
-                                        <div>原價</div>
-                                        <div>${{totalprice}}</div>
-                                    </div>
-                                    <div class="group_order_done_dis">
-                                        <div>杯數折扣</div>
-                                        <div>x {{cup_dis}}</div>
-                                        <input type="hidden" :value="cup_dis" name="cup_dis">
-                                    </div>
-                                    <div class="group_order_done_total">
-                                        <div>杯數折扣後</div>
-                                        <div>${{discuptotal}}</div>
-                                        <input type="hidden" :value="discuptotal" name="discuptotal">
-                                    </div>
-                                    <div class="group_order_done_dis">
-                                        <div>優惠卷折扣</div>
-                                        <div>x {{cou_dis}}</div>
-                                        <input type="hidden" :value="cou_dis" name="cou_dis">
-                                    </div>
-                                    <div class="group_order_done_total">
-                                        <div>優惠卷折扣後</div>
-                                        <div>${{discoutotal}}</div>
-                                        <input type="hidden" :value="discoutotal" name="discoutotal">
-                                    </div>
-                                    <div class="group_order_done_finaltotal">
-                                        <div>總金額</div>
-                                        <div>${{discoutotal}}</div>
-
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- 按鈕 -->
-                            <div class="modalbtn">
-                                <input type="submit" value="確認送出">
-                            </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
+        <footer>
+            <my-footer></my-footer>
+        </footer>
     </div>
-    <footer id="footer">
-        <my-footer></my-footer>
-    </footer>
-    <script src="./layout/footer.vue"></script>
-    <script src="./layout/header.vue"></script>
     <script src="./js/orderPayment2.js"></script>
 
 

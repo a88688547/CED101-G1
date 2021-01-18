@@ -31,11 +31,13 @@ Vue.component('top', {
 
         data() {
             return {
+                mem_info: "",
                 // 個人資訊
                 phone: '',
                 address: '',
                 note: '',
                 // 折扣
+                couNo: [],
                 cou_no: "",
                 selected: "",
                 cardname: "",
@@ -68,8 +70,23 @@ Vue.component('top', {
             check() {
                 storage["cardname"] = this.cardname
                 // 折扣數
-                storage["cou_dis"] = this.selected.cou_discount
-                storage["couname"] = this.selected.cou_no
+                // console.log(this.selected)
+                // console.log(selected)
+
+                if (this.selected === "") {
+                    storage["cou_discount"] = ""
+                    storage["cou_code"] = ""
+                    storage["cou_no"] = ""
+
+                } else {
+                    storage["cou_discount"] = this.selected.cou_discount
+                    storage["cou_code"] = this.selected.cou_code
+                    storage["cou_no"] = this.selected.cou_no
+                }
+
+
+
+
 
                 let step = false
                 while (step === false) {
@@ -90,7 +107,7 @@ Vue.component('top', {
                 while (step === true) {
                     // console.log("step")
                     if (/^[0][9][0-9]{8}$/.test(this.phone)) {
-                        console.log("123")
+                        // console.log("123")
                         storage["info_phone"] = this.phone
 
                     }
@@ -209,23 +226,47 @@ Vue.component('top', {
                 // // }
                 window.location.href = "orderPayment2.html"
             },
+
+            checked_mem(data) {
+
+                // console.log("000")
+                this.mem_info = data
+                // console.log(this.mem_info.memNo)
+                // console.log(this.mem_info)
+
+                if (this.mem_info.mem_no === undefined) {
+                    location.href = `./homepage.html`
+                }
+
+            },
             // 折扣
             dis() {
                 let pricetmp = storage["totalprice"];
                 let cuptmp = storage["totalcup"];
                 this.totalcup = cuptmp;
                 this.totalprice = pricetmp;
+
             },
             couno() {
-                fetch('./php/personinfo.php', {
-                    method: 'GET',
-                    headers: new Headers({
-                        'Content-Type': 'application/json'
-                    })
-                })
-                    .then(coupondatarow => coupondatarow.json())
-                    .then(coupondatarow => this.cou_no = coupondatarow);
+                let coulist;
+                // console.log(typeof (this.mem_info))
+                // console.log(this.mem_info.memNo)
+                $.ajax({
+                    url: "./php/personinfo.php",
+                    type: "POST",
+                    async: false,
+                    data: {
+                        memNo: this.mem_info.mem_no
+                    },
+                    success: function (datas) {
+                        coulist = datas;
+                    }
+                });
+                return coulist;
             },
+
+
+
             //信用卡//輸入該input設定的字數後，自動跳到下一個輸入框
             // autotab() {
             //     // 卡號
@@ -259,12 +300,20 @@ Vue.component('top', {
             closebox() {
                 this.show = false
                 this.errormessage = " "
-
             },
         },
+
         created() {
             this.action()
             this.dis()
-            this.couno()
+
         },
+        mounted() {
+
+
+        },
+        beforeUpdate() {
+            this.couNo = this.couno();
+        },
+
     })

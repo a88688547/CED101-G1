@@ -207,16 +207,25 @@
                 }
             }
         }
+
+        .errorLogin,
+        .signerror {
+            color: red;
+            font-size: $fontsize_H5;
+        }
     }
 }
 
-.user {
-    color: #fff;
-    font-size: 20px;
-}
+//登入後樣式
+.user_wrap {
+    .user {
+        color: #fff;
+        font-size: 20px;
+    }
 
-#logout {
-    cursor: pointer;
-    color: red;
-    font-size: 24px;
+    .logout {
+        cursor: pointer;
+        color: red;
+        font-size: 24px;
+    }
 }

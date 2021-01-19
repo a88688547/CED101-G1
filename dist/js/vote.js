@@ -1,11 +1,7 @@
-// const member = new Vue();
-
 function fomateTime(timeStr) {
-    console.log(timeStr)
+    // console.log(timeStr)
     return dateFns.parse(timeStr, 'YYYY-MM-DD hh:mm:ss', new Date())
 }
-
-
 Vue.component("vote-item", {
     data() {
         return {
@@ -71,6 +67,7 @@ Vue.component("vote-form", {
     data() {
         return {
             showVote: false,
+            unLogin: false,
             type: "vote",
             group: "",
             textId: ["milkTea", "milkTea1", "milkTea2", "milkTea3", "milkTea4"],
@@ -131,7 +128,8 @@ Vue.component("vote-form", {
         },
         toggleLightBox(id, index) {
             if (this.members === "") {
-                return member.$emit("plsLogin")
+                this.unLogin = true;
+                return
             }
             const groupMap = {
                 1: 'milk_vote',
@@ -224,6 +222,9 @@ Vue.component("vote-form", {
         closeAlert() {
             this.showVote = false
         },
+        closeunLogin() {
+            this.unLogin = false;
+        },
         nowVoteName(index, textIdIndex) {
             if (this.activeIndex !== -1) {
                 this.dirnkVote[this.activeIndex].vote_count_now--;
@@ -237,6 +238,7 @@ Vue.component("vote-form", {
         },
     },
     template: `
+                    <div>
                         <form class="voteLightbox-wrap" v-show="showVote" >
                             <div class="voting">
                                 <div class="pic">
@@ -273,7 +275,7 @@ Vue.component("vote-form", {
                                 </div>
                                 <div class="voting-ok" v-if="type =='voteok'">
                                     <h2>投票成功</h2>
-                                    <p>你最愛的<small>"{{this.votedName[this.drinkIndex]}}"</small>本週目前票數為:</p>
+                                    <p>你最愛的<small class="voted-name">"{{this.votedName[this.drinkIndex]}}"</small>目前票數為:</p>
                                     <div class="vote-count">
                                         <img src="./Images/vote_big.svg" alt="votes" />
                                         {{this.votedValue[this.drinkIndex]}}票
@@ -292,6 +294,15 @@ Vue.component("vote-form", {
                                 </div>
                             </div>
                         </form>
+                        <div class="alertLightbox_black" v-show="unLogin">
+                            <div class="alertLightboxWrapper">
+                                <div class="alertLightbox" >
+                                    <div>請登入會員</div>
+                                    <div @click="closeunLogin">確定</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 `,
 });
 new Vue({

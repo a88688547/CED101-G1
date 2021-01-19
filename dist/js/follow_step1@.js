@@ -24,7 +24,7 @@ Vue.component('groupinfo', {
         }).then(res => res.json())
             .then(res => this.groupInfo = res)
             .then(res => bus.$emit('head_mem_noToOrderlist', res[0].head_mem_no))
-        this.timer = setInterval(this.getWatchNum, 1000)
+        this.timer = window.setInterval(this.getWatchNum, 1000)
     },
     //離開時清除定時器
     beforeDestroy() {

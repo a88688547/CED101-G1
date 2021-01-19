@@ -6,10 +6,11 @@
     <title>4.訂單明細</title>
     <script src="./vendors/Vue/vue.js"></script>
     <script src="vendors/jQuery/js/jquery-3.5.1.js"></script>
+    <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/list_data.css" />
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/join_step4.css" />
-    <link rel="stylesheet" href="./css/list_data.css" />
+    <!-- <link rel="stylesheet" href="./css/list_data.css" /> -->
     <script src="./js/layout/header.js"></script>
     <script src="./js/layout/footer.js"></script>
   </head>
@@ -79,9 +80,10 @@
                 <img src="./Images/user_big.svg" />
               </div>
               <div class="group_data_total_imgB">
-                {{mem_info.memName}}
+                {{mem_info.mem_name}}
               </div>
             </div>
+            <button @click="select_cou">test</button>
             
             <!-- ===團的資料==== -->
             <div class="group_data_total_text">
@@ -163,34 +165,34 @@
         <!-- <div class="line"></div> -->
         <!-- ==============總金額================= -->
 
-        <div class="Head_data">
+      <div class="Head_data">
           
         <!-- ------------ -->
         <div class="line"></div>
         <div class="group_order_done_total_box">
           <div class="group_order_done_total">
               <div>原價</div>
-              <div>$1000</div>
+              <div>${{group_ord.group_ord_price}}</div>
           </div>
           <div class="group_order_done_dis">
               <div>杯數折扣</div>
-              <div>x 0.8</div>
+              <div>x {{count}}</div>
           </div>
           <div class="group_order_done_total">
               <div>杯數折扣後</div>
-              <div>$800</div>
+              <div>${{group_ord.group_ord_price_1}}</div>
           </div>
           <div class="group_order_done_dis">
               <div>優惠卷折扣</div>
-              <div>x 0.8</div>
+              <div>x{{cou_discount}}</div>
           </div>
           <div class="group_order_done_total">
               <div>優惠卷折扣後</div>
-              <div>$640</div>
+              <div>${{group_ord.group_ord_price_2}}</div>
           </div>
           <div class="group_order_done_finaltotal">
               <div>總金額</div>
-              <div>$640</div>
+              <div>${{group_ord.group_ord_price_2}}</div>
           </div>
       </div>
           

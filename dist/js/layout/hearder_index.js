@@ -15,12 +15,14 @@ Vue.component('my-header', {
             isLogin: false,
             memberInfo: '',
             voteTime: '',
+            logbox: false,
+            logText: '',
+
         }
     },
     methods: {
         openLoginBox() {
             if (this.memberInfo != '') {
-                // this.showLogin = false
                 location.href = './member.html'
                 return
             } else {
@@ -38,6 +40,9 @@ Vue.component('my-header', {
             this.loginEmail = ''
             this.loginPassword = ''
             this.$refs.errorLogin.innerText = ''
+        },
+        closelogbox() {
+            this.logbox = false
         },
         toggleClass(id) {
             this.isActiveTab = id
@@ -90,9 +95,11 @@ Vue.component('my-header', {
                         this.isLogin = true
                         this.showLogin = false
                         member.$emit('memberInfo', this.memberInfo)
-                        window.memberInfo = this.memberInfo
+                        window.members = this.memberInfo
                         this.$emit('changemem', this.memberInfo)
-                        alert('登入成功')
+                        console.log('登入成功')
+                        this.logbox = true
+                        this.logText = 'log'
                         // console.log(res);
                     } else {
                         this.$refs.errorLogin.innerText = '帳號密碼錯誤'
@@ -103,10 +110,6 @@ Vue.component('my-header', {
                     console.log(err)
                     console.log('失敗')
                 })
-
-            // await member.$emit('memberInfo', this.memberInfo)
-            // this.$emit('checked_mem', this.memberInfo)
-            // //location.reload()
         },
         signMember() {
             let isEmail = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4})*$/
@@ -162,7 +165,9 @@ Vue.component('my-header', {
                         this.phone = ''
                         this.passwordTwo = ''
                         this.$refs.signerror.innerText = ''
-                        alert('註冊成功')
+                        console.log('註冊成功')
+                        this.logbox = true
+                        this.logText = 'sign'
                         // console.log(res)
                     }
                 })
@@ -183,9 +188,10 @@ Vue.component('my-header', {
                     this.isLogin = false
                     this.$refs.UserName.innerText = ''
                     this.memberInfo = ''
+                    window.members = ''
                     location.href = './homepage.html'
                     sessionStorage.clear()
-                    alert('登出成功')
+                    console.log('登出成功')
                 })
                 .catch((err) => {
                     console.log('錯誤')
@@ -198,7 +204,6 @@ Vue.component('my-header', {
         },
 
         get_mem: async function () {
-            // console.log('send2', drinkno)
             await fetch('./php/checkMember.php', {
                 method: 'POST',
                 mode: 'same-origin',
@@ -215,7 +220,7 @@ Vue.component('my-header', {
                         this.isLogin = true
                         this.memberInfo = res
                         this.$refs.UserName.innerText = `hi~${res.mem_name}`
-                        // console.log(this.memberInfo)
+                        window.members = this.memberInfo
                     } else if (JSON.stringify(res) === '{}') {
                         this.isLogin = false
                     }
@@ -326,6 +331,15 @@ Vue.component('my-header', {
                                 </div>
                             </div>
                         </form>
+                    </div>
+                </div>
+                <div class="alertLightbox_black" v-if="logbox">
+                    <div class="alertLightboxWrapper">
+                        <div class="alertLightbox" >
+                            <div v-if="logText=='log'">登入成功</div>
+                            <div v-if="logText=='sign'">註冊成功</div>
+                            <div @click="closelogbox">確定</div>
+                        </div>
                     </div>
                 </div>
             </nav>

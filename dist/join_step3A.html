@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>揪團訂-訂單頁面</title>
   <!-- <link rel="stylesheet" href="./css/join_step3A.css" /> -->
+  <link rel="stylesheet" href="./css/reset.css">
   <link rel="stylesheet" href="./css/style.css" />
   <link rel="stylesheet" href="./css/list_data.css" />
   <link rel="stylesheet" href="./css/join_step3A.css" />
@@ -98,12 +99,16 @@
             <label>
               <h3>折扣代碼</h3>
             </label>
-            <select>
-              <option>查看優惠內容</option>
-              <option>join999</option>
-              <option>letsjoin</option>
-              <option>99discount</option>
+            <!-- 折扣代碼 -->
+            <select v-model="cou" >
+              <option v-for="item in coupon" v-bind:value="{cou_no:item.cou_no
+                ,mem_no:item.mem_no,
+                cou_discount:item.cou_discount,
+                cou_status:item.cou_status}" >
+                {{item.cou_code}}
+              </option>
             </select>
+            <div>{{cou.cou_no}}</div>
           </div>
           <div class="gamelink">
             <a href="#"><img src="Images/gamelink.svg" /></a>
@@ -111,14 +116,15 @@
         </div>
         <div class="discountBottom">
           <div>
-            <h3>商品X<span>7</span></h3>
+            <h3>商品X<span>{{group_ord_total_cup}}</span></h3>
           </div>
           <div class="disTotal">
-            <h3>小計$.<span>400</span></h3>
+            <h3>小計$.<span>{{group_ord_price}}</span></h3>
           </div>
         </div>
       </div>
       <hr />
+      <!-- <button @click="selectMemCoupon">test</button> -->
       <!-- 信用卡 -->
       <div class="card"  >
         <div class="cardimg">
@@ -175,16 +181,31 @@
       
       <!-- 金額 -->
       <hr />
-      <div class="ListTotal">
-        <div class="payTotal">
-          <h2>應付金額</h2>
-        </div>
-        <div id="line">
-          <hr />
-        </div>
-        <div>
-          <h2>$.<span id="ordPrice">400</span></h2>
-        </div>
+        <div class="group_order_done_total_box">
+          <div class="group_order_done_total">
+              <div>原價</div>
+              <div>${{group_ord_price}}</div>
+          </div>
+          <div class="group_order_done_dis">
+              <div>杯數折扣</div>
+              <div>x {{count}}</div>
+          </div>
+          <div class="group_order_done_total">
+              <div>杯數折扣後</div>
+              <div>${{group_ord_count1}}</div>
+          </div>
+          <div class="group_order_done_dis">
+              <div>優惠卷折扣</div>
+              <div>{{cou.cou_discount}}</div>
+          </div>
+          <div class="group_order_done_total">
+              <div>優惠卷折扣後</div>
+              <div>${{group_ord_count2}}</div>
+          </div>
+          <div class="group_order_done_finaltotal">
+              <div>總金額</div>
+              <div>${{group_ord_count2}}</div>
+          </div>
       </div>
       <!-- //檢查資料有沒有填 -->
       <div class="orderbtn" v-if="type == 10">
@@ -214,6 +235,7 @@
         <h2>訂單明細</h2>
         <div class="closebtn" @click="close_total" ><img src="./Images/close.svg" alt=""></div>
       <!-- 每個人  -->
+      <div class="group_list">
         <div class="group_order_done_person" v-for="(value,key) in group_order_item">
           <div class="group_order_done_person_upbox">
             <div>
@@ -237,10 +259,11 @@
           </div>
         
         </div>
+      </div>
         <div class="all_total">
           <div>應付金額</div>
           <hr>
-          <div>999</div>
+          <div>{{group_ord_count2}}</div>
         </div>
         <div class="checkoutBtn">
           <input type="button" value="確認送出" @click="step4"></input>

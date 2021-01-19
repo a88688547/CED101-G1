@@ -7,34 +7,34 @@
     <title>自己訂-建立訂單</title>
     <script src="./vendors/jQuery/js/jquery-3.5.1.min.js"></script>
     <script src="./vendors/Vue/vue.js"></script>
-    <script src="./js/header_footer.js"></script>
-
-
+    <!-- <script src="./js/header_footer.js"></script> -->
+    <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/personalorder.css" />
     <link rel="stylesheet" href="./css/list_data.css">
-
+    <link rel="stylesheet" href="./css/alertLightbox.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+    <script src="./js/layout/header.js"></script>
+    <script src="./js/layout/footer.js"></script>
 </head>
 
 <body>
-    <header id="header">
-        <my-header></my-header>
-    </header>
-    <!-- ==============進度條================= -->
     <div id="app">
-        <top></top>
-        <div class="main">
-            <order></order>
+        <header>
+            <my-header @checked_mem="checked_mem"></my-header>
+        </header>
+        <!-- ==============進度條================= -->
+        <div>
+            <top></top>
+            <div class="main">
+                <order :mem_info="mem_info"></order>
+            </div>
         </div>
+        <footer>
+            <my-footer></my-footer>
+        </footer>
     </div>
-    <footer id="footer">
-        <my-footer></my-footer>
-    </footer>
-
-    <script src="./layout/footer.vue"></script>
-    <script src="./layout/header.vue"></script>
     <script src="./js/personalorder.js"></script>
-
 </body>
 
 </html>

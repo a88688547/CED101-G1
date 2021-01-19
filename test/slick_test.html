@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <!-- <script src="../dist/vendors/jQuery/js/jquery-3.5.1.js"></script> -->
+        <!-- <script src="../dist/vendors/Vue/vue.js"></script> -->
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" />
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js"></script> -->
+
+        <script src="../dist/vendors/Vue/vue.js"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue-slick-carousel@1.0.6/dist/vue-slick-carousel.umd.min.js"></script>
+        <link rel="stylesheet" href="./index_vote_new.-repair.css" />
+        <script src="./slick_test.js"></script>
+
+        <style>
+            body {
+                background-color: #eee;
+                user-select: none;
+            }
+            #app {
+                font-family: 'Noto Sans', sans-serif;
+                color: white;
+                font-weight: bold;
+                letter-spacing: 1px;
+            }
+            .slide {
+                height: 150px;
+                display: flex !important;
+                justify-content: center;
+                align-items: center;
+            }
+            p {
+                margin-top: 0;
+            }
+            .slide:nth-child(1) {
+                background-color: orange;
+            }
+            .slide:nth-child(2) {
+                background-color: green;
+            }
+            .slide:nth-child(3) {
+                background-color: teal;
+            }
+            .slide:nth-child(4) {
+                background-color: purple;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <!-- <vue-slick-carousel v-bind="settings"></vue-slick-carousel> -->
+            <vue-slick-carousel v-bind="settings">
+                <div class="item">
+                    <div class="item-inner">
+                        <div class="vote_info">
+                            <h4>TOP1</h4>
+                            <h5>大正紅茶</h5>
+                            <div class="vote_number">
+                                <img src="./Images/vote_medium.svg" alt="" />
+                                <span>350</span>票
+                            </div>
+                        </div>
+                        <img src="./Images/drinkitem_15/drinkitem_15/index_vote/index_vote_tea-1@2x.png" alt="" />
+                        <div class="triangle"></div>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="item-inner">
+                        <div class="vote_info">
+                            <h4>TOP2</h4>
+                            <h5>四季春茶</h5>
+                            <div class="vote_number">
+                                <img src="./Images/vote_medium.svg" alt="" />
+                                <span>350</span>票
+                            </div>
+                        </div>
+                        <img src="./Images/drinkitem_15/drinkitem_15/index_vote/index_vote_tea-2@2x.png" alt="" />
+                        <div class="triangle"></div>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="item-inner">
+                        <div class="vote_info">
+                            <h4>TOP3</h4>
+                            <h5>烏龍綠茶</h5>
+                            <div class="vote_number">
+                                <img src="./Images/vote_medium.svg" alt="" />
+                                <span>350</span>票
+                            </div>
+                        </div>
+                        <img src="./Images/drinkitem_15/drinkitem_15/index_vote/index_vote_tea-3@2x.png" alt="" />
+                        <div class="triangle"></div>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="item-inner">
+                        <div class="vote_info">
+                            <h4>TOP1</h4>
+                            <h5>鮮奶茶</h5>
+                            <div class="vote_number">
+                                <img src="./Images/vote_medium.svg" alt="" />
+                                <span>350</span>票
+                            </div>
+                        </div>
+                        <img src="./Images/drinkitem_15/drinkitem_15/index_vote/index_vote_milktea-1@2x.png" alt="" />
+                        <div class="triangle"></div>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="item-inner">
+                        <div class="vote_info">
+                            <h4>TOP2</h4>
+                            <h5>紅茶拿鐵</h5>
+                            <div class="vote_number">
+                                <img src="./Images/vote_medium.svg" alt="" />
+                                <span>350</span>票
+                            </div>
+                        </div>
+                        <img src="./Images/drinkitem_15/drinkitem_15/index_vote/index_vote_milktea-2@2x.png" alt="" />
+                        <div class="triangle"></div>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="item-inner">
+                        <div class="vote_info">
+                            <h4>TOP3</h4>
+                            <h5>烏龍拿鐵</h5>
+                            <div class="vote_number">
+                                <img src="./Images/vote_medium.svg" alt="" />
+                                <span>350</span>票
+                            </div>
+                        </div>
+                        <img src="./Images/drinkitem_15/drinkitem_15/index_vote/index_vote_milktea-3@2x.png" alt="" />
+                        <div class="triangle"></div>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="item-inner">
+                        <div class="vote_info">
+                            <h4>TOP1</h4>
+                            <h5>蜜桃紅茶</h5>
+                            <div class="vote_number">
+                                <img src="./Images/vote_medium.svg" alt="" />
+                                <span>350</span>票
+                            </div>
+                        </div>
+                        <img src="./Images/drinkitem_15/drinkitem_15/index_vote/index_vote_fruit-1@2x.png" alt="" />
+                        <div class="triangle"></div>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="item-inner">
+                        <div class="vote_info">
+                            <h4>TOP2</h4>
+                            <h5>芒果冰茶</h5>
+                            <div class="vote_number">
+                                <img src="./Images/vote_medium.svg" alt="" />
+                                <span>350</span>票
+                            </div>
+                        </div>
+                        <img src="./Images/drinkitem_15/drinkitem_15/index_vote/index_vote_fruit-2@2x.png" alt="" />
+                        <div class="triangle"></div>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="item-inner">
+                        <div class="vote_info">
+                            <h4>TOP3</h4>
+                            <h5>水果茶</h5>
+                            <div class="vote_number">
+                                <img src="./Images/vote_medium.svg" alt="" />
+                                <span>350</span>票
+                            </div>
+                        </div>
+                        <img src="./Images/drinkitem_15/drinkitem_15/index_vote/index_vote_fruit-3@2x.png" alt="" />
+                        <div class="triangle"></div>
+                    </div>
+                </div>
+            </vue-slick-carousel>
+        </div>
+    </body>
+</html>

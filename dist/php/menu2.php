@@ -1,5 +1,6 @@
 <?php
     try{
+        session_start();
         require_once "./connect_join_database.php";
         $sql = "select *
                 from drink_type";

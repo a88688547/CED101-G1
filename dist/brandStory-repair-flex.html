@@ -8,6 +8,10 @@
         <script src="./vendors/Vue/vue.js"></script>
         <script src="vendors/jQuery/js/jquery-3.5.1.js"></script>
         <link rel="stylesheet" href="./css/style.css" />
+        <link rel="stylesheet" href="./css/alertLightbox.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+        integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+        crossorigin="anonymous" />
 
         <!-- AOS -->
         <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
@@ -158,8 +162,8 @@
                 ></iframe>
             </div>
 
-            <div class="address">
-                <div class="address_text" data-aos="zoom-in-up">
+            <div class="address" data-aos="fade-up">
+                <div class="address_text">
                     <h2>店面資訊</h2>
                     <div class="title_block">
                         <div class="info_block">
@@ -177,7 +181,7 @@
                     </div>
                 </div>
 
-                <div class="img_block" data-aos="fade-down">
+                <div class="img_block">
                     <img class="mascot_btm" src="./Images/brandStory/mascot/Group_mascot.png" alt="" />
                 </div>
             </div>
@@ -194,7 +198,35 @@
         <script>
             AOS.init({
                 duration: 1200,
+                once: true
             })
         </script>
+
+        <script>
+            $(document).ready(function() {
+    
+    /* Every time the window is scrolled ... */
+        $(window).scroll( function(){
+        
+                /* Check the location of each desired element */
+                $('.descript_block').each( function(i){
+                    
+                    var bottom_of_object = $(this).offset().top + $(this).outerHeight();
+                    var bottom_of_window = $(window).scrollTop() + $(window).height();
+                    
+                    /* If the object is completely visible in the window, fade it it */
+                    if( bottom_of_window > bottom_of_object ){
+                        
+                        $(this).animate({'opacity':'1'},100,"linear");
+                            
+                    }
+                    
+                }); 
+            
+            });
+            
+        });
+        </script>
+
     </body>
 </html>

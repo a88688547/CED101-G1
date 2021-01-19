@@ -49,14 +49,15 @@ img.caffeelatte{
     width: 9vw;
     height: 9vw;
     left: 20%;
-    // animation: mascot 2s;
+    animation: mascot_text 2.5s;
 }
+
 
 .circle ul li:nth-child(2){
     width: 11vw;
     height: 11vw;
     top: 35%;
-    // animation: mascot 2s 0.5s;
+    animation: mascot_text 2.5s;
 }
 
 .circle ul li:nth-child(3){
@@ -64,13 +65,15 @@ img.caffeelatte{
     height: 12vw;
     left: 85%;
     top: 30%;
-    // animation: mascot 2s 1s;
+    animation: mascot_text 2.5s;
 }
 // 圈圈文字下吉祥物---------------------------
 .circle ul li>img{
   position: absolute;
   top: 110%;
+  animation: appear 0.5s linear;
 }
+
 
 // 水滴------------------------------------------
 .drop{

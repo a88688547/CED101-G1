@@ -1,15 +1,15 @@
 <?php
+
 try {
 
 	require_once("./php/connect_join_database.php");
 
+if($_POST["cou_no"] === ""){
 
-// 建立個人訂單
-$sql = "INSERT INTO personal_order 
+	$sql = "INSERT INTO personal_order 
 (mem_no,
 dis_count,
 cou_discount,
-cou_no,
 ord_price,
 ord_time,
 adress,
@@ -17,13 +17,14 @@ note,
 phone,
 ord_price_1,
 ord_price_2,
-total_cup)
+total_cup,
+cou_no
+)
 
 VALUES
-(1,
+(:mem_no,
 :cup_dis,
-:cou_dis,
-:couname,
+1,
 :totalprice,
 NOW(),
 :info_address,
@@ -31,13 +32,15 @@ NOW(),
 :info_phone,
 :discuptotal,
 :discoutotal,
-:totalcup)";
+:totalcup,
+NULL
+)";
 
 
 $orderdata = $pdo->prepare($sql);
+$orderdata->bindValue(":mem_no", $_POST["mem_no"]);
 $orderdata->bindValue(":cup_dis", $_POST["cup_dis"]);
-$orderdata->bindValue(":cou_dis", $_POST["cou_dis"]);
-$orderdata->bindValue(":couname", $_POST["couname"]);
+// $orderdata->bindValue(":cou_discount", $_POST["cou_discount"]);
 $orderdata->bindValue(":totalprice", $_POST["totalprice"]);
 $orderdata->bindValue(":info_address", $_POST["info_address"]);
 $orderdata->bindValue(":info_note", $_POST["info_note"]);
@@ -45,17 +48,75 @@ $orderdata->bindValue(":info_phone", $_POST["info_phone"]);
 $orderdata->bindValue(":discuptotal", $_POST["discuptotal"]);
 $orderdata->bindValue(":discoutotal", $_POST["discoutotal"]);
 $orderdata->bindValue(":totalcup", $_POST["totalcup"]);
+// $orderdata->bindValue(":cou_no", $_POST["cou_no"]);
+
+$orderdata->execute();
+}
+
+else{
+	// 建立個人訂單
+$sql = "INSERT INTO personal_order 
+(mem_no,
+dis_count,
+cou_discount,
+ord_price,
+ord_time,
+adress,
+note,
+phone,
+ord_price_1,
+ord_price_2,
+total_cup,
+cou_no)
+
+VALUES
+(:mem_no,
+:cup_dis,
+:cou_discount,
+:totalprice,
+NOW(),
+:info_address,
+:info_note,
+:info_phone,
+:discuptotal,
+:discoutotal,
+:totalcup,
+:cou_no)";
+
+
+$orderdata = $pdo->prepare($sql);
+$orderdata->bindValue(":mem_no", $_POST["mem_no"]);
+$orderdata->bindValue(":cup_dis", $_POST["cup_dis"]);
+$orderdata->bindValue(":cou_discount", $_POST["cou_discount"]);
+$orderdata->bindValue(":totalprice", $_POST["totalprice"]);
+$orderdata->bindValue(":info_address", $_POST["info_address"]);
+$orderdata->bindValue(":info_note", $_POST["info_note"]);
+$orderdata->bindValue(":info_phone", $_POST["info_phone"]);
+$orderdata->bindValue(":discuptotal", $_POST["discuptotal"]);
+$orderdata->bindValue(":discoutotal", $_POST["discoutotal"]);
+$orderdata->bindValue(":totalcup", $_POST["totalcup"]);
+$orderdata->bindValue(":cou_no", $_POST["cou_no"]);
 
 $orderdata->execute();
 
 
+$sql="UPDATE coupon SET cou_status = '1' WHERE cou_no =:cou_no";
+
+$orderdata = $pdo->prepare($sql);
+$orderdata->bindValue(":cou_no", $_POST["cou_no"]);
+$orderdata->execute();
+
+}
+
 // 找出最新建立的個人訂單編號
-$sql="select per_ord_no from personal_order where mem_no=1 order by per_ord_no desc limit 1";
+$sql="SELECT per_ord_no FROM personal_order WHERE mem_no=:mem_no ORDER BY per_ord_no DESC LIMIT 1";
 
-$coupondata = $pdo->prepare($sql);
-$coupondata->execute();
+$orderdata = $pdo->prepare($sql);
+$orderdata->bindValue(":mem_no", $_POST["mem_no"]);
 
-$orderno=$coupondata->fetch(PDO::FETCH_ASSOC);
+$orderdata->execute();
+
+$orderno=$orderdata->fetch(PDO::FETCH_ASSOC);
 
 $orderno=$orderno["per_ord_no"];
 
@@ -109,11 +170,15 @@ $list->bindValue(":listset",$listset);
 $list->bindValue(":price", $price);
 $list->bindValue(":cup", $cup);
 $list->bindValue(":total_price", $price*$cup);
+
+
 $list->execute();
 	
 };
 
-$url  ='orderDoneP.html';
+// echo $orderno;
+
+$url="orderDoneP.html?per_ord_no=$orderno";
 
 
 echo "<script language ='javascript' type ='text/javascript'> window.location.href = '$url' </script>";  

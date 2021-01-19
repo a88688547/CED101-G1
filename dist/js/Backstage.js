@@ -137,10 +137,10 @@ window.addEventListener('load', function () {
         // template 渲染前 會先去執行以下函式
         created() {
             if (this.mar_info.mar_no) {
-                console.log('有-會員資料')
+                // console.log('有-會員資料')
                 this.get_mar()
             } else {
-                console.log('沒有-會員資料')
+                // console.log('沒有-會員資料')
             }
         },
     })
@@ -493,7 +493,7 @@ window.addEventListener('load', function () {
                 // 確認 上傳照片之格式
                 let array = ['jpg', 'jpeg', 'png', 'svg']
                 if (array.indexOf(this.img_type) != -1) {
-                    console.log('格式正確')
+                    // console.log('格式正確')
                 } else {
                     this.changelightbox(true)
                     this.error_text = '請確認上傳照片之格式 (jpg,jpeg,png,svg)'
@@ -883,14 +883,14 @@ window.addEventListener('load', function () {
 
                 //取得 上傳照片之檔案格式，以利送出時判斷
                 this.img_type = file[0].type.split('/').pop()
-                console.log(file[0].name.split('.')[0])
+                // console.log(file[0].name.split('.')[0])
 
                 if (file[0].name.split('.')[0].replace(/[^\u4e00-\u9fa5]/g, '')) {
                     this.lightbox = true
                     this.error_text = '請確認上傳照片之檔名 (不能有中文)'
                     return ''
                 } else {
-                    console.log('檔名正確')
+                    // console.log('檔名正確')
                 }
 
                 // 確認 上傳照片之格式
@@ -2201,7 +2201,7 @@ window.addEventListener('load', function () {
 
         template: `
         <nav>
-          <div class="logo_img"><img src="./Images/logo-header.svg"></div>
+          <a class="logo_img" href="./index.html"><img src="./Images/logo-header.svg"></a>
           <div class="mar_name_box">
             <div>管理員 : <span>{{mar_info.mar_name}}</span></div>
             <div class="logout_btn" @click="logout">登出</div>
@@ -2286,6 +2286,7 @@ window.addEventListener('load', function () {
         components: {},
         created() {
             // this.check_mar()
+            //判斷是否有登入狀態
             const res = fetch('./php/check_mar.php', {
                 method: 'POST',
                 mode: 'same-origin',
@@ -2300,6 +2301,8 @@ window.addEventListener('load', function () {
                 .then((data) => {
                     if (data.mar_no) {
                         this.mar_info = data
+                        if (data.mar_login_time) {
+                        }
                         // console.log('有')
                     } else {
                         // console.log('沒有')

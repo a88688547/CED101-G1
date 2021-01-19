@@ -53,11 +53,10 @@ Vue.component('top', {
 
         data() {
             return {
+                mem_info: "",
                 info_phone: storage["info_phone"],
                 info_address: storage["info_address"],
                 info_note: storage["info_note"],
-                couname: storage["couname"],
-                cou_dis: storage["cou_dis"],
                 cardno: storage["cardno"],
                 exp_month: storage["exp_month"],
                 exp_year: storage["exp_year"],
@@ -66,12 +65,14 @@ Vue.component('top', {
                 totalcup: storage["totalcup"],
                 totalprice: storage["totalprice"],
                 drink: [],
+                cou_discount: storage["cou_discount"],
+                cou_code: storage["cou_code"],
+                cou_no: storage["cou_no"],
                 //燈箱
                 show: false,
                 // 杯數折扣
                 cup_dis: storage["cup_dis"],
-                discuptotal: storage["discuptotal"],
-                discoutotal: storage["discoutotal"]
+                // cou_discount: "",
             }
         },
 
@@ -104,13 +105,8 @@ Vue.component('top', {
             close() {
                 this.show = false
             },
-            // 若未使用折價券，則*1
-            count() {
-                if (this.cou_dis === "") {
-                    this.cou_dis === 1
-                    storage["cou_dis"] = 1
-                }
-            },
+
+
 
             // 使用PHP從後台判斷折數
             // cupdis() {
@@ -143,44 +139,43 @@ Vue.component('top', {
                 switch (true) {
                     case totalcup < 20:
                         this.cup_dis = 1
-                        discuptotal = Math.round(1 * this.totalprice)
-                        storage["discuptotal"] = discuptotal
-                        // console.log(discuptotal)
                         storage["cup_dis"] = 1
                         break;
 
                     case totalcup >= 20 && totalcup < 30:
                         this.cup_dis = 0.9
-                        discuptotal = Math.round(0.9 * this.totalprice)
-                        storage["discuptotal"] = discuptotal
                         storage["cup_dis"] = 0.9
                         break;
 
                     case totalcup >= 30 && totalcup < 40:
                         this.cup_dis = 0.8
-                        discuptotal = Math.round(0.8 * this.totalprice)
-                        storage["discuptotal"] = discuptotal
                         storage["cup_dis"] = 0.8
                         break;
 
                     case totalcup >= 40 && totalcu < 50:
                         this.cup_dis = 0.7
-                        discuptotal = Math.round(0.7 * this.totalprice)
-                        storage["discuptotal"] = discuptotal
                         storage["cup_dis"] = 0.7
                         break;
 
                     default:
                         this.cup_dis = 0.6
-                        discuptotal = Math.round(0.6 * this.totalprice)
-                        storage["discuptotal"] = discuptotal
                         storage["cup_dis"] = 0.6
                 }
 
-                let discoutotal = Math.round(this.discuptotal * this.cou_dis)
-                // console.log(discoutotal)
-                storage["discoutotal"] = discoutotal
             },
+            checked_mem(data) {
+                this.mem_info = data
+                if (this.mem_info.mem_no === undefined) {
+                    location.href = `./homepage.html`
+                }
+            },
+            // 若未使用折價券，則*1
+            // coudiscount() {
+            //     if (this.cou_discount === "") {
+            //         this.cou_discount === 1
+            //         storage["cou_discount"] = 1
+            //     }
+            // }
             // ----------test--------------------
             // send() {
             // var arr1 = [];
@@ -211,12 +206,29 @@ Vue.component('top', {
 
 
         },
+        computed: {
+            discuptotal: function () {
+                // console.log(this.totalprice * this.cup_dis)
+                return Math.round(this.totalprice * this.cup_dis)
+            },
+            discoutotal: function () {
+                if (this.cou_discount === "") {
+                    return Math.round(this.totalprice * this.cup_dis * 1)
+                } else {
+                    return Math.round(this.totalprice * this.cup_dis * this.cou_discount)
+                }
+            }
+        },
+
+        mounted() {
+
+        },
+
         created() {
             this.action()
             this.drinklist()
-            // this.cupdis()
-            this.count()
             this.dis()
+
 
         },
 

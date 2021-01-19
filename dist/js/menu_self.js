@@ -14,7 +14,7 @@ Vue.component('group-info', {
             groupInfo: [],
             nowTime: new Date().getTime(), //現在時間毫秒
             watchNum: 0,
-            timer: null,   //計時器
+            timer: null, //計時器
             inTime: true, //現在時間還早於結單時間
         }
     },
@@ -188,25 +188,31 @@ Vue.component('menu_carshop', {
             item_type: [],
             //現在時間是否早於結單時間，以此判斷是否要前往下一頁
             intimeCart: true,
-
         }
     },
+    props: ["mem_info"],
     methods: {
         //點擊飲品後把資料從菜單送出，之後燈箱接收
         lightBox_handle(item) {
-            bus.$emit('lightBox_handle_parent', item)
+            if (this.mem_info === "") {
+                bus.$emit('getAlert', "請登入會員")
+            } else {
+                bus.$emit('lightBox_handle_parent', item)
+            }
         },
         //前往訂單頁面
         goFollow_step1() {
-            if (this.intimeCart == false) {
-                bus.$emit('getAlert', '跟團時間已截止')
+            // if (this.intimeCart == false) {
+            //     bus.$emit('getAlert', '跟團時間已截止')
+            // } else {
+            if (this.shopping_num_total >= 1) {
+
+                // location.href = `follow_step1.html?group_ord_no=${web_group_no}`
+                location.href = `./personalOrder.html`
             } else {
-                if (this.shopping_num_total >= 1) {
-                    location.href = `follow_step1.html?group_ord_no=${web_group_no}`
-                } else {
-                    bus.$emit('getAlert', '請選擇飲品')
-                }
+                bus.$emit('getAlert', '請選擇飲品')
             }
+            // }
         },
     },
 
@@ -421,10 +427,20 @@ Vue.component('light_box', {
                 //呼叫存入storage函式
                 this.addToStorage(selectIceValue, selectSugarValue)
 
-                let itemString = storage.getItem(`${storage_key}`);
-                let items = itemString.substr(0, itemString.length - 1).split('|');
+
+                //self更改
+                let tmp = storage.getItem('addDrinkList');
+                let arr = JSON.parse(tmp);
+                let val = 0;
+                for (let i = 0; i < arr.length; i++) {
+                    val += arr[i].num_feedback;
+                }
+                bus.$emit('addToCar_parent', val);
+
+                // let itemString = storage.getItem(`${storage_key}`);
+                // let items = itemString.substr(0, itemString.length - 1).split('|');
                 //把飲品杯數傳回菜單組件
-                bus.$emit('addToCar_parent', items.length)
+                // bus.$emit('addToCar_parent', items.length)
                 //關閉燈箱後，飲品數目預設回1杯
                 this.num_feedback = 1
             } else if (selectIce == false && selectSugar == false) {
@@ -583,4 +599,13 @@ Vue.component('toDoInput', {
 })
 new Vue({
     el: "#app",
+    data: {
+        mem_info: "",
+    },
+    methods: {
+        checked_mem(data) {
+            this.mem_info = data
+        }
+    },
+
 })

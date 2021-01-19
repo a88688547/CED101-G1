@@ -6,11 +6,12 @@
     <title>2.完成開團</title>
     <script src="./vendors/Vue/vue.js"></script>
     <script src="vendors/jQuery/js/jquery-3.5.1.js"></script>
-
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/alertLightbox.css">
     <link rel="stylesheet" href="./css/join_step2.css" />
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/list_data.css" />
-    <link rel="stylesheet" href="./css/alertLightbox.css">
+    
     <script src="./js/layout/header.js"></script>
     <script src="./js/layout/footer.js"></script>
   </head>
@@ -65,7 +66,7 @@
       </div>
       <!-- ==============進度條================= -->
       <!-- ==============開團資料================= -->
-
+      <button @click="get_order_total">total</button>
       <div class="group_data">
         <div class="group_data_row">
           <!-- ===QR==== -->
@@ -84,6 +85,7 @@
 
           <!-- ===QR==== -->
           <!-- ===團的資料==== -->
+          <!-- <button @click="timeCheck">test</button> -->
           <ul>
             <li>
               <div>團名</div>
@@ -91,20 +93,21 @@
             </li>
             <li>
               <div>截單時間</div>
-              <div>{{group_ord.deadline_time}}</div>
+              <div class="goal_time">{{group_ord.deadline_time}}</div>
             </li>
             <li>
               <div>預計送達時間</div>
-              <div>{{group_ord.arrive_time}}</div>
+              <div class="goal_time">{{group_ord.arrive_time}}</div>
             </li>
             <li>
               <div>目標杯數</div>
-              <div class="goal_confirm">{{group_ord.goal_cup}}</div>
+              <div class="goal_confirm"></div>
             </li>
             <li>
               <div>取貨地點</div>
               <div>{{group_ord.group_adress}}</div>
             </li>
+            
           </ul>
         </div>
         <!-- ===團的資料==== -->
@@ -134,6 +137,11 @@
                       <section id="item_single_price">
                           &#36{{value.total_price}}
                       </section>
+                      <section class="order_delete_btn" value="123" @click="del_group_ord_item(value.group_ord_item_no,value.ord_qua)">
+                        <img src="./Images/trash_big.svg" alt="" >
+                        <img src="./Images/trash_small.svg" alt="">
+                    </section>
+                    
                     </div>
                 </div>
                 <div class="group_order_done_person_total" >
@@ -150,25 +158,34 @@
               class="btn_back_drink"
               @click="addDrink"
             />
-            <div class="btn_f5">
+            <div class="btn_f5" >
               <img src="./Images/drink.svg" alt="" /> 重新整理
             </div>
             <input
               type="button"
               value="結帳"
               class="btn_cleckout"
-              @click="change"
+              @click="checkout"
             />
-        </div>
+        </div >
         <div class="alertLightbox_black" v-show="confirm">
           <div class="alertLightboxWrapper">
               <div class="manager_lightbox_close_img" @click="closeBox" ><img src="./Images/close.svg" ></div>
               <div class="alertLightbox" >
-                  <div></div>
-                  <div @click="nextStep">確認送出!</div>
+                <div></div>
+                <div v-if="goal == 1" @click="closeBox">目標杯數不足</div>
+                <div v-else @click="nextStep" class="nextStep">確認送出!</div>
               </div>
           </div>
-      </div>
+        </div>
+        <div class="alertLightbox_black" v-show="TimeError">
+          <div class="alertLightboxWrapper">
+              <div class="manager_lightbox_close_img" @click="closeBox2" ><img src="./Images/close.svg" ></div>
+              <div class="alertLightbox" >
+                <div>時間已截止</div>
+              </div>
+          </div>
+        </div>
           <!-- <div><a href="./join_step_3A.html?group_ord_no={{group_ord_no}}">test</a></div> -->
           
         </div>
@@ -182,6 +199,7 @@
 
     
     <script type="text/javascript">
+
       function copyUrl2() {
         var Url2 = document.getElementById("biao1");
         Url2.select(); // 選擇物件

@@ -31,6 +31,7 @@ Vue.component('top', {
                 totalprice: 0,
             }
         },
+        props: ["mem_info"],
         methods: {
             action() {
                 let tmp = storage["addDrinkList"]
@@ -81,7 +82,7 @@ Vue.component('top', {
         <div class="group_order_done_person">
             <div class="group_order_done_person_upbox">
                 <div class="group_order_done_person_img"><img src="./Images/user_big.svg" /></div>
-                <div class="group_order_done_person_name">{{mem_name}}</div>
+                <div class="group_order_done_person_name">{{this.mem_info.mem_name}}</div>
             </div>
             <div class="group_order_done_person_downbox">
                 <!-- 購買的 飲料 -->
@@ -184,6 +185,24 @@ Vue.component('top', {
 
 new Vue({
     el: '#app',
+    data: {
+        mem_info: "",
+    },
+    methods: {
+        checked_mem(data) {
+            this.mem_info = data
+            // console.log(this.mem_info.memNo)
+            if (this.mem_info.mem_no === undefined) {
+                location.href = `./homepage.html`
+            }
+        }
 
+    },
+    mounted() {
+
+    },
+    created() {
+        // checked_mem()
+    },
 
 })

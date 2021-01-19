@@ -88,7 +88,7 @@ Vue.component('my-header', {
                 .then((res) => {
                     if (res != '查無此帳號') {
                         this.memberInfo = res
-                        this.$refs.UserName.innerText = `hi~${res.mem_name}`
+                        this.$refs.UserName.innerText = `${res.mem_name}`
                         this.$refs.errorLogin.innerText = ''
                         this.loginEmail = ''
                         this.loginPassword = ''
@@ -219,7 +219,7 @@ Vue.component('my-header', {
                     if (JSON.stringify(res) !== '{}') {
                         this.isLogin = true
                         this.memberInfo = res
-                        this.$refs.UserName.innerText = `hi~${res.mem_name}`
+                        this.$refs.UserName.innerText = `${res.mem_name}`
                         window.members = this.memberInfo
                     } else if (JSON.stringify(res) === '{}') {
                         this.isLogin = false
@@ -256,7 +256,7 @@ Vue.component('my-header', {
                         <a href="./brandStory-repair-flex.html"><img src="./Images/drop-header.svg" alt="" />關於揪飲</a>
                     </ul>
                     <div class="user_wrap" v-show="isLogin">
-                        <span ref="UserName" class="user"></span>
+                        <span ref="UserName" class="UserName"></span>
                         <span class="logout" @click="logoutBtn">登出</span>
                     </div>
                     <a  class="user_logo_img_web" @click="openLoginBox"

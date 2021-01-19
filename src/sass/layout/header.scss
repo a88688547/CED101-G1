@@ -78,7 +78,8 @@ header {
 
     .nav_list .user_logo {
         margin-right: initial;
-        &:hover{
+
+        &:hover {
             opacity: 0.7;
             transition: all 0.5s;
         }
@@ -153,6 +154,42 @@ header {
         top: auto;
     }
 
+    //登入後樣式
+    .user_wrap {
+        height: 100%;
+        margin: 0 5px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+
+        .UserName {
+            color: #fff;
+            @include H6;
+            margin-bottom: 10px;
+            display: block;
+            width: 75px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            text-align: center;
+        }
+
+        .logout {
+            text-align: center;
+            cursor: pointer;
+            color: #eee;
+            @include H6;
+            display: block;
+            transition: .5s;
+
+            &:hover {
+                color: red;
+            }
+        }
+    }
+
     // 寬度 小於 1200變化
     @media (max-width: 1200px) {
         nav {
@@ -197,6 +234,7 @@ header {
             height: 0;
             text-align: center;
             overflow: hidden;
+            display: inline-block;
 
             ul {
                 flex-direction: column;
@@ -213,21 +251,39 @@ header {
             }
 
             .user_wrap {
-                height: 100%;
+                width: 100%;
+                height: auto;
+                margin: 25px 0 0 0;
+                display: flex;
 
-                .user,
-                #logout {
+                .UserName,
+                .logout {
+                    width: 200px;
+                    @include H6;
                     display: inline-block;
-                    @include H5;
-                    padding: 25px 0;
-                    line-height: 18px;
+                }
+
+                .userName {
+                    color: #fff;
+                }
+
+                .logout {
+                    width: 100%;
+                    color: #eee;
+                    transition: .5s;
+                    padding-bottom: 25px;
+                    border-bottom: 1px solid $btnColor;
+
+                    &:hover {
+                        color: red;
+                    }
                 }
             }
         }
 
         .nav-open {
             transition: 0.7s ease-in-out;
-            height: calc(68.6px * 7);
+            height: 100vh;
             display: inline-block;
         }
     }

@@ -1,341 +1,330 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Jo飲</title>
-        <link rel="stylesheet" href="./css/reset.css" />
-        <!-- 共用 -->
 
-        <script src="./vendors/Vue/vue.js"></script>
-        <script src="./vendors/jQuery/js/jquery-3.5.1.js"></script>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jo飲</title>
+    <link rel="stylesheet" href="./css/reset.css" />
+    <!-- 共用 -->
+    <link rel="stylesheet" href="./css/alertLightbox.css">
+    <script src="./vendors/Vue/vue.js"></script>
+    <script src="./vendors/jQuery/js/jquery-3.5.1.js"></script>
 
-        <!-- 不寫這個會報錯誤 -->
-        <link rel="shortcut icon" href="#" />
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
-            integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
-            crossorigin="anonymous"
-        />
-        <!-- 本頁 -->
-        <!-- 字型 -->
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet" />
-        <!-- css -->
-        <link rel="stylesheet" href="./css/style.css" />
-        <link rel="stylesheet" href="./css/index_1224.css" />
-        <link rel="stylesheet" href="./css/index_banner.css" />
-        <!-- <link rel="stylesheet" href="./css/first_banner.css" /> -->
+    <!-- 不寫這個會報錯誤 -->
+    <link rel="shortcut icon" href="#" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+        integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+        crossorigin="anonymous" />
+    <!-- 本頁 -->
+    <!-- 字型 -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet" />
+    <!-- css -->
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/index_1224.css" />
+    <link rel="stylesheet" href="./css/index_banner.css" />
+    <!-- <link rel="stylesheet" href="./css/first_banner.css" /> -->
 
-        <!-- 套件 -->
-        <!-- <script src="./js/header_footer.js"></script> -->
-        <!-- <link rel="stylesheet" href="./vendors/slick/slick-theme.css" />
+    <!-- 套件 -->
+    <!-- <script src="./js/header_footer.js"></script> -->
+    <!-- <link rel="stylesheet" href="./vendors/slick/slick-theme.css" />
         <link rel="stylesheet" href="./vendors/slick/slick.css" /> -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js"></script>
-        <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-        <script src="js/ani.js" async></script>
-        <!-- //vue-slick-course 套件 -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" />
-        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js"></script> -->
-        <script src="https://cdn.jsdelivr.net/npm/vue-slick-carousel@1.0.6/dist/vue-slick-carousel.umd.min.js"></script>
-        <script src="./js/homepage.js"></script>
-        <!-- <script src="./js/layout/header.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="js/ani.js" async></script>
+    <!-- //vue-slick-course 套件 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" />
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/vue-slick-carousel@1.0.6/dist/vue-slick-carousel.umd.min.js"></script>
+    <script src="./js/homepage.js"></script>
+    <!-- <script src="./js/layout/header.js"></script>
         <script src="./js/layout/footer.js"></script> -->
-    </head>
+</head>
 
-    <body>
-        <div>
-            <header id="header">
-                <my-header></my-header>
-            </header>
-            <div class="first_ani">
-                <div class="box_top"></div>
-                <img class="cheersleft" src="./Images/cheersleft.svg" />
-                <img class="cheersright" src="./Images/cheersright.svg" />
+<body>
+    <div>
+        <header id="header">
+            <my-header></my-header>
+        </header>
+        <div class="first_ani">
+            <div class="box_top"></div>
+            <img class="cheersleft" src="./Images/cheersleft.svg" />
+            <img class="cheersright" src="./Images/cheersright.svg" />
+        </div>
+        <section class="banner">
+            <div class="content">
+                <img class="logo" src="./Images/logo.svg" />
+                <h1 class="title">Join Us and Get A Drink !</h1>
+                <h2 class="sentence">揪團喝飲料最方便，提供多樣選擇及客製化的搭配。</h2>
+                <button id="menu" onclick="javascript:location.href='./menu_self.html'">查看菜單，揪團去</button>
             </div>
-            <section class="banner">
-                <div class="content">
-                    <img class="logo" src="./Images/logo.svg" />
-                    <h1 class="title">Join Us and Get A Drink !</h1>
-                    <h2 class="sentence">揪團喝飲料最方便，提供多樣選擇及客製化的搭配。</h2>
-                    <button id="menu" onclick="javascript:location.href='./menu_self.html'">查看菜單，揪團去</button>
+            <div class="content_r">
+                <img class="logo_r" src="./Images/logo.svg" />
+                <h1 class="title_r">Join Us and Get A Drink !</h1>
+                <h2 class="sentence_r">揪團喝飲料最方便，提供多樣選擇及客製化的搭配。</h2>
+                <button id="menu_r">查看菜單，揪團去</button>
+            </div>
+            <div class="objfruits">
+                <img class="blacktea" src="./Images/blacktea.png" />
+                <img class="bubble" src="./Images/bubbletea.png" />
+                <img class="juice" src="./Images/juice.png" />
+                <img class="orange fruits" src="./Images/orange.png" />
+                <img class="sliced_orange" src="./Images/sliced_orange.png" />
+                <div data-depth="1.1" class="strawberry">
+                    <img src="./Images/strawberry.png" />
                 </div>
-                <div class="content_r">
-                    <img class="logo_r" src="./Images/logo.svg" />
-                    <h1 class="title_r">Join Us and Get A Drink !</h1>
-                    <h2 class="sentence_r">揪團喝飲料最方便，提供多樣選擇及客製化的搭配。</h2>
-                    <button id="menu_r">查看菜單，揪團去</button>
-                </div>
-                <div class="objfruits">
-                    <img class="blacktea" src="./Images/blacktea.png" />
-                    <img class="bubble" src="./Images/bubbletea.png" />
-                    <img class="juice" src="./Images/juice.png" />
-                    <img class="orange fruits" src="./Images/orange.png" />
-                    <img class="sliced_orange" src="./Images/sliced_orange.png" />
-                    <div data-depth="1.1" class="strawberry">
-                        <img src="./Images/strawberry.png" />
-                    </div>
-                    <img class="sliced_strawberry fruits" src="./Images/sliced_strawberry.png" />
-                    <img class="sliced_lemon fruits" src="./Images/sliced_lemon.png" />
-                    <img class="leaf1 fruits" src="./Images/leaf1.png" />
-                    <img class="leaf2 fruits" src="./Images/leaf2.png" />
-                    <img class="leaf3 fruits" src="./Images/leaf3.png" />
-                    <img class="leaf4 fruits" src="./Images/leaf4.png" />
-                </div>
-                <div class="objfruits_r">
-                    <img class="blacktea_r" src="./Images/blacktea.png" />
-                    <img class="bubble_r" src="./Images/bubbletea.png" />
-                    <!-- <img class="juice_r" src="./Images/juice.png"> -->
-                    <img class="orange_r fruits_r" src="./Images/orange.png" />
-                    <img class="sliced_orange_r fruits_r" src="./Images/sliced_orange.png" />
+                <img class="sliced_strawberry fruits" src="./Images/sliced_strawberry.png" />
+                <img class="sliced_lemon fruits" src="./Images/sliced_lemon.png" />
+                <img class="leaf1 fruits" src="./Images/leaf1.png" />
+                <img class="leaf2 fruits" src="./Images/leaf2.png" />
+                <img class="leaf3 fruits" src="./Images/leaf3.png" />
+                <img class="leaf4 fruits" src="./Images/leaf4.png" />
+            </div>
+            <div class="objfruits_r">
+                <img class="blacktea_r" src="./Images/blacktea.png" />
+                <img class="bubble_r" src="./Images/bubbletea.png" />
+                <!-- <img class="juice_r" src="./Images/juice.png"> -->
+                <img class="orange_r fruits_r" src="./Images/orange.png" />
+                <img class="sliced_orange_r fruits_r" src="./Images/sliced_orange.png" />
 
-                    <img class="strawberry_r fruits_r" src="./Images/strawberry.png" />
+                <img class="strawberry_r fruits_r" src="./Images/strawberry.png" />
 
-                    <img class="sliced_strawberry_r fruits_r" src="./Images/sliced_strawberry.png" />
-                    <img class="sliced_lemon_r fruits_r" src="./Images/sliced_lemon.png" />
-                    <img class="leaf1_r fruits_r" src="./Images/leaf1.png" />
-                    <img class="leaf2_r fruits_r" src="./Images/leaf2.png" />
-                    <img class="leaf3_r fruits_r" src="./Images/leaf3.png" />
-                    <img class="leaf4_r fruits_r" src="./Images/leaf4.png" />
+                <img class="sliced_strawberry_r fruits_r" src="./Images/sliced_strawberry.png" />
+                <img class="sliced_lemon_r fruits_r" src="./Images/sliced_lemon.png" />
+                <img class="leaf1_r fruits_r" src="./Images/leaf1.png" />
+                <img class="leaf2_r fruits_r" src="./Images/leaf2.png" />
+                <img class="leaf3_r fruits_r" src="./Images/leaf3.png" />
+                <img class="leaf4_r fruits_r" src="./Images/leaf4.png" />
+            </div>
+
+            <div class="under">
+                <img class="under" src="./Images/under.png" />
+            </div>
+        </section>
+
+        <main id="app">
+            <!-- 跟團喝------ -->
+            <join_drink></join_drink>
+
+            <!-- 投票區  輪播 -->
+            <section class="vote">
+                <div class="vote_title_block">
+                    <h2>飲品排名</h2>
+                    <h5>凡獲選票選第一之飲品，該飲品即得8折優惠。</h5>
                 </div>
 
-                <div class="under">
-                    <img class="under" src="./Images/under.png" />
+                <div class="card">
+                    <vue-slick-carousel v-bind="settings" v-if="ready">
+                        <!-- 奶類 -->
+                        <div class="item" v-for="(value,key) in drinks[0]" v-bind:key="value.drink_no">
+                            <div class="item-inner">
+                                <div class="vote_info">
+                                    <h4>{{value.order}}</h4>
+                                    <h5>{{value.drink_title_ch}}</h5>
+                                    <div class="vote_number">
+                                        <img src="./Images/vote_medium.svg" alt="" />
+                                        <span>{{value.vote_count_now}}</span>票
+                                    </div>
+                                </div>
+                                <img :src="value.imgSrc" />
+                                <div class="triangle"></div>
+                            </div>
+                        </div>
+                        <!-- 茶類 -->
+                        <div class="item" v-for="(value,key) in drinks[1]" v-bind:key="value.drink_no">
+                            <div class="item-inner">
+                                <div class="vote_info">
+                                    <h4>{{value.order}}</h4>
+                                    <h5>{{value.drink_title_ch}}</h5>
+                                    <div class="vote_number">
+                                        <img src="./Images/vote_medium.svg" alt="" />
+                                        <span>{{value.vote_count_now}}</span>票
+                                    </div>
+                                </div>
+                                <img :src="value.imgSrc" />
+                                <div class="triangle"></div>
+                            </div>
+                        </div>
+                        <!-- 果茶類 -->
+                        <div class="item" v-for="(value,key) in drinks[2]" v-bind:key="value.drink_no">
+                            <div class="item-inner">
+                                <div class="vote_info">
+                                    <h4>{{value.order}}</h4>
+                                    <h5>{{value.drink_title_ch}}</h5>
+                                    <div class="vote_number">
+                                        <img src="./Images/vote_medium.svg" alt="" />
+                                        <span>{{value.vote_count_now}}</span>票
+                                    </div>
+                                </div>
+                                <img :src="value.imgSrc" />
+                                <div class="triangle"></div>
+                            </div>
+                        </div>
+                    </vue-slick-carousel>
+                </div>
+
+                <!-- RWD 手機板 改為 三個 silder 輪播 -->
+
+                <!-- 奶類 -->
+                <div class="card_rwd" v-if="ready">
+                    <h3 class="card_rwd-title">《奶類》</h3>
+                    <vue-slick-carousel class="card_rwd-slider" v-bind="settings_1">
+                        <div class="item" v-for="(value,key) in drinks[0]">
+                            <div class="item-inner">
+                                <div class="vote_info">
+                                    <h4>{{value.order}}</h4>
+                                    <h5>{{value.drink_title_ch}}</h5>
+                                    <div class="vote_number">
+                                        <img src="./Images/vote_medium.svg" alt="" />
+                                        <span>{{value.vote_count_now}}</span>票
+                                    </div>
+                                </div>
+                                <img :src="value.imgSrc" alt="" />
+                                <div class="triangle"></div>
+                            </div>
+                        </div>
+                    </vue-slick-carousel>
+                </div>
+                <!-- 茶類 -->
+                <div class="card_rwd" v-if="ready">
+                    <h3 class="card_rwd-title">《茶類》</h3>
+                    <vue-slick-carousel class="card_rwd-slider" v-bind="settings_1">
+                        <div class="item" v-for="(value,key) in drinks[1]">
+                            <div class="item-inner">
+                                <div class="vote_info">
+                                    <h4>{{value.order}}</h4>
+                                    <h5>{{value.drink_title_ch}}</h5>
+                                    <div class="vote_number">
+                                        <img src="./Images/vote_medium.svg" alt="" />
+                                        <span>{{value.vote_count_now}}</span>票
+                                    </div>
+                                </div>
+                                <img :src="value.imgSrc" alt="" />
+                                <div class="triangle"></div>
+                            </div>
+                        </div>
+                    </vue-slick-carousel>
+                </div>
+                <!-- 果茶類 -->
+                <div class="card_rwd" v-if="ready">
+                    <h3 class="card_rwd-title">《果茶類》</h3>
+                    <vue-slick-carousel class="card_rwd-slider" v-bind="settings_1">
+                        <div class="item" v-for="(value,key) in drinks[2]">
+                            <div class="item-inner">
+                                <div class="vote_info">
+                                    <h4>{{value.order}}</h4>
+                                    <h5>{{value.drink_title_ch}}</h5>
+                                    <div class="vote_number">
+                                        <img src="./Images/vote_medium.svg" alt="" />
+                                        <span>{{value.vote_count_now}}</span>票
+                                    </div>
+                                </div>
+                                <img :src="value.imgSrc" alt="" />
+                                <div class="triangle"></div>
+                            </div>
+                        </div>
+                    </vue-slick-carousel>
+                </div>
+                <div class="bottom_block">
+                    <h5>想讓愛喝的飲品變Top1嗎?</h5>
+                    <button class="seemore color-2" onclick="javascript:location.href='./vote.html'">
+                        立即投票去
+                    </button>
                 </div>
             </section>
 
-            <main id="app">
-                <!-- 跟團喝------ -->
-                <join_drink></join_drink>
+            <!-- 分享區 -->
+            <my_article></my_article>
 
-                <!-- 投票區  輪播 -->
-                <section class="vote">
-                    <div class="vote_title_block">
-                        <h2>飲品排名</h2>
-                        <h5>凡獲選票選第一之飲品，該飲品即得8折優惠。</h5>
-                    </div>
-
-                    <div class="card">
-                        <vue-slick-carousel v-bind="settings" v-if="ready">
-                            <!-- 奶類 -->
-                            <div class="item" v-for="(value,key) in drinks[0]" v-bind:key="value.drink_no">
-                                <div class="item-inner">
-                                    <div class="vote_info">
-                                        <h4>{{value.order}}</h4>
-                                        <h5>{{value.drink_title_ch}}</h5>
-                                        <div class="vote_number">
-                                            <img src="./Images/vote_medium.svg" alt="" />
-                                            <span>{{value.vote_count_now}}</span>票
-                                        </div>
-                                    </div>
-                                    <img :src="value.imgSrc" />
-                                    <div class="triangle"></div>
-                                </div>
-                            </div>
-                            <!-- 茶類 -->
-                            <div class="item" v-for="(value,key) in drinks[1]" v-bind:key="value.drink_no">
-                                <div class="item-inner">
-                                    <div class="vote_info">
-                                        <h4>{{value.order}}</h4>
-                                        <h5>{{value.drink_title_ch}}</h5>
-                                        <div class="vote_number">
-                                            <img src="./Images/vote_medium.svg" alt="" />
-                                            <span>{{value.vote_count_now}}</span>票
-                                        </div>
-                                    </div>
-                                    <img :src="value.imgSrc" />
-                                    <div class="triangle"></div>
-                                </div>
-                            </div>
-                            <!-- 果茶類 -->
-                            <div class="item" v-for="(value,key) in drinks[2]" v-bind:key="value.drink_no">
-                                <div class="item-inner">
-                                    <div class="vote_info">
-                                        <h4>{{value.order}}</h4>
-                                        <h5>{{value.drink_title_ch}}</h5>
-                                        <div class="vote_number">
-                                            <img src="./Images/vote_medium.svg" alt="" />
-                                            <span>{{value.vote_count_now}}</span>票
-                                        </div>
-                                    </div>
-                                    <img :src="value.imgSrc" />
-                                    <div class="triangle"></div>
-                                </div>
-                            </div>
-                        </vue-slick-carousel>
-                    </div>
-
-                    <!-- RWD 手機板 改為 三個 silder 輪播 -->
-
-                    <!-- 奶類 -->
-                    <div class="card_rwd" v-if="ready">
-                        <h3 class="card_rwd-title">《奶類》</h3>
-                        <vue-slick-carousel class="card_rwd-slider" v-bind="settings_1">
-                            <div class="item" v-for="(value,key) in drinks[0]">
-                                <div class="item-inner">
-                                    <div class="vote_info">
-                                        <h4>{{value.order}}</h4>
-                                        <h5>{{value.drink_title_ch}}</h5>
-                                        <div class="vote_number">
-                                            <img src="./Images/vote_medium.svg" alt="" />
-                                            <span>{{value.vote_count_now}}</span>票
-                                        </div>
-                                    </div>
-                                    <img :src="value.imgSrc" alt="" />
-                                    <div class="triangle"></div>
-                                </div>
-                            </div>
-                        </vue-slick-carousel>
-                    </div>
-                    <!-- 茶類 -->
-                    <div class="card_rwd" v-if="ready">
-                        <h3 class="card_rwd-title">《茶類》</h3>
-                        <vue-slick-carousel class="card_rwd-slider" v-bind="settings_1">
-                            <div class="item" v-for="(value,key) in drinks[1]">
-                                <div class="item-inner">
-                                    <div class="vote_info">
-                                        <h4>{{value.order}}</h4>
-                                        <h5>{{value.drink_title_ch}}</h5>
-                                        <div class="vote_number">
-                                            <img src="./Images/vote_medium.svg" alt="" />
-                                            <span>{{value.vote_count_now}}</span>票
-                                        </div>
-                                    </div>
-                                    <img :src="value.imgSrc" alt="" />
-                                    <div class="triangle"></div>
-                                </div>
-                            </div>
-                        </vue-slick-carousel>
-                    </div>
-                    <!-- 果茶類 -->
-                    <div class="card_rwd" v-if="ready">
-                        <h3 class="card_rwd-title">《果茶類》</h3>
-                        <vue-slick-carousel class="card_rwd-slider" v-bind="settings_1">
-                            <div class="item" v-for="(value,key) in drinks[2]">
-                                <div class="item-inner">
-                                    <div class="vote_info">
-                                        <h4>{{value.order}}</h4>
-                                        <h5>{{value.drink_title_ch}}</h5>
-                                        <div class="vote_number">
-                                            <img src="./Images/vote_medium.svg" alt="" />
-                                            <span>{{value.vote_count_now}}</span>票
-                                        </div>
-                                    </div>
-                                    <img :src="value.imgSrc" alt="" />
-                                    <div class="triangle"></div>
-                                </div>
-                            </div>
-                        </vue-slick-carousel>
-                    </div>
-                    <div class="bottom_block">
-                        <h5>想讓愛喝的飲品變Top1嗎?</h5>
-                        <button class="seemore color-2" onclick="javascript:location.href='./vote.html'">
-                            立即投票去
-                        </button>
-                    </div>
-                </section>
-
-                <!-- 分享區 -->
-                <my_article></my_article>
-
-                <!-- 關於 揪飲 -->
-                <section class="brandStory">
-                    <div class="story_block">
-                        <img src="./Images/brandstory_img.jpg" alt="" />
-                        <div class="title_block">
-                            <h1>About Join</h1>
-                            <h3>關於Jo飲</h3>
-                            <h6>
-                                揪團飲料品牌，提供多樣性的選擇滿足您和您的朋友及家人。
-                                有高客製化的功能選單，讓您在購飲品可自行調整冰、溫、
-                                熱等選項，也提供新鮮豐富的配料做搭配滿足您最挑剔味蕾。
-                            </h6>
-                        </div>
-                    </div>
-                    <div class="address_block">
-                        <div class="address">
-                            <h1>Contact us</h1>
-                            <h3>店面資訊</h3>
-                            <div class="title_block">
-                                <div class="info_block">
-                                    <img src="./Images/timer.svg" alt="" />
-                                    <h5>營業時間:<span>11:00-21:00</span></h5>
-                                </div>
-                                <div class="info_block">
-                                    <img src="./Images/Icon awesome-phone.svg" alt="" />
-                                    <h5>電話:<span>04-5545854</span></h5>
-                                </div>
-                                <div class="info_block">
-                                    <img src="./Images/place.svg" alt="" />
-                                    <h5>地址:<span>桃園市中壢區和平街16號</span></h5>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="google_map">
-                            <iframe
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3617.2477183519404!2d121.22282561495693!3d24.95768518400822!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346823ea50c732a5%3A0x1b5e6ee66e9fec49!2z57ev6IKyVGliYU1l6ZmE6Kit5Lit5aOi6IG36KiT5Lit5b-D!5e0!3m2!1szh-TW!2stw!4v1608602204354!5m2!1szh-TW!2stw"
-                                width="400"
-                                height="300"
-                                frameborder="0"
-                                style="border: 0"
-                                allowfullscreen=""
-                                aria-hidden="false"
-                                tabindex="0"
-                            ></iframe>
-                        </div>
-                    </div>
-                    <div class="bottom_block">
-                        <button
-                            class="seemore color-2"
-                            onclick="javascript:location.href='./brandStory-repair-flex.html'"
-                        >
-                            查看更多內容
-                        </button>
-                    </div>
-                </section>
-
-                <!-- 小遊戲 -->
-
-                <section class="game">
+            <!-- 關於 揪飲 -->
+            <section class="brandStory">
+                <div class="story_block">
+                    <img src="./Images/brandstory_img.jpg" alt="" />
                     <div class="title_block">
-                        <h2>小遊戲</h2>
-                        <h5>一起玩小遊戲，挑戰高分並換取折扣吧!</h5>
+                        <h1>About Join</h1>
+                        <h3>關於Jo飲</h3>
+                        <h6>
+                            揪團飲料品牌，提供多樣性的選擇滿足您和您的朋友及家人。
+                            有高客製化的功能選單，讓您在購飲品可自行調整冰、溫、
+                            熱等選項，也提供新鮮豐富的配料做搭配滿足您最挑剔味蕾。
+                        </h6>
                     </div>
-                    <a href="./custom.html" style="text-decoration: none">
-                        <div class="game_imgblock">
-                            <img class="game_img" src="./Images/gamebanner.jpg" alt="" />
-                            <div class="text_block">
-                                <div class="text_descript">
-                                    <h3>珍珠接接樂</h3>
-                                    <hr />
-                                    <p>
-                                        益智類型遊戲，玩家要將畫面中亂掉的拼圖拼回原本的圖案，利用滑鼠拖曳拼圖即可移動，總共有９個關卡等你來挑戰，來看看你的眼力有多好哦
-                                    </p>
-                                    <img src="./Images/gamelink.svg" alt="" />
-                                </div>
+                </div>
+                <div class="address_block">
+                    <div class="address">
+                        <h1>Contact us</h1>
+                        <h3>店面資訊</h3>
+                        <div class="title_block">
+                            <div class="info_block">
+                                <img src="./Images/timer.svg" alt="" />
+                                <h5>營業時間:<span>11:00-21:00</span></h5>
+                            </div>
+                            <div class="info_block">
+                                <img src="./Images/Icon awesome-phone.svg" alt="" />
+                                <h5>電話:<span>04-5545854</span></h5>
+                            </div>
+                            <div class="info_block">
+                                <img src="./Images/place.svg" alt="" />
+                                <h5>地址:<span>桃園市中壢區和平街16號</span></h5>
                             </div>
                         </div>
-                    </a>
-                </section>
-            </main>
+                    </div>
 
-            <footer id="footer">
-                <my-footer></my-footer>
-            </footer>
-        </div>
-        <script src="./js/layout/hearder_index.js"></script>
-        <script src="./js/layout/footer_index.js"></script>
-        <!-- <script src="./vendors/slick/slick.js"></script> -->
-        <!-- <script src="../tasks/slick.js"></script> -->
+                    <div class="google_map">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3617.2477183519404!2d121.22282561495693!3d24.95768518400822!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346823ea50c732a5%3A0x1b5e6ee66e9fec49!2z57ev6IKyVGliYU1l6ZmE6Kit5Lit5aOi6IG36KiT5Lit5b-D!5e0!3m2!1szh-TW!2stw!4v1608602204354!5m2!1szh-TW!2stw"
+                            width="400" height="300" frameborder="0" style="border: 0" allowfullscreen=""
+                            aria-hidden="false" tabindex="0"></iframe>
+                    </div>
+                </div>
+                <div class="bottom_block">
+                    <button class="seemore color-2" onclick="javascript:location.href='./brandStory-repair-flex.html'">
+                        查看更多內容
+                    </button>
+                </div>
+            </section>
 
-        <script>
+            <!-- 小遊戲 -->
+
+            <section class="game">
+                <div class="title_block">
+                    <h2>小遊戲</h2>
+                    <h5>一起玩小遊戲，挑戰高分並換取折扣吧!</h5>
+                </div>
+                <a href="./custom.html" style="text-decoration: none">
+                    <div class="game_imgblock">
+                        <img class="game_img" src="./Images/gamebanner.jpg" alt="" />
+                        <div class="text_block">
+                            <div class="text_descript">
+                                <h3>珍珠接接樂</h3>
+                                <hr />
+                                <p>
+                                    益智類型遊戲，玩家要將畫面中亂掉的拼圖拼回原本的圖案，利用滑鼠拖曳拼圖即可移動，總共有９個關卡等你來挑戰，來看看你的眼力有多好哦
+                                </p>
+                                <img src="./Images/gamelink.svg" alt="" />
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </section>
+        </main>
+
+        <footer id="footer">
+            <my-footer></my-footer>
+        </footer>
+    </div>
+    <script src="./js/layout/hearder_index.js"></script>
+    <script src="./js/layout/footer_index.js"></script>
+    <!-- <script src="./vendors/slick/slick.js"></script> -->
+    <!-- <script src="../tasks/slick.js"></script> -->
+
+    <script>
             // $('.slider').slick({
             //     dots: true,
             //     slidesToShow: 3,
@@ -343,9 +332,9 @@
             //     autoplay: true,
             //     autoplaySpeed: 1500,
             // })
-        </script>
+    </script>
 
-        <script>
+    <script>
             // $('.card_rwd-slider').slick({
             //     dots: true,
             //     slidesToShow: 1,
@@ -353,6 +342,7 @@
             //     autoplay: true,
             //     autoplaySpeed: 1500,
             // })
-        </script>
-    </body>
+    </script>
+</body>
+
 </html>

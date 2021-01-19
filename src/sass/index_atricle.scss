@@ -113,34 +113,36 @@
         }
         // 卡片hover效果------------------------------------------------------------------
         .card_big::before {
-            position: absolute;
-            top: 0;
-            left: -75%;
-            z-index: 2;
-            display: block;
-            content: '';
-            width: 50%;
-            height: 100%;
-            background: -webkit-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,.3) 100%);
-            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,.3) 100%);
-            -webkit-transform: skewX(-25deg);
-            transform: skewX(-25deg);
+            // position: absolute;
+            // top: 0;
+            // left: -75%;
+            // z-index: 2;
+            // display: block;
+            // content: '';
+            // width: 50%;
+            // height: 100%;
+            // background: -webkit-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,.3) 100%);
+            // background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,.3) 100%);
+            // -webkit-transform: skewX(-25deg);
+            // transform: skewX(-25deg);
+            @include shine;
           }
         .card_big:hover::before {
-            -webkit-animation: shine .75s;
-            animation: shine .75s;
+            // -webkit-animation: shine .75s;
+            // animation: shine .75s;
+            @include shine_hover;
           }
         //   hover動畫效果---------------------------------------------------------------------------------------
-          @-webkit-keyframes shine {
-            100% {
-              left: 125%;
-            }
-          }
-          @keyframes shine {
-            100% {
-              left: 125%;
-            }
-          }
+        //   @-webkit-keyframes shine {
+        //     100% {
+        //       left: 125%;
+        //     }
+        //   }
+        //   @keyframes shine {
+        //     100% {
+        //       left: 125%;
+        //     }
+        //   }
         
         // 小卡片區塊------------------------------------------------------------------------------------------------------------
         .card_small_block{
@@ -163,9 +165,7 @@
                 position: relative;
 
                 &:hover{
-                    opacity: 0.8;
-                    transform: translateY(-5px);
-                    transition: 0.5s ease-in-out;
+                    @include move_hover;
                 }
 
                 &::before {

@@ -27,11 +27,9 @@ main {
 }
 
 .s1_title {
-
     font-weight: bold;
     line-height: 1.5;
     @include H2;
-
 }
 
 .s1_text {
@@ -40,8 +38,7 @@ main {
     align-items: center;
     margin-top: 27px;
     line-height: 1.5;
-    @include H4;
-    letter-spacing: 2px;
+    @include H5;
 
     div {
         display: flex;
@@ -109,8 +106,13 @@ main {
     overflow: hidden;
     margin: 0 12.5px 12.5px 12.5px;
     text-decoration: none;
-
+    cursor: pointer;
 }
+
+.s2_hotitem:hover {
+    @include move_hover;
+}
+
 
 .hotimg {
     font-size: 0px;
@@ -184,7 +186,7 @@ main {
     justify-content: flex-end;
     align-items: center;
     margin: 11px 0 16px 0;
-
+    font-family: 'Roboto', sans-serif;
 }
 
 .hotcount>div {
@@ -248,7 +250,7 @@ main {
     @include H3;
     font-weight: bold;
     color: $textColor;
-    letter-spacing: 2px;
+    letter-spacing: 5px;
     line-height: 1.5;
 }
 
@@ -270,10 +272,27 @@ main {
 
     label {
         margin-right: 5px;
-        @include H4;
+        @include H5;
         color: $btnColor;
         font-weight: bold;
     }
+}
+
+
+select#filter{
+    width: 150px;
+    -webkit-appearance:none;
+  
+    /*改變右邊箭頭樣式*/
+    background: url("../../dist/Images/article/share_list/select.svg") no-repeat right center transparent;
+    background-color: #fff;
+
+    @include H6; 
+    color: $textColor;
+    border: none;
+    outline: none;
+    border-radius: 3px;
+    padding-left: 10px;
 }
 
 .write_article_btn {
@@ -284,14 +303,13 @@ main {
     background-color: $textColor;
     border-radius: 8px;
     overflow: hidden;
-    width: 116px;
+    width: 105px;
     height: 36px;
-
 }
 
 .write_img {
-    width: 23px;
-    margin-right: 17px;
+    width: 20px;
+    margin-right: 15px;
 }
 
 .write_text {
@@ -299,7 +317,7 @@ main {
     line-height: 1.5;
     font-weight: bold;
     color: #fff;
-    font-size: $fontsize_H4;
+    @include H5;
 }
 
 
@@ -319,6 +337,10 @@ main {
     overflow: hidden;
     margin: 0 auto;
     margin-bottom: 25px;
+    cursor: pointer;
+    &:hover{
+        @include move_hover;
+    }
 }
 
 .article_img {
@@ -326,6 +348,7 @@ main {
     width: 30%;
     flex-shrink: 0;
     min-width: 396px;
+    cursor: pointer;
 
     @media screen and (min-width:993px) {
         height: 269px;
@@ -576,17 +599,16 @@ main {
 
         li {
             border-radius: 50%;
-            width: 24px;
+            width: 20px;
         }
 
         * {
             margin: 0 7px;
             cursor: pointer;
-            font-size: $fontsize_H3;
+            font-size: $fontsize_H5;
             color: $textColor;
             opacity: 0.6;
             text-align: center;
-
         }
 
         *:hover {

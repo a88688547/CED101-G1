@@ -207,7 +207,7 @@ header {
 
                 >a {
                     @include H5;
-                    padding: 15px 0;
+                    padding: 25px 0;
                     border-bottom: 1px solid $btnColor;
                 }
             }
@@ -219,7 +219,7 @@ header {
                 #logout {
                     display: inline-block;
                     @include H5;
-                    padding: 15px 0;
+                    padding: 25px 0;
                     line-height: 18px;
                 }
             }
@@ -227,7 +227,7 @@ header {
 
         .nav-open {
             transition: 0.7s ease-in-out;
-            height: calc(49px * 7);
+            height: calc(68.6px * 7);
             display: inline-block;
         }
     }

@@ -103,11 +103,6 @@ function handleComplete(evt, comp) {
     char.x = 480;
     char.y = 460;
 
-    let closeBtn = document.querySelector(".game-close");
-    closeBtn.addEventListener("click", function () {
-        document.querySelector(".lightbox").style.display = "none";
-    });
-
     function sendForm(cou, dis) {
         fetch("./php/coupon.php", {
             method: 'POST',
@@ -159,11 +154,9 @@ function handleComplete(evt, comp) {
                     createjs.Tween.removeTweens(pearl);
                     exportRoot.removeChild(pearl);
                     eatPearl++;
-                    document.querySelector("#score").innerHTML = eatPearl * 10;
-                    totalscore.innerText = document.querySelector("#score").innerHTML;
+                    document.querySelector("#getscore").innerHTML = eatPearl * 10;
+                    totalscore.innerText = document.querySelector("#getscore").innerHTML;
                 }
-
-                // console.log(document.querySelector("#totalscore").innerText);
             });
     }, 1000);
 
@@ -204,26 +197,28 @@ function handleComplete(evt, comp) {
             createjs.Ticker.removeEventListener("tick", tickHandler);
             exportRoot.removeChild(char);
             if (members) {
-                console.log(members)
+                if (totalscore.innerText >= 400) {
+                    getcoupon.style.display = "block";
+                    getcoupon.innerText = "獲得六折兌換卷一張"
+                    couponId.innerText = `${coupon}`;
+                    return sendForm(coupon, 0.6)
+                }
                 if (totalscore.innerText >= 300) {
                     getcoupon.style.display = "block";
                     getcoupon.innerText = "獲得七折兌換卷一張"
                     couponId.innerText = `${coupon}`;
-                    // discount = 0.7
                     return sendForm(coupon, 0.7)
                 }
                 if (totalscore.innerText >= 200) {
                     getcoupon.style.display = "block";
                     getcoupon.innerText = "獲得八折兌換卷一張"
                     couponId.innerText = `${coupon}`;
-                    // discount = 0.8
                     return sendForm(coupon, 0.8)
                 }
                 if (totalscore.innerText >= 100) {
                     getcoupon.style.display = "block";
                     getcoupon.innerText = "獲得九折兌換卷一張"
                     couponId.innerText = `${coupon}`;
-                    // discount = 0.9
                     return sendForm(coupon, 0.9)
                 }
             }

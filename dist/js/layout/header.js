@@ -238,6 +238,9 @@ Vue.component('my-header', {
     created() {
         this.get_mem()
     },
+    mounted() {
+        members = ""
+    },
     template: `
             <nav>
                 <button class="hamburg_btn" ref="hamburg_btn" @click="hamburgHandler">

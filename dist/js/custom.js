@@ -16,9 +16,9 @@ window.onload = function () {
             .value;
 
         const myWrap = document.querySelector('input[name="wrap"]:checked').value;
-        console.log(myCharacter);
+        // console.log(myCharacter);
         const imgSrc = `${myCharacter}${myWrap}`;
-        console.log(imgSrc);
+        // console.log(imgSrc);
         char.src = `./Images/${imgSrc}.png`;
     }
     start.addEventListener("click", function (e) {

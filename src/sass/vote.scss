@@ -619,6 +619,12 @@ section {
         p {
             font-size: 1.6rem;
             margin-bottom: 15px;
+
+            .voted-name {
+                font-size: 1.8rem;
+                margin-bottom: 15px;
+                font-weight: bold;
+            }
         }
 
         .vote-count {

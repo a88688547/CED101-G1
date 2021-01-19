@@ -1,46 +1,54 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Jo飲</title>
-        <link rel="stylesheet" href="./css/reset.css" />
-        <!-- 共用 -->
-        <script src="./vendors/Vue/vue.js"></script>
-        <script src="./vendors/jQuery/js/jquery-3.5.1.js"></script>
-        <link rel="stylesheet" href="./css/alertLightbox.css">
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
-            integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
-            crossorigin="anonymous"
-        />
-        <!-- 本頁 -->
-        <!-- 字型 -->
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet" />
-        <!-- css -->
-        <link rel="stylesheet" href="./css/style.css" />
-        <link rel="stylesheet" href="./css/index_1224.css" />
-        <link rel="stylesheet" href="./css/index_banner.css" />
-        <!-- <link rel="stylesheet" href="./css/first_banner.css" /> -->
 
-        <!-- 套件 -->
-        <script src="./js/header_footer.js"></script>
-        <link rel="stylesheet" href="./vendors/slick/slick-theme.css" />
-        <link rel="stylesheet" href="./vendors/slick/slick.css" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
-        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script> -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js"></script>
-        <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-        <script src="js/ani.js" async></script>
-        <!-- 不寫這個會報錯誤 -->
-        <link rel="shortcut icon" href="#" />
-    </head>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jo飲</title>
+    <link rel="stylesheet" href="./css/reset.css" />
+    <!-- 共用 -->
+    <link rel="stylesheet" href="./css/alertLightbox.css">
+    <script src="./vendors/Vue/vue.js"></script>
+    <script src="./vendors/jQuery/js/jquery-3.5.1.js"></script>
 
-    <body>
+    <!-- 不寫這個會報錯誤 -->
+    <link rel="shortcut icon" href="#" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+        integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+        crossorigin="anonymous" />
+    <!-- 本頁 -->
+    <!-- 字型 -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet" />
+    <!-- css -->
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/index_1224.css" />
+    <link rel="stylesheet" href="./css/index_banner.css" />
+    <!-- <link rel="stylesheet" href="./css/first_banner.css" /> -->
+
+    <!-- 套件 -->
+    <!-- <script src="./js/header_footer.js"></script> -->
+    <!-- <link rel="stylesheet" href="./vendors/slick/slick-theme.css" />
+        <link rel="stylesheet" href="./vendors/slick/slick.css" /> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="js/ani.js" async></script>
+    <!-- //vue-slick-course 套件 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" />
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/vue-slick-carousel@1.0.6/dist/vue-slick-carousel.umd.min.js"></script>
+    <script src="./js/homepage.js"></script>
+    <!-- <script src="./js/layout/header.js"></script>
+        <script src="./js/layout/footer.js"></script> -->
+</head>
+
+<body>
+    <div>
         <header id="header">
             <my-header></my-header>
         </header>
@@ -100,215 +108,11 @@
             </div>
         </section>
 
-        <main>
-            <!-- 跟團喝---------------------------------------------------------------------- -->
-            <section class="join_drink">
-                <div class="title_block">
-                    <h2>跟團喝</h2>
-                    <h5>想喝飲料卻找不到夥伴嗎?跟團喝飲料，杯杯有折扣!</h5>
-                </div>
-                <!-- 跟團版---------------------------------------------------------------------- -->
-                <div class="drinkbar_block">
-                    <div class="drink_bar" onclick="javascript:location.href='./menu.html'">
-                        <img class="top_img" src="./Images/coupon/index/10off_frontpage.jpg" alt="" />
+        <main id="app">
+            <!-- 跟團喝------ -->
+            <join_drink></join_drink>
 
-                        <div class="drinkbar_textblock">
-                            <div class="bar_title">
-                                <!-- 團名最多十五個字 -->
-                                <h6>Tibame前端班喝起來~</h6>
-                            </div>
-
-                            <hr />
-
-                            <h6>
-                                取貨地點:<br />
-                                <span class="address">桃園市中壢區復興路46號9樓</span>
-                            </h6>
-
-                            <h6>
-                                預計送達時間:<br />
-                                <span class="time">2012/12/20 15:00</span>
-                            </h6>
-
-                            <div class="drink_status">
-                                <div class="status_title">
-                                    <img src="./Images/drop-1.svg" alt="" />
-                                    <h6>差<span>?</span>杯成團</h6>
-                                </div>
-
-                                <div class="status_title">
-                                    <img class="complited_cups" src="./Images/drop-1.svg" alt="" />
-                                    <h6>已有<span>?</span>杯跟團</h6>
-                                </div>
-                            </div>
-
-                            <div class="join_drink_btm">
-                                <h6 class="time">
-                                    限時
-                                    <span class="Countdown time">05:00:20</span>
-                                </h6>
-
-                                <button class="join_drink color-1">
-                                    <a href="./join_list.html" style="text-decoration: none; display: inline-flex">
-                                        <img src="./Images/drink.svg" alt="" />
-                                        <h6>跟團喝</h6>
-                                    </a>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                
-                <div class="drink_bar" onclick="javascript:location.href='./menu.html'">
-                    <img src="./Images/coupon/index/20off_frontpage.jpg" alt="" />
-
-                    <div class="drinkbar_textblock">
-                        <div class="bar_title">
-                            <h6>中壢站前夥伴揪飲去</h6>
-                        </div>
-
-                        <hr />
-
-                        <h6>
-                            取貨地點:<br />
-                            <span class="address">桃園市中壢區復興路46號9樓</span>
-                        </h6>
-
-                        <h6>
-                            預計送達時間:<br />
-                            <span class="time">2012/12/20 15:00</span>
-                        </h6>
-
-                        <div class="drink_status">
-                            <div class="status_title">
-                                <img src="./Images/drop-1.svg" alt="" />
-                                <h6>差<span>?</span>杯成團</h6>
-                            </div>
-
-                            <div class="status_title">
-                                <img class="complited_cups" src="./Images/drop-1.svg" alt="" />
-                                <h6>已有<span>?</span>杯跟團</h6>
-                            </div>
-                        </div>
-
-                        <div class="join_drink_btm">
-                            <h6 class="time">
-                                限時
-                                <span class="Countdown time">05:00:20</span>
-                            </h6>
-
-                            <button class="join_drink color-1">
-                                <a href="./join_list.html" style="text-decoration: none; display: inline-flex">
-                                    <img src="./Images/drink.svg" alt="" />
-                                    <h6>跟團喝</h6>
-                                </a>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="drink_bar" onclick="javascript:location.href='./menu.html'">
-                    <img src="./Images/coupon/index/30off_frontpage.jpg" alt="" />
-
-                    <div class="drinkbar_textblock">
-                        <div class="bar_title">
-                            <h6>揪飲找七折，一起跟團去</h6>
-                        </div>
-
-                        <hr />
-
-                        <h6>
-                            取貨地點:<br />
-                            <span class="address">桃園市中壢區復興路46號9樓</span>
-                        </h6>
-
-                        <h6>
-                            預計送達時間:<br />
-                            <span class="time">2012/12/20 15:00</span>
-                        </h6>
-
-                        <div class="drink_status">
-                            <div class="status_title">
-                                <img src="./Images/drop-1.svg" alt="" />
-                                <h6>差<span>?</span>杯成團</h6>
-                            </div>
-
-                            <div class="status_title">
-                                <img class="complited_cups" src="./Images/drop-1.svg" alt="" />
-                                <h6>已有<span>?</span>杯跟團</h6>
-                            </div>
-                        </div>
-
-                        <div class="join_drink_btm">
-                            <h6 class="time">
-                                限時
-                                <span class="Countdown time">05:00:20</span>
-                            </h6>
-
-                            <button class="join_drink color-1">
-                                <a href="./join_list.html" style="text-decoration: none; display: inline-flex">
-                                    <img src="./Images/drink.svg" alt="" />
-                                    <h6>跟團喝</h6>
-                                </a>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="drink_bar" onclick="javascript:location.href='./menu.html'">
-                    <img src="./Images/coupon/index/40off_frontpage.jpg" alt="" />
-
-                    <div class="drinkbar_textblock">
-                        <div class="bar_title">
-                            <h6>下午茶好夥伴，一起衝八折優惠!</h6>
-                        </div>
-
-                        <hr />
-
-                        <h6>
-                            取貨地點:<br />
-                            <span class="address">桃園市中壢區復興路46號9樓</span>
-                        </h6>
-
-                        <h6>
-                            預計送達時間:<br />
-                            <span class="time">2012/12/20 15:00</span>
-                        </h6>
-
-                        <div class="drink_status">
-                            <div class="status_title">
-                                <img src="./Images/drop-1.svg" alt="" />
-                                <h6>差<span>?</span>杯成團</h6>
-                            </div>
-
-                            <div class="status_title">
-                                <img class="complited_cups" src="./Images/drop-1.svg" alt="" />
-                                <h6>已有<span>?</span>杯跟團</h6>
-                            </div>
-                        </div>
-
-                        <div class="join_drink_btm">
-                            <h6 class="time">
-                                限時
-                                <span class="Countdown time">05:00:20</span>
-                            </h6>
-
-                            <button class="join_drink color-1">
-                                <a href="./join_list.html" style="text-decoration: none; display: inline-flex">
-                                    <img src="./Images/drink.svg" alt="" />
-                                    <h6>跟團喝</h6>
-                                </a>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bottom_block">
-                    <button class="seemore color-2" onclick="javascript:location.href='./join_list.html'">
-                        <h6>查看更多內容</h6>
-                    </button>
-                </div>
-            </section>
-
+            <!-- 投票區  輪播 -->
             <section class="vote">
                 <div class="vote_title_block">
                     <h2>飲品排名</h2>
@@ -316,568 +120,129 @@
                 </div>
 
                 <div class="card">
-                    <div class="slider">
-                        <div class="item">
+                    <vue-slick-carousel v-bind="settings" v-if="ready">
+                        <!-- 奶類 -->
+                        <div class="item" v-for="(value,key) in drinks[0]" v-bind:key="value.drink_no">
                             <div class="item-inner">
                                 <div class="vote_info">
-                                    <h4>TOP1</h4>
-                                    <h5>大正紅茶</h5>
+                                    <h4>{{value.order}}</h4>
+                                    <h5>{{value.drink_title_ch}}</h5>
                                     <div class="vote_number">
                                         <img src="./Images/vote_medium.svg" alt="" />
-                                        <span>350</span>票
+                                        <span>{{value.vote_count_now}}</span>票
                                     </div>
                                 </div>
-                                <img
-                                    src="./Images/drinkitem_15/drinkitem_15/index_vote/index_vote_tea-1@2x.png"
-                                    alt=""
-                                />
+                                <img :src="value.imgSrc" />
                                 <div class="triangle"></div>
                             </div>
                         </div>
-
-                        <div class="item">
+                        <!-- 茶類 -->
+                        <div class="item" v-for="(value,key) in drinks[1]" v-bind:key="value.drink_no">
                             <div class="item-inner">
                                 <div class="vote_info">
-                                    <h4>TOP2</h4>
-                                    <h5>四季春茶</h5>
+                                    <h4>{{value.order}}</h4>
+                                    <h5>{{value.drink_title_ch}}</h5>
                                     <div class="vote_number">
                                         <img src="./Images/vote_medium.svg" alt="" />
-                                        <span>350</span>票
+                                        <span>{{value.vote_count_now}}</span>票
                                     </div>
                                 </div>
-                                <img
-                                    src="./Images/drinkitem_15/drinkitem_15/index_vote/index_vote_tea-2@2x.png"
-                                    alt=""
-                                />
+                                <img :src="value.imgSrc" />
                                 <div class="triangle"></div>
                             </div>
                         </div>
-
-                        <div class="item">
+                        <!-- 果茶類 -->
+                        <div class="item" v-for="(value,key) in drinks[2]" v-bind:key="value.drink_no">
                             <div class="item-inner">
                                 <div class="vote_info">
-                                    <h4>TOP3</h4>
-                                    <h5>烏龍綠茶</h5>
+                                    <h4>{{value.order}}</h4>
+                                    <h5>{{value.drink_title_ch}}</h5>
                                     <div class="vote_number">
                                         <img src="./Images/vote_medium.svg" alt="" />
-                                        <span>350</span>票
+                                        <span>{{value.vote_count_now}}</span>票
                                     </div>
                                 </div>
-                                <img
-                                    src="./Images/drinkitem_15/drinkitem_15/index_vote/index_vote_tea-3@2x.png"
-                                    alt=""
-                                />
+                                <img :src="value.imgSrc" />
                                 <div class="triangle"></div>
                             </div>
                         </div>
-                        <!-- 奶茶類 ------------------------------------------------------------------->
-                        <div class="item">
-                            <div class="item-inner">
-                                <div class="vote_info">
-                                    <h4>TOP1</h4>
-                                    <h5>鮮奶茶</h5>
-                                    <div class="vote_number">
-                                        <img src="./Images/vote_medium.svg" alt="" />
-                                        <span>350</span>票
-                                    </div>
-                                </div>
-                                <img
-                                    src="./Images/drinkitem_15/drinkitem_15/index_vote/index_vote_milktea-1@2x.png"
-                                    alt=""
-                                />
-                                <div class="triangle"></div>
-                            </div>
-                        </div>
-
-                        <div class="item">
-                            <div class="item-inner">
-                                <div class="vote_info">
-                                    <h4>TOP2</h4>
-                                    <h5>紅茶拿鐵</h5>
-                                    <div class="vote_number">
-                                        <img src="./Images/vote_medium.svg" alt="" />
-                                        <span>350</span>票
-                                    </div>
-                                </div>
-                                <img
-                                    src="./Images/drinkitem_15/drinkitem_15/index_vote/index_vote_milktea-2@2x.png"
-                                    alt=""
-                                />
-                                <div class="triangle"></div>
-                            </div>
-                        </div>
-
-                        <div class="item">
-                            <div class="item-inner">
-                                <div class="vote_info">
-                                    <h4>TOP3</h4>
-                                    <h5>烏龍拿鐵</h5>
-                                    <div class="vote_number">
-                                        <img src="./Images/vote_medium.svg" alt="" />
-                                        <span>350</span>票
-                                    </div>
-                                </div>
-                                <img
-                                    src="./Images/drinkitem_15/drinkitem_15/index_vote/index_vote_milktea-3@2x.png"
-                                    alt=""
-                                />
-                                <div class="triangle"></div>
-                            </div>
-                        </div>
-                        <!-- 果茶類 ------------------------------------------------------------->
-                        <div class="item">
-                            <div class="item-inner">
-                                <div class="vote_info">
-                                    <h4>TOP1</h4>
-                                    <h5>蜜桃紅茶</h5>
-                                    <div class="vote_number">
-                                        <img src="./Images/vote_medium.svg" alt="" />
-                                        <span>350</span>票
-                                    </div>
-                                </div>
-                                <img
-                                    src="./Images/drinkitem_15/drinkitem_15/index_vote/index_vote_fruit-1@2x.png"
-                                    alt=""
-                                />
-                                <div class="triangle"></div>
-                            </div>
-                        </div>
-
-                        <div class="item">
-                            <div class="item-inner">
-                                <div class="vote_info">
-                                    <h4>TOP2</h4>
-                                    <h5>芒果冰茶</h5>
-                                    <div class="vote_number">
-                                        <img src="./Images/vote_medium.svg" alt="" />
-                                        <span>350</span>票
-                                    </div>
-                                </div>
-                                <img
-                                    src="./Images/drinkitem_15/drinkitem_15/index_vote/index_vote_fruit-2@2x.png"
-                                    alt=""
-                                />
-                                <div class="triangle"></div>
-                            </div>
-                        </div>
-
-                        <div class="item">
-                            <div class="item-inner">
-                                <div class="vote_info">
-                                    <h4>TOP3</h4>
-                                    <h5>水果茶</h5>
-                                    <div class="vote_number">
-                                        <img src="./Images/vote_medium.svg" alt="" />
-                                        <span>350</span>票
-                                    </div>
-                                </div>
-                                <img
-                                    src="./Images/drinkitem_15/drinkitem_15/index_vote/index_vote_fruit-3@2x.png"
-                                    alt=""
-                                />
-                                <div class="triangle"></div>
-                            </div>
-                        </div>
-                    </div>
+                    </vue-slick-carousel>
                 </div>
 
-                <div class="card_rwd">
-                    <h3 class="card_rwd-title">《茶類》</h3>
-                    <div class="card_rwd-slider">
-                        <div class="item">
-                            <div class="item-inner">
-                                <div class="vote_info">
-                                    <h4>TOP1</h4>
-                                    <h5>大正紅茶</h5>
-                                    <div class="vote_number">
-                                        <img src="./Images/vote_medium.svg" alt="" />
-                                        <span>350</span>票
-                                    </div>
-                                </div>
-                                <img
-                                    src="./Images/drinkitem_15/drinkitem_15/index_vote/index_vote_tea-1@2x.png"
-                                    alt=""
-                                />
-                                <div class="triangle"></div>
-                            </div>
-                        </div>
+                <!-- RWD 手機板 改為 三個 silder 輪播 -->
 
-                        <div class="item">
-                            <div class="item-inner">
-                                <div class="vote_info">
-                                    <h4>TOP2</h4>
-                                    <h5>四季春茶</h5>
-                                    <div class="vote_number">
-                                        <img src="./Images/vote_medium.svg" alt="" />
-                                        <span>350</span>票
-                                    </div>
-                                </div>
-                                <img
-                                    src="./Images/drinkitem_15/drinkitem_15/index_vote/index_vote_tea-2@2x.png"
-                                    alt=""
-                                />
-                                <div class="triangle"></div>
-                            </div>
-                        </div>
-
-                        <div class="item">
-                            <div class="item-inner">
-                                <div class="vote_info">
-                                    <h4>TOP3</h4>
-                                    <h5>烏龍綠茶</h5>
-                                    <div class="vote_number">
-                                        <img src="./Images/vote_medium.svg" alt="" />
-                                        <span>350</span>票
-                                    </div>
-                                </div>
-                                <img
-                                    src="./Images/drinkitem_15/drinkitem_15/index_vote/index_vote_tea-3@2x.png"
-                                    alt=""
-                                />
-                                <div class="triangle"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card_rwd">
-                    <h3 class="card_rwd-title">《果茶類》</h3>
-                    <div class="card_rwd-slider">
-                        <div class="item">
-                            <div class="item-inner">
-                                <div class="vote_info">
-                                    <h4>TOP1</h4>
-                                    <h5>蜜桃紅茶</h5>
-                                    <div class="vote_number">
-                                        <img src="./Images/vote_medium.svg" alt="" />
-                                        <span>350</span>票
-                                    </div>
-                                </div>
-                                <img
-                                    src="./Images/drinkitem_15/drinkitem_15/index_vote/index_vote_fruit-1@2x.png"
-                                    alt=""
-                                />
-                                <div class="triangle"></div>
-                            </div>
-                        </div>
-
-                        <div class="item">
-                            <div class="item-inner">
-                                <div class="vote_info">
-                                    <h4>TOP2</h4>
-                                    <h5>四季春茶</h5>
-                                    <div class="vote_number">
-                                        <img src="./Images/vote_medium.svg" alt="" />
-                                        <span>350</span>票
-                                    </div>
-                                </div>
-                                <img
-                                    src="./Images/drinkitem_15/drinkitem_15/index_vote/index_vote_fruit-2@2x.png"
-                                    alt=""
-                                />
-                                <div class="triangle"></div>
-                            </div>
-                        </div>
-
-                        <div class="item">
-                            <div class="item-inner">
-                                <div class="vote_info">
-                                    <h4>TOP3</h4>
-                                    <h5>烏龍綠茶</h5>
-                                    <div class="vote_number">
-                                        <img src="./Images/vote_medium.svg" alt="" />
-                                        <span>350</span>票
-                                    </div>
-                                </div>
-                                <img
-                                    src="./Images/drinkitem_15/drinkitem_15/index_vote/index_vote_fruit-3@2x.png"
-                                    alt=""
-                                />
-                                <div class="triangle"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card_rwd">
+                <!-- 奶類 -->
+                <div class="card_rwd" v-if="ready">
                     <h3 class="card_rwd-title">《奶類》</h3>
-                    <div class="card_rwd-slider">
-                        <div class="item">
+                    <vue-slick-carousel class="card_rwd-slider" v-bind="settings_1">
+                        <div class="item" v-for="(value,key) in drinks[0]">
                             <div class="item-inner">
                                 <div class="vote_info">
-                                    <h4>TOP1</h4>
-                                    <h5>鮮奶茶</h5>
+                                    <h4>{{value.order}}</h4>
+                                    <h5>{{value.drink_title_ch}}</h5>
                                     <div class="vote_number">
                                         <img src="./Images/vote_medium.svg" alt="" />
-                                        <span>350</span>票
+                                        <span>{{value.vote_count_now}}</span>票
                                     </div>
                                 </div>
-                                <img
-                                    src="./Images/drinkitem_15/drinkitem_15/index_vote/index_vote_milktea-1@2x.png"
-                                    alt=""
-                                />
+                                <img :src="value.imgSrc" alt="" />
                                 <div class="triangle"></div>
                             </div>
                         </div>
-
-                        <div class="item">
-                            <div class="item-inner">
-                                <div class="vote_info">
-                                    <h4>TOP2</h4>
-                                    <h5>紅茶拿鐵</h5>
-                                    <div class="vote_number">
-                                        <img src="./Images/vote_medium.svg" alt="" />
-                                        <span>350</span>票
-                                    </div>
-                                </div>
-                                <img
-                                    src="./Images/drinkitem_15/drinkitem_15/index_vote/index_vote_milktea-2@2x.png"
-                                    alt=""
-                                />
-                                <div class="triangle"></div>
-                            </div>
-                        </div>
-
-                        <div class="item">
-                            <div class="item-inner">
-                                <div class="vote_info">
-                                    <h4>TOP3</h4>
-                                    <h5>烏龍拿鐵</h5>
-                                    <div class="vote_number">
-                                        <img src="./Images/vote_medium.svg" alt="" />
-                                        <span>350</span>票
-                                    </div>
-                                </div>
-                                <img
-                                    src="./Images/drinkitem_15/drinkitem_15/index_vote/index_vote_milktea-3@2x.png"
-                                    alt=""
-                                />
-                                <div class="triangle"></div>
-                            </div>
-                        </div>
-                    </div>
+                    </vue-slick-carousel>
                 </div>
-
+                <!-- 茶類 -->
+                <div class="card_rwd" v-if="ready">
+                    <h3 class="card_rwd-title">《茶類》</h3>
+                    <vue-slick-carousel class="card_rwd-slider" v-bind="settings_1">
+                        <div class="item" v-for="(value,key) in drinks[1]">
+                            <div class="item-inner">
+                                <div class="vote_info">
+                                    <h4>{{value.order}}</h4>
+                                    <h5>{{value.drink_title_ch}}</h5>
+                                    <div class="vote_number">
+                                        <img src="./Images/vote_medium.svg" alt="" />
+                                        <span>{{value.vote_count_now}}</span>票
+                                    </div>
+                                </div>
+                                <img :src="value.imgSrc" alt="" />
+                                <div class="triangle"></div>
+                            </div>
+                        </div>
+                    </vue-slick-carousel>
+                </div>
+                <!-- 果茶類 -->
+                <div class="card_rwd" v-if="ready">
+                    <h3 class="card_rwd-title">《果茶類》</h3>
+                    <vue-slick-carousel class="card_rwd-slider" v-bind="settings_1">
+                        <div class="item" v-for="(value,key) in drinks[2]">
+                            <div class="item-inner">
+                                <div class="vote_info">
+                                    <h4>{{value.order}}</h4>
+                                    <h5>{{value.drink_title_ch}}</h5>
+                                    <div class="vote_number">
+                                        <img src="./Images/vote_medium.svg" alt="" />
+                                        <span>{{value.vote_count_now}}</span>票
+                                    </div>
+                                </div>
+                                <img :src="value.imgSrc" alt="" />
+                                <div class="triangle"></div>
+                            </div>
+                        </div>
+                    </vue-slick-carousel>
+                </div>
                 <div class="bottom_block">
                     <h5>想讓愛喝的飲品變Top1嗎?</h5>
-                    <button class="seemore color-2" onclick="javascript:location.href='./vote.html'">立即投票去</button>
-                </div>
-            </section>
-
-            <section class="article">
-                <div class="title_block">
-                    <h2>分享區</h2>
-                    <h5>大家都喝了什麼?立即記錄你的JOIN時光吧!</h5>
-                </div>
-
-                <div class="article_block">
-                    <div class="card_big">
-                        <a href="./share_article.html" style="text-decoration: none">
-                            <img src="./Images/article/70edd49589e2a84c8c5288bdeac46f37.png" alt="" />
-
-                            <div class="text_block">
-                                <img class="user" src="./Images/user_small.svg" alt="" />
-                                <div class="user_info_block">
-                                    <p class="article_time">2020-11-22 13:00</p>
-                                    <div class="article_descirption">
-                                        <h6>新鮮水果茶好回味</h6>
-                                        <p>水果茶用料實在，酸酸甜甜令人難忘~~</p>
-                                    </div>
-
-                                    <div class="user_info">
-                                        <div class="user_status">
-                                            <div class="status_icon">
-                                                <img src="./Images/eyes_big.svg" alt="" />
-                                                <p class="number">?</p>
-                                            </div>
-                                            <div class="status_icon">
-                                                <img src="./Images/message_big.svg" alt="" />
-                                                <p class="number">?</p>
-                                            </div>
-                                            <div class="status_icon">
-                                                <img src="./Images/like_big.svg" alt="" />
-                                                <p class="number">?</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="card_big">
-                        <a href="./share_article.html" style="text-decoration: none">
-                            <img src="./Images/article/article_big_2.png" alt="" />
-
-                            <div class="text_block">
-                                <img class="user" src="./Images/user_small.svg" alt="" />
-                                <div class="user_info_block">
-                                    <p class="article_time">2020-11-22 13:00</p>
-                                    <div class="article_descirption">
-                                        <h6>新鮮水果茶好回味</h6>
-                                        <p>水果茶用料實在，酸酸甜甜令人難忘~~</p>
-                                    </div>
-
-                                    <div class="user_info">
-                                        <div class="user_status">
-                                            <div class="status_icon">
-                                                <img src="./Images/eyes_big.svg" alt="" />
-                                                <p class="number">?</p>
-                                            </div>
-                                            <div class="status_icon">
-                                                <img src="./Images/message_big.svg" alt="" />
-                                                <p class="number">?</p>
-                                            </div>
-                                            <div class="status_icon">
-                                                <img src="./Images/like_big.svg" alt="" />
-                                                <p class="number">?</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="card_big">
-                        <a href="./share_article.html" style="text-decoration: none">
-                            <img src="./Images/article/article_big_3.png" alt="" />
-
-                            <div class="text_block">
-                                <img class="user" src="./Images/user_small.svg" alt="" />
-                                <div class="user_info_block">
-                                    <p class="article_time">2020-11-22 13:00</p>
-                                    <div class="article_descirption">
-                                        <h6>新鮮水果茶好回味</h6>
-                                        <p>水果茶用料實在，酸酸甜甜令人難忘~~</p>
-                                    </div>
-
-                                    <div class="user_info">
-                                        <div class="user_status">
-                                            <div class="status_icon">
-                                                <img src="./Images/eyes_big.svg" alt="" />
-                                                <p class="number">?</p>
-                                            </div>
-                                            <div class="status_icon">
-                                                <img src="./Images/message_big.svg" alt="" />
-                                                <p class="number">?</p>
-                                            </div>
-                                            <div class="status_icon">
-                                                <img src="./Images/like_big.svg" alt="" />
-                                                <p class="number">?</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="card_small_block">
-                        <div class="card_small" onclick="javascript:location.href='./share_article.html'">
-                            <img src="./Images/article/article_smal_2.png" alt="" />
-
-                            <div class="text_block">
-                                <img class="user" src="./Images/user_small.svg" alt="" />
-                                <div class="user_info_block">
-                                    <p class="article_time">2020-11-22 13:00</p>
-                                    <div class="article_descirption">
-                                        <h6>新鮮水果茶好回味</h6>
-                                        <p>水果茶用料實在，酸酸甜甜令人難忘~~</p>
-                                    </div>
-
-                                    <div class="user_info">
-                                        <div class="user_status">
-                                            <div class="status_icon">
-                                                <img src="./Images/eyes_big.svg" alt="" />
-                                                <p class="number">?</p>
-                                            </div>
-                                            <div class="status_icon">
-                                                <img src="./Images/message_big.svg" alt="" />
-                                                <p class="number">?</p>
-                                            </div>
-                                            <div class="status_icon">
-                                                <img src="./Images/like_big.svg" alt="" />
-                                                <p class="number">?</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card_small" onclick="javascript:location.href='./share_article.html'">
-                            <img src="./Images/article/article_smal_3.png" alt="" />
-
-                            <div class="text_block">
-                                <img class="user" src="./Images/user_small.svg" alt="" />
-                                <div class="user_info_block">
-                                    <p class="article_time">2020-11-22 13:00</p>
-                                    <div class="article_descirption">
-                                        <h6>新鮮水果茶好回味</h6>
-                                        <p>水果茶用料實在，酸酸甜甜令人難忘~~</p>
-                                    </div>
-
-                                    <div class="user_info">
-                                        <div class="user_status">
-                                            <div class="status_icon">
-                                                <img src="./Images/eyes_big.svg" alt="" />
-                                                <p class="number">?</p>
-                                            </div>
-                                            <div class="status_icon">
-                                                <img src="./Images/message_big.svg" alt="" />
-                                                <p class="number">?</p>
-                                            </div>
-                                            <div class="status_icon">
-                                                <img src="./Images/like_big.svg" alt="" />
-                                                <p class="number">?</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card_small" onclick="javascript:location.href='./share_article.html'">
-                            <img src="./Images/article/article_smal_4.png" alt="" />
-
-                            <div class="text_block">
-                                <img class="user" src="./Images/user_small.svg" alt="" />
-                                <div class="user_info_block">
-                                    <p class="article_time">2020-11-22 13:00</p>
-                                    <div class="article_descirption">
-                                        <h6>新鮮水果茶好回味</h6>
-                                        <p>水果茶用料實在，酸酸甜甜令人難忘~~</p>
-                                    </div>
-
-                                    <div class="user_info">
-                                        <div class="user_status">
-                                            <div class="status_icon">
-                                                <img src="./Images/eyes_big.svg" alt="" />
-                                                <p class="number">?</p>
-                                            </div>
-                                            <div class="status_icon">
-                                                <img src="./Images/message_big.svg" alt="" />
-                                                <p class="number">?</p>
-                                            </div>
-                                            <div class="status_icon">
-                                                <img src="./Images/like_big.svg" alt="" />
-                                                <p class="number">?</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bottom_block">
-                    <button class="seemore color-2" onclick="javascript:location.href='./share_list.html'">
-                        查看更多內容
+                    <button class="seemore color-2" onclick="javascript:location.href='./vote.html'">
+                        立即投票去
                     </button>
                 </div>
             </section>
 
+            <!-- 分享區 -->
+            <my_article></my_article>
+
+            <!-- 關於 揪飲 -->
             <section class="brandStory">
                 <div class="story_block">
                     <img src="./Images/brandstory_img.jpg" alt="" />
@@ -914,14 +279,8 @@
                     <div class="google_map">
                         <iframe
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3617.2477183519404!2d121.22282561495693!3d24.95768518400822!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346823ea50c732a5%3A0x1b5e6ee66e9fec49!2z57ev6IKyVGliYU1l6ZmE6Kit5Lit5aOi6IG36KiT5Lit5b-D!5e0!3m2!1szh-TW!2stw!4v1608602204354!5m2!1szh-TW!2stw"
-                            width="400"
-                            height="300"
-                            frameborder="0"
-                            style="border: 0"
-                            allowfullscreen=""
-                            aria-hidden="false"
-                            tabindex="0"
-                        ></iframe>
+                            width="400" height="300" frameborder="0" style="border: 0" allowfullscreen=""
+                            aria-hidden="false" tabindex="0"></iframe>
                     </div>
                 </div>
                 <div class="bottom_block">
@@ -930,6 +289,8 @@
                     </button>
                 </div>
             </section>
+
+            <!-- 小遊戲 -->
 
             <section class="game">
                 <div class="title_block">
@@ -957,29 +318,31 @@
         <footer id="footer">
             <my-footer></my-footer>
         </footer>
-        <script src="./js/layout/hearder_index.js"></script>
-        <script src="./js/layout/footer_index.js"></script>
-        <script src="./vendors/slick/slick.js"></script>
-        <!-- <script src="../tasks/slick.js"></script> -->
+    </div>
+    <script src="./js/layout/hearder_index.js"></script>
+    <script src="./js/layout/footer_index.js"></script>
+    <!-- <script src="./vendors/slick/slick.js"></script> -->
+    <!-- <script src="../tasks/slick.js"></script> -->
 
-        <script>
-            $('.slider').slick({
-                dots: true,
-                slidesToShow: 3,
-                slidesToScroll: 3,
-                autoplay: true,
-                autoplaySpeed: 1500,
-            })
-        </script>
+    <script>
+            // $('.slider').slick({
+            //     dots: true,
+            //     slidesToShow: 3,
+            //     slidesToScroll: 3,
+            //     autoplay: true,
+            //     autoplaySpeed: 1500,
+            // })
+    </script>
 
-        <script>
-            $('.card_rwd-slider').slick({
-                dots: true,
-                slidesToShow: 1,
-                slidesToScroll: 1,
-                autoplay: true,
-                autoplaySpeed: 1500,
-            })
-        </script>
-    </body>
+    <script>
+            // $('.card_rwd-slider').slick({
+            //     dots: true,
+            //     slidesToShow: 1,
+            //     slidesToScroll: 1,
+            //     autoplay: true,
+            //     autoplaySpeed: 1500,
+            // })
+    </script>
+</body>
+
 </html>

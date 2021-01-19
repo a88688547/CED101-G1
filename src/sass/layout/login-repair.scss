@@ -1,6 +1,6 @@
 @import "../base/font_size.scss";
 @import "../base/color.scss";
-@import "../mixins/font_size.scss";
+@import "../mixins/mixins.scss";
 
 .lightbox-container {
     position: fixed;
@@ -9,7 +9,7 @@
     width: 100%;
     height: 100%;
     display: flex;
-    background-color: rgba(204, 204, 204, 0.5);
+    background-color: rgba(94, 91, 91, 0.596);
     justify-content: center;
     align-items: center;
     z-index: 2;
@@ -18,7 +18,8 @@
 
     .lightbox-wrap {
         border-radius: 20px;
-        background-color: #e5e3dd;
+        // background-color: #e5e3ddb7;
+        backdrop-filter: blur(8px);
         width: 400px;
         box-shadow: 3px 3px 5px 2px rgba($color: #000000, $alpha: 0.2);
         overflow: hidden;
@@ -64,10 +65,10 @@
                 display: flex;
                 justify-content: center;
                 cursor: pointer;
-                background-color: $textColor;
+                background-color: #013b4f8a;
 
                 .h3 {
-                    @include H3;
+                    @include H4;
                     color: #fff;
                     padding: 15px;
                 }
@@ -88,7 +89,8 @@
             }
 
             .tabbackgroud {
-                background-color: #e5e3dd;
+                background-color: #e5e3ddb7;
+                backdrop-filter: blur(8px);
             }
         }
 
@@ -99,6 +101,7 @@
             width: 100%;
             height: 100%;
             position: relative;
+            background-color: #e5e3ddb7;
 
             .sign-up {
                 display: none;
@@ -107,28 +110,38 @@
                 label,
                 input {
                     display: inline-block;
-                    font-size: $fontsize_H5;
+                    @include H6;
                     color: $textColor;
+                    margin-bottom: 20px;
                 }
 
                 label {
                     width: 80px;
-                    margin-bottom: 15px;
+                    margin-bottom: 10px;
+                    @include H6;
                 }
 
                 input {
-                    width: 150px;
-                    border-radius: 10px;
+                    width: 230px;
+                    height: 35px;
+                    border-radius: 5px;
                     padding: 0 10px;
+                    border: none;
+                    @include H6;
+                    letter-spacing: 2px;
 
                     &:focus {
                         outline: none;
+                    }
+
+                    &::placeholder{
+                        color: rgba(94, 91, 91, 0.295);
                     }
                 }
 
                 .name {
                     label {
-                        margin-top: 20px;
+                        margin-top: 50px;
                     }
                 }
             }
@@ -136,30 +149,43 @@
             .login {
                 justify-self: center;
                 top: 50%;
-                margin-top: 45px;
+                margin-top: 30px;
                 display: none;
+
+                .login-email, .login-password{
+                    display: flex;
+                    flex-direction: column;
+                    margin-bottom: 20px;
+                }
 
                 label,
                 input {
+                    @include H5;
                     display: inline-block;
-                    font-size: $fontsize_H5;
                     color: $textColor;
+                    border: none;
                 }
 
                 label {
                     width: 80px;
-                    margin-bottom: 30px;
-                    @include H4;
+                    margin-bottom: 10px;
+                    @include H6;
                 }
 
                 input {
-                    width: 150px;
+                    width: 250px;
+                    height: 35px;
                     padding: 0px 10px;
-                    border-radius: 10px;
-                    font-size: 20px;
+                    border-radius: 5px;
+                    @include H6;
+                    letter-spacing: 2px;
 
                     &:focus {
                         outline: none;
+                    }
+
+                    &::placeholder{
+                        color: rgba(94, 91, 91, 0.295);
                     }
                 }
             }
@@ -171,15 +197,15 @@
             .sure-cancel {
                 width: 100%;
                 text-align: center;
-                margin-top: 10px;
-                margin-bottom: 15px;
+                margin-top: 20px;
+                margin-bottom: 30px;
 
                 button {
                     margin: 0 15px;
                     padding: 5px 15px;
                     width: 80px;
                     border-radius: 10px;
-                    font-size: $fontsize_H5;
+                    @include H6;
                     border: none;
                     cursor: pointer;
                     transition: 0.2s ease-in-out;
@@ -189,7 +215,7 @@
                     }
 
                     &:first-child {
-                        background-color: rgb(165, 165, 165);
+                        background-color: rgba(180, 179, 179, 0.486);
                         color: #fff;
 
                         &:hover {
@@ -198,11 +224,11 @@
                     }
 
                     &:last-child {
-                        background-color: $btnColor;
+                        background-color: #bea16fa4;
                         color: #fff;
 
                         &:hover {
-                            background-color: rgb(182, 116, 31);
+                            background-color: $btnColor;
                         }
                     }
                 }
@@ -211,8 +237,23 @@
 
         .errorLogin,
         .signerror {
-            color: red;
-            font-size: $fontsize_H5;
+            color: #d1083a;
+            font-weight: bold;
+            @include H6;
         }
+    }
+}
+
+//登入後樣式
+.user_wrap {
+    .user {
+        color: #fff;
+        font-size: 20px;
+    }
+
+    .logout {
+        cursor: pointer;
+        color: red;
+        font-size: 24px;
     }
 }

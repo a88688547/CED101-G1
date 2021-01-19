@@ -88,7 +88,7 @@ Vue.component('my-header', {
                 .then((res) => {
                     if (res != '查無此帳號') {
                         this.memberInfo = res
-                        this.$refs.UserName.innerText = `hi~${res.mem_name}`
+                        this.$refs.UserName.innerText = `${res.mem_name}`
                         this.$refs.errorLogin.innerText = ''
                         this.loginEmail = ''
                         this.loginPassword = ''
@@ -102,11 +102,11 @@ Vue.component('my-header', {
                         this.logText = 'log'
                         // console.log(res);
                     } else {
-                        this.$refs.errorLogin.innerText = '帳號密碼錯誤'
+                        this.$refs.errorLogin.innerText = '帳號密碼錯誤!!'
                     }
                 })
                 .catch((err) => {
-                    this.$refs.errorLogin.innerText = '帳號密碼錯誤'
+                    this.$refs.errorLogin.innerText = '帳號密碼錯誤!!'
                     console.log(err)
                     console.log('失敗')
                 })
@@ -118,24 +118,24 @@ Vue.component('my-header', {
             let isphonenum = /^09\d{2}?\d{3}?\d{3}$/
 
             if (!isName.test(this.username) || this.username == '') {
-                this.$refs.signerror.innerText = '請輸入中文姓名'
+                this.$refs.signerror.innerText = '請輸入中文姓名!!'
                 return
             }
             if (!isEmail.test(this.signemail) || this.signemail == '') {
-                this.$refs.signerror.innerText = '請輸入正確信箱'
+                this.$refs.signerror.innerText = '請輸入正確信箱!!'
                 return
             }
             if (!isPassword.test(this.signPassword) || this.signPassword == '') {
-                this.$refs.signerror.innerText = '請輸入數字英文'
+                this.$refs.signerror.innerText = '請輸入數字英文!!'
                 return
             }
 
             if (this.signPassword !== this.passwordTwo || this.passwordTwo == '' || this.signPassword == '') {
-                this.$refs.signerror.innerText = '密碼不一致'
+                this.$refs.signerror.innerText = '密碼不一致!!'
                 return
             }
             if (!isphonenum.test(this.phone) || this.phone == '') {
-                this.$refs.signerror.innerText = '請輸入正確手機號碼'
+                this.$refs.signerror.innerText = '請輸入正確手機號碼!!'
                 return
             }
             fetch('./php/registered.php', {
@@ -157,7 +157,7 @@ Vue.component('my-header', {
                 })
                 .then((res) => {
                     if (res !== '註冊成功') {
-                        this.$refs.signerror.innerText = '此信箱已註冊過'
+                        this.$refs.signerror.innerText = '此信箱已註冊過!!'
                     } else {
                         this.username = ''
                         this.signemail = ''
@@ -219,7 +219,7 @@ Vue.component('my-header', {
                     if (JSON.stringify(res) !== '{}') {
                         this.isLogin = true
                         this.memberInfo = res
-                        this.$refs.UserName.innerText = `hi~${res.mem_name}`
+                        this.$refs.UserName.innerText = `${res.mem_name}`
                         window.members = this.memberInfo
                     } else if (JSON.stringify(res) === '{}') {
                         this.isLogin = false
@@ -234,15 +234,12 @@ Vue.component('my-header', {
             member.$emit('memberInfo', this.memberInfo)
             await this.$emit('checked_mem', this.memberInfo)
         },
-        unMember() {
-            this.showLogin = true
-        },
-    },
-    mounted() {
-        member.$on('plsLogin', this.unMember)
     },
     created() {
         this.get_mem()
+    },
+    mounted() {
+        members = ""
     },
     template: `
             <nav>
@@ -262,8 +259,8 @@ Vue.component('my-header', {
                         <a href="./brandStory-repair-flex.html"><img src="./Images/drop-header.svg" alt="" />關於揪飲</a>
                     </ul>
                     <div class="user_wrap" v-show="isLogin">
-                        <span ref="UserName" class="user"></span>
-                        <span id="logout" @click="logoutBtn">登出</span>
+                        <span ref="UserName" class="UserName"></span>
+                        <span class="logout" @click="logoutBtn">登出</span>
                     </div>
                     <a  class="user_logo_img_web" @click="openLoginBox"
                         ><img class="user_logo" src="./Images/login.svg" alt=""
@@ -297,7 +294,7 @@ Vue.component('my-header', {
                                     <label for="password">密碼</label>
                                     <input type="password" id="login-password" v-model.trim="loginPassword" placeholder="Password" maxlength="10"/>
                                 </div>
-                                <div ref="errorLogin" style="color:red"></div>
+                                <div ref="errorLogin" class="errorLogin"></div>
                                 <div class="sure-cancel">
                                     <button type="button" @click="clearText">清除</button>
                                     <button type="button" @click="loginMember">確認</button>
@@ -324,7 +321,7 @@ Vue.component('my-header', {
                                     <label for="phone">手機號碼</label>
                                     <input type="text" id="phone" v-model="phone" name="phone" placeholder="Phone" maxlength="10"/>
                                 </div>
-                                <div id="signerror" ref="signerror" style="color:red"></div>
+                                <div ref="signerror" class="signerror"></div>
                                 <div class="sure-cancel">
                                     <button type="button" @click="clearText">清除</button>
                                     <button type="button" @click="signMember">確認</button>
@@ -344,4 +341,4 @@ Vue.component('my-header', {
                 </div>
             </nav>
             `,
-})
+});

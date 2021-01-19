@@ -107,7 +107,7 @@ input{
     display: flex;
     justify-content: space-evenly;
     div{
-        border: 1px solid red;
+        // border: 1px solid red;
         @include list_button_small;
         cursor: pointer;
         a{
@@ -118,7 +118,7 @@ input{
     }
 }
 .orderModal{
-    border: 1px solid red;
+    // border: 1px solid red;
     position: fixed;
     top: 0;
     left: 0;
@@ -198,7 +198,7 @@ input{
             }
         }
         .all_total{
-            border: 1px solid red;
+            // border: 1px solid red;
             display: flex;
             width: 80%;
             margin: 25px auto;

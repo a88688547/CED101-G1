@@ -1,6 +1,8 @@
 var app = new Vue({
   el: "#app",
   data: {
+    cou_discount:"",
+    couNo:"",
     cup_count:"",
     group_order_item: "",
     group_ord_no: "",
@@ -9,6 +11,11 @@ var app = new Vue({
     mem_no:"",
   },
   computed: {
+    getCouno()
+    {
+      this.couNo = this.group_ord.cou_no
+      return this.couNo
+    },
     count() {
       switch (this.group_ord.goal_cup) {
           case "20":
@@ -25,6 +32,24 @@ var app = new Vue({
     },
   },
   methods: {
+    select_cou: async function ()
+    {
+      console.log(this.group_ord.cou_no);
+      const res = await fetch("./php/select_discount.php", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          cou_no: this.getCouno,
+        }),
+      }).then(function (data) {
+        return data.json()
+    })
+    // 取回res值後，塞入data內
+      console.log(res)
+      this.cou_discount = res.cou_discount
+      },
        //抓飲料資料
     get_group_ord_item: async function () {
       // console.log('send2', drinkno)
@@ -56,22 +81,23 @@ var app = new Vue({
             }),
           })
             .then((res) => res.json())
-            .then((res) => (this.group_ord = res));
+          .then((res) => (this.group_ord = res));
+          this.select_cou();
       },
       get_mem_info(data){
         this.mem_info = data
-        this.mem_no = data.memNo
+        this.mem_no = data.mem_no
+        
       }
   },
   mounted()
   {
-      // 進來就抓團的資料
-      this.selectGroupNo();
-      // 進來就飲料的資料
-      this.get_group_ord_item();
+    // 進來就抓團的資料
+    this.selectGroupNo();
+    // 進來就飲料的資料
+    this.get_group_ord_item();
   },
   created() {
-    
     //抓會員資料
     member.$on('memberInfo', this.get_mem_info)
     //切割字串

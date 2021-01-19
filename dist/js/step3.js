@@ -1,6 +1,15 @@
 var app = new Vue({
   el:"#app",
   data: {
+    coupon_no:"",
+    cou_dis:"",
+    cou:{
+      cou_no: "",
+      mem_no: "",
+      cou_discount: "",
+      cou_status:"",
+    },
+    coupon:[],
     group_ord: [],
     //原價總額
     group_ord_price: 0,
@@ -9,7 +18,7 @@ var app = new Vue({
     //杯數折扣
     group_ord_price_1: "",
     //杯數折扣+優惠卷
-    group_ord_price2:"",
+    group_ord_price_2:"",
     //訂單編號
     group_ord_no: "",
     //訂單資料
@@ -19,8 +28,9 @@ var app = new Vue({
     ErrorText: "警告字",
     //會員資料
     mem_info:"",
+    mem_no:"",
     oldNum:"",
-    phone:"0988188888",
+    phone:"",
     message:"",//備註
     name:"",//持卡人姓名
     card1:"",
@@ -37,9 +47,22 @@ var app = new Vue({
     //切換確認
     type: "10",
     //明細
-    closeTotal: true,
+    closeTotal: false,
   },
   computed: {
+    //折扣編號
+    couponNo()
+    {
+      this.coupon_no = this.cou.cou_no;
+      return this.coupon_no;
+    },
+    //折扣%數
+    couDiscount()
+    {
+      this.cou_dis = this.cou.cou_discount;
+      return this.cou_dis;
+    },
+    //優惠卷
     count() {
       switch (this.group_ord.goal_cup) {
           case "20":
@@ -59,6 +82,19 @@ var app = new Vue({
       this.group_ord_price_1 =  Math.round(this.group_ord_price * this.count)
       return this.group_ord_price_1
     },
+    group_ord_count2()
+    {
+      if (this.couDiscount == "")
+      {
+        this.group_ord_price_2 = Math.round(this.group_ord_price * this.count)
+        return this.group_ord_price_2
+      } else
+      {
+        this.group_ord_price_2 =  Math.round(this.group_ord_count1 * this.couDiscount)
+      return this.group_ord_price_2
+      }
+      
+    },
     fullCard(){
       this.full_card = `${this.card1}-${this.card2}-${this.card3}-${this.card4}`
       return this.full_card;
@@ -69,14 +105,21 @@ var app = new Vue({
     }
     
   },
+  
   mounted()
   {
+    // this.selectMemCoupon();
     this.selectGroupNo();
     //總杯數
     this.get_order_total_cup();
     //總價
     this.get_order_total();
     this.get_group_ord_item();
+    
+    //PHONE
+    if (localStorage.phone) {
+      this.phone = localStorage.phone;
+      }
     // 持卡姓名
     if (localStorage.name) {
       this.name = localStorage.name;
@@ -95,9 +138,22 @@ var app = new Vue({
        this.card4 = localStorage.card4;
     }
     //有效期限
-    
+    // this.selectMemCoupon();
+  },
+  created()
+  {
+    //會員優惠卷
+    // this.selectMemCoupon();
+  },
+  updated()
+  {
+    //會員優惠卷
+    // this.selectMemCoupon();
   },
   watch: {
+    phone(newphone) {
+      localStorage.phone = newphone;
+    },
     //持卡姓名
     name(newName) {
       localStorage.name = newName;
@@ -131,7 +187,24 @@ var app = new Vue({
       member.$on('memberInfo', this.get_mem_info);
     },
   methods: {
-      //用訂單編號抓訂單資料
+    
+  //用會員編號抓優惠卷
+  selectMemCoupon: async function ()
+  {
+    console.log("000000")
+    const res = await fetch("./php/select_mem_coupon.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        mem_no: this.mem_no,
+      }),
+    })
+      .then((res) => res.json())
+      .then((res) => (this.coupon = res));
+    },
+  //用訂單編號抓訂單資料
   selectGroupNo: async function (group_ord_no)
   {
     const res = await fetch("./php/group_no.php", {
@@ -303,6 +376,8 @@ var app = new Vue({
           note: this.message,
           group_ord_price: this.group_ord_price,
           group_ord_price_1: this.group_ord_price_1,
+          group_ord_price_2: this.group_ord_price_2,
+          cou_no: this.couponNo,
         })
       })
       location.href = `./join_step4.html?group_ord_no=${this.group_ord_no}`
@@ -332,7 +407,8 @@ var app = new Vue({
     },
     get_mem_info(data){
     this.mem_info = data
-    this.mem_no = data.memNo
+      this.mem_no = data.mem_no
+      this.selectMemCoupon()
     }
    
 }

@@ -1,353 +1,339 @@
 // 導入共用基本
-@import "./base/base.scss";
-@import "./mixins/mixins.scss";
+@import './base/base.scss';
+@import './mixins/mixins.scss';
 
-//跟團喝  
+//跟團喝
 
-section.join_drink{
-  margin-top: 30px;
-//   border: 1px solid red;
-  justify-content: center;
+section.join_drink {
+    margin-top: 30px;
+    //   border: 1px solid red;
+    justify-content: center;
 
-  .title_block{
-    text-align: center;
+    .title_block {
+        text-align: center;
 
-    h2{
-      @include H2;
-      font-weight: bold;
-    }
-
-    h5{
-      @include H5;
-      margin-top: 20px;
-    }
-  }
-
-  //跟團區
-  .drinkbar_block{
-    // border: 1px solid red;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-    flex-wrap: wrap;
-
-    //跟團版
-    .drink_bar{
-      width: 48%;
-      // width: 270px;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      margin-top: 30px;
-      border-radius: 25px;
-      overflow: hidden;
-      background-color: white;
-      box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
-      cursor: pointer;
-      position: relative;
-
-      &::before {
-        position: absolute;
-        top: 0;
-        left: -75%;
-        z-index: 2;
-        display: block;
-        content: '';
-        width: 50%;
-        height: 100%;
-        background: -webkit-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,.3) 100%);
-        background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,.3) 100%);
-        -webkit-transform: skewX(-25deg);
-        transform: skewX(-25deg);
-      }
-
-      &:hover{
-        animation: rotate 0.7s ease-in-out both;
-        opacity: 0.8;
-        transition: 0.5s ease-in-out;
-      }
-
-      &:hover::before {
-        -webkit-animation: shine .75s;
-        animation: shine .75s;
-      }
-
-      @-webkit-keyframes shine {
-        100% {
-          left: 125%;
-        }
-      }
-      @keyframes shine {
-        100% {
-          left: 125%;
-        }
-      }
-
-      img.top_img{
-        max-width: 100%;
-        // width: 250px;
-        img{
-          max-width: 100%;
-        }
-      }
-
-      .drinkbar_textblock{
-        // border: 1px solid blue;
-        width: 57%;
-        padding: 15px;
-
-        .bar_title{
-          display: flex;
-          justify-content: space-between;
-          align-items: flex-end;
-          h6{
-            @include H6;
-          }
-
-        }
-
-        hr{
-          margin-top: 10px;
-        }
-
-        > h6{
-          @include H6;
-          font-weight: bold;
-          margin-top: 10px;
-          line-height: 20px;
-          
-          span{
-            font-weight: initial;
-          }
-        }
-
-        .drink_status{
-          // border: 1px solid blue;
-          display: flex;
-
-          .status_title{
-            // border: 1px solid red;
-            display: flex;
-            align-items: center;
-            margin-top: 15px;
-            
-            img{
-              // border: 1px solid red;
-              margin-right: 5px;
-            }
-
-            img.complited_cups{
-              margin-left: 20px;
-            }
-
-            h6{
-              // border: 1px solid blue; 
-              @include H6;
-              font-weight: bold;
-              span{
-                color: $btnColor;
-              }
-            }
-          }
-
-        }
-
-        .join_drink_btm{
-          display: flex;
-          align-items: center;
-          margin-top: 15px;
-          justify-content: space-between;
-
-          h6{
-            @include H6;
-            color: $btnColor;
+        h2 {
+            @include H2;
             font-weight: bold;
+        }
 
-            span{
-              color: $btnColor;
-              letter-spacing: 2px;
+        h5 {
+            @include H5;
+            margin-top: 20px;
+        }
+    }
+
+    //跟團區
+    .drinkbar_block {
+        // border: 1px solid red;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+        flex-wrap: wrap;
+
+        //跟團版
+        .drink_bar {
+            width: 48%;
+            // width: 270px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            margin-top: 30px;
+            border-radius: 25px;
+            overflow: hidden;
+            background-color: white;
+            box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            position: relative;
+
+            &::before {
+                position: absolute;
+                top: 0;
+                left: -75%;
+                z-index: 2;
+                display: block;
+                content: '';
+                width: 50%;
+                height: 100%;
+                background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 100%);
+                background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 100%);
+                -webkit-transform: skewX(-25deg);
+                transform: skewX(-25deg);
             }
-          }
 
-          .join_drink {
+            &:hover {
+                animation: rotate 0.7s ease-in-out both;
+                opacity: 0.8;
+                transition: 0.5s ease-in-out;
+            }
+
+            &:hover::before {
+                -webkit-animation: shine 0.75s;
+                animation: shine 0.75s;
+            }
+
+            @-webkit-keyframes shine {
+                100% {
+                    left: 125%;
+                }
+            }
+            @keyframes shine {
+                100% {
+                    left: 125%;
+                }
+            }
+
+            .top_img {
+                // width: 43%;
+                // width: 250px;
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    max-width: none;
+                }
+            }
+
+            .drinkbar_textblock {
+                // border: 1px solid blue;
+                width: 57%;
+                padding: 15px;
+
+                .bar_title {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: flex-end;
+                    h6 {
+                        @include H6;
+                    }
+                }
+
+                hr {
+                    margin-top: 10px;
+                }
+
+                > h6 {
+                    @include H6;
+                    font-weight: bold;
+                    margin-top: 10px;
+                    line-height: 20px;
+
+                    span {
+                        font-weight: initial;
+                    }
+                }
+
+                .drink_status {
+                    // border: 1px solid blue;
+                    display: flex;
+
+                    .status_title {
+                        // border: 1px solid red;
+                        display: flex;
+                        align-items: center;
+                        margin-top: 15px;
+
+                        img {
+                            // border: 1px solid red;
+                            margin-right: 5px;
+                        }
+
+                        img.complited_cups {
+                            margin-left: 20px;
+                        }
+
+                        h6 {
+                            // border: 1px solid blue;
+                            @include H6;
+                            font-weight: bold;
+                            span {
+                                color: $btnColor;
+                            }
+                        }
+                    }
+                }
+
+                .join_drink_btm {
+                    display: flex;
+                    align-items: center;
+                    margin-top: 15px;
+                    justify-content: space-between;
+
+                    h6 {
+                        @include H6;
+                        color: $btnColor;
+                        font-weight: bold;
+
+                        span {
+                            color: $btnColor;
+                            letter-spacing: 2px;
+                        }
+                    }
+
+                    .join_drink {
+                        @include lineargradient_button;
+
+                        h6 {
+                            @include H6;
+                            font-weight: bold;
+                            color: white;
+                        }
+
+                        img {
+                            margin-right: 5px;
+                        }
+                    }
+
+                    .join_drink:hover {
+                        @include lineargradient_button-hover;
+                    }
+
+                    .join_drink:focus {
+                        outline: none;
+                    }
+
+                    .join_drink.color-1 {
+                        background-image: linear-gradient(to right, #f5ce62, #e43603, #fa7199, #e85a19);
+                        box-shadow: 0 2px 5px 0 rgba(229, 66, 10, 0.75);
+                    }
+                }
+            }
+        }
+    }
+
+    .bottom_block {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin: 50px 0 150px;
+
+        button.seemore {
             @include lineargradient_button;
-
-              h6{
+            width: 180px;
+            height: 40px;
+            h6 {
                 @include H6;
                 font-weight: bold;
                 color: white;
-              }
-              
-              img{
+            }
+
+            img {
                 margin-right: 5px;
-              }
-
-          }
-        
-          .join_drink:hover {
-              @include lineargradient_button-hover;
-          } 
-        
-          .join_drink:focus {
-              outline: none;
-          }
-
-          .join_drink.color-1 {
-            background-image: linear-gradient(to right, #f5ce62, #e43603, #fa7199, #e85a19);
-            box-shadow: 0 2px 5px 0 rgba(229, 66, 10, 0.75);
-          }
-
+            }
         }
 
-      }
+        button.seemore:hover {
+            @include lineargradient_button-hover;
+            transform: translateY(-5px);
+        }
+
+        button.seemore:focus {
+            outline: none;
+        }
+
+        button.seemore.color-2 {
+            background-image: linear-gradient(to right, #29323c, #485563, #2b5876, #4e4376);
+            box-shadow: 0 4px 15px 0 rgba(45, 54, 65, 0.75);
+        }
     }
-  }
-
-  .bottom_block{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    margin: 50px 0 150px;
-
-    button.seemore{
-      @include lineargradient_button;
-      width: 180px;
-      height: 40px;
-      h6{
-        @include H6;
-        font-weight: bold;
-        color: white;
-      }
-    
-      img{
-        margin-right: 5px;
-      }    
-    }
-
-    button.seemore:hover{
-      @include lineargradient_button-hover;
-      transform: translateY(-5px);
-    }
-
-    button.seemore:focus {
-      outline: none;
-    }
-
-    button.seemore.color-2 {
-      background-image: linear-gradient(to right, #29323c, #485563, #2b5876, #4e4376);
-      box-shadow: 0 4px 15px 0 rgba(45, 54, 65, 0.75);
-    }
-
-  }
-
 }
-
 
 // RWD區塊
 
-
-@media (min-width: 768px) and (max-width: 1310px){
-
-  section.join_drink .drinkbar_block .drink_bar {
-    flex-direction: column;
-    width: 280px;
-
-    .drinkbar_textblock {
-      width: 100%;
-     }  
-  }
- 
-}
-
-@media (min-width: 576px) and (max-width: 767px){
-
-  section.join_drink{
-
-    .title_block{
-      h2{
-        @include H3;
-      }
-
-      h5{
-        @include H6;
-      }
-    }
-
-    .drinkbar_block{
-      flex-direction: column;
-      align-items: center;
-
-      .drink_bar {
+@media (min-width: 768px) and (max-width: 1310px) {
+    section.join_drink .drinkbar_block .drink_bar {
         flex-direction: column;
         width: 280px;
-    
+
         .drinkbar_textblock {
-          width: 100%;
+            width: 100%;
         }
-      }  
     }
-  }    
 }
 
-@media (max-width: 575px){
-
-  section.join_drink{
-
-    .title_block{
-      h2{
-        @include H3;
-      }
-
-      h5{
-        @include P1;
-        line-height: 24px;
-      }
-    }
-
-    .drinkbar_block{
-      flex-direction: column;
-      align-items: center;
-
-      .drink_bar {
-        flex-direction: column;
-        width: 250px;
-    
-        .drinkbar_textblock {
-          width: 100%;
-          .bar_title{
-            h6{
-              @include P1;
-            }
-          }
-
-          .drink_status{
-            flex-direction: column;
-            .status_title{
-              img.complited_cups{
-                margin-left: initial;
-              }
-            }
-          }
-
-
-          .join_drink_btm{
-            flex-direction: column;
-            h6{
-              @include P1;
+@media (min-width: 576px) and (max-width: 767px) {
+    section.join_drink {
+        .title_block {
+            h2 {
+                @include H3;
             }
 
-            button{
-              margin-top: 10px;
-
-              h6{
-                @include P1;
-              }
-
+            h5 {
+                @include H6;
             }
-          }
         }
-      }  
+
+        .drinkbar_block {
+            flex-direction: column;
+            align-items: center;
+
+            .drink_bar {
+                flex-direction: column;
+                width: 280px;
+
+                .drinkbar_textblock {
+                    width: 100%;
+                }
+            }
+        }
     }
-  }    
+}
+
+@media (max-width: 575px) {
+    section.join_drink {
+        .title_block {
+            h2 {
+                @include H3;
+            }
+
+            h5 {
+                @include P1;
+                line-height: 24px;
+            }
+        }
+
+        .drinkbar_block {
+            flex-direction: column;
+            align-items: center;
+
+            .drink_bar {
+                flex-direction: column;
+                width: 250px;
+
+                .drinkbar_textblock {
+                    width: 100%;
+                    .bar_title {
+                        h6 {
+                            @include P1;
+                        }
+                    }
+
+                    .drink_status {
+                        flex-direction: column;
+                        .status_title {
+                            img.complited_cups {
+                                margin-left: initial;
+                            }
+                        }
+                    }
+
+                    .join_drink_btm {
+                        flex-direction: column;
+                        h6 {
+                            @include P1;
+                        }
+
+                        button {
+                            margin-top: 10px;
+
+                            h6 {
+                                @include P1;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

@@ -186,7 +186,7 @@ body {
         border-radius: 50%;
         flex-shrink: 0;
         font-size: 15px;
-        // font-weight: bold;
+        line-height: 15px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -317,6 +317,7 @@ body {
 #shop_drink_name_title {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
 
     #shop_drink_name {
         @include H3;
@@ -406,6 +407,15 @@ button {
         background-color: black;
         color: white;
         font-size: 16px;
+        position: relative;
+        line-height: 16px;
+
+        >span {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translateX(-50%) translateY(-50%);
+        }
     }
 
     button:first-child {

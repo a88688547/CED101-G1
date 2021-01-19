@@ -489,7 +489,7 @@ Vue.component('light_box', {
             <!-- 飲品配置 -->
             <!-- 大小 -->
             <div class="drink_set">
-                <div class="set_title"><img src="./Images/drop-3.svg" alt="" /><span>大小</span></div>
+                <div class="set_title"><img src="./Images/Drop-3.svg" alt="" /><span>大小</span></div>
                 <div id="cup" class="set_item">
                     <div>
                         <label for="medium_cup"><input type="radio" :value="drink_small_price" id="medium_cup" v-model="cup"/>中杯</label>
@@ -501,7 +501,7 @@ Vue.component('light_box', {
             
             <!-- 冰度甜度配料 -->
             <div class="drink_set" v-for="(set,index) in drinkSet" :key="set.type_no">
-                <div class="set_title" v-if="showSetTitle(set)"><img src="./Images/drop-3.svg" alt="" /><span>{{set.type_title}}</span></div>
+                <div class="set_title" v-if="showSetTitle(set)"><img src="./Images/Drop-3.svg" alt="" /><span>{{set.type_title}}</span></div>
                  <div class="set_item">
                     <div v-for="setInput in set.detail_title_list" :key="setInput.detail_no">
                         <div v-if="setInput.ischecked"><input type="radio" :value="setInput.detail_title" :id="setInput.detail_no" v-model="modelArray[index]" /><label :for="setInput.detail_no">{{setInput.detail_title}}</label></div>
@@ -516,7 +516,7 @@ Vue.component('light_box', {
                         <div></div>
                     </button>
                     <div id="num_feedback">{{num_feedback}}</div>
-                    <button @click="handlePlus">+</button>
+                    <button @click="handlePlus"><span>+</span></button>
                 </div>
                 <!-- 新增至購物車 -->
                 <div id="num_btn_text">

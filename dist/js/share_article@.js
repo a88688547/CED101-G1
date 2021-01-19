@@ -15,7 +15,7 @@ Vue.component('article_list', {
             pagination: {
                 currentPage: "",
                 pageTotal: "",
-                per_page: "",
+                per_page: 3,
                 totalResult: "",
             },
             selectedArticle: [],
@@ -65,7 +65,7 @@ Vue.component('article_list', {
             //總共幾筆文章
             that.pagination.totalResult = handleArt.length
             //每頁要有幾筆
-            that.pagination.per_page = 3
+            // that.pagination.per_page = 3
             //總共幾頁
             that.pagination.pageTotal = Math.ceil(that.pagination.totalResult / that.pagination.per_page)
             //當前頁數，預設1
@@ -111,7 +111,10 @@ Vue.component('article_list', {
 
             this.selectedArticle = theSelectedArticle
         },
-
+        parentGetPerPage(data) {
+            this.pagination.per_page = data
+            this.getPagination(this.theCurrentPage)
+        },
         //點擊文章後，theClickArt存放被點擊的文章資料，並開啟文章燈箱
         clickWhichOne: async function (item) {
             if (this.mem_no === undefined) {
@@ -242,7 +245,10 @@ Vue.component('article_list', {
         </section>
 
         <!-- 撰寫文章 -->
-        <new_article :mem_no="mem_no" v-if="showNewArticleBox" @childCloseNewArtBox="parentCloseNewArtBox"></new_article>
+        <new_article :mem_no="mem_no" 
+                    v-if="showNewArticleBox" 
+                    @childCloseNewArtBox="parentCloseNewArtBox" 
+                    ></new_article>
 
         <!-- 文章列表 -->
         <section class="section_2">
@@ -278,7 +284,10 @@ Vue.component('article_list', {
         </section>
 
         <!-- 分頁選擇 -->
-        <paginationComponents :paginationService='pagination' @pageService="getNowCurrentPage"></paginationComponents>
+        <paginationComponents 
+        :paginationService='pagination' 
+        @pageService="getNowCurrentPage"
+        @childSendPerPage="parentGetPerPage"></paginationComponents>
     </div>
 
     `,
@@ -438,7 +447,7 @@ Vue.component('article_box', {
         },
         //isLike = 1代表有點過喜歡，everClickLike就是true，= 0 就是false
         everClickLike() {
-            if (this.artBoxData.isLike == 1) {
+            if (this.artBoxData.isLike >= 1) {
                 return true
             } else {
                 return false
@@ -600,7 +609,6 @@ Vue.component('report_lightbox', {
         return {
             reasonText: "",
             noChoose: false,
-            x: {},
         }
     },
     methods: {
@@ -691,6 +699,7 @@ Vue.component('paginationComponents', {
     data() {
         return {
             limitPage: 5, //只能是奇數
+            per_page: 3,
         }
     },
 
@@ -698,11 +707,12 @@ Vue.component('paginationComponents', {
         getPagesService(item) {
             this.$emit('pageService', item);
         },
-    },
-    watch: {
-        'paginationService.pageTotal'(val) {
-            this.x = val
-        }
+        select_per_page() {
+            console.log(this.per_page)
+            this.$emit('childSendPerPage', this.per_page)
+            // console.log('a')
+            // @change="select_per_page"
+        },
     },
     computed: {
         theCurrentPage() {
@@ -727,16 +737,25 @@ Vue.component('paginationComponents', {
                 return num
             }
 
+        },
 
-        }
     },
     template: `
     <section class="section_5">
         <ul>
-            <img id="leftRow" v-if="theCurrentPage != 1" src="./Images/page.svg" @click="getPagesService(paginationService.currentPage - 1)"/>
+            <img id="leftRow" style="transform: rotateY(180deg);" v-if="theCurrentPage != 1" src="./Images/page.svg" @click="getPagesService(paginationService.currentPage - 1)"/>
             <li v-for="pages in pageArray" :key='pages' @click='getPagesService(pages)' :class="{'active':paginationService.currentPage === pages}" >{{pages}}</li>
             <img v-if="theCurrentPage != theTotalPage" src="./Images/page.svg" @click="getPagesService(paginationService.currentPage + 1)"/>
         </ul>
+        <div id="howManyData">                  
+            <div>每頁顯示</div>  
+            <select name="filter" v-model="per_page" @change="select_per_page">
+                <option :value="3">3</option>
+                <option :value="6">6</option>
+                <option :value="9">9</option>
+            </select>
+            <div>筆</div>  
+        </div>
     </section>
     `,
 })

@@ -3,6 +3,7 @@
         $data = json_decode(file_get_contents('php://input'),true);
         require_once "./connect_join_database.php";
         $ord_qua_total = 0;
+        $ord_total_price = 0;
         //把團的資料存到資料庫
         for($i=0; $i<count($data); $i++){
             $group_ord_no= $data[$i]['group_ord_no'];
@@ -13,7 +14,9 @@
             $total_price= $data[$i]['total_price'];
             $set_info= $data[$i]['set_info'];
             $cup_no= $data[$i]['cup_no'];
+
             $ord_qua_total = $ord_qua_total + $data[$i]['ord_qua'];
+            $ord_total_price = $ord_total_price + $data[$i]['total_price'];
 
             $sql = "insert into group_order_item(group_ord_no,mem_no,drink_no,one_price,ord_qua,total_price,set_info,cup_no)
             values(:group_ord_no,:mem_no,:drink_no,:one_price,:ord_qua,:total_price,:set_info,:cup_no)";
@@ -35,6 +38,13 @@
         $menu1->bindValue(":now_cup", $ord_qua_total);
         $menu1->bindValue(":group_ord_no", $group_ord_no);
         $menu1->execute();
+
+        //更新團裡現有杯數
+        $sql2 ="UPDATE group_ord SET group_ord_price = group_ord_price + :group_ord_price WHERE group_ord_no = :group_ord_no";
+        $menu2 = $pdo->prepare($sql2);
+        $menu2->bindValue(":group_ord_price", $ord_total_price);
+        $menu2->bindValue(":group_ord_no", $group_ord_no);
+        $menu2->execute();
     }
     catch (PDOException $e) {
         //echo "系統錯誤, 請通知系維護人員~<br>";

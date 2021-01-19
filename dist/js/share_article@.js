@@ -4,6 +4,7 @@ Vue.component('article_list', {
     data() {
         return {
             show: false, //是否開啟文章燈箱
+            showNewArticleBox: false, //是否開啟投稿文章燈箱
             theClickArtNo: "", //被點擊的文章編號
             mem_no: this.child_mem_no,
             parentAlert: false,
@@ -73,6 +74,11 @@ Vue.component('article_list', {
             if (that.pagination.currentPage > that.pagination.pageTotal) {
                 that.pagination.currentPage = that.pagination.pageTotal
             }
+
+            if (that.pagination.currentPage < 1) {
+                that.pagination.currentPage = 1
+            }
+
             // 接下來當我們目前位於第二頁時，資料會是 11~20
             // 所以這邊會有一段公式來做計算
             // 假設當前位於第二頁，所以就是 (10 * 2) - 10 = 10，最後 + 1，所以最小頁數就是 11 開始
@@ -132,6 +138,19 @@ Vue.component('article_list', {
         parentCloseArtBox() {
             this.getAllArticle()
             this.show = false
+        },
+        parentCloseNewArtBox() {
+            this.getAllArticle()
+            this.showNewArticleBox = false
+        },
+        openNewArticleBox() {
+            if (this.mem_no === undefined) {
+                this.parentAlert = true
+                this.alertText = "請登入會員"
+            } else {
+                this.showNewArticleBox = true
+            }
+
         }
 
     },
@@ -206,16 +225,6 @@ Vue.component('article_list', {
                 <div class="show_text">所有文章列表</div>
             </div>
             <div class="filter_big_box">
-                <!--<div class="type_box">
-                    <label for="type">類別</label>
-                    <select name="type" id="type">
-                        <option value="">- 所有類別 -</option>
-                        <option value="">綜合心得</option>
-                        <option value="">茶類</option>
-                        <option value="">奶類</option>
-                        <option value="">果茶類</option>
-                    </select>
-                </div> -->
                 <div class="filter_box">
                     <label for="filter">篩選</label>
                     <select name="filter" id="filter" v-model="selected">
@@ -226,13 +235,14 @@ Vue.component('article_list', {
                     </select>
                 </div>
             </div>
-            <div class="write_article_btn">
+            <div class="write_article_btn" @click="openNewArticleBox">
                 <div class="write_img"><img src="./Images/pen-white.svg" /></div>
                 <div class="write_text">投稿</div>
             </div>
         </section>
 
-
+        <!-- 撰寫文章 -->
+        <new_article :mem_no="mem_no" v-if="showNewArticleBox" @childCloseNewArtBox="parentCloseNewArtBox"></new_article>
 
         <!-- 文章列表 -->
         <section class="section_2">
@@ -324,7 +334,7 @@ Vue.component('article_box', {
             if (this.message.trim() == "") {
                 this.alertText = "請輸入留言"
             } else {
-                this.alertText = "確定要送出留言?"
+                this.alertText = "確定要送出?"
             }
 
         },
@@ -545,15 +555,15 @@ Vue.component('alert_lightbox', {
     methods: {
         //點選關閉視窗
         closeAlertLightbox() {
-            this.$emit('childSendCloseAlert', "close")
+            this.$emit('childSendCloseAlert')
         },
         //如果是請使用者輸入留言的訊息，點選確認就呼叫父層組件childSendCloseAlert的方法，直接關閉視窗
         //若是確認送出，點確認就會傳遞toDo參數，父層組件會判斷是否有這個參數，才會執行送留言到資料庫的動作
         sureToDo() {
-            if (this._alertText == "請輸入留言") {
-                this.$emit('childSendCloseAlert', "close")
-            } else {
+            if (this._alertText == "確定要送出?") {
                 this.$emit('childSendCloseAlert', "toDo")
+            } else {
+                this.$emit('childSendCloseAlert')
 
             }
 
@@ -673,24 +683,187 @@ Vue.component('report_lightbox', {
 
 //分頁選擇
 Vue.component('paginationComponents', {
-    props: ['paginationService'],
+    props: {
+        paginationService: {
+            type: Object,
+        },
+    },
+    data() {
+        return {
+            limitPage: 5, //只能是奇數
+        }
+    },
 
     methods: {
         getPagesService(item) {
             this.$emit('pageService', item);
         },
     },
+    watch: {
+        'paginationService.pageTotal'(val) {
+            this.x = val
+        }
+    },
+    computed: {
+        theCurrentPage() {
+            return this.paginationService.currentPage
+        },
+        theTotalPage() {
+            return this.paginationService.pageTotal
+        },
+        pageArray() {
+            let num = new Array
+            num = Array(this.paginationService.pageTotal).fill().map((value, index) => index + 1)
+
+            if (this.theTotalPage > this.limitPage) {
+                if (this.theCurrentPage > (this.limitPage / 2) && this.theCurrentPage < (this.theTotalPage - this.limitPage / 2 + 1)) {
+                    return num.slice((this.theCurrentPage - Math.ceil(this.limitPage / 2)), (this.theCurrentPage + Math.round(this.limitPage / 2) - 1))
+                } else if (this.theCurrentPage < (this.limitPage / 2)) {
+                    return num.slice(0, this.limitPage)
+                } else {
+                    return num.slice(this.theTotalPage - this.limitPage, this.theTotalPage)
+                }
+            } else {
+                return num
+            }
+
+
+        }
+    },
     template: `
     <section class="section_5">
         <ul>
-            <li v-for="pages in paginationService.pageTotal" :key='pages' @click='getPagesService(pages)' :class="{'active':paginationService.currentPage === pages}" >{{pages}}</li>
-            <img src="./Images/page.svg" @click="getPagesService(paginationService.currentPage + 1)"/>
+            <img id="leftRow" v-if="theCurrentPage != 1" src="./Images/page.svg" @click="getPagesService(paginationService.currentPage - 1)"/>
+            <li v-for="pages in pageArray" :key='pages' @click='getPagesService(pages)' :class="{'active':paginationService.currentPage === pages}" >{{pages}}</li>
+            <img v-if="theCurrentPage != theTotalPage" src="./Images/page.svg" @click="getPagesService(paginationService.currentPage + 1)"/>
         </ul>
     </section>
     `,
 })
 
+//撰寫文章
+Vue.component('new_article', {
+    props: ["mem_no"],
+    data() {
+        return {
+            art_name: "",
+            art_intro: "",
+            parentAlert: false,
+            alertText: "",
+            art_img: "",
+            upLoadImgOk: false, //是否有上傳圖片
+        }
+    },
+    methods: {
+        parentGetCloseAlert(status) {
+            if (status === "toDo") {
+                this.postArt()
+            }
+            this.parentAlert = false
+        },
+        checkToPostArt() {
+            if (!this.upLoadImgOk) {
+                this.parentAlert = true
+                this.alertText = "請上傳圖片"
+            } else if (!this.art_name || !this.art_intro) {
+                this.parentAlert = true
+                this.alertText = "請填寫完整內容"
+            } else {
+                this.parentAlert = true
+                this.alertText = "確定要送出?"
+            }
+        },
+        postArt() {
+            let dt = new Date()
+            let now = `${dt.getFullYear()}-${dt.getMonth() + 1}-${dt.getDate()} ${dt.getHours()}:${dt.getMinutes()}:${dt.getSeconds()}`
 
+            let formData = new FormData()
+            formData.append('upFile', document.getElementById('upfile').files[0])
+            formData.append('mem_no', this.mem_no)
+            formData.append('art_time', now)
+            formData.append('art_name', this.art_name)
+            formData.append('art_intro', this.art_intro)
+
+            //=====ajax
+            let that = this
+            let xhr = new XMLHttpRequest()
+            xhr.onload = function () {
+                if (xhr.status == 200) {
+                    that.parentAlert = true
+                    that.alertText = "上傳成功"
+
+                    //清空資料
+                    that.art_name = ""
+                    that.art_intro = ""
+                    document.getElementById('art_img').src = "./Images/unnamed.png"
+                } else {
+                    return
+                }
+            }
+            xhr.open('post', './php/postArt.php')
+            xhr.send(formData)
+        },
+        changeimg(e) {
+            let file = e.target.files
+            reader = new FileReader()
+            reader.readAsDataURL(file[0])
+
+            //取得 上傳照片之檔案格式，以利送出時判斷
+            let img_type = file[0].type.split('/').pop()
+
+            // 確認 上傳照片之格式
+            let array = ['jpg', 'jpeg', 'png', 'svg']
+            if (array.indexOf(img_type) != -1) {
+
+                this.upLoadImgOk = true
+            } else {
+                this.parentAlert = true
+                this.alertText = "請確認上傳照片之格式 (jpg,jpeg,png,svg)"
+                return ''
+            }
+
+
+            //顯示 照片預覽
+            reader.onload = function (event) {
+                document.getElementById('art_img').src = event.target.result
+            }
+
+        },
+        closeNewArtBox() {
+            this.$emit('childCloseNewArtBox')
+        },
+    },
+    template: `
+    <div class="new_article">
+        <section class="section_7">
+            <div class="close_img" @click="closeNewArtBox"><img src="Images/close.svg"></div>
+            <div class="publish">發表文章</div>
+            <div class="sendimg_box"><img src="./Images/unnamed.png" id="art_img"></div>
+            <div class="sendimgbtn_box">
+                <label class="sendimgbtn">
+                    <div class="image_img"><img src="./Images/image.svg"></div>
+                    <input type="file" id="upfile" name="upfile" @change="changeimg($event)"/>
+                    <div>上傳封面</div>
+                </label>
+            </div>
+            <input type="text" class="set_title" placeholder="請輸入文章標題限20字" oninput="if(value.length>20) value=value.substr(0,20)" v-model="art_name">
+            <textarea type="textarea" class="set_con" placeholder="請輸入文章內容限100字" oninput="if(value.length>100) value=value.substr(0,100)" v-model="art_intro"></textarea>
+            <div class="sendform_btn">
+                <button class="sendformbtn" id="sendformbtn" @click="checkToPostArt">
+                    <div class="sendbtn_img"><img src="./Images/send.svg"></div>
+                    <div class="sendbtn_text" >送出</div>
+                </button>
+            </div>
+        </section>
+
+        <!-- 警示視窗 -->
+        <!-- parentAlert為是否開啟警示視窗的變數，往下層傳遞 -->
+        <!-- alertText為警示視窗的內文，往下層傳遞 -->
+        <!-- childSendCloseAlert為警示內點擊確認或關閉時，會往上傳遞並接收的事件，接收後呼叫parentGetCloseAlert這個方法 -->
+        <alert_lightbox :parentAlert_ = "parentAlert" :_alertText="alertText" @childSendCloseAlert="parentGetCloseAlert"></alert_lightbox>
+    </div>
+    `,
+})
 new Vue({
     el: "#app",
     data: {

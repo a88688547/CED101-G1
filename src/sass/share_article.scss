@@ -576,6 +576,10 @@ main {
         justify-content: center;
         align-items: center;
 
+        #leftRow {
+            transform: rotateY(180deg)
+        }
+
         li {
             border-radius: 50%;
             width: 24px;
@@ -940,22 +944,17 @@ main {
 .new_article {
 
     width: 100%;
-    // height: 100%;
+    height: 100%;
     background-color: rgba($color: #000000, $alpha: 0.7);
     position: fixed;
-    display: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     top: 0;
     left: 0;
-    // top: 50%;
-    // left: 50%;
-    // transform: translate(-50%,-50%);
     z-index: 99;
-    padding: 20px 0;
 
 }
-
-
-
 
 .section_7 {
     height: 90vh;
@@ -966,9 +965,7 @@ main {
     // top: 50%;
     // left: 50%;
     // transform: translate(-50%,-50%);
-    width: 90%;
     max-width: 900px;
-    margin: 0 auto;
     // border-radius: 15px;
     // overflow: hidden;
     background-color: #fff;
@@ -982,16 +979,20 @@ main {
     right: 10px;
     font-size: 0;
     border-radius: 50%;
-    border: 1px solid red;
     overflow: hidden;
+    cursor: pointer;
 }
 
 .sendimg_box {
     width: 90%;
-    border: 1px solid brown;
     max-width: 900px;
     margin: 10px auto;
     font-size: 0;
+
+    img {
+        max-width: none;
+        width: 100%;
+    }
 }
 
 .publish {
@@ -1040,6 +1041,11 @@ main {
     padding: 5px 20px;
     border-radius: 15px;
     overflow: hidden;
+    cursor: pointer;
+
+    #upfile {
+        display: none;
+    }
 
     &:nth-child(2) {
         @include H3;
@@ -1062,14 +1068,20 @@ main {
     height: 40px;
     margin: 10px auto;
     background-color: #DBDBDB;
+    border: 1.5px solid black;
+    padding: 0 15px;
+    font-size: 16px;
 }
 
 .set_con {
     display: block;
     width: 90%;
-    height: 300px;
+    height: 200px;
     background-color: #DBDBDB;
     margin: 10px auto;
+    font-size: 16px;
+    padding: 15px;
+    border: 1.5px solid black;
 }
 
 .sendform_btn {
@@ -1099,6 +1111,8 @@ main {
     padding: 5px 20px;
     border-radius: 15px;
     overflow: hidden;
+    outline: none;
+    cursor: pointer;
 
     &:nth-child(2) {
         @include H3;

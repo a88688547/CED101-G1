@@ -22,7 +22,8 @@ Vue.component('groupinfo', {
                 'Content-Type': 'application/json'
             })
         }).then(res => res.json())
-            .then(res => this.groupInfo = res);
+            .then(res => this.groupInfo = res)
+            .then(res => bus.$emit('head_mem_noToOrderlist', res[0].head_mem_no))
         this.timer = setInterval(this.getWatchNum, 1000)
     },
     //離開時清除定時器
@@ -98,6 +99,7 @@ Vue.component('orderlist', {
             //現在時間是否早於結單時間，以此判斷是否要前往下一頁
             inTimeCart: true,
             mem_info: "",
+            head_mem_no: "",
         }
     },
     mounted() {
@@ -108,6 +110,7 @@ Vue.component('orderlist', {
             }
         })
         bus.$on('intimeGoFollow_step2', _inTime => this.inTimeCart = _inTime)
+        bus.$on('head_mem_noToOrderlist', head_mem_no => this.head_mem_no = head_mem_no)
     },
     methods: {
         //下層組件增加減少刪除品項，回傳storage至上層，並由addItemList接收，這樣才會動態更新
@@ -137,7 +140,13 @@ Vue.component('orderlist', {
 
             })
             await this.createNewStorage()
-            location.href = `./follow_step2.html?group_ord_no=${web_group_no}`
+
+            if (this.head_mem_no == this.mem_info.mem_no) {
+                location.href = `./join_step2.html?group_ord_no=${web_group_no}`
+            } else {
+                location.href = `./follow_step2.html?group_ord_no=${web_group_no}`
+            }
+
         },
         //送訂單到後台後，把原本的storage清掉，再使用當前時間創建一個唯一的storage讓下一頁使用
         createNewStorage: async function () {

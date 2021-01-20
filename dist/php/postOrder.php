@@ -45,6 +45,14 @@
         $menu2->bindValue(":group_ord_price", $ord_total_price);
         $menu2->bindValue(":group_ord_no", $group_ord_no);
         $menu2->execute();
+
+                //新增團的參加者
+                $sql3 ="INSERT INTO participants(mem_no,group_ord_no)
+                VALUES (:mem_no,:group_ord_no)";
+                $menu3 = $pdo->prepare($sql3);
+                $menu3->bindValue(":mem_no", $mem_no);
+                $menu3->bindValue(":group_ord_no", $group_ord_no);
+                $menu3->execute();
     }
     catch (PDOException $e) {
         //echo "系統錯誤, 請通知系維護人員~<br>";

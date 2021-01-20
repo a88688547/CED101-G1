@@ -96,7 +96,7 @@ Vue.component('my-header', {
                         this.showLogin = false
                         member.$emit('memberInfo', this.memberInfo)
                         window.members = this.memberInfo
-                        this.$emit('changemem', this.memberInfo)
+                        this.$emit('checked_mem', this.memberInfo)
                         // console.log('登入成功')
                         this.logbox = true
                         this.logText = 'log'

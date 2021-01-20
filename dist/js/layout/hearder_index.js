@@ -17,6 +17,7 @@ Vue.component('my-header', {
             voteTime: '',
             logbox: false,
             logText: '',
+
         }
     },
     methods: {
@@ -95,7 +96,7 @@ Vue.component('my-header', {
                         this.showLogin = false
                         member.$emit('memberInfo', this.memberInfo)
                         window.members = this.memberInfo
-                        this.$emit('changemem', this.memberInfo)
+                        this.$emit('checked_mem', this.memberInfo)
                         // console.log('登入成功')
                         this.logbox = true
                         this.logText = 'log'
@@ -237,6 +238,9 @@ Vue.component('my-header', {
     created() {
         this.get_mem()
     },
+    mounted() {
+        members = ""
+    },
     template: `
             <nav>
                 <button class="hamburg_btn" ref="hamburg_btn" @click="hamburgHandler">
@@ -337,7 +341,7 @@ Vue.component('my-header', {
                 </div>
             </nav>
             `,
-})
+});
 
 new Vue({
     el: '#header',

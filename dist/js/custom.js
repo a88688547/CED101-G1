@@ -18,7 +18,7 @@ window.onload = function () {
         // console.log(myCharacter);
         const imgSrc = `${myCharacter}${myWrap}`;
         char.src = `./Images/${imgSrc}.png`;
-        console.log(imgSrc);
+        // console.log(imgSrc);
 
         switch (imgSrc) {
             case 'peacup':

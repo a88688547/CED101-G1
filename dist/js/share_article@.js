@@ -607,6 +607,7 @@ Vue.component('alert_lightbox', {
                 <div @click="sureToDo">確定</div>
             </div>
         </div>
+
     </div>
     `,
 })
@@ -619,6 +620,8 @@ Vue.component('report_lightbox', {
         return {
             reasonText: "",
             noChoose: false,
+            parentAlert: false,
+            alertText: "檢舉成功!",
         }
     },
     methods: {
@@ -650,11 +653,15 @@ Vue.component('report_lightbox', {
                     },
                     body: JSON.stringify(theReportData),
                 })
+                this.parentAlert = true
 
 
-                this.$emit('childSendCloseReport')
                 this.reasonText = ""
+                this.$emit('childSendCloseReport')
             }
+        },
+        parentGetCloseAlert() {
+            this.parentAlert = false
         },
     },
     computed: {
@@ -680,6 +687,7 @@ Vue.component('report_lightbox', {
 
     },
     template: `
+    <div>
     <div class="alertLightbox_black report" v-if="reportLightbox">
         <div class="alertLightboxWrapper">
             <div class="manager_lightbox_close_img" @click="closeReportLightbox" ><img src="./Images/close.svg" ></div>
@@ -695,6 +703,10 @@ Vue.component('report_lightbox', {
                 <span id="hint" v-if="noChoose">請選擇一個!</span>
             </div>
         </div>
+
+        
+    </div>
+    <alert_lightbox :parentAlert_ = "parentAlert" :_alertText="alertText" @childSendCloseAlert="parentGetCloseAlert"></alert_lightbox>
     </div>
     `,
 })

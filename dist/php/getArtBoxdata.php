@@ -1,7 +1,7 @@
 <?php
     try{
         require_once "./connect_join_database.php";
-        $sql = "SELECT art_name,art_intro,art_img,art_time,art_like_count,art_look_count,art_msg_count,
+        $sql = "SELECT art_name,art_intro,art_img,art_time,art_like_count,art_look_count,(SELECT COUNT(*) FROM artmsg WHERE art_no = :art_no AND msg_status = 1) 'art_msg_count',
         (SELECT COUNT(*) from artlike WHERE art_no = :art_no AND mem_no = :mem_no) 'isLike',
         mem_name,mem_img
         FROM art a JOIN member m ON a.mem_no = m.mem_no

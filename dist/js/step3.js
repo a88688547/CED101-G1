@@ -28,6 +28,8 @@ var app = new Vue({
     //警告框
     Error_show: false,
     ErrorText: "警告字",
+    //團長資料
+    head_info:"",
     //會員資料
     mem_info:"",
     mem_no:"",
@@ -52,7 +54,11 @@ var app = new Vue({
     closeTotal: false,
   },
   computed: {
-    
+    group_img()
+    {
+      this.imgId = this.mem_info.mem_img
+      return this.imgId
+    },
     //折扣編號
     couponNo()
     {
@@ -208,7 +214,6 @@ var app = new Vue({
    //優惠卷折扣
    DiscountCOU()
    {
-     console.log("TTTTEEESSTT")
      switch (this.cou_dis)
      {
        case "0.6":
@@ -234,15 +239,41 @@ var app = new Vue({
     console.log(group_state);
     console.log(headMan);
     console.log(mem);
-    // if (mem != headMan ) 
-    // {
-    //   location.href = `./join_list.html`
-    // } 
-  },
+    if (mem != headMan ) 
+    {
+      console.log("會員錯");
+      location.href = `./join_list.html`
+    } 
+    else if (group_state == 2)
+    {
+      console.log("訂單2");
+      location.href = `./join_list.html`
+    } else
+    {
+      console.log("GOOD");
+    }
+    },
+  //抓開團團長編號抓圖片資料
+    selectHead_mem_img: async function ()
+    {
+      console.log(this.group_ord.head_mem_no)
+      const res = await fetch("./php/select_img.php", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          mem_no: this.group_ord.head_mem_no,
+        }),
+      })
+      .then((res) => res.json())
+      .then((res) => (this.head_info = res));
+      // this.group_ord_total_cup = res.group_ord_total_cup
+      },
   //用會員編號抓優惠卷
   selectMemCoupon: async function ()
   {
-    console.log("000000")
+    
     const res = await fetch("./php/select_mem_coupon.php", {
       method: "POST",
       headers: {
@@ -270,6 +301,7 @@ var app = new Vue({
       .then((res) => res.json())
       .then((res) => (this.group_ord = res));
     this.ckeckWho();
+    this.selectHead_mem_img();
     },
     //抓總杯數
   get_order_total_cup: async function () {
@@ -433,7 +465,7 @@ var app = new Vue({
           cou_no: this.couponNo,
         })
       })
-      location.href = `./join_step4.html?group_ord_no=${this.group_ord_no}`
+      // location.href = `./join_step4.html?group_ord_no=${this.group_ord_no}`
   },
   return_step2()
   {

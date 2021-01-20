@@ -15,6 +15,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="./js/layout/header.js"></script>
   <script src="./js/layout/footer.js"></script>
+    <!-- 不寫這個會報錯誤 -->
+    <link rel="shortcut icon" href="#" />
 </head>
 
 <body>
@@ -49,8 +51,9 @@
       </div>
       <!-- ==============進度條================= -->
       <!-- 個人資訊 -->
+      <!-- <button @click="ckeckWho">test</button> -->
       <div class="info" v-if="type == 10">
-        <div class="info_img"><img src="Images/user_big.svg"></div>
+        <div class="info_img"><img :src=group_img alt="" id="img_group" /></div>
         <div class="info_detail">
           <div class="info_name">{{mem_info.mem_name}}</div>
           <div class="info_phone">

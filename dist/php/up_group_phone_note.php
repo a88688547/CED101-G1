@@ -11,7 +11,14 @@ try{
     $group_ord_price = $decoded["group_ord_price"];
     $group_ord_price_1 = $decoded["group_ord_price_1"];
     $group_ord_price_2 = $decoded["group_ord_price_2"];
+   
+   if($decoded["cou_no"] == ""){
+    $cou_no = null;
+   }else{
     $cou_no = $decoded["cou_no"];
+   };
+   
+   
 
     $sql = "update group_ord 
             set group_ord_phone = :group_ord_phone,
@@ -20,7 +27,7 @@ try{
             group_ord_price_1 = :group_ord_price_1,
             group_ord_price_2 = :group_ord_price_2,
             cou_no = :cou_no,
-            group_state = 2
+            group_state = '2'
             where group_ord_no = :group_ord_no";
 
     $group_ord_data = $pdo->prepare($sql);

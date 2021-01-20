@@ -6,18 +6,17 @@ try {
 	$mem_no = $decoded["mem_no"];
 
 	$sql = "select * 
-	from coupon 
+	from member
     where 
-    cou_status = '0'
-    AND
-    mem_no = :mem_no";
-	$coupon = $pdo->prepare($sql);
-    $coupon ->bindValue(":mem_no", $mem_no);
-	$coupon->execute();
+    mem_no = :mem_no;";
+    
+	$memberImg = $pdo->prepare($sql);
+    $memberImg ->bindValue(":mem_no", $mem_no);
+	$memberImg->execute();
 
-	$coupon = $coupon->fetchAll(PDO::FETCH_ASSOC);
+	$memberImg = $memberImg->fetchAll(PDO::FETCH_ASSOC);
 
-	echo json_encode($coupon);
+	echo json_encode($memberImg);
 
 } catch (PDOException $e) {
 	echo "錯誤原因 : ", $e->getMessage(), "<br>";

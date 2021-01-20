@@ -8,9 +8,15 @@ var app = new Vue({
     group_ord_no: "",
     group_ord: "",
     mem_info:"",
-    mem_no:"",
+    mem_no: "",
+    imgId:"",
   },
   computed: {
+    group_img()
+    {
+      this.imgId = this.mem_info.mem_img
+      return this.imgId
+    },
     getCouno()
     {
       this.couNo = this.group_ord.cou_no

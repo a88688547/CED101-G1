@@ -160,8 +160,21 @@ body {
       display: flex;
       align-items: center;
       .group_data_total_imgA{
-        width: 60px;
+        // border: 1px solid red;
+        border-radius: 50%;
+        width: 80px;
+        height: 80px;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         margin-right: 10px;
+        img{
+          max-width: none;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
       }
       .group_data_total_imgB{
         font-weight: bold;
@@ -379,7 +392,8 @@ body {
       width: 100%;
       margin-right: 20px;
       .group_data_total_imgA{
-        width: 120px;
+        width: 100px;
+        height: 100px;
       }
       .group_data_total_imgB{
         @include H5;
@@ -484,7 +498,8 @@ body {
         width: 100%;
         margin-right: 40px;
         .group_data_total_imgA{
-          width: 170px;
+          width: 120px;
+          height: 120px;
           margin-right: 50px;
           margin-bottom: 30px;
         }

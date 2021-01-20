@@ -9,10 +9,12 @@ var app = new Vue({
       cou_discount: "",
       cou_status:"",
     },
+    
     coupon:[],
     group_ord: [],
     //原價總額
     group_ord_price: 0,
+    cou_count:"",
     cup_count: "",
     group_ord_total_cup:0,
     //杯數折扣
@@ -26,6 +28,8 @@ var app = new Vue({
     //警告框
     Error_show: false,
     ErrorText: "警告字",
+    //團長資料
+    head_info:"",
     //會員資料
     mem_info:"",
     mem_no:"",
@@ -50,6 +54,12 @@ var app = new Vue({
     closeTotal: false,
   },
   computed: {
+    
+    group_img()
+    {
+      this.imgId = this.mem_info.mem_img
+      return this.imgId
+    },
     //折扣編號
     couponNo()
     {
@@ -62,36 +72,47 @@ var app = new Vue({
       this.cou_dis = this.cou.cou_discount;
       return this.cou_dis;
     },
-    //優惠卷
+    //杯數優惠
     count() {
-      switch (this.group_ord.goal_cup) {
-          case "20":
-              return this.cup_count = "0.9"
-          case "30":
-              return this.cup_count = "0.8"
-          case "40":
-              return this.cup_count = "0.7"
-          case "50":
-              return this.cup_count = "0.6"
-          default:
-              return "無"
+      switch (this.group_ord.goal_cup)
+      {
+        case "10":
+          $(".count").text("無折扣");
+          return this.cup_count = "1"
+        case "20":
+          $(".count").text("0.9");
+          return this.cup_count = "0.9"
+        case "30":
+          $(".count").text("0.8");
+          return this.cup_count = "0.8"
+        case "40":
+          $(".count").text("0.7");
+          return this.cup_count = "0.7"
+        case "50":
+          $(".count").text("0.6");
+          return this.cup_count = "0.6"
+          
       }
     },
+    //杯數折扣金額
     group_ord_count1()
-    {
+    {;
+      console.log("無折扣");
       this.group_ord_price_1 =  Math.round(this.group_ord_price * this.count)
       return this.group_ord_price_1
     },
+    //優惠卷折扣金額
     group_ord_count2()
     {
+      //原價 * 杯折 * 優惠卷
       if (this.couDiscount == "")
       {
-        this.group_ord_price_2 = Math.round(this.group_ord_price * this.count)
+        this.group_ord_price_2 = this.group_ord_count1 
         return this.group_ord_price_2
       } else
       {
-        this.group_ord_price_2 =  Math.round(this.group_ord_count1 * this.couDiscount)
-      return this.group_ord_price_2
+        this.group_ord_price_2 = Math.round(this.group_ord_count1 * this.couDiscount)
+        return this.group_ord_price_2
       }
       
     },
@@ -121,22 +142,22 @@ var app = new Vue({
       this.phone = localStorage.phone;
       }
     // 持卡姓名
-    if (localStorage.name) {
-      this.name = localStorage.name;
-      }
+    // if (localStorage.name) {
+    //   this.name = localStorage.name;
+    //   }
     //卡號
-    if(localStorage.card1){
-       this.card1 = localStorage.card1;
-    }
-    if(localStorage.card2){
-       this.card2 = localStorage.card2;
-    }
-    if(localStorage.card3){
-       this.card3 = localStorage.card3;
-    }
-    if(localStorage.card4){
-       this.card4 = localStorage.card4;
-    }
+    // if(localStorage.card1){
+    //    this.card1 = localStorage.card1;
+    // }
+    // if(localStorage.card2){
+    //    this.card2 = localStorage.card2;
+    // }
+    // if(localStorage.card3){
+    //    this.card3 = localStorage.card3;
+    // }
+    // if(localStorage.card4){
+    //    this.card4 = localStorage.card4;
+    // }
     //有效期限
     // this.selectMemCoupon();
   },
@@ -151,6 +172,10 @@ var app = new Vue({
     // this.selectMemCoupon();
   },
   watch: {
+    cou_dis()
+    {
+      this.DiscountCOU();
+    },
     phone(newphone) {
       localStorage.phone = newphone;
     },
@@ -159,23 +184,23 @@ var app = new Vue({
       localStorage.name = newName;
     },
     //卡號
-    card1(newCard1){
-      localStorage.card1 = newCard1;
-    },
-    card2(newCard2){
-      localStorage.card2 = newCard2;
-    },
-    card3(newCard3){
-      localStorage.card3 = newCard3;
-    },
-    card4(newCard4){
-      localStorage.card4 = newCard4;
-    },
+    // card1(newCard1){
+    //   localStorage.card1 = newCard1;
+    // },
+    // card2(newCard2){
+    //   localStorage.card2 = newCard2;
+    // },
+    // card3(newCard3){
+    //   localStorage.card3 = newCard3;
+    // },
+    // card4(newCard4){
+    //   localStorage.card4 = newCard4;
+    // },
     
     //有效期限
-    dealDate(newdealDate){
-      localStorage.dealDate = newdealDate;
-    },
+    // dealDate(newdealDate){
+    //   localStorage.dealDate = newdealDate;
+    // },
     //安全碼
     
     
@@ -187,6 +212,25 @@ var app = new Vue({
       member.$on('memberInfo', this.get_mem_info);
     },
   methods: {
+   //優惠卷折扣
+   DiscountCOU()
+   {
+     switch (this.cou_dis)
+     {
+       case "0.6":
+         $(".countA").text("六折");
+         return this.cou_count = "0.6";
+       case "0.7":
+         $(".countA").text("七折");
+         return this.cou_count = "0.7";
+       case "0.8":
+         $(".countA").text("八折");
+         return this.cou_count = "0.8";
+       case "0.9":
+         $(".countA").text("九折");
+         return this.cou_count = "0.9";
+     }
+   },
      //是否為團長
   ckeckWho()
   {
@@ -196,15 +240,41 @@ var app = new Vue({
     console.log(group_state);
     console.log(headMan);
     console.log(mem);
-    // if (mem != headMan ) 
-    // {
-    //   location.href = `./join_list.html`
-    // } 
-  },
+    if (mem != headMan ) 
+    {
+      console.log("會員錯");
+      location.href = `./join_list.html`
+    } 
+    else if (group_state == 2)
+    {
+      console.log("訂單2");
+      location.href = `./join_list.html`
+    } else
+    {
+      console.log("GOOD");
+    }
+    },
+  //抓開團團長編號抓圖片資料
+    selectHead_mem_img: async function ()
+    {
+      console.log(this.group_ord.head_mem_no)
+      const res = await fetch("./php/select_img.php", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          mem_no: this.group_ord.head_mem_no,
+        }),
+      })
+      .then((res) => res.json())
+      .then((res) => (this.head_info = res));
+      // this.group_ord_total_cup = res.group_ord_total_cup
+      },
   //用會員編號抓優惠卷
   selectMemCoupon: async function ()
   {
-    console.log("000000")
+    
     const res = await fetch("./php/select_mem_coupon.php", {
       method: "POST",
       headers: {
@@ -232,6 +302,7 @@ var app = new Vue({
       .then((res) => res.json())
       .then((res) => (this.group_ord = res));
     this.ckeckWho();
+    this.selectHead_mem_img();
     },
     //抓總杯數
   get_order_total_cup: async function () {
@@ -355,7 +426,7 @@ var app = new Vue({
         } else
         {
           this.Error_show = true;
-          this.ErrorText = "請輸入信用卡有效期限";
+          this.ErrorText = "有效期限錯誤";
         }
       } else
       {
@@ -372,7 +443,7 @@ var app = new Vue({
     } else
     {
       this.Error_show = true;
-      this.ErrorText = "電話錯誤";
+      this.ErrorText = "手機輸入格式有誤";
       return;
     }
     },
@@ -395,7 +466,7 @@ var app = new Vue({
           cou_no: this.couponNo,
         })
       })
-      location.href = `./join_step4.html?group_ord_no=${this.group_ord_no}`
+      // location.href = `./join_step4.html?group_ord_no=${this.group_ord_no}`
   },
   return_step2()
   {
@@ -423,7 +494,8 @@ var app = new Vue({
     get_mem_info(data){
     this.mem_info = data
       this.mem_no = data.mem_no
-      this.selectMemCoupon()
+      this.selectMemCoupon();
+   
     }
    
 }

@@ -7,7 +7,7 @@ try {
     
 
     // $group_ord_item_no = $group_ord_item_no->fetch(PDO::FETCH_ASSOC);
-    $sql ="UPDATE group_ord SET group_state = '2' WHERE group_ord_no = :group_ord_no";
+    $sql ="UPDATE group_ord SET group_state = '3' WHERE group_ord_no = :group_ord_no";
     $group_ord_row = $pdo->prepare($sql);
     $group_ord_row ->bindValue(":group_ord_no", $group_ord_no);
     $group_ord_row->execute();

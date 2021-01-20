@@ -4,6 +4,12 @@
 body {
     background-color: $insideBackgroundColor;
 }
+ul,ol{
+    margin-bottom: 0px;
+}
+.UserName{
+    margin-bottom:3px!important;
+}
 
 #top_info {
     max-width: 1100px;

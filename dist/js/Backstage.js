@@ -65,9 +65,9 @@ window.addEventListener('load', function () {
                             <div>{{value.mar_name}}</div>
                             <div>{{value.mar_id}}</div>
                             <div>*****{{value.mar_psw.substr(-3,3)}}</div>
-                            <div class="toggle" @click="lightbox_show(value.mar_no,value.mar_name,value.mar_status)">
+                            <div class="toggle">
                                 <input v-model="value.ischecked" type="checkbox"   />
-                                <label ></label>
+                                <label  @click="lightbox_show(value.mar_no,value.mar_name,value.mar_status)" ></label>
                             </div>
                         </div>
                     </div>
@@ -178,9 +178,9 @@ window.addEventListener('load', function () {
                             <div>{{value.mem_email}}</div>
                             <div>*****{{value.mem_psw.substr(-3,3)}}</div>
                             <div>*****{{value.mem_phone.substr(-3,3)}}</div>
-                            <div class="toggle" @click="lightbox_show(value.mem_no,value.mem_name,value.mem_status)">
+                            <div class="toggle" >
                                 <input v-model="value.ischecked" type="checkbox"   />
-                                <label ></label>
+                                <label @click="lightbox_show(value.mem_no,value.mem_name,value.mem_status)"></label>
                             </div>
                         </div>
                     </div>
@@ -282,9 +282,9 @@ window.addEventListener('load', function () {
                             <div>{{value.drink_type_title}}</div>
                             <div>{{value.drink_big_price}}</div>
                             <div>{{value.drink_small_price}}</div>
-                            <div class="toggle" @click="lightbox_show(value.drink_no,value.drink_title_ch,value.status)">
+                            <div class="toggle" >
                                 <input  :checked="value.ischecked" type="checkbox"   />
-                                <label ></label>
+                                <label @click="lightbox_show(value.drink_no,value.drink_title_ch,value.status)"></label>
                             </div>
                             <div class="edit_btn" @click="changeTag(),changedrinkno(value.drink_no)">編輯</div>
                         </div>

@@ -17,7 +17,6 @@ Vue.component('my-header', {
             voteTime: '',
             logbox: false,
             logText: '',
-
         }
     },
     methods: {
@@ -338,7 +337,7 @@ Vue.component('my-header', {
                 </div>
             </nav>
             `,
-});
+})
 
 new Vue({
     el: '#header',

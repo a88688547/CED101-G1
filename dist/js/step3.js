@@ -54,6 +54,7 @@ var app = new Vue({
     closeTotal: false,
   },
   computed: {
+    
     group_img()
     {
       this.imgId = this.mem_info.mem_img
@@ -141,22 +142,22 @@ var app = new Vue({
       this.phone = localStorage.phone;
       }
     // 持卡姓名
-    if (localStorage.name) {
-      this.name = localStorage.name;
-      }
+    // if (localStorage.name) {
+    //   this.name = localStorage.name;
+    //   }
     //卡號
-    if(localStorage.card1){
-       this.card1 = localStorage.card1;
-    }
-    if(localStorage.card2){
-       this.card2 = localStorage.card2;
-    }
-    if(localStorage.card3){
-       this.card3 = localStorage.card3;
-    }
-    if(localStorage.card4){
-       this.card4 = localStorage.card4;
-    }
+    // if(localStorage.card1){
+    //    this.card1 = localStorage.card1;
+    // }
+    // if(localStorage.card2){
+    //    this.card2 = localStorage.card2;
+    // }
+    // if(localStorage.card3){
+    //    this.card3 = localStorage.card3;
+    // }
+    // if(localStorage.card4){
+    //    this.card4 = localStorage.card4;
+    // }
     //有效期限
     // this.selectMemCoupon();
   },
@@ -183,23 +184,23 @@ var app = new Vue({
       localStorage.name = newName;
     },
     //卡號
-    card1(newCard1){
-      localStorage.card1 = newCard1;
-    },
-    card2(newCard2){
-      localStorage.card2 = newCard2;
-    },
-    card3(newCard3){
-      localStorage.card3 = newCard3;
-    },
-    card4(newCard4){
-      localStorage.card4 = newCard4;
-    },
+    // card1(newCard1){
+    //   localStorage.card1 = newCard1;
+    // },
+    // card2(newCard2){
+    //   localStorage.card2 = newCard2;
+    // },
+    // card3(newCard3){
+    //   localStorage.card3 = newCard3;
+    // },
+    // card4(newCard4){
+    //   localStorage.card4 = newCard4;
+    // },
     
     //有效期限
-    dealDate(newdealDate){
-      localStorage.dealDate = newdealDate;
-    },
+    // dealDate(newdealDate){
+    //   localStorage.dealDate = newdealDate;
+    // },
     //安全碼
     
     

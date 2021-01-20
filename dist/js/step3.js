@@ -9,10 +9,12 @@ var app = new Vue({
       cou_discount: "",
       cou_status:"",
     },
+    
     coupon:[],
     group_ord: [],
     //原價總額
     group_ord_price: 0,
+    cou_count:"",
     cup_count: "",
     group_ord_total_cup:0,
     //杯數折扣
@@ -50,6 +52,7 @@ var app = new Vue({
     closeTotal: false,
   },
   computed: {
+    
     //折扣編號
     couponNo()
     {
@@ -62,36 +65,47 @@ var app = new Vue({
       this.cou_dis = this.cou.cou_discount;
       return this.cou_dis;
     },
-    //優惠卷
+    //杯數優惠
     count() {
-      switch (this.group_ord.goal_cup) {
-          case "20":
-              return this.cup_count = "0.9"
-          case "30":
-              return this.cup_count = "0.8"
-          case "40":
-              return this.cup_count = "0.7"
-          case "50":
-              return this.cup_count = "0.6"
-          default:
-              return "無"
+      switch (this.group_ord.goal_cup)
+      {
+        case "10":
+          $(".count").text("無折扣");
+          return this.cup_count = "1"
+        case "20":
+          $(".count").text("0.9");
+          return this.cup_count = "0.9"
+        case "30":
+          $(".count").text("0.8");
+          return this.cup_count = "0.8"
+        case "40":
+          $(".count").text("0.7");
+          return this.cup_count = "0.7"
+        case "50":
+          $(".count").text("0.6");
+          return this.cup_count = "0.6"
+          
       }
     },
+    //杯數折扣金額
     group_ord_count1()
-    {
+    {;
+      console.log("無折扣");
       this.group_ord_price_1 =  Math.round(this.group_ord_price * this.count)
       return this.group_ord_price_1
     },
+    //優惠卷折扣金額
     group_ord_count2()
     {
+      //原價 * 杯折 * 優惠卷
       if (this.couDiscount == "")
       {
-        this.group_ord_price_2 = Math.round(this.group_ord_price * this.count)
+        this.group_ord_price_2 = this.group_ord_count1 
         return this.group_ord_price_2
       } else
       {
-        this.group_ord_price_2 =  Math.round(this.group_ord_count1 * this.couDiscount)
-      return this.group_ord_price_2
+        this.group_ord_price_2 = Math.round(this.group_ord_count1 * this.couDiscount)
+        return this.group_ord_price_2
       }
       
     },
@@ -151,6 +165,10 @@ var app = new Vue({
     // this.selectMemCoupon();
   },
   watch: {
+    cou_dis()
+    {
+      this.DiscountCOU();
+    },
     phone(newphone) {
       localStorage.phone = newphone;
     },
@@ -187,6 +205,26 @@ var app = new Vue({
       member.$on('memberInfo', this.get_mem_info);
     },
   methods: {
+   //優惠卷折扣
+   DiscountCOU()
+   {
+     console.log("TTTTEEESSTT")
+     switch (this.cou_dis)
+     {
+       case "0.6":
+         $(".countA").text("六折");
+         return this.cou_count = "0.6";
+       case "0.7":
+         $(".countA").text("七折");
+         return this.cou_count = "0.7";
+       case "0.8":
+         $(".countA").text("八折");
+         return this.cou_count = "0.8";
+       case "0.9":
+         $(".countA").text("九折");
+         return this.cou_count = "0.9";
+     }
+   },
      //是否為團長
   ckeckWho()
   {
@@ -355,7 +393,7 @@ var app = new Vue({
         } else
         {
           this.Error_show = true;
-          this.ErrorText = "請輸入信用卡有效期限";
+          this.ErrorText = "有效期限錯誤";
         }
       } else
       {
@@ -372,7 +410,7 @@ var app = new Vue({
     } else
     {
       this.Error_show = true;
-      this.ErrorText = "電話錯誤";
+      this.ErrorText = "手機輸入格式有誤";
       return;
     }
     },
@@ -423,7 +461,8 @@ var app = new Vue({
     get_mem_info(data){
     this.mem_info = data
       this.mem_no = data.mem_no
-      this.selectMemCoupon()
+      this.selectMemCoupon();
+   
     }
    
 }

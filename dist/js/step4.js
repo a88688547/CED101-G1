@@ -16,18 +16,26 @@ var app = new Vue({
       this.couNo = this.group_ord.cou_no
       return this.couNo
     },
+    //優惠卷
     count() {
-      switch (this.group_ord.goal_cup) {
-          case "20":
-              return this.cup_count = "0.9"
-          case "30":
-              return this.cup_count = "0.8"
-          case "40":
-              return this.cup_count = "0.7"
-          case "50":
-              return this.cup_count = "0.6"
-          default:
-              return "無"
+      switch (this.group_ord.goal_cup)
+      {
+        case "10":
+          $(".count").text("無折扣");
+          return this.cup_count = "1"
+        case "20":
+          $(".count").text("0.9");
+          return this.cup_count = "0.9"
+        case "30":
+          $(".count").text("0.8");
+          return this.cup_count = "0.8"
+        case "40":
+          $(".count").text("0.7");
+          return this.cup_count = "0.7"
+        case "50":
+          $(".count").text("0.6");
+          return this.cup_count = "0.6"
+          
       }
     },
   },

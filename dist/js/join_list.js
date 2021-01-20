@@ -1,54 +1,31 @@
-// window.addEventListener("load", function () {
-//     let grouporddata;
-//     //============去server端拿資料
-//     let xhr = new XMLHttpRequest();
-//     xhr.onload = function () {
-//       app.grouporddata = JSON.parse(xhr.responseText);
-//       let total = app.grouporddata.length;
-//     };
-//     xhr.open("get", "./php/getGroup.php", true);
-//     xhr.send(null);
-    
-//   });
-
-  var app = new Vue({
+var app = new Vue({
     el: "#join_main",
-    data: {
+  data: {
+    type:[],
+    in_time:1,
+    ErrorText:"",
+    Error_show:false,
+    nowDateTime:"",   
+    now_Time: "",
+    nowDay:"",  
+    watchNum: 0,
+    nowTime: new Date().getTime(), //現在時間毫秒
+    timer: null,   //計時器
+    msg: 1,
+    grouporddata: [],
+    imgSrc10: "./Images/coupon//0off@2x.jpg",
+    imgSrc20:
+      "./Images/drinkphoto/coupon/drive-download-20201228T062855Z-001/10off.jpg",
+    imgSrc30:
+      "./Images/drinkphoto/coupon/drive-download-20201228T062855Z-001/20off.jpg",
+    imgSrc40:
+      "./Images/drinkphoto/coupon/drive-download-20201228T062855Z-001/30off.jpg",
+    imgSrc50:
+     "./Images/drinkphoto/coupon/drive-download-20201228T062855Z-001/40pff.jpg",
+    endTime: "",
+    offsetTime: "",
+    ght: "",
       
-      nowDateTime:"",   
-      now_Time: "",
-      nowDay:"",  
-      watchNum: 0,
-      nowTime: new Date().getTime(), //現在時間毫秒
-      timer: null,   //計時器
-      msg: 1,
-      grouporddata: [],
-      imgSrc10: "./Images/coupon//0off@2x.jpg",
-      imgSrc20:
-        "./Images/drinkphoto/coupon/drive-download-20201228T062855Z-001/10off.jpg",
-      imgSrc30:
-        "./Images/drinkphoto/coupon/drive-download-20201228T062855Z-001/20off.jpg",
-      imgSrc40:
-        "./Images/drinkphoto/coupon/drive-download-20201228T062855Z-001/30off.jpg",
-        imgSrc50:
-            "./Images/drinkphoto/coupon/drive-download-20201228T062855Z-001/40pff.jpg",
-        endTime: "",
-        offsetTime: "",
-      ght: "",
-      frouts: [
-        {
-          name: 'Apple',
-          count: 10,
-        },
-        {
-          name: 'Orange',
-          count: 5,
-        },
-        {
-          name: 'Banana',
-          count: 20,
-        },
-      ],
       },
       computed: {
         grouporddataLenght() //長度
@@ -56,54 +33,69 @@
             this.ght = this.grouporddata.length
             return this.ght
         },
-        filteredFrouts: function() {
-          return this.frouts.filter(function(item) {
-            return item.count > 6;
-          });
-        },
-        filtered: function() {
-          return this.grouporddata.group_datetime(function(item) {
-            return item.group_datetime;
-          });
-        },
+        
         count_Down()
           {
             this.ght = this.grouporddata.length
-            // console.log(this.ght)
-            // console.log(this.nowTime)
-            
             let Time = new Array;
             for (i = 0 ; i < this.ght ; i++)
             {
               // console.log(offsetTime);
-            let in_time = 1;
-            let endTime = new Date(this.grouporddata[i].deadline_time);
+            // let in_time = 1; 
+            let endTime = new Date(this.grouporddata[i].deadline_time.replaceAll('-', '/'));
             let endTimeSec = endTime.getTime()//轉毫秒
-            let offsetTime = (endTimeSec - this.nowTime) / 1000 // ** 以秒為單位
+            offsetTime = (endTimeSec - this.nowTime) / 1000 // ** 以秒為單位
             this.endTime[i] = endTimeSec; // ** 以秒為單位
             let sec = parseInt(offsetTime % 60); // 秒
             let min = parseInt((offsetTime / 60) % 60); // 分 ex: 90秒
             let hr = parseInt(offsetTime / 60 / 60); // 時
             if (offsetTime <= 0) {
               // console.log(123);
+              // this.type.push(0)
               // this.in_time = 2
+              //時間到在抓一次
               this.selectGroup();
+            } else
+            {
+              this.type.push(1)
             }
               let total = {
                 theHr: hr,
                 theMin: min,
                 theSec: sec,
-                inTime: in_time,
+                // inTime: in_time,
                   
               }
               Time[i] = total;
             
-            } 
+          } 
+            
             return Time;
            },
         
       },
-      methods: {
+  methods: {
+    //警告視窗開關
+    XError: function ()
+    {
+      this.Error_show = false;//警告視窗
+    },
+    loginMem()
+    {
+      if (this.mem_info == "")
+      {
+        this.Error_show = true;
+        this.ErrorText = "請登入會員";
+        console.log("請登入")
+      } else
+      {
+        location.href = `./join_step1.html`
+      }
+    },
+    get_mem_info(data){
+      this.mem_info = data
+        this.mem_no = data.mem_no 
+      },
         selectGroup: async function ()
         {
           const res = await fetch("./php/getGroup.php", {
@@ -178,6 +170,8 @@
       },
       created() {
         this.nowTimes();
+           //抓會員資料
+        member.$on('memberInfo', this.get_mem_info)
       },
       updated()
       {

@@ -54,11 +54,26 @@ methods: {
       location.href = `./join_list.html`
     }
   },
-  
-  //時間超過更改訂單狀態state -> 2
-  change_state: async function () {
+  //更改訂單狀態state -> 1 成功
+  change_state1: async function () {
     // console.log('send2', drinkno)
-    const res = await fetch('./php/change_state.php', {
+    const res = await fetch('./php/change_state1.php', {
+        method: 'POST',
+        mode: 'same-origin',
+        credentials: 'same-origin',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            group_ord_no: this.group_ord_no,
+        }),
+    })
+    location.href = `./join_step3A.html?group_ord_no=${this.group_ord_no}`
+  },
+  //時間超過更改訂單狀態state -> 3
+  change_state2: async function () {
+    // console.log('send2', drinkno)
+    const res = await fetch('./php/change_state2.php', {
         method: 'POST',
         mode: 'same-origin',
         credentials: 'same-origin',
@@ -116,10 +131,7 @@ methods: {
         $(".goal_confirm").text("50杯/6折優惠");
         break;
     }
-    // if (g_cup == 50)
-    // {
-    //   $(".goal_confirm").text("50杯/6折優惠");
-    // }
+   
   },
   test()
   {
@@ -183,7 +195,7 @@ methods: {
         //截止時間超過
         {
           //訂單狀態改為2(false)
-          this.change_state();
+          this.change_state2();
           this.TimeError = true;
           console.log("已超過時間")
           
@@ -194,11 +206,7 @@ methods: {
       {
           location.href = `./menu.html?group_ord_no=${this.group_ord_no}`
       },
-      nextStep()
-      {
-        
-        location.href = `./join_step3A.html?group_ord_no=${this.group_ord_no}`
-      },
+      
     
     //用訂單編號抓飲料資料
     get_group_ord_item: async function () {

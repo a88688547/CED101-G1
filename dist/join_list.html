@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="./css/reset.css" />
     <link rel="stylesheet" href="./css/join_list.css" />
     <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/alertLightbox.css" />
     <script src="./js/layout/header.js"></script>
     <script src="./js/layout/footer.js"></script>
   </head>
@@ -30,7 +31,7 @@
           <div class="join_wrap_B">
             <div class="join_wrap_B_btn">
               <img src="./Images/drink.svg" alt="" />
-              <a href="./join_step1.html">我要揪團</a>
+              <a href="#" @click="loginMem">我要揪團</a>
             </div>
             <div class="">
               <img src="./Images/mascot.svg" alt="" />
@@ -57,6 +58,7 @@
                     >
                   </h5>
                 </div>
+                <!-- <div v-else>已截止</div> -->
               </div>
               <div class="join_list_content">
                 <div class="join_list_content_left">
@@ -116,7 +118,18 @@
 
         <!-- ========= -->
       </div>
-
+      <!-- //警告框 -->
+      <div class="alertLightbox_black" v-show="Error_show">
+        <div class="alertLightboxWrapper">
+          <div class="manager_lightbox_close_img">
+            <img src="./Images/close.svg" @click="XError" />
+          </div>
+          <div class="alertLightbox">
+            <div>{{ErrorText}}</div>
+            <div @click="XError">確定</div>
+          </div>
+        </div>
+      </div>
       <!-- ==============footer================= -->
 
       <footer><my-footer></my-footer></footer>

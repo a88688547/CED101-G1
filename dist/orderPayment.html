@@ -31,7 +31,7 @@
             <div class="main">
                 <!-- 個人訂購資訊 -->
                 <div class="userinfo">
-                    <div class="userpic"><img :src="mem_info.mem_img"></div>
+                    <div class="memimg"><img :src="mem_info.mem_img"></div>
                     <div class="user">
                         <div class="username">{{mem_info.mem_name}}</div>
                         <div class="userphone">
@@ -40,7 +40,7 @@
                                 <div>行動電話</div>
                             </div>
                             <div class="userphonebottom">
-                                <input type="text" v-model="phone">
+                                <input type="text" v-model="phone" placeholder="09XXXXXXXX">
                             </div>
                         </div>
                         <div class="useradd">
@@ -49,7 +49,7 @@
                                 <div>取貨地點</div>
                             </div>
                             <div class="useraddbottom">
-                                <input type="text" v-model="address">
+                                <input type="text" v-model="address" placeholder="地址最多輸入30字">
                             </div>
                         </div>
                         <div class="usermsg">
@@ -58,7 +58,7 @@
                                 <div>留言給店家</div>
                             </div>
                             <div class="usermsgbottom">
-                                <input type="text" v-model="note">
+                                <input type="text" v-model="note" placeholder="備註最多20字">
                             </div>
                         </div>
                     </div>
@@ -69,9 +69,13 @@
                         <div class="discountno">
                             <label>折扣代碼</label>
                             <select v-model="selected">
-                                <option>查看優惠內容</option>
+                                <option disabled selected value="">查看優惠內容</option>
+                                <option value="">不選擇優惠</option>
                                 <option v-for="value in couNo" :value="value"> {{value.cou_code}} </option>
                             </select>
+                            <div class="distext" v-if=this.selected=="">無折扣</div>
+                            <div class="distext" v-else>{{this.selected.cou_discount*10}}折</div>
+
                         </div>
                         <div class="gamelink">
                             <a href="game.html">
@@ -79,10 +83,10 @@
                             </a>
                         </div>
                     </div>
-                    <div class="discountbottom">
+                    <!-- <div class="discountbottom">
                         <div>商品X<span>{{totalcup}}</span></div>
-                        <div>小計$.<span>{{totalprice}}</span></div>
-                    </div>
+                        <div>小計$<span>{{totalprice}}</span></div>
+                    </div> -->
                 </div>
                 <!-- 信用卡 -->
                 <div class="creditcard">
@@ -104,8 +108,8 @@
                         <div class="cardexp">
                             <div><label>有效期限</label></div>
                             <div>
-                                <input type="text" maxlength="2" v-model="month">月
-                                <input type="text" maxlength="4" v-model="year">年
+                                <input type="text" maxlength="2" v-model="month">月<input type="text" maxlength="4"
+                                    v-model="year">年
                             </div>
                         </div>
                         <div class="cardsafeno">
@@ -123,7 +127,7 @@
                     <div class="line">
                         <hr>
                     </div>
-                    <div>$.<span id="total">{{totalprice}}</span></div>
+                    <div>$<span id="total">{{totalprice}}</span></div>
                 </div>
                 <!-- 按鈕 -->
                 <div class="bottombutton">

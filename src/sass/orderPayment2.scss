@@ -160,10 +160,29 @@ body {
     margin: 55px auto;
 }
 
-.userpic {
-    max-width: 120px;
+// .userpic {
+//     max-width: 120px;
+//     overflow: hidden;
+//     margin-right: 50px;
+// }
+
+.memimg {
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
     overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
     margin-right: 50px;
+
+     img{
+       max-width: none;
+     width: 100%;
+    height: 100%;
+    
+    object-fit: cover;
+}
 }
 
 .user {
@@ -217,11 +236,14 @@ body {
         width: 100%;
     }
 
-    .userpic {
-        width: 30%;
-        margin: 0 auto;
-    }
+    // .userpic {
+    //     width: 30%;
+    //     margin: 0 auto;
+    // }
 
+    .memimg{
+        margin:0 auto;
+    }
     .user {
         width: 100%;
     }
@@ -273,7 +295,7 @@ body {
     .useraddbottom,
     .usermsgbottom {
         width: 100%;
-        margin-top: 5px;
+        margin-top: 10px;
     }
 }
 
@@ -299,7 +321,7 @@ body {
     display: flex;
     justify-content: space-between;
     font-weight: bold;
-    @include H3;
+    @include H4;
 }
 
 .discountno {
@@ -309,6 +331,7 @@ body {
 
     span {
         margin-right: 10px;
+        @include H4;
     }
 }
 
@@ -366,7 +389,7 @@ body {
 
     .discountno,
     .gamelink {
-        margin: 0 auto;
+        margin: 10px auto;
     }
 
     .discountno {
@@ -430,6 +453,28 @@ body {
     }
 }
 
+@media screen and(max-width:810px){
+    .cardname,
+    .cardno,
+    .cardexp,
+    .cardsafeno {
+         display: block;
+         div {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            align-self: center;
+    
+            &:first-child {
+                width: 100%;
+            }
+    
+            &:last-child {
+                width: 100%;
+            }
+        }
+}
+}
+       
 @media screen and(max-width:576px) {
     .creditcard {
         @include H5;
@@ -445,20 +490,20 @@ body {
         @include H6;
     }
 
-    .cardname,
-    .cardno,
-    .cardexp,
-    .cardsafeno {
-        div {
-            &:first-child {
-                width: 45%;
-            }
+    // .cardname,
+    // .cardno,
+    // .cardexp,
+    // .cardsafeno {
+    //     div {
+    //         &:first-child {
+    //             width: 45%;
+    //         }
 
-            &:last-child {
-                width: 55%;
-            }
-        }
-    }
+    //         &:last-child {
+    //             width: 55%;
+    //         }
+    //     }
+    // }
 }
 
 // 應付金額
@@ -630,7 +675,14 @@ body {
     height: 90vh;
     width: 90%;
     max-width: 600px;
-    margin: 2% auto;
+    // margin: 2% auto;
+    // border-radius: 10px;
+    // background-color: #fff;
+    // box-shadow: 0 0 5px #ddd;
+    margin: 0 auto;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
     border-radius: 10px;
     background-color: #fff;
     box-shadow: 0 0 5px #ddd;
@@ -661,8 +713,13 @@ body {
     justify-content: center;
 
     h5 {
-        @include H5;
+        // @include H5;
+        // margin-top: 20px;
+        font-size: $fontsize_H4;
+        letter-spacing: 5px;
         margin-top: 20px;
+        color: $textColor;
+        font-weight: bold;
     }
 }
 
@@ -720,9 +777,25 @@ body {
 }
 
 .Modal_group_order_done_person_img {
+    // width: 60px;
+    // font-size: 0;
+    // margin-right: 20px;
     width: 60px;
+    height: 60px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 0;
     margin-right: 20px;
+    border-radius: 50%;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        max-width: none;
+    }
 }
 
 .Modal_group_order_done_person_name {
@@ -907,4 +980,49 @@ body {
         }
     }
 
+}
+
+
+// 應付金額
+.money{
+    width:90%;
+    margin:100px auto;
+    display: flex;
+    justify-content: space-between;
+    div{
+        font-size: $fontsize_H3;
+        font-weight: bold;
+        color:$textColor;
+    }
+}
+
+@media screen and(max-width:768px) {
+    div{
+        font-size: $fontsize_H4;
+    } 
+}
+@media screen and(max-width:576px) {
+    .money{
+        margin:50px auto;
+    }
+}
+
+@media screen and(max-width:376px) {
+    .money{
+        div{
+            font-size: $fontsize_H4;
+        }
+    }
+}
+.line{
+    width:60%;
+    hr{
+        border: none;
+        border-bottom: 1px dashed #383232;
+    }
+}
+@media screen and(max-width:576px) {
+    .line{
+        width:40%;
+    }
 }

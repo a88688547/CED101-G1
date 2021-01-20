@@ -44,7 +44,7 @@ Vue.component('top', {
             },
 
             get_mem_info(data) {
-                this.memberInfo = data
+                this.mem_info = data
                 this.mem_no = data.mem_no
             },
             get_ord_item: async function () {

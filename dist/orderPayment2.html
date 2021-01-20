@@ -29,7 +29,7 @@
             <div class="main">
                 <!-- 個人訂購資訊 -->
                 <div class="userinfo">
-                    <div class="userpic"><img :src="mem_info.mem_img"></div>
+                    <div class="memimg"><img :src="mem_info.mem_img"></div>
                     <div class="user">
                         <div class="username">{{mem_info.mem_name}}</div>
                         <div class="userphone">
@@ -79,7 +79,7 @@
                     </div>
                     <div class="discountbottom">
                         <div>商品X<span>{{totalcup}}</span></div>
-                        <div>小計$.<span>{{totalprice}}</span></div>
+                        <div>小計$<span>{{totalprice}}</span></div>
                     </div>
                 </div>
                 <!-- 信用卡 -->
@@ -181,25 +181,25 @@
                                     </div>
                                 </div>
                                 <!-- 個人購買資訊 -->
-                                <div class="modalinfo">
+                                <!-- <div class="modalinfo">
                                     <div class="modalcard">
                                         <div>信用卡卡號</div>
                                         <div>{{cardno}}</div>
                                     </div>
                                     <div class="modaladd">
                                         <div>取貨地點</div>
-                                        <div>{{info_address}}</div>
-                                        <input type="hidden" :value="info_address" name="info_address">
-                                        <input type="hidden" :value="info_note" name="info_note">
-                                        <input type="hidden" :value="info_phone" name="info_phone">
-                                    </div>
+                                        <div>{{info_address}}</div> -->
+                                <input type="hidden" :value="info_address" name="info_address">
+                                <input type="hidden" :value="info_note" name="info_note">
+                                <input type="hidden" :value="info_phone" name="info_phone">
+                                <!-- </div>
                                     <div class="modaldis">
                                         <div>折扣代碼</div>
                                         <div>
                                             <span v-if='this.cou_discount === "" '>未使用折價券</span>
-                                            <span v-else>{{cou_code}}已使用</span>
-                                            <input type="hidden" :value="cou_no" name="cou_no">
-                                        </div>
+                                            <span v-else>{{cou_code}}已使用</span> -->
+                                <input type="hidden" :value="cou_no" name="cou_no">
+                                <!-- </div>
                                     </div>
                                     <div class="modalcount">
                                         <div>
@@ -208,10 +208,10 @@
                                         <div>
                                             小計$.<span>{{totalprice}}</span>
                                         </div>
-                                    </div>
-                                </div>
+                                    </div> -->
+                                <!-- </div> -->
                                 <!-- 結帳金額 -->
-                                <div class="finaltotal">
+                                <!-- <div class="finaltotal">
                                     <div class="group_order_done_total_box">
                                         <div class="group_order_done_total">
                                             <div>原價</div>
@@ -219,30 +219,37 @@
                                         </div>
                                         <div class="group_order_done_dis">
                                             <div>杯數折扣</div>
-                                            <div>x {{cup_dis}}</div>
-                                            <input type="hidden" :value="cup_dis" name="cup_dis">
-                                        </div>
+                                            <div>x {{cup_dis}}</div> -->
+                                <input type="hidden" :value="cup_dis" name="cup_dis">
+                                <!-- </div>
                                         <div class="group_order_done_total">
                                             <div>杯數折扣後</div>
-                                            <div>${{discuptotal}}</div>
-                                            <input type="hidden" :value="discuptotal" name="discuptotal">
-                                        </div>
+                                            <div>${{discuptotal}}</div> -->
+                                <input type="hidden" :value="discuptotal" name="discuptotal">
+                                <!-- </div>
                                         <div class="group_order_done_dis">
                                             <div>優惠卷折扣</div>
                                             <div v-if='this.cou_discount === "" '>x 1</div>
-                                            <div v-else>x {{cou_discount}}</div>
-                                            <input type="hidden" :value="cou_discount" name="cou_discount">
-                                        </div>
+                                            <div v-else>x {{cou_discount}}</div> -->
+                                <input type="hidden" :value="cou_discount" name="cou_discount">
+                                <!-- </div>
                                         <div class="group_order_done_total">
                                             <div>優惠卷折扣後</div>
-                                            <div>${{discoutotal}}</div>
-                                            <input type="hidden" :value="discoutotal" name="discoutotal">
-                                        </div>
+                                            <div>${{discoutotal}}</div> -->
+                                <input type="hidden" :value="discoutotal" name="discoutotal">
+                                <!-- </div>
                                         <div class="group_order_done_finaltotal">
                                             <div>總金額</div>
                                             <div>${{discoutotal}}</div>
-                                        </div>
+                                        </div> -->
+                                <!-- </div> -->
+                                <!-- </div> -->
+                                <div class="money">
+                                    <div>應付金額</div>
+                                    <div class="line">
+                                        <hr>
                                     </div>
+                                    <div>$<span id="total">{{discoutotal}}</span></div>
                                 </div>
                                 <!-- 按鈕 -->
                                 <div class="modalbtn">

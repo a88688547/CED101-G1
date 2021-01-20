@@ -1,0 +1,468 @@
+@import './base/base.scss';
+@import './mixins/font_size.scss';
+@import './base/color.scss';
+@import './mixins/button.scss';
+
+$mq575: 575px;
+$mq767: 767px;
+$mq991: 991px;
+$mq1199: 1199px;
+
+body {
+    background: $insideBackgroundColor;
+}
+
+#replace {
+    display: none;
+    text-align: center;
+    width: 100%;
+
+    p {
+        width: 300px;
+        margin: auto;
+        padding: 15px;
+        font-size: large;
+        word-wrap: break-word;
+        color: $textColor;
+        line-height: 1.6;
+        font-weight: bold;
+        font-size: 2rem;
+    }
+}
+
+.rule {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(204, 204, 204, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 5;
+
+    .rule-wrap {
+        position: relative;
+        width: 600px;
+        box-shadow: 3px 3px 5px 2px rgba($color: #000000, $alpha: 0.2);
+        padding: 30px;
+        background-color: #013b4f;
+        border-radius: 15px;
+        display: flex;
+        flex-direction: column;
+
+        h2 {
+            font-weight: bold;
+            font-size: $fontsize_H2;
+            color: $btnColor;
+            text-align: center;
+            margin: 15px 0;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #b3925b;
+        }
+
+        p {
+            margin: 5px 0 !important;
+            font-size: $fontsize_H4;
+            line-height: 1.6;
+            color: white;
+        }
+
+        button {
+            font-size: $fontsize_H4;
+            border-radius: 20px;
+            background-color: $btnColor;
+            margin: 15px auto 0;
+            transition: 0.2s ease-in-out;
+            border: none;
+            cursor: pointer;
+
+            p {
+                padding: 5px;
+            }
+
+            &:focus {
+                outline: none;
+            }
+
+            &:hover {
+                background-color: #be8316;
+            }
+        }
+
+        p:nth-child(5) {
+            color: #be8316;
+            font-weight: bold;
+        }
+    }
+}
+
+section {
+    width: 100%;
+    // margin-top: 100px;
+    margin-bottom: 100px;
+    display: flex;
+    justify-content: center;
+
+    form {
+        width: 1200px;
+        padding: 15px;
+        margin: 0 auto;
+    }
+}
+
+.select-container {
+    display: flex;
+    margin-bottom: 50px;
+
+    .left {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        // align-items: flex-start;
+        align-items: center;
+        margin-left: 50px;
+
+        h2 {
+            font-size: $fontsize_H2;
+            color: $textColor;
+            font-weight: bold;
+            margin-bottom: 50px;
+            letter-spacing: 1.5rem;
+        }
+
+        .select-char {
+            width: 275px;
+            height: 275px;
+            margin-bottom: 80px;
+
+            img {
+                width: 125px;
+                transform: translate(40%, 0%);
+            }
+        }
+
+        .ability-wrap {
+            width: 250px;
+            height: 250px;
+            position: relative;
+
+            &::before,
+            &::after {
+                content: '';
+                position: absolute;
+                display: block;
+            }
+
+            .speed,
+            .accuracy,
+            .hp {
+                position: absolute;
+                font-size: $fontsize_H3;
+                font-weight: bold;
+                color: $textColor;
+            }
+
+            .speed {
+                top: -30px;
+                left: 50%;
+                transform: translateX(-50%);
+                letter-spacing: 3px;
+            }
+
+            .accuracy {
+                bottom: 15px;
+                left: -45px;
+            }
+
+            .hp {
+                bottom: 15px;
+                right: -45px;
+            }
+        }
+
+        .peacup {
+            &::before {
+                top: 0;
+                left: 0;
+                border-bottom: 200px solid $textColor;
+                border-left: 120px solid transparent;
+                border-right: 120px solid transparent;
+                background-color: $insideBackgroundColor;
+            }
+
+            &::after {
+                top: 50%;
+                left: 50%;
+                transform: translate(-55%, -55%);
+                border-bottom: 100px solid $mainBackgroundColor;
+                border-left: 60px solid transparent;
+                border-right: 60px solid transparent;
+            }
+        }
+
+        .peacap {
+            &::before {
+                top: 0;
+                left: 0;
+                border-bottom: 200px solid $textColor;
+                border-left: 120px solid transparent;
+                border-right: 120px solid transparent;
+                background-color: $insideBackgroundColor;
+            }
+
+            &::after {
+                top: 50%;
+                left: 50%;
+                transform: translate(-60%, -60%);
+                border-bottom: 110px solid $mainBackgroundColor;
+                border-left: 60px solid transparent;
+                border-right: 50px solid transparent;
+            }
+        }
+
+        .peamug {
+            &::before {
+                top: 0;
+                left: 0;
+                border-bottom: 200px solid $textColor;
+                border-left: 120px solid transparent;
+                border-right: 120px solid transparent;
+                background-color: $insideBackgroundColor;
+            }
+
+            &::after {
+                top: 50%;
+                left: 50%;
+                transform: translate(-57%, -57%);
+                border-bottom: 105px solid $mainBackgroundColor;
+                border-left: 60px solid transparent;
+                border-right: 55px solid transparent;
+            }
+        }
+
+        .redcup {
+            &::before {
+                top: 0;
+                left: 0;
+                border-bottom: 200px solid $textColor;
+                border-left: 120px solid transparent;
+                border-right: 120px solid transparent;
+                background-color: $insideBackgroundColor;
+            }
+
+            &::after {
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -45%);
+                border-bottom: 95px solid $mainBackgroundColor;
+                border-left: 60px solid transparent;
+                border-right: 75px solid transparent;
+            }
+        }
+
+        .redcap {
+            &::before {
+                top: 0;
+                left: 0;
+                border-bottom: 200px solid $textColor;
+                border-left: 120px solid transparent;
+                border-right: 120px solid transparent;
+                background-color: $insideBackgroundColor;
+            }
+
+            &::after {
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -45%);
+                border-bottom: 100px solid $mainBackgroundColor;
+                border-left: 60px solid transparent;
+                border-right: 75px solid transparent;
+            }
+        }
+
+        .redmug {
+            &::before {
+                top: 0;
+                left: 0;
+                border-bottom: 200px solid $textColor;
+                border-left: 120px solid transparent;
+                border-right: 120px solid transparent;
+                background-color: $insideBackgroundColor;
+            }
+
+            &::after {
+                top: 50%;
+                left: 50%;
+                transform: translate(-47%, -40%);
+                border-bottom: 95px solid $mainBackgroundColor;
+                border-left: 60px solid transparent;
+                border-right: 85px solid transparent;
+            }
+        }
+
+        .tancup {
+            &::before {
+                top: 0;
+                left: 0;
+                border-bottom: 200px solid $textColor;
+                border-left: 120px solid transparent;
+                border-right: 120px solid transparent;
+                background-color: $insideBackgroundColor;
+            }
+
+            &::after {
+                top: 50%;
+                left: 50%;
+                transform: translate(-78%, -67%);
+                border-bottom: 130px solid $mainBackgroundColor;
+                border-left: 60px solid transparent;
+                border-right: 25px solid transparent;
+            }
+        }
+
+        .tancap {
+            &::before {
+                top: 0;
+                left: 0;
+                border-bottom: 200px solid $textColor;
+                border-left: 120px solid transparent;
+                border-right: 120px solid transparent;
+                background-color: $insideBackgroundColor;
+            }
+
+            &::after {
+                top: 50%;
+                left: 50%;
+                transform: translate(-65%, -65%);
+                border-bottom: 115px solid $mainBackgroundColor;
+                border-left: 60px solid transparent;
+                border-right: 45px solid transparent;
+            }
+        }
+
+        .tanmug {
+            &::before {
+                top: 0;
+                left: 0;
+                border-bottom: 200px solid $textColor;
+                border-left: 120px solid transparent;
+                border-right: 120px solid transparent;
+                background-color: $insideBackgroundColor;
+            }
+
+            &::after {
+                top: 50%;
+                left: 50%;
+                transform: translate(-70%, -65%);
+                border-bottom: 125px solid $mainBackgroundColor;
+                border-left: 60px solid transparent;
+                border-right: 35px solid transparent;
+            }
+        }
+    }
+
+    .right {
+        width: 50%;
+        margin-top: 6%;
+
+        .select-item-wrap {
+            width: 100%;
+            height: 275px;
+
+            .item-title {
+                margin-bottom: 20px;
+
+                h2 {
+                    @include H4;
+                    color: $textColor;
+                    font-weight: bold;
+                    // letter-spacing: 3px;
+                }
+            }
+
+            .item-wrap {
+                padding: 5px;
+                display: flex;
+                width: 100%;
+                background-color: $textColor;
+                border-radius: 10px;
+
+                .item {
+                    width: 33%;
+                    height: 150px;
+                    background-color: $insideBackgroundColor;
+                    margin: 5px;
+                    padding: 10px;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    text-align: center;
+
+                    &:hover{
+                        opacity: 0.6;
+                        transition: 0.5s ease-in-out;
+                    }
+
+                    input {
+                        display: none;
+                    }
+
+                    img {
+                        height: 100%;
+
+                        &:hover{
+                            transform: translateY(-5%);
+                            transition: 0.25s ease-in-out;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.button-submit {
+    text-align: center;
+
+    button {
+        cursor: pointer;
+        font-size: $fontsize_H3;
+        border: none;
+        padding: 10px 15px;
+        transition: 0.5s ease-in-out;
+        border-radius: 20px;
+        background-color: $textColor;
+
+        a {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        &:hover {
+            background-color: #aaa;
+        }
+
+        &:focus {
+            outline: none;
+        }
+    }
+}
+
+@media screen and (max-width: 991px) {
+    #section {
+        display: none;
+    }
+
+    .select-container {
+        display: none;
+    }
+
+    .rule {
+        display: none;
+    }
+
+    #replace {
+        display: block;
+    }
+}

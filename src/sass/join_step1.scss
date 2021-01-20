@@ -283,12 +283,13 @@ body{
         color: #013B4F;
         &:first-child{
           width: 40%;
+          font-weight: bold;
         }
         &:last-child{
           width: 60%;
         }
         font-size: $fontsize_H4;
-        font-weight: bold;
+        
       }
       &:last-child{
         display: flex;

@@ -15,6 +15,7 @@ main {
 // 側邊 tag切換列表
 aside {
     margin-bottom: 40px !important;
+    flex-shrink: 0;
 }
 
 .tag_big {
@@ -605,6 +606,11 @@ aside {
     justify-content: center;
     align-items: center;
     margin-top: 20px;
+    cursor: pointer;
+    opacity: 0.6;
+    &:hover {
+        opacity: 1;
+    }
 }
 
 #getitem_btn {
@@ -762,334 +768,6 @@ aside {
             // width: 40%;
             margin-right: 30px;
         }
-    }
-}
-
-// 發文紀錄
-.article_box {
-    // display: none;
-}
-
-.cancel_img {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 30px;
-}
-
-.article_list {
-    width: 100%;
-    // margin-top: 25px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-.s2_hotitem {
-    position: relative;
-    display: block;
-    width: 350px;
-    // height: 315px;
-    border-radius: 10px;
-    overflow: hidden;
-    margin: 0 12.5px 12.5px 12.5px;
-    text-decoration: none;
-}
-
-.hotimg {
-    font-size: 0px;
-}
-
-.hotinfo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #fff;
-    padding: 0 13px;
-}
-
-.memimg {
-    border-radius: 50%;
-    width: 80px;
-    margin-right: 18px;
-    font-size: 0;
-}
-
-.hotright {
-    width: 100%;
-    padding: 11px 0px 20px 0px;
-}
-
-.texttime {
-    display: flex;
-    justify-content: flex-end;
-    font-size: 8px;
-    color: rgba($color: #000000, $alpha: 0.5);
-}
-
-.hotdetail {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.memname {
-    font-size: $fontsize_H5;
-    color: #000000;
-}
-
-.hotcount {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    margin: 11px 0 16px 0;
-}
-
-.hotcount > div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.hotcount > div {
-    margin: 0 0 0 8px;
-}
-
-.hot_icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-right: 3px;
-}
-
-.hot_num {
-    font-size: $fontsize_P3;
-    color: #000000;
-}
-
-.hot_text {
-    font-size: $fontsize_P2;
-    color: rgba($color: #000000, $alpha: 0.6);
-    letter-spacing: 2px;
-    line-height: 1.5;
-}
-@media (max-width: 1200px) {
-    .article_list {
-        justify-content: center;
-    }
-}
-
-// 文章詳情
-
-.section_6 {
-    height: 90vh;
-    width: 90%;
-    max-width: 900px;
-    margin: auto auto;
-    // border-radius: 15px;
-    // overflow: hidden;
-    background-color: #fff;
-    overflow-y: auto;
-}
-
-//  第六區 -- 大圖片
-
-.article_img_big {
-    position: relative;
-    margin: 0 auto;
-    font-size: 0;
-    // z-index: -1;
-}
-
-#close_btn {
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin: 20px;
-    border-radius: 50%;
-    width: 25px;
-    font-size: 0;
-    overflow: hidden;
-    border: 1px solid red;
-}
-
-.article_down {
-    // background-color: #fff;
-    // padding: 52px 80px;
-    width: 90%;
-    max-width: 750px;
-    margin: 0 auto 20px auto;
-    padding: 52px 0;
-}
-
-//  第六區 -- 發文者資訊
-
-.article_info_box {
-    // align-self: stretch;
-    display: flex;
-    flex-direction: column;
-    // justify-content: space-around;
-    // width: calc(1200px - 396px);
-    // padding: 20px 29px 20px 62px;
-}
-
-//  第六區 -- 留言
-
-.mseeage_box {
-    margin: 0 auto 50px auto;
-    width: 90%;
-    max-width: 750px;
-}
-
-.msg_mem {
-    display: flex;
-    border: 1px solid black;
-    border-radius: 10px;
-    padding: 20px 30px;
-    margin-bottom: 15px;
-    justify-content: space-between;
-    flex-direction: column;
-}
-.msg_mem > div {
-    margin: 5px 0;
-}
-
-.msg_text_box {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    // width: 80%;
-}
-.msg_memimg {
-    margin-right: 5%;
-    font-size: 0;
-}
-.msg_memname {
-    @include H4;
-    margin-bottom: 3%;
-    font-weight: bold;
-}
-.msg_memmsg {
-    @include H6;
-}
-
-.msg_info {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    margin-top: 20px !important;
-}
-
-.msg_time {
-    //  text-align: center;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    @include P2;
-    color: rgba($color: #000000, $alpha: 0.5);
-}
-.msg_action {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    @include P1;
-    cursor: pointer;
-    opacity: 0.6;
-    &:hover {
-        opacity: 1;
-    }
-}
-
-@media (max-width: 768px) {
-    .msg_mem {
-        padding: 10px 15px;
-    }
-
-    .msg_memimg {
-        width: 76px;
-    }
-    .msg_memname {
-        letter-spacing: 2px;
-        font-size: 16px;
-    }
-}
-
-//  第六區 -- 發表留言
-
-.comment_box {
-    position: relative;
-    width: 85%;
-    max-width: 750px;
-    margin: 0 auto;
-}
-
-.comment_title_box {
-    display: flex;
-    // justify-content: center;
-    align-items: center;
-}
-
-.pen_img {
-    margin-right: 5px;
-}
-
-.comment_title {
-    @include H3;
-    font-weight: bold;
-    color: $textColor;
-}
-
-#comment {
-    // width: 100%;
-    // height: 200px;
-    margin: 20px 0 100px 0;
-}
-
-.sendbtn {
-    // position: relative;
-    position: absolute;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    bottom: 25px;
-    right: 0;
-    // left: 0;
-    background-color: $textColor;
-    border-radius: 10px;
-    overflow: hidden;
-    padding: 5px 10px;
-}
-
-.sendbtn_img {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-right: 10px;
-}
-
-.sendbtn_text {
-    @include H3;
-    color: #fff;
-}
-@media (max-width: 768px) {
-    .article_down {
-        padding: 26px;
-    }
-
-    .sendbtn {
-        right: 50%;
-        transform: translate(50%, 0);
-    }
-}
-@media (max-width: 576px) {
-    .article_memimg {
-        margin-right: 10px;
-    }
-    .article_down {
-        padding: 10px;
     }
 }
 
@@ -1284,5 +962,1058 @@ aside {
                 }
             }
         }
+    }
+}
+
+// ----  發文紀錄  從分享區偷來全部sass  ----
+
+// 第一區
+
+.section_1 {
+    color: $textColor;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.s1_title {
+    font-weight: bold;
+    line-height: 1.5;
+    @include H2;
+}
+
+.s1_text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 27px;
+    line-height: 1.5;
+    @include H4;
+    letter-spacing: 2px;
+
+    div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    img {
+        margin-right: 20px;
+    }
+}
+
+// 第二區
+
+// .section_2 {
+//   // margin-top: 69px;
+// }
+
+.tag_box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+// 第二區 - 標題
+.s2_title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: $fontsize_H3;
+    font-weight: bold;
+    color: $textColor;
+    letter-spacing: 2px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+
+    img {
+        margin-right: 20px;
+    }
+}
+
+// 第二區 - 文章
+
+.s2_hotitem_box {
+    width: 100%;
+    // margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.s2_hotitem {
+    display: block;
+    width: 350px;
+    // height: 315px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 0 12.5px 12.5px 12.5px;
+    text-decoration: none;
+}
+
+.hotimg {
+    font-size: 0px;
+    width: 100%;
+    height: 233px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+        max-width: none;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+.hotinfo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    padding: 0 13px;
+}
+
+.memimg {
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 18px;
+    font-size: 0;
+
+    img {
+        max-width: none;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+.hotright {
+    width: calc(100% - 80px);
+    padding: 11px 0px 20px 0px;
+}
+
+.texttime {
+    display: flex;
+    justify-content: flex-end;
+    @include P3;
+    font-size: 8px;
+}
+
+.hotdetail {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.memname {
+    @include H5;
+    letter-spacing: 1px;
+}
+
+.hotcount {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 11px 0 16px 0;
+}
+
+.hotcount > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hotcount > div {
+    margin: 0 0 0 8px;
+}
+
+.hot_icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 3px;
+}
+
+.hot_num {
+    font-size: $fontsize_P3;
+    color: #000000;
+}
+
+.hot_text {
+    @include P2;
+}
+
+// 第三區 篩選列表
+.section_3 {
+    // margin-top: 170px;
+    margin: 50px 0 20px 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+
+    > div {
+        margin: 10px 0;
+    }
+}
+
+.show_article_btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.show_img {
+    margin-right: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.show_text {
+    @include H3;
+    font-weight: bold;
+    color: $textColor;
+    letter-spacing: 2px;
+    line-height: 1.5;
+}
+
+.filter_big_box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    div:first-child {
+        margin-right: 20px;
+    }
+}
+
+.type_box,
+.filter_box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    label {
+        margin-right: 5px;
+        @include H4;
+        color: $btnColor;
+        font-weight: bold;
+    }
+}
+
+.write_article_btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background-color: $textColor;
+    border-radius: 8px;
+    overflow: hidden;
+    width: 116px;
+    height: 36px;
+}
+
+.write_img {
+    width: 23px;
+    margin-right: 17px;
+}
+
+.write_text {
+    letter-spacing: 2px;
+    line-height: 1.5;
+    font-weight: bold;
+    color: #fff;
+    font-size: $fontsize_H4;
+}
+
+//第四區 - 文章列表
+
+.section_4 {
+    margin-top: 51px;
+}
+
+.article_item {
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    border-radius: 15px;
+    overflow: hidden;
+    margin: 0 auto;
+    margin-bottom: 25px;
+}
+
+.article_img {
+    font-size: 0;
+    width: 30%;
+    flex-shrink: 0;
+    min-width: 396px;
+
+    @media screen and (min-width: 993px) {
+        height: 269px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    img {
+        @media screen and (min-width: 993px) {
+            width: 100%;
+            max-width: none;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @media screen and (max-width: 992px) {
+            // height: auto;
+            width: 100%;
+        }
+    }
+}
+
+.article_right {
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    // justify-content: space-around;
+    // width: calc(1200px - 396px);
+    width: 100%;
+    padding: 10px 25px;
+    background-color: #fff;
+    flex-shrink: 1;
+
+    @media (max-width: 1200px) {
+        // height: auto;
+        padding: 5px 10px 5px 10px;
+    }
+}
+
+.article_info {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 0;
+
+    @media (max-width: 1200px) {
+        margin: 4px 0;
+    }
+}
+
+.article_info_left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @include P1;
+}
+
+.article_memimg {
+    width: 76px;
+    height: 76px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-size: 0;
+    margin-right: 35px;
+
+    img {
+        max-width: none;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+.article_memname {
+    font-size: $fontsize_H3;
+    color: $textColor;
+}
+
+.article_time {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    @include P3;
+
+    margin: 5px 0;
+
+    @media (max-width: 1200px) {
+        margin: 2px 0;
+    }
+}
+
+.article_detail {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 5px 0;
+
+    @media (max-width: 1200px) {
+        margin: 4px 0;
+    }
+}
+
+.article_title {
+    font-size: $fontsize_H5;
+    font-weight: bold;
+    color: $textColor;
+    letter-spacing: 2px;
+    line-height: 1.5;
+}
+
+.article_count {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 5px 0;
+    @include P1;
+
+    @media (max-width: 1200px) {
+        margin: 4px 0;
+    }
+
+    > div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 20px;
+    }
+}
+
+.article_icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 5px;
+    flex-shrink: 0;
+}
+
+.article_num {
+    @include P3;
+    letter-spacing: 0px;
+}
+
+.article_text {
+    font-size: $fontsize_P1;
+    color: rgba($color: #000000, $alpha: 0.6);
+    letter-spacing: 2px;
+    line-height: 1.5;
+    margin: 5px 0;
+
+    @media (max-width: 1200px) {
+        margin: 4px 0;
+    }
+}
+
+.like_btn {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    @include H6;
+    color: $textColor;
+
+    > div {
+        display: flex;
+        cursor: pointer;
+        align-items: center;
+
+        img {
+            width: 21px;
+            height: 19px;
+        }
+    }
+
+    #art_report {
+        @include H6;
+        margin-left: 20px;
+        position: relative;
+
+        &::before {
+            content: '';
+            position: absolute;
+            width: 1px;
+            height: 22px;
+            background-color: black;
+            left: 0;
+            transform: translateX(-11px);
+        }
+    }
+}
+
+.like_img {
+    font-size: 0;
+    margin-right: 10px;
+}
+
+@media (max-width: 992px) {
+    main {
+        width: 70%;
+    }
+
+    .article_item {
+        flex-direction: column;
+    }
+
+    .article_img {
+        width: 100%;
+    }
+
+    .article_right {
+        order: 0;
+        padding: 10px 20px;
+    }
+
+    .article_count {
+        margin: 2.5px 0;
+    }
+}
+
+@media (max-width: 768px) {
+    main {
+        width: 80%;
+    }
+}
+
+@media (max-width: 576px) {
+    main {
+        width: 95%;
+    }
+}
+
+//第五區 分頁
+
+.section_5 {
+    margin: 20px auto;
+
+    ul {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        #leftRow {
+            transform: rotateY(180deg);
+        }
+
+        li {
+            border-radius: 50%;
+            width: 24px;
+        }
+
+        * {
+            margin: 0 7px;
+            cursor: pointer;
+            font-size: $fontsize_H3;
+            color: $textColor;
+            opacity: 0.6;
+
+            text-align: center;
+        }
+
+        *:hover {
+            opacity: 1;
+        }
+
+        .active {
+            background-color: $btnColor;
+            color: white;
+        }
+    }
+}
+
+// 第六區 -- 文章詳情
+
+.article_box {
+    width: 100%;
+    height: 100%;
+    background-color: rgba($color: #000000, $alpha: 0.7);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99;
+    padding: 20px 0;
+    display: flex;
+    // display: none;
+    justify-content: center;
+    align-items: center;
+
+    .section_6 {
+        max-height: 90vh;
+        width: 90%;
+        max-width: 900px;
+        overflow: hidden;
+        background-color: #fff;
+        overflow-y: auto;
+
+        //  第六區 -- 大圖片
+        .article_img_big {
+            position: relative;
+            margin: 0 auto;
+            font-size: 0;
+            width: 100%;
+
+            > img {
+                width: 100%;
+                max-width: none;
+            }
+
+            #close_btn {
+                position: absolute;
+                top: 0;
+                right: 0;
+                margin: 20px;
+                border-radius: 50%;
+                width: 25px;
+                height: 25px;
+                font-size: 0;
+                cursor: pointer;
+                z-index: 3;
+
+                &::before {
+                    content: '';
+                    z-index: -1;
+                    background-color: white;
+                    position: absolute;
+                    width: 15px;
+                    height: 15px;
+                    top: 50%;
+                    left: 50%;
+                    transform: translateX(-50%) translateY(-50%);
+                }
+            }
+        }
+
+        .article_down {
+            width: 90%;
+            max-width: 750px;
+            margin: 0 auto 20px auto;
+            padding: 52px 0;
+
+            @media screen and (max-width: 768px) {
+                padding: 26px;
+            }
+
+            @media screen and (max-width: 576px) {
+                padding: 10px;
+            }
+
+            .article_info_left {
+                .article_memimg {
+                    width: 76px;
+                    height: 76px;
+                    margin-right: 15px;
+
+                    @media screen and (max-width: 576px) {
+                        width: 76px;
+                        height: 76px;
+                    }
+                }
+
+                .article_memname {
+                    font-size: 21px;
+                }
+            }
+
+            .article_title {
+                font-size: 21px;
+            }
+
+            .article_text {
+                font-size: 16px;
+            }
+        }
+    }
+}
+
+//  第六區 -- 留言
+
+.mseeage_box {
+    margin: 0 auto 50px auto;
+    width: 90%;
+    max-width: 750px;
+}
+
+.msg_mem {
+    display: flex;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 10px 30px;
+    margin-bottom: 15px;
+    justify-content: space-between;
+    flex-direction: column;
+    position: relative;
+}
+
+.msg_mem > div {
+    margin: 5px 0;
+}
+
+.msg_text_box {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    // width: 80%;
+}
+
+.msg_memimg {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 15px;
+    font-size: 0;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        max-width: none;
+    }
+}
+
+.msg_memname {
+    @include H5;
+    font-weight: bold;
+}
+
+.msg_memmsg {
+    @include H6;
+}
+
+.msg_info {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 10px !important;
+}
+
+.msg_time {
+    //  text-align: center;
+    position: absolute;
+    transform: translateX(-30px);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    right: 0;
+    @include P2;
+    color: rgba($color: #000000, $alpha: 0.5);
+
+    @media screen and (max-width: 768px) {
+        transform: translateX(-15px);
+    }
+
+    @media screen and (max-width: 576px) {
+        position: relative;
+        transform: translateX(0px);
+    }
+}
+
+.msg_action {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    @include P1;
+    color: $textColor;
+
+    .msg_report {
+        opacity: 0.6;
+        cursor: pointer;
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .msg_mem {
+        padding: 10px 15px;
+    }
+
+    .msg_memname {
+        letter-spacing: 2px;
+        font-size: 16px;
+    }
+}
+
+//  第六區 -- 發表留言
+
+.comment_box {
+    position: relative;
+    width: 85%;
+    max-width: 750px;
+    margin: 0 auto;
+}
+
+.comment_title_box {
+    display: flex;
+    // justify-content: center;
+    align-items: center;
+}
+
+.pen_img {
+    margin-right: 5px;
+}
+
+.comment_title {
+    @include H3;
+    font-weight: bold;
+    color: $textColor;
+}
+
+#comment {
+    // width: 100%;
+    // height: 200px;
+    margin: 20px 0 100px 0;
+
+    &:focus {
+        border: 1.9px solid black;
+    }
+}
+
+#msg_hint {
+    font-size: 16px;
+    color: $textColor;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    bottom: 76px;
+
+    @media (max-width: 768px) {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+.sendbtn {
+    // position: relative;
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom: 25px;
+    right: 0;
+    // left: 0;
+    background-color: $textColor;
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 5px 10px;
+    cursor: pointer;
+    outline: none;
+}
+
+.sendbtn_img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.sendbtn_text {
+    @include H3;
+    color: #fff;
+}
+
+@media (max-width: 768px) {
+    .sendbtn {
+        right: 50%;
+        bottom: 20px;
+        transform: translate(50%, 0);
+    }
+}
+
+@media (max-width: 576px) {
+    .article_memimg {
+        margin-right: 20px;
+    }
+}
+
+// 第七區 -- 發表文章
+
+.new_article {
+    width: 100%;
+    height: 100%;
+    background-color: rgba($color: #000000, $alpha: 0.7);
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    z-index: 99;
+}
+
+.section_7 {
+    height: 90vh;
+    width: 90%;
+    overflow-y: auto;
+    position: relative;
+    // display: none;
+    // top: 50%;
+    // left: 50%;
+    // transform: translate(-50%,-50%);
+    max-width: 900px;
+    // border-radius: 15px;
+    // overflow: hidden;
+    background-color: #fff;
+    // padding-top: 30px;
+}
+
+.close_img {
+    width: 25px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 0;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.sendimg_box {
+    width: 90%;
+    max-width: 900px;
+    margin: 10px auto;
+    font-size: 0;
+
+    img {
+        max-width: none;
+        width: 100%;
+    }
+}
+
+.publish {
+    text-align: center;
+    @include H2;
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+.sendimgbtn_box {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 10px auto;
+}
+
+@media (max-width: 375px) {
+    .sendimgbtn_box > select {
+        order: 1;
+
+        option {
+            text-align: center;
+        }
+    }
+}
+
+.sendimgbtn_box > select,
+.sendimgbtn_box > div {
+    margin-bottom: 20px;
+}
+
+.sendimgbtn {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: $textColor;
+    color: #fff;
+    width: 160;
+    height: 46px;
+    padding: 5px 20px;
+    border-radius: 15px;
+    overflow: hidden;
+    cursor: pointer;
+
+    #upfile {
+        display: none;
+    }
+
+    &:nth-child(2) {
+        @include H3;
+        letter-spacing: 2px;
+    }
+}
+
+.image_img {
+    width: 36px;
+    height: 27px;
+    font-size: 0;
+    margin-right: 10px;
+}
+
+.set_title {
+    display: block;
+    width: 90%;
+    height: 40px;
+    margin: 10px auto;
+    background-color: #dbdbdb;
+    border: 1.5px solid black;
+    padding: 0 15px;
+    font-size: 16px;
+}
+
+.set_con {
+    display: block;
+    width: 90%;
+    height: 200px;
+    background-color: #dbdbdb;
+    margin: 10px auto;
+    font-size: 16px;
+    padding: 15px;
+    border: 1.5px solid black;
+}
+
+.sendform_btn {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 90%;
+    margin: 0 auto 20px auto;
+}
+
+@media (max-width: 567px) {
+    .sendform_btn {
+        justify-content: center;
+    }
+}
+
+.sendformbtn {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: $textColor;
+    color: #fff;
+    width: 160;
+    height: 46px;
+    padding: 5px 20px;
+    border-radius: 15px;
+    overflow: hidden;
+    outline: none;
+    cursor: pointer;
+
+    &:nth-child(2) {
+        @include H3;
+        letter-spacing: 2px;
     }
 }

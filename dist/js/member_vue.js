@@ -15,7 +15,7 @@ window.addEventListener('load', function () {
               <li id="follow_order_box" @click="changecontent($event)" >跟團紀錄</li>
               <li id="self_order_box" @click="changecontent($event)" >自己訂 | 訂單紀錄</li>
               <li id="coupon_box" @click="changecontent($event)" >優惠券查詢</li>
-              <li id="article_box" @click="changecontent($event)" >發文紀錄</li>
+              <li id="article_list" @click="changecontent($event)" >發文紀錄</li>
           </ul>
           <select name="tag_select" id="tag_select" class="tag_select" v-model="content" @change="changecontentselect($event)">
               <option value="mem_info">會員資料</option>
@@ -23,7 +23,7 @@ window.addEventListener('load', function () {
               <option value="follow_order_box">跟團紀錄</option>
               <option value="self_order_box">自己訂 | 訂單紀錄</option>
               <option value="coupon_box">優惠券查詢</option>
-              <option value="article_box">發文紀錄</option>
+              <option value="article_list">發文紀錄</option>
           </select>
         </aside>
         `,
@@ -1659,45 +1659,144 @@ window.addEventListener('load', function () {
     //-----------------------------------------------------
 
     // --- 發文紀錄  ---
-    Vue.component('article_box', {
+    Vue.component('article_list', {
         data() {
-            return {}
+            return {
+                show: false, //是否開啟文章燈箱
+                showNewArticleBox: false, //是否開啟投稿文章燈箱
+                theClickArtNo: '', //被點擊的文章編號
+                parentAlert: false,
+                alertText: '',
+                allArticle: [], //全部文章
+                selected: 'art_time', //篩選排序
+                anotherAllArticle: [],
+                pagination: {
+                    currentPage: '',
+                    pageTotal: '',
+                    per_page: '',
+                    totalResult: '',
+                },
+                selectedArticle: [],
+                theCurrentPage: 1,
+            }
         },
         props: ['mem_no'],
         template: `
-      <section class="article_box content">
-        <div class="tag_title">發文紀錄</div>
-        <div class="article_list">
-            <a class="s2_hotitem" href="#">
-                <div class="cancel_img cancel_btn"><img src="./Images/cancel.svg" /></div>
-                <div class="hotimg"><img src="http://fakeimg.pl/350x213" /></div>
-                <div class="hotinfo">
-                    <div class="memimg"><img src="./Images/user_big.svg" /></div>
-                    <div class="hotright">
-                        <div class="texttime">2020/12/16 17:00</div>
-                        <div class="memname">Yu Lee</div>
-                        <div class="hotcount">
-                            <div>
-                                <div class="hot_icon"><img src="./Images/eyes_small.svg" /></div>
-                                <span class="hot_num">150</span>
+        <section class="section_2">
+            <div class="tag_title">發文紀錄</div>
+            <div class="s2_hotitem_box">
+                <div class="s2_hotitem" v-for="item in anotherAllArticle" :key="item.art_no" @click="clickWhichOne(item)">
+                    <div class="hotimg"><img
+                            :src="item.art_img" />
+                    </div>
+                    <div class="hotinfo">
+                        <div class="memimg"><img :src="item.mem_img" /></div>
+                        <div class="hotright">
+                            <div class="texttime">{{item.art_time}}</div>
+                            <div class="memname">{{item.mem_name}}</div>
+                            <div class="hotcount">
+                                <div>
+                                    <div class="hot_icon"><img src="./Images/eyes_small.svg" /></div>
+                                    <span class="hot_num">{{item.art_look_count}}</span>
+                                </div>
+                                <div>
+                                    <div class="hot_icon"><img src="./Images/message_small.svg" /></div>
+                                    <span class="hot_num">{{item.art_msg_count}}</span>
+                                </div>
+                                <div>
+                                    <div class="hot_icon"><img src="./Images/like_small.svg" /></div>
+                                    <span class="hot_num">{{item.art_like_count}}</span>
+                                </div>
                             </div>
-                            <div>
-                                <div class="hot_icon"><img src="./Images/message_small.svg" /></div>
-                                <span class="hot_num">8</span>
-                            </div>
-                            <div>
-                                <div class="hot_icon"><img src="./Images/like_small.svg" /></div>
-                                <span class="hot_num">100</span>
-                            </div>
+                            <div class="hot_text">{{showWords(item.art_name,"art_name")}}</div>
                         </div>
-                        <div class="hot_text">一二三四五六七八九十一二三四五六...七八九十</div>
                     </div>
                 </div>
-            </a>
-        </div>
-      </section>
-`,
-        methods: {},
+            </div>
+            <!-- 文章詳情 -->
+            <article_box :item="theClickArtNo" v-if="show" @childCloseArtBox="parentCloseArtBox" :mem_no="mem_no"></article_box>
+            <!-- 警示視窗 -->
+            <alert_lightbox :parentAlert_ = "parentAlert" :_alertText="alertText" @childSendCloseAlert="parentGetCloseAlert"></alert_lightbox>
+          
+        </section>`,
+        methods: {
+            //撈出所有 該會員發出的文章
+            get_article: async function () {
+                const res = await fetch('./php/mem_getone_article.php', {
+                    method: 'POST',
+                    mode: 'same-origin',
+                    credentials: 'same-origin',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        mem_no: this.mem_no,
+                    }),
+                }).then(function (data) {
+                    return data.json()
+                })
+                // 取回res值後，呼叫另一隻函式
+                this.anotherAllArticle = res
+            },
+
+            //文章內容顯示個字
+            showWords(data, name_or_intro) {
+                let theShowWords
+
+                let showHowManyWords = name_or_intro == 'art_intro' ? 50 : 15
+                if (data.length <= showHowManyWords) {
+                    theShowWords = data
+                } else {
+                    theShowWords = data.substr(0, showHowManyWords) + '...'
+                }
+                return theShowWords
+            },
+
+            //點擊文章後，theClickArt存放被點擊的文章資料，並開啟文章燈箱
+            clickWhichOne: async function (item) {
+                console.log('in')
+                if (this.mem_no === undefined) {
+                    this.parentAlert = true
+                    this.alertText = '請登入會員'
+                } else {
+                    console.log('22')
+                    this.theClickArtNo = item.art_no
+                    await fetch('php/postLookArt.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            art_no: item.art_no,
+                        }),
+                    })
+                    this.show = true
+                }
+            },
+
+            parentGetCloseAlert() {
+                this.parentAlert = false
+            },
+            parentCloseArtBox() {
+                this.get_article()
+                this.show = false
+            },
+            parentCloseNewArtBox() {
+                this.get_article()
+                this.showNewArticleBox = false
+            },
+            openNewArticleBox() {
+                if (this.mem_no === undefined) {
+                    this.parentAlert = true
+                    this.alertText = '請登入會員'
+                } else {
+                    this.showNewArticleBox = true
+                }
+            },
+        },
+        created() {
+            this.get_article()
+        },
     })
     //-----------------------------------------------------
 
@@ -1948,14 +2047,13 @@ window.addEventListener('load', function () {
             <!-- childSendCloseAlert為警示內點擊確認或關閉時，會往上傳遞並接收的事件，接收後呼叫parentGetCloseAlert這個方法 -->
             <alert_lightbox :parentAlert_ = "parentAlert" :_alertText="alertText" @childSendCloseAlert="parentGetCloseAlert"></alert_lightbox>
 
-
             <report_lightbox :parentReport_ = "parentReport" :reportData_="reportData" @childSendCloseReport="parentGetCloseReport"></report_lightbox>
         </section>
     </div>
     `,
     })
 
-    //警示視窗
+    // 警示視窗(檢視文章的)
     Vue.component('alert_lightbox', {
         //接收來自上層是"否開啟警示視窗"及"視窗內文字"的參數
         props: ['parentAlert_', '_alertText'],
@@ -2075,7 +2173,7 @@ window.addEventListener('load', function () {
             <div class="alertLightbox" >
                 <div>檢舉原因</div>
                 <ul>
-                    <li v-for="(value,key) in reportReason"> 
+                    <li v-for="(value,key) in reportReason">
                     <input type="radio" name="reason" :id="key" v-model="reasonText" :value="value" @change="noChoose = false">
                     <label :for="key">{{value}}</label>
                     </li>
@@ -2088,131 +2186,8 @@ window.addEventListener('load', function () {
     `,
     })
 
-    //撰寫文章
-    Vue.component('new_article', {
-        props: ['mem_no'],
-        data() {
-            return {
-                art_name: '',
-                art_intro: '',
-                parentAlert: false,
-                alertText: '',
-                art_img: '',
-                upLoadImgOk: false, //是否有上傳圖片
-            }
-        },
-        methods: {
-            parentGetCloseAlert(status) {
-                if (status === 'toDo') {
-                    this.postArt()
-                }
-                this.parentAlert = false
-            },
-            checkToPostArt() {
-                if (!this.upLoadImgOk) {
-                    this.parentAlert = true
-                    this.alertText = '請上傳圖片'
-                } else if (!this.art_name || !this.art_intro) {
-                    this.parentAlert = true
-                    this.alertText = '請填寫完整內容'
-                } else {
-                    this.parentAlert = true
-                    this.alertText = '確定要送出?'
-                }
-            },
-            postArt() {
-                let dt = new Date()
-                let now = `${dt.getFullYear()}-${
-                    dt.getMonth() + 1
-                }-${dt.getDate()} ${dt.getHours()}:${dt.getMinutes()}:${dt.getSeconds()}`
-
-                let formData = new FormData()
-                formData.append('upFile', document.getElementById('upfile').files[0])
-                formData.append('mem_no', this.mem_no)
-                formData.append('art_time', now)
-                formData.append('art_name', this.art_name)
-                formData.append('art_intro', this.art_intro)
-
-                //=====ajax
-                let that = this
-                let xhr = new XMLHttpRequest()
-                xhr.onload = function () {
-                    if (xhr.status == 200) {
-                        that.parentAlert = true
-                        that.alertText = '上傳成功'
-
-                        //清空資料
-                        that.art_name = ''
-                        that.art_intro = ''
-                        document.getElementById('art_img').src = './Images/unnamed.png'
-                    } else {
-                        return
-                    }
-                }
-                xhr.open('post', './php/postArt.php')
-                xhr.send(formData)
-            },
-            changeimg(e) {
-                let file = e.target.files
-                reader = new FileReader()
-                reader.readAsDataURL(file[0])
-
-                //取得 上傳照片之檔案格式，以利送出時判斷
-                let img_type = file[0].type.split('/').pop()
-
-                // 確認 上傳照片之格式
-                let array = ['jpg', 'jpeg', 'png', 'svg']
-                if (array.indexOf(img_type) != -1) {
-                    this.upLoadImgOk = true
-                } else {
-                    this.parentAlert = true
-                    this.alertText = '請確認上傳照片之格式 (jpg,jpeg,png,svg)'
-                    return ''
-                }
-
-                //顯示 照片預覽
-                reader.onload = function (event) {
-                    document.getElementById('art_img').src = event.target.result
-                }
-            },
-            closeNewArtBox() {
-                this.$emit('childCloseNewArtBox')
-            },
-        },
-        template: `
-    <div class="new_article">
-        <section class="section_7">
-            <div class="close_img" @click="closeNewArtBox"><img src="Images/close.svg"></div>
-            <div class="publish">發表文章</div>
-            <div class="sendimg_box"><img src="./Images/unnamed.png" id="art_img"></div>
-            <div class="sendimgbtn_box">
-                <label class="sendimgbtn">
-                    <div class="image_img"><img src="./Images/image.svg"></div>
-                    <input type="file" id="upfile" name="upfile" @change="changeimg($event)"/>
-                    <div>上傳封面</div>
-                </label>
-            </div>
-            <input type="text" class="set_title" placeholder="請輸入文章標題限20字" oninput="if(value.length>20) value=value.substr(0,20)" v-model="art_name">
-            <textarea type="textarea" class="set_con" placeholder="請輸入文章內容限100字" oninput="if(value.length>100) value=value.substr(0,100)" v-model="art_intro"></textarea>
-            <div class="sendform_btn">
-                <button class="sendformbtn" id="sendformbtn" @click="checkToPostArt">
-                    <div class="sendbtn_img"><img src="./Images/send.svg"></div>
-                    <div class="sendbtn_text" >送出</div>
-                </button>
-            </div>
-        </section>
-
-        <!-- 警示視窗 -->
-        <!-- parentAlert為是否開啟警示視窗的變數，往下層傳遞 -->
-        <!-- alertText為警示視窗的內文，往下層傳遞 -->
-        <!-- childSendCloseAlert為警示內點擊確認或關閉時，會往上傳遞並接收的事件，接收後呼叫parentGetCloseAlert這個方法 -->
-        <alert_lightbox :parentAlert_ = "parentAlert" :_alertText="alertText" @childSendCloseAlert="parentGetCloseAlert"></alert_lightbox>
-    </div>
-    `,
-    })
-
-    //警示視窗
-    Vue.component('alert_lightbox', {
+    //警示視窗 (原本會員的)
+    Vue.component('alert_lightbox_1', {
         data() {
             return {
                 alertLightbox: false,

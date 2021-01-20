@@ -152,7 +152,7 @@ Vue.component('top', {
                         storage["cup_dis"] = 0.8
                         break;
 
-                    case totalcup >= 40 && totalcu < 50:
+                    case totalcup >= 40 && totalcup < 50:
                         this.cup_dis = 0.7
                         storage["cup_dis"] = 0.7
                         break;

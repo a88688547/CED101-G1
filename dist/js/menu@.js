@@ -65,8 +65,10 @@ Vue.component('group-info', {
         },
         //倒數結單時間
         countDown() {
-            let endTime = new Date(this.groupInfo[0].deadline_time)
+            let endTime = new Date(this.groupInfo[0].deadline_time.replaceAll('-', '/'))
+
             let endTimeSec = endTime.getTime() //節單時間總毫秒數
+
             let offsetTime = (endTimeSec - this.nowTime) / 1000 // ** 以秒為單位
             let sec = parseInt(offsetTime % 60); // 秒
             let min = parseInt((offsetTime / 60) % 60); // 分 ex: 90秒

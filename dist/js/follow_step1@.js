@@ -100,6 +100,7 @@ Vue.component('orderlist', {
             inTimeCart: true,
             mem_info: "",
             head_mem_no: "",
+            group_state: "",
         }
     },
     mounted() {
@@ -122,12 +123,28 @@ Vue.component('orderlist', {
             this.addItemList = theAddItemList
         },
         //判斷送出的當前時間是否已經截止
-        checkIntimeToPostOrder() {
-            if (this.inTimeCart) {
-                this.postOrder()
+        checkIntimeToPostOrder: async function () {
+            await fetch(`./php/getGroupStatus.php?group_ord_no=${web_group_no}`, {
+                method: 'GET', // or 'PUT'
+                // body: JSON.stringify(this.item_type), // data can be `string` or {object}!
+                headers: new Headers({
+                    'Content-Type': 'application/json'
+                })
+            }).then(res => res.json())
+                .then(res => this.group_state = res.group_state)
+
+            alert(this.group_state)
+            if (this.group_state == 0) {
+                if (this.inTimeCart) {
+                    this.postOrder()
+                } else {
+                    bus.$emit('getAlert', "跟團時間已截止")
+                }
             } else {
-                bus.$emit('getAlert', "跟團時間已截止")
+                bus.$emit('getAlert', "跟團已結束")
             }
+
+
         },
         //送出訂單資料到後台
         postOrder: async function () {
@@ -538,7 +555,7 @@ Vue.component('alert_lightbox', {
     methods: {
         closeAlertLightbox() {
             this.alertLightbox = false
-            if (this.alertText == '跟團時間已截止') {
+            if (this.alertText == '跟團時間已截止' || this.alertText == '跟團已結束') {
                 location.href = 'homepage.html'
             }
         }

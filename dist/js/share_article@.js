@@ -376,7 +376,17 @@ Vue.component('article_box', {
         //再呼叫更新燈箱內資料的函式
         likeArt: async function () {
             await this.postLikeArt(this.everClickLike)
-            await this.getArtBoxData()
+
+            if (this.everClickLike) {
+                this.artBoxData.isLike = 0
+                this.artBoxData.art_like_count--
+            } else {
+                this.artBoxData.isLike = 1
+                this.artBoxData.art_like_count++
+            }
+
+
+            // await this.getArtBoxData()
         },
         //把會員喜歡文章或取消喜歡文章送到資料庫
         postLikeArt: async function (_everClickLike) {
@@ -809,7 +819,7 @@ Vue.component('new_article', {
             xhr.onload = function () {
                 if (xhr.status == 200) {
                     that.parentAlert = true
-                    that.alertText = "上傳成功"
+                    that.alertText = "送出成功"
 
                     //清空資料
                     that.art_name = ""

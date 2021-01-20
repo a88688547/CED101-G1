@@ -1,7 +1,7 @@
 // 導入SASS共用
 @import "base/base.scss";
 @import "mixins/mixins.scss";
-
+@import "mixins/hover.scss";
 
 body {
     background-color: $insideBackgroundColor;
@@ -98,7 +98,7 @@ main {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    cursor: pointer;
+
 
     @media screen and (max-width:1200px) {
         justify-content: center;
@@ -108,12 +108,15 @@ main {
 .s2_hotitem {
     display: block;
     width: 350px;
-    // height: 315px;
     border-radius: 10px;
     overflow: hidden;
     margin: 0 12.5px 12.5px 12.5px;
     text-decoration: none;
+    cursor: pointer;
 
+    &:hover {
+        @include move_hover;
+    }
 }
 
 .hotimg {
@@ -188,7 +191,7 @@ main {
     justify-content: flex-end;
     align-items: center;
     margin: 11px 0 16px 0;
-
+    font-family: 'Roboto', sans-serif;
 }
 
 .hotcount>div {
@@ -251,7 +254,7 @@ main {
     @include H3;
     font-weight: bold;
     color: $textColor;
-    letter-spacing: 2px;
+    letter-spacing: 5px;
     line-height: 1.5;
 }
 
@@ -271,6 +274,22 @@ main {
     justify-content: center;
     align-items: center;
 
+    #filter {
+        width: 150px;
+        -webkit-appearance: none;
+
+        /*改變右邊箭頭樣式*/
+        background: url("../Images/article/share_list/select.svg") no-repeat right center transparent;
+        background-color: #fff;
+
+        @include H6;
+        color: $textColor;
+        border: none;
+        outline: none;
+        border-radius: 3px;
+        padding-left: 10px;
+    }
+
     label {
         margin-right: 5px;
         @include H4;
@@ -287,7 +306,7 @@ main {
     background-color: $textColor;
     border-radius: 8px;
     overflow: hidden;
-    width: 116px;
+    width: 105px;
     height: 36px;
 
 }
@@ -323,6 +342,11 @@ main {
     margin: 0 auto;
     margin-bottom: 25px;
     cursor: pointer;
+
+    &:hover {
+        @include move_hover;
+    }
+
 }
 
 .article_img {
@@ -619,13 +643,35 @@ main {
     #howManyData {
         display: flex;
         align-items: center;
-        font-size: $fontsize_H3;
+        font-size: 21px;
         color: $textColor;
         margin-top: 10px;
 
         select {
             margin: 0 8px;
-            font-size: 16px;
+            // font-size: 16px;
+
+            width: 50px;
+            -webkit-appearance: none;
+
+            /*改變右邊箭頭樣式*/
+            background: url("../Images/article/share_list/select.svg") no-repeat right center transparent;
+            background-color: #fff;
+
+            @include H6;
+            color: $textColor;
+            border: none;
+            outline: none;
+            border-radius: 3px;
+            padding-left: 10px;
+        }
+
+        div {
+            font-size: 2.1rem;
+            letter-spacing: 0.8rem;
+            font-family: 'Roboto', sans-serif;
+            color: #B3925B;
+            font-weight: bold;
         }
     }
 }

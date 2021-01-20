@@ -46,6 +46,7 @@
     justify-content: space-between;
     align-items: center;
     @include H3;
+    text-indent: 1rem;
     color: #013B4F;
     height: 100%;
 
@@ -70,6 +71,7 @@
         border-radius: 10px;
         overflow: hidden;
         @include H5;
+        text-indent: 0.5rem;
         padding: 8px 12px;
         cursor: pointer;
 
@@ -130,6 +132,8 @@
                         cursor: pointer;
                         text-align: center;
                         display: inline-block;
+                        letter-spacing: 6px;
+                        text-indent: 6px;
 
                         &:hover {
                             background-color: $textColor;

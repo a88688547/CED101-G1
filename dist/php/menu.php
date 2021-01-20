@@ -14,7 +14,7 @@
 
             for($i=0; $i<count($menuRow); $i++){
                 $sql1 = "select *
-                from drink where drink_type_no=:drink_type_no";
+                from drink where drink_type_no=:drink_type_no and status = 1";
                 $menu1 = $pdo->prepare($sql1);
                 $menu1->bindValue(':drink_type_no',$menuRow[$i]["drink_type_no"]);
                 $menu1->execute();

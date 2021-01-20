@@ -76,7 +76,7 @@ window.addEventListener('load', function () {
                 // console.log(this.nowTime)
                 let Time = new Array()
                 for (i = 0; i < this.ght; i++) {
-                    let endTime = new Date(this.groups[i].deadline_time)
+                    let endTime = new Date(this.groups[i].deadline_time).replaceAll('-', '/')
                     let endTimeSec = endTime.getTime()
                     let offsetTime = (endTimeSec - this.nowTime) / 1000 // ** 以秒為單位
                     this.endTime[i] = endTimeSec // ** 以秒為單位

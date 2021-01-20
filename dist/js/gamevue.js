@@ -66,7 +66,7 @@ Vue.component('game', {
         <div class="lightbox">
             <div class="lightbox-wrap">
                 <h2>遊戲結束</h2>
-                <p>總得分:<small id="totalscore">0</small>/300</p>
+                <p>總得分:<small id="totalscore">0</small>/400</p>
                 <p id="getcoupon">
                 <p id="coupon"></p>
                 </p>

@@ -1,96 +1,96 @@
-*{
+* {
     box-sizing: border-box;
     text-decoration: none;
     list-style: none;
-    
+
     // font-size: 0;
 }
-body{
-    margin:0;
-    padding:0;
+
+body {
+    margin: 0;
+    padding: 0;
     overflow: hidden;
-}
-main{
-    width:100%;
-    height:100vh;
-    background:#013B4F;
-    overflow: hidden;
-}
-.loginbox{
-    width:350px;
-    height:380px;
-    border-radius: 20px;
-    background:white;
-    position: fixed;
-    top:50%;
-    left:50%;
-    transform: translate(-50%, -50%);
-    padding:40px;
-    text-align: center;
-    z-index:1;
-    opacity: 0.8;
-}
-// .loginbox:after{
-//     content: "";
-//     background-position: center center;
-//     background-size: cover;
-//     position: absolute;
-//     top: -5px;
-//     bottom: -5px;
-//     left: -5px;
-//     right: -5px;
-//     background-color:white;
-//     /* 加入模糊 */
-//     filter: blur(5px);
-//     z-index: -1;
-//   }
-h1{
-    font-size:26px;
-    text-align: center;
-    letter-spacing: 8px;
-    font-family:  Microsoft YaHei UI;
-    color:#013B4F;
-    font-weight: normal;
-    margin-top:3%;
-    margin-bottom:15%;
-  
-}
-.account{
-    font-size:26px;
-    color:#013B4F;
-    border:1px solid #013B4F;
-    border-radius: 8px;
-    padding:6px 0;
-    vertical-align: middle;
-    display:inline-block;
 }
 
-.accountbox{
-    margin-bottom:10%;
-}
-.passwordbox{
-    margin-bottom:16%;
-}
-input{
-   width:80%;
-   text-align: center;
-   font-size:21px;
-   margin-left:5px;
-   border-radius: 5px;
-   border:none;
-}
-.loginbtn{
-    width:80%;
-    border-radius: 20px;
-    font-size:21px;
-    letter-spacing: 5px;
-    background-color:#013B4F;
-    color:white;
-    padding:5px;
-    cursor: pointer;
-    position:relative;
+main {
+    width: 100%;
+    height: 100vh;
+    background: #013B4F;
     overflow: hidden;
 }
+
+.loginbox {
+    width: 350px;
+    height: 380px;
+    border-radius: 20px;
+    border:1px solid white;
+    background: rgba(255, 255, 255, 0.363);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 40px;
+    text-align: center;
+    z-index: 1;
+    backdrop-filter: blur(2px);
+
+}
+
+h1 {
+    font-size: 26px;
+    text-align: center;
+    letter-spacing: 8px;
+    font-family: Microsoft YaHei UI;
+    color: #013B4F;
+    font-weight: normal;
+    margin-top: 3%;
+    margin-bottom: 15%;
+
+}
+
+.account {
+    font-size: 26px;
+    color: #013B4F;
+    border: 1px solid #013B4F;
+    border-radius: 8px;
+    padding: 6px 0;
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.accountbox {
+    margin-bottom: 10%;
+}
+
+.passwordbox {
+    margin-bottom: 16%;
+}
+
+input {
+    width: 80%;
+    text-align: center;
+    font-size: 21px;
+    margin-left: 5px;
+    border-radius: 5px;
+    border: none;
+    background: rgba(255, 255, 255, 0);
+    color:white;
+    
+}
+
+.loginbtn {
+    width: 80%;
+    border-radius: 20px;
+    font-size: 21px;
+    letter-spacing: 5px;
+    background-color: #013B4F;
+    color: white;
+    padding: 5px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
 .loginbtn::before {
     position: absolute;
     top: 0;
@@ -100,79 +100,86 @@ input{
     content: '';
     width: 50%;
     height: 100%;
-    background: -webkit-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,.3) 100%);
-    background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,.3) 100%);
+    background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, .3) 100%);
+    background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, .3) 100%);
     -webkit-transform: skewX(-25deg);
     transform: skewX(-25deg);
-  }
+}
 
-  .loginbtn:hover{
+.loginbtn:hover {
     animation: rotate 0.7s ease-in-out both;
     opacity: 0.8;
     transition: 0.5s ease-in-out;
-    background-color:#012936;
+    background-color: #012936;
     transition: all 0.5s;
-  }
+}
 
-  .loginbtn:hover::before {
+.loginbtn:hover::before {
     -webkit-animation: shine .75s;
     animation: shine .75s;
-  }
+}
 
-  @-webkit-keyframes shine {
+@-webkit-keyframes shine {
     100% {
-      left: 125%;
+        left: 125%;
     }
-  }
-  @keyframes shine {
+}
+
+@keyframes shine {
     100% {
-      left: 125%;
+        left: 125%;
     }
-  }
+}
+
 // .loginbtn:hover{
 //     background-color:#012936;
 //     transition: all 0.5s;
 // }
-ul{
-    position:relative;
+ul {
+    position: relative;
 }
-li{ 
-    display:inline-block;
+
+li {
+    display: inline-block;
     border-radius: 50%;
-    position:absolute;
+    position: absolute;
 }
-li:nth-child(1){
-    width:500px;
-    height:500px;
-    background-color:#6deebd;
-    border:50px solid #e0f7ca;
+
+li:nth-child(1) {
+    width: 500px;
+    height: 500px;
+    background-color: #6deebd;
+    border: 50px solid #e0f7ca;
     filter: blur(100px);
-    transform:scale(1);
-} 
-li:nth-child(2){
-    width:700px;
-    height:700px;
-    top:-20vh;
-    left:60%;
-    background-color:#faf79e;
-    border:50px solid #addf97;
-    filter: blur(100px);
+    transform: scale(1);
 }
-li:nth-child(3){
-    width:300px;
-    height:300px;
-    top:55vh;
-    left:20%;
-    background-color:#05659c;
-    border:50px solid #97cbdf;
+
+li:nth-child(2) {
+    width: 700px;
+    height: 700px;
+    top: -20vh;
+    left: 60%;
+    background-color: #faf79e;
+    border: 50px solid #addf97;
     filter: blur(100px);
 }
-li:nth-child(4){
-    width:600px;
-    height:600px;
-    top:50vh;
-    left:50%;
-    background-color:#9df1e6;
-    border:50px solid #eef5d0;
+
+li:nth-child(3) {
+    width: 300px;
+    height: 300px;
+    top: 55vh;
+    left: 20%;
+    background-color: #05659c;
+    border: 50px solid #97cbdf;
+    filter: blur(100px);
+}
+
+li:nth-child(4) {
+    width: 600px;
+    height: 600px;
+    top: 50vh;
+    left: 50%;
+    background-color: #9df1e6;
+    border: 50px solid #eef5d0;
     filter: blur(100px);
 }

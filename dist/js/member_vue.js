@@ -532,7 +532,7 @@ window.addEventListener('load', function () {
                         </div>
                         <div class="group_order_done_row">
                             <div>優惠卷</div>
-                            <div>{{group_ord_info.cou_no}}/幾折?</div>
+                            <div>{{group_ord_info.cou_text}}</div>
                         </div>
                         <div class="group_order_done_row">
                             <div>預計送達時間</div>
@@ -1431,7 +1431,7 @@ window.addEventListener('load', function () {
                         </div>
                         <div class="group_order_done_row">
                             <div>優惠卷</div>
-                            <div>{{per_ord_info.cou_no}}/幾折?</div>
+                            <div>{{per_ord_info.cou_text}}</div>
                         </div>
                         <div class="group_order_done_row">
                             <div>訂單金額</div>

@@ -187,7 +187,20 @@ var app = new Vue({
       member.$on('memberInfo', this.get_mem_info);
     },
   methods: {
-    
+     //是否為團長
+  ckeckWho()
+  {
+    let group_state = this.group_ord.group_state;
+    let headMan = this.group_ord.head_mem_no;
+    let mem = this.mem_no
+    console.log(group_state);
+    console.log(headMan);
+    console.log(mem);
+    // if (mem != headMan ) 
+    // {
+    //   location.href = `./join_list.html`
+    // } 
+  },
   //用會員編號抓優惠卷
   selectMemCoupon: async function ()
   {
@@ -218,6 +231,7 @@ var app = new Vue({
     })
       .then((res) => res.json())
       .then((res) => (this.group_ord = res));
+    this.ckeckWho();
     },
     //抓總杯數
   get_order_total_cup: async function () {
@@ -306,6 +320,7 @@ var app = new Vue({
     //確認資料
   confirmData()
   {
+    
     //20XX年
     let year_reg = /^20[21-40]{2}$/;
     //1-12

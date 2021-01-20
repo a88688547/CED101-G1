@@ -46,43 +46,43 @@ function handleComplete(evt, comp) {
     const characters = [
         {
             name: "peaCup",
-            atk: 10,
-            speed: 14,
+            atk: 15,
+            speed: 12,
         },
         {
             name: "peaCap",
-            atk: 20,
-            speed: 11,
+            atk: 17,
+            speed: 14,
         },
         {
             name: "peaMug",
-            atk: 15,
-            speed: 10,
-        },
-        {
-            name: "redCup",
-            atk: 25,
+            atk: 16,
             speed: 13,
         },
         {
+            name: "redCup",
+            atk: 12,
+            speed: 11,
+        },
+        {
             name: "redCap",
-            atk: 25,
-            speed: 14,
+            atk: 12,
+            speed: 12,
         },
         {
             name: "redMug",
             atk: 10,
-            speed: 12,
+            speed: 11,
         },
         {
             name: "tanCup",
-            atk: 5,
-            speed: 10,
+            atk: 34,
+            speed: 18,
         },
         {
             name: "tanCap",
-            atk: 8,
-            speed: 12,
+            atk: 20,
+            speed: 15,
         },
         {
             name: "tanMug",
@@ -190,6 +190,7 @@ function handleComplete(evt, comp) {
     createjs.Ticker.addEventListener("tick", tickHandler);
     function tickHandler() {
         if (hp <= 0) {
+            document.querySelector(".hpbar").style.width = `0%`;
             clearInterval(timePearl);
             document.querySelector(".lightbox").style.display = "flex";
             window.removeEventListener("keydown", keydownHandler);

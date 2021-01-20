@@ -23,6 +23,36 @@ try {
         //取回一筆資料
         $memberdatarow = $memberdata->fetch(PDO::FETCH_ASSOC);
 
+        // 判斷該訂單內 有沒有選擇 優惠券使用
+        if ($memberdatarow["cou_no"] === null) {
+
+            $memberdatarow["cou_text"] = "沒有使用";
+
+        } else {
+            //有選擇優惠券 就去 join table
+            $sql = "select *
+            from personal_order p
+            join member m on p.mem_no = m.mem_no
+            join coupon c on p.cou_no = c.cou_no
+            where p.per_ord_no = :per_ord_no";
+            $memberdata = $pdo->prepare($sql);
+            $memberdata->bindValue(":per_ord_no", $per_ord_no);
+            $memberdata->execute();
+            $memberdatarow = $memberdata->fetch(PDO::FETCH_ASSOC);
+
+            if ($memberdatarow["cou_discount"] == 0.9) {
+                $memberdatarow["cou_text"] = "九折優惠";
+            } else if ($memberdatarow["cou_discount"] == 0.8) {
+                $memberdatarow["cou_text"] = "八折優惠";
+            } else if ($memberdatarow["cou_discount"] == 0.7) {
+                $memberdatarow["cou_text"] = "七折優惠";
+            } else if ($memberdatarow["cou_discount"] == 0.6) {
+                $memberdatarow["cou_text"] = "六折優惠";
+            }
+            ;
+
+        }
+
         //送出json字串
         echo json_encode($memberdatarow);
         // echo $managerdatarow;

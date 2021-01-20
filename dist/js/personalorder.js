@@ -81,7 +81,7 @@ Vue.component('top', {
         <!-- 每個人  -->
         <div class="group_order_done_person">
             <div class="group_order_done_person_upbox">
-                <div class="group_order_done_person_img"><img src="./Images/user_big.svg" /></div>
+                <div class="group_order_done_person_img"><img :src="mem_info.mem_img"></div>
                 <div class="group_order_done_person_name">{{this.mem_info.mem_name}}</div>
             </div>
             <div class="group_order_done_person_downbox">

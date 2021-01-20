@@ -10,7 +10,8 @@ try {
     $sql = "select *
             from personal_order
             where mem_no = :mem_no
-             and ord_state = :ord_state";
+             and ord_state = :ord_state
+             order by ord_time desc";
     // $memberdata = $pdo->query($sql);
     $memberdata = $pdo->prepare($sql);
     $memberdata->bindValue(":mem_no", $mem_no);

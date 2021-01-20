@@ -52,7 +52,7 @@
       <div class="info" v-if="type == 10">
         <div class="info_img"><img src="Images/user_big.svg"></div>
         <div class="info_detail">
-          <div class="info_name">{{mem_info.memName}}</div>
+          <div class="info_name">{{mem_info.mem_name}}</div>
           <div class="info_phone">
             <div class="info_phone_top">
               <div><img src="Images/tell_big.svg"></div>
@@ -74,7 +74,7 @@
       <div class="info" v-else>
         <div class="info_img"><img src="Images/user_big.svg"></div>
         <div class="info_detail">
-            <div class="info_name">{{mem_info.memName}}</div>
+            <div class="info_name">{{mem_info.mem_name}}</div>
             <div class="info_phone">
                 <div class="info_phone_top">
                     <div><img src="Images/tell_big.svg"></div>
@@ -94,39 +94,46 @@
       <hr />
       <!-- 折扣 -->
       <div class="discount">
-        <div class="discountTop">
+        <div class="discountTop" v-if="type == 10">
           <div class="discountNo">
             <label>
               <h3>折扣代碼</h3>
             </label>
             <!-- 折扣代碼 -->
-            <select v-model="cou" >
+            <select v-model="cou" @blur.stop="DiscountCOU">
+              <option value="" disabled selected >--請選擇--</option>
               <option v-for="item in coupon" v-bind:value="{cou_no:item.cou_no
                 ,mem_no:item.mem_no,
                 cou_discount:item.cou_discount,
-                cou_status:item.cou_status}" >
+                cou_status:item.cou_status,
+                cou_code:item.cou_code}" >
                 {{item.cou_code}}
               </option>
             </select>
-            <div>{{cou.cou_no}}</div>
+            <div class="countA"></div>
           </div>
           <div class="gamelink">
-            <a href="#"><img src="Images/gamelink.svg" /></a>
+            <a href="./custom.html"><img src="Images/gamelink.svg" /></a>
           </div>
         </div>
-        <div class="discountBottom">
-          <div>
-            <h3>商品X<span>{{group_ord_total_cup}}</span></h3>
+        <div class="discountTop" v-else>
+          <div class="discountNo">
+            <label>
+              <h3>折扣代碼 : </h3>
+            </label>
+           
+            <div class="cou_code">{{cou.cou_code}}</div>
+            <div class="countA"></div>
           </div>
-          <div class="disTotal">
-            <h3>小計$.<span>{{group_ord_price}}</span></h3>
+          <div class="gamelink">
+            <a href="./custom.html"><img src="Images/gamelink.svg" /></a>
           </div>
         </div>
       </div>
       <hr />
       <!-- <button @click="selectMemCoupon">test</button> -->
       <!-- 信用卡 -->
-      <div class="card"  >
+      <div class="card">
         <div class="cardimg">
           <img src="Images/pay.svg">
         </div>
@@ -182,13 +189,13 @@
       <!-- 金額 -->
       <hr />
         <div class="group_order_done_total_box">
-          <div class="group_order_done_total">
+          <!-- <div class="group_order_done_total">
               <div>原價</div>
               <div>${{group_ord_price}}</div>
           </div>
           <div class="group_order_done_dis">
               <div>杯數折扣</div>
-              <div>x {{count}}</div>
+              <div class="count"></div>
           </div>
           <div class="group_order_done_total">
               <div>杯數折扣後</div>
@@ -200,8 +207,8 @@
           </div>
           <div class="group_order_done_total">
               <div>優惠卷折扣後</div>
-              <div>${{group_ord_count2}}</div>
-          </div>
+              <div>${{group_ord_price_2}}</div>
+          </div> -->
           <div class="group_order_done_finaltotal">
               <div>總金額</div>
               <div>${{group_ord_count2}}</div>
@@ -257,17 +264,40 @@
                 </section>
               </div>
           </div>
-        
+          
         </div>
+        <div class="group_order_done_total_box">
+          <div class="group_order_done_total">
+              <div>原價</div>
+              <div>${{group_ord_price}}</div>
+          </div>
+          <div class="group_order_done_dis">
+              <div>杯數折扣</div>
+              <div class="count"></div>
+          </div>
+          <div class="group_order_done_total">
+              <div>杯數折扣後</div>
+              <div>${{group_ord_count1}}</div>
+          </div>
+          <div class="group_order_done_dis">
+              <div>優惠卷折扣</div>
+              <div>{{cou.cou_discount}}</div>
+          </div>
+          <div class="group_order_done_total">
+              <div>優惠卷折扣後</div>
+              <div>${{group_ord_count2}}</div>
+          </div>
+          <div class="group_order_done_finaltotal">
+              <div>應付金額</div>
+              <div>${{group_ord_count2}}</div>
+          </div>
+          <div class="checkoutBtn">
+            <input type="button" value="確認送出" @click="step4"></input>
+          </div>
       </div>
-        <div class="all_total">
-          <div>應付金額</div>
-          <hr>
-          <div>{{group_ord_count2}}</div>
-        </div>
-        <div class="checkoutBtn">
-          <input type="button" value="確認送出" @click="step4"></input>
-        </div>
+      </div>
+        
+        
       </div>
     </div>
   </div>

@@ -20,7 +20,7 @@ try{
             group_ord_price_1 = :group_ord_price_1,
             group_ord_price_2 = :group_ord_price_2,
             cou_no = :cou_no,
-            group_state = 1
+            group_state = 2
             where group_ord_no = :group_ord_no";
 
     $group_ord_data = $pdo->prepare($sql);

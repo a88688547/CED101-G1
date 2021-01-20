@@ -200,15 +200,16 @@ input{
         .all_total{
             // border: 1px solid red;
             display: flex;
+            justify-content: space-between;
             width: 80%;
             margin: 25px auto;
             color: #013B4F;
             font-size: 21px;
             font-weight: bold;
             hr{
-                width: 50%;
-                border-style: none;
-                border-bottom: 1px dashed #013B4F;
+                // width: 50%;
+                // border-style: none;
+                // border-bottom: 0px dashed #013B4F;
             }
         }
         .checkoutBtn{
@@ -319,6 +320,7 @@ input{
     display: flex;
     justify-content: center;
     margin-bottom: 50px;
+    
 }
 
 .discountNo{
@@ -338,6 +340,7 @@ input{
         color:#707070;
         padding-left:20px;
         margin-left: 80px;
+        margin-right: 10px;
     }
 }
 .gamelink{
@@ -1300,6 +1303,9 @@ input{
  
 
   @media screen and (min-width: 1199px){
+    .discountNo .cou_code{
+        margin: 0px 10px;
+    }
       .card{
           .cardinfo{
               .cardname{
@@ -1343,5 +1349,5 @@ input{
     font-size: $fontsize_H3;
     color: $textColor;
     font-weight: bold;
-    border-top: 2px solid $textColor;
+    
   }

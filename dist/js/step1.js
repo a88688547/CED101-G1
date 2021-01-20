@@ -17,9 +17,7 @@ Vue.component("date-picker", {
     $(this.$el).datepicker("hide").datepicker("destroy");
   },
 });
-// Vue.filter('dateString',function(value,format='YYYY-MM-DD HH:mm:ss'){
-//   return moment(value).format(format)
-// })
+
 
 var app = new Vue({
   el: "#app",
@@ -29,7 +27,7 @@ var app = new Vue({
     timer: null,   //計時器
     nowTime: new Date().getTime(), //現在時間毫秒
     mem_info: "",
-    mem_no:"",
+    member_no:0,
     //確認框
     group_confirm: false,
     //警告框
@@ -123,7 +121,6 @@ var app = new Vue({
   },
   computed: {
     
-    
     //預計送達時間hh:mm:ss
     arriveTime()
     {
@@ -158,7 +155,7 @@ var app = new Vue({
     {
       let obj = {
         //團長會員編號
-        head_mem_no: this.mem_no,
+        head_mem_no: this.member_no,
         //團名
         group_name: this.GroupName,
         //成團時間
@@ -218,6 +215,10 @@ var app = new Vue({
 
   },
   methods: {
+    showMemNo()
+    {
+      console.log(this.mem_info.mem_no)
+    },
     //抓現在時間yyyy-mm-dd hh:mm:ss
     formatTime: function ()
     {
@@ -297,7 +298,9 @@ var app = new Vue({
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(this.JoinGroup),
+        body: JSON.stringify(this.JoinGroup
+          
+        ),
       }).then(res => res.json())
         .then(res => this.group_ord_no = res);
       
@@ -389,7 +392,7 @@ var app = new Vue({
     },
     get_mem_info(data){
       this.mem_info = data
-      this.mem_no = data.memNo
+      this.member_no = data.mem_no
     }
   },
   created() {
@@ -397,6 +400,7 @@ var app = new Vue({
   },
   mounted() {
     this.timer = setInterval(this.getWatchNum, 1000)
+   
   },
 
 });

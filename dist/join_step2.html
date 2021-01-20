@@ -27,13 +27,13 @@
           <h2>分享QR，立馬揪飲</h2>
           <div class="fist_QR_main">
             <img
-            :src="`http://chart.apis.google.com/chart?cht=qr&choe=UTF-8&chs=300x300&chl=http://localhost/phpLab/CED101-G1/dist/menu.html?group_ord_no=${this.group_ord_no}`"
+            :src="`http://chart.apis.google.com/chart?cht=qr&choe=UTF-8&chs=300x300&chl=http://https://tibamef2e.com/ced101/project/g1/menu.html?group_ord_no=${this.group_ord_no}`"
           />
           </div>
           <img src="./Images/cancel.svg" alt="" @click="close_btn" class="close_btn" />
           <h2>分享網址揪團喝飲料!</h2>
           <div class="QR_link">
-            <input  type="text" class="QR_link_text" id="biao1" :value="`http://localhost/phpLab/CED101-G1/dist/menu.html?group_ord_no=${this.group_ord_no}`" />
+            <input  type="text" class="QR_link_text" id="biao1" :value="`http://tibamef2e.com/ced101/project/g1/menu.html?group_ord_no=${this.group_ord_no}`" />
             <input type="button" class="QR_copy" onClick="copyUrl2()" value="COPY" />
           </div>
         </div>
@@ -66,7 +66,7 @@
       </div>
       <!-- ==============進度條================= -->
       <!-- ==============開團資料================= -->
-      <button @click="get_order_total">total</button>
+  
       <div class="group_data">
         <div class="group_data_row">
           <!-- ===QR==== -->
@@ -78,14 +78,14 @@
             </div>
             <h2>分享網址揪團喝飲料!</h2>
             <div class="QR_link">
-              <input  type="text" class="QR_link_text" id="biao2" :value="`http://localhost/phpLab/CED101-G1/dist/menu.html?group_ord_no=${this.group_ord_no}`" />
+              <input  type="text" class="QR_link_text" id="biao2" :value="`http://tibamef2e.com/ced101/project/g1/menu.html?group_ord_no=${this.group_ord_no}`" />
               <input type="button" class="QR_copy" onClick="copyUrl1()" value="COPY" />
             </div>
           </div>
 
           <!-- ===QR==== -->
           <!-- ===團的資料==== -->
-          <!-- <button @click="timeCheck">test</button> -->
+         
           <ul>
             <li>
               <div>團名</div>
@@ -137,6 +137,7 @@
                       <section id="item_single_price">
                           &#36{{value.total_price}}
                       </section>
+                      <!-- <div>{{group_ord.goal_cup}}</div> -->
                       <section class="order_delete_btn" value="123" @click="del_group_ord_item(value.group_ord_item_no,value.ord_qua)">
                         <img src="./Images/trash_big.svg" alt="" >
                         <img src="./Images/trash_small.svg" alt="">
@@ -158,7 +159,7 @@
               class="btn_back_drink"
               @click="addDrink"
             />
-            <div class="btn_f5" >
+            <div class="btn_f5" @click="btn_f5">
               <img src="./Images/drink.svg" alt="" /> 重新整理
             </div>
             <input
@@ -168,12 +169,16 @@
               @click="checkout"
             />
         </div >
+        
         <div class="alertLightbox_black" v-show="confirm">
           <div class="alertLightboxWrapper">
               <div class="manager_lightbox_close_img" @click="closeBox" ><img src="./Images/close.svg" ></div>
               <div class="alertLightbox" >
-                <div></div>
-                <div v-if="goal == 1" @click="closeBox">目標杯數不足</div>
+                <div >{{group_ord.now_cup}} / {{group_ord.goal_cup}}</div>
+                <div v-if="goal == 1" @click="closeBox">
+                  
+                  目標杯數不足
+                </div>
                 <div v-else @click="nextStep" class="nextStep">確認送出!</div>
               </div>
           </div>

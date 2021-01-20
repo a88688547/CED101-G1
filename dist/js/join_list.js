@@ -1,15 +1,15 @@
-window.addEventListener("load", function () {
-    let grouporddata;
-    //============去server端拿資料
-    let xhr = new XMLHttpRequest();
-    xhr.onload = function () {
-      app.grouporddata = JSON.parse(xhr.responseText);
-      let total = app.grouporddata.length;
-    };
-    xhr.open("get", "./php/getGroup.php", true);
-    xhr.send(null);
+// window.addEventListener("load", function () {
+//     let grouporddata;
+//     //============去server端拿資料
+//     let xhr = new XMLHttpRequest();
+//     xhr.onload = function () {
+//       app.grouporddata = JSON.parse(xhr.responseText);
+//       let total = app.grouporddata.length;
+//     };
+//     xhr.open("get", "./php/getGroup.php", true);
+//     xhr.send(null);
     
-  });
+//   });
 
   var app = new Vue({
     el: "#join_main",
@@ -34,7 +34,21 @@ window.addEventListener("load", function () {
             "./Images/drinkphoto/coupon/drive-download-20201228T062855Z-001/40pff.jpg",
         endTime: "",
         offsetTime: "",
-        ght:"",
+      ght: "",
+      frouts: [
+        {
+          name: 'Apple',
+          count: 10,
+        },
+        {
+          name: 'Orange',
+          count: 5,
+        },
+        {
+          name: 'Banana',
+          count: 20,
+        },
+      ],
       },
       computed: {
         grouporddataLenght() //長度
@@ -42,57 +56,69 @@ window.addEventListener("load", function () {
             this.ght = this.grouporddata.length
             return this.ght
         },
+        filteredFrouts: function() {
+          return this.frouts.filter(function(item) {
+            return item.count > 6;
+          });
+        },
+        filtered: function() {
+          return this.grouporddata.group_datetime(function(item) {
+            return item.group_datetime;
+          });
+        },
         count_Down()
           {
             this.ght = this.grouporddata.length
             // console.log(this.ght)
             // console.log(this.nowTime)
+            
             let Time = new Array;
             for (i = 0 ; i < this.ght ; i++)
             {
+              // console.log(offsetTime);
+            let in_time = 1;
             let endTime = new Date(this.grouporddata[i].deadline_time);
-            let endTimeSec = endTime.getTime()
+            let endTimeSec = endTime.getTime()//轉毫秒
             let offsetTime = (endTimeSec - this.nowTime) / 1000 // ** 以秒為單位
             this.endTime[i] = endTimeSec; // ** 以秒為單位
             let sec = parseInt(offsetTime % 60); // 秒
             let min = parseInt((offsetTime / 60) % 60); // 分 ex: 90秒
             let hr = parseInt(offsetTime / 60 / 60); // 時
-            let total = {
+            if (offsetTime <= 0) {
+              // console.log(123);
+              // this.in_time = 2
+              this.selectGroup();
+            }
+              let total = {
                 theHr: hr,
                 theMin: min,
                 theSec: sec,
-            }
-            // console.log(total);
-            Time[i] = total;
+                inTime: in_time,
+                  
+              }
+              Time[i] = total;
+            
             } 
             return Time;
            },
         
       },
       methods: {
-        //   count_Down()
-        //   {
-        //     this.ght = this.grouporddata.length
-        //     // console.log(this.ght)
-        //     // console.log(this.nowTime)
-        //     for (i = 0 ; i < this.ght ; i++)
-        //     {
-        //     let endTime = new Date(this.grouporddata[i].deadline_time);
-        //     let endTimeSec = endTime.getTime()
-        //     let offsetTime = (endTimeSec - this.nowTime) / 1000 // ** 以秒為單位
-        //     this.endTime[i] = endTimeSec; // ** 以秒為單位
-        //     let sec = parseInt(offsetTime % 60); // 秒
-        //     let min = parseInt((offsetTime / 60) % 60); // 分 ex: 90秒
-        //     let hr = parseInt(offsetTime / 60 / 60); // 時
-        //     let total = {
-        //         theHr: hr,
-        //         theMin: min,
-        //         theSec: sec,
-        //     }
-        //     console.log(total);
-        //     this.endTime[i] = total;
-        //    }            
-        //    },
+        selectGroup: async function ()
+        {
+          const res = await fetch("./php/getGroup.php", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              
+            }),
+          })
+            .then((res) => res.json())
+            .then((res) => (this.grouporddata = res));
+            console.log("1")
+          },
            // 得到當下時間
            timeFormate(timeStamp) {
             let newdate = new Date(timeStamp);
@@ -134,6 +160,10 @@ window.addEventListener("load", function () {
         getWatchNum() {
             this.watchNum++
         },
+    },
+      //離開時清除定時器
+        beforeDestroy() {
+          clearInterval(this.timer)
       },
       watch: {
         watchNum() {
@@ -142,6 +172,7 @@ window.addEventListener("load", function () {
       },
       mounted()
       {
+        this.selectGroup();
         this.nowTimes();
         this.timer = setInterval(this.getWatchNum, 1000)
       },

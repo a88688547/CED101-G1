@@ -284,9 +284,12 @@ body{
         &:first-child{
           width: 40%;
           font-weight: bold;
+          // border: 1px solid red;
+          text-align: right;
         }
         &:last-child{
           width: 60%;
+          // text-align: right;
         }
         font-size: $fontsize_H4;
         

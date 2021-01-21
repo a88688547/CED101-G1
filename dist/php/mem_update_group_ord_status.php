@@ -8,7 +8,7 @@ try {
     $group_ord_no = $decoded["group_ord_no"];
 
     $sql = "update group_ord
-            set group_ord_bs = 1
+            set group_ord_bs = 2
             where group_ord_no = :group_ord_no";
     // $grouporddata = $pdo->query($sql);
     $per_ord_data = $pdo->prepare($sql);

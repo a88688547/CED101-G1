@@ -1419,10 +1419,12 @@ window.addEventListener('load', function () {
             },
             //判斷 訂單狀態 回傳 對應值
             checkstate: function (group_ord_bs) {
-                if (group_ord_bs == 1) {
-                    return '已完成'
-                } else if (group_ord_bs == 0) {
+                if (group_ord_bs == 0) {
                     return '未處理'
+                } else if (group_ord_bs == 1) {
+                    return '已處理'
+                } else if (group_ord_bs == 2) {
+                    return '已完成'
                 }
             },
             //類型 點擊後 切換顏色
@@ -1549,6 +1551,9 @@ window.addEventListener('load', function () {
                                     <div>$ {{group_ord_info.group_ord_price_2}}</div>
                                 </div>
                             </div>
+                            <div class="done_btn_box" v-if="group_ord_info.group_ord_bs == 0">
+                                <div class="done_btn" @click="change_done">已處理完成</div>
+                            </div>
                         </div>
                     
                     </div>
@@ -1623,6 +1628,20 @@ window.addEventListener('load', function () {
                     return '已完成'
                 }
             },
+            change_done() {
+                const info = fetch('./php/bs_update_group_ord_status.php', {
+                    method: 'POST',
+                    mode: 'same-origin',
+                    credentials: 'same-origin',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        group_ord_no: this.group_ord_no,
+                    }),
+                })
+                this.get_mar(this.group_ord_no)
+            },
         },
         created() {
             // 渲染前 先去撈取資料
@@ -1654,7 +1673,7 @@ window.addEventListener('load', function () {
                     <h1 class="title">一般訂單管理</h1>
                     <div class="per_ord_type_box">
                         <div class="per_ord_type_box_on" @click="per_ord_bs = 0,changecolor($event)">未處理</div>
-                        <div  @click="per_ord_bs = 1,changecolor($event)">已完成</div>
+                        <div  @click="per_ord_bs = 2,changecolor($event)">已完成</div>
                     </div>
                     <div class="per_ord_list_box">
                         <div class="per_ord_title_row">
@@ -1701,7 +1720,7 @@ window.addEventListener('load', function () {
                     // redirect: 'follow', // manual, *follow, error
                     // referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
                     body: JSON.stringify({
-                        per_ord_bs: per_ord_bs,
+                        per_ord_bs: this.per_ord_bs,
                     }), // body data type must match "Content-Type" header
                 }).then(function (data) {
                     return data.json()
@@ -1715,10 +1734,12 @@ window.addEventListener('load', function () {
             },
             //判斷 訂單狀態 回傳 對應值
             checkstate: function (per_ord_bs) {
-                if (per_ord_bs == 1) {
+                if (per_ord_bs == 2) {
                     return '已完成'
                 } else if (per_ord_bs == 0) {
                     return '未處理'
+                } else if (per_ord_bs == 1) {
+                    return '已處理'
                 }
             },
             //類型 點擊後 切換顏色
@@ -1842,6 +1863,9 @@ window.addEventListener('load', function () {
                                     <div>$ {{per_ord_info.ord_price_2}}</div>
                                 </div>
                             </div>
+                            <div class="done_btn_box" v-if="per_ord_info.ord_state == 0" @click="change_done">
+                                <div class="done_btn">已處理完成</div>
+                            </div>
                         </div>
                     
                     </div>
@@ -1915,6 +1939,20 @@ window.addEventListener('load', function () {
                 } else {
                     return '已完成'
                 }
+            },
+            change_done() {
+                const info = fetch('./php/bs_update_per_ord_status.php', {
+                    method: 'POST',
+                    mode: 'same-origin',
+                    credentials: 'same-origin',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        per_ord_no: this.per_ord_info.per_ord_no,
+                    }),
+                })
+                this.get_mar(this.per_ord_no)
             },
         },
         created() {

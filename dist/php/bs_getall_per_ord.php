@@ -4,15 +4,28 @@ try {
 
     $content = trim(file_get_contents("php://input"));
     $decoded = json_decode($content, true);
-    $per_ord_bs = $decoded["per_ord_bs"];
+    // $per_ord_bs = $decoded["per_ord_bs"];
 
-    $sql = "select *
-            from personal_order
-            where ord_state = :per_ord_bs
-            order by ord_time desc";
+    if ($decoded["per_ord_bs"] == 0) {
+        $sql = "select *
+        from personal_order
+        where ord_state = 1 or ord_state = 0
+        order by ord_time desc";
+    } else {
+        $sql = "select *
+        from personal_order
+        where ord_state = 2
+        order by ord_time desc";
+    }
+    ;
+
+    // $sql = "select *
+    //         from personal_order
+    //         where ord_state = 1 or ord_state = 0
+    //         order by ord_time desc";
     // $grouporddata = $pdo->query($sql);
     $grouporddata = $pdo->prepare($sql);
-    $grouporddata->bindValue(":per_ord_bs", $per_ord_bs);
+    // $grouporddata->bindValue(":per_ord_bs", $per_ord_bs);
     $grouporddata->execute();
 
     if ($grouporddata->rowCount() == 0) { //找不到

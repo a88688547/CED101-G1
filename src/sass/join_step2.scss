@@ -55,16 +55,27 @@ body {
   color: #fff;
   padding: 10px 0;
   border-radius: 5px;
-  // background-color:#013B4F ;
-  border: 1px solid red;
+  background-color:#013B4F ;
+  // border: 1px solid red;
   display: flex;
   justify-content: center;
-  // font-size: 24px;
-  @include H4;
-  width: 90%;
+  width: 85%;
+  @include H6;
+  width: 75%;
   margin: 0 auto;
   font-weight: bold;
   align-items: center;
+  @media screen and (max-width:992px) {
+    width: 80%;
+}
+
+@media screen and (max-width:768px) {
+    width: 85%;
+}
+
+@media screen and (max-width:576px) {
+    width: 90%;
+}
   .total_img{
     display: none;
     margin-left: 15px;
@@ -347,6 +358,11 @@ body {
     .total_img{
       display:block;
     }
+    .a_totel{
+      
+      margin-right: 0px;
+      
+    }
     @include H5;
   }
   .group_data .group_data_row>ul {
@@ -370,7 +386,9 @@ body {
 }
 
 @media screen and (min-width: $mq767) {
- 
+  #order_list .all_total{
+    // width: 85%;
+  }
 
   .group_data {
     .group_data_row {
@@ -600,19 +618,19 @@ body {
     font-size: 1.4rem;
     letter-spacing: 2px;
   }
-  #order_list .all_total{
-    width: 75%;
-  }
+ 
 }
-
+@media screen and (min-width: 767px){
+  .step_box .step_text {
+  
+ 
+}
 @media (min-width: 767px) and (max-width: 991px){
   .step_box .step_text {
     font-size: 1.2rem;
     letter-spacing: 0;
   }
-  #order_list .all_total{
-    width: 85%;
-  }
+ 
 }
 
 // 2.燈箱QR
@@ -789,4 +807,5 @@ body {
       width: 40%;
   }
 
+}
 }

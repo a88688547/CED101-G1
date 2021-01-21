@@ -197,8 +197,12 @@ input{
         background-color: #fff;
         box-shadow: 0 0 5px #ddd;
         .group_order_done_person{
-            // border-top: 0px solid red;
+            border-top: 0px ;
             // margin: 10px 0;
+            .group_order_done_person_downbox{
+                // border: 1px solid red;
+                line-height: 20px;
+            }
         }
         .group_order_done_person_upbox{
             // border: 1px solid blue;

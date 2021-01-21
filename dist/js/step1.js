@@ -46,8 +46,7 @@ var app = new Vue({
             { text: '18', value: '18' },
             { text: '19', value: '19' },
             { text: '20', value: '20' },
-            { text: '21', value: '21' },
-            { text: '22', value: '22' },
+            
         ],
         //分鐘
         mm: '00',
@@ -76,8 +75,6 @@ var app = new Vue({
             { text: '18', value: '18' },
             { text: '19', value: '19' },
             { text: '20', value: '20' },
-            { text: '21', value: '21' },
-            { text: '22', value: '22' },
         ],
         //到達mm
         arrive_mm: '00',

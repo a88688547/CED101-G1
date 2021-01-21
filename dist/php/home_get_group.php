@@ -53,7 +53,7 @@ try {
 
                     // $memberdatarow[$i]["count"] = 0;
 
-                } else if() {
+                } else {
                     $count = $memberdatarow[$i]["goal_cup"] - $memberdatarow[$i]["now_cup"];
                     $memberdatarow[$i]["count"] = $count;
                     // $memberdatarow[$i]["count"] = 0;

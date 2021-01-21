@@ -137,6 +137,10 @@
                     &::placeholder{
                         color: rgba(94, 91, 91, 0.295);
                     }
+
+                    @media screen and (max-width: 575px) {
+                        width: 160px;
+                    }
                 }
 
                 .name {
@@ -257,3 +261,4 @@
         font-size: 24px;
     }
 }
+

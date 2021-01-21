@@ -241,6 +241,7 @@ body {
     left: 0;
     z-index: 999;
     .data_confirm {
+        font-family: 'Roboto', sans-serif;
         background-image: url(../Images/alert/alert-bg.png);
         border: 1px solid rgb(0, 0, 0);
         width: 300px;
@@ -252,6 +253,7 @@ body {
         border-radius: 15px;
         justify-content: space-between;
         padding: 15px;
+        
 
         div {
             // border: 1px solid blue;
@@ -279,7 +281,7 @@ body {
                     width: 60%;
                     // text-align: right;
                 }
-                font-size: $fontsize_H4;
+                font-size: $fontsize_H6;
             }
             &:last-child {
                 display: flex;
@@ -359,6 +361,11 @@ body {
     .group_data_confirm {
         .data_confirm {
             width: 400px;
+            div {
+                h4{
+                    font-size: 22px;
+                }
+            }
         }
     }
 

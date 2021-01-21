@@ -1,0 +1,296 @@
+@import "mixins/mixins.scss";
+@import "base/base.scss";
+
+// 每個人 買飲料
+#order_list {
+    // max-width: 575px;
+    margin: 40px auto;
+    max-width: 1200px;
+    color: $textColor;
+
+    .group_order_done_person {
+        // border: 1px solid red;
+        // border-bottom: 2px solid rgb(192, 191, 191);
+        width: 75%;
+        margin: 0 auto;
+        border-top: 2px solid rgb(192, 191, 191);
+
+        @media screen and (max-width:992px) {
+            width: 80%;
+        }
+
+        @media screen and (max-width:768px) {
+            width: 85%;
+        }
+
+        @media screen and (max-width:576px) {
+            width: 90%;
+        }
+
+        &:last-child {
+            border-bottom: 2px solid rgb(192, 191, 191);
+        }
+
+        &>div {
+            margin: 15px 0 30px;
+        }
+
+        .group_order_done_person_upbox {
+            display: flex;
+            align-items: center;
+            // border: 1px solid red;
+
+            @media screen and (max-width:576px) {
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .group_order_done_person_img {
+                width: 60px;
+                height: 60px;
+                overflow: hidden;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 50%;
+                font-size: 0;
+                margin-right: 20px;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    max-width: none;
+                }
+
+                @media screen and (max-width:576px) {
+                    margin-right: 0;
+                    margin-bottom: 10px;
+                }
+            }
+
+            .group_order_done_person_name {
+                @include H6;
+                font-weight: bold;
+
+                @media screen and (min-width:577px) {
+                    @include H4;
+                }
+            }
+
+
+        }
+
+        .group_order_done_person_drink {
+            // border: 1px solid black;
+            background-color: rgba(255, 255, 255, 0.5);
+            padding: 10px 2.5%;
+            margin: 10px 0;
+            @include H4;
+            text-indent: 8px;
+            position: relative;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+
+            @media screen and (max-width:576px) {
+                flex-wrap: wrap;
+                @include H5;
+                text-indent: 5px;
+            }
+
+            #drink_title_wrapper {
+                // border: 1px solid blue;
+                flex-shrink: 0;
+                width: 50%;
+
+                @media screen and (max-width:768px) {
+                    width: 45%;
+                }
+
+                @media screen and (max-width:576px) {
+                    width: 100%;
+                    // order: 0;
+                }
+
+                .group_order_done_person_drink_note {
+                    // border: 1px solid green;
+                    line-height: 20px;
+                    @include H6;
+
+                    @media screen and (max-width:576px) {
+                        font-size: 14px;
+                    }
+                }
+
+                div {
+                    margin: 10px 0;
+                }
+
+                div:first-child {
+                    font-weight: bold;
+                }
+
+
+            }
+
+            #mob_line {
+                display: none;
+
+                @media screen and (max-width:576px) {
+                    order: 2;
+                    display: flex;
+                    width: 100%;
+                    height: 1px;
+                    background-color: $textColor;
+                    margin: 15px 0;
+                }
+            }
+
+            #num_btn {
+                // border: 1px solid yellow;
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+                width: 40%;
+
+                // margin-left: 40%;
+                @media screen and (max-width:768px) {
+                    width: 30%;
+                }
+
+                button {
+                    border-radius: 50%;
+                    width: 20px;
+                    height: 20px;
+                    padding: 0;
+                    align-items: center;
+                    border: none;
+                    font-weight: 900;
+                    background-color: $btnColor;
+                    color: white;
+                    font-size: 14px;
+                    outline: none;
+                    cursor: pointer;
+                }
+
+                button:first-child {
+                    position: relative;
+
+
+                    div {
+                        width: 7px;
+                        height: 2px;
+                        background-color: white;
+                        position: absolute;
+                        left: 50%;
+                        top: 50%;
+                        transform: translateX(-50%) translateY(0);
+                        margin: 0;
+                    }
+                }
+
+                #num_feedback {
+                    border-radius: 5px;
+                    border: 1px solid #777777;
+                    text-align: center;
+                    margin: 0 5px;
+                    padding: 2px 0;
+                    text-indent: 4px;
+                    letter-spacing: 4px;
+                }
+
+                span {
+                    font-weight: bold;
+                }
+
+                @media screen and (max-width:576px) {
+                    order: 3;
+                    justify-content: flex-start;
+                    padding-left: 10px;
+                    width: auto;
+                    // border-top: 1px solid $textColor;
+                }
+            }
+
+            .order_delete_btn {
+                // border: 1px solid red;
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+                flex-shrink: 0;
+
+                img:first-child {
+                    display: block;
+
+                    @media screen and (max-width:576px) {
+                        display: none;
+                    }
+                }
+
+                img:nth-child(2) {
+                    display: none;
+
+                    @media screen and (max-width:576px) {
+                        display: block;
+                    }
+                }
+
+                &:hover {
+                    opacity: 0.8;
+                    transition: 0.2s ease-in-out;
+                }
+
+                @media screen and (max-width:576px) {
+                    order: 4;
+                    margin: 0 10px;
+                    // width: 20%;
+                    // border-top: 1px solid $textColor;
+                }
+            }
+
+            #item_single_price {
+                font-weight: medium;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-indent: 4px;
+                letter-spacing: 4px;
+                width: 10%;
+                margin: 0 10px;
+
+                @media screen and (max-width:576px) {
+                    order: 1;
+                }
+            }
+        }
+
+        .group_order_done_person_total {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            background-color: $btnColor;
+            color: white;
+            @include H4;
+            letter-spacing: 2px;
+            font-weight: bold;
+            border-radius: 5px;
+            padding: 10px 0;
+
+            @media screen and (max-width:576px) {
+                @include H5;
+                letter-spacing: 0px;
+                justify-content: space-around;
+            }
+
+            div {
+                margin-right: 2.5%;
+
+                @media screen and (max-width:576px) {
+                    margin-left: 2.5%;
+                }
+            }
+        }
+    }
+}

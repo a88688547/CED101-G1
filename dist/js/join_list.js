@@ -13,7 +13,7 @@ var app = new Vue({
     timer: null,   //計時器
     msg: 1,
     grouporddata: [],
-    imgSrc10: "./Images/coupon//0off@2x.jpg",
+    imgSrc10: "./Images/coupon//0off.jpg",
     imgSrc20:
       "./Images/drinkphoto/coupon/drive-download-20201228T062855Z-001/10off.jpg",
     imgSrc30:
@@ -27,7 +27,23 @@ var app = new Vue({
     ght: "",
       
       },
-      computed: {
+  computed: {
+    cupText()
+    {
+      let goalcup = new Array;
+      for (i = 0; i < this.ght; i++)
+      {
+        let cup_text = this.grouporddata[i].goal_cup;
+        if (cup_text == 10)
+        {
+          cup_text = "無限制"
+        }
+        console.log(cup_text);
+       
+        goalcup[i] = cup_text;
+      }
+      return goalcup;
+        },
         grouporddataLenght() //長度
         {
             this.ght = this.grouporddata.length
@@ -41,10 +57,10 @@ var app = new Vue({
             for (i = 0 ; i < this.ght ; i++)
             {
               // console.log(offsetTime);
-            // let in_time = 1; 
+            let in_time = 1; 
             let endTime = new Date(this.grouporddata[i].deadline_time.replaceAll('-', '/'));
             let endTimeSec = endTime.getTime()//轉毫秒
-            offsetTime = (endTimeSec - this.nowTime) / 1000 // ** 以秒為單位
+            let offsetTime = (endTimeSec - this.nowTime) / 1000 // ** 以秒為單位
             this.endTime[i] = endTimeSec; // ** 以秒為單位
             let sec = parseInt(offsetTime % 60); // 秒
             let min = parseInt((offsetTime / 60) % 60); // 分 ex: 90秒
@@ -55,15 +71,16 @@ var app = new Vue({
               // this.in_time = 2
               //時間到在抓一次
               this.selectGroup();
-            } else
-            {
-              this.type.push(1)
-            }
+              in_time = 2;
+              sec = "0" 
+              min = '0'
+              hr = '0'
+            } 
               let total = {
                 theHr: hr,
                 theMin: min,
                 theSec: sec,
-                // inTime: in_time,
+                inTime: in_time,
                   
               }
               Time[i] = total;
@@ -75,6 +92,21 @@ var app = new Vue({
         
       },
   methods: {
+    // cupText()
+    // {
+    //   let goalcup = new Array;
+    //   for (i = 0; i < this.ght; i++)
+    //   {
+    //     let cup_text = this.grouporddata[i].goal_cup;
+    //     if (cup_text == 10)
+    //     {
+    //       cup_text = "無限制"
+    //     }
+    //     console.log(cup_text);
+       
+    //     goalcup[i] = cup_text;
+    //   }
+    //     },
     //警告視窗開關
     XError: function ()
     {

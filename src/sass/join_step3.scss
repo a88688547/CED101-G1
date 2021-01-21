@@ -1,0 +1,319 @@
+@import "base/base.scss";
+@import "mixins/mixins.scss";
+
+body {
+    background-color:$insideBackgroundColor;
+}
+  
+h3{
+    color:$textColor;
+    font-size:$fontsize_H3;
+}
+h2{
+    color:$textColor;
+    font-size:$fontsize_H2;
+    font-weight: bold;
+}
+h4{
+    color:#707070;
+    font-size:$fontsize_H4;
+}
+
+h5{
+    font-size:$fontsize_H5 ;
+    color:$textColor;
+    font-weight: bold;
+}
+
+input{
+    padding:0;
+}
+.main{
+    width:100%;
+    max-width:1200px;
+    margin:0 auto;
+}
+
+//====進度條=====
+@mixin margin-b {
+    margin-bottom: 50px;
+  }
+  
+.info{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    // 圖片
+    .infoImg{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        .info_img{
+            margin-bottom: 10px;
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: red;
+            img{
+                max-width: none;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+        .info_name{
+            font-size: 16px;
+        }
+    }
+    
+    border: 1px solid red;
+    .info_detail{
+        border: 1px solid blue;
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        .info_phone{
+            border: 1px solid red;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+}
+.discount{
+    border: 1px solid red;
+}
+.card{
+    border: 1px solid red;
+}
+
+// ====進度bar=====
+
+// 尺寸、對齊方式
+.step_box {
+    width: 100%;
+    height: 135px;
+    margin: 80px auto;
+    overflow: hidden;
+
+    .step_ball{
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+    }
+  
+  }
+  
+  // 球尺寸、顏色、icon、字型
+  .step_box .step_ball >li{
+    
+    @include step_ball_size;
+    border-radius: 50%;
+    background-color: #EFE7DA;
+    position: relative;
+  
+            // 定位進度球內img置中
+            & img{
+                position: absolute;
+                transform: translate(50%,-50%);
+                top: 50%;
+                right: 50%;
+            }
+  
+        // 定位下方步驟文字
+            & h5{
+                @include H5;
+                color: $btnColor;
+                letter-spacing: 0px;
+                position: absolute;
+                width: 100%;
+                text-align: center;
+                top: 120%;
+            }
+  }
+  
+  
+  
+  
+  // 偽元素:進度條及變色方式
+  
+  .step_box .step_ball >li{
+  
+    &:first-child{
+        background-color: $btnColor;
+    }
+  
+    &::before{
+        content: "";
+        position: absolute;
+        width: 345%;
+        height: 5px;
+        background-color: #EFE7DA;
+        left: 50px;
+        top: 50%;
+        z-index: -1;
+    }
+  
+  
+    &:last-child::before{
+        display: none;
+    }
+  
+  }
+  
+  
+  
+  // ====進度bar結束=====
+  
+  //1.當前進度-步驟一
+  
+  .step_box .step_ball li:first-child{
+    font-weight: bold;
+  }
+  
+  // 2.當前進度-步驟二
+  
+  .step_ball>li:nth-child(2){
+      background-color: $btnColor;
+  }
+  
+  .step_ball>li:nth-child(1)::before{
+      background-color: $btnColor;
+  }
+  
+  .step_box .step_ball li:nth-child(2){
+      font-weight: bold;
+  }
+  
+//   3.當前進度-步驟三
+  
+  .step_ball>li:nth-child(2) , .step_ball>li:nth-child(3){
+      background-color: $btnColor;
+  }
+  
+  .step_ball>li:nth-child(1)::before , .step_ball>li:nth-child(2)::before{
+      background-color: $btnColor;
+  }
+  
+  .step_box .step_ball li:nth-child(3){
+      font-weight: bold;
+  }
+  
+  // 4.當前進度-步驟四
+  
+  // .step_box .step_ball >li{
+  //     background-color: $btnColor;
+  // }
+  
+  // .step_box .step_ball>li::before{
+  //     background-color: $btnColor;
+  // }
+  
+  // .step_box .step_ball li:nth-child(4){
+  //     font-weight: bold;
+  // }
+  
+  
+  
+  //  RWD
+  
+  
+  @media (min-width: 576px) and (max-width: 991px){
+    .group_order_done_total_box{
+        width: 80%;
+      }
+  
+    .step_box{
+        height: 115px;
+    }
+  
+    .step_box .step_ball >li{
+        @include step_ball_size_medium;
+    }
+  
+    .step_box .step_ball >li>h5{
+        @include H6;
+        letter-spacing: 0px;
+    }
+  
+  
+  }
+  
+  @media (max-width: 575px){
+  
+    .step_box{
+        height: 90px;
+    }
+  
+    .step_box .step_ball >li{
+        @include step_ball_size_small;
+    }
+  
+    .step_box .step_ball >li>h5{
+        @include P2;
+        letter-spacing: 0px;
+    }
+  
+    .step_box .step_ball >li>img{
+        width: 40%;
+    }
+  
+  }
+ 
+
+  @media screen and (min-width: 1199px){
+    .discountNo .cou_code{
+        margin: 0px 10px;
+    }
+      .card{
+          .cardinfo{
+              .cardname{
+                //   border: 1px solid red;
+                  height: 40px;
+                //   margin-bottom: 10px;
+              } 
+              .cardno{
+                height: 40px;
+              }
+              .safeno{
+                height: 40px;
+              }
+              .exp{
+                height: 40px;
+              }
+              font-size: 22px;
+            //   border: 1px solid red;
+          }
+      }
+  }
+  .group_order_done_total_box{
+    font-size: $fontsize_P1;
+    letter-spacing: 2px;
+    // border: 1px solid red;
+    max-width: 90%;
+    margin: 0 auto;
+  
+    div{
+      margin: 10px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+  }
+  .group_order_done_dis{
+    border-bottom: 1px solid rgb(173, 173, 173);
+  }
+  .group_order_done_finaltotal{
+    font-size: $fontsize_H3;
+    color: $textColor;
+    font-weight: bold;
+    
+  }

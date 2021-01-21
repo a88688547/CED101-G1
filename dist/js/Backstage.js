@@ -1142,6 +1142,7 @@ window.addEventListener('load', function () {
                 detail_title: '',
                 lightbox: false,
                 error_text: '',
+                edit_type_title: '',
             }
         },
         props: ['type_no', 'type_title'],
@@ -1153,8 +1154,8 @@ window.addEventListener('load', function () {
                     <div class="type_detail_box">
                         <form class="type_detail_box_left">
                             <label for="type_title_edit">規格名稱 : </label>
-                            <input name="type_title_edit" id="type_title_edit" :value="type_title"></input>
-                            <button id="edit_type_title">修改名稱</button>
+                            <input name="type_title_edit" id="type_title_edit" v-model="edit_type_title"></input>
+                            <div id="add_type_detail" @click="update_type_title">修改名稱</div>
                         </form>
                         <div class="type_detail_box_right">
                             <div>已擁有的細項 :</div>
@@ -1257,10 +1258,45 @@ window.addEventListener('load', function () {
                 //重新撈取一次 細項列表
                 this.get_mar(this.type_no)
             },
+            update_type_title() {
+                if (
+                    this.edit_type_title.replace(/[^\u4e00-\u9fa5]/g, '') &&
+                    this.edit_type_title.length >= 1 &&
+                    this.edit_type_title.length <= 5
+                ) {
+                    console.log('中文 成功')
+                } else {
+                    this.lightbox = true
+                    this.error_text = '請輸入中文(1~5字)'
+                    return ''
+                }
+
+                const res = fetch('./php/bs_update_type_title.php', {
+                    method: 'POST',
+                    mode: 'same-origin',
+                    credentials: 'same-origin',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        edit_type_title: this.edit_type_title,
+                        type_no: this.type_no,
+                    }),
+                })
+
+                //修改成功 跳出燈箱
+                this.lightbox = true
+                this.error_text = '修改成功'
+            },
+            //關閉燈箱之判斷
+            close_lightbox() {
+                this.lightbox = false
+            },
         },
         created() {
             this.get_mar(this.type_no)
             // console.log('send:', this.drinkno)
+            this.edit_type_title = this.type_title
         },
         // 監聽數值變化
         watch: {
@@ -1422,7 +1458,7 @@ window.addEventListener('load', function () {
                 if (group_ord_bs == 0) {
                     return '未處理'
                 } else if (group_ord_bs == 1) {
-                    return '已處理'
+                    return '運送中'
                 } else if (group_ord_bs == 2) {
                     return '已完成'
                 }
@@ -1624,7 +1660,9 @@ window.addEventListener('load', function () {
             chech_group_ord_bs: function (data) {
                 if (data == 0) {
                     return '未處理'
-                } else {
+                } else if (data == 1) {
+                    return '運送中'
+                } else if (data == 2) {
                     return '已完成'
                 }
             },
@@ -1739,7 +1777,7 @@ window.addEventListener('load', function () {
                 } else if (per_ord_bs == 0) {
                     return '未處理'
                 } else if (per_ord_bs == 1) {
-                    return '已處理'
+                    return '運送中'
                 }
             },
             //類型 點擊後 切換顏色
@@ -1936,7 +1974,9 @@ window.addEventListener('load', function () {
             chech_per_ord_bs: function (data) {
                 if (data == 0) {
                     return '未處理'
-                } else {
+                } else if (data == 1) {
+                    return '運送中'
+                } else if (data == 2) {
                     return '已完成'
                 }
             },
@@ -2074,7 +2114,7 @@ window.addEventListener('load', function () {
             },
             // 點擊 確定修改後 觸發 php程式。完成後 重新撈取一次資料
             change_status: async function (art_no, art_report_no, status) {
-                const res = await fetch('./php/bs_update_articleReport.php', {
+                const res = await fetch('./php/bs_update_articlereport.php', {
                     method: 'POST',
                     mode: 'same-origin',
                     credentials: 'same-origin',

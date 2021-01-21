@@ -330,9 +330,11 @@ body {
     align-items: center;
 
     span {
+        letter-spacing: 0.5rem!important;
         margin-right: 10px;
         @include H4;
     }
+
 }
 
 .gamelink {
@@ -370,10 +372,7 @@ body {
         width: 100%;
         @include P1;
 
-        span {
-            margin-right: 5px;
-            margin-left: 5px;
-        }
+      
     }
 
     .gamelink {

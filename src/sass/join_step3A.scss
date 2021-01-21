@@ -43,6 +43,7 @@ input{
 
 //訂單資訊
 .info{
+    border: 1px solid red;
     width:100%;
     display:flex;
     @include H3;
@@ -61,21 +62,39 @@ input{
     
 }
 .info_name{
-    margin-bottom: 20px;
+    margin-top: 10px;
 }
 .info_phone,.info_phone_top,.info_msg,.info_msg_top{
     display:flex;
     
     
 }
-.info_img{
-    // width:20%;
-    max-width:120px;
-    overflow: hidden;
-    margin-right:50px;
-    
+.infoImg{
+    border: 3px solid red;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-right: 50px;
+    .info_img{
+        border: 1px solid red;
+        // width:20%;
+        // max-width:120px;
+        // overflow: hidden;
+        // margin-right:50px;
+        border-radius: 50%;
+        width: 120px;
+        height: 120px;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+    }
 }
+
 .info_detail{
+    border: 1px solid red;
     width:60%;
     color:#707070;
     @include H5;
@@ -290,7 +309,7 @@ input{
         // @include P1;
        }
        .info_detail{
-        width:90%;
+        width:100%;
         margin:0 auto;
         // @include P1;
     }
@@ -310,7 +329,7 @@ input{
         @include P2;
        }
        .info_detail{
-        width:90%;
+        width:100%;
         margin:0 auto;
     }
        .info_phone_bottom,.info_msg_bottom{
@@ -393,8 +412,9 @@ input{
     margin: 70px 0 30px;
 }
 .cardinfo{
+    border: 1px solid red;
     @include list_lable;
-    width:80%;
+    // width:80%;
     margin:0 auto;
     margin-bottom: 70px;
     div{
@@ -407,7 +427,7 @@ input{
     }
 }
 .cardname,.cardno,.exp,.safeno{
-    width:80%;
+    width:100%;
     margin:20px auto;
     .cardNumber::-webkit-outer-spin-button,
     .cardNumber::-webkit-inner-spin-button

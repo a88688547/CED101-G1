@@ -10,7 +10,7 @@ try {
             join group_ord g on p.group_ord_no = g.group_ord_no
             where p.mem_no = :mem_no
                   and p.mem_no != g.head_mem_no
-                  and g.group_state = 0";
+                  and (g.group_state = 0 or g.group_state = 1)";
     // $memberdata = $pdo->query($sql);
     $memberdata = $pdo->prepare($sql);
     $memberdata->bindValue(":mem_no", $mem_no);

@@ -454,8 +454,10 @@ window.addEventListener('load', function () {
             // 判斷訂單的狀態
             checkstatuse(data) {
                 if (data == 0) {
-                    return '運送中'
+                    return '準備中'
                 } else if (data == 1) {
+                    return '運送中'
+                } else if (data == 2) {
                     return '已完成'
                 }
             },
@@ -603,7 +605,7 @@ window.addEventListener('load', function () {
                             <div>$ {{group_ord_info.group_ord_price_2}}</div>
                         </div>
                     </div>
-                    <div class="getitem_btn_box" v-if="group_ord_info.ischecked"><div id="getitem_btn" @click="getitem">收到商品</div></div>
+                    <div class="getitem_btn_box" v-if="group_ord_info.group_ord_bs == 1"><div id="getitem_btn" @click="getitem">收到商品</div></div>
                 </section>
       `,
         methods: {
@@ -677,8 +679,10 @@ window.addEventListener('load', function () {
             // 判斷訂單的狀態
             checkstatuse(data) {
                 if (data == 0) {
-                    return '運送中'
+                    return '準備中'
                 } else if (data == 1) {
+                    return '運送中'
+                } else if (data == 2) {
                     return '已完成'
                 }
             },
@@ -875,8 +879,10 @@ window.addEventListener('load', function () {
             // 判斷訂單的狀態
             checkstatuse(data) {
                 if (data == 0) {
-                    return '運送中'
+                    return '準備中'
                 } else if (data == 1) {
+                    return '運送中'
+                } else if (data == 2) {
                     return '已完成'
                 }
             },
@@ -1272,9 +1278,11 @@ window.addEventListener('load', function () {
             // 判斷訂單的狀態
             checkstatuse(data) {
                 if (data == 0) {
-                    return '運送中'
+                    return '準備中'
                 } else if (data == 1) {
-                    return '已送達'
+                    return '運送中'
+                } else if (data == 2) {
+                    return '已完成'
                 }
             },
         },
@@ -1301,7 +1309,7 @@ window.addEventListener('load', function () {
         <div class="order_box">
             <div class="type_box self_type_box">
                 <div class="type_box_on" id="self_notyet_order_box" @click="changetype(0),changecolor($event)">未完成</div>
-                <div id="self_done_order_box" @click="changetype(1),changecolor($event)">已完成</div>
+                <div id="self_done_order_box" @click="changetype(2),changecolor($event)">已完成</div>
             </div>
             <div class="self_order_list_box">
                 <div class="self_notyet_order_box">
@@ -1388,8 +1396,10 @@ window.addEventListener('load', function () {
             // 判斷訂單的狀態
             checkstatuse(data) {
                 if (data == 0) {
-                    return '運送中'
+                    return '準備中'
                 } else if (data == 1) {
+                    return '運送中'
+                } else if (data == 2) {
                     return '已完成'
                 }
             },
@@ -1498,7 +1508,7 @@ window.addEventListener('load', function () {
                             <div>$ {{per_ord_info.ord_price_2}}</div>
                         </div>
                     </div>
-                    <div class="getitem_btn_box" v-if="per_ord_info.ord_state == 0"><div id="getitem_btn" @click="getitem">收到商品</div></div>
+                    <div class="getitem_btn_box" v-if="per_ord_info.ord_state == 1"><div id="getitem_btn" @click="getitem">收到商品</div></div>
                   </section>
     `,
         methods: {
@@ -1560,8 +1570,10 @@ window.addEventListener('load', function () {
             // 判斷訂單的狀態
             checkstatuse(data) {
                 if (data == 0) {
-                    return '運送中'
+                    return '準備中'
                 } else if (data == 1) {
+                    return '運送中'
+                } else if (data == 2) {
                     return '已完成'
                 }
             },
@@ -1609,7 +1621,7 @@ window.addEventListener('load', function () {
           <a href="./custom.html" class="coupon_link"><img src="./Images/coupon_list.png" /></a>
       </div>
       <div v-if=" empty == 'true' ">
-            <span>目前尚無任何優惠券</span>
+            <span>目前尚無任何優惠券，趕緊去玩小遊戲，取得優惠券吧 ~!!</span>
       </div>
       <div class="coupon_list" v-if=" empty == 'false' ">
           <div class="coupon_item" v-for="(value,key) in coupons">

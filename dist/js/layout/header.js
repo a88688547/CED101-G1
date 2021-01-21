@@ -17,7 +17,6 @@ Vue.component('my-header', {
             voteTime: '',
             logbox: false,
             logText: '',
-
         }
     },
     methods: {
@@ -239,7 +238,7 @@ Vue.component('my-header', {
         this.get_mem()
     },
     mounted() {
-        members = ""
+        members = ''
     },
     template: `
             <nav>
@@ -341,4 +340,4 @@ Vue.component('my-header', {
                 </div>
             </nav>
             `,
-});
+})

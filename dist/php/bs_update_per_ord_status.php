@@ -4,15 +4,15 @@ try {
 
     $content = trim(file_get_contents("php://input"));
     $decoded = json_decode($content, true);
-
     $per_ord_no = $decoded["per_ord_no"];
 
     $sql = "update personal_order
-            set ord_state = 2
+            set ord_state = 1
             where per_ord_no = :per_ord_no";
     // $grouporddata = $pdo->query($sql);
     $per_ord_data = $pdo->prepare($sql);
     $per_ord_data->bindValue(":per_ord_no", $per_ord_no);
+    // $per_ord_data->bindValue(":ord_state", $ord_state);
     $per_ord_data->execute();
 
     echo "修改成功~!!";

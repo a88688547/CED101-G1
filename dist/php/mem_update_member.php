@@ -1,5 +1,7 @@
 <?php
 try {
+
+    session_start();
     require_once "./connect_join_database.php";
 
     $content = trim(file_get_contents("php://input"));
@@ -34,6 +36,8 @@ try {
     $per_ord_data->bindValue(":mem_psw", $mem_psw);
     $per_ord_data->bindValue(":mem_phone", $mem_phone);
     $per_ord_data->execute();
+
+    $_SESSION["mem_name"] = $mem_name;
 
     echo "修改成功~!!";
     // if ($per_ord_data->rowCount() == 0) { //找不到

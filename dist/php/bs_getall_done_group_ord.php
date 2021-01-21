@@ -6,13 +6,26 @@ try {
     $decoded = json_decode($content, true);
     $group_ord_bs = $decoded["group_ord_bs"];
 
-    $sql = "select *
+    if ($group_ord_bs == 0) {
+        $sql = "select *
             from group_ord
-            where group_ord_bs = :group_ord_bs
+            where (group_ord_bs = 0 or group_ord_bs = 1) and group_state = 2
             order by arrive_time";
+    } else {
+        $sql = "select *
+        from group_ord
+        where group_ord_bs = 2 and group_state = 2
+        order by arrive_time";
+    }
+    ;
+
+    // $sql = "select *
+    //         from group_ord
+    //         where group_ord_bs = :group_ord_bs and group_state = 2
+    //         order by arrive_time";
     // $grouporddata = $pdo->query($sql);
     $grouporddata = $pdo->prepare($sql);
-    $grouporddata->bindValue(":group_ord_bs", $group_ord_bs);
+    // $grouporddata->bindValue(":group_ord_bs", $group_ord_bs);
     $grouporddata->execute();
 
     if ($grouporddata->rowCount() == 0) { //找不到

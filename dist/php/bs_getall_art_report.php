@@ -3,7 +3,7 @@ try {
     require_once "./connect_join_database.php";
 
     $sql = "select *
-            from articleReport a
+            from articlereport a
               join member m on a.mem_no = m.mem_no
               order by art_report_date desc
             ";

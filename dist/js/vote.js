@@ -37,7 +37,7 @@ Vue.component("vote-item", {
                 <div class="vote-bot" >
                     <div class="vote-wrap" v-for="(voteType, i) in drinks">
                         <div class="vote-title">
-                            <h3>{{voteType.drink_type_title}}&nbsp</h3>
+                            <h3>{{voteType.drink_type_title}}</h3>
                         </div>
                         <div v-for="(item,index) in voteType.itemList" :class="[index===0?'vote-first':'vote-second', 'vote-item']">
                             <div class="vote-rank">本周第{{texts[index]}}</div>

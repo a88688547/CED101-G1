@@ -133,7 +133,7 @@ Vue.component('orderlist', {
             }).then(res => res.json())
                 .then(res => this.group_state = res.group_state)
 
-            alert(this.group_state)
+
             if (this.group_state == 0) {
                 if (this.inTimeCart) {
                     this.postOrder()

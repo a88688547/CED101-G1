@@ -75,7 +75,7 @@
         </div>
       </div>
       <div class="info" v-else>
-        <div class="info_img"><img src="Images/user_big.svg"></div>
+        <div class="info_img"><img :src=group_img></div>
         <div class="info_detail">
             <div class="info_name">{{mem_info.mem_name}}</div>
             <div class="info_phone">
@@ -104,7 +104,7 @@
             </label>
             <!-- 折扣代碼 -->
             <select v-model="cou" @blur.stop="DiscountCOU">
-              <option value="" disabled selected >--請選擇--</option>
+              <!-- <option value=""  >--不選擇--</option> -->
               <option v-for="item in coupon" v-bind:value="{cou_no:item.cou_no
                 ,mem_no:item.mem_no,
                 cou_discount:item.cou_discount,
@@ -191,7 +191,7 @@
       
       <!-- 金額 -->
       <hr />
-        <div class="group_order_done_total_box">
+        <div class="group_order_done_total_box" v-if="type == 10">
           <!-- <div class="group_order_done_total">
               <div>原價</div>
               <div>${{group_ord_price}}</div>
@@ -213,19 +213,45 @@
               <div>${{group_ord_price_2}}</div>
           </div> -->
           <div class="group_order_done_finaltotal">
-              <div>總金額</div>
+              <div>應付金額</div>
               <div>${{group_ord_count2}}</div>
           </div>
       </div>
+      <div class="group_order_done_total_box" v-else>
+        <div class="group_order_done_total">
+            <div>原價</div>
+            <div>${{group_ord_price}}</div>
+        </div>
+        <div class="group_order_done_dis">
+            <div>杯數折扣</div>
+            <div >{{countTexr}}</div>
+        </div>
+        <div class="group_order_done_total">
+            <div>杯數折扣後</div>
+            <div>${{group_ord_count1}}</div>
+        </div>
+        <div class="group_order_done_dis">
+            <div>優惠卷折扣</div>
+            <div>{{disText}}</div>
+        </div>
+        <div class="group_order_done_total">
+            <div>優惠卷折扣後</div>
+            <div>${{group_ord_price_2}}</div>
+        </div>
+        <div class="group_order_done_finaltotal">
+            <div>總金額</div>
+            <div>${{group_ord_count2}}</div>
+        </div>
+    </div>
       <!-- //檢查資料有沒有填 -->
       <div class="orderbtn" v-if="type == 10">
-        <div @click="return_step2">上一步</div>
-        <div class="nextStep" @click="confirmData">下一步</div>
+        <!-- <div @click="return_step2">上一步</div> -->
+        <div class="nextStep" @click="confirmData">確認資料</div>
       </div>
       <!-- 檢查明細 -->
       <div class="orderbtn" v-else>
         <div @click="return_data">上一步</div>
-        <div class="nextStep" @click="check_total" >下一步</div>
+        <div class="nextStep" @click="check_total" >結帳</div>
       </div>
     
     </div>

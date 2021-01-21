@@ -1,6 +1,7 @@
 var app = new Vue({
   el: "#app",
   data: {
+    cou_dis:"",
     cou_discount:"",
     couNo:"",
     cup_count:"",
@@ -44,8 +45,49 @@ var app = new Vue({
           
       }
     },
+    //杯數優惠
+    count_text() {
+      switch (this.group_ord.goal_cup)
+      {
+        case "10":
+          $(".count").text("無折扣");
+          return this.cup_count = "無折扣"
+        case "20":
+          $(".count").text("0.9");
+          return this.cup_count = "九折"
+        case "30":
+          $(".count").text("0.8");
+          return this.cup_count = "八折"
+        case "40":
+          $(".count").text("0.7");
+          return this.cup_count = "七折"
+        case "50":
+          $(".count").text("0.6");
+          return this.cup_count = "六折"
+          
+      }
+    },
   },
   methods: {
+    //優惠卷折扣
+  //  DiscountCOU()
+  //  {
+  //    switch (this.cou_dis)
+  //    {
+  //      case "0.6":
+  //        $(".countA").text("六折");
+  //        return this.cou_count = "0.6";
+  //      case "0.7":
+  //        $(".countA").text("七折");
+  //        return this.cou_count = "0.7";
+  //      case "0.8":
+  //        $(".countA").text("八折");
+  //        return this.cou_count = "0.8";
+  //      case "0.9":
+  //        $(".countA").text("九折");
+  //        return this.cou_count = "0.9";
+  //    }
+  //  },
     select_cou: async function ()
     {
       console.log(this.group_ord.cou_no);

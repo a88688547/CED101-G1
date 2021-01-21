@@ -332,11 +332,16 @@ body {
 }
 
 .drink_set {
-    margin-top: 15px;
+
+    // margin-top: 15px;
+    // &:nth-child(n-1) {
+    //     margin-bottom: 30px;
+    // }
 
     .set_title {
         @include H5;
         color: #111111;
+        margin-top: 15px;
 
         img {
             width: 10px;
@@ -375,6 +380,7 @@ body {
 
 #num_btn_wrapper {
     padding-top: 25px;
+    margin-top: 25px;
     border-top: 1px solid #707070;
     display: flex;
     justify-content: space-between;

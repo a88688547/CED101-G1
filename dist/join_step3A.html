@@ -57,11 +57,11 @@
           <div class="info_img">
           <img :src=group_img alt="" id="img_group" />
           </div>
-          <div class="info_name">{{mem_info.mem_name}}</div>
+          
         </div>
         
         <div class="info_detail">
-          
+          <div class="info_name">{{mem_info.mem_name}}</div>
           <div class="info_phone">
             <div class="info_phone_top">
               <div><img src="Images/tell_big.svg"></div>
@@ -81,7 +81,12 @@
         </div>
       </div>
       <div class="info" v-else>
-        <div class="info_img"><img :src=group_img></div>
+        <div class="infoImg">
+          <div class="info_img">
+          <img :src=group_img alt="" id="img_group" />
+          </div>
+          
+        </div>
         <div class="info_detail">
             <div class="info_name">{{mem_info.mem_name}}</div>
             <div class="info_phone">
@@ -262,7 +267,7 @@
     
     </div>
     <!-- //警告框 -->
-    <!-- <div class="alertLightbox_black" v-show="Error_show">
+    <div class="alertLightbox_black" v-show="Error_show">
       <div class="alertLightboxWrapper">
           <div class="manager_lightbox_close_img" ><img src="./Images/close.svg" @click="XError" ></div>
           <div class="alertLightbox" >
@@ -270,7 +275,7 @@
               <div @click="XError">確定</div>
           </div>
       </div>
-    </div> -->
+    </div>
     <!-- ======訂單明細======= -->
     <div class="orderModal" v-show="closeTotal" >
       <div id="order_list" > 

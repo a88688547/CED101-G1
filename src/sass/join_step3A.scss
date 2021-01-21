@@ -43,7 +43,7 @@ input{
 
 //訂單資訊
 .info{
-    border: 1px solid red;
+    // border: 1px solid red;
     width:100%;
     display:flex;
     @include H3;
@@ -70,18 +70,14 @@ input{
     
 }
 .infoImg{
-    border: 3px solid red;
+    // border: 3px solid red;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     margin-right: 50px;
     .info_img{
-        border: 1px solid red;
-        // width:20%;
-        // max-width:120px;
-        // overflow: hidden;
-        // margin-right:50px;
+        // border: 1px solid red;
         border-radius: 50%;
         width: 120px;
         height: 120px;
@@ -89,12 +85,18 @@ input{
         display: flex;
         justify-content: center;
         align-items: center;
+        img{
+            max-width: none;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
         
     }
 }
 
 .info_detail{
-    border: 1px solid red;
+    // border: 1px solid red;
     width:60%;
     color:#707070;
     @include H5;
@@ -195,7 +197,7 @@ input{
         background-color: #fff;
         box-shadow: 0 0 5px #ddd;
         .group_order_done_person{
-            border-top: 0px solid red;
+            // border-top: 0px solid red;
             // margin: 10px 0;
         }
         .group_order_done_person_upbox{
@@ -270,9 +272,12 @@ input{
 @media screen and (max-width: 756px){
    // 訂單資訊
    .info{
-    display: block;
+    // display: block;
     margin-top:0;
     @include P1;
+    .infoImg{
+        margin-right: 0;
+    }
    }
    .info_img{
        width:30%;
@@ -281,7 +286,7 @@ input{
    }
 
    .info_name{
-       text-align: center;
+    //    text-align: center;
        @include H6;
    }
    .info_detail{
@@ -309,9 +314,12 @@ input{
         // @include P1;
        }
        .info_detail{
-        width:100%;
+        width:95%;
         margin:0 auto;
         // @include P1;
+    }
+    .info_name{
+           text-align: center;
     }
        .info_phone_bottom,.info_msg_bottom{
         input{
@@ -412,13 +420,14 @@ input{
     margin: 70px 0 30px;
 }
 .cardinfo{
-    border: 1px solid red;
+    // border: 1px solid red;
     @include list_lable;
     // width:80%;
     margin:0 auto;
     margin-bottom: 70px;
     div{
         display:flex;
+        font-size: 22px;
         // align-self: center;        
     }
     input{
@@ -505,7 +514,7 @@ input{
         display:flex;
         justify-content: space-between; 
     }
-    border: 1px solid red;
+    // border: 1px solid red;
     width:70%;
     margin:70px auto;
       
@@ -1090,6 +1099,7 @@ input{
     .info_detail {
         @include P1;
     }
+    
 }
 
 
@@ -1111,9 +1121,9 @@ input{
     }
 
     .info_phone_bottom, .info_msg_bottom {
-        width: 45%;
+        width: 60%;
     }
-
+    
     .cardinfo input {
         height: 25px;
         // padding: 0;
@@ -1128,7 +1138,7 @@ input{
     .cardinfo div {
         display: flex;
         align-items: center;
-        font-size: 22px;
+        font-size: 16px;
     }
 
     .cardinfo {

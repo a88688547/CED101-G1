@@ -115,7 +115,7 @@ methods: {
     let g_cup = this.group_ord.goal_cup;
     switch (g_cup)
     {
-      case "10":
+      case "1":
         $(".goal_confirm").text("20杯以下無折扣");
         break;
       case "20":

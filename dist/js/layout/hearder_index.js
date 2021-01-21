@@ -17,7 +17,6 @@ Vue.component('my-header', {
             voteTime: '',
             logbox: false,
             logText: '',
-
         }
     },
     methods: {
@@ -42,7 +41,13 @@ Vue.component('my-header', {
             this.$refs.errorLogin.innerText = ''
         },
         closelogbox() {
-            this.logbox = false
+            if (this.logText == 'log') {
+                this.logbox = false
+                return
+            }
+            if (this.logText == 'sign') {
+                location.href = './homepage.html'
+            }
         },
         toggleClass(id) {
             this.isActiveTab = id
@@ -87,6 +92,10 @@ Vue.component('my-header', {
                 })
                 .then((res) => {
                     if (res != '查無此帳號') {
+                        if (res == '0') {
+                            this.$refs.errorLogin.innerText = '帳號已被停權!!'
+                            return
+                        }
                         this.memberInfo = res
                         this.$refs.UserName.innerText = `${res.mem_name}`
                         this.$refs.errorLogin.innerText = ''
@@ -191,7 +200,7 @@ Vue.component('my-header', {
                     window.members = ''
                     location.href = './homepage.html'
                     sessionStorage.clear()
-                    console.log('登出成功')
+                    // console.log('登出成功')
                 })
                 .catch((err) => {
                     console.log('錯誤')
@@ -239,7 +248,7 @@ Vue.component('my-header', {
         this.get_mem()
     },
     mounted() {
-        members = ""
+        members = ''
     },
     template: `
             <nav>
@@ -341,7 +350,7 @@ Vue.component('my-header', {
                 </div>
             </nav>
             `,
-});
+})
 
 new Vue({
     el: '#header',

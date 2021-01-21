@@ -27,7 +27,7 @@
           <h2>分享QR，立馬揪飲</h2>
           <div class="fist_QR_main">
             <img
-            :src="`http://chart.apis.google.com/chart?cht=qr&choe=UTF-8&chs=300x300&chl=http://https://tibamef2e.com/ced101/project/g1/menu.html?group_ord_no=${this.group_ord_no}`"
+            :src="`http://chart.apis.google.com/chart?cht=qr&choe=UTF-8&chs=300x300&chl=https://tibamef2e.com/ced101/project/g1/menu.html?group_ord_no=${this.group_ord_no}`"
           />
           </div>
           <img src="./Images/cancel.svg" alt="" @click="close_btn" class="close_btn" />
@@ -73,12 +73,12 @@
           <div class="QR_box">
             <div class="QR_main">
               <img
-                :src="`http://chart.apis.google.com/chart?cht=qr&choe=UTF-8&chs=300x300&chl=http://localhost/phpLab/CED101-G1/dist/menu.html?group_ord_no=${this.group_ord_no}`"
+                :src="`http://chart.apis.google.com/chart?cht=qr&choe=UTF-8&chs=300x300&chl=https://tibamef2e.com/ced101/project/g1/menu.html?group_ord_no=${this.group_ord_no}`"
               />
             </div>
             <h2>分享網址揪團喝飲料!</h2>
             <div class="QR_link">
-              <input  type="text" class="QR_link_text" id="biao2" :value="`http://tibamef2e.com/ced101/project/g1/menu.html?group_ord_no=${this.group_ord_no}`" />
+              <input  type="text" class="QR_link_text" id="biao2" :value="`https://tibamef2e.com/ced101/project/g1/menu.html?group_ord_no=${this.group_ord_no}`" />
               <input type="button" class="QR_copy" onClick="copyUrl1()" value="COPY" />
             </div>
           </div>
@@ -150,47 +150,57 @@
                     <div class="group_order_done_person_total_cup">{{value.total_cup}}杯</div>
                     <div class="group_order_done_person_total_price">&#36{{value.total_price_2}}</div>
                 </div>
+                
             </div>
-        </div>
-        <div class="group_button">
-            <input
-              type="button"
-              value="添加飲品"
-              class="btn_back_drink"
-              @click="addDrink"
-            />
-            <div class="btn_f5" @click="btn_f5">
-              <img src="./Images/drink.svg" alt="" /> 重新整理
+            <div class="all_total">
+              <div class="total_img"><img src="./Images/group.svg" alt=""></div>
+              <div class="a_totel">
+                <div class="a_cup">總杯數 {{group_ord.now_cup}}杯</div>
+                <div class="total_line">/</div>
+                <div class="a_total">總計 {{group_total}}$</div>
+              </div>
+              
             </div>
-            <input
-              type="button"
-              value="結帳"
-              class="btn_cleckout"
-              @click="checkout"
-            />
-        </div >
+          </div>
+          <div class="group_button">
+              <input
+                type="button"
+                value="添加飲品"
+                class="btn_back_drink"
+                @click="addDrink"
+              />
+              <div class="btn_f5" @click="btn_f5">
+                <img src="./Images/drink.svg" alt="" /> 重新整理
+              </div>
+              <input
+                type="button"
+                value="結帳"
+                class="btn_cleckout"
+                @click="checkout"
+              />
+          </div >
         
-        <div class="alertLightbox_black" v-show="confirm">
-          <div class="alertLightboxWrapper">
-              <div class="manager_lightbox_close_img" @click="closeBox" ><img src="./Images/close.svg" ></div>
-              <div class="alertLightbox" >
-                <div >{{group_ord.now_cup}} / {{group_ord.goal_cup}}</div>
-                <div v-if="goal == 1" @click="closeBox">
-                  
-                  目標杯數不足
+          <div class="alertLightbox_black" v-show="confirm">
+            <div class="alertLightboxWrapper">
+                <div class="manager_lightbox_close_img" @click="closeBox" ><img src="./Images/close.svg" ></div>
+                <div class="alertLightbox" >
+                  <div >{{group_ord.now_cup}} / {{group_ord.goal_cup}}</div>
+                  <div v-if="goal == 1" @click="closeBox">
+                    
+                    目標杯數不足
+                  </div>
+                  <div v-else @click="change_state1" class="nextStep">確認送出!</div>
                 </div>
-                <div v-else @click="change_state1" class="nextStep">確認送出!</div>
-              </div>
+            </div>
           </div>
-        </div>
-        <div class="alertLightbox_black" v-show="TimeError">
-          <div class="alertLightboxWrapper">
-              <div class="manager_lightbox_close_img" @click="closeBox2" ><img src="./Images/close.svg" ></div>
-              <div class="alertLightbox" >
-                <div>時間已截止</div>
-              </div>
+          <div class="alertLightbox_black" v-show="TimeError">
+            <div class="alertLightboxWrapper">
+                <div class="manager_lightbox_close_img" @click="closeBox2" ><img src="./Images/close.svg" ></div>
+                <div class="alertLightbox" >
+                  <div>時間已截止</div>
+                </div>
+            </div>
           </div>
-        </div>
           <!-- <div><a href="./join_step_3A.html?group_ord_no={{group_ord_no}}">test</a></div> -->
           
         </div>

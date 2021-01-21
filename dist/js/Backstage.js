@@ -1142,6 +1142,7 @@ window.addEventListener('load', function () {
                 detail_title: '',
                 lightbox: false,
                 error_text: '',
+                edit_type_title: '',
             }
         },
         props: ['type_no', 'type_title'],
@@ -1153,8 +1154,8 @@ window.addEventListener('load', function () {
                     <div class="type_detail_box">
                         <form class="type_detail_box_left">
                             <label for="type_title_edit">規格名稱 : </label>
-                            <input name="type_title_edit" id="type_title_edit" :value="type_title"></input>
-                            <button id="edit_type_title">修改名稱</button>
+                            <input name="type_title_edit" id="type_title_edit" v-model="edit_type_title"></input>
+                            <div id="add_type_detail" @click="update_type_title">修改名稱</div>
                         </form>
                         <div class="type_detail_box_right">
                             <div>已擁有的細項 :</div>
@@ -1257,10 +1258,45 @@ window.addEventListener('load', function () {
                 //重新撈取一次 細項列表
                 this.get_mar(this.type_no)
             },
+            update_type_title() {
+                if (
+                    this.edit_type_title.replace(/[^\u4e00-\u9fa5]/g, '') &&
+                    this.edit_type_title.length >= 1 &&
+                    this.edit_type_title.length <= 5
+                ) {
+                    console.log('中文 成功')
+                } else {
+                    this.lightbox = true
+                    this.error_text = '請輸入中文(1~5字)'
+                    return ''
+                }
+
+                const res = fetch('./php/bs_update_type_title.php', {
+                    method: 'POST',
+                    mode: 'same-origin',
+                    credentials: 'same-origin',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        edit_type_title: this.edit_type_title,
+                        type_no: this.type_no,
+                    }),
+                })
+
+                //修改成功 跳出燈箱
+                this.lightbox = true
+                this.error_text = '修改成功'
+            },
+            //關閉燈箱之判斷
+            close_lightbox() {
+                this.lightbox = false
+            },
         },
         created() {
             this.get_mar(this.type_no)
             // console.log('send:', this.drinkno)
+            this.edit_type_title = this.type_title
         },
         // 監聽數值變化
         watch: {
@@ -1419,10 +1455,12 @@ window.addEventListener('load', function () {
             },
             //判斷 訂單狀態 回傳 對應值
             checkstate: function (group_ord_bs) {
-                if (group_ord_bs == 1) {
-                    return '已完成'
-                } else if (group_ord_bs == 0) {
+                if (group_ord_bs == 0) {
                     return '未處理'
+                } else if (group_ord_bs == 1) {
+                    return '運送中'
+                } else if (group_ord_bs == 2) {
+                    return '已完成'
                 }
             },
             //類型 點擊後 切換顏色
@@ -1549,6 +1587,9 @@ window.addEventListener('load', function () {
                                     <div>$ {{group_ord_info.group_ord_price_2}}</div>
                                 </div>
                             </div>
+                            <div class="done_btn_box" v-if="group_ord_info.group_ord_bs == 0">
+                                <div class="done_btn" @click="change_done">已處理完成</div>
+                            </div>
                         </div>
                     
                     </div>
@@ -1619,9 +1660,25 @@ window.addEventListener('load', function () {
             chech_group_ord_bs: function (data) {
                 if (data == 0) {
                     return '未處理'
-                } else {
+                } else if (data == 1) {
+                    return '運送中'
+                } else if (data == 2) {
                     return '已完成'
                 }
+            },
+            change_done() {
+                const info = fetch('./php/bs_update_group_ord_status.php', {
+                    method: 'POST',
+                    mode: 'same-origin',
+                    credentials: 'same-origin',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        group_ord_no: this.group_ord_no,
+                    }),
+                })
+                this.get_mar(this.group_ord_no)
             },
         },
         created() {
@@ -1654,7 +1711,7 @@ window.addEventListener('load', function () {
                     <h1 class="title">一般訂單管理</h1>
                     <div class="per_ord_type_box">
                         <div class="per_ord_type_box_on" @click="per_ord_bs = 0,changecolor($event)">未處理</div>
-                        <div  @click="per_ord_bs = 1,changecolor($event)">已完成</div>
+                        <div  @click="per_ord_bs = 2,changecolor($event)">已完成</div>
                     </div>
                     <div class="per_ord_list_box">
                         <div class="per_ord_title_row">
@@ -1701,7 +1758,7 @@ window.addEventListener('load', function () {
                     // redirect: 'follow', // manual, *follow, error
                     // referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
                     body: JSON.stringify({
-                        per_ord_bs: per_ord_bs,
+                        per_ord_bs: this.per_ord_bs,
                     }), // body data type must match "Content-Type" header
                 }).then(function (data) {
                     return data.json()
@@ -1715,10 +1772,12 @@ window.addEventListener('load', function () {
             },
             //判斷 訂單狀態 回傳 對應值
             checkstate: function (per_ord_bs) {
-                if (per_ord_bs == 1) {
+                if (per_ord_bs == 2) {
                     return '已完成'
                 } else if (per_ord_bs == 0) {
                     return '未處理'
+                } else if (per_ord_bs == 1) {
+                    return '運送中'
                 }
             },
             //類型 點擊後 切換顏色
@@ -1842,6 +1901,9 @@ window.addEventListener('load', function () {
                                     <div>$ {{per_ord_info.ord_price_2}}</div>
                                 </div>
                             </div>
+                            <div class="done_btn_box" v-if="per_ord_info.ord_state == 0" @click="change_done">
+                                <div class="done_btn">已處理完成</div>
+                            </div>
                         </div>
                     
                     </div>
@@ -1912,9 +1974,25 @@ window.addEventListener('load', function () {
             chech_per_ord_bs: function (data) {
                 if (data == 0) {
                     return '未處理'
-                } else {
+                } else if (data == 1) {
+                    return '運送中'
+                } else if (data == 2) {
                     return '已完成'
                 }
+            },
+            change_done() {
+                const info = fetch('./php/bs_update_per_ord_status.php', {
+                    method: 'POST',
+                    mode: 'same-origin',
+                    credentials: 'same-origin',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        per_ord_no: this.per_ord_info.per_ord_no,
+                    }),
+                })
+                this.get_mar(this.per_ord_no)
             },
         },
         created() {
@@ -2036,7 +2114,7 @@ window.addEventListener('load', function () {
             },
             // 點擊 確定修改後 觸發 php程式。完成後 重新撈取一次資料
             change_status: async function (art_no, art_report_no, status) {
-                const res = await fetch('./php/bs_update_articleReport.php', {
+                const res = await fetch('./php/bs_update_articlereport.php', {
                     method: 'POST',
                     mode: 'same-origin',
                     credentials: 'same-origin',

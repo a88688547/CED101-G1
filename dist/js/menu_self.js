@@ -605,6 +605,14 @@ new Vue({
     methods: {
         checked_mem(data) {
             this.mem_info = data
+        },
+        checkmember() {
+            if (this.mem_info === "") {
+                bus.$emit('getAlert', "請登入會員")
+            } else {
+                location.href = `./join_step1.html`
+
+            }
         }
     },
 

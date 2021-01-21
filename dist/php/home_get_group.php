@@ -34,6 +34,8 @@ try {
                 $memberdatarow[$i]["img"] = "./Images/coupon/index/30off_frontpage.jpg";
             } else if ($memberdatarow[$i]["goal_cup"] == 50) {
                 $memberdatarow[$i]["img"] = "./Images/coupon/index/40off_frontpage.jpg";
+            } else if ($memberdatarow[$i]["goal_cup"] < 20) {
+                $memberdatarow[$i]["img"] = "./Images/coupon/index/0off_frontpage.jpg";
             }
             ;
         }

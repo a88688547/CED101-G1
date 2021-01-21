@@ -1,12 +1,9 @@
-@import "./base/base.scss";
-@import "./mixins/mixins.scss";
+@import './base/base.scss';
+@import './mixins/mixins.scss';
 $mq575: 575px;
 $mq767: 767px;
 $mq991: 991px;
 $mq1199: 1199px;
-
-
-
 
 // $f = font-size
 // $p = padding
@@ -15,175 +12,169 @@ $mq1199: 1199px;
 // $bc = background-color
 // $c = color
 @mixin button_all($f, $p, $l-s, $b-r, $bc, $c) {
-  font-size: $f;
-  padding: $p;
-  letter-spacing: $l-s;
-  border-radius: $b-r;
-  background-color: $bc;
-  border: 0;
-  color: $c;
-  cursor: pointer;
-  text-indent: 10px;
+    font-size: $f;
+    padding: $p;
+    letter-spacing: $l-s;
+    border-radius: $b-r;
+    background-color: $bc;
+    border: 0;
+    color: $c;
+    cursor: pointer;
+    text-indent: 10px;
 }
 
 body {
-  background-color: $insideBackgroundColor;
-  position: relative;
-}
-
-body{
     background-color: $insideBackgroundColor;
     position: relative;
-  }
+}
 
+body {
+    background-color: $insideBackgroundColor;
+    position: relative;
+}
 
 @mixin margin-b {
-  margin-bottom: 50px;
+    margin-bottom: 50px;
 }
 
 //width :338px
-.w-338{
-  width: 90%;
-  margin: 0 auto;
-  // border: 1px solid black;
+.w-338 {
+    width: 90%;
+    margin: 0 auto;
+    // border: 1px solid black;
 }
 
 //width :338px
 
 //====進度條=====
 
-
 //====進度條=====
-  
-
 
 //====進度條=====
 
 //letter-spacing置中
 @mixin ls($ls) {
-  letter-spacing: $ls;
-  text-indent: $ls;
+    letter-spacing: $ls;
+    text-indent: $ls;
 }
 
 //====開團資料====
-.oops{
-  width: 270px;
-  height: 350px;
-  background-color:#fff;
-  position: fixed;
-  top: 10%;
-  left: 50%;
-  border-radius: 20px;
-  box-shadow: 8px 10px 15px -1px #242424;
-  transform: translate(-50%,0);
-  text-align: center;
-  z-index: 999;
-  // display: none;
-  h2{
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-  img{
-    position: absolute;
-    right: 10px;
-    top: 10px;
-    cursor: pointer;
-  }
+.oops {
+    width: 270px;
+    height: 350px;
+    background-color: #fff;
+    position: fixed;
+    top: 10%;
+    left: 50%;
+    border-radius: 20px;
+    box-shadow: 8px 10px 15px -1px #242424;
+    transform: translate(-50%, 0);
+    text-align: center;
+    z-index: 999;
+    // display: none;
+    h2 {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+    img {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        cursor: pointer;
+    }
 }
 .group_data {
-  // border: 1px solid red;
-  position: relative;
-  margin: auto;
-  // margin-bottom: 55px;
-  ul{
-    // border: 2px solid yellow;
-    // padding: 0 50px;
-    margin-bottom: 25px;
+    // border: 1px solid red;
+    position: relative;
+    margin: auto;
+    // margin-bottom: 55px;
+    ul {
+        // border: 2px solid yellow;
+        // padding: 0 50px;
+        margin-bottom: 25px;
 
-    li {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-bottom: 15px;
-      // border: 1px solid red;
-      &:last-child{
-        margin-bottom: 0;
-      }
-      label{
-        // border: 1px solid red;
-        width: 40%;
-        @include P1;
-        // position: relative;
-      }
-      input,select{
-       @include H6;
-        // border: 1px solid black;
-        width: 60%;
-        height: 28px;
-        // text-align: center;
-        padding: 0 0 0 0px;
-        
-      }
+        li {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 15px;
+            // border: 1px solid red;
+            &:last-child {
+                margin-bottom: 0;
+            }
+            label {
+                // border: 1px solid red;
+                width: 40%;
+                @include P1;
+                // position: relative;
+            }
+            input,
+            select {
+                @include H6;
+                // border: 1px solid black;
+                width: 60%;
+                height: 28px;
+                // text-align: center;
+                padding: 0 0 0 0px;
+            }
 
-      select {
-        padding: 0 0 0 0px;
-        @include ls(3px)
-      }
-     
-    
-      &:last-child label{
-        margin-bottom: 0;
-      }
-      
-      &:first-child label{
-        color:$textColor;
-        font-weight: bold;
-      }
-      p{
-        font-size: 16px;
-        position: absolute;
-        right: 0;
-        bottom:-100%;
-      }
-      .Btime{
-        // border: 1px solid red;
-        display: flex;
-        width: 60%;
-        select{
-          margin-right: 10px;
-          width: calc(( 100% - 10px) / 2);
-          &:last-child{
-            margin-right: 0;
-          }
+            select {
+                padding: 0 0 0 0px;
+                @include ls(3px);
+            }
+
+            &:last-child label {
+                margin-bottom: 0;
+            }
+
+            &:first-child label {
+                color: $textColor;
+                font-weight: bold;
+            }
+            p {
+                font-size: 16px;
+                position: absolute;
+                right: 0;
+                bottom: -100%;
+            }
+            .Btime {
+                // border: 1px solid red;
+                display: flex;
+                width: 60%;
+                select {
+                    margin-right: 10px;
+                    width: calc((100% - 10px) / 2);
+                    &:last-child {
+                        margin-right: 0;
+                    }
+                }
+                input {
+                    width: 100%;
+                }
+            }
         }
-        input{
-          width: 100%;
-        }
-      }
     }
-    
-  }
-  .line{
-    border: 1px solid #383232;
-    background-color: #383232;
-    margin-bottom: 55px;
-  }
+    .line {
+        border: 1px solid #383232;
+        background-color: #383232;
+        margin-bottom: 55px;
+    }
     //====團長資料====
-    .Head_data{
-      box-sizing: border-box;
-      margin: 30px 0;
-      .Head_row{
-          // border: 1px solid red;
-          width: 100%;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          font-size: $fontsize_H6;
-          color: $textColor;
+    .Head_data {
+        box-sizing: border-box;
+        margin: 30px 0;
+        .Head_row {
+            // border: 1px solid red;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: $fontsize_H6;
+            color: $textColor;
         }
-      }
+    }
 
-      .Head_img {
+    .Head_img {
         // border: 11px solid red;
         width: 105px;
         height: 105px;
@@ -192,349 +183,320 @@ body{
         margin-bottom: 20px;
 
         img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
-
-      }
-
     }
+}
 
-    .group_button {
-      // border: 1px solid blue;
-      width: 100%;
-      margin: 0 auto;
-      // padding: 0 35px;
-      
-      display: flex;
-      justify-content: space-evenly;
-      .btn_back,
-      .btn_go,
-      #ConfirmButton {
-      @include list_button_small;
-      
+.group_button {
+    // border: 1px solid blue;
+    width: 100%;
+    margin: 0 auto;
+    // padding: 0 35px;
+
+    display: flex;
+    justify-content: space-evenly;
+    .btn_back,
+    .btn_go,
+    #ConfirmButton {
+        @include list_button_small;
     }
-    .ConfirmForm{
-      position: fixed;
-      z-index: 998;
-      left: 0;
-      top: 0;
-      background-color: rgba(85, 85, 85, 0.521);
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      .ConfirmForminfo{
+    .ConfirmForm {
+        position: fixed;
+        z-index: 998;
+        left: 0;
+        top: 0;
+        background-color: rgba(85, 85, 85, 0.521);
+        width: 100%;
+        height: 100%;
         display: flex;
         flex-direction: column;
         justify-content: center;
-        // color:red;
-        border: 1px solid rgb(5, 5, 5);
-        #ConfirmButton{
-         display: inline-block;
-         width: 50%;
+        align-items: center;
+        .ConfirmForminfo {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            // color:red;
+            border: 1px solid rgb(5, 5, 5);
+            #ConfirmButton {
+                display: inline-block;
+                width: 50%;
+            }
         }
-      }
     }
-    }
-.group_data_confirm{
-  // border: 3px solid red;
-  background-color: #2424245f;
-  position: fixed;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  z-index: 999;
-  .data_confirm{
-    background-image: url(../../dist/Images/alert/alert-bg.png);
-    border: 1px solid rgb(0, 0, 0);
-    width: 300px;
-    min-height: 400px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    border-radius: 15px;
-    justify-content: space-between;
-    padding: 15px;
-
-    div{
-      // border: 1px solid blue;
-      width: 100%;
-      align-items: center;
-      text-align: center;
-      display: flex;
-      justify-content: center;
-      // margin-bottom: 25px;
-      h3{
-        font-size: $fontsize_H3;
-        font-weight: bold;
-        color :#013B4F;
-        @include ls(6px);
-      }
-      h4{
-        color: #013B4F;
-        &:first-child{
-          width: 40%;
-          font-weight: bold;
-        }
-        &:last-child{
-          width: 60%;
-        }
-        font-size: $fontsize_H4;
-        
-      }
-      &:last-child{
-        display: flex;
-        justify-content: space-evenly;
-        // border: 1px solid red;
-      }
-    }
-    button{
-      background-color: #013B4F;
-      color: #fff;
-      border-radius: 10px;
-      overflow: hidden;
-      padding: 10px 10px;
-      cursor: pointer;
-      border: 0px;
-      margin-bottom: 5px;
-    }
-  }
-  
 }
-    
+.group_data_confirm {
+    // border: 3px solid red;
+    background-color: #2424245f;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    .data_confirm {
+        background-image: url(../Images/alert/alert-bg.png);
+        border: 1px solid rgb(0, 0, 0);
+        width: 300px;
+        min-height: 400px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        border-radius: 15px;
+        justify-content: space-between;
+        padding: 15px;
 
-
+        div {
+            // border: 1px solid blue;
+            width: 100%;
+            align-items: center;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            // margin-bottom: 25px;
+            h3 {
+                font-size: $fontsize_H3;
+                font-weight: bold;
+                color: #013b4f;
+                @include ls(6px);
+            }
+            h4 {
+                color: #013b4f;
+                &:first-child {
+                    width: 40%;
+                    font-weight: bold;
+                    // border: 1px solid red;
+                    text-align: right;
+                }
+                &:last-child {
+                    width: 60%;
+                    // text-align: right;
+                }
+                font-size: $fontsize_H4;
+            }
+            &:last-child {
+                display: flex;
+                justify-content: space-evenly;
+                // border: 1px solid red;
+            }
+        }
+        button {
+            background-color: #013b4f;
+            color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            padding: 10px 10px;
+            cursor: pointer;
+            border: 0px;
+            margin-bottom: 5px;
+        }
+    }
+}
 
 //====開團資料====
 
 //====團長資料====
 
-
 //  RWD
 
-@media screen and (min-width: $mq575){
-    
+@media screen and (min-width: $mq575) {
 }
 @media screen and (min-width: $mq767) {
+    .group_data {
+        ul {
+            padding: 0 150px;
 
+            li {
+                // border: 1px solid red;
+                justify-content: center;
 
-  .group_data {
-    ul {
-      padding: 0 150px;
+                label {
+                    @include H5;
+                    // margin-bottom: 25px;
+                    // border: 1px solid red;
+                    height: 50px;
+                    width: 210px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                }
 
-      li {
-        // border: 1px solid red;
-        justify-content: center;
-
-        label {
-          @include H5;
-          // margin-bottom: 25px;
-          // border: 1px solid red;
-          height: 50px;
-          width: 210px;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
+                input,
+                select {
+                    width: 200px;
+                    // margin-bottom: 25px;
+                    height: 30px;
+                    font-size: $fontsize_H5;
+                    letter-spacing: 0;
+                }
+                .Btime {
+                    width: 200px;
+                }
+            }
         }
 
-        input,
-        select {
-          width: 200px;
-          // margin-bottom: 25px;
-          height: 30px;
-          font-size: $fontsize_H5;
-          letter-spacing: 0;
+        .Head_data {
+            .group_button {
+                // border: 1px solid red;
+                width: 50%;
+                margin: 0 auto;
+                input {
+                    @include list_button_small;
+                }
+            }
         }
-        .Btime{
-          width: 200px;
-        }
-        
-      }
     }
-
-    .Head_data {
-      .group_button {
-        // border: 1px solid red;
-        width: 50%;
-        margin: 0 auto;
-        input{
-          @include list_button_small;
-        }
-
-      }
-
-    }
-  }
 }
 
 @media screen and (min-width: $mq991) {
-  .group_data_confirm{
-    .data_confirm{
-      width: 400px;
+    .group_data_confirm {
+        .data_confirm {
+            width: 400px;
+        }
     }
-  }
 
-  .group_data {
-    ul {
-      padding: 0 150px;
+    .group_data {
+        ul {
+            padding: 0 150px;
 
-      li {
-        // border: 1px solid red;
-        justify-content: center;
+            li {
+                // border: 1px solid red;
+                justify-content: center;
 
-        label {
-          @include H4;
-          letter-spacing: 0px;
-          height: 50px;
-          width: 210px;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
+                label {
+                    @include H4;
+                    letter-spacing: 0px;
+                    height: 50px;
+                    width: 210px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                }
+
+                // input,
+                // select {
+                //   @include input_style;
+                // }
+            }
+
+            li {
+                select#goal {
+                    background-color: rgba(221, 170, 99, 0.76);
+                    option {
+                        @include H6;
+                        letter-spacing: 5px;
+                        padding: 10px;
+                        font-weight: bold;
+                        color: white;
+                    }
+                }
+            }
         }
 
-        // input,
-        // select {
-        //   @include input_style;
-        // }
-      }
-
-      li{
-        select#goal{
-          background-color: rgba(221, 170, 99, 0.76);
-          option{
-            @include H6;
-            letter-spacing: 5px;
-            padding: 10px;
-            font-weight: bold;
-            color: white;
-          }
+        .Head_data {
+            .group_button {
+                // border: 1px solid red;
+                width: 32%;
+                margin: 0 auto;
+            }
         }
-      }
     }
-
-    .Head_data {
-      .group_button {
-        // border: 1px solid red;
-        width: 32%;
-        margin: 0 auto;
-      }
-
-    }
-  }
 }
 
 @media screen and (min-width: $mq1199) {
-  .w-338 {
-    width: 1200px;
-   
-    margin: 0 auto;
-  
-    .step_ball{
-      li{
-        // border: 1px solid red;
-        @include step_ball_size;
-      }
-      
-    }
+    .w-338 {
+        width: 1200px;
 
-
-  .group_data {
-
-    ul {
-      // border: 11px solid red;
-
-      li {
-        // border: 1px solid blue;
-        justify-content: center;
-
-        // align-items:self-start;
-        label {
-          @include H4;
-          letter-spacing: 2px;
-          // margin-bottom: 25px;
-          // border: 1px solid red;
-          // height: 50px;
-          width: 210px;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-        }
-
-        input,
-        select {
-          width: 300px;
-          // margin-bottom: 25px;
-          height: 40px;
-          padding: 0;
-          @include H5;
-          border-radius: 5px;
-          // color: white;
-          font-weight: bold;
-          border: none;
-          box-shadow:2px 2px 2px 2px rgba(20%,20%,40%,0.2);
-        }
-        .Btime{
-          width: 300px;
-          select{
-           width:calc((300px - 10px) / 2) ; 
-          }
-        }
-        
-      }
-
-      li{
-        select#goal{
-          background-color: rgba(221, 170, 99, 0.76);
-          
-          option{
-            @include H6;
-            letter-spacing: 5px;
-            padding: 10px;
-            font-weight: bold;
-            color: white;
-          }
-        }
-      }
-    }
-
-
-
-    .Head_data {
-      .group_button {
-        // border: 1px solid red;
-        // width: 30%;
         margin: 0 auto;
-        margin-top: 30px;
-        .btn_back,
-        .btn_go {
-          @include list_button;
+
+        .step_ball {
+            li {
+                // border: 1px solid red;
+                @include step_ball_size;
+            }
         }
-      }
 
+        .group_data {
+            ul {
+                // border: 11px solid red;
+
+                li {
+                    // border: 1px solid blue;
+                    justify-content: center;
+
+                    // align-items:self-start;
+                    label {
+                        @include H4;
+                        letter-spacing: 2px;
+                        // margin-bottom: 25px;
+                        // border: 1px solid red;
+                        // height: 50px;
+                        width: 210px;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                    }
+
+                    input,
+                    select {
+                        width: 300px;
+                        // margin-bottom: 25px;
+                        height: 40px;
+                        padding: 0;
+                        @include H5;
+                        border-radius: 5px;
+                        // color: white;
+                        font-weight: bold;
+                        border: none;
+                        box-shadow: 2px 2px 2px 2px rgba(20%, 20%, 40%, 0.2);
+                    }
+                    .Btime {
+                        width: 300px;
+                        select {
+                            width: calc((300px - 10px) / 2);
+                        }
+                    }
+                }
+
+                li {
+                    select#goal {
+                        background-color: rgba(221, 170, 99, 0.76);
+
+                        option {
+                            @include H6;
+                            letter-spacing: 5px;
+                            padding: 10px;
+                            font-weight: bold;
+                            color: white;
+                        }
+                    }
+                }
+            }
+
+            .Head_data {
+                .group_button {
+                    // border: 1px solid red;
+                    // width: 30%;
+                    margin: 0 auto;
+                    margin-top: 30px;
+                    .btn_back,
+                    .btn_go {
+                        @include list_button;
+                    }
+                }
+            }
+        }
     }
-
-  }
 }
-}
-      
-
-
- 
-
-
 
 //====團長資料====
-
-
 
 // ====進度bar=====
 
@@ -544,78 +506,68 @@ body{
     height: 135px;
     margin: 80px auto;
     overflow: hidden;
-    .step_ball{
+    .step_ball {
         display: flex;
         justify-content: space-between;
         position: relative;
     }
-
 }
 
 // 球尺寸、顏色、icon、字型
-.step_box .step_ball >li{
-    
+.step_box .step_ball > li {
     @include step_ball_size;
     border-radius: 50%;
-    background-color: #EFE7DA;
+    background-color: #efe7da;
     position: relative;
 
-            // 定位進度球內img置中
-            & img{
-                position: absolute;
-                transform: translate(50%,-50%);
-                top: 50%;
-                right: 50%;
-            }
+    // 定位進度球內img置中
+    & img {
+        position: absolute;
+        transform: translate(50%, -50%);
+        top: 50%;
+        right: 50%;
+    }
 
-        // 定位下方步驟文字
-            & h5{
-                @include H5;
-                color: $btnColor;
-                letter-spacing: 0px;
-                position: absolute;
-                width: 100%;
-                text-align: center;
-                top: 120%;
-            }
+    // 定位下方步驟文字
+    & h5 {
+        @include H5;
+        color: $btnColor;
+        letter-spacing: 0px;
+        position: absolute;
+        width: 100%;
+        text-align: center;
+        top: 120%;
+    }
 }
-
-
-
 
 // 偽元素:進度條及變色方式
 
-.step_box .step_ball >li{
-
-    &:first-child{
+.step_box .step_ball > li {
+    &:first-child {
         background-color: $btnColor;
     }
 
-    &::before{
-        content: "";
+    &::before {
+        content: '';
         position: absolute;
         width: 345%;
         height: 5px;
-        background-color: #EFE7DA;
+        background-color: #efe7da;
         left: 50px;
         top: 50%;
         z-index: -1;
     }
 
-
-    &:last-child::before{
+    &:last-child::before {
         display: none;
     }
-
 }
-
-
 
 // ====進度bar結束=====
 
 //1.當前進度-步驟一
 
-.step_box .step_ball li:first-child{
+.step_box .step_ball li:first-child {
     font-weight: bold;
 }
 
@@ -661,60 +613,39 @@ body{
 //     font-weight: bold;
 // }
 
-
-
 //  RWD
 
-
-@media (min-width: 576px) and (max-width: 991px){
-
-    .step_box{
+@media (min-width: 576px) and (max-width: 991px) {
+    .step_box {
         height: 115px;
     }
 
-    .step_box .step_ball >li{
+    .step_box .step_ball > li {
         @include step_ball_size_medium;
     }
 
-    .step_box .step_ball >li>h5{
+    .step_box .step_ball > li > h5 {
         @include H6;
         letter-spacing: 0px;
     }
-
-
 }
 
-@media (max-width: 575px){
-
-    .step_box{
-      // width: 90%;
+@media (max-width: 575px) {
+    .step_box {
+        // width: 90%;
         height: 90px;
     }
 
-    .step_box .step_ball >li{
+    .step_box .step_ball > li {
         @include step_ball_size_small;
     }
 
-    .step_box .step_ball >li>h5{
+    .step_box .step_ball > li > h5 {
         @include P2;
         letter-spacing: 0px;
     }
 
-    .step_box .step_ball >li>img{
+    .step_box .step_ball > li > img {
         width: 40%;
     }
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

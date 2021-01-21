@@ -46,8 +46,7 @@ var app = new Vue({
             { text: '18', value: '18' },
             { text: '19', value: '19' },
             { text: '20', value: '20' },
-            { text: '21', value: '21' },
-            { text: '22', value: '22' },
+            
         ],
         //分鐘
         mm: '00',
@@ -76,8 +75,6 @@ var app = new Vue({
             { text: '18', value: '18' },
             { text: '19', value: '19' },
             { text: '20', value: '20' },
-            { text: '21', value: '21' },
-            { text: '22', value: '22' },
         ],
         //到達mm
         arrive_mm: '00',
@@ -95,10 +92,10 @@ var app = new Vue({
         //團名
         GroupName: '',
         //杯數目標
-        GoalCup: '1',
+        GoalCup: '0',
         options: [
             { text: '--請選擇目標杯數--', value: '1' },
-            { text: '20杯以下無折扣', value: '10' },
+            { text: '20杯以下無折扣', value: '1' },
             { text: '20杯/9折優惠', value: '20' },
             { text: '30杯/8折優惠', value: '30' },
             { text: '40杯/7折優惠', value: '40' },
@@ -235,7 +232,7 @@ var app = new Vue({
         updateVal() {
             let goalConfrim = document.querySelector('.goal_confirm')
             console.log(goalConfrim)
-            if (this.GoalCup == 10) {
+            if (this.GoalCup == 1) {
                 goalConfrim.innerText = '20杯以下無折扣'
             } else if (this.GoalCup == 20) {
                 goalConfrim.innerText = '20杯/9折優惠'
@@ -320,7 +317,7 @@ var app = new Vue({
                 this.ErrorText = '準備時間需30分鐘以上!'
                 // alert("準備時間需30分鐘以上!");
                 return
-            } else if (this.GoalCup == '1') {
+            } else if (this.GoalCup == '0') {
                 this.Error_show = true
                 this.ErrorText = '請選擇目標杯數'
                 return

@@ -898,6 +898,27 @@ aside {
     }
 }
 
+.done_btn_box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 40px 0;
+    .done_btn {
+        background-color: #b3925b;
+        color: #fff;
+        font-weight: bold;
+        font-size: 18px;
+        border-radius: 10px;
+        overflow: hidden;
+        padding: 10px 20px;
+        cursor: pointer;
+        opacity: 0.6;
+        &:hover {
+            opacity: 1;
+        }
+    }
+}
+
 // 一般訂單 列表
 
 .per_ord_type_box {
@@ -1270,7 +1291,7 @@ aside {
 }
 
 .lightbox {
-    background-image: url(../../dist/Images/alert_img@2x.png);
+    background-image: url(../Images/alert_img@2x.png);
     background-size: cover;
     // background-color: #fff;
     border: 1px;
@@ -1315,7 +1336,7 @@ aside {
 
 .lightbox_art_report {
     padding: 30px 30px;
-    background-image: url(../../dist/Images/alert_img@2x.png);
+    background-image: url(../Images/alert_img@2x.png);
     background-size: cover;
     // background-color: #fff;
     border: 1px;

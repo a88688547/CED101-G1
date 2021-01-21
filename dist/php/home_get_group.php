@@ -47,13 +47,13 @@ try {
             } else {
 
                 if ($memberdatarow[$i]["goal_cup"] == 10) {
-                    $count = $memberdatarow[$i]["goal_cup"] - 10 - $memberdatarow[$i]["now_cup"];
+                    // $count = $memberdatarow[$i]["goal_cup"] - 10 - $memberdatarow[$i]["now_cup"];
                     $memberdatarow[$i]["count"] = "無目標";
                     // $memberdatarow[$i]["count"] = echo "<p>無目標</p>";
 
                     // $memberdatarow[$i]["count"] = 0;
 
-                } else {
+                } else if() {
                     $count = $memberdatarow[$i]["goal_cup"] - $memberdatarow[$i]["now_cup"];
                     $memberdatarow[$i]["count"] = $count;
                     // $memberdatarow[$i]["count"] = 0;

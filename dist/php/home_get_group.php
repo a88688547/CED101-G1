@@ -9,7 +9,8 @@ try {
 
     $sql = "select *
             from group_ord
-            where group_state = 0
+            WHERE NOW() BETWEEN group_datetime AND deadline_time
+			AND group_state = 0
             order by deadline_time
             LIMIT 4";
     // $memberdata = $pdo->query($sql);
@@ -38,6 +39,28 @@ try {
                 $memberdatarow[$i]["img"] = "./Images/coupon/index/0off_frontpage.jpg";
             }
             ;
+
+            if ($memberdatarow[$i]["now_cup"] > $memberdatarow[$i]["goal_cup"]) {
+                $memberdatarow[$i]["count"] = "已達標";
+                // $memberdatarow[$i]["count"] = 0;
+
+            } else {
+
+                if ($memberdatarow[$i]["goal_cup"] == 10) {
+                    $count = $memberdatarow[$i]["goal_cup"] - 10 - $memberdatarow[$i]["now_cup"];
+                    $memberdatarow[$i]["count"] = "無目標";
+                    // $memberdatarow[$i]["count"] = echo "<p>無目標</p>";
+
+                    // $memberdatarow[$i]["count"] = 0;
+
+                } else {
+                    $count = $memberdatarow[$i]["goal_cup"] - $memberdatarow[$i]["now_cup"];
+                    $memberdatarow[$i]["count"] = $count;
+                    // $memberdatarow[$i]["count"] = 0;
+
+                }
+                ;
+            }
         }
         ;
 

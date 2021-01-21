@@ -116,9 +116,9 @@ window.addEventListener('load', function () {
                                 <input type="text" id="mem_Phone" v-model="update_mem_phone" />
                             </div>
                         </div>
-                        <button class="change_btn">
+                        <button type="button" class="change_btn" @click="update_mem_info">
                             <div class="send_img"><img src="./Images/send.svg" /></div>
-                            <div @click="update_mem_info">確認修改</div>
+                            <div >確認修改</div>
                         </button>
                     </div>
                   </section>
@@ -176,32 +176,20 @@ window.addEventListener('load', function () {
                 reader.onload = function (event) {
                     document.getElementById('image').src = event.target.result
                 }
-
-                // 上傳會員照片 -----------------------
-                let file_2 = document.getElementById('upfile').files[0]
-                let formData = new FormData()
-                formData.append('mem_no', this.mem_info.mem_no)
-                formData.append('upFile', file_2)
-
-                //=====ajax
-                let xhr = new XMLHttpRequest()
-                xhr.onload = function () {
-                    if (xhr.status == 200) {
-                        console.log(xhr.responseText)
-                        bus.$emit('getAlert', '上傳照片成功!!')
-                    } else {
-                        alert(xhr.status)
-                    }
-                }
-                xhr.open('post', './php/mem_update_member_img.php')
-                xhr.send(formData)
             },
 
             //修改 個人資料
             update_mem_info: async function () {
                 //會員名稱長度是否符合
-                if ((this.update_mem_name.length > 10) | (this.update_mem_name.length < 1)) {
-                    bus.$emit('getAlert', '請輸入會員名稱(1~10字)')
+                if (
+                    this.update_mem_name.replace(/[^\u4e00-\u9fa5]/g, '') &&
+                    this.update_mem_name.length >= 1 &&
+                    this.update_mem_name.length <= 10
+                ) {
+                    // bus.$emit('getAlert', '請輸入會員名稱(1~10字)')
+                    // return
+                } else {
+                    bus.$emit('getAlert', '請輸入會員名稱(中文1~10字)')
                     return
                 }
                 //判斷 信箱規格是否正確
@@ -249,6 +237,25 @@ window.addEventListener('load', function () {
                 }).then(function (data) {
                     return data.text()
                 })
+
+                // 上傳會員照片 -----------------------
+                let file_2 = document.getElementById('upfile').files[0]
+                let formData = new FormData()
+                formData.append('mem_no', this.mem_info.mem_no)
+                formData.append('upFile', file_2)
+
+                //=====ajax
+                let xhr = new XMLHttpRequest()
+                xhr.onload = function () {
+                    if (xhr.status == 200) {
+                        // console.log(xhr.responseText)
+                        // bus.$emit('getAlert', '上傳照片成功!!')
+                    } else {
+                        alert(xhr.status)
+                    }
+                }
+                xhr.open('post', './php/mem_update_member_img.php')
+                xhr.send(formData)
 
                 if (res == '修改成功~!!') {
                     bus.$emit('getAlert', '修改成功')
@@ -362,7 +369,7 @@ window.addEventListener('load', function () {
                             </div>
                             <div class="order_row">
                                 <div class="order_row_title">目標杯數</div>
-                                <div class="order_goalcup">{{value.goal_cup}}</div>
+                                <div class="order_goalcup">{{check_cup(value.goal_cup)}}</div>
                             </div>
                             <div class="order_row">
                                 <div class="order_row_title">目前杯數</div>
@@ -397,6 +404,13 @@ window.addEventListener('load', function () {
                 })
                 // 取回res值後，呼叫另一隻函式
                 this.group_ord_info = res
+            },
+            check_cup(data) {
+                if (data == 10) {
+                    return '無'
+                } else {
+                    return data
+                }
             },
         },
         created() {
@@ -785,7 +799,7 @@ window.addEventListener('load', function () {
                 </div>
                 <div class="order_row">
                     <div class="order_row_title">目標杯數</div>
-                    <div class="order_goalcup">{{value.goal_cup}}</div>
+                    <div class="order_goalcup">{{check_cup(value.goal_cup)}}</div>
                 </div>
                 <div class="order_row">
                     <div class="order_row_title">目前杯數</div>
@@ -822,6 +836,13 @@ window.addEventListener('load', function () {
                 })
                 // 取回res值後，呼叫另一隻函式
                 this.follow_notyet_ord_info = res
+            },
+            check_cup(data) {
+                if (data == 10) {
+                    return '無'
+                } else {
+                    return data
+                }
             },
         },
         created() {

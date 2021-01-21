@@ -51,6 +51,18 @@ body {
   }
   
 }
+#order_list .all_total{
+  // border: 1px solid red;
+  display: flex;
+  justify-content: space-evenly;
+  font-size: 24px;
+  width: 90%;
+  margin: 0 auto;
+  font-weight: bold;
+  .a_cup{
+    margin-right: 15px;
+  }
+}
 
 //width :338px
 .w-338 {
@@ -384,7 +396,7 @@ body {
 }
 
 @media screen and (min-width: $mq991) {
-
+ 
 
   .group_data {
     .group_data_row {
@@ -558,12 +570,18 @@ body {
     font-size: 1.4rem;
     letter-spacing: 2px;
   }
+  #order_list .all_total{
+    width: 75%;
+  }
 }
 
 @media (min-width: 767px) and (max-width: 991px){
   .step_box .step_text {
     font-size: 1.2rem;
     letter-spacing: 0;
+  }
+  #order_list .all_total{
+    width: 85%;
   }
 }
 

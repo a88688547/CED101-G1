@@ -72,6 +72,23 @@ var app = new Vue({
       this.cou_dis = this.cou.cou_discount;
       return this.cou_dis;
     },
+    //優惠捲折扣TEXT
+    disText()
+    {
+      switch (this.cou_dis)
+      { 
+        case "0.6":
+          return "六折"
+        case "0.7":
+          return "七折"
+        case "0.8":
+          return "八折"
+        case "0.9":
+          return "九折"
+        default:
+          return "無折扣"
+      }
+    },
     //杯數優惠
     count() {
       switch (this.group_ord.goal_cup)
@@ -80,23 +97,45 @@ var app = new Vue({
           $(".count").text("無折扣");
           return this.cup_count = "1"
         case "20":
-          $(".count").text("0.9");
+          $(".count").text("九折");
           return this.cup_count = "0.9"
         case "30":
-          $(".count").text("0.8");
+          $(".count").text("八折");
           return this.cup_count = "0.8"
         case "40":
-          $(".count").text("0.7");
+          $(".count").text("七折");
           return this.cup_count = "0.7"
         case "50":
-          $(".count").text("0.6");
+          $(".count").text("六折");
           return this.cup_count = "0.6"
           
       }
     },
+    countTexr() {
+      switch (this.group_ord.goal_cup)
+      {
+        case "10":
+          
+          return this.cup_count = "無折扣"
+        case "20":
+          
+          return this.cup_count = "九折"
+        case "30":
+          
+          return this.cup_count = "八折"
+        case "40":
+          
+          return this.cup_count = "七折"
+        case "50":
+          
+          return this.cup_count = "六折"
+          
+      }
+    },
+    
     //杯數折扣金額
     group_ord_count1()
-    {;
+    {
       console.log("無折扣");
       this.group_ord_price_1 =  Math.round(this.group_ord_price * this.count)
       return this.group_ord_price_1
@@ -138,28 +177,10 @@ var app = new Vue({
     this.get_group_ord_item();
     
     //PHONE
-    if (localStorage.phone) {
-      this.phone = localStorage.phone;
-      }
-    // 持卡姓名
-    // if (localStorage.name) {
-    //   this.name = localStorage.name;
+    // if (localStorage.phone) {
+    //   this.phone = localStorage.phone;
     //   }
-    //卡號
-    // if(localStorage.card1){
-    //    this.card1 = localStorage.card1;
-    // }
-    // if(localStorage.card2){
-    //    this.card2 = localStorage.card2;
-    // }
-    // if(localStorage.card3){
-    //    this.card3 = localStorage.card3;
-    // }
-    // if(localStorage.card4){
-    //    this.card4 = localStorage.card4;
-    // }
-    //有效期限
-    // this.selectMemCoupon();
+    
   },
   created()
   {
@@ -176,13 +197,13 @@ var app = new Vue({
     {
       this.DiscountCOU();
     },
-    phone(newphone) {
-      localStorage.phone = newphone;
-    },
+    // phone(newphone) {
+    //   localStorage.phone = newphone;
+    // },
     //持卡姓名
-    name(newName) {
-      localStorage.name = newName;
-    },
+    // name(newName) {
+    //   localStorage.name = newName;
+    // },
     //卡號
     // card1(newCard1){
     //   localStorage.card1 = newCard1;
@@ -466,7 +487,7 @@ var app = new Vue({
           cou_no: this.couponNo,
         })
       })
-      // location.href = `./join_step4.html?group_ord_no=${this.group_ord_no}`
+      location.href = `./join_step4.html?group_ord_no=${this.group_ord_no}`
   },
   return_step2()
   {

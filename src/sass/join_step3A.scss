@@ -132,6 +132,21 @@ input{
         .group_list{
             // border: 3px solid red;
             overflow-y: auto;
+            &::-webkit-scrollbar {
+                width: 10px;
+                background-color: #fff;
+            }
+        
+            &::-webkit-scrollbar-thumb {
+                background-color: $textColor;
+                border-radius: 10px;
+                height: 10px;
+            }
+        
+            &::-webkit-scrollbar-track {
+                margin-left: 10px;
+                border-radius: 10px;
+            }
         }
         // border: 1px solid red;
         

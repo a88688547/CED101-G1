@@ -172,7 +172,7 @@ Vue.component('orderlist', {
                     <hr>
                 </div>
                 <div>
-                    <h2><span>$.</span><span id="ordPrice">{{total_price}}</span></h2>
+                    <h2><span>$</span><span id="ordPrice">{{total_price}}</span></h2>
                 </div>
             </div>
         </div>

@@ -48,6 +48,12 @@
                     object-fit: cover;
                     max-width: none;
                 }
+                @media (max-width: 1200px) {
+                    height: 202.88px;
+                }
+                @media (min-width: 1200px) {
+                    height: 400px;
+                }
             }
 
             // 大卡片資訊區塊--------------------------------------
@@ -222,6 +228,8 @@
                 }
 
                 .art_img_small {
+                    height: 187px;
+                    width: 280.51px;
                     img {
                         width: 100%;
                         height: 100%;
@@ -399,7 +407,7 @@
                     padding: 15px;
                     img {
                         width: 25%;
-                        margin-right: 10px;
+                        // margin-right: 10px;
                     }
 
                     img.user {
@@ -465,7 +473,7 @@
                     padding: 15px;
                     img {
                         width: 25%;
-                        margin-right: 5px;
+                        // margin-right: 5px;
                     }
 
                     img.user {

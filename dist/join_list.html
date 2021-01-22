@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>揪團列表</title>
     <script src="./vendors/Vue/vue.js"></script>
     <script src="vendors/jQuery/js/jquery-3.5.1.js"></script>
     <link rel="stylesheet" href="./css/reset.css" />
@@ -15,6 +15,8 @@
       integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
       crossorigin="anonymous"
     />
+    <!-- 小icon -->
+    <link rel="icon" type="image/svg+xml" href="./Images/logo-header.svg" />
     <link rel="stylesheet" href="./css/alertLightbox.css" />
     <script src="./js/layout/header.js"></script>
     <script src="./js/layout/footer.js"></script>
@@ -33,6 +35,20 @@
               <img src="./Images/Drop-2.svg" alt="" />
               參團集優惠，跟團喝起來!
             </h5>
+            <!-- 搜尋 -->
+            <div class="serch_bar">
+              <input
+                @blur="search_group_name"
+                @keyup.enter="search_group_name"
+                type="text"
+                v-model.trim="search_name"
+                placeholder="搜尋團名"
+              />
+              <div class="search_bar_icon" @click="search_group_name">
+                <img src="./Images/search.svg" alt="" />
+              </div>
+              <!-- <button @click="search_group_name"></button> -->
+            </div>
           </div>
           <div class="join_wrap_B">
             <div class="join_wrap_B_btn">

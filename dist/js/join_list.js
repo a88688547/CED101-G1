@@ -1,6 +1,7 @@
 var app = new Vue({
     el: "#join_main",
   data: {
+    search_name:"",
     type:[],
     in_time:1,
     ErrorText:"",
@@ -38,7 +39,7 @@ var app = new Vue({
         {
           cup_text = "無限制"
         }
-        console.log(cup_text);
+        
        
         goalcup[i] = cup_text;
       }
@@ -92,21 +93,29 @@ var app = new Vue({
         
       },
   methods: {
-    // cupText()
-    // {
-    //   let goalcup = new Array;
-    //   for (i = 0; i < this.ght; i++)
-    //   {
-    //     let cup_text = this.grouporddata[i].goal_cup;
-    //     if (cup_text == 10)
-    //     {
-    //       cup_text = "無限制"
-    //     }
-    //     console.log(cup_text);
-       
-    //     goalcup[i] = cup_text;
-    //   }
-    //     },
+    //搜尋團名
+    search_group_name: async function ()
+    {
+      if (this.search_name == "")
+      {
+        this.selectGroup();
+      }
+      else
+      {
+        const res = await fetch('./php/get_group_name.php', {
+          method: 'POST',
+          mode: 'same-origin',
+          credentials: 'same-origin',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+              group_name: this.search_name,
+          }),
+      }).then((res) => res.json())
+        .then((res) => (this.grouporddata = res));
+      } 
+  },
     //警告視窗開關
     XError: function ()
     {

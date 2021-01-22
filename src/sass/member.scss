@@ -690,6 +690,14 @@ aside {
     display: block;
 }
 
+.empty {
+    font-size: 18px;
+    letter-spacing: 2px;
+    line-height: 1.2;
+    color: #b3925b;
+    margin-top: 30px;
+}
+
 @media (min-width: 576px) {
     .title_box {
         display: flex;

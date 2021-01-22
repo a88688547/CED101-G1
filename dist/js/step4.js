@@ -85,13 +85,24 @@ var app = new Vue({
     },
   },
   methods: {
+    //有無使用優惠卷
+    usedis()
+    {
+      if (this.group_ord.cou_no == null)
+      {
+        $(".countA").text("無折扣")
+      } else
+      {
+        this.discount_text();
+      }
+    },
     //優惠卷折扣
     discount_text()
     {
       switch (this.discountText[0].cou_discount)
     {
       case "":
-        $(".countA").text("無折扣")
+        
       case "0.6":
         $(".countA").text("六折")
       case "0.7":
@@ -115,7 +126,7 @@ var app = new Vue({
         }),
       }) .then((res) => res.json())
         .then((res) => (this.discountText = res));
-      this.discount_text();
+      this.usedis();
       },
        //抓飲料資料
     get_group_ord_item: async function () {

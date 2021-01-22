@@ -271,23 +271,19 @@ body {
         @include H6;
     }
 
-    .userphonetop,
-    .useraddtop,
-    .usermsgtop {
-        img {
-            margin-right: 10px;
-        }
-    }
-}
-
-@media screen and(max-width:376px) {
-
     .userphone,
     .useradd,
     .usermsg {
         display: block;
     }
-
+    // .userphonetop,
+    // .useraddtop,
+    // .usermsgtop {
+    //     img {
+    //         margin-right: 10px;
+    //     }
+    // }
+      
     .userphonetop,
     .useraddtop,
     .usermsgtop,
@@ -298,6 +294,8 @@ body {
         margin-top: 10px;
     }
 }
+
+
 
 // 折扣區
 .discount {
@@ -342,7 +340,8 @@ body {
     max-width: 236px;
 }
 
-@media screen and(max-width:880px) {
+
+@media screen and(max-width:965px) {
     .discounttop {
         display: block;
         @include H5;
@@ -363,37 +362,29 @@ body {
     }
 }
 
-@media screen and(max-width:576px) {
-    .discounttop {
-        @include H6;
-    }
-
-    .discountno {
-        width: 100%;
-        @include P1;
-
-      
-    }
-
-    .gamelink {
-        width: 100%;
-    }
-}
-
-@media screen and(max-width:376px) {
+@media screen and(max-width:675px) {
     .discountno {
         display: block;
-
     }
-
     .discountno,
     .gamelink {
         margin: 10px auto;
     }
-
     .discountno {
         div {
             margin-top: 10px;
+            span{
+                letter-spacing: 0rem!important;
+            }
+        }
+    }
+}
+@media screen and(max-width:675px){
+    .discountno {
+        div {
+            span{
+                letter-spacing: -0.1rem!important;
+            }
         }
     }
 }

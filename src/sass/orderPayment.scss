@@ -248,13 +248,6 @@ body{
     .username{
         @include H6;
     }
-    .userphonetop,.useraddtop,.usermsgtop{
-        img{
-            margin-right: 10px;
-        }
-    }
-}
-@media screen and(max-width:376px) {
     .userphone,.useradd,.usermsg{
         display: block;       
     }
@@ -263,7 +256,13 @@ body{
         width:100%;
         margin-top: 5px;
     }
+    .userphonetop,.useraddtop,.usermsgtop{
+        img{
+            margin-right: 10px;
+        }
+    }
 }
+
 
 // 折扣區
 .discount{
@@ -281,9 +280,36 @@ body{
     @include H4;
 }
 
+.discountno{
+    display: flex;
+    width:70%;
+    align-items: center;
+    div{
+        width:70%;
+        display:flex;
+        align-items: center;
+        // justify-content: space-between
+    }
+    label{
+        width:30%;
+        font-weight: bold;
+    }
+}
+select{
+    @include H4;
+    color:#707070;
+    height:50px;
+    border-radius: 10px;
+    // margin-left: 20px;
+    padding-left: 20px;
+    letter-spacing: 0rem!important;
+}
 .distext{
+    width:10%;
     color:$textColor;
     margin-left:10px;
+    font-weight: bold;
+
 }
 .discountbottom{
     width:100%;
@@ -292,26 +318,11 @@ body{
     font-weight: bold;
     @include H3;
 }
-.discountno{
-    display: flex;
-    width:70%;
-    align-items: center;
-}
-select{
-    @include H4;
-    color:#707070;
-    width:50%;
-    height:50px;
-    border-radius: 10px;
-    margin-left: 50px;
-    padding-left: 20px;
-    letter-spacing: 0rem!important;
-}
 .gamelink{
     width:30%;
     max-width:236px;
 }
-@media screen and(max-width:880px) {
+@media screen and(max-width:1002px){
     .discounttop{
         display: block;
         @include H5;
@@ -319,48 +330,32 @@ select{
     .discountno,.gamelink{
         width:100%;
     }
-    .discountno{
-        justify-content: space-between;
-    }
     select{
-        margin:20px 0px;
-        width:70%;
-        @include H5;
+        @include H5
     }
-    .discountbottom{
-        @include H5;
-    }
-}
-@media screen and(max-width:576px) {
-    .discounttop{
-        @include H6;
-    }
-    .discountno,.gamelink{
-        width:100%;
-    }
-    select{
-        width:65%;
-        @include H6;
+    .gamelink{
+        margin-top: 20px;
     }
 }
 
-@media screen and(max-width:376px) {
+@media screen and(max-width:625px) {
     .discountno{
         display: block;
-        // @include H6;
-    }
-    .discountno,.gamelink{
-        margin:0 auto;
-    }
-    select{
-        width:100%;
-    }
-    .distext{
-        font-weight: bold;
-        // @include H6;
-        margin:20px auto;
+        div{
+            margin-top: 10px;
+            width:100%;
+        }
     }
 }
+@media screen and(max-width:440px){
+    .discountno{
+        div{
+            display:block;
+        }
+    }
+}
+
+
 
 // 信用卡
 .creditcard{

@@ -357,6 +357,7 @@ input{
 
 // 折扣
 .discount{
+    // border: 1px solid red;
     margin:80px auto;
     width:90%;
     @include list_lable;
@@ -370,6 +371,7 @@ input{
 }
 
 .discountNo{
+    // border: 1px solid red;
     width:50%;
     display: flex;
     align-items: center;
@@ -413,7 +415,8 @@ input{
 }
 // 信用卡
 .card{
-    width:100%;
+    width:95%;
+    margin: 0 auto;
     @include H3;
     color:#707070;
 }
@@ -432,7 +435,10 @@ input{
     div{
         display:flex;
         font-size: 22px;
-        // align-self: center;        
+        // justify-content: center;
+        // align-items: left;
+        // align-self: center; 
+        // border: 1px solid red       
     }
     input{
         @include input_style;
@@ -457,6 +463,7 @@ input{
 
 .cardname,.cardno,.exp,.safeno{
     align-self: center; 
+    // margin: 0 auto;
     div{
         &:first-child{
             width:30%;
@@ -492,11 +499,18 @@ input{
     }
 }
 @media screen and (max-width: 376px){
+    .discountNo{
+        // border: 2px solid blue;
+        font-size: 16px;
+    }
+    .countA{
+        @include P1;
+    }
     .card{
         font-size:$fontsize_P1;
     }
     .cardinfo{
-        width:100%;
+        width:98%;
         input{
             height: 30px;
             border-radius: 5px;
@@ -546,6 +560,7 @@ input{
             display: block;
         }
         .discountNo{
+            // border: 1px solid blue;
             width:100%;
             display: flex;
             justify-content: space-between;
@@ -1111,6 +1126,8 @@ input{
 @media screen and (max-width: 575px) and (min-width: 326px){
     .discountNo h3, .discountBottom h3, .cardInfo h3 {
         @include P1;
+        
+       
     }
 }
 
@@ -1354,6 +1371,7 @@ input{
   @media screen and (min-width: 1199px){
     .discountNo .cou_code{
         margin: 0px 10px;
+       
     }
       .card{
           .cardinfo{

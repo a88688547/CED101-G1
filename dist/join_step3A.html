@@ -4,7 +4,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>揪團訂-訂單頁面</title>
+  <title>結帳資訊</title>
+  <!-- 小icon -->
+  <link rel="icon" type="image/svg+xml" href="./Images/logo-header.svg" />
   <!-- <link rel="stylesheet" href="./css/join_step3A.css" /> -->
   <link rel="stylesheet" href="./css/reset.css">
   <link rel="stylesheet" href="./css/style.css" />
@@ -118,7 +120,7 @@
             </label>
             <!-- 折扣代碼 -->
             <select v-model="cou" @blur.stop="DiscountCOU">
-              <!-- <option value=""  >--不選擇--</option> -->
+              
               <option v-for="item in coupon" v-bind:value="{cou_no:item.cou_no
                 ,mem_no:item.mem_no,
                 cou_discount:item.cou_discount,

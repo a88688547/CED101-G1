@@ -6,6 +6,8 @@ body {
     background-color: $insideBackgroundColor;
 }
 
+
+
 // 揪團限時時間
 #countDown {
     display: flex;
@@ -395,4 +397,10 @@ body {
             width: 25px;
         }
     }
+}
+
+h3,
+h3 .h3 {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
 }

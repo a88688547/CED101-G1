@@ -198,7 +198,7 @@ section {
                 top: 50%;
                 right: 50%;
                 transform: translate(50%, -37%);
-                border-bottom: 80px solid rgb(95, 250, 255);
+                border-bottom: 70px solid rgb(95, 250, 255);
                 border-left: 40px solid transparent;
                 border-right: 35px solid transparent;
                 filter: drop-shadow(7px 5px 5px rgba(211, 208, 208, 0.3));
@@ -220,13 +220,13 @@ section {
             &::after {
                 top: 50%;
                 right: 50%;
-                transform: translate(50%, -43%);
+                transform: translate(40%, -43%);
                 // border-bottom: 110px solid $mainBackgroundColor;
                 // border-left: 60px solid transparent;
                 // border-right: 50px solid transparent;
-                border-bottom: 95px solid rgb(95, 250, 255);
+                border-bottom: 90px solid rgb(95, 250, 255);
                 border-left: 40px solid transparent;
-                border-right: 45px solid transparent;
+                border-right: 30px solid transparent;
                 filter: drop-shadow(7px 5px 5px rgba(211, 208, 208, 0.3));
                 transition: 0.25s cubic-bezier(1,.02,.86,.91);
             }
@@ -250,9 +250,9 @@ section {
                 // border-bottom: 105px solid $mainBackgroundColor;
                 // border-left: 60px solid transparent;
                 // border-right: 55px solid transparent;
-                border-bottom: 90px solid rgb(95, 250, 255);
+                border-bottom: 80px solid rgb(95, 250, 255);
                 border-left: 40px solid transparent;
-                border-right: 40px solid transparent;
+                border-right: 35px solid transparent;
                 filter: drop-shadow(7px 5px 5px rgba(211, 208, 208, 0.3));
                 transition: 0.25s cubic-bezier(1,.02,.86,.91);
             }
@@ -272,10 +272,10 @@ section {
             &::after {
                 top: 50%;
                 left: 50%;
-                transform: translate(-60%, -37%);
-                border-bottom: 75px solid rgb(95, 250, 255);
+                transform: translate(-50%, -37%);
+                border-bottom: 60px solid rgb(95, 250, 255);
                 border-left: 40px solid transparent;
-                border-right: 20px solid transparent;
+                border-right: 45px solid transparent;
                 filter: drop-shadow(7px 5px 5px rgba(211, 208, 208, 0.3));
                 transition: 0.25s cubic-bezier(1,.02,.86,.91);
             }
@@ -295,10 +295,10 @@ section {
             &::after {
                 top: 50%;
                 left: 50%;
-                transform: translate(-60%, -37%);
-                border-bottom: 80px solid rgb(95, 250, 255);
+                transform: translate(-50%, -37%);
+                border-bottom: 70px solid rgb(95, 250, 255);
                 border-left: 40px solid transparent;
-                border-right: 20px solid transparent;
+                border-right: 45px solid transparent;
                 filter: drop-shadow(7px 5px 5px rgba(211, 208, 208, 0.3));
                 transition: 0.25s cubic-bezier(1,.02,.86,.91);
             }
@@ -318,10 +318,10 @@ section {
             &::after {
                 top: 50%;
                 left: 50%;
-                transform: translate(-65%, -37%);
-                border-bottom: 75px solid rgb(95, 250, 255);
+                transform: translate(-50%, -37%);
+                border-bottom: 60px solid rgb(95, 250, 255);
                 border-left: 40px solid transparent;
-                border-right: 10px solid transparent;
+                border-right: 45px solid transparent;
                 filter: drop-shadow(7px 5px 5px rgba(211, 208, 208, 0.3));
                 transition: 0.25s cubic-bezier(1,.02,.86,.91);
             }
@@ -341,10 +341,10 @@ section {
             &::after {
                 top: 50%;
                 right: 50%;
-                transform: translate(50%, -43%);
-                border-bottom: 110px solid rgb(95, 250, 255);
+                transform: translate(20%, -43%);
+                border-bottom: 115px solid rgb(95, 250, 255);
                 border-left: 50px solid transparent;
-                border-right: 60px solid transparent;
+                border-right: 15px solid transparent;
                 filter: drop-shadow(7px 5px 5px rgba(211, 208, 208, 0.3));
                 transition: 0.25s cubic-bezier(1,.02,.86,.91);
             }
@@ -364,11 +364,11 @@ section {
             &::after {
                 top: 50%;
                 right: 50%;
-                transform: translate(50%, -40%);
+                transform: translate(30%, -40%);
                 border-left: 50px solid transparent;
-                border-right: 50px solid transparent;
+                border-right: 25px solid transparent;
                 filter: drop-shadow(7px 5px 5px rgba(211, 208, 208, 0.3));
-                border-bottom: 100px solid rgb(95, 250, 255);
+                border-bottom: 95px solid rgb(95, 250, 255);
                 transition: 0.25s cubic-bezier(1,.02,.86,.91);
             }
         }
@@ -387,10 +387,10 @@ section {
             &::after {
                 top: 50%;
                 right: 50%;
-                transform: translate(50%, -45%);
+                transform: translate(30%, -45%);
                 border-bottom: 105px solid  rgb(95, 250, 255);
                 border-left: 50px solid transparent;
-                border-right: 55px solid transparent;
+                border-right: 20px solid transparent;
                 filter: drop-shadow(7px 5px 5px rgba(211, 208, 208, 0.3));
                 transition: 0.25s cubic-bezier(1,.02,.86,.91);
             }

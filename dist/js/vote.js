@@ -79,6 +79,7 @@ Vue.component("vote-form", {
             activeIndex: -1,
             voted: [false, false, false],
             votedValue: [null, null, null],
+            drinkType: ["奶類", "茶類", "果茶類"],
             votedName: ["", "", ""],
             selected: false,
             textIndex: "",
@@ -247,7 +248,7 @@ Vue.component("vote-form", {
                                 <div class="voting-txt" v-if="type=='vote'">
                                     <div class="voting-title">
                                         <h2>本周茶類飲品票選</h2>
-                                        <small>點選您最喜歡的茶類飲品並送出投票</small>
+                                        <small>點選您最喜歡的{{this.drinkType[this.drinkIndex]}}飲品並送出投票</small>
                                     </div>
                                     <div class="voting-btn">
                                         <div v-for="(item,index) in dirnkVote">

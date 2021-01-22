@@ -81,7 +81,11 @@ Vue.component('groupinfo', {
             <li><span>團名</span><span>{{item.group_name}}</span></li>
             <li><span>結單時間</span><span class="time">{{showNoSeconds(item.deadline_time)}}</span></li>
             <li><span>預計送達時間</span><span class="time">{{showNoSeconds(item.arrive_time)}}</span></li>
-            <li><span>目標杯數</span><span>{{item.goal_cup}}杯 / {{count}}優惠</span></li>
+            <li>
+                <span>目標杯數</span>
+                <span v-if="item.goal_cup == 10">不限制/ 無優惠</span>
+                <span v-else>{{item.goal_cup}}杯 / {{count}}優惠</span>
+            </li>
             <li><span>取貨地點</span><span>{{item.group_adress}}</span></li>
         </ul>
     </div>

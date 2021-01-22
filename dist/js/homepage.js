@@ -158,7 +158,7 @@ window.addEventListener('load', function () {
                         <img src="./Images/drop-1.svg" alt="" />
                         <h6 v-if="value.now_cup >= value.goal_cup">{{value.count}}</h6>
                         <h6 v-if="value.now_cup < value.goal_cup && value.goal_cup == 10">{{value.count}}</h6>
-                        <h6 v-else>差<span>{{value.count}}</span>杯成團</h6>
+                        <h6 v-if="value.now_cup < value.goal_cup && value.goal_cup != 10">差<span>{{value.count}}</span>杯成團</h6>
 
                     </div>
 

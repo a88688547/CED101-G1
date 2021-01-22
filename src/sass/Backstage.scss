@@ -21,6 +21,11 @@ header {
         justify-content: space-between;
         align-items: center;
     }
+    margin-bottom: 0px !important;
+}
+
+footer {
+    margin-top: 0px !important;
 }
 
 .logo_img {
@@ -60,6 +65,7 @@ header {
     width: 100%;
     background-color: #e5e3dd;
     min-height: 100vh;
+    padding: 20px 0;
 }
 
 main {
@@ -76,7 +82,7 @@ aside {
 
 .tag_list {
     position: sticky;
-    top: 0;
+    top: 90px;
     .tag_list_on {
         opacity: 1;
     }

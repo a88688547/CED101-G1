@@ -1,4 +1,6 @@
 window.addEventListener('load', function () {
+    const bus = new Vue()
+
     //側邊導覽列 -- 組件
     Vue.component('my-aside', {
         data() {
@@ -2303,6 +2305,42 @@ window.addEventListener('load', function () {
     })
     //-----------------------------------------------------
 
+    //警示視窗 (原本會員的)
+    Vue.component('alert_lightbox_1', {
+        data() {
+            return {
+                alertLightbox: false,
+                alertText: '',
+            }
+        },
+        methods: {
+            closeAlertLightbox() {
+                this.alertLightbox = false
+                // if (this.alertText == '跟團時間已截止') {
+                //     location.href = 'index.html'
+                // }
+                location.href = `backstage_login.html`
+            },
+        },
+        mounted() {
+            bus.$on('getAlert', (_alertText) => {
+                this.alertText = _alertText
+                this.alertLightbox = true
+            })
+        },
+        template: `
+    <div class="alertLightbox_black" v-if="alertLightbox">
+        <div class="alertLightboxWrapper">
+            <div class="alertLightbox" >
+                <div>{{alertText}}</div>
+                <div @click="closeAlertLightbox">確定</div>
+            </div>
+        </div>
+    </div>
+    `,
+    })
+    //-----------------------------------------------------
+
     //New Vue
     new Vue({
         el: '#app',
@@ -2383,10 +2421,14 @@ window.addEventListener('load', function () {
                         }
                         // console.log('有')
                     } else {
-                        // console.log('沒有')
-                        location.href = `backstage_login.html`
+                        console.log('沒有')
+                        bus.$emit('getAlert', '沒有登入，或者登入時間超過五分鐘，請重新登入')
+                        // location.href = `backstage_login.html`
                     }
                 })
+
+            //定時 設定 刷新畫面
+            setInterval('window.location.reload();', 310000)
         },
     })
     //--------------------------------------------

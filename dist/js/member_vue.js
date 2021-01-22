@@ -1631,7 +1631,7 @@ window.addEventListener('load', function () {
         data() {
             return {
                 coupons: '',
-                empty: 'false',
+                empty: false,
             }
         },
         props: ['mem_no'],
@@ -1641,10 +1641,10 @@ window.addEventListener('load', function () {
           <div class="tag_title">優惠券查看</div>
           <a href="./custom.html" class="coupon_link"><img src="./Images/coupon_list.png" /></a>
       </div>
-      <div v-if=" empty == 'true' ">
+      <div class="empty" v-if="empty == true ">
             <span>目前尚無任何優惠券，趕緊去玩小遊戲，取得優惠券吧 ~!!</span>
       </div>
-      <div class="coupon_list" v-if=" empty == 'false' ">
+      <div class="coupon_list" v-if=" empty == false">
           <div class="coupon_item" v-for="(value,key) in coupons">
               <div class="coupon_img"><img :src="value.img" /></div>
               <div class="coupon_info">
@@ -1679,7 +1679,7 @@ window.addEventListener('load', function () {
                 // 取回res值後，呼叫另一隻函式
 
                 if (res === '{}') {
-                    this.empty = 'true'
+                    this.empty = true
                 } else {
                     this.coupons = res
                 }
@@ -1711,6 +1711,7 @@ window.addEventListener('load', function () {
                 },
                 selectedArticle: [],
                 theCurrentPage: 1,
+                empty: false,
             }
         },
         props: ['mem_no'],
@@ -1718,7 +1719,10 @@ window.addEventListener('load', function () {
         <section class="section_2">
             <div class="tag_title">發文紀錄</div>
             <div class="s2_hotitem_box">
-                <div class="s2_hotitem" v-for="item in anotherAllArticle" :key="item.art_no" @click="clickWhichOne(item)">
+                <div class="empty" v-if="empty == true ">
+                    <span>目前尚無任何發文紀錄，趕緊去發表心得文章，告訴大家飲料有多麼好喝 ~!!</span>
+                </div>
+                <div v-if="empty == false" class="s2_hotitem" v-for="item in anotherAllArticle" :key="item.art_no" @click="clickWhichOne(item)">
                     <div class="hotimg"><img
                             :src="item.art_img" />
                     </div>
@@ -1769,7 +1773,13 @@ window.addEventListener('load', function () {
                     return data.json()
                 })
                 // 取回res值後，呼叫另一隻函式
-                this.anotherAllArticle = res
+                // this.anotherAllArticle = res
+
+                if (res == '{}') {
+                    this.empty = true
+                } else {
+                    this.anotherAllArticle = res
+                }
             },
 
             //文章內容顯示個字

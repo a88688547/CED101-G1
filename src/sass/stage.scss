@@ -13,7 +13,64 @@ main{
     /* background:linear-gradient(to bottom, #05B2AC 30%, #63CCC8 50%);  */
     background-color:#63CCC8;
     overflow: hidden;
-   
+}
+
+.tibame{
+    background-color: #013c4f7c;
+    left:50%;
+    bottom:-7%;
+    transform: translate(-50%, -50%);
+    position:absolute;
+    border-radius: 8px;
+    margin:0;
+    padding:8px;
+    text-align: center;
+    z-index:20;
+    backdrop-filter: blur(2px);
+    
+}
+p{
+    display:block;
+    font-size:14px;
+    color:white;
+    letter-spacing: 2px;
+    margin:5px;
+    padding:0;
+}
+ul{
+    display:flex;
+    margin:0;
+    padding:0;
+    font-size:0;
+    flex-direction: row;
+    justify-content:space-around;
+}
+ul li{
+    list-style: none;
+
+}
+ul li a{
+    font-size:14px;
+    text-decoration: none;
+    color:  #003A4D;
+    letter-spacing: 2px;
+    font-weight:bold;
+    margin:0;
+    padding:5px;
+}
+ul li a:hover{
+    text-shadow: 2px 2px 10px  #003A4D, -2px -2px 10px  #003A4D;
+    transition: all 0.5s;
+}
+p>a{
+    font-size:14px;
+    text-decoration: none;
+    color: white;
+    letter-spacing: 2px;
+    font-weight:bold;
+    margin:0;
+    padding:5px;
+    font-style:italic;
 }
 
 .stages{
@@ -164,7 +221,13 @@ main{
     background:#63CCC8;
     border-radius: 50%;
 }
-a{
+.right a{
+    display: block;
+    text-decoration: none;
+    padding:10%;
+    margin:0;
+}
+.left a{
     display: block;
     text-decoration: none;
     padding:10%;

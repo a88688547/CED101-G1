@@ -51,7 +51,7 @@ var app = new Vue({
     //切換確認
     type: "10",
     //明細
-    closeTotal: true,
+    closeTotal: false,
   },
   computed: {
     

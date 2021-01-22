@@ -40,27 +40,38 @@ try {
             }
             ;
 
-            if ($memberdatarow[$i]["now_cup"] > $memberdatarow[$i]["goal_cup"]) {
-                $memberdatarow[$i]["count"] = "已達標";
-                // $memberdatarow[$i]["count"] = 0;
-
+            if ($memberdatarow[$i]["goal_cup"] == 10) {
+                $memberdatarow[$i]["count"] = "無目標";
             } else {
-
-                if ($memberdatarow[$i]["goal_cup"] == 10) {
-                    // $count = $memberdatarow[$i]["goal_cup"] - 10 - $memberdatarow[$i]["now_cup"];
-                    $memberdatarow[$i]["count"] = "無目標";
-                    // $memberdatarow[$i]["count"] = echo "<p>無目標</p>";
-
-                    // $memberdatarow[$i]["count"] = 0;
-
+                if ($memberdatarow[$i]["now_cup"] > $memberdatarow[$i]["goal_cup"]) {
+                    $memberdatarow[$i]["count"] = "已達標";
                 } else {
                     $count = $memberdatarow[$i]["goal_cup"] - $memberdatarow[$i]["now_cup"];
                     $memberdatarow[$i]["count"] = $count;
-                    // $memberdatarow[$i]["count"] = 0;
-
                 }
-                ;
             }
+
+            // if ($memberdatarow[$i]["now_cup"] > $memberdatarow[$i]["goal_cup"]) {
+            //     $memberdatarow[$i]["count"] = "已達標";
+            //     // $memberdatarow[$i]["count"] = 0;
+
+            // } else {
+
+            //     if ($memberdatarow[$i]["goal_cup"] == 10) {
+            //         // $count = $memberdatarow[$i]["goal_cup"] - 10 - $memberdatarow[$i]["now_cup"];
+            //         $memberdatarow[$i]["count"] = "無目標";
+            //         // $memberdatarow[$i]["count"] = echo "<p>無目標</p>";
+
+            //         // $memberdatarow[$i]["count"] = 0;
+
+            //     } else {
+            //         $count = $memberdatarow[$i]["goal_cup"] - $memberdatarow[$i]["now_cup"];
+            //         $memberdatarow[$i]["count"] = $count;
+            //         // $memberdatarow[$i]["count"] = 0;
+
+            //     }
+            //     ;
+            // }
         }
         ;
 

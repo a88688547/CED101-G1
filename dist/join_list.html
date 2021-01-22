@@ -38,6 +38,7 @@
             </div>
           </div>
         </div>
+        <!-- <button @click="cupText">123</button> -->
         <!-- ====標題 + LOGO===== -->
 
         <!-- ========== -->
@@ -49,7 +50,7 @@
             <div class="join_list_text">
               <div class="join_list_title">
                 <h4>{{item.group_name}}</h4>
-                <div>
+                <div v-if="count_Down[index].inTime == 1">
                   <h5>
                     限時:<span
                       >{{count_Down[index].theHr}}小時
@@ -58,6 +59,7 @@
                     >
                   </h5>
                 </div>
+                <div v-else>已截止</div>
                 <!-- <div v-else>已截止</div> -->
               </div>
               <div class="join_list_content">
@@ -66,9 +68,9 @@
                     <div>
                       <div>
                         <img src="./Images/joindrinklist_group.svg" alt="" />
-                        集杯數:
+                        目標杯數:
                       </div>
-                      <div>{{item.goal_cup}}杯</div>
+                      <div>{{cupText[index]}}</div>
                     </div>
                     <div>
                       <div>

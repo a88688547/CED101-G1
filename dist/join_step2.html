@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="./css/alertLightbox.css">
     <link rel="stylesheet" href="./css/join_step2.css" />
     <link rel="stylesheet" href="./css/style.css" />
-    <link rel="stylesheet" href="./css/list_data.css" />
+    <link rel="stylesheet" href="./css/list_data2.css" />
     
     <script src="./js/layout/header.js"></script>
     <script src="./js/layout/footer.js"></script>
@@ -134,9 +134,9 @@
                           <div id="num_feedback">{{value.ord_qua}}</div>
                           <span>杯</span>
                       </section>
-                      <section id="item_single_price">
+                      <!-- <section id="item_single_price">
                           &#36{{value.total_price}}
-                      </section>
+                      </section> -->
                       <!-- <div>{{group_ord.goal_cup}}</div> -->
                       <section class="order_delete_btn" value="123" @click="del_group_ord_item(value.group_ord_item_no,value.ord_qua)">
                         <img src="./Images/trash_big.svg" alt="" >
@@ -153,7 +153,7 @@
                 
             </div>
             <div class="all_total">
-              <div class="total_img"><img src="./Images/group.svg" alt=""></div>
+              <div class="total_img"><img src="./Images/group_white.svg" alt=""></div>
               <div class="a_totel">
                 <div class="a_cup">總杯數 {{group_ord.now_cup}}杯</div>
                 <div class="total_line">/</div>
@@ -184,7 +184,7 @@
             <div class="alertLightboxWrapper">
                 <div class="manager_lightbox_close_img" @click="closeBox" ><img src="./Images/close.svg" ></div>
                 <div class="alertLightbox" >
-                  <div >{{group_ord.now_cup}} / {{group_ord.goal_cup}}</div>
+                  <div >{{group_ord.now_cup}} / {{compted_cup}}</div>
                   <div v-if="goal == 1" @click="closeBox">
                     
                     目標杯數不足

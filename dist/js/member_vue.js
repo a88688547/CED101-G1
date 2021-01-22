@@ -116,9 +116,9 @@ window.addEventListener('load', function () {
                                 <input type="text" id="mem_Phone" v-model="update_mem_phone" />
                             </div>
                         </div>
-                        <button class="change_btn">
+                        <button type="button" class="change_btn" @click="update_mem_info">
                             <div class="send_img"><img src="./Images/send.svg" /></div>
-                            <div @click="update_mem_info">確認修改</div>
+                            <div >確認修改</div>
                         </button>
                     </div>
                   </section>
@@ -176,32 +176,20 @@ window.addEventListener('load', function () {
                 reader.onload = function (event) {
                     document.getElementById('image').src = event.target.result
                 }
-
-                // 上傳會員照片 -----------------------
-                let file_2 = document.getElementById('upfile').files[0]
-                let formData = new FormData()
-                formData.append('mem_no', this.mem_info.mem_no)
-                formData.append('upFile', file_2)
-
-                //=====ajax
-                let xhr = new XMLHttpRequest()
-                xhr.onload = function () {
-                    if (xhr.status == 200) {
-                        console.log(xhr.responseText)
-                        bus.$emit('getAlert', '上傳照片成功!!')
-                    } else {
-                        alert(xhr.status)
-                    }
-                }
-                xhr.open('post', './php/mem_update_member_img.php')
-                xhr.send(formData)
             },
 
             //修改 個人資料
             update_mem_info: async function () {
                 //會員名稱長度是否符合
-                if ((this.update_mem_name.length > 10) | (this.update_mem_name.length < 1)) {
-                    bus.$emit('getAlert', '請輸入會員名稱(1~10字)')
+                if (
+                    this.update_mem_name.replace(/[^\u4e00-\u9fa5]/g, '') &&
+                    this.update_mem_name.length >= 1 &&
+                    this.update_mem_name.length <= 10
+                ) {
+                    // bus.$emit('getAlert', '請輸入會員名稱(1~10字)')
+                    // return
+                } else {
+                    bus.$emit('getAlert', '請輸入會員名稱(中文1~10字)')
                     return
                 }
                 //判斷 信箱規格是否正確
@@ -249,6 +237,25 @@ window.addEventListener('load', function () {
                 }).then(function (data) {
                     return data.text()
                 })
+
+                // 上傳會員照片 -----------------------
+                let file_2 = document.getElementById('upfile').files[0]
+                let formData = new FormData()
+                formData.append('mem_no', this.mem_info.mem_no)
+                formData.append('upFile', file_2)
+
+                //=====ajax
+                let xhr = new XMLHttpRequest()
+                xhr.onload = function () {
+                    if (xhr.status == 200) {
+                        // console.log(xhr.responseText)
+                        // bus.$emit('getAlert', '上傳照片成功!!')
+                    } else {
+                        alert(xhr.status)
+                    }
+                }
+                xhr.open('post', './php/mem_update_member_img.php')
+                xhr.send(formData)
 
                 if (res == '修改成功~!!') {
                     bus.$emit('getAlert', '修改成功')
@@ -362,7 +369,7 @@ window.addEventListener('load', function () {
                             </div>
                             <div class="order_row">
                                 <div class="order_row_title">目標杯數</div>
-                                <div class="order_goalcup">{{value.goal_cup}}</div>
+                                <div class="order_goalcup">{{check_cup(value.goal_cup)}}</div>
                             </div>
                             <div class="order_row">
                                 <div class="order_row_title">目前杯數</div>
@@ -397,6 +404,13 @@ window.addEventListener('load', function () {
                 })
                 // 取回res值後，呼叫另一隻函式
                 this.group_ord_info = res
+            },
+            check_cup(data) {
+                if (data == 10) {
+                    return '無'
+                } else {
+                    return data
+                }
             },
         },
         created() {
@@ -785,7 +799,7 @@ window.addEventListener('load', function () {
                 </div>
                 <div class="order_row">
                     <div class="order_row_title">目標杯數</div>
-                    <div class="order_goalcup">{{value.goal_cup}}</div>
+                    <div class="order_goalcup">{{check_cup(value.goal_cup)}}</div>
                 </div>
                 <div class="order_row">
                     <div class="order_row_title">目前杯數</div>
@@ -822,6 +836,13 @@ window.addEventListener('load', function () {
                 })
                 // 取回res值後，呼叫另一隻函式
                 this.follow_notyet_ord_info = res
+            },
+            check_cup(data) {
+                if (data == 10) {
+                    return '無'
+                } else {
+                    return data
+                }
             },
         },
         created() {
@@ -1610,7 +1631,7 @@ window.addEventListener('load', function () {
         data() {
             return {
                 coupons: '',
-                empty: 'false',
+                empty: false,
             }
         },
         props: ['mem_no'],
@@ -1620,10 +1641,10 @@ window.addEventListener('load', function () {
           <div class="tag_title">優惠券查看</div>
           <a href="./custom.html" class="coupon_link"><img src="./Images/coupon_list.png" /></a>
       </div>
-      <div v-if=" empty == 'true' ">
+      <div class="empty" v-if="empty == true ">
             <span>目前尚無任何優惠券，趕緊去玩小遊戲，取得優惠券吧 ~!!</span>
       </div>
-      <div class="coupon_list" v-if=" empty == 'false' ">
+      <div class="coupon_list" v-if=" empty == false">
           <div class="coupon_item" v-for="(value,key) in coupons">
               <div class="coupon_img"><img :src="value.img" /></div>
               <div class="coupon_info">
@@ -1658,7 +1679,7 @@ window.addEventListener('load', function () {
                 // 取回res值後，呼叫另一隻函式
 
                 if (res === '{}') {
-                    this.empty = 'true'
+                    this.empty = true
                 } else {
                     this.coupons = res
                 }
@@ -1690,6 +1711,7 @@ window.addEventListener('load', function () {
                 },
                 selectedArticle: [],
                 theCurrentPage: 1,
+                empty: false,
             }
         },
         props: ['mem_no'],
@@ -1697,7 +1719,10 @@ window.addEventListener('load', function () {
         <section class="section_2">
             <div class="tag_title">發文紀錄</div>
             <div class="s2_hotitem_box">
-                <div class="s2_hotitem" v-for="item in anotherAllArticle" :key="item.art_no" @click="clickWhichOne(item)">
+                <div class="empty" v-if="empty == true ">
+                    <span>目前尚無任何發文紀錄，趕緊去發表心得文章，告訴大家飲料有多麼好喝 ~!!</span>
+                </div>
+                <div v-if="empty == false" class="s2_hotitem" v-for="item in anotherAllArticle" :key="item.art_no" @click="clickWhichOne(item)">
                     <div class="hotimg"><img
                             :src="item.art_img" />
                     </div>
@@ -1748,7 +1773,13 @@ window.addEventListener('load', function () {
                     return data.json()
                 })
                 // 取回res值後，呼叫另一隻函式
-                this.anotherAllArticle = res
+                // this.anotherAllArticle = res
+
+                if (res == '{}') {
+                    this.empty = true
+                } else {
+                    this.anotherAllArticle = res
+                }
             },
 
             //文章內容顯示個字

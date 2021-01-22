@@ -63,6 +63,22 @@ window.addEventListener('load', function () {
             getWatchNum() {
                 this.watchNum++
             },
+            checkcup(data) {
+                // if (data == 0) {
+                //     let text = `<span>tets1</span>`
+                //     return text
+                // } else if (data == 1) {
+                //     return '測試二'
+                // } else if (data == 2) {
+                //     return '測試二'
+                // }
+                // if (goal_cup == 10) {
+                //     let count = goal_cup - 10 -now_cup
+                //     return `差<span>{{check_cup(value.goal_cup,value.now_cup)}}</span>杯成團`
+                // } else {
+                //     return data
+                // }
+            },
         },
         computed: {
             grouporddataLenght() {
@@ -75,8 +91,7 @@ window.addEventListener('load', function () {
                 // console.log(this.ght)
                 // console.log(this.nowTime)
                 let Time = new Array()
-                for (i = 0; i < this.ght; i++)
-                {
+                for (i = 0; i < this.ght; i++) {
                     // new Date(this.grouporddata[i].deadline_time.replaceAll('-', '/'));
                     let endTime = new Date(this.groups[i].deadline_time.replaceAll('-', '/'))
                     let endTimeSec = endTime.getTime()
@@ -141,7 +156,10 @@ window.addEventListener('load', function () {
                 <div class="drink_status">
                     <div class="status_title">
                         <img src="./Images/drop-1.svg" alt="" />
-                        <h6>差<span>{{value.goal_cup - value.now_cup}}</span>杯成團</h6>
+                        <h6 v-if="value.now_cup >= value.goal_cup">{{value.count}}</h6>
+                        <h6 v-if="value.now_cup < value.goal_cup && value.goal_cup == 10">{{value.count}}</h6>
+                        <h6 v-else>差<span>{{value.count}}</span>杯成團</h6>
+
                     </div>
 
                     <div class="status_title">
@@ -184,23 +202,6 @@ window.addEventListener('load', function () {
             return {
                 articles: '',
             }
-        },
-        methods: {
-            // 撈出 揪團資料
-            async get_article() {
-                const res = await fetch('./php/home_get_top4_article.php', {
-                    method: 'POST',
-                    mode: 'same-origin',
-                    credentials: 'same-origin',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                }).then(function (data) {
-                    return data.json()
-                })
-                // 取回res值後，呼叫另一隻函式
-                this.articles = res
-            },
         },
 
         mounted() {},
@@ -292,6 +293,23 @@ window.addEventListener('load', function () {
             </button>
         </div>
     </section>`,
+        methods: {
+            // 撈出 揪團資料
+            async get_article() {
+                const res = await fetch('./php/home_get_top4_article.php', {
+                    method: 'POST',
+                    mode: 'same-origin',
+                    credentials: 'same-origin',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                }).then(function (data) {
+                    return data.json()
+                })
+                // 取回res值後，呼叫另一隻函式
+                this.articles = res
+            },
+        },
     })
     //-----------------------------------------------------
 

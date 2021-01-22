@@ -92,10 +92,10 @@ var app = new Vue({
         //團名
         GroupName: '',
         //杯數目標
-        GoalCup: '0',
+        GoalCup: '1',
         options: [
             { text: '--請選擇目標杯數--', value: '1' },
-            { text: '20杯以下無折扣', value: '1' },
+            { text: '20杯以下無折扣', value: '10' },
             { text: '20杯/9折優惠', value: '20' },
             { text: '30杯/8折優惠', value: '30' },
             { text: '40杯/7折優惠', value: '40' },
@@ -232,7 +232,7 @@ var app = new Vue({
         updateVal() {
             let goalConfrim = document.querySelector('.goal_confirm')
             console.log(goalConfrim)
-            if (this.GoalCup == 1) {
+            if (this.GoalCup == 10) {
                 goalConfrim.innerText = '20杯以下無折扣'
             } else if (this.GoalCup == 20) {
                 goalConfrim.innerText = '20杯/9折優惠'

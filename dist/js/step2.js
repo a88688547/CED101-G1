@@ -3,6 +3,7 @@ var app = new Vue({
 data: function ()
 { 
   return {
+    new_cup:"",
     tital2:"",
     group_total:0,
     TimeError:false,
@@ -115,7 +116,7 @@ methods: {
     let g_cup = this.group_ord.goal_cup;
     switch (g_cup)
     {
-      case "1":
+      case "10":
         $(".goal_confirm").text("20杯以下無折扣");
         break;
       case "20":
@@ -170,20 +171,22 @@ methods: {
         console.log(this.nowTime);
         let goalCup = parseInt(this.group_ord.goal_cup);
         let nowCup = parseInt(this.group_ord.now_cup);
+        let newCup = parseInt(this.new_cup)
         console.log(goalCup)
         console.log(nowCup)
+        console.log(newCup)
         //如果截止時間還沒到判斷杯數
         if (dealTime > this.nowTime)
         {
           
-              if (goalCup > nowCup)
+              if (newCup > nowCup)
                 {
                   this.goal = 1;
                   this.confirm = true;
                   console.log("目標不足")
                   return
                 }
-                else if (goalCup <= nowCup)
+                else if (newCup <= nowCup)
                 {
                   this.goal = 2;
                   this.confirm = true;
@@ -273,7 +276,44 @@ methods: {
     this.mem_no = data.mem_no
   }
   },
-computed: {
+  computed: {
+    compted_cup()
+    {
+      if (this.group_ord.goal_cup == 10)
+      {
+        this.new_cup = '1'
+        return this.new_cup
+      }if (this.group_ord.goal_cup == 20)
+      {
+        this.new_cup = '20'
+        return this.new_cup
+      }if (this.group_ord.goal_cup == 30)
+      {
+        this.new_cup = '30'
+        return this.new_cup
+      }if (this.group_ord.goal_cup == 40)
+      {
+        this.new_cup = '40'
+        return this.new_cup
+      }if (this.group_ord.goal_cup == 50)
+      {
+        this.new_cup = '50'
+        return this.new_cup
+      }
+      // switch (this.group_ord.goal_cup)
+      // { 
+      //   case "10":
+      //     return "1"
+      //   case "20":
+      //     return "20"
+      //   case "30":
+      //     return "30"
+      //   case "40":
+      //     return "40"
+      //   case "50":
+      //     return "50"
+      // }
+    },
   // total()
   // {
   //   this.total2 = this.group_order_item[0].group_ord_no

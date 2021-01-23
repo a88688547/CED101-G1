@@ -183,3 +183,14 @@ li:nth-child(4) {
     border: 50px solid #eef5d0;
     filter: blur(100px);
 }
+
+//-----------------------------------R.W.D.-----------------------------------------
+// @media (min-width: 992px) and (max-width: 1199px){};
+// @media (min-width: 576px) and (max-width: 991px){};
+// @media (max-width: 575px){};
+@media (max-width: 575px){
+    .loginbox{
+        width:90%;
+    }
+
+}

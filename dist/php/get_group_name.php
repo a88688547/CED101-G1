@@ -12,8 +12,8 @@ try {
             from group_ord
             WHERE NOW() BETWEEN group_datetime AND deadline_time
             AND group_state = 0 
-            AND group_name = :group_name
-            order by deadline_time ;";
+            AND group_name like '%$group_name%'
+            order by deadline_time;";
             
     $grouporddata = $pdo->prepare($sql);
     $grouporddata ->bindValue(":group_name", $group_name);

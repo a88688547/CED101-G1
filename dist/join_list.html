@@ -64,7 +64,12 @@
         <!-- ====標題 + LOGO===== -->
 
         <!-- ========== -->
-        <div class="join_list" v-for="(item,index) in grouporddata  ">
+        <div v-if="test == true">無結果</div>
+        <div
+          class="join_list"
+          v-for="(item,index) in grouporddata"
+          v-if="test == false"
+        >
           <div class="join_list_row">
             <div class="join_list_img">
               <img class="list_img" :src="getimg(item.goal_cup)" />
@@ -142,6 +147,7 @@
 
         <!-- ========= -->
       </div>
+
       <!-- //警告框 -->
       <div class="alertLightbox_black" v-show="Error_show">
         <div class="alertLightboxWrapper">

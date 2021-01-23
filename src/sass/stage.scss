@@ -440,7 +440,7 @@ img.f_pear{
 }
           
 .milk{
-    height: 5%;
+  height: 5%;
   width:100%;
   position:absolute;
   bottom:0;
@@ -481,3 +481,61 @@ img.f_pear{
       transform: translate3d(0,5px,0);
     }
   }
+
+//-----------------------------------R.W.D.-----------------------------------------
+// @media (min-width: 992px) and (max-width: 1199px){};
+// @media (min-width: 576px) and (max-width: 991px){};
+// @media (max-width: 575px){};
+@media (max-width: 575px){
+    .fruits{
+        display:none;
+    }
+    .stages{
+        flex-direction: column;
+        top:20vh;
+    }
+    body{
+        height:100%;
+        width:100%;
+        overflow: hidden;
+    }
+   
+    .tibame{
+        display:none;
+    }
+
+    .logowrap{
+        top:12vh;
+       left:38%;
+    }
+
+    img.logo{
+        width:30%;
+        z-index:20;
+        transform: scale(20);
+    }
+    img.strawberrymilkshake{
+        width:12%;
+        top:-4vh;
+        left:1%;
+        opacity: 0;
+    }
+    
+    img.bubbletea{
+        width:12%;
+        top:-5vh;
+        left:9%;
+        opacity: 0;
+    }
+    
+    img.greentea{
+        width:12%;
+        top:-4vh;
+        left:16%;
+        opacity: 0;
+    }
+    
+    img{
+        position:absolute;
+    }
+};

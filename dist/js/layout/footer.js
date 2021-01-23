@@ -23,7 +23,22 @@ Vue.component('my-footer', {
                 <a href=""><img src="./Images/fb.svg" alt="" /></a>
                 <a href=""><img src="./Images/email.svg" alt="" /></a>
             </div>
-            <p class="footer_cmp">Copyright © Join drink inc.</p>
+            <div class="tibame">
+                <p>©2021 CED101G1 Join drink inc. </p>
+                <p>本網站為緯育TibaMe_前端設計工程師班第63期學員專題成果作品</p>
+                <p>參考資源 :</p>
+                <ul>
+                    <li><a href="https://order.nidin.shop/">NIDIN</a></li>
+                    <li><a href="https://www.ubereats.com/tw-en">Uber Eats</a></li>
+                    <li><a href="https://www.wootea.com/">WooTea</a></li>
+                    <li><a href="https://menupapa.com/">Menu爸</a></li>
+                    <li><a href="https://www.chume.cc/">Chume</a></li>
+                </ul>
+                <p><a href="https://tibamef2e.com">此</a>為緯育TibaMe提供給[Web/APP前端設計工程師養成班]學員展示作品之平台</p>
+                <p>若有侵權疑慮，請私訊［TibaMe-前端設計工程師養成班］</p>
+                <p><a href="https://www.facebook.com/webindex/">TibaMe-前端設計工程師養成班</a></p>
+
+            </div>
         </nav>
     `,
 })

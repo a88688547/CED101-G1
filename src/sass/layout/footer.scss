@@ -1,7 +1,7 @@
 footer{
     padding: 20px 0 0 0;
     width: 100%;
-    height: 200px;
+    // height: 200px;
     background-color: #013B4F;
     // display: flex;
     // align-items: center;
@@ -91,6 +91,58 @@ footer{
 
     }
 
+    //---------------------------------------------------隱私聲明-----------------------------------------//
+
+    .tibame{
+        margin:0;
+        padding:8px;
+        text-align: center;
+    }
+
+    p{
+        display:block;
+        font-size:14px;
+        color:white;
+        letter-spacing: 2px;
+        margin:5px;
+        padding:0;
+    }
+    ul{
+        display:flex;
+        margin:0;
+        padding:0;
+        font-size:0;
+        flex-direction: row;
+        justify-content:space-around;
+    }
+    ul li{
+        list-style: none;
+    
+    }
+    ul li a{
+        font-size:14px;
+        text-decoration: none;
+        color: #B3925B;
+        letter-spacing: 2px;
+        font-weight:bold;
+        margin:0;
+        padding:5px;
+    }
+    ul li a:hover{
+        text-shadow: 2px 2px 10px  #B3925B, -2px -2px 10px  #B3925B;
+        transition: all 0.5s;
+    }
+    p>a{
+        font-size:14px;
+        text-decoration: none;
+        color: white;
+        letter-spacing: 2px;
+        font-weight:bold;
+        margin:0;
+        padding:5px;
+        font-style:italic;
+    }
+
     @media (max-width:1200px){
         nav{
              width: 90%;
@@ -112,7 +164,5 @@ footer{
             display: none;
         }
     }
-
-
 
 }

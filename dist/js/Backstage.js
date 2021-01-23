@@ -1521,7 +1521,7 @@ window.addEventListener('load', function () {
                             </div>
                             <div class="group_ord_info_row">
                                 <div>連絡電話</div>
-                                <div></div>
+                                <div>{{group_ord_info.group_ord_phone}}</div>
                             </div>
                              <div class="group_ord_info_row">
                                 <div>總共杯數</div>
@@ -1533,7 +1533,7 @@ window.addEventListener('load', function () {
                             </div>
                              <div class="group_ord_info_row">
                                 <div>優惠券</div>
-                                <div></div>
+                                <div>{{group_ord_info.cou_text}}</div>
                             </div>
                             <div class="group_ord_info_row">
                                 <div>訂單總金額</div>
@@ -1847,7 +1847,7 @@ window.addEventListener('load', function () {
                             </div>
                              <div class="per_ord_info_row">
                                 <div>優惠券</div>
-                                <div></div>
+                                <div>{{per_ord_info.cou_text}}</div>
                             </div>
                             <div class="per_ord_info_row">
                                 <div>訂單總金額</div>

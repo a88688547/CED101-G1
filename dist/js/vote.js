@@ -247,7 +247,7 @@ Vue.component("vote-form", {
                                 </div>
                                 <div class="voting-txt" v-if="type=='vote'">
                                     <div class="voting-title">
-                                        <h2>本周茶類飲品票選</h2>
+                                        <h2>本周{{this.drinkType[this.drinkIndex]}}飲品票選</h2>
                                         <small>點選您最喜歡的{{this.drinkType[this.drinkIndex]}}飲品並送出投票</small>
                                     </div>
                                     <div class="voting-btn">

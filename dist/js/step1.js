@@ -8,6 +8,8 @@ Vue.component('date-picker', {
             onSelect: function (date) {
                 self.$emit('update-date', date)
             },
+            //限制最大日期
+            minDate: 0
         })
     },
     beforeDestroy: function () {

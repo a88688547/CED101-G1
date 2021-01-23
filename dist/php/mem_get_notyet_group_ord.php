@@ -8,7 +8,7 @@ try {
 
     $sql = "select *
             from group_ord
-            where head_mem_no = :mem_no and (group_state = 0 or group_state = 1)";
+            where head_mem_no = :mem_no and group_state = 0 ";
     // $memberdata = $pdo->query($sql);
     $memberdata = $pdo->prepare($sql);
     $memberdata->bindValue(":mem_no", $mem_no);

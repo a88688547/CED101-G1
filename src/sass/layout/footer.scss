@@ -1,36 +1,42 @@
-footer{
+footer {
     padding: 20px 0 0 0;
     width: 100%;
     // height: 200px;
-    background-color: #013B4F;
+    background-color: #013b4f;
     // display: flex;
     // align-items: center;
     // justify-content: space-between;
     // flex-direction: row;
     margin-top: 10rem;
     position: relative;
-   
 
-
-    nav{
+    nav {
         margin: 0 auto;
         max-width: 1200px;
         width: 100%;
         display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .footer_up {
+        width: 100%;
+        display: flex;
         justify-content: space-between;
         align-items: center;
-        &:first-child{
+        &:first-child {
             font-size: 0;
         }
     }
-    
-    .nav_list{
+
+    .nav_list {
         width: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
 
-        ul{
+        ul {
             display: flex;
             justify-content: space-around;
             // align-items: center;
@@ -38,39 +44,37 @@ footer{
         }
     }
 
-    
-     nav .nav_list ul>li>a{
-         display: block;
+    nav .nav_list ul > li > a {
+        display: block;
         // display: inline-flex;
         font-size: 16px;
-        color: #B3925B;
+        color: #b3925b;
         font-weight: bold;
         font-family: 'Roboto', sans-serif;
         // margin-right: 40px;
         letter-spacing: 2px;
         text-decoration: none;
+    }
 
+    nav .nav_list ul > li > a:nth-child(6) {
+        margin-right: initial;
     }
-    
-     nav .nav_list ul>li>a:nth-child(6){
-        margin-right: initial;  
-    }
-    
-    .icon{
+
+    .icon {
         display: flex;
         justify-content: center;
         align-items: center;
-        a:first-child{
+        a:first-child {
             margin-right: 45px;
-           }
-        a{
+        }
+        a {
             font-size: 0;
             display: block;
         }
     }
-     
-     .footer_cmp{
-        color: #B3925B;
+
+    .footer_cmp {
+        color: #b3925b;
         font-family: 'Roboto', sans-serif;
         letter-spacing: 2px;
         font-size: 12px;
@@ -80,89 +84,83 @@ footer{
         bottom: 20%;
         transform: translate(-50%, 0);
     }
-    
 
-    .nav_list_block{
+    .nav_list_block {
         display: flex;
         justify-content: center;
         align-items: center;
         // width: calc(100% - 92px - 123.54px);
         width: 570px;
-
     }
 
     //---------------------------------------------------隱私聲明-----------------------------------------//
 
-    .tibame{
-        margin:0;
-        padding:8px;
+    .tibame {
+        margin: 0;
+        padding: 8px;
         text-align: center;
     }
 
-    p{
-        display:block;
-        font-size:14px;
-        color:white;
+    p {
+        display: block;
+        font-size: 14px;
+        color: white;
         letter-spacing: 2px;
-        margin:5px;
-        padding:0;
+        margin: 5px;
+        padding: 0;
     }
-    ul{
-        display:flex;
-        margin:0;
-        padding:0;
-        font-size:0;
+    ul {
+        display: flex;
+        margin: 0;
+        padding: 0;
+        font-size: 0;
         flex-direction: row;
-        justify-content:space-around;
+        justify-content: space-around;
     }
-    ul li{
+    ul li {
         list-style: none;
-    
     }
-    ul li a{
-        font-size:14px;
+    ul li a {
+        font-size: 14px;
         text-decoration: none;
-        color: #B3925B;
+        color: #b3925b;
         letter-spacing: 2px;
-        font-weight:bold;
-        margin:0;
-        padding:5px;
+        font-weight: bold;
+        margin: 0;
+        padding: 5px;
     }
-    ul li a:hover{
-        text-shadow: 2px 2px 10px  #B3925B, -2px -2px 10px  #B3925B;
+    ul li a:hover {
+        text-shadow: 2px 2px 10px #b3925b, -2px -2px 10px #b3925b;
         transition: all 0.5s;
     }
-    p>a{
-        font-size:14px;
+    p > a {
+        font-size: 14px;
         text-decoration: none;
         color: white;
         letter-spacing: 2px;
-        font-weight:bold;
-        margin:0;
-        padding:5px;
-        font-style:italic;
+        font-weight: bold;
+        margin: 0;
+        padding: 5px;
+        font-style: italic;
     }
 
-    @media (max-width:1200px){
-        nav{
-             width: 90%;
+    @media (max-width: 1200px) {
+        nav {
+            width: 90%;
         }
-        
     }
 
-    @media (max-width:992px) {
-
-        nav{
+    @media (max-width: 992px) {
+        nav {
             flex-direction: column;
 
-            .logo{
+            .logo {
                 margin-bottom: 20px;
             }
         }
 
-        .nav_list_block{
+        .nav_list_block {
             display: none;
         }
     }
-
 }

@@ -524,7 +524,7 @@ window.addEventListener('load', function () {
                         </div>
                         <div class="group_order_done_row">
                             <div>訂單日期</div>
-                            <div>{{group_ord_info.group_datetime}}/12/21</div>
+                            <div>{{group_ord_info.group_datetime}}</div>
                         </div>
                         <div class="group_order_done_row">
                             <div>連絡電話</div>

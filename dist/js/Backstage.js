@@ -2319,13 +2319,21 @@ window.addEventListener('load', function () {
                 // if (this.alertText == '跟團時間已截止') {
                 //     location.href = 'index.html'
                 // }
+
                 location.href = `backstage_login.html`
+                // window.clearTimeout(time)
             },
+            // 跳轉頁面
+            // jump() {
+            //     location.href = `backstage_login.html`
+            // },
         },
         mounted() {
             bus.$on('getAlert', (_alertText) => {
                 this.alertText = _alertText
                 this.alertLightbox = true
+
+                // var time = setTimeout(this.jump(), 10000)
             })
         },
         template: `
@@ -2422,13 +2430,17 @@ window.addEventListener('load', function () {
                         // console.log('有')
                     } else {
                         console.log('沒有')
-                        bus.$emit('getAlert', '沒有登入，或者登入時間超過五分鐘，請重新登入')
+                        bus.$emit('getAlert', '沒有登入，或者登入時間超過三十分鐘，請重新登入')
                         // location.href = `backstage_login.html`
                     }
                 })
 
             //定時 設定 刷新畫面
-            setInterval('window.location.reload();', 310000)
+            // setInterval('window.location.reload();', 60000)
+
+            // setInterval('window.location.reload();', 310000)
+            // setInterval('window.location.reload();', 18010000)
+            setInterval('window.location.reload();', 1805000)
         },
     })
     //--------------------------------------------

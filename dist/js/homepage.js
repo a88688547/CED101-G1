@@ -100,6 +100,11 @@ window.addEventListener('load', function () {
                     let sec = parseInt(offsetTime % 60) // 秒
                     let min = parseInt((offsetTime / 60) % 60) // 分 ex: 90秒
                     let hr = parseInt(offsetTime / 60 / 60) // 時
+                    if (offsetTime <= 0) {
+                        sec = '0'
+                        min = '0'
+                        hr = '0'
+                    }
                     let total = {
                         theHr: hr,
                         theMin: min,

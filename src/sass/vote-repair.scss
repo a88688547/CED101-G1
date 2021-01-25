@@ -1,14 +1,14 @@
-@import "./base/base.scss";
-@import "./mixins/font_size.scss";
-@import "./base/color.scss";
-@import "./mixins/button.scss";
+@import './base/base.scss';
+@import './mixins/font_size.scss';
+@import './base/color.scss';
+@import './mixins/button.scss';
 $mq575: 575px;
 $mq767: 767px;
 $mq991: 991px;
 $mq1199: 1199px;
 
 * {
-    font-family: "Roboto", sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 body {
@@ -108,8 +108,6 @@ section {
             flex-wrap: wrap;
             justify-content: center;
 
-
-
             &:nth-child(3) {
                 margin-right: 0px;
             }
@@ -132,17 +130,16 @@ section {
                     letter-spacing: 1px;
                     font-weight: initial;
                 }
-                &::before{
-                    content: "";
+                &::before {
+                    content: '';
                     width: 35px;
                     height: 30px;
                     position: absolute;
                     left: -40px;
                     top: -5px;
-                    background-image: url(../../dist/Images/vote/milktea_icon.svg);
+                    background-image: url(../Images/vote/milktea_icon.svg);
                     background-size: 35px 30px;
                 }
-
             }
 
             .vote-item {
@@ -279,39 +276,39 @@ section {
             }
         }
 
-        .vote-wrap:nth-child(3){
-            .vote-title::before{
-                background-image: url(../../dist/Images/vote/juice_icon.svg);
+        .vote-wrap:nth-child(3) {
+            .vote-title::before {
+                background-image: url(../Images/vote/juice_icon.svg);
             }
-            .vote-rank{
+            .vote-rank {
                 background-color: #ffa208;
             }
             .vote-second {
-                &:nth-child(3) .vote-rank{
+                &:nth-child(3) .vote-rank {
                     background-color: #ffa008cb;
                 }
-                &:nth-child(4) .vote-rank{
+                &:nth-child(4) .vote-rank {
                     background-color: #ffa0087c;
                 }
             }
-        } 
+        }
 
-        .vote-wrap:nth-child(2){
-            .vote-title::before{
-                background-image: url(../../dist/Images/vote/tea_icon.svg);
+        .vote-wrap:nth-child(2) {
+            .vote-title::before {
+                background-image: url(../Images/vote/tea_icon.svg);
             }
-            .vote-rank{
+            .vote-rank {
                 background-color: #467715;
             }
             .vote-second {
-                &:nth-child(3) .vote-rank{
+                &:nth-child(3) .vote-rank {
                     background-color: #467715d3;
                 }
-                &:nth-child(4) .vote-rank{
+                &:nth-child(4) .vote-rank {
                     background-color: #4677157e;
                 }
             }
-        } 
+        }
 
         .vote-button {
             width: 100%;
@@ -347,11 +344,7 @@ section {
             }
 
             button.color-1 {
-                background-image: linear-gradient(to right,
-                        #f5ce62,
-                        #e43603,
-                        #fa7199,
-                        #e85a19);
+                background-image: linear-gradient(to right, #f5ce62, #e43603, #fa7199, #e85a19);
                 box-shadow: 0 2px 5px 0 rgba(229, 66, 10, 0.75);
             }
         }
@@ -368,14 +361,11 @@ section {
                     margin-right: 0px;
                 }
             }
-
-
         }
 
         @media screen and (max-width: $mq991) {
             width: 720px;
             padding: 0 15px;
-
         }
 
         @media screen and (max-width: $mq767) {
@@ -411,7 +401,6 @@ section {
                 }
             }
 
-
             .vote-second {
                 width: 45%;
 
@@ -444,11 +433,9 @@ section {
                     }
                 }
             }
-
         }
     }
 }
-
 
 // 投票燈箱
 .voteLightbox-wrap {
@@ -570,7 +557,6 @@ section {
 
                 .vote-radio {
                     .btn-txt {
-
                         font-size: 1.3rem;
                         font-weight: bold;
                     }
@@ -611,21 +597,13 @@ section {
                 }
 
                 button.color-1 {
-                    background-image: linear-gradient(to right,
-                            #25aae1,
-                            #40e495,
-                            #30dd8a,
-                            #2bb673);
+                    background-image: linear-gradient(to right, #25aae1, #40e495, #30dd8a, #2bb673);
                     box-shadow: 0 4px 15px 0 rgba(49, 196, 190, 0.75);
                 }
             }
 
-            input[type="radio"]:checked+label {
-                background-image: linear-gradient(to right,
-                        #25aae1,
-                        #83a2d4,
-                        #21a1a56c,
-                        #165163);
+            input[type='radio']:checked + label {
+                background-image: linear-gradient(to right, #25aae1, #83a2d4, #21a1a56c, #165163);
                 padding: 5px 10px;
                 transition: 0.5s ease-in-out;
 

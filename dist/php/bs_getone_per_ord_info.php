@@ -30,10 +30,10 @@ try {
         } else {
             //有選擇優惠券 就去 join table
             $sql = "select *
-            from group_ord g join coupon c on g.cou_no = c.cou_no
-            where g.group_ord_no = :group_ord_no";
+            from personal_order p join coupon c on p.cou_no = c.cou_no
+            where p.per_ord_no = :per_ord_no";
             $memberdata = $pdo->prepare($sql);
-            $memberdata->bindValue(":group_ord_no", $group_ord_no);
+            $memberdata->bindValue(":per_ord_no", $per_ord_no);
             $memberdata->execute();
             $per_ord_datarow = $memberdata->fetch(PDO::FETCH_ASSOC);
 

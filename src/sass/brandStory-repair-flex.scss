@@ -1,9 +1,9 @@
-@import "./base/base.scss";
-@import "./mixins/mixins.scss";
-@import "./brandStory-banner.scss";
-@import "./mixins/animation.scss";
+@import './base/base.scss';
+@import './mixins/mixins.scss';
+@import './brandStory-banner.scss';
+@import './mixins/animation.scss';
 
-body{
+body {
     margin: 0 auto;
     color: $textColor;
     // div{
@@ -11,13 +11,13 @@ body{
     // }
 }
 
-#header{
+#header {
     background-color: $mainBackgroundColor;
     margin-bottom: 0;
 }
 
 // 第一屏--------------------------------------------------------
-section.banner{
+section.banner {
     width: 100%;
     height: calc(100vh - 80px);
     background-color: $mainBackgroundColor;
@@ -26,14 +26,14 @@ section.banner{
 }
 
 // 第二屏-品牌描述--------------------------------------------------
-section.story_descipt{
+section.story_descipt {
     display: flex;
     flex-direction: column;
     width: 100%;
     background-color: $insideBackgroundColor;
     overflow: hidden;
 
-    .descript_block{
+    .descript_block {
         display: inline-flex;
         // opacity: 0.025;
 
@@ -43,15 +43,15 @@ section.story_descipt{
         align-items: center;
         justify-content: space-between;
 
-        &:first-child{
+        &:first-child {
             margin-top: 15vh;
         }
     }
 }
 
-.shape{
+.shape {
     flex: 5;
-    height:35vw;
+    height: 35vw;
     background: $textColor;
     border-radius: 10% 45% 0% 45%;
     overflow: hidden;
@@ -59,9 +59,9 @@ section.story_descipt{
     right: 1.5vw;
 
     // 定位形狀內圖片置中
-    img{
+    img {
         position: absolute;
-        transform: translate(50%,-50%);
+        transform: translate(50%, -50%);
         top: 50%;
         right: 50%;
         width: 65%;
@@ -69,144 +69,144 @@ section.story_descipt{
 }
 
 // 2.文字內容--------------------
-.text_block{
+.text_block {
     display: flex;
     flex: 7;
     flex-direction: row;
     justify-content: flex-end;
 
-    .text{
+    .text {
         flex-direction: column;
     }
 
-    .mascot{
+    .mascot {
         display: flex;
         align-items: flex-end;
 
-        img{
+        img {
             max-width: 100%;
         }
     }
 }
 
 // 文字區塊內部屬性--------------------
-.descript_block{
-    .text{
-        h1{
+.descript_block {
+    .text {
+        h1 {
             font-size: 70px;
             font-family: Adobe Caslon Pro;
             font-style: italic;
-            font-weight: bold; 
+            font-weight: bold;
             letter-spacing: 5px;
             position: relative;
-            &::before{
-                content: "";
+            &::before {
+                content: '';
                 width: 85px;
                 height: 70px;
                 position: absolute;
                 top: -80px;
                 left: -80px;
-                background-image: url("../../dist/Images/brandStory/leaf/leaf_brandstoy-1@2x.png");
+                background-image: url('../Images/brandStory/leaf/leaf_brandstoy-1@2x.png');
                 background-size: 85px 70px;
             }
         }
-    
-        h2{
+
+        h2 {
             @include H2;
             margin: 40px 0 35px;
             letter-spacing: 5px;
-            font-weight: bold; 
+            font-weight: bold;
         }
-    
-        p{
+
+        p {
             @include H6;
             line-height: 32px;
             letter-spacing: 5px;
-            &::after{
-                content: "";
+            &::after {
+                content: '';
                 width: 60px;
                 height: 45px;
                 position: absolute;
                 bottom: -120px;
                 left: 80%;
-                background-image: url("../../dist/Images/brandStory/leaf/leaf_brandstoy-2@2x.png");
+                background-image: url('../Images/brandStory/leaf/leaf_brandstoy-2@2x.png');
                 background-size: 60px 45px;
             }
         }
-    } 
+    }
 }
 
 // 偶數反轉區塊定位------------------------------------------------
-.descript_block:nth-child(even){
+.descript_block:nth-child(even) {
     flex-direction: row-reverse;
 
-    .shape{
+    .shape {
         border-radius: 0% 45% 10% 45%;
         right: -12vw;
     }
 
-    .text_block{
+    .text_block {
         justify-content: flex-start;
-        .text{
+        .text {
             flex: 9.5;
             padding-left: 10vw;
         }
 
-        .mascot{
+        .mascot {
             flex: 2.5;
         }
     }
 }
 // 形狀背景色及動畫效果-------------------------------------
-.descript_block:nth-child(1) .shape img{
+.descript_block:nth-child(1) .shape img {
     animation: bubbletea 2s linear 1s;
 }
-.descript_block:nth-child(2) .shape{
-    background: #F7B447;
-    img{
+.descript_block:nth-child(2) .shape {
+    background: #f7b447;
+    img {
         top: 70%;
         animation: qr 1s linear 3s;
     }
 }
 
-.descript_block:nth-child(3) .shape{
+.descript_block:nth-child(3) .shape {
     background-color: $btnColor;
-    img{
+    img {
         width: 100%;
         top: 45%;
         animation: bubbletea_handle 1s linear 5s;
     }
 }
 
-.descript_block:nth-child(4) .shape{
+.descript_block:nth-child(4) .shape {
     background-color: $mainBackgroundColor;
 
-    img{
-        &:first-child{
+    img {
+        &:first-child {
             z-index: 1;
-            top:60%;
+            top: 60%;
             animation: mascot 1s linear 3s;
         }
-        &:nth-child(2){
+        &:nth-child(2) {
             width: 35%;
-            top:25%;
+            top: 25%;
             animation: lets_join 0.8s linear 10s;
         }
-        &:nth-child(3){
+        &:nth-child(3) {
             width: 100%;
-            top:80%;
+            top: 80%;
             opacity: 0.5;
         }
     }
 }
 
 // 底部區塊--------------------------------------
-section.btm_block{
+section.btm_block {
     background-color: $insideBackgroundColor;
     overflow: hidden;
 }
 
-.address{
+.address {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -214,47 +214,47 @@ section.btm_block{
     align-items: center;
 }
 
-.address_text h2{
+.address_text h2 {
     @include H2;
     margin-bottom: 35px;
     letter-spacing: 5px;
-    font-weight: bold; 
+    font-weight: bold;
 }
 
-.address_text .title_block{
+.address_text .title_block {
     display: flex;
     flex-direction: column;
-    .info_block{
+    .info_block {
         display: inline-flex;
         align-items: center;
 
-        img{
-            margin: 0 30px 10px 0; 
+        img {
+            margin: 0 30px 10px 0;
         }
-        h5{
+        h5 {
             @include H5;
             margin: 0 0 10px 0;
         }
-    } 
+    }
 }
 
 .address .img_block {
     position: relative;
-    &::before{
-        content: "";
+    &::before {
+        content: '';
         width: 60px;
         height: 45px;
-        background-image: url("../../dist/Images/brandStory/leaf/leaf_brandstoy-3@2x.png");
+        background-image: url('../Images/brandStory/leaf/leaf_brandstoy-3@2x.png');
         background-size: 60px 45px;
         position: absolute;
         bottom: -40px;
         left: -80px;
     }
-    &::after{
-        content: "";
+    &::after {
+        content: '';
         width: 110px;
         height: 65px;
-        background-image: url("../../dist/Images/brandStory/leaf/leaf_brandstoy-4@2x.png");
+        background-image: url('../Images/brandStory/leaf/leaf_brandstoy-4@2x.png');
         background-size: 110px 65px;
         position: absolute;
         top: 0px;
@@ -262,75 +262,73 @@ section.btm_block{
     }
 }
 
-#footer{
+#footer {
     margin-top: 0;
     padding: 20px 0 0 0;
     width: 100%;
     height: 200px;
-    background-color: #013B4F;
+    background-color: #013b4f;
     position: relative;
 }
 
-
 // rwd---------------------------------------------------------------------------------
-@media (min-width: 992px) and (max-width: 1199px){
+@media (min-width: 992px) and (max-width: 1199px) {
     .address .img_block {
-        &::before{
+        &::before {
             bottom: -90px;
             left: -50px;
         }
-        &::after{
+        &::after {
             top: 0px;
             right: -60%;
         }
     }
 }
-@media (min-width: 767px) and (max-width: 991px){
+@media (min-width: 767px) and (max-width: 991px) {
     // 文字屬性-------------------------------
     .descript_block .text {
-        h1{
+        h1 {
             font-size: 48px;
             letter-spacing: 3px;
         }
-    
-        h2{
+
+        h2 {
             @include H3;
             letter-spacing: 4px;
             margin: 40px 0 25px;
         }
-    
-        p{
+
+        p {
             @include P1;
             line-height: 24px;
             letter-spacing: 3px;
         }
     }
     .address_text .title_block .info_block {
-        h5{
+        h5 {
             letter-spacing: 2px;
         }
-        img{
+        img {
             margin-right: 5px;
         }
     }
     .text_block .mascot img {
         width: 80%;
     }
-    
+
     .address .img_block {
-        &::before{
+        &::before {
             bottom: -90px;
             left: -50px;
         }
-        &::after{
+        &::after {
             top: 0px;
             right: -60%;
         }
     }
 }
 
-
-@media (min-width: 576px) and (max-width: 767px){
+@media (min-width: 576px) and (max-width: 767px) {
     // 圖文上下排列----------------------------
     section.story_descipt .descript_block {
         margin: 0 auto;
@@ -339,15 +337,17 @@ section.btm_block{
         margin-bottom: 20vw;
     }
     // 葉子消失
-    .descript_block .text h1::before , .descript_block .text p::after{
+    .descript_block .text h1::before,
+    .descript_block .text p::after {
         display: none;
     }
-    .address .img_block::before ,.address .img_block::after {
+    .address .img_block::before,
+    .address .img_block::after {
         display: none;
     }
-    
+
     // 形狀尺寸改變----------------------------
-    .shape{
+    .shape {
         flex: none;
         width: 50vw;
         height: 50vw;
@@ -355,7 +355,7 @@ section.btm_block{
         margin-bottom: 35px;
     }
     // . 偶數反轉區塊-------------------------
-    .descript_block:nth-child(even) .shape{
+    .descript_block:nth-child(even) .shape {
         right: 0;
     }
 
@@ -369,25 +369,23 @@ section.btm_block{
         width: 90%;
         justify-content: center;
     }
-    .text_block .text{
-     
-        h1{
+    .text_block .text {
+        h1 {
             font-size: 48px;
             letter-spacing: 3px;
         }
-    
-        h2{
+
+        h2 {
             @include H4;
             letter-spacing: 4px;
             margin: 40px 0 25px;
         }
-    
-        p{
+
+        p {
             @include P1;
             line-height: 24px;
             letter-spacing: 3px;
-        }  
-        
+        }
     }
 
     // 吉祥物消失-----------------------------
@@ -396,29 +394,29 @@ section.btm_block{
     }
 
     // 底部區塊----------------------------------------------
-    .address{
+    .address {
         flex-direction: column;
         align-items: center;
         padding: 50px;
-        h2{
+        h2 {
             text-align: center;
         }
 
-        .img_block{
+        .img_block {
             display: flex;
             justify-content: center;
-            img{
+            img {
                 width: 80%;
                 margin-top: 20px;
             }
         }
-        .address_text .title_block .info_block h5{
+        .address_text .title_block .info_block h5 {
             @include H6;
-        }  
+        }
     }
 }
 
-@media (max-width: 576px){
+@media (max-width: 576px) {
     // 圖文上下排列----------------------------
     section.story_descipt .descript_block {
         margin: 0 auto;
@@ -428,16 +426,18 @@ section.btm_block{
     }
 
     // 葉子消失
-    .descript_block .text h1::before , .descript_block .text p::after{
+    .descript_block .text h1::before,
+    .descript_block .text p::after {
         display: none;
     }
 
-    .address .img_block::before ,.address .img_block::after {
+    .address .img_block::before,
+    .address .img_block::after {
         display: none;
     }
 
     // 形狀尺寸改變----------------------------
-    .shape{
+    .shape {
         flex: none;
         width: 50vw;
         height: 50vw;
@@ -445,7 +445,7 @@ section.btm_block{
         margin-bottom: 35px;
     }
     // . 偶數反轉區塊-------------------------
-    .descript_block:nth-child(even) .shape{
+    .descript_block:nth-child(even) .shape {
         right: 0;
     }
 
@@ -459,25 +459,23 @@ section.btm_block{
         width: 90%;
         justify-content: center;
     }
-    .text_block .text{
-     
-        h1{
+    .text_block .text {
+        h1 {
             font-size: 36px;
             letter-spacing: 2px;
         }
-    
-        h2{
+
+        h2 {
             @include H4;
             letter-spacing: 4px;
             margin: 30px 0 15px;
         }
-    
-        p{
+
+        p {
             @include P2;
             line-height: 24px;
             letter-spacing: 1px;
-        }  
-        
+        }
     }
 
     // 吉祥物消失-----------------------------
@@ -486,41 +484,39 @@ section.btm_block{
     }
 
     // 底部區塊----------------------------------------------
-    .address{
+    .address {
         flex-direction: column;
         align-items: center;
         padding: 10px;
-        h2{
+        h2 {
             @include H4;
             letter-spacing: 4px;
             text-align: center;
         }
 
-        .img_block{
+        .img_block {
             display: flex;
             justify-content: center;
-            img{
+            img {
                 width: 70%;
                 margin-top: 20px;
             }
         }
     }
 
-    .address .img_block img{
+    .address .img_block img {
         max-width: 80%;
         margin-top: 20px;
     }
 
     .address_text .title_block .info_block {
-        h5{
+        h5 {
             @include H6;
             line-height: 28px;
         }
 
-        img{
+        img {
             margin-right: 10px;
         }
     }
 }
-
-

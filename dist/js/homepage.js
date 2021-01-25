@@ -288,7 +288,7 @@ window.addEventListener('load', function () {
         </div>
 
         <div class="bottom_block">
-            <button class="seemore color-2" onclick="javascript:location.href='./share_list.html'">
+            <button class="seemore color-2" onclick="javascript:location.href='./share_article.html'">
                 查看更多內容
             </button>
         </div>

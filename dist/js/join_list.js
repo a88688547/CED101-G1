@@ -68,7 +68,7 @@ var app = new Vue({
           // this.in_time = 2
           //時間到在抓一次
           this.selectGroup();
-          in_time = 2;
+          // in_time = 2;
           sec = "0";
           min = "0";
           hr = "0";

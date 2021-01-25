@@ -48,6 +48,10 @@ body {
 //   border: 1px solid black;
   min-height: 100vh;
   //   === 標題 + LOGO ===
+  .search_false{
+    // border: 1px solid red;
+    @include H5;
+  }
   .join_wrap_title{
       // border: 2px solid red;
       display: flex;
@@ -82,7 +86,7 @@ body {
           // border: 1px solid red;
           position: relative;
           width: 100%;
-          max-width: 53px;
+          // max-width: 53px;
           transition: 0.4s linear;
           // overflow: hidden;
           input{
@@ -95,13 +99,13 @@ body {
               border-radius: 50px;
               // border: 2px solid blue;
               background-color:#013B4F;
-              color: #013B4F;
+              color: #ffffff;
               padding: 15px;
               cursor: pointer;
               transition: 0.4s linear;
               @include H6;
               &::placeholder{
-                color: #013B4F;
+                // color: #013B4F;
               }
           }
           .search_bar_icon{

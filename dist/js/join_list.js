@@ -89,6 +89,7 @@ var app = new Vue({
     //搜尋團名
     search_group_name: async function () {
       if (this.search_name == "") {
+        this.test = false;
         this.selectGroup();
       } else {
         const res = await fetch("./php/get_group_name.php", {

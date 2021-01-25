@@ -64,7 +64,7 @@
         <!-- ====標題 + LOGO===== -->
 
         <!-- ========== -->
-        <div v-if="test == true">無結果</div>
+        <div class="search_false" v-if="test == true">無結果</div>
         <div
           class="join_list"
           v-for="(item,index) in grouporddata"
@@ -86,7 +86,7 @@
                     >
                   </h5>
                 </div>
-                <div v-else>已截止</div>
+
                 <!-- <div v-else>已截止</div> -->
               </div>
               <div class="join_list_content">
